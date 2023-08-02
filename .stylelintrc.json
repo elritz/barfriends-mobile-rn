@@ -1,0 +1,21 @@
+{
+	"extends": [
+		"stylelint-config-standard",
+		"stylelint-config-prettier",
+		"stylelint-config-idiomatic-order"
+	],
+	"plugins": ["stylelint-react-native", "stylelint-order"],
+	"customSyntax": "@stylelint/postcss-css-in-js",
+	"rules": {
+		"order/order": ["custom-properties", "declarations"],
+		"order/properties-order": ["width", "height"],
+		"color-no-invalid-hex": true,
+		"block-no-empty": null,
+		"unit-allowed-list": ["em", "rem", "%", "s"],
+		"alpha-value-notation": ["percentage", { "exceptProperties": ["opacity"] }],
+		"react-native/style-property-no-unknown": true,
+		"react-native/css-property-no-unknown": true,
+		"processors": ["stylelint-processor-styled-components"],
+		"extends": ["stylelint-config-recommended"]
+	}
+}

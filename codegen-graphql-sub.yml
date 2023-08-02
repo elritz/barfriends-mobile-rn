@@ -1,0 +1,20 @@
+overwrite: true
+schema: "ws://localhost:5004/graphql"
+# schema: "https://localhost:5004/graphql/stream"
+# schema: "https://192.168.86.23:5004/graphql/stream"
+documents: "graphql/**/*.subscription.ts"
+generates:
+  ./graphql/generated/subindex.ts:
+    schema: ./subschema.graphql
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+  ./graphql/generated/subschema.graphql:
+    plugins:
+      - schema-ast
+  ./graphql/generated/subschema.graphql.json:
+    plugins:
+      - "introspection"
+    config:
+      minify: true
