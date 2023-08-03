@@ -170,13 +170,13 @@ export default () => {
 						rPermissionMedia?.canAskAgain ? askMediaLibraryPermissionAsync() : openPhoneSettings()
 					}
 				>
-					<Text>
+					<Button.Text>
 						{!rPermissionMedia?.granted
 							? rPermissionMedia?.canAskAgain && !rPermissionMedia.granted
 								? 'Continue'
 								: 'Go to Phone Settings'
 							: 'Granted'}
-					</Text>
+					</Button.Text>
 				</Button>
 				{!started ? (
 					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>

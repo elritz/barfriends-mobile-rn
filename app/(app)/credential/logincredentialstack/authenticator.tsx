@@ -299,9 +299,9 @@ export default () => {
 							my={'$3'}
 							rounded={'$md'}
 						>
-							<Text textTransform='uppercase' fontWeight='$black' fontSize={'$lg'}>
+							<Button.Text textTransform='uppercase' fontWeight='$black' fontSize={'$lg'}>
 								Sign up
-							</Text>
+							</Button.Text>
 						</Button>
 					) : null}
 				</VStack>

@@ -1,12 +1,12 @@
 import { darkCompanyColors, lightCompanyColors } from '../colors'
 import * as colors from '@assets/theme/colors'
-import { bfsCompanyColors } from '@assets/theme/default/revel'
+import { revelCompanyColors } from '@assets/theme/default/revel'
 
 export const LightStyledTheme = {
 	theme: 'light',
 	palette: {
-		bfscompany: {
-			...bfsCompanyColors,
+		revel: {
+			...revelCompanyColors,
 		},
 		company: {
 			...lightCompanyColors,
@@ -32,8 +32,8 @@ export const LightStyledTheme = {
 export const DarkStyledTheme = {
 	theme: 'dark',
 	palette: {
-		bfscompany: {
-			...bfsCompanyColors,
+		revel: {
+			...revelCompanyColors,
 		},
 		company: {
 			...darkCompanyColors,

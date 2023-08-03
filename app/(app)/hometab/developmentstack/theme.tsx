@@ -36,16 +36,16 @@ export default function Preferences() {
 					item.theme.styled.light.palette.company.tertiary,
 				],
 			}
-			const bfs = {
+			const revel = {
 				dark: [
-					item.theme.styled.dark.palette.bfscompany.primary,
-					item.theme.styled.dark.palette.bfscompany.secondary,
-					item.theme.styled.dark.palette.bfscompany.tertiary,
+					item.theme.styled.dark.palette.revel.primary,
+					item.theme.styled.dark.palette.revel.secondary,
+					item.theme.styled.dark.palette.revel.tertiary,
 				],
 				light: [
-					item.theme.styled.light.palette.bfscompany.primary,
-					item.theme.styled.light.palette.bfscompany.secondary,
-					item.theme.styled.light.palette.bfscompany.tertiary,
+					item.theme.styled.light.palette.revel.primary,
+					item.theme.styled.light.palette.revel.secondary,
+					item.theme.styled.light.palette.revel.tertiary,
 				],
 			}
 
@@ -80,7 +80,7 @@ export default function Preferences() {
 						<VStack flexDirection={'row'} flexWrap={'wrap'} justifyContent='space-around' space={'md'}>
 							{rTheme.colorScheme === 'light' ? (
 								<>
-									{bfs.light.map((item, index) => {
+									{revel.light.map((item, index) => {
 										return (
 											<Box
 												key={index}
@@ -97,7 +97,7 @@ export default function Preferences() {
 								</>
 							) : (
 								<>
-									{bfs.dark.map((item, index) => {
+									{revel.dark.map((item, index) => {
 										return (
 											<Box
 												key={index}

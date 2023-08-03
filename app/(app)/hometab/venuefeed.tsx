@@ -99,7 +99,7 @@ export default () => {
 
 				<VStack bg={'transparent'} space={'md'}>
 					{rAuthorizationVar?.DeviceProfile?.Profile?.ProfileType === ProfileType.Guest && (
-						<Box my={'$2'} p={'$5'} pt={'$10'}>
+						<Box mx={'$2'} my={'$2'} p={'$5'} pt={'$10'}>
 							<CardPleaseSignup signupTextId={1} />
 						</Box>
 					)}

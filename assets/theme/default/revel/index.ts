@@ -1,4 +1,4 @@
-export const bfsCompanyColors = {
+export const revelCompanyColors = {
 	primary: '#0b0b0b',
 	secondary: '#FF7000',
 	tertiary: '#257CFF',

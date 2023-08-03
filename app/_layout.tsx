@@ -1,4 +1,5 @@
 //TODO: Add notfication listener
+import { Config, config } from '../gluestack-ui.config'
 import { ApolloProvider } from '@apollo/client'
 import { defaulttheme } from '@assets/theme/default'
 import Theme from '@components/layouts/Theme'
@@ -11,7 +12,6 @@ import {
 	LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION,
 	LOCAL_STORAGE_PREFERENCE_SYSTEM_OF_UNITS,
 } from '@constants/StorageConstants'
-import { Config, config } from '../gluestack-ui.config'
 import {
 	LocalStoragePreferenceSearchAreaType,
 	LocalStoragePreferenceThemeType,
@@ -115,7 +115,7 @@ export default function Root() {
 				)
 
 				ThemeReactiveVar({
-					theme:ThemeReactiveVar().theme,
+					theme: ThemeReactiveVar().theme,
 					localStorageColorScheme: 'system',
 					deviceColorScheme: Appearance.getColorScheme(),
 					colorScheme: Appearance.getColorScheme(),
@@ -251,13 +251,13 @@ export default function Root() {
 
 	return (
 		<ApolloProvider client={profilingclient}>
-				<SafeAreaProvider>
-					<KeyboardProvider statusBarTranslucent>
-						<Theme>
-							<Slot initialRouteName='(app)/hometab/venuefeed' />
-						</Theme>
-					</KeyboardProvider>
-				</SafeAreaProvider>
+			<SafeAreaProvider>
+				<KeyboardProvider statusBarTranslucent>
+					<Theme>
+						<Slot initialRouteName='(app)/hometab/venuefeed' />
+					</Theme>
+				</KeyboardProvider>
+			</SafeAreaProvider>
 		</ApolloProvider>
 	)
 }

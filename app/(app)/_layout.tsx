@@ -9,7 +9,6 @@ import { Stack, useSegments } from 'expo-router'
 export default () => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const segments = useSegments()
-
 	return (
 		<Auth>
 			<Stack

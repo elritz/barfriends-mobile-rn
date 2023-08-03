@@ -39,7 +39,7 @@ export default function QuickBarfriendCard({ qrcodesize, logosize, showIcon, col
 	return (
 		<View style={{ flex: 1 }}>
 			<Heading fontWeight={'$black'} fontSize={'$lg'}>
-				Add Bfs
+				Add Friend
 			</Heading>
 			<Pressable
 				onPress={() =>
@@ -74,7 +74,7 @@ export default function QuickBarfriendCard({ qrcodesize, logosize, showIcon, col
 						</View>
 					) : (
 						<Box bg={'transparent'} flexDirection={'column'} justifyContent={'space-around'}>
-							<Box bg={'transparent'}  alignItems={'center'} justifyContent={'center'}>
+							<Box bg={'transparent'} alignItems={'center'} justifyContent={'center'}>
 								<View>
 									{dataQR && (
 										<QRCode

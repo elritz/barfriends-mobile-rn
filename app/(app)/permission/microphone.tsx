@@ -196,7 +196,7 @@ export default () => {
 			>
 				<Divider w={'95%'} />
 				<Button
-					size={'md'}
+					size={'lg'}
 					sx={{
 						w: '95%',
 					}}
@@ -208,13 +208,13 @@ export default () => {
 							: createTwoButtonAlert()
 					}
 				>
-					<Text>
+					<Button.Text>
 						{!rMicrophonePermission?.granted
 							? rMicrophonePermission?.canAskAgain && !rMicrophonePermission.granted
 								? 'Continue'
 								: 'Go to Phone Settings'
 							: 'Granted'}
-					</Text>
+					</Button.Text>
 				</Button>
 				{!started ? (
 					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>

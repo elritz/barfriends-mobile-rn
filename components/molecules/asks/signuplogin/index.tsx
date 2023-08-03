@@ -58,14 +58,14 @@ export default (props: Props) => {
 					}}
 					rounded={'$md'}
 				>
-					<Text
+					<Button.Text
 						textTransform='uppercase'
 						fontWeight='$bold'
 						fontSize={'$lg'}
 						// _text={{ textTransform: 'uppercase', fontWeight: '700', fontSize: 'lg' }}
 					>
 						Sign up
-					</Text>
+					</Button.Text>
 				</Button>
 				<Pressable w={'100%'} onPress={_pressToLogin}>
 					<Text textTransform='uppercase' fontSize={'$lg'} fontWeight={'$bold'} alignSelf='center'>

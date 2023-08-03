@@ -17,8 +17,8 @@ export default function PermissionButtonSearchAreaLocation() {
 	}
 
 	return (
-		<Button w={'100%'} size={'lg'} onPress={async () => await _press()} mt={'$4'}>
-			<Button.Text fontSize={'$lg'} fontWeight={'$bold'}>
+		<Button w={'95%'} onPress={async () => await _press()} mt={'$4'} rounded={'$md'}>
+			<Button.Text textTransform='uppercase' fontWeight='$bold' fontSize={'$lg'}>
 				CONTINUE
 			</Button.Text>
 		</Button>

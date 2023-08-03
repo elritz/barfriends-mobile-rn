@@ -209,13 +209,13 @@ export default () => {
 							: createTwoButtonAlert()
 					}
 				>
-					<Text>
+					<Button.Text>
 						{!rPermissionLocationVar?.granted
 							? rPermissionLocationVar?.canAskAgain && !rPermissionLocationVar.granted
 								? 'Continue'
 								: 'Go to Phone Settings'
 							: 'Granted'}
-					</Text>
+					</Button.Text>
 				</Button>
 				{!started ? (
 					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>

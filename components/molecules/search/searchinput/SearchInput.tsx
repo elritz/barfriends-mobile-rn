@@ -57,17 +57,20 @@ const SearchInput = (props: Props) => {
 
 	useLayoutEffect(() => {
 		setShowBack(!segments.includes('hometab'))
-
-		if (!segments.includes('hometab')) {
-			if (segments.includes('explore')) {
-				_inputRef.current?.focus()
+		if (router.canGoBack()) {
+			if (!segments.includes('hometab')) {
+				if (segments.includes('explore')) {
+					_inputRef.current?.focus()
+				}
+				if (
+					segments.includes('searcharea') &&
+					segments.includes('searchcountry' || 'searchstate' || 'searchstatecities')
+				) {
+					_inputRef.current?.focus()
+				}
 			}
-			if (
-				segments.includes('searcharea') &&
-				segments.includes('searchcountry' || 'searchstate' || 'searchstatecities')
-			) {
-				_inputRef.current?.focus()
-			}
+		} else {
+			setShowBack(false)
 		}
 	}, [])
 

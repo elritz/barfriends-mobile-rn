@@ -650,7 +650,7 @@ export default () => {
 										await schedulePushNotification()
 									}}
 								>
-									<Text>send notification</Text>
+									<Button.Text>Send notification</Button.Text>
 								</Button>
 								<Divider />
 							</VStack>

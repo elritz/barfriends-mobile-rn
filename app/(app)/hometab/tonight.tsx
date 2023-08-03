@@ -10,6 +10,7 @@ import { AuthorizationReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
 import useContentInsets from '@util/hooks/useContentInsets'
 import { LinearGradient } from 'expo-linear-gradient'
+import { ScrollView } from 'react-native'
 
 const Wrapper = ({ children }) => {
 	return (
@@ -37,9 +38,15 @@ export default () => {
 
 	if (rAuthorizationVar?.DeviceProfile?.Profile?.ProfileType === 'GUEST') {
 		return (
-			<Box my={'$2'} p={'$5'} pt={'$10'}>
-				<CardPleaseSignup signupTextId={1} />
-			</Box>
+			<ScrollView
+				contentContainerStyle={{
+					flex: 1,
+				}}
+			>
+				<Box mt={contentInsets.top} my={'$2'} p={'$5'} pt={'$10'}>
+					<CardPleaseSignup signupTextId={1} />
+				</Box>
+			</ScrollView>
 		)
 	}
 

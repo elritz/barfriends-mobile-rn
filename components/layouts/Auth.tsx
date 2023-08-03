@@ -8,11 +8,10 @@ import {
 import { AuthorizationReactiveVar } from '@reactive'
 import { AuthorizationDecoded } from '@util/hooks/auth/useCheckLocalStorageForAuthorizationToken'
 import { secureStorageItemDelete, secureStorageItemRead } from '@util/hooks/local/useSecureStorage'
-import { router, useRouter } from 'expo-router'
-import { useEffect, useRef } from 'react'
+import { router } from 'expo-router'
+import { useEffect } from 'react'
 
 export default function Auth({ children }) {
-	// const router = useRouter()
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 
 	const [refreshDeviceManagerMutation, { data: RDMData, loading: RDMLoading, error: RDMError }] =
@@ -30,11 +29,11 @@ export default function Auth({ children }) {
 					router.push('(app)/hometab/venuefeed')
 				}
 				if (data.refreshDeviceManager?.__typename === 'Error') {
-					// setTimeout(() => {
-					// 	router.replace({
-					// 		pathname: '(app)/hometab/venuefeed',
-					// 	})
-					// }, 1)
+					setTimeout(() => {
+						router.replace({
+							pathname: '(error)',
+						})
+					}, 1)
 				}
 			},
 		})
@@ -84,11 +83,6 @@ export default function Auth({ children }) {
 
 	useEffect(() => {
 		applicationAuthorization()
-		setTimeout(() => {
-			router.push({
-				pathname: '(app)/hometab/venuefeed',
-			})
-		}, 1)
 	}, [])
 
 	if (!rAuthorizationVar || RDMLoading || CGLoading) {

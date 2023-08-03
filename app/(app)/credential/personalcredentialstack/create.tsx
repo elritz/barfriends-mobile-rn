@@ -70,7 +70,7 @@ export default () => {
 				<VStack space={'md'} alignItems={'center'} justifyContent={'center'}>
 					<CompanyCoasterLogoDynamic backgroundColor='black' />
 					<Heading fontWeight={'$black'} lineHeight={'$3xl'} fontSize={'$4xl'}>
-						Welcome to Bfs
+						Welcome to Revel
 					</Heading>
 					<Box bg='$transparent'>
 						<Text fontSize={'$lg'}>

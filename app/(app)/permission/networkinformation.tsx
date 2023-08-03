@@ -8,6 +8,7 @@ import { PermissionNotificationReactiveVar, ThemeReactiveVar } from '@reactive'
 import { capitalizeFirstLetter } from '@util/@fn/capitalizeFirstLetter'
 import useTimer2 from '@util/hooks/useTimer2'
 import * as Application from 'expo-application'
+import Constants from 'expo-constants'
 import * as Device from 'expo-device'
 import * as IntentLauncher from 'expo-intent-launcher'
 import * as Linking from 'expo-linking'
@@ -146,7 +147,7 @@ export default () => {
 					const IOSenv = await Application.getIosPushNotificationServiceEnvironmentAsync()
 
 					const expoToken = await Notifications.getExpoPushTokenAsync({
-						experienceId: '@revel/revel',
+						projectId: Constants.expoConfig?.extra?.eas.projectId,
 						applicationId: String(Application.applicationId),
 						development: IOSenv === 'development' ? true : false,
 					})
@@ -159,7 +160,7 @@ export default () => {
 					})
 				} else {
 					const expoToken = await Notifications.getExpoPushTokenAsync({
-						experienceId: '@revel/revel',
+						projectId: Constants.expoConfig?.extra?.eas.projectId,
 						applicationId: String(Application.applicationId),
 					})
 
@@ -292,13 +293,13 @@ export default () => {
 							: createTwoButtonAlert()
 					}
 				>
-					<Text>
+					<Button.Text>
 						{!rNotificationsPermission?.granted
 							? rNotificationsPermission?.canAskAgain && !rNotificationsPermission.granted
 								? 'Continue'
 								: 'Go to Phone Settings'
 							: 'Granted'}
-					</Text>
+					</Button.Text>
 				</Button>
 				{!started ? (
 					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>

@@ -12,7 +12,7 @@ export default function VenueFeedSearchAreaEmptyState() {
 	}
 
 	return (
-		<Box p={'$5'} rounded={'$md'}>
+		<Box mx={'$2'} p={'$5'} rounded={'$md'}>
 			<Heading
 				numberOfLines={3}
 				ellipsizeMode='tail'

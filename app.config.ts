@@ -93,6 +93,7 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 					adaptiveIcon: {
 						foregroundImage: './assets/images/adaptive-icon.png',
 					},
+					googleServicesFile: './google-services.json',
 					config: {
 						googleMaps: {
 							apiKey: process.env.GOOGLE_ANDROID_API_KEY,
