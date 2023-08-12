@@ -18,7 +18,7 @@ type Props = {
 const PersonalScreen = ({ notifications }: Props) => {
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 
-	if (rAuthorizationVar?.DeviceProfile?.Profile?.ProfileType === ProfileType.Guest) {
+	if (rAuthorizationVar?.Profile?.ProfileType === ProfileType.Guest) {
 		return (
 			<Box bg='$transparent' my={'$10'} mx={'$3'} flex={1}>
 				<View>
@@ -32,17 +32,17 @@ const PersonalScreen = ({ notifications }: Props) => {
 	return (
 		<Box bg={'transparent'}>
 			<View style={{ alignItems: 'center', marginVertical: 20 }}>
-				<ProfilePhoto photo={rAuthorizationVar?.DeviceProfile?.Profile?.profilePhoto} />
+				<ProfilePhoto photo={rAuthorizationVar?.Profile?.profilePhoto} />
 				<View style={{ marginVertical: 20 }}>
 					<Heading
 						fontSize={'$3xl'}
 						numberOfLines={2}
 						style={{ textTransform: 'capitalize', textAlign: 'center' }}
 					>
-						{rAuthorizationVar?.DeviceProfile?.Profile?.IdentifiableInformation?.fullname}
+						{rAuthorizationVar?.Profile?.IdentifiableInformation?.fullname}
 					</Heading>
 					<Heading fontSize={'$md'} style={{ textTransform: 'uppercase', textAlign: 'center' }}>
-						@{rAuthorizationVar?.DeviceProfile?.Profile?.IdentifiableInformation?.username}
+						@{rAuthorizationVar?.Profile?.IdentifiableInformation?.username}
 					</Heading>
 				</View>
 				{/* <Divider style={{ marginVertical: 10 }} /> */}

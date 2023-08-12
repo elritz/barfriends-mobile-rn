@@ -1,4 +1,4 @@
-import { VStack, Text, Button, Center, Pressable, Heading, Box } from '@components/core'
+import { VStack, Text, Button, Pressable, Heading, Box } from '@components/core'
 import DeviceManagerProfiles from '@components/organisms/list/DeviceManagerProfiles'
 import GetSignInUpText from '@helpers/data/SignupinText'
 import { useRouter } from 'expo-router'

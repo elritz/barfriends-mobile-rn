@@ -20,7 +20,7 @@ export default ({}: HomeTownScreenProps) => {
 		formState: { dirtyFields, errors },
 	} = useForm({
 		defaultValues: {
-			lookfor: rAuthorizationVar?.DeviceProfile?.Profile?.IdentifiableInformation?.lookfor,
+			lookfor: rAuthorizationVar?.Profile?.IdentifiableInformation?.lookfor,
 		},
 		mode: 'onChange',
 		reValidateMode: 'onChange',

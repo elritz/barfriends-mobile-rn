@@ -1,16 +1,20 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, VStack, Text, Pressable, HStack, Heading } from '@components/core'
+import {
+	Box,
+	VStack,
+	Text,
+	Pressable,
+	HStack,
+	Heading,
+	Button,
+	ArrowUpIcon,
+	ArrowRightIcon,
+} from '@components/core'
 import CardPleaseSignup from '@components/molecules/asks/signuplogin'
 import SearchAreaHeader from '@components/screens/venuesfeed/SearchAreaHeader'
 import ShowCaseScroll from '@components/screens/venuesfeed/ShowCaseScroll'
 import VenueFeedSearchAreaEmptyState from '@components/screens/venuesfeed/VenueFeedSearchAreaEmptyState'
 import MemoizedVerticalVenueFeedVenueItem from '@components/screens/venuesfeed/VerticalVenueFeedVenueItem'
-import DevActions from '@components/screens/venuesfeed/devactions'
-import {
-	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
-	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
-} from '@constants/ReactNavigationConstants'
-import { ENVIRONMENT } from '@env'
 import { Ionicons } from '@expo/vector-icons'
 import {
 	ProfileType,
@@ -21,11 +25,14 @@ import {
 import {
 	AuthorizationReactiveVar,
 	CurrentLocationReactiveVar,
+	PermissionForegroundLocationReactiveVar,
 	SearchAreaReactiveVar,
 	ThemeReactiveVar,
 } from '@reactive'
 import { FlashList, MasonryFlashList } from '@shopify/flash-list'
+import useSetSearchAreaWithLocation from '@util/hooks/searcharea/useSetSearchAreaWithLocation'
 import useContentInsets from '@util/hooks/useContentInsets'
+import { useRouter } from 'expo-router'
 import { Skeleton } from 'moti/skeleton'
 import { useEffect } from 'react'
 import { Dimensions, NativeScrollEvent, ScrollView, View } from 'react-native'
@@ -33,7 +40,7 @@ import CountryFlag from 'react-native-country-flag'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default () => {
-	const insets = useSafeAreaInsets()
+	const router = useRouter()
 	const contentInsets = useContentInsets()
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 	const rTheme = useReactiveVar(ThemeReactiveVar)
@@ -49,13 +56,9 @@ export default () => {
 	const [updateToBeNotifiedMutation, { data: UTBNData, loading: UTBNLoading, error: UTBNError }] =
 		useUpdateComingAreaToBeNotifiedMutation()
 
-	const [venuesNearby, { data, loading, error }] = useVenuesNearbyLazyQuery({
+	const [venuesNearbyQuery, { data, loading, error }] = useVenuesNearbyLazyQuery({
 		variables: {
 			searchAreaCoords: {
-				latitude: Number(rSearchAreaVar?.searchArea?.coords.latitude),
-				longitude: Number(rSearchAreaVar?.searchArea?.coords.longitude),
-			},
-			currentLocationCoords: {
 				latitude: rSearchAreaVar.useCurrentLocation
 					? Number(rCurrentLocationVar?.current?.coords.latitude)
 					: Number(rSearchAreaVar?.searchArea.coords.latitude),
@@ -69,26 +72,12 @@ export default () => {
 	})
 
 	const onPullRefresh = () => {
-		if (rSearchAreaVar?.searchArea?.coords.latitude && rSearchAreaVar?.searchArea?.coords.longitude) {
-			venuesNearby()
-		}
-		if (rSearchAreaVar.useCurrentLocation) {
-			if (
-				rCurrentLocationVar?.current?.coords.latitude &&
-				rCurrentLocationVar?.current?.coords.longitude
-			) {
-				venuesNearby()
-			}
-		}
+		venuesNearbyQuery()
 	}
 
 	useEffect(() => {
-		if (
-			!data?.venuesNearby &&
-			rSearchAreaVar?.searchArea.coords.latitude &&
-			rSearchAreaVar?.searchArea.coords?.longitude
-		) {
-			venuesNearby()
+		if (!data?.venuesNearby) {
+			venuesNearbyQuery()
 		}
 	}, [])
 
@@ -98,24 +87,17 @@ export default () => {
 				{/* {ENVIRONMENT === 'development' && <DevActions />} */}
 
 				<VStack bg={'transparent'} space={'md'}>
-					{rAuthorizationVar?.DeviceProfile?.Profile?.ProfileType === ProfileType.Guest && (
+					{rAuthorizationVar?.Profile?.ProfileType === ProfileType.Guest && (
 						<Box mx={'$2'} my={'$2'} p={'$5'} pt={'$10'}>
 							<CardPleaseSignup signupTextId={1} />
 						</Box>
 					)}
-					{!rSearchAreaVar.searchArea.city.name && !typename && <VenueFeedSearchAreaEmptyState />}
 					{rSearchAreaVar.searchArea.city.name && <SearchAreaHeader typename={typename || null} />}
-					{/* <Box sx={{ h: 150 }}>
-						<Heading>Ad</Heading>
-					</Box> */}
 					<ShowCaseScroll />
+					{!rSearchAreaVar.searchArea.city.name && <VenueFeedSearchAreaEmptyState />}
 				</VStack>
 			</Box>
 		)
-	}
-
-	const listFooterComponent = () => {
-		return null
 	}
 
 	if (!data?.venuesNearby || loading) {
@@ -167,6 +149,121 @@ export default () => {
 		)
 	}
 
+	const ListFooterComponent = () => {
+		const rPermissionLocationVar = useReactiveVar(PermissionForegroundLocationReactiveVar)
+		const RecommendedAreaList = () => {
+			switch (data.venuesNearby.__typename) {
+				case 'VenuesNearbyResponse':
+					console.log('data.venuesNearby.recommendedAreas :>> ', data.venuesNearby.recommendedAreas)
+					return (
+						<VStack>
+							{data.venuesNearby.recommendedAreas?.map(item => {
+								return (
+									<Pressable
+										onPress={() => {
+											router.push({
+												params: {
+													id: item.id,
+												},
+												pathname: '(app)/searcharea/searchh3recommendation',
+											})
+										}}
+									>
+										<Box key={item.id} flexDirection='row' m={'$2'} p={'$3'} justifyContent='space-between'>
+											<VStack>
+												<Heading
+													fontWeight={'$medium'}
+													fontSize={'$lg'}
+													numberOfLines={1}
+													ellipsizeMode={'tail'}
+												>
+													{item.Area?.City.name}
+												</Heading>
+												<Text>{item.Area?.Country.name}</Text>
+											</VStack>
+											<VStack alignItems='center'>
+												<Text>{item.venuesProfileIds.length}</Text>
+												<Text>venues</Text>
+											</VStack>
+											<Text>{item.distanceInM}</Text>
+										</Box>
+									</Pressable>
+								)
+							})}
+						</VStack>
+					)
+				case 'ComingAreaResponse':
+					return (
+						<VStack>
+							{data.venuesNearby.recommendedAreas?.map(item => {
+								return (
+									<Pressable
+										onPress={() => {
+											router.push({
+												params: {
+													id: item.id,
+												},
+												pathname: '(app)/searcharea/searchh3recommendation',
+											})
+										}}
+									>
+										<Box
+											key={item.id}
+											m={'$2'}
+											p={'$3'}
+											flexDirection='row'
+											justifyContent='space-between'
+											alignItems='center'
+										>
+											<VStack>
+												<Heading
+													fontWeight={'$medium'}
+													fontSize={'$lg'}
+													numberOfLines={1}
+													ellipsizeMode={'tail'}
+												>
+													{item.Area?.City.name}
+												</Heading>
+												<Text>{item.Area?.Country.name}</Text>
+											</VStack>
+											<HStack alignItems='center' space='sm'>
+												<VStack alignItems='center'>
+													<Text>{item.venuesProfileIds.length}</Text>
+													<Text>venues</Text>
+												</VStack>
+												<ArrowRightIcon />
+											</HStack>
+										</Box>
+									</Pressable>
+								)
+							})}
+						</VStack>
+					)
+			}
+		}
+
+		const _press = async () => {
+			rPermissionLocationVar?.granted
+				? await useSetSearchAreaWithLocation()
+				: router.push({
+						pathname: '(app)/permission/foregroundlocation',
+				  })
+		}
+
+		return (
+			<VStack>
+				<VStack space='xs' p={'$2'} flex={1}>
+					<Heading>Recommended Areas</Heading>
+					<Button variant='link' width={'50%'} size='md' onPress={_press} justifyContent='flex-start'>
+						<Button.Text>Filter by distance</Button.Text>
+						<Button.Icon as={ArrowRightIcon} ml='$1' />
+					</Button>
+				</VStack>
+				<RecommendedAreaList />
+			</VStack>
+		)
+	}
+
 	if (data.venuesNearby.__typename === 'ComingAreaResponse') {
 		return (
 			<FlashList
@@ -180,6 +277,7 @@ export default () => {
 				refreshing={loading}
 				estimatedItemSize={30}
 				ListHeaderComponent={<ListheaderComponent typename={data.venuesNearby.__typename} />}
+				ListFooterComponent={ListFooterComponent}
 				renderItem={({ item }) => {
 					const lengthOfUpvote = item.Vote.filter(item => {
 						return item.upvote
@@ -217,14 +315,10 @@ export default () => {
 											size={30}
 											color={
 												rTheme.colorScheme === 'light'
-													? item.toBeNotifiedProfileIds.some(
-															item => item === rAuthorizationVar?.DeviceProfile?.Profile?.id,
-													  )
+													? item.toBeNotifiedProfileIds.some(item => item === rAuthorizationVar?.Profile?.id)
 														? rTheme.theme?.gluestack.tokens.colors.blue500
 														: rTheme.theme?.gluestack.tokens.colors.light700
-													: item.toBeNotifiedProfileIds.some(
-															item => item === rAuthorizationVar?.DeviceProfile?.Profile?.id,
-													  )
+													: item.toBeNotifiedProfileIds.some(item => item === rAuthorizationVar?.Profile?.id)
 													? rTheme.theme?.gluestack.tokens.colors.blue500
 													: rTheme.theme?.gluestack.tokens.colors.dark700
 											}
@@ -250,14 +344,10 @@ export default () => {
 											size={25}
 											color={
 												rTheme.colorScheme === 'light'
-													? item.toBeNotifiedProfileIds.some(
-															item => item === rAuthorizationVar?.DeviceProfile?.Profile?.id,
-													  )
+													? item.toBeNotifiedProfileIds.some(item => item === rAuthorizationVar?.Profile?.id)
 														? rTheme.theme?.gluestack.tokens.colors.primary500
 														: rTheme.theme?.gluestack.tokens.colors.light700
-													: item.toBeNotifiedProfileIds.some(
-															item => item === rAuthorizationVar?.DeviceProfile?.Profile?.id,
-													  )
+													: item.toBeNotifiedProfileIds.some(item => item === rAuthorizationVar?.Profile?.id)
 													? rTheme.theme?.gluestack.tokens.colors.primary500
 													: rTheme.theme?.gluestack.tokens.colors.dark700
 											}
@@ -291,8 +381,8 @@ export default () => {
 				)}
 				ItemSeparatorComponent={() => <Box bg={'transparent'} h={'$5'} />}
 				keyExtractor={item => item.id}
-				ListHeaderComponent={ListheaderComponent}
-				ListFooterComponent={listFooterComponent}
+				ListHeaderComponent={<ListheaderComponent typename={data.venuesNearby.__typename} />}
+				ListFooterComponent={ListFooterComponent}
 				automaticallyAdjustContentInsets
 			/>
 		)

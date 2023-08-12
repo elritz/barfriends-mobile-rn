@@ -19,14 +19,14 @@ export default () => {
 	const [updatedEmojimoodSuccess, setUpdateEmojimoodSuccess] = useState(false)
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 	const rTheme = useReactiveVar(ThemeReactiveVar)
-	useEffect(() => {}, [rAuthorizationVar?.DeviceProfile?.Profile?.tonightStory?.emojimood?.id])
+	useEffect(() => {}, [rAuthorizationVar?.Profile?.tonightStory?.emojimood?.id])
 
 	const methods = useForm<FormType>({
 		defaultValues: {
 			emojimood: {
 				id: '',
 				emojiname: '',
-				colors: rAuthorizationVar?.DeviceProfile?.Profile?.tonightStory?.emojimood?.colors || [''],
+				colors: rAuthorizationVar?.Profile?.tonightStory?.emojimood?.colors || [''],
 				emoji: '',
 			},
 		},
@@ -34,16 +34,13 @@ export default () => {
 
 	const [updateStoryEmojimoodMutation, { data, loading, error }] = useUpdateStoryEmojimoodMutation({
 		onCompleted: data => {
-			if (data.updateStoryEmojimood && rAuthorizationVar?.DeviceProfile?.Profile) {
+			if (data.updateStoryEmojimood && rAuthorizationVar?.Profile) {
 				AuthorizationReactiveVar({
 					...rAuthorizationVar,
-					DeviceProfile: {
-						...rAuthorizationVar?.DeviceProfile,
-						Profile: {
-							...rAuthorizationVar.DeviceProfile.Profile,
-							tonightStory: {
-								...(data.updateStoryEmojimood as Story),
-							},
+					Profile: {
+						...rAuthorizationVar.Profile,
+						tonightStory: {
+							...(data.updateStoryEmojimood as Story),
 						},
 					},
 				})
@@ -96,9 +93,9 @@ export default () => {
 									>
 										<ChevronBackArrow />
 										{methods.watch('emojimood.id') ||
-										(rAuthorizationVar?.DeviceProfile?.Profile?.tonightStory?.emojimood?.id &&
+										(rAuthorizationVar?.Profile?.tonightStory?.emojimood?.id &&
 											methods.watch('emojimood.id') !==
-												rAuthorizationVar?.DeviceProfile?.Profile?.tonightStory?.emojimood?.id) ? (
+												rAuthorizationVar?.Profile?.tonightStory?.emojimood?.id) ? (
 											<Button
 												size='xs'
 												sx={{

@@ -12,7 +12,7 @@ import { memo, useEffect, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { View } from 'react-native'
 
-export default function SearchCountryTextScreen() {
+export default function SearchCountry() {
 	const router = useRouter()
 	const params = useGlobalSearchParams()
 	const contentInsets = useContentInsets()

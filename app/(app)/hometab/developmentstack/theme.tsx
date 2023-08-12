@@ -4,7 +4,7 @@ import {
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
 } from '@constants/ReactNavigationConstants'
-import { useGetAllThemesQuery, useUpdateThemeManagerSwitchThemeMutation } from '@graphql/generated'
+import { useGetAllThemesQuery } from '@graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
 import { useToggleTheme } from '@util/hooks/theme/useToggleTheme'
@@ -16,9 +16,6 @@ export default function Preferences() {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 
 	const [toggleTheme] = useToggleTheme()
-
-	const [updateTHemeManagerSwitchThemeMutation, { data, loading }] =
-		useUpdateThemeManagerSwitchThemeMutation()
 
 	const { data: GATData, loading: GATLoading, error } = useGetAllThemesQuery()
 
@@ -50,16 +47,7 @@ export default function Preferences() {
 			}
 
 			return (
-				<Pressable
-				// onPress={async () => {
-				// 	updateTHemeManagerSwitchThemeMutation({
-				// 		variables: {
-				// 			id: item.id,
-				// 			themeId: item.id,
-				// 		},
-				// 	})
-				// }}
-				>
+				<Pressable>
 					<Box
 						key={item.id}
 						m={'$3'}
@@ -71,8 +59,7 @@ export default function Preferences() {
 						rounded={'$md'}
 						borderWidth={'$2'}
 						borderColor={
-							AuthorizationReactiveVar()?.DeviceProfile?.Profile?.ThemeManager?.ProfileTheme[0]?.Theme
-								.id === item.id
+							AuthorizationReactiveVar()?.Profile?.ThemeManager?.ProfileTheme[0]?.Theme.id === item.id
 								? 'primary.400'
 								: 'transparent'
 						}

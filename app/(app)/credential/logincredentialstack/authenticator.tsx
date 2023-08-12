@@ -237,7 +237,7 @@ export default () => {
 			}}
 		>
 			<Reanimated.View style={{ flex: 1 }}>
-				<VStack sx={{ h: 110 }} mt={'$4'}>
+				<VStack sx={{ h: 110 }} mt={'$12'}>
 					<Controller
 						name='authenticator'
 						control={control}

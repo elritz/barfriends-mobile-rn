@@ -1,7 +1,5 @@
 //TODO: Add notfication listener
-import { Config, config } from '../gluestack-ui.config'
 import { ApolloProvider } from '@apollo/client'
-import { defaulttheme } from '@assets/theme/default'
 import Theme from '@components/layouts/Theme'
 import { NowPreferencePermissionInitialState } from '@constants/Preferences'
 import {
@@ -11,6 +9,7 @@ import {
 	LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
 	LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION,
 	LOCAL_STORAGE_PREFERENCE_SYSTEM_OF_UNITS,
+	AUTHORIZATION,
 } from '@constants/StorageConstants'
 import {
 	LocalStoragePreferenceSearchAreaType,
@@ -72,6 +71,9 @@ export default function Root() {
 
 	const setAsyncPreferencesLocalStorageData = async () => {
 		try {
+			const item = await AsyncStorage.getItem(AUTHORIZATION)
+
+			console.log('🚀 ~ file: _layout.tsx:76 ~ setAsyncPreferencesLocalStorageData ~ item:', item)
 			// await AsyncStorage.removeItem(LOCAL_STORAGE_SEARCH_AREA)
 			// await AsyncStorage.removeItem(LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS)
 			// await AsyncStorage.removeItem(LOCAL_STORAGE_PREFERENCE_SYSTEM_OF_UNITS)

@@ -21,7 +21,7 @@ type CityState = {
 	title: string
 	cities: CityResponseObject[] | undefined | null
 }
-export default function SearchAreaStateCities() {
+export default function SearchStateCities() {
 	const router = useRouter()
 	const params = useGlobalSearchParams()
 	const contentInsets = useContentInsets()

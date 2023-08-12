@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Button, HStack, Heading, Pressable, VStack } from '@components/core'
+import { Box, Button, HStack, Heading, Pressable, VStack } from '@components/core'
 import { SEARCH_BAR_HEIGHT } from '@constants/ReactNavigationConstants'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
@@ -33,12 +33,17 @@ export default function _layout() {
 					<VStack sx={{ mt: insets.top }}>
 						<HStack
 							pb={'$2'}
+							mx={'$2'}
 							justifyContent='space-between'
 							// position={'relative'}
 							// flex={1}
 						>
-							<>
-								{rAuthorizationVar?.DeviceProfile?.Profile?.ProfileType === 'GUEST' ? null : (
+							<Box bg='$transparent' justifyContent='center'>
+								{rAuthorizationVar?.Profile?.ProfileType === 'GUEST' ? (
+									<Heading fontSize={'$xl'} fontWeight='$black'>
+										Revel
+									</Heading>
+								) : (
 									<Pressable
 										onPress={async () => {
 											await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
@@ -55,7 +60,7 @@ export default function _layout() {
 												adjustsFontSizeToFit
 												ellipsizeMode={'tail'}
 											>
-												{rAuthorizationVar?.DeviceProfile?.Profile?.IdentifiableInformation?.username}
+												{rAuthorizationVar?.Profile?.IdentifiableInformation?.username}
 											</Heading>
 											<Ionicons
 												name={'chevron-down'}
@@ -75,7 +80,7 @@ export default function _layout() {
 										</HStack>
 									</Pressable>
 								)}
-							</>
+							</Box>
 
 							<Button
 								variant='link'

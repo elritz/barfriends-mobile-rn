@@ -2,7 +2,6 @@ import { useReactiveVar } from '@apollo/client'
 import { Button } from '@components/core'
 import { GET_LIVE_VENUE_TOTALS_QUERY } from '@graphql/DM/profiling/out/index.query'
 import {
-	AuthorizationDeviceManager,
 	AuthorizationDeviceProfile,
 	Profile,
 	useAddPersonalJoinsVenueMutation,
@@ -25,24 +24,21 @@ export default function JoinVenue() {
 			onCompleted: async data => {
 				if (data.addPersonalJoinsVenue) {
 					const profile = data.addPersonalJoinsVenue as Profile
-					const deviceManager = rAuthorizationVar as AuthorizationDeviceManager
-					const deviceprofile = rAuthorizationVar?.DeviceProfile as AuthorizationDeviceProfile
+
+					const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
 					if (
 						profile?.Personal?.LiveOutPersonal?.Out &&
 						deviceprofile?.Profile?.Personal?.LiveOutPersonal
 					) {
 						AuthorizationReactiveVar({
-							...deviceManager,
-							DeviceProfile: {
-								...deviceprofile,
-								Profile: {
-									...deviceprofile.Profile,
-									Personal: {
-										...deviceprofile.Profile.Personal,
-										LiveOutPersonal: {
-											...deviceprofile.Profile.Personal.LiveOutPersonal,
-											Out: profile.Personal.LiveOutPersonal.Out,
-										},
+							...deviceprofile,
+							Profile: {
+								...deviceprofile.Profile,
+								Personal: {
+									...deviceprofile.Profile.Personal,
+									LiveOutPersonal: {
+										...deviceprofile.Profile.Personal.LiveOutPersonal,
+										Out: profile.Personal.LiveOutPersonal.Out,
 									},
 								},
 							},
@@ -62,12 +58,11 @@ export default function JoinVenue() {
 		})
 
 	useEffect(() => {
-		if (rAuthorizationVar?.DeviceProfile?.Profile?.Personal) {
-			const joinedToVenue =
-				rAuthorizationVar.DeviceProfile.Profile?.Personal?.LiveOutPersonal?.Out.map(item => {
-					return item.venueProfileId
-				})
-			const out = rAuthorizationVar?.DeviceProfile?.Profile?.Personal?.LiveOutPersonal?.Out.find(
+		if (rAuthorizationVar?.Profile?.Personal) {
+			const joinedToVenue = rAuthorizationVar.Profile?.Personal?.LiveOutPersonal?.Out.map(item => {
+				return item.venueProfileId
+			})
+			const out = rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out.find(
 				item => item.venueProfileId === params.profileid,
 			)
 			if (out) {

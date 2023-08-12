@@ -6,31 +6,31 @@ export const searchAreaInitialState: LocalStoragePreferenceSearchAreaType = {
 	searchArea: {
 		country: {
 			coords: {
-				latitude: null,
-				longitude: null,
+				latitude: 0,
+				longitude: 0,
 			},
 			isoCode: '',
 			name: '',
 		},
 		state: {
 			coords: {
-				latitude: null,
-				longitude: null,
+				latitude: 0,
+				longitude: 0,
 			},
 			isoCode: '',
 			name: '',
 		},
 		city: {
 			coords: {
-				latitude: null,
-				longitude: null,
+				latitude: 0,
+				longitude: 0,
 			},
 			isoCode: '',
 			name: '',
 		},
 		coords: {
-			latitude: null,
-			longitude: null,
+			latitude: 0,
+			longitude: 0,
 		},
 	},
 	kRing: {

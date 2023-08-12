@@ -4,7 +4,6 @@ import { Ionicons } from '@expo/vector-icons'
 import {
 	useUpdateProfileIdentifiableInformationMutation,
 	Profile,
-	AuthorizationDeviceManager,
 	AuthorizationDeviceProfile,
 } from '@graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
@@ -33,30 +32,25 @@ export default ({}: GenderScreenProps) => {
 		variables: {
 			data: {
 				gender: {
-					set: rAuthorizationVar?.DeviceProfile?.Profile?.IdentifiableInformation?.gender,
+					set: rAuthorizationVar?.Profile?.IdentifiableInformation?.gender,
 				},
 			},
 		},
 		onCompleted: data => {
 			if (
 				data &&
-				data.updateProfileIdentifiableInformation.__typename === 'AuthorizationDeviceManager'
+				data.updateProfileIdentifiableInformation.__typename === 'AuthorizationDeviceProfile'
 			) {
 				const profile = data.updateProfileIdentifiableInformation as Profile
-				const deviceManager = rAuthorizationVar as AuthorizationDeviceManager
-				const deviceprofile = rAuthorizationVar?.DeviceProfile as AuthorizationDeviceProfile
+				const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
 
 				AuthorizationReactiveVar({
-					...deviceManager,
-					DeviceProfile: {
-						...deviceprofile,
-						Profile: profile,
-					},
+					...deviceprofile,
+					Profile: profile,
 				})
 				reset({
 					gender: String(
-						data?.updateProfileIdentifiableInformation.DeviceProfile?.Profile?.IdentifiableInformation
-							?.gender,
+						data?.updateProfileIdentifiableInformation?.Profile?.IdentifiableInformation?.gender,
 					),
 				})
 			}
@@ -74,7 +68,7 @@ export default ({}: GenderScreenProps) => {
 		formState: { dirtyFields, errors },
 	} = useForm({
 		defaultValues: {
-			gender: rAuthorizationVar?.DeviceProfile?.Profile?.IdentifiableInformation?.gender || '',
+			gender: rAuthorizationVar?.Profile?.IdentifiableInformation?.gender || '',
 		},
 		mode: 'onChange',
 		reValidateMode: 'onChange',
@@ -167,7 +161,7 @@ export default ({}: GenderScreenProps) => {
 								keyboardType='default'
 								fontSize={'md'}
 								p={'$4'}
-								rounded={'md'}
+								rounded={'$md'}
 								rightElement={
 									<Box ml={'$3'}>
 										{UPIILoading && dirtyFields.gender ? (

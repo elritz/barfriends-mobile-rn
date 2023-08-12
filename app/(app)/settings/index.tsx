@@ -2,7 +2,6 @@ import { useReactiveVar } from '@apollo/client'
 import { Box, HStack, Heading, Text } from '@components/core'
 import { Ionicons } from '@expo/vector-icons'
 import {
-	AuthorizationDeviceManager,
 	AuthorizationDeviceProfile,
 	ProfileType,
 	useGetADeviceManagerQuery,
@@ -35,8 +34,8 @@ export default () => {
 	const [switchDeviceProfileMutation, { data: SWDPData, loading: SWDPLoading, error: SWDPError }] =
 		useSwitchDeviceProfileMutation({
 			onCompleted: data => {
-				if (data?.switchDeviceProfile?.__typename === 'AuthorizationDeviceManager') {
-					const deviceManager = data.switchDeviceProfile as AuthorizationDeviceManager
+				if (data?.switchDeviceProfile?.__typename === 'AuthorizationDeviceProfile') {
+					const deviceManager = data.switchDeviceProfile as AuthorizationDeviceProfile
 					AuthorizationReactiveVar(deviceManager)
 					setTimeout(() => router.replace('(app)/hometab'), 1000)
 				}
@@ -87,7 +86,7 @@ export default () => {
 			{/* Edit Profile */}
 			<RoundedListItem
 				onPress={() => {
-					rAuthorizationVar?.DeviceProfile?.Profile?.ProfileType === 'PERSONAL'
+					rAuthorizationVar?.Profile?.ProfileType === 'PERSONAL'
 						? router.push({
 								pathname: '(app)/settings/profilesettings/personal',
 						  })
@@ -107,7 +106,7 @@ export default () => {
 						}
 					/>
 					<Text fontWeight={'$bold'} fontSize={'$lg'}>
-						{rAuthorizationVar?.DeviceProfile?.Profile?.ProfileType === 'PERSONAL'
+						{rAuthorizationVar?.Profile?.ProfileType === 'PERSONAL'
 							? 'Edit Profile'
 							: 'Edit Venue'}
 					</Text>
@@ -137,7 +136,7 @@ export default () => {
 				</HStack>
 			</RoundedListItem>
 			{/* QRCode */}
-			{rAuthorizationVar?.DeviceProfile?.Profile?.ProfileType !== 'GUEST' && (
+			{rAuthorizationVar?.Profile?.ProfileType !== 'GUEST' && (
 				<RoundedListItem>
 					<HStack alignItems={'center'} space={'md'}>
 						<Ionicons
@@ -160,7 +159,7 @@ export default () => {
 				</RoundedListItem>
 			)}
 			{/* Security */}
-			{rAuthorizationVar?.DeviceProfile?.Profile?.ProfileType !== 'GUEST' && (
+			{rAuthorizationVar?.Profile?.ProfileType !== 'GUEST' && (
 				<RoundedListItem
 					onPress={() => {
 						router.push({
@@ -245,7 +244,7 @@ export default () => {
 					}}
 				</Pressable>
 			</RoundedListItem>
-			{rAuthorizationVar?.DeviceProfile?.Profile?.ProfileType !== 'GUEST' && (
+			{rAuthorizationVar?.Profile?.ProfileType !== 'GUEST' && (
 				<RoundedListItem>
 					<Pressable
 						onPress={() => switchProfile()}
@@ -261,7 +260,7 @@ export default () => {
 							}}
 						>
 							<Text fontWeight={'$bold'} fontSize={'$lg'} color={'$primary500'}>
-								Log Out {rAuthorizationVar?.DeviceProfile?.Profile?.IdentifiableInformation?.username}
+								Log Out {rAuthorizationVar?.Profile?.IdentifiableInformation?.username}
 							</Text>
 						</HStack>
 					</Pressable>

@@ -2,7 +2,6 @@
 import { useReactiveVar } from '@apollo/client'
 import { Box, Button, Input, Text } from '@components/core'
 import {
-	AuthorizationDeviceManager,
 	AuthorizationDeviceProfile,
 	Profile,
 	useUpdateOneProfileMutation,
@@ -26,7 +25,7 @@ export default () => {
 		formState: { dirtyFields, errors },
 	} = useForm({
 		defaultValues: {
-			description: rAuthorizationVar?.DeviceProfile?.Profile?.DetailInformation?.description || '',
+			description: rAuthorizationVar?.Profile?.DetailInformation?.description || '',
 		},
 		mode: 'onChange',
 		reValidateMode: 'onChange',
@@ -41,15 +40,11 @@ export default () => {
 		onCompleted: data => {
 			if (data.updateOneProfile) {
 				const profile = data.updateOneProfile as Profile
-				const deviceManager = rAuthorizationVar as AuthorizationDeviceManager
-				const deviceprofile = rAuthorizationVar?.DeviceProfile as AuthorizationDeviceProfile
+				const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
 
 				AuthorizationReactiveVar({
-					...deviceManager,
-					DeviceProfile: {
-						...deviceprofile,
-						Profile: profile,
-					},
+					...deviceprofile,
+					Profile: profile,
 				})
 				reset({
 					description: String(data?.updateOneProfile?.DetailInformation?.description),
@@ -64,11 +59,11 @@ export default () => {
 		switch (value) {
 			case 'description':
 				reset({
-					description: String(rAuthorizationVar?.DeviceProfile?.Profile?.DetailInformation?.description),
+					description: String(rAuthorizationVar?.Profile?.DetailInformation?.description),
 				})
 			default:
 				reset({
-					description: String(rAuthorizationVar?.DeviceProfile?.Profile?.DetailInformation?.description),
+					description: String(rAuthorizationVar?.Profile?.DetailInformation?.description),
 				})
 		}
 	}
@@ -78,7 +73,7 @@ export default () => {
 			updateOneProfileMutation({
 				variables: {
 					where: {
-						id: rAuthorizationVar?.DeviceProfile?.Profile?.id,
+						id: rAuthorizationVar?.Profile?.id,
 					},
 					data: {
 						DetailInformation: {

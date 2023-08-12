@@ -36,14 +36,14 @@ export default () => {
 	const contentInsets = useContentInsets()
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 
-	if (rAuthorizationVar?.DeviceProfile?.Profile?.ProfileType === 'GUEST') {
+	if (rAuthorizationVar?.Profile?.ProfileType === 'GUEST') {
 		return (
 			<ScrollView
 				contentContainerStyle={{
 					flex: 1,
 				}}
 			>
-				<Box mt={contentInsets.top} my={'$2'} p={'$5'} pt={'$10'}>
+				<Box mx={'$2'} mt={contentInsets.top} my={'$2'} p={'$5'} pt={'$10'}>
 					<CardPleaseSignup signupTextId={1} />
 				</Box>
 			</ScrollView>
@@ -54,8 +54,8 @@ export default () => {
 		<LinearGradient
 			style={{ flex: 1 }}
 			colors={
-				rAuthorizationVar?.DeviceProfile?.Profile?.tonightStory?.emojimood
-					? [...rAuthorizationVar?.DeviceProfile?.Profile?.tonightStory?.emojimood.colors]
+				rAuthorizationVar?.Profile?.tonightStory?.emojimood
+					? [...rAuthorizationVar?.Profile?.tonightStory?.emojimood.colors]
 					: []
 			}
 		>

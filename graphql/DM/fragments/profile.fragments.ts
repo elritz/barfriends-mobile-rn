@@ -173,9 +173,6 @@ export const PUBLIC_PROFILE_FRAGMENT = gql`
 			createdAt
 			updatedAt
 		}
-		Credentials {
-			...CREDENTIALS_FRAGMENT
-		}
 		Personal {
 			id
 			Profile {

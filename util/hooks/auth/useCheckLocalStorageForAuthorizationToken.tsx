@@ -1,6 +1,6 @@
-import { AUTHORIZATION } from '@constants/StorageConstants';
-import { AuthorizationDeviceManager } from '@graphql/generated';
-import { AuthorizationReactiveVar } from '@reactive';
+import { AUTHORIZATION } from '@constants/StorageConstants'
+import { AuthorizationDeviceProfile } from '@graphql/generated'
+import { AuthorizationReactiveVar } from '@reactive'
 import { secureStorageItemRead } from '@util/hooks/local/useSecureStorage'
 
 export type AuthorizationDecoded =
@@ -11,7 +11,6 @@ export type AuthorizationDecoded =
 	  }
 	| null
 	| undefined
-
 
 const useCheckLocalStorageForAuthorizationToken = async (): Promise<boolean> => {
 	try {
@@ -26,7 +25,7 @@ const useCheckLocalStorageForAuthorizationToken = async (): Promise<boolean> => 
 
 		const parsedAuthorization = JSON.parse(
 			getAuthorization.devicemanager,
-		) as AuthorizationDeviceManager
+		) as AuthorizationDeviceProfile
 
 		AuthorizationReactiveVar(parsedAuthorization)
 		return true

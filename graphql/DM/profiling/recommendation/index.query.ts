@@ -8,11 +8,9 @@ export const VENUES_NEARBY_QUERY = gql`
 		$countryIsoCode: String!
 		$stateIsoCode: String!
 		$kRing: Int
-		$currentLocationCoords: CoordsInput
 		$searchAreaCoords: CoordsInput!
 	) {
 		venuesNearby(
-			currentLocationCoords: $currentLocationCoords
 			searchAreaCoords: $searchAreaCoords
 			countryIsoCode: $countryIsoCode
 			stateIsoCode: $stateIsoCode
@@ -37,6 +35,30 @@ export const VENUES_NEARBY_QUERY = gql`
 					createdAt
 					updatedAt
 				}
+				recommendedAreas {
+					id
+					timesRequested
+					venuesProfileIds
+					Area {
+						id
+						State {
+							id
+							isoCode
+							name
+						}
+						City {
+							id
+							name
+						}
+						Country {
+							id
+							isoCode
+							name
+						}
+					}
+					createdAt
+					updatedAt
+				}
 				searchArea {
 					...AREA_FRAGMENT
 				}
@@ -51,6 +73,31 @@ export const VENUES_NEARBY_QUERY = gql`
 				}
 				venuesNearby {
 					...PROFILE_VENUES_FRAGMENT
+				}
+				recommendedAreas {
+					id
+					timesRequested
+					venuesProfileIds
+					distanceInM
+					Area {
+						id
+						State {
+							id
+							isoCode
+							name
+						}
+						City {
+							id
+							name
+						}
+						Country {
+							id
+							isoCode
+							name
+						}
+					}
+					createdAt
+					updatedAt
 				}
 			}
 		}
@@ -102,6 +149,58 @@ export const GET_ALL_CITIES_BY_STATE_QUERY = gql`
 				latitude
 				longitude
 			}
+		}
+	}
+`
+
+export const GET_H3INDEX6_RECOMMENDATION_QUERY = gql`
+	${PROFILE_VENUES_FRAGMENT}
+	query getH3Index6VenueRecommendationById($id: String!) {
+		getH3Index6VenueRecommendationById(id: $id) {
+			id
+			distanceInM
+			h3Index6
+			keywordSuggestions
+			timesRequested
+			venuesProfileIds
+			Area {
+				id
+				State {
+					id
+					isoCode
+					name
+				}
+				City {
+					id
+					name
+				}
+				Country {
+					id
+					flag
+					isoCode
+					name
+				}
+				ComingArea {
+					id
+					timesRequested
+					toBeNotifiedProfileIds
+					updatedAt
+					createdAt
+				}
+			}
+			areaId
+			Vote {
+				id
+				upvote
+				profileId
+				createdAt
+				updatedAt
+			}
+			venues {
+				...PROFILE_VENUES_FRAGMENT
+			}
+			updatedAt
+			createdAt
 		}
 	}
 `

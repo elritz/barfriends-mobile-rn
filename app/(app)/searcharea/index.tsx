@@ -8,7 +8,6 @@ import { SearchAreaReactiveVar } from '@reactive'
 import useContentInsets from '@util/hooks/useContentInsets'
 import { useRouter } from 'expo-router'
 import { ScrollView } from 'react-native'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default () => {
 	const router = useRouter()

@@ -2,7 +2,6 @@ import { useReactiveVar } from '@apollo/client'
 import { Button, Input, Text } from '@components/core'
 import { Ionicons } from '@expo/vector-icons'
 import {
-	AuthorizationDeviceManager,
 	AuthorizationDeviceProfile,
 	Profile,
 	useCheckUsernameLazyQuery,
@@ -27,7 +26,7 @@ export default () => {
 		formState: { dirtyFields, errors },
 	} = useForm({
 		defaultValues: {
-			username: rAuthorizationVar?.DeviceProfile?.Profile?.IdentifiableInformation?.username || '',
+			username: rAuthorizationVar?.Profile?.IdentifiableInformation?.username || '',
 		},
 		mode: 'onChange',
 		reValidateMode: 'onChange',
@@ -62,15 +61,11 @@ export default () => {
 			},
 			onCompleted: data => {
 				const profile = data.updateOneProfile as Profile
-				const deviceManager = rAuthorizationVar as AuthorizationDeviceManager
-				const deviceprofile = rAuthorizationVar?.DeviceProfile as AuthorizationDeviceProfile
+				const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
 
 				AuthorizationReactiveVar({
-					...deviceManager,
-					DeviceProfile: {
-						...deviceprofile,
-						Profile: profile,
-					},
+					...deviceprofile,
+					Profile: profile,
 				})
 				reset()
 			},
@@ -81,7 +76,7 @@ export default () => {
 			updateOneProfilMutation({
 				variables: {
 					where: {
-						id: rAuthorizationVar?.DeviceProfile?.Profile?.id,
+						id: rAuthorizationVar?.Profile?.id,
 					},
 					data: {
 						IdentifiableInformation: {
@@ -98,7 +93,7 @@ export default () => {
 	}
 
 	const resetInput = (value: String) => {
-		reset({ username: rAuthorizationVar?.DeviceProfile?.Profile?.IdentifiableInformation?.username })
+		reset({ username: rAuthorizationVar?.Profile?.IdentifiableInformation?.username })
 	}
 
 	const validateCheckUsername = async (value: string): Promise<ValidateResult> => {

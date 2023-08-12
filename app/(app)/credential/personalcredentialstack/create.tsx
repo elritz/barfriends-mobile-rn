@@ -3,7 +3,7 @@ import CompanyCoasterLogoDynamic from '@assets/images/company/CompanyCoasterLogo
 import { Box, Heading, Pressable, Spinner, Text, VStack } from '@components/core'
 import { Feather } from '@expo/vector-icons'
 import {
-	AuthorizationDeviceManager,
+	AuthorizationDeviceProfile,
 	useCreatePersonalProfileMutation,
 	useSwitchDeviceProfileMutation,
 } from '@graphql/generated'
@@ -35,8 +35,8 @@ export default () => {
 		},
 		onError: error => {},
 		onCompleted: async data => {
-			if (data.createPersonalProfile?.__typename === 'AuthorizationDeviceManager') {
-				const deviceManager = data.createPersonalProfile as AuthorizationDeviceManager
+			if (data.createPersonalProfile?.__typename === 'AuthorizationDeviceProfile') {
+				const deviceManager = data.createPersonalProfile as AuthorizationDeviceProfile
 				AuthorizationReactiveVar(deviceManager)
 				router.push({
 					pathname: '(app)/hometab',
@@ -49,8 +49,8 @@ export default () => {
 		useSwitchDeviceProfileMutation({
 			onError: error => {},
 			onCompleted: data => {
-				if (data.switchDeviceProfile.__typename === 'AuthorizationDeviceManager') {
-					const deviceManager = data.switchDeviceProfile as AuthorizationDeviceManager
+				if (data.switchDeviceProfile.__typename === 'AuthorizationDeviceProfile') {
+					const deviceManager = data.switchDeviceProfile as AuthorizationDeviceProfile
 					AuthorizationReactiveVar(deviceManager)
 					router.push({
 						pathname: '(app)/hometab',

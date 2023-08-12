@@ -7,22 +7,19 @@ export const SWITCH_DEVICE_PROFILE_MUTATION = gql`
 	${INDETIFIABLE_INFORMATION_FRAGMENT}
 	mutation switchDeviceProfile($profileId: String!) {
 		switchDeviceProfile(profileId: $profileId) {
-			... on AuthorizationDeviceManager {
+			... on AuthorizationDeviceProfile {
 				__typename
 				id
-				DeviceProfile {
+				isActive
+				refreshtoken
+				accesstoken
+				AppType
+				DeviceManager {
 					id
-					isActive
-					refreshtoken
-					accesstoken
-					AppType
-					DeviceManager {
-						id
-					}
-					deviceManagerId
-					Profile {
-						...PROFILE_FRAGMENT
-					}
+				}
+				deviceManagerId
+				Profile {
+					...PROFILE_FRAGMENT
 				}
 			}
 			... on Error {
@@ -37,21 +34,18 @@ export const REFRESH_DEVICE_MANAGER_MUTATION = gql`
 	${PROFILE_FRAGMENT}
 	mutation refreshDeviceManager {
 		refreshDeviceManager {
-			... on AuthorizationDeviceManager {
+			... on AuthorizationDeviceProfile {
 				id
-				DeviceProfile {
+				isActive
+				refreshtoken
+				accesstoken
+				AppType
+				DeviceManager {
 					id
-					isActive
-					refreshtoken
-					accesstoken
-					AppType
-					DeviceManager {
-						id
-					}
-					deviceManagerId
-					Profile {
-						...PROFILE_FRAGMENT
-					}
+				}
+				deviceManagerId
+				Profile {
+					...PROFILE_FRAGMENT
 				}
 			}
 			... on Error {

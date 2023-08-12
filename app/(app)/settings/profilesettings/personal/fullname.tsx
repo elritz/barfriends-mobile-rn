@@ -1,7 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
 import { Box, Button, Heading, Input, Text } from '@components/core'
 import {
-	AuthorizationDeviceManager,
 	AuthorizationDeviceProfile,
 	Profile,
 	useUpdateOneProfileMutation,
@@ -24,8 +23,8 @@ export default () => {
 		formState: { dirtyFields, errors },
 	} = useForm({
 		defaultValues: {
-			fullname: rAuthorizationVar?.DeviceProfile?.Profile?.IdentifiableInformation?.fullname || '',
-			nickname: rAuthorizationVar?.DeviceProfile?.Profile?.IdentifiableInformation?.nickname || '',
+			fullname: rAuthorizationVar?.Profile?.IdentifiableInformation?.fullname || '',
+			nickname: rAuthorizationVar?.Profile?.IdentifiableInformation?.nickname || '',
 		},
 		mode: 'onChange',
 		reValidateMode: 'onChange',
@@ -44,15 +43,11 @@ export default () => {
 			onCompleted: data => {
 				if (data.updateOneProfile) {
 					const profile = data.updateOneProfile as Profile
-					const deviceManager = rAuthorizationVar as AuthorizationDeviceManager
-					const deviceprofile = rAuthorizationVar?.DeviceProfile as AuthorizationDeviceProfile
+					const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
 
 					AuthorizationReactiveVar({
-						...deviceManager,
-						DeviceProfile: {
-							...deviceprofile,
-							Profile: profile,
-						},
+						...deviceprofile,
+						Profile: profile,
 					})
 
 					reset({
@@ -67,18 +62,18 @@ export default () => {
 		switch (value) {
 			case 'fullname':
 				reset({
-					fullname: String(rAuthorizationVar?.DeviceProfile?.Profile?.IdentifiableInformation?.fullname),
+					fullname: String(rAuthorizationVar?.Profile?.IdentifiableInformation?.fullname),
 				})
 			case 'nickname':
 				reset({
-					nickname: String(rAuthorizationVar?.DeviceProfile?.Profile?.IdentifiableInformation?.nickname),
+					nickname: String(rAuthorizationVar?.Profile?.IdentifiableInformation?.nickname),
 				})
 			default:
 				reset({
-					fullname: String(rAuthorizationVar?.DeviceProfile?.Profile?.IdentifiableInformation?.fullname),
+					fullname: String(rAuthorizationVar?.Profile?.IdentifiableInformation?.fullname),
 				})
 				reset({
-					nickname: String(rAuthorizationVar?.DeviceProfile?.Profile?.IdentifiableInformation?.nickname),
+					nickname: String(rAuthorizationVar?.Profile?.IdentifiableInformation?.nickname),
 				})
 		}
 	}
@@ -89,7 +84,7 @@ export default () => {
 			updateOneProfilMutation({
 				variables: {
 					where: {
-						id: rAuthorizationVar?.DeviceProfile?.Profile?.id,
+						id: rAuthorizationVar?.Profile?.id,
 					},
 					data: {
 						IdentifiableInformation: {
@@ -110,7 +105,7 @@ export default () => {
 			updateOneProfilMutation({
 				variables: {
 					where: {
-						id: rAuthorizationVar?.DeviceProfile?.Profile?.id,
+						id: rAuthorizationVar?.Profile?.id,
 					},
 					data: {
 						IdentifiableInformation: {
@@ -128,7 +123,7 @@ export default () => {
 			updateOneProfilMutation({
 				variables: {
 					where: {
-						id: rAuthorizationVar?.DeviceProfile?.Profile?.id,
+						id: rAuthorizationVar?.Profile?.id,
 					},
 					data: {
 						IdentifiableInformation: {

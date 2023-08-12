@@ -12,6 +12,10 @@ const afterwareLink = new ApolloLink((operation, forward) =>
 		if (headers) {
 			const authorization = headers.get('authorization')
 
+			// await secureStorageItemDelete({
+			// 	key: AUTHORIZATION,
+			// })
+
 			if (authorization) {
 				await secureStorageItemCreate({
 					value: authorization,

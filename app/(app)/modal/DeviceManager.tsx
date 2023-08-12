@@ -4,7 +4,6 @@ import { Box, Pressable, VStack } from '@components/core'
 import WithDeviceProfiles from '@components/molecules/asks/signinup'
 import DeviceManagerProfileItemLarge from '@components/molecules/authorization/devicemanagerprofileitem/DeviceManagerProfileItemLarge'
 import {
-	AuthorizationDeviceManager,
 	AuthorizationDeviceProfile,
 	ProfileType,
 	useGetADeviceManagerQuery,
@@ -37,8 +36,8 @@ export default function DeviceManager() {
 	const [switchDeviceProfileMutation, { data: SWDPData, loading: SWDPLoading, error: SWDPError }] =
 		useSwitchDeviceProfileMutation({
 			onCompleted: data => {
-				if (data?.switchDeviceProfile?.__typename === 'AuthorizationDeviceManager') {
-					const deviceManager = data.switchDeviceProfile as AuthorizationDeviceManager
+				if (data?.switchDeviceProfile?.__typename === 'AuthorizationDeviceProfile') {
+					const deviceManager = data.switchDeviceProfile as AuthorizationDeviceProfile
 					AuthorizationReactiveVar(deviceManager)
 					setTimeout(
 						() =>

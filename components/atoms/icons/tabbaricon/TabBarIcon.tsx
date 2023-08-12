@@ -8,7 +8,6 @@ interface OuterViewStyleProps {
 }
 
 export interface TabBarIconProps {
-	color: string
 	value?: number
 	icon?: React.ReactNode
 	badge?: React.ReactNode

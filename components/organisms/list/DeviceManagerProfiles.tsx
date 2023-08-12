@@ -1,7 +1,6 @@
 import { Center, Pressable } from '@components/core'
 import DeviceManagerProfileItemLarge from '@components/molecules/authorization/devicemanagerprofileitem/DeviceManagerProfileItemLarge'
 import {
-	AuthorizationDeviceManager,
 	AuthorizationDeviceProfile,
 	ProfileType,
 	useGetADeviceManagerQuery,
@@ -30,8 +29,8 @@ const DeviceManagerProfiles = () => {
 	const [switchDeviceProfileMutation, { data: SWDPData, loading: SWDPLoading, error: SWDPError }] =
 		useSwitchDeviceProfileMutation({
 			onCompleted: async data => {
-				if (data.switchDeviceProfile?.__typename == 'AuthorizationDeviceManager') {
-					const deviceManager = data.switchDeviceProfile as AuthorizationDeviceManager
+				if (data.switchDeviceProfile?.__typename == 'AuthorizationDeviceProfile') {
+					const deviceManager = data.switchDeviceProfile as AuthorizationDeviceProfile
 					AuthorizationReactiveVar(deviceManager)
 				}
 			},

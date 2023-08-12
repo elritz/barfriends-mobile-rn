@@ -199,7 +199,7 @@ const CurrentLocationFromVenueDistance = () => {
 		<>
 			{distance && distance > 10 ? (
 				<>
-					{rAuthorizationVar?.DeviceProfile?.Profile?.ProfileType !== 'GUEST' ? (
+					{rAuthorizationVar?.Profile?.ProfileType !== 'GUEST' ? (
 						<JoinCard />
 					) : (
 						<SignupCard />

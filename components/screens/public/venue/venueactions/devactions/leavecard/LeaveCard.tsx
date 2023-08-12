@@ -3,7 +3,6 @@ import { useReactiveVar } from '@apollo/client'
 import { Button, VStack } from '@components/core'
 import { GET_LIVE_VENUE_TOTALS_QUERY } from '@graphql/DM/profiling/out/index.query'
 import {
-	AuthorizationDeviceManager,
 	AuthorizationDeviceProfile,
 	Profile,
 	useRemovePersonalJoinsVenueMutation,
@@ -21,10 +20,10 @@ export default function LeaveCard() {
 
 	useEffect(() => {
 		const joinedToVenue =
-			rAuthorizationVar?.DeviceProfile?.Profile?.Personal?.LiveOutPersonal?.Out.map(item => {
+			rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out.map(item => {
 				return item.venueProfileId
 			})
-		const out = rAuthorizationVar?.DeviceProfile?.Profile?.Personal?.LiveOutPersonal?.Out.find(
+		const out = rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out.find(
 			item => item.venueProfileId === String(params.profileid),
 		)
 		if (out) {
@@ -41,24 +40,20 @@ export default function LeaveCard() {
 				if (data.removePersonalJoinsVenue) {
 					setIsJoined(false)
 					const profile = data.removePersonalJoinsVenue as Profile
-					const deviceManager = rAuthorizationVar as AuthorizationDeviceManager
-					const deviceprofile = rAuthorizationVar?.DeviceProfile as AuthorizationDeviceProfile
+					const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
 					if (
 						profile?.Personal?.LiveOutPersonal?.Out &&
 						deviceprofile?.Profile?.Personal?.LiveOutPersonal
 					) {
 						AuthorizationReactiveVar({
-							...deviceManager,
-							DeviceProfile: {
-								...deviceprofile,
-								Profile: {
-									...deviceprofile.Profile,
-									Personal: {
-										...deviceprofile.Profile.Personal,
-										LiveOutPersonal: {
-											...deviceprofile.Profile.Personal.LiveOutPersonal,
-											Out: profile.Personal.LiveOutPersonal.Out,
-										},
+							...deviceprofile,
+							Profile: {
+								...deviceprofile.Profile,
+								Personal: {
+									...deviceprofile.Profile.Personal,
+									LiveOutPersonal: {
+										...deviceprofile.Profile.Personal.LiveOutPersonal,
+										Out: profile.Personal.LiveOutPersonal.Out,
 									},
 								},
 							},

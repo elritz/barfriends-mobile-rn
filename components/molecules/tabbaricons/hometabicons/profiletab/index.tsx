@@ -27,7 +27,7 @@ const ProfileTab = (props: TabProps) => {
 				if (data.getNotifications?.friendRequestNotifications?.length) {
 					const filterSentNotifications = data.getNotifications?.friendRequestNotifications.filter(
 						item => {
-							if (item?.receiverProfileId === rAuthorizationVar?.DeviceProfile?.Profile?.id) {
+							if (item?.receiverProfileId === rAuthorizationVar?.Profile?.id) {
 								return item
 							}
 						},
@@ -48,7 +48,7 @@ const ProfileTab = (props: TabProps) => {
 		})
 	}
 
-	if (!rAuthorizationVar || rAuthorizationVar?.DeviceProfile?.Profile?.ProfileType === 'GUEST') {
+	if (!rAuthorizationVar || rAuthorizationVar?.Profile?.ProfileType === 'GUEST') {
 		return (
 			<Pressable
 				delayLongPress={200}
@@ -65,9 +65,8 @@ const ProfileTab = (props: TabProps) => {
 						<CompanyCoasterLogoDynamic
 							width={HEIGHT}
 							height={HEIGHT}
-							backgroundColor={
-								!props.focused ? (rTheme.deviceColorScheme === 'dark' ? 'white' : 'black') : props.color
-							}
+							iconColor={'black'}
+							backgroundColor={props.color}
 						/>
 					) : (
 						<CompanyCoasterLogoDynamicOutline
@@ -82,6 +81,7 @@ const ProfileTab = (props: TabProps) => {
 			</Pressable>
 		)
 	}
+
 	return (
 		<>
 			<TabBarIcon
@@ -114,9 +114,9 @@ const ProfileTab = (props: TabProps) => {
 							onLongPress={() => onLongPressProfileIcon()}
 						>
 							<>
-								{rAuthorizationVar?.DeviceProfile?.Profile?.photos?.length ? (
+								{rAuthorizationVar?.Profile?.photos?.length ? (
 									<Image
-										source={{ uri: rAuthorizationVar.DeviceProfile.Profile.photos[0].url }}
+										source={{ uri: rAuthorizationVar.Profile.photos[0].url }}
 										style={{
 											width: HEIGHT,
 											height: HEIGHT,
@@ -149,7 +149,7 @@ const ProfileTab = (props: TabProps) => {
 											<CompanyCoasterLogoDynamicInverse
 												width={HEIGHT}
 												height={HEIGHT}
-												backgroundColor={props.color}
+												backgroundColor={rTheme.deviceColorScheme === 'dark' ? 'white' : 'black'}
 											/>
 										)}
 									</MotiPressable>

@@ -80,6 +80,7 @@ export default function _layout() {
 						},
 					}}
 				/>
+				<Stack.Screen name={'searchh3recommendation'} />
 				<Stack.Screen
 					name={'searchcountry'}
 					options={{

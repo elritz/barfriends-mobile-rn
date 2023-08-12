@@ -12,10 +12,9 @@ type Props = {
 
 const createTheme = ({ themeScheme, localStorageColorScheme }: Props) => {
 	const deviceColorScheme = Appearance.getColorScheme()
-	
+
 	const theme =
-		AuthorizationReactiveVar()?.DeviceProfile?.Profile?.ThemeManager?.ProfileTheme[0].Theme.theme ||
-		defaulttheme
+		AuthorizationReactiveVar()?.Profile?.ThemeManager?.ProfileTheme[0].Theme.theme || defaulttheme
 
 	const rnColors = () => {
 		const rn = themeScheme === 'dark' ? theme.reactnavigation.dark : theme.reactnavigation.light

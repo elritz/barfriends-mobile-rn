@@ -3,7 +3,11 @@ import { useReactiveVar } from '@apollo/client'
 import { Box, Button, Divider, Heading, Text, VStack } from '@components/core'
 import PermissionDetailItem from '@components/screens/permissions/PermissionDetailItem'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
-import { useUpsertDevicePushTokenMutation } from '@graphql/generated'
+import {
+	useGetCurrentPushNotificationTokenLazyQuery,
+	useGetCurrentPushNotificationTokenQuery,
+	useUpsertDevicePushTokenMutation,
+} from '@graphql/generated'
 import { useIsFocused } from '@react-navigation/native'
 import { PermissionNotificationReactiveVar, ThemeReactiveVar } from '@reactive'
 import { capitalizeFirstLetter } from '@util/@fn/capitalizeFirstLetter'
@@ -87,6 +91,12 @@ export default () => {
 		},
 	]
 
+	const {
+		data: GCPNTData,
+		loading: GCPNTLoading,
+		error: GCPNTError,
+	} = useGetCurrentPushNotificationTokenQuery()
+	
 	const [upsertDevicePushTokenMutation, { data, loading, error }] =
 		useUpsertDevicePushTokenMutation()
 
@@ -150,11 +160,11 @@ export default () => {
 						applicationId: String(Application.applicationId),
 						development: IOSenv === 'development' ? true : false,
 					})
-
 					upsertDevicePushTokenMutation({
 						variables: {
-							appleToken: devicetoken.data,
+							token: devicetoken.data,
 							expoToken: expoToken.data,
+							type: devicetoken.type,
 						},
 					})
 				} else {
@@ -165,8 +175,9 @@ export default () => {
 
 					upsertDevicePushTokenMutation({
 						variables: {
-							androidToken: devicetoken.data,
+							token: devicetoken.data,
 							expoToken: expoToken.data,
+							type: devicetoken.type,
 						},
 					})
 				}
@@ -174,7 +185,19 @@ export default () => {
 				createTwoButtonAlert()
 			}
 		} else {
-			Alert.alert('Must use physical device for Push Notifications')
+			Alert.alert(`Must use physical device for Push Notifications`, [
+				{
+					text: 'Cancel',
+					onPress: () => null,
+					style: 'cancel',
+				},
+				{
+					text: 'Ok',
+					onPress: () => null,
+					style: 'default',
+					isPreferred: true,
+				},
+			])
 		}
 	}
 
@@ -214,6 +237,10 @@ export default () => {
 	finished(() => {
 		router.back()
 	})
+
+	if (GCPNTLoading) {
+		return null
+	}
 
 	return (
 		<Box bg={'$transparent'} style={{ flex: 1 }} mb={'$5'}>
@@ -267,57 +294,95 @@ export default () => {
 					})}
 				</Box>
 			</ScrollView>
-			<VStack
-				space={'md'}
-				w={'$full'}
-				alignItems={'center'}
-				sx={{
-					mb: insets.bottom,
-				}}
-			>
-				<Divider
+			{rNotificationsPermission?.granted && !data?.upsertDevicePushToken ? (
+				<VStack
+					space={'md'}
+					w={'$full'}
+					alignItems={'center'}
 					sx={{
-						w: '95%',
+						mb: insets.bottom,
 					}}
-				/>
-				<Button
-					size={'lg'}
-					width={'95%'}
-					onPress={() =>
-						!rNotificationsPermission?.granted
-							? rNotificationsPermission?.canAskAgain && !rNotificationsPermission.granted
-								? handleRequestPermission()
-								: handleOpenPhoneSettings()
-							: createTwoButtonAlert()
-					}
 				>
-					<Button.Text>
-						{!rNotificationsPermission?.granted
-							? rNotificationsPermission?.canAskAgain && !rNotificationsPermission.granted
-								? 'Continue'
-								: 'Go to Phone Settings'
-							: 'Granted'}
-					</Button.Text>
-				</Button>
-				{!started ? (
-					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
-						<Text fontWeight={'$medium'}>Close</Text>
+					<Divider
+						sx={{
+							w: '95%',
+						}}
+					/>
+					<Button size={'lg'} width={'95%'} onPress={() => handleRequestPermission()}>
+						<Button.Text>Continue</Button.Text>
 					</Button>
-				) : (
-					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
-						{started && (
-							<Box
-								bg={'$transparent'}
-								sx={{
-									h: 20,
-								}}
-							>
-								{<Text fontWeight={'$medium'}>Auto close in {seconds}</Text>}
-							</Box>
-						)}
+					{!started ? (
+						<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
+							<Text fontWeight={'$medium'}>Close</Text>
+						</Button>
+					) : (
+						<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
+							{started && (
+								<Box
+									bg={'$transparent'}
+									sx={{
+										h: 20,
+									}}
+								>
+									{<Text fontWeight={'$medium'}>Auto close in {seconds}</Text>}
+								</Box>
+							)}
+						</Button>
+					)}
+				</VStack>
+			) : (
+				<VStack
+					space={'md'}
+					w={'$full'}
+					alignItems={'center'}
+					sx={{
+						mb: insets.bottom,
+					}}
+				>
+					<Divider
+						sx={{
+							w: '95%',
+						}}
+					/>
+					<Button
+						size={'lg'}
+						width={'95%'}
+						onPress={() =>
+							!rNotificationsPermission?.granted
+								? rNotificationsPermission?.canAskAgain && !rNotificationsPermission.granted
+									? handleRequestPermission()
+									: handleOpenPhoneSettings()
+								: createTwoButtonAlert()
+						}
+					>
+						<Button.Text>
+							{!rNotificationsPermission?.granted
+								? rNotificationsPermission?.canAskAgain && !rNotificationsPermission.granted
+									? 'Continue'
+									: 'Go to Phone Settings'
+								: 'Granted'}
+						</Button.Text>
 					</Button>
-				)}
-			</VStack>
+					{!started ? (
+						<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
+							<Text fontWeight={'$medium'}>Close</Text>
+						</Button>
+					) : (
+						<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
+							{started && (
+								<Box
+									bg={'$transparent'}
+									sx={{
+										h: 20,
+									}}
+								>
+									{<Text fontWeight={'$medium'}>Auto close in {seconds}</Text>}
+								</Box>
+							)}
+						</Button>
+					)}
+				</VStack>
+			)}
 		</Box>
 	)
 }

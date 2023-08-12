@@ -28,7 +28,7 @@ export default function QuickBarfriendCard({ qrcodesize, logosize, showIcon, col
 		onCompleted: data => {
 			const dataQRString = JSON.stringify({
 				dataHash: data.getSecureFriendQRCodeData,
-				qrCodeProfileId: rAuthorizationVar?.DeviceProfile?.Profile?.id,
+				qrCodeProfileId: rAuthorizationVar?.Profile?.id,
 			})
 			setDataQR(dataQRString)
 		},

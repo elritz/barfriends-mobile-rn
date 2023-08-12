@@ -25,7 +25,7 @@ const CameraModal = ({ isOpen, onOpen, onClose }) => {
 		// ;(async () => {
 		// 	const digest = await Crypto.digestStringAsync(
 		// 		Crypto.CryptoDigestAlgorithm.SHA256,
-		// 		JSON.stringify({ profileid: rAuthorizationVar?.DeviceProfile?.Profile?.id }),
+		// 		JSON.stringify({ profileid: rAuthorizationVar?.Profile?.id }),
 		// 	)
 		// 	/* Some crypto operation... */
 		// })()
@@ -40,7 +40,7 @@ const CameraModal = ({ isOpen, onOpen, onClose }) => {
 		onCompleted: data => {
 			const dataQRString = JSON.stringify({
 				dataHash: data.getSecureFriendQRCodeData,
-				qrCodeProfileId: rAuthorizationVar?.DeviceProfile?.Profile?.id,
+				qrCodeProfileId: rAuthorizationVar?.Profile?.id,
 			})
 			setDataQR(dataQRString)
 		},

@@ -68,9 +68,9 @@ export default () => {
 											alignSelf={'center'}
 											flex={1}
 											onPress={() => {
-												rAuthorizationVar?.DeviceProfile?.Profile?.tonightStory?.id === watch('emojimood').id ||
+												rAuthorizationVar?.Profile?.tonightStory?.id === watch('emojimood').id ||
 												watch('emojimood').id === item.id ||
-												rAuthorizationVar?.DeviceProfile?.Profile?.tonightStory?.emojimood?.id === item.id
+												rAuthorizationVar?.Profile?.tonightStory?.emojimood?.id === item.id
 													? reset()
 													: setValue('emojimood', item)
 											}}
@@ -100,10 +100,10 @@ export default () => {
 														alignSelf: 'center',
 														borderWidth: 2,
 														borderColor:
-															rAuthorizationVar?.DeviceProfile?.Profile?.tonightStory?.id === watch('emojimood').id
+															rAuthorizationVar?.Profile?.tonightStory?.id === watch('emojimood').id
 																? 'white'
 																: watch('emojimood').id === item.id ||
-																  rAuthorizationVar?.DeviceProfile?.Profile?.tonightStory?.emojimood?.id === item.id
+																  rAuthorizationVar?.Profile?.tonightStory?.emojimood?.id === item.id
 																? 'white'
 																: 'transparent',
 													}}

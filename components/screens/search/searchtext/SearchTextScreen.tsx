@@ -44,7 +44,7 @@ const SearchTextScreen = () => {
 	}
 
 	const filteredRecentSearches = getUniqueListBy(
-		rAuthorizationVar?.DeviceProfile?.Profile?.resentSearches?.searches,
+		rAuthorizationVar?.Profile?.resentSearches?.searches,
 		'search',
 	)
 

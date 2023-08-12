@@ -1,4 +1,7 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client';
+import { PROFILE_VENUES_FRAGMENT } from '@graphql/DM/fragments/index.fragments';
+import { PUBLIC_PROFILE_FRAGMENT } from '@graphql/DM/fragments/profile.fragments';
+
 
 export const EXPLORE_SEARCH_QUERY = gql`
 	query exploreSearch($search: String!) {

@@ -12,16 +12,16 @@ export default ({}: EditableOptionsScreenProps) => {
 	const router = useRouter()
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 	const rTheme = useReactiveVar(ThemeReactiveVar)
-	const rIdentifiableInformation = rAuthorizationVar?.DeviceProfile?.Profile?.IdentifiableInformation
+	const rIdentifiableInformation = rAuthorizationVar?.Profile?.IdentifiableInformation
 	const date = new Date(
-		rAuthorizationVar?.DeviceProfile?.Profile?.IdentifiableInformation?.birthday,
+		rAuthorizationVar?.Profile?.IdentifiableInformation?.birthday,
 	).toLocaleDateString('en-EN', { year: 'numeric', month: 'long', day: 'numeric' })
 
 	const { data, loading, error } = useProfileQuery({
 		variables: {
 			where: {
 				id: {
-					equals: rAuthorizationVar?.DeviceProfile?.Profile?.id,
+					equals: rAuthorizationVar?.Profile?.id,
 				},
 			},
 		},
@@ -118,9 +118,9 @@ export default ({}: EditableOptionsScreenProps) => {
 				title='About me'
 			>
 				<Text fontSize={'$xl'} numberOfLines={4} ellipsizeMode='tail'>
-					{!rAuthorizationVar?.DeviceProfile?.Profile?.DetailInformation?.description
+					{!rAuthorizationVar?.Profile?.DetailInformation?.description
 						? 'Add description'
-						: rAuthorizationVar.DeviceProfile.Profile.DetailInformation.description}
+						: rAuthorizationVar.Profile.DetailInformation.description}
 				</Text>
 			</RoundedListItem>
 			<RoundedListItem
@@ -133,9 +133,9 @@ export default ({}: EditableOptionsScreenProps) => {
 			>
 				<Box>
 					<VStack flexDirection={'row'} flexWrap={'wrap'}>
-						{rAuthorizationVar?.DeviceProfile?.Profile?.DetailInformation?.Tags.length ? (
+						{rAuthorizationVar?.Profile?.DetailInformation?.Tags.length ? (
 							<>
-								{rAuthorizationVar?.DeviceProfile?.Profile?.DetailInformation?.Tags.map((item, index) => (
+								{rAuthorizationVar?.Profile?.DetailInformation?.Tags.map((item, index) => (
 									<Badge key={item.id} rounded={'$md'} bg={'$primary500'} px={'$2'} py={'$1'} m={'$2'}>
 										<Text
 											fontWeight='$bold'
@@ -174,7 +174,7 @@ export default ({}: EditableOptionsScreenProps) => {
 				title={`I am a ...`}
 			>
 				<Text fontSize={'$xl'}>
-					{rAuthorizationVar?.DeviceProfile?.Profile?.IdentifiableInformation?.gender ||
+					{rAuthorizationVar?.Profile?.IdentifiableInformation?.gender ||
 						'Set your gender'}
 				</Text>
 			</RoundedListItem>
@@ -187,7 +187,7 @@ export default ({}: EditableOptionsScreenProps) => {
 				title={`I'm looking for a ...`}
 			>
 				<Text fontSize={'$xl'} numberOfLines={1}>
-					{rAuthorizationVar?.DeviceProfile?.Profile?.IdentifiableInformation?.lookfor ||
+					{rAuthorizationVar?.Profile?.IdentifiableInformation?.lookfor ||
 						'Set the vibes your looking for'}
 				</Text>
 			</RoundedListItem>

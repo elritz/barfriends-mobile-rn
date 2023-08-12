@@ -2,7 +2,6 @@ import { useReactiveVar } from '@apollo/client'
 import DatePicker from '@components/atoms/inputs/DatePicker'
 import { Box, Button, Text } from '@components/core'
 import {
-	AuthorizationDeviceManager,
 	AuthorizationDeviceProfile,
 	Profile,
 	useUpdateOneProfileMutation,
@@ -28,15 +27,11 @@ export default () => {
 			},
 			onCompleted: data => {
 				const profile = data.updateOneProfile as Profile
-				const deviceManager = rAuthorizationVar as AuthorizationDeviceManager
-				const deviceprofile = rAuthorizationVar?.DeviceProfile as AuthorizationDeviceProfile
+				const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
 
 				AuthorizationReactiveVar({
-					...deviceManager,
-					DeviceProfile: {
-						...deviceprofile,
-						Profile: profile,
-					},
+					...deviceprofile,
+					Profile: profile,
 				})
 				router.back()
 				// reset({ date: data.updateOneProfile.IdentifiableInformation.birthday })
@@ -55,8 +50,7 @@ export default () => {
 		formState: { isDirty, dirtyFields, errors },
 	} = useForm({
 		defaultValues: {
-			date:
-				new Date(rAuthorizationVar?.DeviceProfile?.Profile?.IdentifiableInformation?.birthday) || '',
+			date: new Date(rAuthorizationVar?.Profile?.IdentifiableInformation?.birthday) || '',
 		},
 		mode: 'onChange',
 		reValidateMode: 'onChange',
@@ -99,7 +93,7 @@ export default () => {
 		updateOneProfilMutation({
 			variables: {
 				where: {
-					id: rAuthorizationVar?.DeviceProfile?.Profile?.id,
+					id: rAuthorizationVar?.Profile?.id,
 				},
 				data: {
 					IdentifiableInformation: {

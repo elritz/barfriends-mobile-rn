@@ -12,7 +12,7 @@ export const FriendsList = ({}) => {
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 	const cardWidth = (width * 0.9) / numColumns
 
-	const friendslist = rAuthorizationVar?.DeviceProfile?.Profile?.Relationships
+	const friendslist = rAuthorizationVar?.Profile?.Relationships
 	if (!friendslist) return null
 
 	return (

@@ -9,7 +9,7 @@ import { AuthorizationReactiveVar } from '@reactive'
 import { uniqueId } from 'lodash'
 import { AnimatePresence } from 'moti'
 import { useCallback, useEffect, useState } from 'react'
-import { RefreshControl, ScrollView, View } from 'react-native'
+import { RefreshControl, ScrollView } from 'react-native'
 
 export default () => {
 	const [refreshing, setRefreshing] = useState(false)
@@ -62,7 +62,7 @@ export default () => {
 			<AnimatePresence key={uniqueId()}>
 				<PreferenceNotificationPermission />
 			</AnimatePresence>
-			{renderProfile(rAuthorizationVar?.DeviceProfile?.Profile?.ProfileType as ProfileType)}
+			{renderProfile(rAuthorizationVar?.Profile?.ProfileType as ProfileType)}
 		</ScrollView>
 	)
 }

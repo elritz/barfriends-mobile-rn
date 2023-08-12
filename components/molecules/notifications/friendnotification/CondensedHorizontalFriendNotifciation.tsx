@@ -1,4 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
+import { Box, HStack, Heading, Pressable, VStack, Button, Text } from '@components/core'
 // import CancelFriendNotificationModal from '@components/molecules/modals/cancelfriendnotioficationmodal/CancelFriendNotificationModal'
 import { Ionicons } from '@expo/vector-icons'
 import { NOTIFICATIONS_QUERY } from '@graphql/DM/profiling/notifications/index.query'
@@ -74,7 +75,7 @@ export const CondensedHorizontalFriendNotifciation = ({
 			},
 		})
 
-	const isSender = item?.senderProfile?.id === rAuthorizationVar?.DeviceProfile?.Profile?.id
+	const isSender = item?.senderProfile?.id === rAuthorizationVar?.Profile?.id
 
 	return (
 		<Box
@@ -126,7 +127,7 @@ export const CondensedHorizontalFriendNotifciation = ({
 						onClose={onCloseCancelFriendNotification}
 					/> */}
 					<Button
-						colorScheme={'primary'}
+						bg={'$primary500'}
 						variant={'outline'}
 						size={'sm'}
 						rounded={'$md'}

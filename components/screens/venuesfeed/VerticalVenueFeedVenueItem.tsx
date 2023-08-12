@@ -3,7 +3,6 @@ import { useReactiveVar } from '@apollo/client'
 import { Box, Button, Heading, Pressable, Text, VStack } from '@components/core'
 import { GET_LIVE_VENUE_TOTALS_QUERY } from '@graphql/DM/profiling/out/index.query'
 import {
-	AuthorizationDeviceManager,
 	AuthorizationDeviceProfile,
 	Profile,
 	ProfileVenue,
@@ -21,9 +20,15 @@ import { Blurhash } from 'react-native-blurhash'
 type Props = {
 	item: ProfileVenue
 	columnIndex: number
+	showJoin: boolean
+	showDistance: boolean
 }
 
-const VerticalVenueFeedVenueItem = (props: Props) => {
+const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
+	VerticalVenueFeedVenueItem.defaultProps = {
+		showJoin: true,
+		showDistance: true,
+	}
 	const router = useRouter()
 	const [hideBlur, setHideBlur] = useState(false)
 	const [distance, setDistance] = useState(0)
@@ -42,24 +47,20 @@ const VerticalVenueFeedVenueItem = (props: Props) => {
 			onCompleted: async data => {
 				if (data.addPersonalJoinsVenue) {
 					const profile = data.addPersonalJoinsVenue as Profile
-					const deviceManager = rAuthorizationVar as AuthorizationDeviceManager
-					const deviceprofile = rAuthorizationVar?.DeviceProfile as AuthorizationDeviceProfile
+					const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
 					if (
 						profile?.Personal?.LiveOutPersonal?.Out &&
 						deviceprofile?.Profile?.Personal?.LiveOutPersonal
 					) {
 						AuthorizationReactiveVar({
-							...deviceManager,
-							DeviceProfile: {
-								...deviceprofile,
-								Profile: {
-									...deviceprofile.Profile,
-									Personal: {
-										...deviceprofile.Profile.Personal,
-										LiveOutPersonal: {
-											...deviceprofile.Profile.Personal.LiveOutPersonal,
-											Out: profile.Personal.LiveOutPersonal.Out,
-										},
+							...deviceprofile,
+							Profile: {
+								...deviceprofile.Profile,
+								Personal: {
+									...deviceprofile.Profile.Personal,
+									LiveOutPersonal: {
+										...deviceprofile.Profile.Personal.LiveOutPersonal,
+										Out: profile.Personal.LiveOutPersonal.Out,
 									},
 								},
 							},
@@ -86,24 +87,20 @@ const VerticalVenueFeedVenueItem = (props: Props) => {
 			if (data.removePersonalJoinsVenue) {
 				setIsJoined(false)
 				const profile = data.removePersonalJoinsVenue as Profile
-				const deviceManager = rAuthorizationVar as AuthorizationDeviceManager
-				const deviceprofile = rAuthorizationVar?.DeviceProfile as AuthorizationDeviceProfile
+				const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
 				if (
 					profile?.Personal?.LiveOutPersonal?.Out &&
 					deviceprofile?.Profile?.Personal?.LiveOutPersonal
 				) {
 					AuthorizationReactiveVar({
-						...deviceManager,
-						DeviceProfile: {
-							...deviceprofile,
-							Profile: {
-								...deviceprofile.Profile,
-								Personal: {
-									...deviceprofile.Profile.Personal,
-									LiveOutPersonal: {
-										...deviceprofile.Profile.Personal.LiveOutPersonal,
-										Out: profile.Personal.LiveOutPersonal.Out,
-									},
+						...deviceprofile,
+						Profile: {
+							...deviceprofile.Profile,
+							Personal: {
+								...deviceprofile.Profile.Personal,
+								LiveOutPersonal: {
+									...deviceprofile.Profile.Personal.LiveOutPersonal,
+									Out: profile.Personal.LiveOutPersonal.Out,
 								},
 							},
 						},
@@ -145,11 +142,10 @@ const VerticalVenueFeedVenueItem = (props: Props) => {
 	}, [props.item.distanceInM])
 
 	useEffect(() => {
-		if (rAuthorizationVar?.DeviceProfile?.Profile?.Personal) {
-			const joinedToVenue =
-				rAuthorizationVar.DeviceProfile.Profile?.Personal?.LiveOutPersonal?.Out.map(item => {
-					return item.venueProfileId
-				})
+		if (rAuthorizationVar?.Profile?.Personal) {
+			const joinedToVenue = rAuthorizationVar.Profile?.Personal?.LiveOutPersonal?.Out.map(item => {
+				return item.venueProfileId
+			})
 
 			if (joinedToVenue) {
 				setIsJoined(joinedToVenue.includes(String(props.item.id)))
@@ -252,52 +248,57 @@ const VerticalVenueFeedVenueItem = (props: Props) => {
 							>
 								{getTitleCase(props?.item?.IdentifiableInformation?.fullname)}
 							</Heading>
-							<Heading
-								fontSize={'$md'}
-								fontWeight={'$bold'}
-								lineHeight={'$xs'}
-								textAlign={'left'}
-								numberOfLines={2}
-								ellipsizeMode='tail'
-							>
-								{distance} {metric}
-							</Heading>
-
-							{canJoin ? (
-								<>
-									<Button
-										variant={'solid'}
-										onPress={() => _pressLeave()}
-										bgColor={isJoined ? '$error500' : '$primary500'}
-										rounded={'$md'}
-										width={'$full'}
-										sx={{
-											h: 45,
-										}}
-									>
-										{JVLoading || RPJVLoading ? (
-											<Button.Text>{isJoined ? 'Leaving' : 'Joining'}</Button.Text>
-										) : (
-											<Button.Text>{isJoined ? 'Leave' : 'Join'}</Button.Text>
-										)}
-									</Button>
-								</>
-							) : metric === 'm' && distance < 100 ? (
-								<Button
-									variant={'link'}
-									onPress={async () => {
-										const { distanceInM } = await refreshLocation({
-											vlat: props.item.Venue?.Location?.Geometry?.latitude,
-											vlng: props.item.Venue?.Location?.Geometry?.longitude,
-										})
-
-										setDist({ distanceInM })
-									}}
-									rounded={'$md'}
+							{props.showDistance && (
+								<Heading
+									fontSize={'$md'}
+									fontWeight={'$bold'}
+									lineHeight={'$xs'}
+									textAlign={'left'}
+									numberOfLines={2}
+									ellipsizeMode='tail'
 								>
-									<Text>Refresh distance</Text>
-								</Button>
-							) : null}
+									{distance} {metric}
+								</Heading>
+							)}
+							{props.showJoin && (
+								<>
+									{canJoin ? (
+										<>
+											<Button
+												variant={'solid'}
+												onPress={() => _pressLeave()}
+												bgColor={isJoined ? '$error500' : '$primary500'}
+												rounded={'$md'}
+												width={'$full'}
+												sx={{
+													h: 45,
+												}}
+											>
+												{JVLoading || RPJVLoading ? (
+													<Button.Text>{isJoined ? 'Leaving' : 'Joining'}</Button.Text>
+												) : (
+													<Button.Text>{isJoined ? 'Leave' : 'Join'}</Button.Text>
+												)}
+											</Button>
+										</>
+									) : metric === 'm' && distance < 100 ? (
+										<Button
+											variant={'link'}
+											onPress={async () => {
+												const { distanceInM } = await refreshLocation({
+													vlat: props.item.Venue?.Location?.Geometry?.latitude,
+													vlng: props.item.Venue?.Location?.Geometry?.longitude,
+												})
+
+												setDist({ distanceInM })
+											}}
+											rounded={'$md'}
+										>
+											<Text>Refresh distance</Text>
+										</Button>
+									) : null}
+								</>
+							)}
 						</VStack>
 					</VStack>
 				)

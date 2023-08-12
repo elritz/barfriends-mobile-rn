@@ -1496,7 +1496,7 @@ input AuthenticationProviderWhereUniqueInput {
   id: String
 }
 
-union AuthenticationResponseUnion = AuthorizationDeviceManager | Error
+union AuthenticationResponseUnion = AuthorizationDeviceProfile | Error
 
 input Authenticators {
   EmailInput: EmailInput
@@ -2416,6 +2416,7 @@ input ComingAreaRelationFilter {
 
 type ComingAreaResponse {
   comingAreas: [ComingArea!]!
+  recommendedAreas: [H3Index6VenueRecommendation!]
   searchArea: Area
 }
 
@@ -2577,19 +2578,14 @@ input CoordsInput {
 
 type Country {
   Area(cursor: AreaWhereUniqueInput, distinct: [AreaScalarFieldEnum!], orderBy: [AreaOrderByWithRelationInput!], skip: Int, take: Int, where: AreaWhereInput): [Area!]!
-  Geometry: Geometry!
-  geometryId: Int!
+  flag: String!
   id: ID!
   isoCode: String!
   name: String!
 }
 
-input CountryAvgOrderByAggregateInput {
-  geometryId: SortOrder
-}
-
 input CountryCountOrderByAggregateInput {
-  geometryId: SortOrder
+  flag: SortOrder
   id: SortOrder
   isoCode: SortOrder
   name: SortOrder
@@ -2597,14 +2593,14 @@ input CountryCountOrderByAggregateInput {
 
 input CountryCreateInput {
   Area: AreaCreateNestedManyWithoutCountryInput
-  Geometry: GeometryCreateNestedOneWithoutCountryInput!
+  flag: String!
   id: String
   isoCode: String!
   name: String!
 }
 
 input CountryCreateManyInput {
-  geometryId: Int!
+  flag: String!
   id: String
   isoCode: String!
   name: String!
@@ -2616,57 +2612,37 @@ input CountryCreateNestedOneWithoutAreaInput {
   create: CountryCreateWithoutAreaInput
 }
 
-input CountryCreateNestedOneWithoutGeometryInput {
-  connect: CountryWhereUniqueInput
-  connectOrCreate: CountryCreateOrConnectWithoutGeometryInput
-  create: CountryCreateWithoutGeometryInput
-}
-
 input CountryCreateOrConnectWithoutAreaInput {
   create: CountryCreateWithoutAreaInput!
   where: CountryWhereUniqueInput!
 }
 
-input CountryCreateOrConnectWithoutGeometryInput {
-  create: CountryCreateWithoutGeometryInput!
-  where: CountryWhereUniqueInput!
-}
-
 input CountryCreateWithoutAreaInput {
-  Geometry: GeometryCreateNestedOneWithoutCountryInput!
-  id: String
-  isoCode: String!
-  name: String!
-}
-
-input CountryCreateWithoutGeometryInput {
-  Area: AreaCreateNestedManyWithoutCountryInput
+  flag: String!
   id: String
   isoCode: String!
   name: String!
 }
 
 input CountryMaxOrderByAggregateInput {
-  geometryId: SortOrder
+  flag: SortOrder
   id: SortOrder
   isoCode: SortOrder
   name: SortOrder
 }
 
 input CountryMinOrderByAggregateInput {
-  geometryId: SortOrder
+  flag: SortOrder
   id: SortOrder
   isoCode: SortOrder
   name: SortOrder
 }
 
 input CountryOrderByWithAggregationInput {
-  _avg: CountryAvgOrderByAggregateInput
   _count: CountryCountOrderByAggregateInput
   _max: CountryMaxOrderByAggregateInput
   _min: CountryMinOrderByAggregateInput
-  _sum: CountrySumOrderByAggregateInput
-  geometryId: SortOrder
+  flag: SortOrder
   id: SortOrder
   isoCode: SortOrder
   name: SortOrder
@@ -2674,8 +2650,7 @@ input CountryOrderByWithAggregationInput {
 
 input CountryOrderByWithRelationInput {
   Area: AreaOrderByRelationAggregateInput
-  Geometry: GeometryOrderByWithRelationInput
-  geometryId: SortOrder
+  flag: SortOrder
   id: SortOrder
   isoCode: SortOrder
   name: SortOrder
@@ -2697,7 +2672,7 @@ type CountryResponseObject {
 }
 
 enum CountryScalarFieldEnum {
-  geometryId
+  flag
   id
   isoCode
   name
@@ -2705,7 +2680,7 @@ enum CountryScalarFieldEnum {
 
 input CountryScalarWhereWithAggregatesInput {
   AND: [CountryScalarWhereWithAggregatesInput!]
-  geometryId: IntWithAggregatesFilter
+  flag: StringWithAggregatesFilter
   id: StringWithAggregatesFilter
   isoCode: StringWithAggregatesFilter
   name: StringWithAggregatesFilter
@@ -2713,19 +2688,16 @@ input CountryScalarWhereWithAggregatesInput {
   OR: [CountryScalarWhereWithAggregatesInput!]
 }
 
-input CountrySumOrderByAggregateInput {
-  geometryId: SortOrder
-}
-
 input CountryUpdateInput {
   Area: AreaUpdateManyWithoutCountryNestedInput
-  Geometry: GeometryUpdateOneRequiredWithoutCountryNestedInput
+  flag: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   isoCode: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
 }
 
 input CountryUpdateManyMutationInput {
+  flag: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   isoCode: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
@@ -2739,25 +2711,8 @@ input CountryUpdateOneRequiredWithoutAreaNestedInput {
   upsert: CountryUpsertWithoutAreaInput
 }
 
-input CountryUpdateOneWithoutGeometryNestedInput {
-  connect: CountryWhereUniqueInput
-  connectOrCreate: CountryCreateOrConnectWithoutGeometryInput
-  create: CountryCreateWithoutGeometryInput
-  delete: Boolean
-  disconnect: Boolean
-  update: CountryUpdateWithoutGeometryInput
-  upsert: CountryUpsertWithoutGeometryInput
-}
-
 input CountryUpdateWithoutAreaInput {
-  Geometry: GeometryUpdateOneRequiredWithoutCountryNestedInput
-  id: StringFieldUpdateOperationsInput
-  isoCode: StringFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-}
-
-input CountryUpdateWithoutGeometryInput {
-  Area: AreaUpdateManyWithoutCountryNestedInput
+  flag: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   isoCode: StringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
@@ -2768,16 +2723,10 @@ input CountryUpsertWithoutAreaInput {
   update: CountryUpdateWithoutAreaInput!
 }
 
-input CountryUpsertWithoutGeometryInput {
-  create: CountryCreateWithoutGeometryInput!
-  update: CountryUpdateWithoutGeometryInput!
-}
-
 input CountryWhereInput {
   AND: [CountryWhereInput!]
   Area: AreaListRelationFilter
-  Geometry: GeometryWhereInput
-  geometryId: IntFilter
+  flag: StringFilter
   id: StringFilter
   isoCode: StringFilter
   name: StringFilter
@@ -2786,7 +2735,6 @@ input CountryWhereInput {
 }
 
 input CountryWhereUniqueInput {
-  geometryId: Int
   id: String
   isoCode: String
   name: String
@@ -5138,7 +5086,6 @@ input FriendRequestWhereUniqueInput {
 
 type Geometry {
   City: City
-  Country: Country
   h3Index15: String
   id: ID!
   latitude: Float!
@@ -5162,7 +5109,6 @@ input GeometryCountOrderByAggregateInput {
 
 input GeometryCreateInput {
   City: CityCreateNestedOneWithoutGeometryInput
-  Country: CountryCreateNestedOneWithoutGeometryInput
   h3Index15: String
   latitude: Float!
   Location: LocationCreateNestedOneWithoutGeometryInput
@@ -5183,12 +5129,6 @@ input GeometryCreateNestedOneWithoutCityInput {
   create: GeometryCreateWithoutCityInput
 }
 
-input GeometryCreateNestedOneWithoutCountryInput {
-  connect: GeometryWhereUniqueInput
-  connectOrCreate: GeometryCreateOrConnectWithoutCountryInput
-  create: GeometryCreateWithoutCountryInput
-}
-
 input GeometryCreateNestedOneWithoutLocationInput {
   connect: GeometryWhereUniqueInput
   connectOrCreate: GeometryCreateOrConnectWithoutLocationInput
@@ -5206,11 +5146,6 @@ input GeometryCreateOrConnectWithoutCityInput {
   where: GeometryWhereUniqueInput!
 }
 
-input GeometryCreateOrConnectWithoutCountryInput {
-  create: GeometryCreateWithoutCountryInput!
-  where: GeometryWhereUniqueInput!
-}
-
 input GeometryCreateOrConnectWithoutLocationInput {
   create: GeometryCreateWithoutLocationInput!
   where: GeometryWhereUniqueInput!
@@ -5222,16 +5157,6 @@ input GeometryCreateOrConnectWithoutStateInput {
 }
 
 input GeometryCreateWithoutCityInput {
-  Country: CountryCreateNestedOneWithoutGeometryInput
-  h3Index15: String
-  latitude: Float!
-  Location: LocationCreateNestedOneWithoutGeometryInput
-  longitude: Float!
-  State: StateCreateNestedOneWithoutGeometryInput
-}
-
-input GeometryCreateWithoutCountryInput {
-  City: CityCreateNestedOneWithoutGeometryInput
   h3Index15: String
   latitude: Float!
   Location: LocationCreateNestedOneWithoutGeometryInput
@@ -5241,7 +5166,6 @@ input GeometryCreateWithoutCountryInput {
 
 input GeometryCreateWithoutLocationInput {
   City: CityCreateNestedOneWithoutGeometryInput
-  Country: CountryCreateNestedOneWithoutGeometryInput
   h3Index15: String
   latitude: Float!
   longitude: Float!
@@ -5250,7 +5174,6 @@ input GeometryCreateWithoutLocationInput {
 
 input GeometryCreateWithoutStateInput {
   City: CityCreateNestedOneWithoutGeometryInput
-  Country: CountryCreateNestedOneWithoutGeometryInput
   h3Index15: String
   latitude: Float!
   Location: LocationCreateNestedOneWithoutGeometryInput
@@ -5285,7 +5208,6 @@ input GeometryOrderByWithAggregationInput {
 
 input GeometryOrderByWithRelationInput {
   City: CityOrderByWithRelationInput
-  Country: CountryOrderByWithRelationInput
   h3Index15: SortOrder
   id: SortOrder
   latitude: SortOrder
@@ -5324,7 +5246,6 @@ input GeometrySumOrderByAggregateInput {
 
 input GeometryUpdateInput {
   City: CityUpdateOneWithoutGeometryNestedInput
-  Country: CountryUpdateOneWithoutGeometryNestedInput
   h3Index15: NullableStringFieldUpdateOperationsInput
   latitude: FloatFieldUpdateOperationsInput
   Location: LocationUpdateOneWithoutGeometryNestedInput
@@ -5346,14 +5267,6 @@ input GeometryUpdateOneRequiredWithoutCityNestedInput {
   upsert: GeometryUpsertWithoutCityInput
 }
 
-input GeometryUpdateOneRequiredWithoutCountryNestedInput {
-  connect: GeometryWhereUniqueInput
-  connectOrCreate: GeometryCreateOrConnectWithoutCountryInput
-  create: GeometryCreateWithoutCountryInput
-  update: GeometryUpdateWithoutCountryInput
-  upsert: GeometryUpsertWithoutCountryInput
-}
-
 input GeometryUpdateOneRequiredWithoutStateNestedInput {
   connect: GeometryWhereUniqueInput
   connectOrCreate: GeometryCreateOrConnectWithoutStateInput
@@ -5373,16 +5286,6 @@ input GeometryUpdateOneWithoutLocationNestedInput {
 }
 
 input GeometryUpdateWithoutCityInput {
-  Country: CountryUpdateOneWithoutGeometryNestedInput
-  h3Index15: NullableStringFieldUpdateOperationsInput
-  latitude: FloatFieldUpdateOperationsInput
-  Location: LocationUpdateOneWithoutGeometryNestedInput
-  longitude: FloatFieldUpdateOperationsInput
-  State: StateUpdateOneWithoutGeometryNestedInput
-}
-
-input GeometryUpdateWithoutCountryInput {
-  City: CityUpdateOneWithoutGeometryNestedInput
   h3Index15: NullableStringFieldUpdateOperationsInput
   latitude: FloatFieldUpdateOperationsInput
   Location: LocationUpdateOneWithoutGeometryNestedInput
@@ -5392,7 +5295,6 @@ input GeometryUpdateWithoutCountryInput {
 
 input GeometryUpdateWithoutLocationInput {
   City: CityUpdateOneWithoutGeometryNestedInput
-  Country: CountryUpdateOneWithoutGeometryNestedInput
   h3Index15: NullableStringFieldUpdateOperationsInput
   latitude: FloatFieldUpdateOperationsInput
   longitude: FloatFieldUpdateOperationsInput
@@ -5401,7 +5303,6 @@ input GeometryUpdateWithoutLocationInput {
 
 input GeometryUpdateWithoutStateInput {
   City: CityUpdateOneWithoutGeometryNestedInput
-  Country: CountryUpdateOneWithoutGeometryNestedInput
   h3Index15: NullableStringFieldUpdateOperationsInput
   latitude: FloatFieldUpdateOperationsInput
   Location: LocationUpdateOneWithoutGeometryNestedInput
@@ -5411,11 +5312,6 @@ input GeometryUpdateWithoutStateInput {
 input GeometryUpsertWithoutCityInput {
   create: GeometryCreateWithoutCityInput!
   update: GeometryUpdateWithoutCityInput!
-}
-
-input GeometryUpsertWithoutCountryInput {
-  create: GeometryCreateWithoutCountryInput!
-  update: GeometryUpdateWithoutCountryInput!
 }
 
 input GeometryUpsertWithoutLocationInput {
@@ -5431,7 +5327,6 @@ input GeometryUpsertWithoutStateInput {
 input GeometryWhereInput {
   AND: [GeometryWhereInput!]
   City: CityWhereInput
-  Country: CountryWhereInput
   h3Index15: StringNullableFilter
   id: IntFilter
   latitude: FloatFilter
@@ -6036,12 +5931,14 @@ type H3Index6VenueRecommendation {
   Area: Area
   areaId: String
   createdAt: DateTime!
+  distanceInM: Int
   h3Index6: String!
   id: ID!
   keywordSuggestions: [Json!]!
   SearchAreaMetrics(cursor: SearchAreaMetricsWhereUniqueInput, distinct: [SearchAreaMetricsScalarFieldEnum!], orderBy: [SearchAreaMetricsOrderByWithRelationInput!], skip: Int, take: Int, where: SearchAreaMetricsWhereInput): [SearchAreaMetrics!]!
   timesRequested: Int
   updatedAt: DateTime!
+  venues: [ProfileVenue!]
   venuesProfileIds: [String!]!
   Vote(cursor: VoteWhereUniqueInput, distinct: [VoteScalarFieldEnum!], orderBy: [VoteOrderByWithRelationInput!], skip: Int, take: Int, where: VoteWhereInput): [Vote!]!
 }
@@ -8392,7 +8289,7 @@ type Mutation {
   updateProfileIdentifiableInformation(data: IdentifiableInformationUpdateInput!): AuthenticationResponseUnion!
   updateStoryEmojimood(emojimoodId: Int!, storyId: String): Story!
   updateThemeManagerSwitchTheme(id: String!, themeId: String!): ProfileTheme!
-  upsertDevicePushToken(androidToken: String, appleToken: String, expoToken: String): Boolean!
+  upsertDevicePushToken(expoToken: String, token: String, type: String): Boolean!
 }
 
 input NestedBoolFilter {
@@ -13402,11 +13299,6 @@ type ProfileVenue {
   Venue: Venue
 }
 
-type ProfileVenueNearbyResponse {
-  searchArea: AreaResponse
-  venuesNearby: [ProfileVenue!]!
-}
-
 input ProfileWhereInput {
   AND: [ProfileWhereInput!]
   bfsprofileid: StringFilter
@@ -13674,6 +13566,8 @@ type Query {
   getAllCountries: [CountryResponseObject!]!
   getAllStatesByCountry(countryIsoCode: String!): [StateResponseObject!]!
   getAllThemes: [Theme!]!
+  getCurrentPushNotificationToken: PushToken
+  getH3Index6VenueRecommendationById(id: String!): H3Index6VenueRecommendation
   getInterests: [Category!]!
   getLiveVenueTotals(profileIdVenue: String): LiveVenueTotals!
   getNotifications: NotificationResponse!
@@ -13689,7 +13583,7 @@ type Query {
   sendAuthenticatorDeviceOwnerCode: Boolean!
   venue(cursor: VenueWhereUniqueInput, distinct: [VenueScalarFieldEnum!], orderBy: [VenueOrderByWithRelationInput!], skip: Int, take: Int, where: VenueWhereInput): Venue
   venues(cursor: VenueWhereUniqueInput, distinct: [VenueScalarFieldEnum!], orderBy: [VenueOrderByWithRelationInput!], skip: Int, take: Int, where: VenueWhereInput): [Venue!]!
-  venuesNearby(countryIsoCode: String!, currentLocationCoords: CoordsInput, kRing: Int = 1, searchAreaCoords: CoordsInput!, stateIsoCode: String!): RecommendationResponseUnion!
+  venuesNearby(countryIsoCode: String!, kRing: Int = 1, searchAreaCoords: CoordsInput!, stateIsoCode: String!): RecommendationResponseUnion!
 }
 
 enum QueryMode {
@@ -16902,6 +16796,7 @@ input VenueScalarWhereWithAggregatesInput {
 }
 
 type VenuesNearbyResponse {
+  recommendedAreas: [H3Index6VenueRecommendation!]
   searchArea: Area
   venuesNearby: [ProfileVenue!]!
 }

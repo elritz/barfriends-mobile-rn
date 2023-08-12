@@ -4,7 +4,6 @@ import { Button, HStack, Heading, Text, VStack } from '@components/core'
 import { Ionicons } from '@expo/vector-icons'
 import { GET_LIVE_VENUE_TOTALS_QUERY } from '@graphql/DM/profiling/out/index.query'
 import {
-	AuthorizationDeviceManager,
 	AuthorizationDeviceProfile,
 	Profile,
 	useRemovePersonalJoinsVenueMutation,
@@ -22,24 +21,20 @@ export default function LeaveSection() {
 			onCompleted: async data => {
 				if (data.removePersonalJoinsVenue) {
 					const profile = data.removePersonalJoinsVenue as Profile
-					const deviceManager = rAuthorizationVar as AuthorizationDeviceManager
-					const deviceprofile = rAuthorizationVar?.DeviceProfile as AuthorizationDeviceProfile
+					const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
 					if (
 						profile?.Personal?.LiveOutPersonal?.Out &&
 						deviceprofile?.Profile?.Personal?.LiveOutPersonal
 					) {
 						AuthorizationReactiveVar({
-							...deviceManager,
-							DeviceProfile: {
-								...deviceprofile,
-								Profile: {
-									...deviceprofile.Profile,
-									Personal: {
-										...deviceprofile.Profile.Personal,
-										LiveOutPersonal: {
-											...deviceprofile.Profile.Personal.LiveOutPersonal,
-											Out: profile.Personal.LiveOutPersonal.Out,
-										},
+							...deviceprofile,
+							Profile: {
+								...deviceprofile.Profile,
+								Personal: {
+									...deviceprofile.Profile.Personal,
+									LiveOutPersonal: {
+										...deviceprofile.Profile.Personal.LiveOutPersonal,
+										Out: profile.Personal.LiveOutPersonal.Out,
 									},
 								},
 							},
@@ -58,7 +53,7 @@ export default function LeaveSection() {
 		})
 
 	if (
-		rAuthorizationVar?.DeviceProfile?.Profile?.Personal?.LiveOutPersonal?.Out[0]?.venueProfileId ===
+		rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out[0]?.venueProfileId ===
 		params.profileid
 	) {
 		return (

@@ -537,7 +537,7 @@ export default () => {
 											<Pressable
 												onPress={async () => {
 													onToggleProfileId()
-													await Clipboard.setStringAsync(String(rAuthorizationVar?.DeviceProfile?.Profile?.id))
+													await Clipboard.setStringAsync(String(rAuthorizationVar?.Profile?.id))
 													setTimeout(() => onCloseProfileId(), 500)
 												}}
 											>
@@ -572,7 +572,7 @@ export default () => {
 											marginLeft={'$5'}
 											numberOfLines={1}
 										>
-											{rAuthorizationVar?.DeviceProfile?.Profile?.id}
+											{rAuthorizationVar?.Profile?.id}
 										</Text>
 										<View style={{ marginHorizontal: 2 }}>
 											<Feather

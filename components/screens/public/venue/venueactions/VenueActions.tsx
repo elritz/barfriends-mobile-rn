@@ -26,7 +26,7 @@ const VenueActions = () => {
 	const [isJoined, setIsJoined] = useState(false)
 
 	useEffect(() => {
-		const out = rAuthorizationVar?.DeviceProfile?.Profile?.Personal?.LiveOutPersonal?.Out.find(
+		const out = rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out.find(
 			item => item.venueProfileId === String(params.profileid),
 		)
 		if (out) {
@@ -56,7 +56,7 @@ const VenueActions = () => {
 					</HStack>
 				)}
 
-				{rAuthorizationVar?.DeviceProfile?.Profile?.ProfileType !== 'GUEST' && (
+				{rAuthorizationVar?.Profile?.ProfileType !== 'GUEST' && (
 					<HStack space={'$md'} mt={'$5'}>
 						<ActionCard h={200} key={uniqueId()} numColumns={numColumns}>
 							<QuickBarfriend logosize={30} qrcodesize={itemPadding || 120} />

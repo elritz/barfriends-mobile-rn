@@ -40,4 +40,4 @@ export const locationInitialState: LocationType = {
 	},
 }
 
-export const CurrentLocationReactiveVar = makeVar<LocationType | null>(locationInitialState)
+export const CurrentLocationReactiveVar = makeVar<LocationType>(locationInitialState)

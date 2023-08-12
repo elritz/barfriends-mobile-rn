@@ -24,7 +24,7 @@ export default function Actions({ profile }: Props) {
 		onClose: onCloseSignupModal,
 	} = useDisclose()
 
-	const isGuest = rAuthorizationVar?.DeviceProfile?.Profile?.ProfileType === 'GUEST'
+	const isGuest = rAuthorizationVar?.Profile?.ProfileType === 'GUEST'
 
 	const {
 		data: GRFRSData,

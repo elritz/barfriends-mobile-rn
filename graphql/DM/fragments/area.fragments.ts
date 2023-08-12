@@ -25,12 +25,8 @@ export const AREA_FRAGMENT = gql`
 		Country {
 			id
 			name
+			flag
 			isoCode
-			Geometry {
-				id
-				latitude
-				longitude
-			}
 		}
 	}
 `
@@ -40,11 +36,7 @@ export const COUNTRY_FRAGMENT = gql`
 		id
 		name
 		isoCode
-		Geometry {
-			id
-			latitude
-			longitude
-		}
+		flag
 	}
 `
 export const STATE_FRAGMENT = gql`

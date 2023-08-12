@@ -16,7 +16,7 @@ export default () => {
 	const { data, loading, error } = useGetInterestsQuery()
 
 	useEffect(() => {
-		const tagids = rAuthorizationVar?.DeviceProfile?.Profile?.DetailInformation?.Tags.map(
+		const tagids = rAuthorizationVar?.Profile?.DetailInformation?.Tags.map(
 			item => item.id,
 		)
 		if (tagids && tagids.length) {
@@ -131,7 +131,7 @@ export default () => {
 													_light: {
 														bg:
 															selectedTags.some(e => e === tag.id) ||
-															rAuthorizationVar?.DeviceProfile?.Profile?.DetailInformation?.Tags.some(
+															rAuthorizationVar?.Profile?.DetailInformation?.Tags.some(
 																e => e.id === item.id,
 															)
 																? '$primary500'
@@ -140,7 +140,7 @@ export default () => {
 													_dark: {
 														bg:
 															selectedTags.some(e => e === tag.id) ||
-															rAuthorizationVar?.DeviceProfile?.Profile?.DetailInformation?.Tags.some(
+															rAuthorizationVar?.Profile?.DetailInformation?.Tags.some(
 																e => e.id === item.id,
 															)
 																? '$primary500'

@@ -33,6 +33,7 @@ export default function Theme({ children }) {
 		}
 	}, [rThemeVar])
 
+
 	useEffect(() => {
 		const subscription = AppState.addEventListener('change', nextAppState => {
 			if (appState.current.match(/inactive|background/) && nextAppState === 'active') {
@@ -44,9 +45,10 @@ export default function Theme({ children }) {
 					setTheme()
 				}
 			}
+
 			/// beef yaki noodles
 			/// 40 guiza
-
+			
 			appState.current = nextAppState
 		})
 

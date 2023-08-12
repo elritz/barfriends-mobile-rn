@@ -2,7 +2,6 @@ import { useReactiveVar } from '@apollo/client'
 import { Pressable, Button, Text } from '@components/core'
 import { Ionicons } from '@expo/vector-icons'
 import {
-	AuthorizationDeviceManager,
 	AuthorizationDeviceProfile,
 	Profile,
 	useUpdateProfileIdentifiableInformationMutation,
@@ -36,21 +35,17 @@ export default () => {
 		{ data: UPIIData, loading: UPIILoading, error: UPIIError },
 	] = useUpdateProfileIdentifiableInformationMutation({
 		onCompleted: data => {
-			if (data.updateProfileIdentifiableInformation.__typename === 'AuthorizationDeviceManager') {
+			if (data.updateProfileIdentifiableInformation.__typename === 'AuthorizationDeviceProfile') {
 				const profile = data.updateProfileIdentifiableInformation as Profile
-				const deviceManager = rAuthorizationVar as AuthorizationDeviceManager
-				const deviceprofile = rAuthorizationVar?.DeviceProfile as AuthorizationDeviceProfile
+				const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
 
 				AuthorizationReactiveVar({
-					...deviceManager,
-					DeviceProfile: {
-						...deviceprofile,
-						Profile: profile,
-					},
+					...deviceprofile,
+					Profile: profile,
 				})
 				reset({
 					lookfor:
-						data.updateProfileIdentifiableInformation.DeviceProfile?.Profile?.IdentifiableInformation
+						data.updateProfileIdentifiableInformation?.Profile?.IdentifiableInformation
 							?.lookfor,
 				})
 			}
@@ -68,7 +63,7 @@ export default () => {
 		formState: { dirtyFields, errors },
 	} = useForm({
 		defaultValues: {
-			lookfor: rAuthorizationVar?.DeviceProfile?.Profile?.IdentifiableInformation?.lookfor,
+			lookfor: rAuthorizationVar?.Profile?.IdentifiableInformation?.lookfor,
 		},
 		mode: 'onChange',
 		reValidateMode: 'onChange',
@@ -128,7 +123,7 @@ export default () => {
 											}}
 										>
 											<Text>{item}</Text>
-											{(rAuthorizationVar?.DeviceProfile?.Profile?.IdentifiableInformation?.lookfor === item ||
+											{(rAuthorizationVar?.Profile?.IdentifiableInformation?.lookfor === item ||
 												value === item) && (
 												<Ionicons
 													name='checkmark-sharp'

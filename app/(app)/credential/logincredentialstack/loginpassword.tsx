@@ -2,7 +2,7 @@ import { useReactiveVar } from '@apollo/client'
 import { Box, Button, Center, Icon, Input, Spinner, Text, VStack } from '@components/core'
 import { Feather, Ionicons } from '@expo/vector-icons'
 import {
-	AuthorizationDeviceManager,
+	AuthorizationDeviceProfile,
 	useLoginPasswordLazyQuery,
 	useSwitchDeviceProfileMutation,
 } from '@graphql/generated'
@@ -66,8 +66,8 @@ export default () => {
 	const [switchDeviceProfileMutation, { data: SDPData, loading: SDPLoading, error: SDPError }] =
 		useSwitchDeviceProfileMutation({
 			onCompleted: data => {
-				if (data.switchDeviceProfile.__typename == 'AuthorizationDeviceManager') {
-					const deviceManager = data.switchDeviceProfile as AuthorizationDeviceManager
+				if (data.switchDeviceProfile.__typename == 'AuthorizationDeviceProfile') {
+					const deviceManager = data.switchDeviceProfile as AuthorizationDeviceProfile
 					AuthorizationReactiveVar(deviceManager)
 					router.push({
 						pathname: '(app)/hometab',

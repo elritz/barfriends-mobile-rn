@@ -3,7 +3,6 @@ import { useReactiveVar } from '@apollo/client'
 import { Button, CheckCircleIcon, Text, VStack } from '@components/core'
 import { GET_LIVE_VENUE_TOTALS_QUERY } from '@graphql/DM/profiling/out/index.query'
 import {
-	AuthorizationDeviceManager,
 	AuthorizationDeviceProfile,
 	Profile,
 	useAddPersonalTotalsVenueMutation,
@@ -31,22 +30,18 @@ export default function TotalCard() {
 				variables: {
 					where: {
 						id: {
-							equals: rAuthorizationVar?.DeviceProfile?.Profile?.id,
+							equals: rAuthorizationVar?.Profile?.id,
 						},
 					},
 				},
 				onCompleted: data => {
 					if (data.profile) {
 						const profile = data.profile as Profile
-						const deviceManager = rAuthorizationVar as AuthorizationDeviceManager
-						const deviceprofile = rAuthorizationVar?.DeviceProfile as AuthorizationDeviceProfile
+						const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
 
 						AuthorizationReactiveVar({
-							...deviceManager,
-							DeviceProfile: {
-								...deviceprofile,
-								Profile: profile,
-							},
+							...deviceprofile,
+							Profile: profile,
 						})
 						const totaledToVenue = data?.profile?.Personal?.LiveOutPersonal?.Out.map(item => {
 							return item.venueProfileId
@@ -80,22 +75,18 @@ export default function TotalCard() {
 				variables: {
 					where: {
 						id: {
-							equals: String(rAuthorizationVar?.DeviceProfile?.Profile?.id),
+							equals: String(rAuthorizationVar?.Profile?.id),
 						},
 					},
 				},
 				onCompleted: data => {
 					if (data.profile) {
 						const profile = data.profile as Profile
-						const deviceManager = rAuthorizationVar as AuthorizationDeviceManager
-						const deviceprofile = rAuthorizationVar?.DeviceProfile as AuthorizationDeviceProfile
+						const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
 
 						AuthorizationReactiveVar({
-							...deviceManager,
-							DeviceProfile: {
-								...deviceprofile,
-								Profile: profile,
-							},
+							...deviceprofile,
+							Profile: profile,
 						})
 						const totaledToVenue = data?.profile?.Personal?.LiveOutPersonal?.Out.map(item => {
 							return item.venueProfileId
@@ -119,11 +110,10 @@ export default function TotalCard() {
 	const [profileQuery, { data: PData, loading: PLoading, error: PError }] = useProfileLazyQuery()
 
 	useEffect(() => {
-		if (rAuthorizationVar?.DeviceProfile?.Profile?.Personal) {
-			const totaledToVenue =
-				rAuthorizationVar.DeviceProfile.Profile?.Personal?.LiveOutPersonal?.Out.map(item => {
-					return item.venueProfileId
-				})
+		if (rAuthorizationVar?.Profile?.Personal) {
+			const totaledToVenue = rAuthorizationVar.Profile?.Personal?.LiveOutPersonal?.Out.map(item => {
+				return item.venueProfileId
+			})
 
 			if (totaledToVenue) {
 				setIsTotaled(totaledToVenue.includes(String(params.profileid)))
@@ -135,7 +125,7 @@ export default function TotalCard() {
 		<VStack>
 			<Button
 				onPress={() => {
-					if (rAuthorizationVar?.DeviceProfile) {
+					if (rAuthorizationVar) {
 						!isTotaled ? addPersonalTotalsVenueMutation() : removePersonalTotalsVenueMutation()
 					}
 				}}

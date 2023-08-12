@@ -11,9 +11,8 @@ import { Skeleton } from 'moti/skeleton'
 import { memo, useEffect, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { View } from 'react-native'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-export default function SearchAreaCountryStates() {
+export default function SearchCountryStates() {
 	const router = useRouter()
 	const params = useLocalSearchParams()
 	const rTheme = useReactiveVar(ThemeReactiveVar)

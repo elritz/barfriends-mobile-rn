@@ -85,7 +85,7 @@ const Profile = () => {
 					) : null}
 				</>
 			)}
-			{renderProfile(rAuthorizationVar?.DeviceProfile?.Profile?.ProfileType as ProfileType)}
+			{renderProfile(rAuthorizationVar?.Profile?.ProfileType as ProfileType)}
 		</ScrollView>
 	)
 }

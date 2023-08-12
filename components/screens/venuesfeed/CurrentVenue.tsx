@@ -18,13 +18,13 @@ export default function CurrentVenue() {
 
 	const { data, loading, error } = useCurrentVenueQuery({
 		skip:
-			!rAuthorizationVar?.DeviceProfile?.Profile?.Personal?.LiveOutPersonal?.Out[0]?.venueProfileId,
+			!rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out[0]?.venueProfileId,
 		fetchPolicy: 'cache-only',
 		variables: {
 			where: {
 				id: {
 					equals:
-						rAuthorizationVar?.DeviceProfile?.Profile?.Personal?.LiveOutPersonal?.Out[0]?.venueProfileId,
+						rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out[0]?.venueProfileId,
 				},
 			},
 		},
@@ -155,7 +155,7 @@ export default function CurrentVenue() {
 													bg: '$dark200',
 												},
 											}}
-											rounded={'lg'}
+											rounded={'$lg'}
 											onPress={onToggle}
 										/>
 									</>

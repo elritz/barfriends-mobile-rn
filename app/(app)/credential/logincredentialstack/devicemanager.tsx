@@ -1,7 +1,7 @@
 import { Box, Heading, Pressable, Text } from '@components/core'
 import DeviceManagerProfileItemLarge from '@components/molecules/authorization/devicemanagerprofileitem/DeviceManagerProfileItemLarge'
 import {
-	AuthorizationDeviceManager,
+	AuthorizationDeviceProfile,
 	useAuthorizedProfilesQuery,
 	useSwitchDeviceProfileMutation,
 } from '@graphql/generated'
@@ -37,8 +37,8 @@ export default () => {
 				profileId: item.id,
 			},
 			onCompleted: data => {
-				if (data?.switchDeviceProfile?.__typename === 'AuthorizationDeviceManager') {
-					const deviceManager = data.switchDeviceProfile as AuthorizationDeviceManager
+				if (data?.switchDeviceProfile?.__typename === 'AuthorizationDeviceProfile') {
+					const deviceManager = data.switchDeviceProfile as AuthorizationDeviceProfile
 					AuthorizationReactiveVar(deviceManager)
 					setTimeout(() => router.replace('(app)/hometab'), 1000)
 				} else if (data.switchDeviceProfile.__typename === 'Error') {
