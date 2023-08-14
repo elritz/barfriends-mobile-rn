@@ -11,67 +11,65 @@ export default () => {
 	const segments = useSegments()
 
 	return (
-		<Auth>
-			<Stack
-				initialRouteName='hometab/venuefeed'
-				screenOptions={{
-					headerShown:
-						segments.includes('messagestack') ||
-						segments.includes('venuefeed') ||
-						segments.includes('searcharea') ||
-						segments.includes('tonight') ||
-						segments.includes('explore'),
-					headerTransparent: true,
-					header: () => {
-						return (
-							<BlurView
-								style={{
-									backgroundColor: segments.includes('tonight')
-										? 'transparent'
-										: rTheme.colorScheme === 'light'
-										? rTheme.theme?.gluestack.tokens.colors.light100
-										: rTheme.theme?.gluestack.tokens.colors.dark50,
+		<Stack
+			initialRouteName='hometab/venuefeed'
+			screenOptions={{
+				headerShown:
+					segments.includes('messagestack') ||
+					segments.includes('venuefeed') ||
+					segments.includes('searcharea') ||
+					segments.includes('tonight') ||
+					segments.includes('explore'),
+				headerTransparent: true,
+				header: () => {
+					return (
+						<BlurView
+							style={{
+								backgroundColor: segments.includes('tonight')
+									? 'transparent'
+									: rTheme.colorScheme === 'light'
+									? rTheme.theme?.gluestack.tokens.colors.light100
+									: rTheme.theme?.gluestack.tokens.colors.dark50,
+							}}
+							intensity={segments.includes('tonight') ? 70 : 0}
+							tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+						>
+							<VStack
+								justifyContent={'flex-start'}
+								sx={{
+									_light: { bg: !segments.includes('tonight') ? '$light100' : 'transparent' },
+									_dark: { bg: !segments.includes('tonight') ? '$dark50' : 'transparent' },
 								}}
-								intensity={segments.includes('tonight') ? 70 : 0}
-								tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 							>
-								<VStack
-									justifyContent={'flex-start'}
-									sx={{
-										_light: { bg: !segments.includes('tonight') ? '$light100' : 'transparent' },
-										_dark: { bg: !segments.includes('tonight') ? '$dark50' : 'transparent' },
-									}}
-								>
-									<SearchInput />
-								</VStack>
-							</BlurView>
-						)
-					},
+								<SearchInput />
+							</VStack>
+						</BlurView>
+					)
+				},
+			}}
+		>
+			<Stack.Screen
+				name={'hometab'}
+				options={{
+					animation: 'fade',
 				}}
-			>
-				<Stack.Screen
-					name={'hometab'}
-					options={{
-						animation: 'fade',
-					}}
-				/>
-				<Stack.Screen
-					name={'explore'}
-					options={{
-						animation: 'fade',
-					}}
-				/>
-				<Stack.Screen name={'modal'} options={{ animation: 'fade' }} />
-				<Stack.Screen name={'public'} />
-				<Stack.Screen
-					name={'searcharea'}
-					options={{
-						animation: 'fade',
-					}}
-				/>
-				<Stack.Screen name={'permission'} options={{ presentation: 'modal' }} />
-				<Stack.Screen name={'settings'} options={{ presentation: 'fullScreenModal' }} />
-			</Stack>
-		</Auth>
+			/>
+			<Stack.Screen
+				name={'explore'}
+				options={{
+					animation: 'fade',
+				}}
+			/>
+			<Stack.Screen name={'modal'} options={{ animation: 'fade' }} />
+			<Stack.Screen name={'public'} />
+			<Stack.Screen
+				name={'searcharea'}
+				options={{
+					animation: 'fade',
+				}}
+			/>
+			<Stack.Screen name={'permission'} options={{ presentation: 'modal' }} />
+			<Stack.Screen name={'settings'} options={{ presentation: 'fullScreenModal' }} />
+		</Stack>
 	)
 }

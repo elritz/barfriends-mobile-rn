@@ -1,5 +1,6 @@
 //TODO: Add notfication listener
 import { ApolloProvider } from '@apollo/client'
+import Auth from '@components/layouts/Auth'
 import Theme from '@components/layouts/Theme'
 import { NowPreferencePermissionInitialState } from '@constants/Preferences'
 import {
@@ -71,9 +72,6 @@ export default function Root() {
 
 	const setAsyncPreferencesLocalStorageData = async () => {
 		try {
-			const item = await AsyncStorage.getItem(AUTHORIZATION)
-
-			console.log('🚀 ~ file: _layout.tsx:76 ~ setAsyncPreferencesLocalStorageData ~ item:', item)
 			// await AsyncStorage.removeItem(LOCAL_STORAGE_SEARCH_AREA)
 			// await AsyncStorage.removeItem(LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS)
 			// await AsyncStorage.removeItem(LOCAL_STORAGE_PREFERENCE_SYSTEM_OF_UNITS)
@@ -256,7 +254,9 @@ export default function Root() {
 			<SafeAreaProvider>
 				<KeyboardProvider statusBarTranslucent>
 					<Theme>
-						<Slot initialRouteName='(app)/hometab/venuefeed' />
+						<Auth>
+							<Slot initialRouteName='index' />
+						</Auth>
 					</Theme>
 				</KeyboardProvider>
 			</SafeAreaProvider>

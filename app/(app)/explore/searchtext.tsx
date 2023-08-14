@@ -46,7 +46,7 @@ export default () => {
 		'search',
 	)
 
-	if (loading) {
+	if (loading ) {
 		return (
 			<FlashList
 				data={[...Array(20)]}
@@ -68,12 +68,14 @@ export default () => {
 								h: 60,
 							}}
 							space='md'
+							alignItems='center'
+							// justifyContent='center'
 							flex={1}
 						>
 							<Skeleton
-								height={40}
-								width={40}
-								radius={15}
+								height={50}
+								width={50}
+								radius={10}
 								colorMode={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 								colors={
 									rTheme.colorScheme === 'light'
@@ -100,7 +102,7 @@ export default () => {
 													String(rTheme.theme?.gluestack.tokens.colors.dark300),
 											  ]
 									}
-									width={200}
+									width={250}
 									height={20}
 								/>
 								<Skeleton
@@ -190,7 +192,17 @@ export default () => {
 				<FlashList
 					data={filteredRecentSearches as Array<Item>}
 					ListHeaderComponent={() => {
-						return <Heading>Recent</Heading>
+						return (
+							<>
+								{filteredRecentSearches.length ? (
+									<Heading>Recent</Heading>
+								) : (
+									<Heading textAlign='center' mt={'$10'}>
+										No recent searches
+									</Heading>
+								)}
+							</>
+						)
 					}}
 					numColumns={1}
 					estimatedItemSize={55}
@@ -206,7 +218,8 @@ export default () => {
 			</Box>
 		)
 	}
-
+	console.log('data?.exploreSearch.people :>> ', data?.exploreSearch.people)
+	console.log('data?.exploreSearch.people :>> ', data?.exploreSearch.venues)
 	return (
 		<Box bg={'$transparent'} flex={1} px={'$2'}>
 			<FlashList

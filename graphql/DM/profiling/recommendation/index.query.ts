@@ -155,8 +155,8 @@ export const GET_ALL_CITIES_BY_STATE_QUERY = gql`
 
 export const GET_H3INDEX6_RECOMMENDATION_QUERY = gql`
 	${PROFILE_VENUES_FRAGMENT}
-	query getH3Index6VenueRecommendationById($id: String!) {
-		getH3Index6VenueRecommendationById(id: $id) {
+	query getH3Index6VenueRecommendationById($id: String!, $venuesProfileIds: [String!]) {
+		getH3Index6VenueRecommendationById(id: $id, venuesProfileIds: $venuesProfileIds) {
 			id
 			distanceInM
 			h3Index6

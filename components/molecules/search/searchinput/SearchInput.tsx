@@ -7,6 +7,7 @@ import { useExploreSearchLazyQuery } from '@graphql/generated'
 import { ThemeReactiveVar } from '@reactive'
 import useDebounce from '@util/hooks/useDebounce'
 import { useGlobalSearchParams, useRouter, useSegments } from 'expo-router'
+import { MotiView } from 'moti'
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { TextInput } from 'react-native'
@@ -170,6 +171,9 @@ const SearchInput = (props: Props) => {
 										? rTheme.theme?.gluestack.tokens.colors.light700
 										: rTheme.theme?.gluestack.tokens.colors.dark900
 								}
+								autoCapitalize={'none'}
+								autoCorrect={false}
+								autoComplete='off'
 								value={value}
 								onPressIn={() => {
 									if (segments.includes('hometab')) {
@@ -191,8 +195,6 @@ const SearchInput = (props: Props) => {
 									}
 
 									if (segments.includes('searcharea')) {
-										console.log('segments.include ', segments.includes('searcharea'))
-										console.log(segments.includes('searchexplore'))
 										if (segments.includes('searchexplore')) {
 											router.push({
 												pathname: '(app)/searcharea',

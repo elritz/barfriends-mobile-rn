@@ -14073,6 +14073,7 @@ export type QueryGetAllStatesByCountryArgs = {
 
 export type QueryGetH3Index6VenueRecommendationByIdArgs = {
   id: Scalars['String'];
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']>>;
 };
 
 
@@ -18611,6 +18612,7 @@ export type GetAllCitiesByStateQuery = { __typename?: 'Query', getAllCitiesBySta
 
 export type GetH3Index6VenueRecommendationByIdQueryVariables = Exact<{
   id: Scalars['String'];
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']> | Scalars['String']>;
 }>;
 
 
@@ -21398,8 +21400,8 @@ export type GetAllCitiesByStateQueryHookResult = ReturnType<typeof useGetAllCiti
 export type GetAllCitiesByStateLazyQueryHookResult = ReturnType<typeof useGetAllCitiesByStateLazyQuery>;
 export type GetAllCitiesByStateQueryResult = Apollo.QueryResult<GetAllCitiesByStateQuery, GetAllCitiesByStateQueryVariables>;
 export const GetH3Index6VenueRecommendationByIdDocument = gql`
-    query getH3Index6VenueRecommendationById($id: String!) {
-  getH3Index6VenueRecommendationById(id: $id) {
+    query getH3Index6VenueRecommendationById($id: String!, $venuesProfileIds: [String!]) {
+  getH3Index6VenueRecommendationById(id: $id, venuesProfileIds: $venuesProfileIds) {
     id
     distanceInM
     h3Index6
@@ -21461,6 +21463,7 @@ export const GetH3Index6VenueRecommendationByIdDocument = gql`
  * const { data, loading, error } = useGetH3Index6VenueRecommendationByIdQuery({
  *   variables: {
  *      id: // value for 'id'
+ *      venuesProfileIds: // value for 'venuesProfileIds'
  *   },
  * });
  */

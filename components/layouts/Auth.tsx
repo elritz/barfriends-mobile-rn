@@ -7,8 +7,8 @@ import {
 } from '@graphql/generated'
 import { AuthorizationReactiveVar } from '@reactive'
 import { AuthorizationDecoded } from '@util/hooks/auth/useCheckLocalStorageForAuthorizationToken'
-import { secureStorageItemRead } from '@util/hooks/local/useSecureStorage'
-import { router } from 'expo-router'
+import { secureStorageItemDelete, secureStorageItemRead } from '@util/hooks/local/useSecureStorage'
+import { Slot, router } from 'expo-router'
 import { useEffect } from 'react'
 
 export default function Auth({ children }) {
@@ -85,7 +85,7 @@ export default function Auth({ children }) {
 		applicationAuthorization()
 	}, [])
 
-	if (!rAuthorizationVar || RDMLoading || CGLoading) {
+	if (RDMLoading || CGLoading) {
 		return null
 	}
 

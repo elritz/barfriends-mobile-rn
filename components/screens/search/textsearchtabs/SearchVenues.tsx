@@ -1,12 +1,11 @@
 import SearchCard from '../components/SearchCard'
 import { useReactiveVar } from '@apollo/client'
-import { Box, Center, Heading } from '@components/core'
+import { Box, Center, HStack, Heading, VStack } from '@components/core'
 import { useExploreSearchQuery } from '@graphql/generated'
 import { ThemeReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
 import useContentInsets from '@util/hooks/useContentInsets'
 import { useGlobalSearchParams } from 'expo-router'
-import { uniqueId } from 'lodash'
 import { Skeleton } from 'moti/skeleton'
 import { View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -38,24 +37,66 @@ export default function SearchVenues() {
 				keyExtractor={(item, index) => index.toString()}
 				renderItem={({ item }) => {
 					return (
-						<Skeleton
-							key={uniqueId()}
-							height={65}
-							width={'95%'}
-							radius={15}
-							colorMode={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-							colors={
-								rTheme.colorScheme === 'light'
-									? [
-											String(rTheme.theme?.gluestack.tokens.colors.light100),
-											String(rTheme.theme?.gluestack.tokens.colors.light300),
-									  ]
-									: [
-											String(rTheme.theme?.gluestack.tokens.colors.dark100),
-											String(rTheme.theme?.gluestack.tokens.colors.dark300),
-									  ]
-							}
-						/>
+						<HStack
+							px={'$5'}
+							sx={{
+								h: 60,
+							}}
+							space='md'
+							alignItems='center'
+							// justifyContent='center'
+							flex={1}
+						>
+							<Skeleton
+								height={50}
+								width={50}
+								radius={10}
+								colorMode={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+								colors={
+									rTheme.colorScheme === 'light'
+										? [
+												String(rTheme.theme?.gluestack.tokens.colors.light100),
+												String(rTheme.theme?.gluestack.tokens.colors.light300),
+										  ]
+										: [
+												String(rTheme.theme?.gluestack.tokens.colors.dark100),
+												String(rTheme.theme?.gluestack.tokens.colors.dark300),
+										  ]
+								}
+							/>
+							<VStack space='md'>
+								<Skeleton
+									colors={
+										rTheme.colorScheme === 'light'
+											? [
+													String(rTheme.theme?.gluestack.tokens.colors.light100),
+													String(rTheme.theme?.gluestack.tokens.colors.light300),
+											  ]
+											: [
+													String(rTheme.theme?.gluestack.tokens.colors.dark100),
+													String(rTheme.theme?.gluestack.tokens.colors.dark300),
+											  ]
+									}
+									width={250}
+									height={20}
+								/>
+								<Skeleton
+									colors={
+										rTheme.colorScheme === 'light'
+											? [
+													String(rTheme.theme?.gluestack.tokens.colors.light100),
+													String(rTheme.theme?.gluestack.tokens.colors.light300),
+											  ]
+											: [
+													String(rTheme.theme?.gluestack.tokens.colors.dark100),
+													String(rTheme.theme?.gluestack.tokens.colors.dark300),
+											  ]
+									}
+									width={100}
+									height={20}
+								/>
+							</VStack>
+						</HStack>
 					)
 				}}
 				ItemSeparatorComponent={() => <View style={{ height: 5 }} />}

@@ -14,7 +14,7 @@ export default () => {
 					mx={'$4'}
 					onPress={() => {
 						setTimeout(() => {
-							router.push({
+							router.replace({
 								pathname: '(app)/hometab/venuefeed',
 							})
 						}, 1)

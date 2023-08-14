@@ -5,15 +5,15 @@ import { MasonryFlashList } from '@shopify/flash-list'
 import useContentInsets from '@util/hooks/useContentInsets'
 import { useLocalSearchParams } from 'expo-router'
 
-export default function SearchExplore() {
+export default function SearchH3Recommendation() {
 	const params = useLocalSearchParams()
 	const contentInsets = useContentInsets()
-	console.log('params :>> ', params)
 
 	const { data, loading, error } = useGetH3Index6VenueRecommendationByIdQuery({
-		skip: !params.id,
+		skip: !params.id || !params.venueprofileids,
 		variables: {
 			id: String(params.id),
+			venuesProfileIds: JSON.parse(String(params.venueprofileids)),
 		},
 	})
 
@@ -25,18 +25,19 @@ export default function SearchExplore() {
 		}
 		return (
 			<Box bg='$transparent'>
-				<Heading fontSize={'$4xl'}>{data?.getH3Index6VenueRecommendationById?.Area?.City.name}</Heading>
+				<Heading lineHeight={'$4xl'} fontSize={'$4xl'}>
+					{data?.getH3Index6VenueRecommendationById?.Area?.City.name}
+				</Heading>
 				<Heading fontSize={'$xl'}>
 					{data?.getH3Index6VenueRecommendationById?.Area?.Country.flag}
+					{data?.getH3Index6VenueRecommendationById?.Area?.State.name}
 				</Heading>
-				<Heading fontSize={'$xl'}>{data?.getH3Index6VenueRecommendationById?.Area?.State.name}</Heading>
-				<Text fontSize={'$lg'}>searchareaexplore</Text>
 			</Box>
 		)
 	}
 
 	return (
-		<Box bg={'$red700'} flex={1} px={'$2'}>
+		<Box flex={1} px={'$2'}>
 			<MasonryFlashList
 				overScrollMode='always'
 				refreshing={loading}

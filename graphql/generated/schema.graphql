@@ -13567,7 +13567,7 @@ type Query {
   getAllStatesByCountry(countryIsoCode: String!): [StateResponseObject!]!
   getAllThemes: [Theme!]!
   getCurrentPushNotificationToken: PushToken
-  getH3Index6VenueRecommendationById(id: String!): H3Index6VenueRecommendation
+  getH3Index6VenueRecommendationById(id: String!, venuesProfileIds: [String!]): H3Index6VenueRecommendation
   getInterests: [Category!]!
   getLiveVenueTotals(profileIdVenue: String): LiveVenueTotals!
   getNotifications: NotificationResponse!

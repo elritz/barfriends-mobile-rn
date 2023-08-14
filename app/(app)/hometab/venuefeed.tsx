@@ -37,7 +37,6 @@ import { Skeleton } from 'moti/skeleton'
 import { useEffect } from 'react'
 import { Dimensions, NativeScrollEvent, ScrollView, View } from 'react-native'
 import CountryFlag from 'react-native-country-flag'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default () => {
 	const router = useRouter()
@@ -154,15 +153,16 @@ export default () => {
 		const RecommendedAreaList = () => {
 			switch (data.venuesNearby.__typename) {
 				case 'VenuesNearbyResponse':
-					console.log('data.venuesNearby.recommendedAreas :>> ', data.venuesNearby.recommendedAreas)
 					return (
 						<VStack>
-							{data.venuesNearby.recommendedAreas?.map(item => {
+							{data.venuesNearby.recommendedAreas?.map((item, index) => {
 								return (
 									<Pressable
+										key={item.id + index}
 										onPress={() => {
 											router.push({
 												params: {
+													venueprofileids: JSON.stringify(item.venuesProfileIds),
 													id: item.id,
 												},
 												pathname: '(app)/searcharea/searchh3recommendation',
@@ -195,12 +195,14 @@ export default () => {
 				case 'ComingAreaResponse':
 					return (
 						<VStack>
-							{data.venuesNearby.recommendedAreas?.map(item => {
+							{data.venuesNearby.recommendedAreas?.map((item, index) => {
 								return (
 									<Pressable
+										key={item.id + index}
 										onPress={() => {
 											router.push({
 												params: {
+													venueprofileids: JSON.stringify(item.venuesProfileIds),
 													id: item.id,
 												},
 												pathname: '(app)/searcharea/searchh3recommendation',
