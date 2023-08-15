@@ -96,7 +96,7 @@ export default () => {
 		loading: GCPNTLoading,
 		error: GCPNTError,
 	} = useGetCurrentPushNotificationTokenQuery()
-	
+
 	const [upsertDevicePushTokenMutation, { data, loading, error }] =
 		useUpsertDevicePushTokenMutation()
 
@@ -321,7 +321,7 @@ export default () => {
 								<Box
 									bg={'$transparent'}
 									sx={{
-										h: 20,
+										h: 24,
 									}}
 								>
 									{<Text fontWeight={'$medium'}>Auto close in {seconds}</Text>}
@@ -373,7 +373,7 @@ export default () => {
 								<Box
 									bg={'$transparent'}
 									sx={{
-										h: 20,
+										h: 24,
 									}}
 								>
 									{<Text fontWeight={'$medium'}>Auto close in {seconds}</Text>}

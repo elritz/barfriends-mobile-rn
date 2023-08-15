@@ -303,7 +303,7 @@ export default () => {
 				</Button>
 				{!started ? (
 					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
-						<Text fontWeight={'$medium'}>Close</Text>
+						<Button.Text fontWeight={'$medium'}>Close</Button.Text>
 					</Button>
 				) : (
 					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
@@ -311,10 +311,10 @@ export default () => {
 							<Box
 								bg={'$transparent'}
 								sx={{
-									h: 20,
+									h: 24,
 								}}
 							>
-								{<Text fontWeight={'$medium'}>Auto close in {seconds}</Text>}
+								{<Button.Text fontWeight={'$medium'}>Auto close in {seconds}</Button.Text>}
 							</Box>
 						)}
 					</Button>

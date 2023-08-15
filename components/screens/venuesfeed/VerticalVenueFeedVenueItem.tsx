@@ -294,7 +294,7 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 											}}
 											rounded={'$md'}
 										>
-											<Text>Refresh distance</Text>
+											<Button.Text>Refresh distance</Button.Text>
 										</Button>
 									) : null}
 								</>

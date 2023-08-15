@@ -7,14 +7,13 @@ import {
 	HStack,
 	Heading,
 	Button,
-	ArrowUpIcon,
 	ArrowRightIcon,
 } from '@components/core'
 import CardPleaseSignup from '@components/molecules/asks/signuplogin'
 import SearchAreaHeader from '@components/screens/venuesfeed/SearchAreaHeader'
-import ShowCaseScroll from '@components/screens/venuesfeed/ShowCaseScroll'
 import VenueFeedSearchAreaEmptyState from '@components/screens/venuesfeed/VenueFeedSearchAreaEmptyState'
 import MemoizedVerticalVenueFeedVenueItem from '@components/screens/venuesfeed/VerticalVenueFeedVenueItem'
+import AdvertismentHorizontal from '@components/screens/venuesfeed/advertisments/advertismenthorizontal'
 import { Ionicons } from '@expo/vector-icons'
 import {
 	ProfileType,
@@ -92,7 +91,7 @@ export default () => {
 						</Box>
 					)}
 					{rSearchAreaVar.searchArea.city.name && <SearchAreaHeader typename={typename || null} />}
-					<ShowCaseScroll />
+					<AdvertismentHorizontal />
 					{!rSearchAreaVar.searchArea.city.name && <VenueFeedSearchAreaEmptyState />}
 				</VStack>
 			</Box>

@@ -87,7 +87,7 @@ export default () => {
 						})
 					}
 				>
-					<Text>Continue</Text>
+					<Button.Text>Continue</Button.Text>
 				</Button>
 			</Box>
 		)

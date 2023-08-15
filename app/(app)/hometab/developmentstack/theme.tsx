@@ -190,7 +190,7 @@ export default function Preferences() {
 							borderColor={rTheme.localStorageColorScheme === 'light' ? '$primary300' : 'transparent'}
 							borderWidth={'$2'}
 						>
-							<Text color={'$black'}>Light</Text>
+							<Button.Text color={'$black'}>Light</Button.Text>
 						</Button>
 						<Button
 							flex={1}
@@ -201,7 +201,7 @@ export default function Preferences() {
 							borderColor={rTheme.localStorageColorScheme === 'dark' ? '$primary300' : 'transparent'}
 							borderWidth={'$2'}
 						>
-							<Text color={'$white'}>Dark</Text>
+							<Button.Text color={'$white'}>Dark</Button.Text>
 						</Button>
 						<Button
 							onPress={async () => {
@@ -212,7 +212,7 @@ export default function Preferences() {
 							borderColor={rTheme.localStorageColorScheme === 'system' ? '$primary300' : 'transparent'}
 							borderWidth={'$2'}
 						>
-							<Text color={rTheme.colorScheme === 'light' ? '$black' : '$white'}>System</Text>
+							<Button.Text color={rTheme.colorScheme === 'light' ? '$black' : '$white'}>System</Button.Text>
 						</Button>
 					</HStack>
 				)

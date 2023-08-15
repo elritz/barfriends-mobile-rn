@@ -663,7 +663,7 @@ export default () => {
 									isDisabled={isForegroundLocationOn}
 									bg='$green400'
 								>
-									<Text>Start in foreground</Text>
+									<Button.Text>Start in foreground</Button.Text>
 								</Button>
 								<Divider />
 								<Button
@@ -671,7 +671,7 @@ export default () => {
 									isDisabled={!isForegroundLocationOn}
 									bg={'$red500'}
 								>
-									<Text>Stop in foreground</Text>
+									<Button.Text>Stop in foreground</Button.Text>
 								</Button>
 								<Divider />
 								<Button
@@ -679,7 +679,7 @@ export default () => {
 									isDisabled={isBackgroundLocationOn}
 									bg='$green400'
 								>
-									<Text>Start in background</Text>
+									<Button.Text>Start in background</Button.Text>
 								</Button>
 								<Divider />
 								<Button
@@ -687,7 +687,7 @@ export default () => {
 									isDisabled={!isBackgroundLocationOn}
 									bg='$red400'
 								>
-									<Text>Stop in background</Text>
+									<Button.Text>Stop in background</Button.Text>
 								</Button>
 							</VStack>
 						</VStack>

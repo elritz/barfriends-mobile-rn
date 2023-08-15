@@ -24,6 +24,8 @@ export default function SearchCountryStates() {
 
 	const { watch, getValues, setValue } = formContext
 
+	console.log('🚀 ~ file: searchcountrystate.tsx:27 ~ SearchCountryStates ~ watch:', watch())
+
 	const { data, loading, error } = useGetAllStatesByCountryQuery({
 		skip: !String(params.countryIsoCode),
 		variables: {
@@ -150,10 +152,10 @@ export default function SearchCountryStates() {
 					px: 2,
 					justifyContent: 'space-between',
 					_light: {
-						bg: watch('state.name') === item.name ? '$primary500' : '$light50',
+						bg: watch('state.name') === item.isoCode ? '$primary500' : '$light50',
 					},
 					_dark: {
-						bg: watch('state.name') === item.name ? '$primary500' : '$dark100',
+						bg: watch('state.name') === item.isoCode ? '$primary500' : '$dark100',
 					},
 				}}
 				rounded={'$md'}
@@ -172,7 +174,7 @@ export default function SearchCountryStates() {
 						{item.name}
 					</Text>
 				</Text>
-				{watch('state.name') === item.name ? (
+				{watch('state.name') === item.isoCode ? (
 					<Button onPress={() => _pressItem(item)} rounded={'$full'} bg='$blue500' size='xs' mr={'$3'}>
 						<Button.Text fontSize={'$xs'}>Continue</Button.Text>
 					</Button>

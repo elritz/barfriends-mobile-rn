@@ -14,31 +14,17 @@ const TonightTab = (props: TabProps) => {
 		<>
 			<TabBarIcon
 				icon={
-					<MotiPressable
-						animate={useMemo(
-							() =>
-								({ hovered, pressed }) => {
-									'worklet'
-
-									return {
-										scale: hovered || pressed ? 0.75 : 1,
-									}
-								},
-							[],
-						)}
-					>
-						<Ionicons
-							style={{
-								zIndex: 100,
-								justifyContent: 'center',
-							}}
-							size={28}
-							name={!props.focused ? 'md-play-outline' : 'md-play'}
-							color={
-								!props.focused ? (rTheme.deviceColorScheme === 'dark' ? 'white' : 'black') : props.color
-							}
-						/>
-					</MotiPressable>
+					<Ionicons
+						style={{
+							zIndex: 100,
+							justifyContent: 'center',
+						}}
+						size={28}
+						name={!props.focused ? 'md-play-outline' : 'md-play'}
+						color={
+							!props.focused ? (rTheme.deviceColorScheme === 'dark' ? 'white' : 'black') : props.color
+						}
+					/>
 				}
 			/>
 			<Box

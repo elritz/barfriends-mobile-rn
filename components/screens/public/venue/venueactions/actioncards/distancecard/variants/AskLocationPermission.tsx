@@ -30,7 +30,7 @@ export default function AskForegroundLocationPermission() {
 					})
 				}
 			>
-				<Text>Continue</Text>
+				<Button.Text>Continue</Button.Text>
 			</Button>
 		</VStack>
 	)

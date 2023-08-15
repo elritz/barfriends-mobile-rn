@@ -40,9 +40,6 @@ export const REFRESH_DEVICE_MANAGER_MUTATION = gql`
 				refreshtoken
 				accesstoken
 				AppType
-				DeviceManager {
-					id
-				}
 				deviceManagerId
 				Profile {
 					...PROFILE_FRAGMENT

@@ -13,32 +13,19 @@ const VenueFeedTab = (props: TabProps) => {
 	return (
 		<>
 			<TabBarIcon
+				
 				icon={
-					<MotiPressable
-						animate={useMemo(
-							() =>
-								({ hovered, pressed }) => {
-									'worklet'
-
-									return {
-										scale: hovered || pressed ? 0.75 : 1,
-									}
-								},
-							[],
-						)}
-					>
-						<Ionicons
-							style={{
-								zIndex: 100,
-								justifyContent: 'center',
-							}}
-							size={23}
-							name={!props.focused ? 'md-grid-outline' : 'md-grid'}
-							color={
-								!props.focused ? (rTheme.deviceColorScheme === 'dark' ? 'white' : 'black') : props.color
-							}
-						/>
-					</MotiPressable>
+					<Ionicons
+						style={{
+							zIndex: 100,
+							justifyContent: 'center',
+						}}
+						size={23}
+						name={!props.focused ? 'md-grid-outline' : 'md-grid'}
+						color={
+							!props.focused ? (rTheme.deviceColorScheme === 'dark' ? 'white' : 'black') : props.color
+						}
+					/>
 				}
 			/>
 			<Box

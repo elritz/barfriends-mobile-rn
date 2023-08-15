@@ -1,5 +1,5 @@
 //TODO: Add notfication listener
-import { ApolloProvider } from '@apollo/client'
+import { ApolloProvider, useReactiveVar } from '@apollo/client'
 import Auth from '@components/layouts/Auth'
 import Theme from '@components/layouts/Theme'
 import { NowPreferencePermissionInitialState } from '@constants/Preferences'
@@ -37,6 +37,7 @@ import {
 	PermissionBackgroundLocationReactiveVar,
 	PermissionMediaReactiveVar,
 	PermissionNotificationReactiveVar,
+	AuthorizationReactiveVar,
 } from '@reactive'
 import useSetSearchAreaWithLocation from '@util/hooks/searcharea/useSetSearchAreaWithLocation'
 import { Camera } from 'expo-camera'
@@ -45,7 +46,7 @@ import 'expo-dev-client'
 import { getForegroundPermissionsAsync, getBackgroundPermissionsAsync } from 'expo-location'
 import { getPermissionsAsync as getMediaPermissionAsync } from 'expo-media-library'
 import { getPermissionsAsync as getNotificiationPermissionAsync } from 'expo-notifications'
-import { Slot, SplashScreen } from 'expo-router'
+import { Slot, SplashScreen, Stack } from 'expo-router'
 import * as ScreenOrientation from 'expo-screen-orientation'
 import { useEffect } from 'react'
 import { Appearance } from 'react-native'
@@ -66,6 +67,7 @@ export const unstable_settings = {
 SplashScreen.preventAutoHideAsync()
 
 export default function Root() {
+	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 	async function changeScreenOrientation() {
 		await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP)
 	}
@@ -255,7 +257,7 @@ export default function Root() {
 				<KeyboardProvider statusBarTranslucent>
 					<Theme>
 						<Auth>
-							<Slot initialRouteName='index' />
+							<Slot initialRouteName='(app)/hometab' />
 						</Auth>
 					</Theme>
 				</KeyboardProvider>

@@ -50,9 +50,9 @@ export default function DevActions() {
 							setShowDevMode(!showDevMode)
 						}}
 					>
-						<Text fontSize={'$md'} mx={'$2'} textAlign={'center'}>
+						<Button.Text fontSize={'$md'} mx={'$2'} textAlign={'center'}>
 							Show dev mode
-						</Text>
+						</Button.Text>
 					</Pressable>
 				</Box>
 			)}

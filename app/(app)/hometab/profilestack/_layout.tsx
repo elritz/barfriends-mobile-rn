@@ -38,30 +38,36 @@ export default function _layout() {
 							// position={'relative'}
 							// flex={1}
 						>
-							<Box bg='$transparent' justifyContent='center'>
+							<Box bg='$transparent' justifyContent='center' flex={1}>
 								{rAuthorizationVar?.Profile?.ProfileType === 'GUEST' ? (
 									<Heading fontSize={'$xl'} fontWeight='$black'>
 										Revel
 									</Heading>
 								) : (
-									<Pressable
+									<Button
+										variant='link'
 										onPress={async () => {
 											await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
 											router.push('(app)/modal/DeviceManager')
 										}}
 									>
 										<HStack ml={'$2'} space={'md'} alignItems={'center'} justifyContent='flex-start' flex={1}>
-											<Heading
-												fontWeight={'$medium'}
+											<Button.Text
 												fontSize={'$xl'}
 												sx={{
 													maxWidth: 195,
+													_dark: {
+														color: '$white',
+													},
+													_light: {
+														color: '$black',
+													},
 												}}
 												adjustsFontSizeToFit
 												ellipsizeMode={'tail'}
 											>
 												{rAuthorizationVar?.Profile?.IdentifiableInformation?.username}
-											</Heading>
+											</Button.Text>
 											<Ionicons
 												name={'chevron-down'}
 												size={26}
@@ -78,7 +84,7 @@ export default function _layout() {
 												}}
 											/>
 										</HStack>
-									</Pressable>
+									</Button>
 								)}
 							</Box>
 

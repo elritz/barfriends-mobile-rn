@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 })
 const snapToOffsets = [0, CARD_HEIGHT]
 
-const PhilzCoffee = () => {
+const AdvertismentHorizontal = () => {
 	const translateX = useSharedValue(0)
 	const onScroll = useAnimatedScrollHandler({
 		onScroll: event => {
@@ -63,4 +63,4 @@ const PhilzCoffee = () => {
 	)
 }
 
-export default PhilzCoffee
+export default AdvertismentHorizontal

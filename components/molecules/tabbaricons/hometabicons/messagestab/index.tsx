@@ -13,31 +13,17 @@ const MessageTab = (props: TabProps) => {
 		<>
 			<TabBarIcon
 				icon={
-					<MotiPressable
-						animate={useMemo(
-							() =>
-								({ hovered, pressed }) => {
-									'worklet'
-
-									return {
-										scale: hovered || pressed ? 0.75 : 1,
-									}
-								},
-							[],
-						)}
-					>
-						<Ionicons
-							style={{
-								zIndex: 100,
-								justifyContent: 'center',
-							}}
-							size={25}
-							name={!props.focused ? 'md-chatbubble-ellipses-outline' : 'md-chatbubble-ellipses-sharp'}
-							color={
-								!props.focused ? (rTheme.deviceColorScheme === 'dark' ? 'white' : 'black') : props.color
-							}
-						/>
-					</MotiPressable>
+					<Ionicons
+						style={{
+							zIndex: 100,
+							justifyContent: 'center',
+						}}
+						size={25}
+						name={!props.focused ? 'md-chatbubble-ellipses-outline' : 'md-chatbubble-ellipses-sharp'}
+						color={
+							!props.focused ? (rTheme.deviceColorScheme === 'dark' ? 'white' : 'black') : props.color
+						}
+					/>
 				}
 			/>
 			<Box

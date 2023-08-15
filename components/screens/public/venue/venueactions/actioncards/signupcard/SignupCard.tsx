@@ -26,9 +26,8 @@ export default function SignupCard() {
 						router.push({ pathname: '(app)/credential/personalcredentialstack/getstarted' })
 					}}
 					size={'lg'}
-					bg={'$primary600'}
 				>
-					<Text>Continue</Text>
+					<Button.Text>Continue</Button.Text>
 					<Feather name='arrow-right' size={20} color={'white'} />
 				</Button>
 			</Box>

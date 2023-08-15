@@ -3435,7 +3435,7 @@ input DeviceCreateWithoutPushTokenInput {
 type DeviceManager {
   createdAt: DateTime!
   Device: Device
-  DeviceProfile(cursor: DeviceProfileWhereUniqueInput, distinct: [DeviceProfileScalarFieldEnum!], orderBy: [DeviceProfileOrderByWithRelationInput!], skip: Int, take: Int, where: DeviceProfileWhereInput): [AuthorizationDeviceProfile!]!
+  DeviceProfiles(cursor: DeviceProfileWhereUniqueInput, distinct: [DeviceProfileScalarFieldEnum!], orderBy: [DeviceProfileOrderByWithRelationInput!], skip: Int, take: Int, where: DeviceProfileWhereInput): [AuthorizationDeviceProfile!]!
   id: ID!
   updatedAt: DateTime!
 }
@@ -3449,7 +3449,7 @@ input DeviceManagerCountOrderByAggregateInput {
 input DeviceManagerCreateInput {
   createdAt: DateTime
   Device: DeviceCreateNestedOneWithoutDeviceManagerInput
-  DeviceProfile: DeviceProfileCreateNestedManyWithoutDeviceManagerInput
+  DeviceProfiles: DeviceProfileCreateNestedManyWithoutDeviceManagerInput
   id: String
   updatedAt: DateTime
 }
@@ -3466,10 +3466,10 @@ input DeviceManagerCreateNestedOneWithoutDeviceInput {
   create: DeviceManagerCreateWithoutDeviceInput
 }
 
-input DeviceManagerCreateNestedOneWithoutDeviceProfileInput {
+input DeviceManagerCreateNestedOneWithoutDeviceProfilesInput {
   connect: DeviceManagerWhereUniqueInput
-  connectOrCreate: DeviceManagerCreateOrConnectWithoutDeviceProfileInput
-  create: DeviceManagerCreateWithoutDeviceProfileInput
+  connectOrCreate: DeviceManagerCreateOrConnectWithoutDeviceProfilesInput
+  create: DeviceManagerCreateWithoutDeviceProfilesInput
 }
 
 input DeviceManagerCreateOrConnectWithoutDeviceInput {
@@ -3477,19 +3477,19 @@ input DeviceManagerCreateOrConnectWithoutDeviceInput {
   where: DeviceManagerWhereUniqueInput!
 }
 
-input DeviceManagerCreateOrConnectWithoutDeviceProfileInput {
-  create: DeviceManagerCreateWithoutDeviceProfileInput!
+input DeviceManagerCreateOrConnectWithoutDeviceProfilesInput {
+  create: DeviceManagerCreateWithoutDeviceProfilesInput!
   where: DeviceManagerWhereUniqueInput!
 }
 
 input DeviceManagerCreateWithoutDeviceInput {
   createdAt: DateTime
-  DeviceProfile: DeviceProfileCreateNestedManyWithoutDeviceManagerInput
+  DeviceProfiles: DeviceProfileCreateNestedManyWithoutDeviceManagerInput
   id: String
   updatedAt: DateTime
 }
 
-input DeviceManagerCreateWithoutDeviceProfileInput {
+input DeviceManagerCreateWithoutDeviceProfilesInput {
   createdAt: DateTime
   Device: DeviceCreateNestedOneWithoutDeviceManagerInput
   id: String
@@ -3526,7 +3526,7 @@ input DeviceManagerOrderByWithAggregationInput {
 input DeviceManagerOrderByWithRelationInput {
   createdAt: SortOrder
   Device: DeviceOrderByWithRelationInput
-  DeviceProfile: DeviceProfileOrderByRelationAggregateInput
+  DeviceProfiles: DeviceProfileOrderByRelationAggregateInput
   id: SortOrder
   updatedAt: SortOrder
 }
@@ -3554,7 +3554,7 @@ input DeviceManagerScalarWhereWithAggregatesInput {
 input DeviceManagerUpdateInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   Device: DeviceUpdateOneWithoutDeviceManagerNestedInput
-  DeviceProfile: DeviceProfileUpdateManyWithoutDeviceManagerNestedInput
+  DeviceProfiles: DeviceProfileUpdateManyWithoutDeviceManagerNestedInput
   id: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
@@ -3573,22 +3573,22 @@ input DeviceManagerUpdateOneRequiredWithoutDeviceNestedInput {
   upsert: DeviceManagerUpsertWithoutDeviceInput
 }
 
-input DeviceManagerUpdateOneRequiredWithoutDeviceProfileNestedInput {
+input DeviceManagerUpdateOneRequiredWithoutDeviceProfilesNestedInput {
   connect: DeviceManagerWhereUniqueInput
-  connectOrCreate: DeviceManagerCreateOrConnectWithoutDeviceProfileInput
-  create: DeviceManagerCreateWithoutDeviceProfileInput
-  update: DeviceManagerUpdateWithoutDeviceProfileInput
-  upsert: DeviceManagerUpsertWithoutDeviceProfileInput
+  connectOrCreate: DeviceManagerCreateOrConnectWithoutDeviceProfilesInput
+  create: DeviceManagerCreateWithoutDeviceProfilesInput
+  update: DeviceManagerUpdateWithoutDeviceProfilesInput
+  upsert: DeviceManagerUpsertWithoutDeviceProfilesInput
 }
 
 input DeviceManagerUpdateWithoutDeviceInput {
   createdAt: DateTimeFieldUpdateOperationsInput
-  DeviceProfile: DeviceProfileUpdateManyWithoutDeviceManagerNestedInput
+  DeviceProfiles: DeviceProfileUpdateManyWithoutDeviceManagerNestedInput
   id: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
-input DeviceManagerUpdateWithoutDeviceProfileInput {
+input DeviceManagerUpdateWithoutDeviceProfilesInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   Device: DeviceUpdateOneWithoutDeviceManagerNestedInput
   id: StringFieldUpdateOperationsInput
@@ -3600,16 +3600,16 @@ input DeviceManagerUpsertWithoutDeviceInput {
   update: DeviceManagerUpdateWithoutDeviceInput!
 }
 
-input DeviceManagerUpsertWithoutDeviceProfileInput {
-  create: DeviceManagerCreateWithoutDeviceProfileInput!
-  update: DeviceManagerUpdateWithoutDeviceProfileInput!
+input DeviceManagerUpsertWithoutDeviceProfilesInput {
+  create: DeviceManagerCreateWithoutDeviceProfilesInput!
+  update: DeviceManagerUpdateWithoutDeviceProfilesInput!
 }
 
 input DeviceManagerWhereInput {
   AND: [DeviceManagerWhereInput!]
   createdAt: DateTimeFilter
   Device: DeviceWhereInput
-  DeviceProfile: DeviceProfileListRelationFilter
+  DeviceProfiles: DeviceProfileListRelationFilter
   id: StringFilter
   NOT: [DeviceManagerWhereInput!]
   OR: [DeviceManagerWhereInput!]
@@ -3677,7 +3677,7 @@ input DeviceProfileCreateInput {
   accesstoken: String
   AppType: AppType!
   createdAt: DateTime
-  DeviceManager: DeviceManagerCreateNestedOneWithoutDeviceProfileInput!
+  DeviceManager: DeviceManagerCreateNestedOneWithoutDeviceProfilesInput!
   id: String
   isActive: Boolean!
   profileId: String!
@@ -3753,7 +3753,7 @@ input DeviceProfileCreateWithoutRefreshTokenInput {
   accesstoken: String
   AppType: AppType!
   createdAt: DateTime
-  DeviceManager: DeviceManagerCreateNestedOneWithoutDeviceProfileInput!
+  DeviceManager: DeviceManagerCreateNestedOneWithoutDeviceProfilesInput!
   id: String
   isActive: Boolean!
   profileId: String!
@@ -3875,7 +3875,7 @@ input DeviceProfileUpdateInput {
   accesstoken: NullableStringFieldUpdateOperationsInput
   AppType: EnumAppTypeFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
-  DeviceManager: DeviceManagerUpdateOneRequiredWithoutDeviceProfileNestedInput
+  DeviceManager: DeviceManagerUpdateOneRequiredWithoutDeviceProfilesNestedInput
   id: StringFieldUpdateOperationsInput
   isActive: BoolFieldUpdateOperationsInput
   profileId: StringFieldUpdateOperationsInput
@@ -3940,7 +3940,7 @@ input DeviceProfileUpdateWithoutRefreshTokenInput {
   accesstoken: NullableStringFieldUpdateOperationsInput
   AppType: EnumAppTypeFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
-  DeviceManager: DeviceManagerUpdateOneRequiredWithoutDeviceProfileNestedInput
+  DeviceManager: DeviceManagerUpdateOneRequiredWithoutDeviceProfilesNestedInput
   id: StringFieldUpdateOperationsInput
   isActive: BoolFieldUpdateOperationsInput
   profileId: StringFieldUpdateOperationsInput

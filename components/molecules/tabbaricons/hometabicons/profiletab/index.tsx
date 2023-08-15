@@ -4,7 +4,7 @@ import CompanyCoasterLogoDynamicInverse from '@assets/images/company/CompanyCoas
 import CompanyCoasterLogoDynamicOutline from '@assets/images/company/CompanyCoasterLogoDynamicOutline'
 import TabBarIcon, { TabProps } from '@components/atoms/icons/tabbaricon/TabBarIcon'
 import { Box, Pressable } from '@components/core'
-import { useGetNotificationsLazyQuery } from '@graphql/generated'
+import { useGetNotificationsLazyQuery, useGetNotificationsQuery } from '@graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import * as Haptics from 'expo-haptics'
 import { useRouter } from 'expo-router'
@@ -20,26 +20,25 @@ const ProfileTab = (props: TabProps) => {
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 	const [numNotification, setNumNotifications] = useState(0)
 
-	const [getNotificationQuery, { data: GNData, loading: GNLoading, error }] =
-		useGetNotificationsLazyQuery({
-			fetchPolicy: 'network-only',
-			onCompleted: data => {
-				if (data.getNotifications?.friendRequestNotifications?.length) {
-					const filterSentNotifications = data.getNotifications?.friendRequestNotifications.filter(
-						item => {
-							if (item?.receiverProfileId === rAuthorizationVar?.Profile?.id) {
-								return item
-							}
-						},
-					)
-					setNumNotifications(numNotification + filterSentNotifications.length)
-				}
-			},
-		})
-
-	useEffect(() => {
-		getNotificationQuery()
-	}, [])
+	const {
+		data: GNData,
+		loading: GNLoading,
+		error,
+	} = useGetNotificationsQuery({
+		fetchPolicy: 'network-only',
+		onCompleted: data => {
+			if (data.getNotifications?.friendRequestNotifications?.length) {
+				const filterSentNotifications = data.getNotifications?.friendRequestNotifications.filter(
+					item => {
+						if (item?.receiverProfileId === rAuthorizationVar?.Profile?.id) {
+							return item
+						}
+					},
+				)
+				setNumNotifications(numNotification + filterSentNotifications.length)
+			}
+		},
+	})
 
 	const onLongPressProfileIcon = async () => {
 		await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
@@ -50,18 +49,15 @@ const ProfileTab = (props: TabProps) => {
 
 	if (!rAuthorizationVar || rAuthorizationVar?.Profile?.ProfileType === 'GUEST') {
 		return (
-			<Pressable
-				delayLongPress={200}
-				style={{ zIndex: 100 }}
+			<TabBarIcon
 				onPress={() => {
 					router.push({
 						pathname: '(app)/hometab/profilestack',
 					})
 				}}
 				onLongPress={() => onLongPressProfileIcon()}
-			>
-				<>
-					{props.focused ? (
+				icon={
+					props.focused ? (
 						<CompanyCoasterLogoDynamic
 							width={HEIGHT}
 							height={HEIGHT}
@@ -76,87 +72,52 @@ const ProfileTab = (props: TabProps) => {
 								!props.focused ? (rTheme.deviceColorScheme === 'dark' ? 'white' : 'black') : props.color
 							}
 						/>
-					)}
-				</>
-			</Pressable>
+					)
+				}
+			/>
 		)
 	}
 
 	return (
 		<>
 			<TabBarIcon
+				onPress={() => {
+					router.push({
+						pathname: '(app)/hometab/profilestack',
+					})
+				}}
+				onLongPress={() => onLongPressProfileIcon()}
 				icon={
-					<MotiPressable
-						animate={useMemo(
-							() =>
-								({ hovered, pressed }) => {
-									'worklet'
-
-									return {
-										scale: hovered || pressed ? 0.75 : 1,
-									}
-								},
-							[],
-						)}
-						style={{ zIndex: 100 }}
-						onPress={() => {
-							router.push('hometab/profilestack')
-						}}
-					>
-						<Pressable
-							delayLongPress={200}
-							style={{ zIndex: 100 }}
-							onPress={() => {
-								router.push({
-									pathname: '(app)/hometab/profilestack',
-								})
-							}}
-							onLongPress={() => onLongPressProfileIcon()}
-						>
+					<>
+						{rAuthorizationVar?.Profile?.photos?.length ? (
+							<Image
+								source={{ uri: rAuthorizationVar.Profile.photos[0].url }}
+								style={{
+									width: HEIGHT,
+									height: HEIGHT,
+									borderRadius: 4,
+									borderColor: props.color,
+									borderWidth: 1.5,
+								}}
+							/>
+						) : (
 							<>
-								{rAuthorizationVar?.Profile?.photos?.length ? (
-									<Image
-										source={{ uri: rAuthorizationVar.Profile.photos[0].url }}
-										style={{
-											width: HEIGHT,
-											height: HEIGHT,
-											borderRadius: 4,
-											borderColor: props.color,
-											borderWidth: 1.5,
-										}}
+								{!props.focused ? (
+									<CompanyCoasterLogoDynamicOutline
+										width={HEIGHT}
+										height={HEIGHT}
+										backgroundColor={rTheme.deviceColorScheme === 'dark' ? 'white' : 'black'}
 									/>
 								) : (
-									<MotiPressable
-										animate={useMemo(
-											() =>
-												({ hovered, pressed }) => {
-													'worklet'
-
-													return {
-														scale: hovered || pressed ? 0.75 : 1,
-													}
-												},
-											[],
-										)}
-									>
-										{!props.focused ? (
-											<CompanyCoasterLogoDynamicOutline
-												width={HEIGHT}
-												height={HEIGHT}
-												backgroundColor={rTheme.deviceColorScheme === 'dark' ? 'white' : 'black'}
-											/>
-										) : (
-											<CompanyCoasterLogoDynamicInverse
-												width={HEIGHT}
-												height={HEIGHT}
-												backgroundColor={rTheme.deviceColorScheme === 'dark' ? 'white' : 'black'}
-											/>
-										)}
-									</MotiPressable>
+									<CompanyCoasterLogoDynamicInverse
+										width={HEIGHT}
+										height={HEIGHT}
+										backgroundColor={rTheme.deviceColorScheme === 'dark' ? 'white' : 'black'}
+									/>
 								)}
 							</>
-						</Pressable>
-					</MotiPressable>
+						)}
+					</>
 				}
 			/>
 			{

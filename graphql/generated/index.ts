@@ -3567,13 +3567,13 @@ export type DeviceManager = {
   __typename?: 'DeviceManager';
   createdAt: Scalars['DateTime'];
   Device?: Maybe<Device>;
-  DeviceProfile: Array<AuthorizationDeviceProfile>;
+  DeviceProfiles: Array<AuthorizationDeviceProfile>;
   id: Scalars['ID'];
   updatedAt: Scalars['DateTime'];
 };
 
 
-export type DeviceManagerDeviceProfileArgs = {
+export type DeviceManagerDeviceProfilesArgs = {
   cursor?: InputMaybe<DeviceProfileWhereUniqueInput>;
   distinct?: InputMaybe<Array<DeviceProfileScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<DeviceProfileOrderByWithRelationInput>>;
@@ -3591,7 +3591,7 @@ export type DeviceManagerCountOrderByAggregateInput = {
 export type DeviceManagerCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   Device?: InputMaybe<DeviceCreateNestedOneWithoutDeviceManagerInput>;
-  DeviceProfile?: InputMaybe<DeviceProfileCreateNestedManyWithoutDeviceManagerInput>;
+  DeviceProfiles?: InputMaybe<DeviceProfileCreateNestedManyWithoutDeviceManagerInput>;
   id?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
@@ -3608,10 +3608,10 @@ export type DeviceManagerCreateNestedOneWithoutDeviceInput = {
   create?: InputMaybe<DeviceManagerCreateWithoutDeviceInput>;
 };
 
-export type DeviceManagerCreateNestedOneWithoutDeviceProfileInput = {
+export type DeviceManagerCreateNestedOneWithoutDeviceProfilesInput = {
   connect?: InputMaybe<DeviceManagerWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<DeviceManagerCreateOrConnectWithoutDeviceProfileInput>;
-  create?: InputMaybe<DeviceManagerCreateWithoutDeviceProfileInput>;
+  connectOrCreate?: InputMaybe<DeviceManagerCreateOrConnectWithoutDeviceProfilesInput>;
+  create?: InputMaybe<DeviceManagerCreateWithoutDeviceProfilesInput>;
 };
 
 export type DeviceManagerCreateOrConnectWithoutDeviceInput = {
@@ -3619,19 +3619,19 @@ export type DeviceManagerCreateOrConnectWithoutDeviceInput = {
   where: DeviceManagerWhereUniqueInput;
 };
 
-export type DeviceManagerCreateOrConnectWithoutDeviceProfileInput = {
-  create: DeviceManagerCreateWithoutDeviceProfileInput;
+export type DeviceManagerCreateOrConnectWithoutDeviceProfilesInput = {
+  create: DeviceManagerCreateWithoutDeviceProfilesInput;
   where: DeviceManagerWhereUniqueInput;
 };
 
 export type DeviceManagerCreateWithoutDeviceInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
-  DeviceProfile?: InputMaybe<DeviceProfileCreateNestedManyWithoutDeviceManagerInput>;
+  DeviceProfiles?: InputMaybe<DeviceProfileCreateNestedManyWithoutDeviceManagerInput>;
   id?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
-export type DeviceManagerCreateWithoutDeviceProfileInput = {
+export type DeviceManagerCreateWithoutDeviceProfilesInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   Device?: InputMaybe<DeviceCreateNestedOneWithoutDeviceManagerInput>;
   id?: InputMaybe<Scalars['String']>;
@@ -3669,7 +3669,7 @@ export type DeviceManagerOrderByWithAggregationInput = {
 export type DeviceManagerOrderByWithRelationInput = {
   createdAt?: InputMaybe<SortOrder>;
   Device?: InputMaybe<DeviceOrderByWithRelationInput>;
-  DeviceProfile?: InputMaybe<DeviceProfileOrderByRelationAggregateInput>;
+  DeviceProfiles?: InputMaybe<DeviceProfileOrderByRelationAggregateInput>;
   id?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
@@ -3697,7 +3697,7 @@ export type DeviceManagerScalarWhereWithAggregatesInput = {
 export type DeviceManagerUpdateInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   Device?: InputMaybe<DeviceUpdateOneWithoutDeviceManagerNestedInput>;
-  DeviceProfile?: InputMaybe<DeviceProfileUpdateManyWithoutDeviceManagerNestedInput>;
+  DeviceProfiles?: InputMaybe<DeviceProfileUpdateManyWithoutDeviceManagerNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
@@ -3716,22 +3716,22 @@ export type DeviceManagerUpdateOneRequiredWithoutDeviceNestedInput = {
   upsert?: InputMaybe<DeviceManagerUpsertWithoutDeviceInput>;
 };
 
-export type DeviceManagerUpdateOneRequiredWithoutDeviceProfileNestedInput = {
+export type DeviceManagerUpdateOneRequiredWithoutDeviceProfilesNestedInput = {
   connect?: InputMaybe<DeviceManagerWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<DeviceManagerCreateOrConnectWithoutDeviceProfileInput>;
-  create?: InputMaybe<DeviceManagerCreateWithoutDeviceProfileInput>;
-  update?: InputMaybe<DeviceManagerUpdateWithoutDeviceProfileInput>;
-  upsert?: InputMaybe<DeviceManagerUpsertWithoutDeviceProfileInput>;
+  connectOrCreate?: InputMaybe<DeviceManagerCreateOrConnectWithoutDeviceProfilesInput>;
+  create?: InputMaybe<DeviceManagerCreateWithoutDeviceProfilesInput>;
+  update?: InputMaybe<DeviceManagerUpdateWithoutDeviceProfilesInput>;
+  upsert?: InputMaybe<DeviceManagerUpsertWithoutDeviceProfilesInput>;
 };
 
 export type DeviceManagerUpdateWithoutDeviceInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  DeviceProfile?: InputMaybe<DeviceProfileUpdateManyWithoutDeviceManagerNestedInput>;
+  DeviceProfiles?: InputMaybe<DeviceProfileUpdateManyWithoutDeviceManagerNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
-export type DeviceManagerUpdateWithoutDeviceProfileInput = {
+export type DeviceManagerUpdateWithoutDeviceProfilesInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   Device?: InputMaybe<DeviceUpdateOneWithoutDeviceManagerNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -3743,16 +3743,16 @@ export type DeviceManagerUpsertWithoutDeviceInput = {
   update: DeviceManagerUpdateWithoutDeviceInput;
 };
 
-export type DeviceManagerUpsertWithoutDeviceProfileInput = {
-  create: DeviceManagerCreateWithoutDeviceProfileInput;
-  update: DeviceManagerUpdateWithoutDeviceProfileInput;
+export type DeviceManagerUpsertWithoutDeviceProfilesInput = {
+  create: DeviceManagerCreateWithoutDeviceProfilesInput;
+  update: DeviceManagerUpdateWithoutDeviceProfilesInput;
 };
 
 export type DeviceManagerWhereInput = {
   AND?: InputMaybe<Array<DeviceManagerWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   Device?: InputMaybe<DeviceWhereInput>;
-  DeviceProfile?: InputMaybe<DeviceProfileListRelationFilter>;
+  DeviceProfiles?: InputMaybe<DeviceProfileListRelationFilter>;
   id?: InputMaybe<StringFilter>;
   NOT?: InputMaybe<Array<DeviceManagerWhereInput>>;
   OR?: InputMaybe<Array<DeviceManagerWhereInput>>;
@@ -3820,7 +3820,7 @@ export type DeviceProfileCreateInput = {
   accesstoken?: InputMaybe<Scalars['String']>;
   AppType: AppType;
   createdAt?: InputMaybe<Scalars['DateTime']>;
-  DeviceManager: DeviceManagerCreateNestedOneWithoutDeviceProfileInput;
+  DeviceManager: DeviceManagerCreateNestedOneWithoutDeviceProfilesInput;
   id?: InputMaybe<Scalars['String']>;
   isActive: Scalars['Boolean'];
   profileId: Scalars['String'];
@@ -3896,7 +3896,7 @@ export type DeviceProfileCreateWithoutRefreshTokenInput = {
   accesstoken?: InputMaybe<Scalars['String']>;
   AppType: AppType;
   createdAt?: InputMaybe<Scalars['DateTime']>;
-  DeviceManager: DeviceManagerCreateNestedOneWithoutDeviceProfileInput;
+  DeviceManager: DeviceManagerCreateNestedOneWithoutDeviceProfilesInput;
   id?: InputMaybe<Scalars['String']>;
   isActive: Scalars['Boolean'];
   profileId: Scalars['String'];
@@ -4018,7 +4018,7 @@ export type DeviceProfileUpdateInput = {
   accesstoken?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   AppType?: InputMaybe<EnumAppTypeFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  DeviceManager?: InputMaybe<DeviceManagerUpdateOneRequiredWithoutDeviceProfileNestedInput>;
+  DeviceManager?: InputMaybe<DeviceManagerUpdateOneRequiredWithoutDeviceProfilesNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   isActive?: InputMaybe<BoolFieldUpdateOperationsInput>;
   profileId?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -4083,7 +4083,7 @@ export type DeviceProfileUpdateWithoutRefreshTokenInput = {
   accesstoken?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   AppType?: InputMaybe<EnumAppTypeFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  DeviceManager?: InputMaybe<DeviceManagerUpdateOneRequiredWithoutDeviceProfileNestedInput>;
+  DeviceManager?: InputMaybe<DeviceManagerUpdateOneRequiredWithoutDeviceProfilesNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   isActive?: InputMaybe<BoolFieldUpdateOperationsInput>;
   profileId?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -18320,7 +18320,7 @@ export type SwitchDeviceProfileMutation = { __typename?: 'Mutation', switchDevic
 export type RefreshDeviceManagerMutationVariables = Exact<{ [key: string]: never; }>;
 
 
-export type RefreshDeviceManagerMutation = { __typename?: 'Mutation', refreshDeviceManager: { __typename?: 'AuthorizationDeviceProfile', id: string, isActive: boolean, refreshtoken?: string | null, accesstoken?: string | null, AppType: AppType, deviceManagerId: string, DeviceManager: { __typename?: 'DeviceManager', id: string }, Profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: Array<any>, Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme: any, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> } | null, Relationships: Array<{ __typename?: 'Relationship', id: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }>, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: Array<{ __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }>, emails: Array<{ __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }> } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }>, Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } | null } | { __typename?: 'Error', errorCode: string, message: string } };
+export type RefreshDeviceManagerMutation = { __typename?: 'Mutation', refreshDeviceManager: { __typename?: 'AuthorizationDeviceProfile', id: string, isActive: boolean, refreshtoken?: string | null, accesstoken?: string | null, AppType: AppType, deviceManagerId: string, Profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: Array<any>, Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme: any, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> } | null, Relationships: Array<{ __typename?: 'Relationship', id: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }>, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: Array<{ __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }>, emails: Array<{ __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }> } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }>, Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } | null } | { __typename?: 'Error', errorCode: string, message: string } };
 
 export type GetADeviceManagerQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -19436,9 +19436,6 @@ export const RefreshDeviceManagerDocument = gql`
       refreshtoken
       accesstoken
       AppType
-      DeviceManager {
-        id
-      }
       deviceManagerId
       Profile {
         ...PROFILE_FRAGMENT

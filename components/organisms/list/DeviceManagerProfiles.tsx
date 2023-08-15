@@ -19,6 +19,8 @@ const DeviceManagerProfiles = () => {
 	const { data, loading, error } = useGetADeviceManagerQuery({
 		fetchPolicy: 'network-only',
 		onCompleted: data => {
+			console.log('🚀 ~ file: DeviceManagerProfiles.tsx:23 ~ DeviceManagerProfiles ~ data:', data)
+
 			if (data.getADeviceManager?.__typename === 'DeviceManagerDeviceProfiles') {
 				const deviceProfiles = data?.getADeviceManager?.DeviceProfiles
 				setProfiles(deviceProfiles)
@@ -29,9 +31,12 @@ const DeviceManagerProfiles = () => {
 	const [switchDeviceProfileMutation, { data: SWDPData, loading: SWDPLoading, error: SWDPError }] =
 		useSwitchDeviceProfileMutation({
 			onCompleted: async data => {
+				console.log('🚀 ~ file: DeviceManagerProfiles.tsx:33 ~ DeviceManagerProfiles ~ data:', data)
+
 				if (data.switchDeviceProfile?.__typename == 'AuthorizationDeviceProfile') {
-					const deviceManager = data.switchDeviceProfile as AuthorizationDeviceProfile
-					AuthorizationReactiveVar(deviceManager)
+					const deviceProfile = data.switchDeviceProfile as AuthorizationDeviceProfile
+
+					AuthorizationReactiveVar(deviceProfile)
 				}
 			},
 		})
@@ -65,6 +70,7 @@ const DeviceManagerProfiles = () => {
 			{profiles.length ? (
 				<>
 					{profiles?.map((item, index) => {
+						console.log('item.isActive :>> ', item.isActive);
 						if (item.Profile?.ProfileType === ProfileType.Guest) return null
 						return (
 							<Pressable
