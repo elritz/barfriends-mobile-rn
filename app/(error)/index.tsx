@@ -3,6 +3,7 @@ import { router } from 'expo-router'
 import { SafeAreaView, ScrollView } from 'react-native'
 
 export default () => {
+	console.log('here ====================2222222222>> ')
 	return (
 		<SafeAreaView>
 			<ScrollView>

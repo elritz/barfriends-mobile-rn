@@ -86,7 +86,7 @@ export default () => {
 				birthday: String(birthday),
 			})
 			router.push({
-				pathname: '(app)/credential/personalcredentialstack/name',
+				pathname: '(credential)/personalcredentialstack/name',
 			})
 		} catch (e) {
 			return setError('date', {
@@ -146,7 +146,7 @@ export default () => {
 						},
 					}}
 				/>
-				<Text color={'$error500'}>
+				<Text fontSize={'$sm'} color='$error700'>
 					{errors.date && errors.date.type ? errors?.date?.message : null}
 				</Text>
 			</>

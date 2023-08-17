@@ -24,6 +24,7 @@ export const AUTHORIZED_PROFILES_QUERY = gql`
 						username
 						fullname
 					}
+					
 				}
 				phone {
 					id

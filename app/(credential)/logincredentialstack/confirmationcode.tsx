@@ -9,7 +9,7 @@ import {
 	ThemeReactiveVar,
 } from '@reactive'
 import Countdown from '@util/hooks/useTimer'
-import { useLocalSearchParams, useRouter } from 'expo-router'
+import { useRouter, useLocalSearchParams } from 'expo-router'
 import { useEffect, useState } from 'react'
 import { Controller, useForm, ValidateResult } from 'react-hook-form'
 import { InputAccessoryView, Platform, View } from 'react-native'
@@ -24,18 +24,20 @@ import Reanimated, { useAnimatedStyle, useDerivedValue } from 'react-native-rean
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default () => {
-	const INPUT_ACCESSORY_VIEW_ID = 'cc-1298187263'
 	const router = useRouter()
-	const params = useLocalSearchParams()
+	const INPUT_ACCESSORY_VIEW_ID = 'cc-12981123123263'
 	const { bottom } = useSafeAreaInsets()
 	const isFocused = useIsFocused()
+	const params = useLocalSearchParams()
+
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const confirmationCode = useReactiveVar(ConfirmationCodeReactiveVar)
 	const credentialPersonalProfileVar = useReactiveVar(CredentialPersonalProfileReactiveVar)
+
 	const CELL_COUNT = String(params?.code).length
 	const ref = useBlurOnFulfill({ value: confirmationCode.code, cellCount: CELL_COUNT })
 
-	const { num, complete } = Countdown(9)
+	const { num, complete } = Countdown(5)
 	const [codeValue, setCodeValue] = useState('')
 
 	const { height: platform } = useReanimatedKeyboardAnimation()
@@ -97,7 +99,10 @@ export default () => {
 		clearErrors()
 		if (checkFinalCode(code)) {
 			router.replace({
-				pathname: '(app)/credential/personalcredentialstack/birthday',
+				params: {
+					authenticator: params.authenticator,
+				},
+				pathname: '(credential)/logincredentialstack/devicemanager',
 			})
 		} else {
 			setError('code', { type: 'validate', message: 'Wrong code' })
@@ -115,12 +120,14 @@ export default () => {
 	const InnerContent = () => {
 		return (
 			<Box
+				rounded={'$none'}
 				display={isFocused ? 'flex' : 'none'}
 				flexDirection={'row'}
 				justifyContent={'space-between'}
 				alignContent={'space-around'}
+				px={'$2'}
 				sx={{
-					h: 90,
+					h: 80,
 					_dark: {
 						bg: '$black',
 					},
@@ -128,18 +135,16 @@ export default () => {
 						bg: '$white',
 					},
 				}}
-				px={'$2'}
 			>
 				<Box bg={'$transparent'} justifyContent={'space-around'}>
 					{complete ? (
-						<VStack space={'sm'} justifyContent={'space-around'}>
+						<VStack space={'1'} justifyContent={'space-around'}>
 							<Button
-								variant={'link'}
+								variant='link'
 								size={'md'}
 								justifyContent={'flex-start'}
-								// onPress={() => navigation.goBack()}
+								onPress={() => router.back()}
 							>
-								{/* <Text fontSize={'lg'}>Resend code</Text> */}
 								<Button.Text>Resend code</Button.Text>
 							</Button>
 							<Button
@@ -179,9 +184,9 @@ export default () => {
 	}
 
 	return (
-		<Box bg='$transparent' flex={1}>
+		<Box rounded={'$none'} bg='$transparent' flex={1}>
 			<Reanimated.View style={{ flex: 1, marginHorizontal: 15 }}>
-				<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$3xl'} sx={{ minHeight: 70 }}>
+				<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$2xl'}>
 					{`Enter the 4-diget code sent to you at ${
 						credentialPersonalProfileVar.email
 							? credentialPersonalProfileVar.email
@@ -200,7 +205,6 @@ export default () => {
 								value={value}
 								onChangeText={value => onChange(value)}
 								cellCount={CELL_COUNT}
-								// autoComplete={'one-time-code'}
 								rootStyle={{
 									marginVertical: 10,
 								}}
@@ -208,19 +212,18 @@ export default () => {
 								textContentType='oneTimeCode'
 								onSubmitEditing={handleSubmit(onSubmit)}
 								onBlur={onBlur}
-								keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 								blurOnSubmit={false}
 								autoFocus
 								onEndEditing={handleSubmit(onSubmit)}
+								keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 								renderCell={({ index, symbol, isFocused }) => (
 									<Box
 										bg='$transparent'
 										key={index}
 										sx={{
-											w: 50,
-											h: 60,
+											h: 50,
+											w: 60,
 										}}
-										rounded={'$none'}
 										justifyContent={'center'}
 										alignItems={'center'}
 										borderBottomColor={!isFocused ? '#ccc' : '#007AFF'}

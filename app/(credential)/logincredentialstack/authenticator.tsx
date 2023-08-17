@@ -119,7 +119,7 @@ export default () => {
 						authenticator: values.authenticator,
 						code: data.sendAuthenticatorDeviceOwnerCode.code,
 					},
-					pathname: '(app)/credential/logincredentialstack/confirmationcode',
+					pathname: '(credential)/logincredentialstack/confirmationcode',
 				})
 			}
 		},
@@ -138,7 +138,7 @@ export default () => {
 						params: {
 							profile: String(data.authorizedProfiles?.username[0].id),
 						},
-						pathname: '(app)/credential/logincredentialstack/loginpassword',
+						pathname: '(credential)/logincredentialstack/loginpassword',
 					})
 				}
 
@@ -294,7 +294,7 @@ export default () => {
 						<Button
 							onPress={() => {
 								router.replace({
-									pathname: '(app)/credential/personalcredentialstack/getstarted',
+									pathname: '(credential)/personalcredentialstack/getstarted',
 								})
 							}}
 							my={'$3'}

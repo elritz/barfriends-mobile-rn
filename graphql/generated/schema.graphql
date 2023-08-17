@@ -4747,6 +4747,23 @@ input EnumSecureDataTypeWithAggregatesFilter {
   notIn: [SecureDataType!]
 }
 
+input EnumTokenTypeNullableFilter {
+  equals: TokenType
+  in: [TokenType!]
+  not: TokenType
+  notIn: [TokenType!]
+}
+
+input EnumTokenTypeNullableWithAggregatesFilter {
+  _count: NestedIntNullableFilter
+  _max: NestedEnumTokenTypeNullableFilter
+  _min: NestedEnumTokenTypeNullableFilter
+  equals: TokenType
+  in: [TokenType!]
+  not: TokenType
+  notIn: [TokenType!]
+}
+
 input EnumTypeOfDocumentFieldUpdateOperationsInput {
   set: TypeOfDocument
 }
@@ -8289,7 +8306,7 @@ type Mutation {
   updateProfileIdentifiableInformation(data: IdentifiableInformationUpdateInput!): AuthenticationResponseUnion!
   updateStoryEmojimood(emojimoodId: Int!, storyId: String): Story!
   updateThemeManagerSwitchTheme(id: String!, themeId: String!): ProfileTheme!
-  upsertDevicePushToken(expoToken: String, token: String, type: String): Boolean!
+  upsertDevicePushToken(expoToken: String, token: String, type: TokenType): Boolean!
 }
 
 input NestedBoolFilter {
@@ -8451,6 +8468,23 @@ input NestedEnumSecureDataTypeWithAggregatesFilter {
   in: [SecureDataType!]
   not: SecureDataType
   notIn: [SecureDataType!]
+}
+
+input NestedEnumTokenTypeNullableFilter {
+  equals: TokenType
+  in: [TokenType!]
+  not: TokenType
+  notIn: [TokenType!]
+}
+
+input NestedEnumTokenTypeNullableWithAggregatesFilter {
+  _count: NestedIntNullableFilter
+  _max: NestedEnumTokenTypeNullableFilter
+  _min: NestedEnumTokenTypeNullableFilter
+  equals: TokenType
+  in: [TokenType!]
+  not: TokenType
+  notIn: [TokenType!]
 }
 
 input NestedEnumTypeOfDocumentFilter {
@@ -9048,6 +9082,10 @@ input NullableDateTimeFieldUpdateOperationsInput {
 
 input NullableEnumPhotoTypeFieldUpdateOperationsInput {
   set: PhotoType
+}
+
+input NullableEnumTokenTypeFieldUpdateOperationsInput {
+  set: TokenType
 }
 
 input NullableIntFieldUpdateOperationsInput {
@@ -13333,48 +13371,48 @@ input ProfileWhereUniqueInput {
 }
 
 type PushToken {
-  androidToken: String
-  appleToken: String
   createdAt: DateTime
   Device: Device
   expoToken: String
   id: ID!
   isExpired: Boolean!
   receipts: [Json!]!
+  token: String
+  type: TokenType
   updatedAt: DateTime
 }
 
 input PushTokenCountOrderByAggregateInput {
-  androidToken: SortOrder
-  appleToken: SortOrder
   createdAt: SortOrder
   expoToken: SortOrder
   id: SortOrder
   isExpired: SortOrder
   receipts: SortOrder
+  token: SortOrder
+  type: SortOrder
   updatedAt: SortOrder
 }
 
 input PushTokenCreateInput {
-  androidToken: String
-  appleToken: String
   createdAt: DateTime
   Device: DeviceCreateNestedOneWithoutPushTokenInput
   expoToken: String
   id: String
   isExpired: Boolean
   receipts: [Json!]
+  token: String
+  type: TokenType
   updatedAt: DateTime
 }
 
 input PushTokenCreateManyInput {
-  androidToken: String
-  appleToken: String
   createdAt: DateTime
   expoToken: String
   id: String
   isExpired: Boolean
   receipts: [Json!]
+  token: String
+  type: TokenType
   updatedAt: DateTime
 }
 
@@ -13394,33 +13432,33 @@ input PushTokenCreatereceiptsInput {
 }
 
 input PushTokenCreateWithoutDeviceInput {
-  androidToken: String
-  appleToken: String
   createdAt: DateTime
   expoToken: String
   id: String
   isExpired: Boolean
   receipts: [Json!]
+  token: String
+  type: TokenType
   updatedAt: DateTime
 }
 
 input PushTokenMaxOrderByAggregateInput {
-  androidToken: SortOrder
-  appleToken: SortOrder
   createdAt: SortOrder
   expoToken: SortOrder
   id: SortOrder
   isExpired: SortOrder
+  token: SortOrder
+  type: SortOrder
   updatedAt: SortOrder
 }
 
 input PushTokenMinOrderByAggregateInput {
-  androidToken: SortOrder
-  appleToken: SortOrder
   createdAt: SortOrder
   expoToken: SortOrder
   id: SortOrder
   isExpired: SortOrder
+  token: SortOrder
+  type: SortOrder
   updatedAt: SortOrder
 }
 
@@ -13428,25 +13466,25 @@ input PushTokenOrderByWithAggregationInput {
   _count: PushTokenCountOrderByAggregateInput
   _max: PushTokenMaxOrderByAggregateInput
   _min: PushTokenMinOrderByAggregateInput
-  androidToken: SortOrder
-  appleToken: SortOrder
   createdAt: SortOrder
   expoToken: SortOrder
   id: SortOrder
   isExpired: SortOrder
   receipts: SortOrder
+  token: SortOrder
+  type: SortOrder
   updatedAt: SortOrder
 }
 
 input PushTokenOrderByWithRelationInput {
-  androidToken: SortOrder
-  appleToken: SortOrder
   createdAt: SortOrder
   Device: DeviceOrderByWithRelationInput
   expoToken: SortOrder
   id: SortOrder
   isExpired: SortOrder
   receipts: SortOrder
+  token: SortOrder
+  type: SortOrder
   updatedAt: SortOrder
 }
 
@@ -13456,20 +13494,18 @@ input PushTokenRelationFilter {
 }
 
 enum PushTokenScalarFieldEnum {
-  androidToken
-  appleToken
   createdAt
   expoToken
   id
   isExpired
   receipts
+  token
+  type
   updatedAt
 }
 
 input PushTokenScalarWhereWithAggregatesInput {
   AND: [PushTokenScalarWhereWithAggregatesInput!]
-  androidToken: StringNullableWithAggregatesFilter
-  appleToken: StringNullableWithAggregatesFilter
   createdAt: DateTimeNullableWithAggregatesFilter
   expoToken: StringNullableWithAggregatesFilter
   id: StringWithAggregatesFilter
@@ -13477,29 +13513,31 @@ input PushTokenScalarWhereWithAggregatesInput {
   NOT: [PushTokenScalarWhereWithAggregatesInput!]
   OR: [PushTokenScalarWhereWithAggregatesInput!]
   receipts: JsonNullableListFilter
+  token: StringNullableWithAggregatesFilter
+  type: EnumTokenTypeNullableWithAggregatesFilter
   updatedAt: DateTimeNullableWithAggregatesFilter
 }
 
 input PushTokenUpdateInput {
-  androidToken: NullableStringFieldUpdateOperationsInput
-  appleToken: NullableStringFieldUpdateOperationsInput
   createdAt: NullableDateTimeFieldUpdateOperationsInput
   Device: DeviceUpdateOneWithoutPushTokenNestedInput
   expoToken: NullableStringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   isExpired: BoolFieldUpdateOperationsInput
   receipts: [Json!]
+  token: NullableStringFieldUpdateOperationsInput
+  type: NullableEnumTokenTypeFieldUpdateOperationsInput
   updatedAt: NullableDateTimeFieldUpdateOperationsInput
 }
 
 input PushTokenUpdateManyMutationInput {
-  androidToken: NullableStringFieldUpdateOperationsInput
-  appleToken: NullableStringFieldUpdateOperationsInput
   createdAt: NullableDateTimeFieldUpdateOperationsInput
   expoToken: NullableStringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   isExpired: BoolFieldUpdateOperationsInput
   receipts: [Json!]
+  token: NullableStringFieldUpdateOperationsInput
+  type: NullableEnumTokenTypeFieldUpdateOperationsInput
   updatedAt: NullableDateTimeFieldUpdateOperationsInput
 }
 
@@ -13519,13 +13557,13 @@ input PushTokenUpdatereceiptsInput {
 }
 
 input PushTokenUpdateWithoutDeviceInput {
-  androidToken: NullableStringFieldUpdateOperationsInput
-  appleToken: NullableStringFieldUpdateOperationsInput
   createdAt: NullableDateTimeFieldUpdateOperationsInput
   expoToken: NullableStringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   isExpired: BoolFieldUpdateOperationsInput
   receipts: [Json!]
+  token: NullableStringFieldUpdateOperationsInput
+  type: NullableEnumTokenTypeFieldUpdateOperationsInput
   updatedAt: NullableDateTimeFieldUpdateOperationsInput
 }
 
@@ -13536,8 +13574,6 @@ input PushTokenUpsertWithoutDeviceInput {
 
 input PushTokenWhereInput {
   AND: [PushTokenWhereInput!]
-  androidToken: StringNullableFilter
-  appleToken: StringNullableFilter
   createdAt: DateTimeNullableFilter
   Device: DeviceWhereInput
   expoToken: StringNullableFilter
@@ -13546,6 +13582,8 @@ input PushTokenWhereInput {
   NOT: [PushTokenWhereInput!]
   OR: [PushTokenWhereInput!]
   receipts: JsonNullableListFilter
+  token: StringNullableFilter
+  type: EnumTokenTypeNullableFilter
   updatedAt: DateTimeNullableFilter
 }
 
@@ -16419,6 +16457,11 @@ input ThemeWhereInput {
 
 input ThemeWhereUniqueInput {
   id: String
+}
+
+enum TokenType {
+  ANDROID
+  IOS
 }
 
 input TonightPathCountOrderByAggregateInput {

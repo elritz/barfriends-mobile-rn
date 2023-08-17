@@ -227,7 +227,7 @@ export default () => {
 			ListHeaderComponent={
 				<VStack mb={'$5'}>
 					<VenueHeader key={uniqueId()} loading={loading} photos={data.currentVenue?.photos} />
-					<Box key={uniqueId()} py={'$4'} borderBottomEndRadius={5}>
+					<Box  rounded={'$none'} key={uniqueId()} py={'$4'} borderBottomEndRadius={5} >
 						<HStack px={'$2'} justifyContent={'space-between'}>
 							<VStack space='xs'>
 								<Heading fontSize={'$2xl'} lineHeight={'$lg'} fontWeight={'$black'} numberOfLines={1}>
@@ -274,7 +274,7 @@ export default () => {
 				</VStack>
 			}
 			ListEmptyComponent={!loading && <HandleEmptyUsers />}
-			ListFooterComponent={<Details tags={venueData?.DetailInformation?.Tags} />}
+			ListFooterComponent={<Details />}
 			keyExtractor={(item, index) => index.toString()}
 			renderItem={item => <PersonalAtVenue item={item} />}
 			contentInset={{

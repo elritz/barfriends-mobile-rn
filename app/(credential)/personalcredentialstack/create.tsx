@@ -70,12 +70,14 @@ export default () => {
 				<VStack space={'md'} alignItems={'center'} justifyContent={'center'}>
 					<CompanyCoasterLogoDynamic backgroundColor='black' />
 					<Heading fontWeight={'$black'} lineHeight={'$3xl'} fontSize={'$4xl'}>
-						Welcome to Revel
+						Time to Revel
 					</Heading>
 					<Box bg='$transparent'>
-						<Text fontSize={'$lg'}>
-							We are those we hang around. If you're not feeling it find and make new friends. We can
-							enrich your experience doing that.
+						<Text textAlign='center' fontSize={'$lg'}>
+							We are those we hang around.
+						</Text>
+						<Text mt={'$3'} textAlign='center' fontSize={'$lg'}>
+							If you're not feeling it find and make new experiences. We help do that.
 						</Text>
 					</Box>
 				</VStack>

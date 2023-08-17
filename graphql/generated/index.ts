@@ -4903,6 +4903,23 @@ export type EnumSecureDataTypeWithAggregatesFilter = {
   notIn?: InputMaybe<Array<SecureDataType>>;
 };
 
+export type EnumTokenTypeNullableFilter = {
+  equals?: InputMaybe<TokenType>;
+  in?: InputMaybe<Array<TokenType>>;
+  not?: InputMaybe<TokenType>;
+  notIn?: InputMaybe<Array<TokenType>>;
+};
+
+export type EnumTokenTypeNullableWithAggregatesFilter = {
+  _count?: InputMaybe<NestedIntNullableFilter>;
+  _max?: InputMaybe<NestedEnumTokenTypeNullableFilter>;
+  _min?: InputMaybe<NestedEnumTokenTypeNullableFilter>;
+  equals?: InputMaybe<TokenType>;
+  in?: InputMaybe<Array<TokenType>>;
+  not?: InputMaybe<TokenType>;
+  notIn?: InputMaybe<Array<TokenType>>;
+};
+
 export type EnumTypeOfDocumentFieldUpdateOperationsInput = {
   set?: InputMaybe<TypeOfDocument>;
 };
@@ -8679,7 +8696,7 @@ export type MutationUpdateThemeManagerSwitchThemeArgs = {
 export type MutationUpsertDevicePushTokenArgs = {
   expoToken?: InputMaybe<Scalars['String']>;
   token?: InputMaybe<Scalars['String']>;
-  type?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<TokenType>;
 };
 
 export type NestedBoolFilter = {
@@ -8841,6 +8858,23 @@ export type NestedEnumSecureDataTypeWithAggregatesFilter = {
   in?: InputMaybe<Array<SecureDataType>>;
   not?: InputMaybe<SecureDataType>;
   notIn?: InputMaybe<Array<SecureDataType>>;
+};
+
+export type NestedEnumTokenTypeNullableFilter = {
+  equals?: InputMaybe<TokenType>;
+  in?: InputMaybe<Array<TokenType>>;
+  not?: InputMaybe<TokenType>;
+  notIn?: InputMaybe<Array<TokenType>>;
+};
+
+export type NestedEnumTokenTypeNullableWithAggregatesFilter = {
+  _count?: InputMaybe<NestedIntNullableFilter>;
+  _max?: InputMaybe<NestedEnumTokenTypeNullableFilter>;
+  _min?: InputMaybe<NestedEnumTokenTypeNullableFilter>;
+  equals?: InputMaybe<TokenType>;
+  in?: InputMaybe<Array<TokenType>>;
+  not?: InputMaybe<TokenType>;
+  notIn?: InputMaybe<Array<TokenType>>;
 };
 
 export type NestedEnumTypeOfDocumentFilter = {
@@ -9451,6 +9485,10 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
 
 export type NullableEnumPhotoTypeFieldUpdateOperationsInput = {
   set?: InputMaybe<PhotoType>;
+};
+
+export type NullableEnumTokenTypeFieldUpdateOperationsInput = {
+  set?: InputMaybe<TokenType>;
 };
 
 export type NullableIntFieldUpdateOperationsInput = {
@@ -13769,48 +13807,48 @@ export type ProfileWhereUniqueInput = {
 
 export type PushToken = {
   __typename?: 'PushToken';
-  androidToken?: Maybe<Scalars['String']>;
-  appleToken?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   Device?: Maybe<Device>;
   expoToken?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   isExpired: Scalars['Boolean'];
   receipts: Array<Scalars['Json']>;
+  token?: Maybe<Scalars['String']>;
+  type?: Maybe<TokenType>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 export type PushTokenCountOrderByAggregateInput = {
-  androidToken?: InputMaybe<SortOrder>;
-  appleToken?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   expoToken?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   isExpired?: InputMaybe<SortOrder>;
   receipts?: InputMaybe<SortOrder>;
+  token?: InputMaybe<SortOrder>;
+  type?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
 
 export type PushTokenCreateInput = {
-  androidToken?: InputMaybe<Scalars['String']>;
-  appleToken?: InputMaybe<Scalars['String']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   Device?: InputMaybe<DeviceCreateNestedOneWithoutPushTokenInput>;
   expoToken?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   isExpired?: InputMaybe<Scalars['Boolean']>;
   receipts?: InputMaybe<Array<Scalars['Json']>>;
+  token?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<TokenType>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type PushTokenCreateManyInput = {
-  androidToken?: InputMaybe<Scalars['String']>;
-  appleToken?: InputMaybe<Scalars['String']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   expoToken?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   isExpired?: InputMaybe<Scalars['Boolean']>;
   receipts?: InputMaybe<Array<Scalars['Json']>>;
+  token?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<TokenType>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -13830,33 +13868,33 @@ export type PushTokenCreatereceiptsInput = {
 };
 
 export type PushTokenCreateWithoutDeviceInput = {
-  androidToken?: InputMaybe<Scalars['String']>;
-  appleToken?: InputMaybe<Scalars['String']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   expoToken?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   isExpired?: InputMaybe<Scalars['Boolean']>;
   receipts?: InputMaybe<Array<Scalars['Json']>>;
+  token?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<TokenType>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type PushTokenMaxOrderByAggregateInput = {
-  androidToken?: InputMaybe<SortOrder>;
-  appleToken?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   expoToken?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   isExpired?: InputMaybe<SortOrder>;
+  token?: InputMaybe<SortOrder>;
+  type?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
 
 export type PushTokenMinOrderByAggregateInput = {
-  androidToken?: InputMaybe<SortOrder>;
-  appleToken?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   expoToken?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   isExpired?: InputMaybe<SortOrder>;
+  token?: InputMaybe<SortOrder>;
+  type?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
 
@@ -13864,25 +13902,25 @@ export type PushTokenOrderByWithAggregationInput = {
   _count?: InputMaybe<PushTokenCountOrderByAggregateInput>;
   _max?: InputMaybe<PushTokenMaxOrderByAggregateInput>;
   _min?: InputMaybe<PushTokenMinOrderByAggregateInput>;
-  androidToken?: InputMaybe<SortOrder>;
-  appleToken?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   expoToken?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   isExpired?: InputMaybe<SortOrder>;
   receipts?: InputMaybe<SortOrder>;
+  token?: InputMaybe<SortOrder>;
+  type?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
 
 export type PushTokenOrderByWithRelationInput = {
-  androidToken?: InputMaybe<SortOrder>;
-  appleToken?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   Device?: InputMaybe<DeviceOrderByWithRelationInput>;
   expoToken?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   isExpired?: InputMaybe<SortOrder>;
   receipts?: InputMaybe<SortOrder>;
+  token?: InputMaybe<SortOrder>;
+  type?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
 };
 
@@ -13892,20 +13930,18 @@ export type PushTokenRelationFilter = {
 };
 
 export enum PushTokenScalarFieldEnum {
-  AndroidToken = 'androidToken',
-  AppleToken = 'appleToken',
   CreatedAt = 'createdAt',
   ExpoToken = 'expoToken',
   Id = 'id',
   IsExpired = 'isExpired',
   Receipts = 'receipts',
+  Token = 'token',
+  Type = 'type',
   UpdatedAt = 'updatedAt'
 }
 
 export type PushTokenScalarWhereWithAggregatesInput = {
   AND?: InputMaybe<Array<PushTokenScalarWhereWithAggregatesInput>>;
-  androidToken?: InputMaybe<StringNullableWithAggregatesFilter>;
-  appleToken?: InputMaybe<StringNullableWithAggregatesFilter>;
   createdAt?: InputMaybe<DateTimeNullableWithAggregatesFilter>;
   expoToken?: InputMaybe<StringNullableWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
@@ -13913,29 +13949,31 @@ export type PushTokenScalarWhereWithAggregatesInput = {
   NOT?: InputMaybe<Array<PushTokenScalarWhereWithAggregatesInput>>;
   OR?: InputMaybe<Array<PushTokenScalarWhereWithAggregatesInput>>;
   receipts?: InputMaybe<JsonNullableListFilter>;
+  token?: InputMaybe<StringNullableWithAggregatesFilter>;
+  type?: InputMaybe<EnumTokenTypeNullableWithAggregatesFilter>;
   updatedAt?: InputMaybe<DateTimeNullableWithAggregatesFilter>;
 };
 
 export type PushTokenUpdateInput = {
-  androidToken?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  appleToken?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   Device?: InputMaybe<DeviceUpdateOneWithoutPushTokenNestedInput>;
   expoToken?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   isExpired?: InputMaybe<BoolFieldUpdateOperationsInput>;
   receipts?: InputMaybe<Array<Scalars['Json']>>;
+  token?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  type?: InputMaybe<NullableEnumTokenTypeFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
 };
 
 export type PushTokenUpdateManyMutationInput = {
-  androidToken?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  appleToken?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   expoToken?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   isExpired?: InputMaybe<BoolFieldUpdateOperationsInput>;
   receipts?: InputMaybe<Array<Scalars['Json']>>;
+  token?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  type?: InputMaybe<NullableEnumTokenTypeFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
 };
 
@@ -13955,13 +13993,13 @@ export type PushTokenUpdatereceiptsInput = {
 };
 
 export type PushTokenUpdateWithoutDeviceInput = {
-  androidToken?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  appleToken?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   expoToken?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   isExpired?: InputMaybe<BoolFieldUpdateOperationsInput>;
   receipts?: InputMaybe<Array<Scalars['Json']>>;
+  token?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  type?: InputMaybe<NullableEnumTokenTypeFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
 };
 
@@ -13972,8 +14010,6 @@ export type PushTokenUpsertWithoutDeviceInput = {
 
 export type PushTokenWhereInput = {
   AND?: InputMaybe<Array<PushTokenWhereInput>>;
-  androidToken?: InputMaybe<StringNullableFilter>;
-  appleToken?: InputMaybe<StringNullableFilter>;
   createdAt?: InputMaybe<DateTimeNullableFilter>;
   Device?: InputMaybe<DeviceWhereInput>;
   expoToken?: InputMaybe<StringNullableFilter>;
@@ -13982,6 +14018,8 @@ export type PushTokenWhereInput = {
   NOT?: InputMaybe<Array<PushTokenWhereInput>>;
   OR?: InputMaybe<Array<PushTokenWhereInput>>;
   receipts?: InputMaybe<JsonNullableListFilter>;
+  token?: InputMaybe<StringNullableFilter>;
+  type?: InputMaybe<EnumTokenTypeNullableFilter>;
   updatedAt?: InputMaybe<DateTimeNullableFilter>;
 };
 
@@ -17037,6 +17075,11 @@ export type ThemeWhereUniqueInput = {
   id?: InputMaybe<Scalars['String']>;
 };
 
+export enum TokenType {
+  Android = 'ANDROID',
+  Ios = 'IOS'
+}
+
 export type TonightPathCountOrderByAggregateInput = {
   createdAt?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
@@ -18298,7 +18341,7 @@ export type Venue_FragmentFragment = { __typename?: 'Venue', id: string, created
 
 export type UpsertDevicePushTokenMutationVariables = Exact<{
   token?: InputMaybe<Scalars['String']>;
-  type?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<TokenType>;
   expoToken?: InputMaybe<Scalars['String']>;
 }>;
 
@@ -18588,7 +18631,7 @@ export type VenuesNearbyQueryVariables = Exact<{
 }>;
 
 
-export type VenuesNearbyQuery = { __typename?: 'Query', venuesNearby: { __typename?: 'ComingAreaResponse', comingAreas: Array<{ __typename?: 'ComingArea', id: string, h3Index5: string, h3Index6: string, keywordSuggestions: Array<string>, timesRequested?: number | null, toBeNotifiedProfileIds: Array<string>, createdAt: any, updatedAt: any, Area?: { __typename?: 'Area', id: string, City: { __typename?: 'City', id: string, name: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } }, State: { __typename?: 'State', id: string, name: string, isoCode: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } }, Country: { __typename?: 'Country', id: string, name: string, flag: string, isoCode: string } } | null, Vote: Array<{ __typename?: 'Vote', id: string, profileId: string, upvote: boolean }> }>, recommendedAreas?: Array<{ __typename?: 'H3Index6VenueRecommendation', id: string, timesRequested?: number | null, venuesProfileIds: Array<string>, createdAt: any, updatedAt: any, Area?: { __typename?: 'Area', id: string, State: { __typename?: 'State', id: string, isoCode: string, name: string }, City: { __typename?: 'City', id: string, name: string }, Country: { __typename?: 'Country', id: string, isoCode: string, name: string } } | null }> | null, searchArea?: { __typename?: 'Area', id: string, City: { __typename?: 'City', id: string, name: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } }, State: { __typename?: 'State', id: string, name: string, isoCode: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } }, Country: { __typename?: 'Country', id: string, name: string, flag: string, isoCode: string } } | null } | { __typename?: 'Error', errorCode: string, message: string } | { __typename?: 'VenuesNearbyResponse', searchArea?: { __typename?: 'Area', id: string, City: { __typename?: 'City', id: string, name: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } }, State: { __typename?: 'State', id: string, name: string, isoCode: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } }, Country: { __typename?: 'Country', id: string, name: string, flag: string, isoCode: string } } | null, venuesNearby: Array<{ __typename: 'ProfileVenue', id: string, ProfileType: ProfileType, distanceInM?: number | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }>, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, venueProfileId: string, personalProfileId: string }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null }>, recommendedAreas?: Array<{ __typename?: 'H3Index6VenueRecommendation', id: string, timesRequested?: number | null, venuesProfileIds: Array<string>, distanceInM?: number | null, createdAt: any, updatedAt: any, Area?: { __typename?: 'Area', id: string, State: { __typename?: 'State', id: string, isoCode: string, name: string }, City: { __typename?: 'City', id: string, name: string }, Country: { __typename?: 'Country', id: string, isoCode: string, name: string } } | null }> | null } };
+export type VenuesNearbyQuery = { __typename?: 'Query', venuesNearby: { __typename?: 'ComingAreaResponse', comingAreas: Array<{ __typename?: 'ComingArea', id: string, h3Index5: string, h3Index6: string, keywordSuggestions: Array<string>, timesRequested?: number | null, toBeNotifiedProfileIds: Array<string>, createdAt: any, updatedAt: any, Area?: { __typename?: 'Area', id: string, City: { __typename?: 'City', id: string, name: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } }, State: { __typename?: 'State', id: string, name: string, isoCode: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } }, Country: { __typename?: 'Country', id: string, name: string, flag: string, isoCode: string } } | null, Vote: Array<{ __typename?: 'Vote', id: string, profileId: string, upvote: boolean }> }>, recommendedAreas?: Array<{ __typename?: 'H3Index6VenueRecommendation', id: string, timesRequested?: number | null, venuesProfileIds: Array<string>, createdAt: any, updatedAt: any, Area?: { __typename?: 'Area', id: string, State: { __typename?: 'State', id: string, isoCode: string, name: string }, City: { __typename?: 'City', id: string, name: string }, Country: { __typename?: 'Country', id: string, flag: string, isoCode: string, name: string } } | null }> | null, searchArea?: { __typename?: 'Area', id: string, City: { __typename?: 'City', id: string, name: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } }, State: { __typename?: 'State', id: string, name: string, isoCode: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } }, Country: { __typename?: 'Country', id: string, name: string, flag: string, isoCode: string } } | null } | { __typename?: 'Error', errorCode: string, message: string } | { __typename?: 'VenuesNearbyResponse', searchArea?: { __typename?: 'Area', id: string, City: { __typename?: 'City', id: string, name: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } }, State: { __typename?: 'State', id: string, name: string, isoCode: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } }, Country: { __typename?: 'Country', id: string, name: string, flag: string, isoCode: string } } | null, venuesNearby: Array<{ __typename: 'ProfileVenue', id: string, ProfileType: ProfileType, distanceInM?: number | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }>, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, venueProfileId: string, personalProfileId: string }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null }>, recommendedAreas?: Array<{ __typename?: 'H3Index6VenueRecommendation', id: string, timesRequested?: number | null, venuesProfileIds: Array<string>, distanceInM?: number | null, createdAt: any, updatedAt: any, Area?: { __typename?: 'Area', id: string, State: { __typename?: 'State', id: string, isoCode: string, name: string }, City: { __typename?: 'City', id: string, name: string }, Country: { __typename?: 'Country', id: string, flag: string, isoCode: string, name: string } } | null }> | null } };
 
 export type GetAllCountriesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -19307,7 +19350,7 @@ export const Venue_FragmentFragmentDoc = gql`
 }
     ${Public_Profile_FragmentFragmentDoc}`;
 export const UpsertDevicePushTokenDocument = gql`
-    mutation upsertDevicePushToken($token: String, $type: String, $expoToken: String) {
+    mutation upsertDevicePushToken($token: String, $type: TokenType, $expoToken: String) {
   upsertDevicePushToken(token: $token, type: $type, expoToken: $expoToken)
 }
     `;
@@ -21183,6 +21226,7 @@ export const VenuesNearbyDocument = gql`
           }
           Country {
             id
+            flag
             isoCode
             name
           }
@@ -21223,6 +21267,7 @@ export const VenuesNearbyDocument = gql`
           }
           Country {
             id
+            flag
             isoCode
             name
           }

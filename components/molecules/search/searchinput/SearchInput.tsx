@@ -7,7 +7,7 @@ import { useExploreSearchLazyQuery } from '@graphql/generated'
 import { ThemeReactiveVar } from '@reactive'
 import useDebounce from '@util/hooks/useDebounce'
 import { useGlobalSearchParams, useRouter, useSegments } from 'expo-router'
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { TextInput } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -83,13 +83,13 @@ const SearchInput = (props: Props) => {
 		},
 	})
 
-	const clearSearchInput = () => {
+	const clearSearchInput = useCallback(() => {
 		_inputRef.current?.clear()
 		setValue('searchtext', '')
 		router.setParams({
 			searchtext: '',
 		})
-	}
+	}, [])
 
 	const handleSearchSubmitEditting = data => {
 		if (segments.includes('searchtext')) {
@@ -98,6 +98,7 @@ const SearchInput = (props: Props) => {
 				params: { searchtext: data.searchtext },
 			})
 		}
+
 		if (
 			segments.includes('venufeed') ||
 			segments.includes('messagestack') ||

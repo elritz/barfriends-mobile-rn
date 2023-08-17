@@ -6,14 +6,7 @@ import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '@reactiv
 import { useRouter } from 'expo-router'
 import { useRef } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import {
-	InputAccessoryView,
-	Platform,
-	TextInput,
-	TextInputProps,
-	TextProps,
-	View,
-} from 'react-native'
+import { InputAccessoryView, Platform, TextInput } from 'react-native'
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller'
 import Reanimated, { useAnimatedStyle, useDerivedValue } from 'react-native-reanimated'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -81,7 +74,7 @@ export default () => {
 			lastname: data.lastname,
 		})
 		router.push({
-			pathname: '(app)/credential/personalcredentialstack/username',
+			pathname: '(credential)/personalcredentialstack/username',
 		})
 	}
 
@@ -165,7 +158,9 @@ export default () => {
 							},
 						}}
 					/>
-					<Text>{errors?.firstname?.message}</Text>
+					<Text fontSize={'$sm'} color='$error700'>
+						{errors?.firstname?.message}
+					</Text>
 
 					<Controller
 						name='lastname'

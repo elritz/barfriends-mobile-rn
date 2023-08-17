@@ -123,7 +123,7 @@ export default () => {
 	})
 
 	return (
-		<Box bg={'$transparent'} style={{ flex: 1 }}>
+		<Box bg={'$transparent'} style={{ flex: 1 }} mb={'$5'}>
 			<Box bg={'$transparent'} alignItems={'center'} justifyContent={'flex-start'} my={'$5'}>
 				<IllustrationDynamicMedia width={60} height={60} />
 				<Divider style={{ width: 50, marginVertical: 10 }} />
@@ -180,7 +180,7 @@ export default () => {
 				</Button>
 				{!started ? (
 					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
-						<Text fontWeight={'$medium'}>Close</Text>
+						<Button.Text fontWeight={'$medium'}>Close</Button.Text>
 					</Button>
 				) : (
 					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>

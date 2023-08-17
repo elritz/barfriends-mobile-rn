@@ -67,6 +67,7 @@ const useSetSearchAreaWithLocation = async () => {
 			}
 
 			const newSearchArea = JSON.stringify(valueSearchArea)
+
 			CurrentLocationReactiveVar({
 				current: {
 					...getLastKnowPosition,
@@ -123,10 +124,6 @@ const useSetSearchAreaWithLocation = async () => {
 						longitude: currentLocation.coords.longitude,
 					},
 				},
-				// kRing: {
-				// 	distance: 30,
-				// 	value: 3,
-				// },
 			}
 
 			const newSearchArea = JSON.stringify(valueSearchArea)

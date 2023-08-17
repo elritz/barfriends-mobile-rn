@@ -4,7 +4,7 @@ import {
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
 } from '@constants/ReactNavigationConstants'
-import { useGetAllThemesQuery } from '@graphql/generated'
+import { useGetAllThemesQuery, useUpdateThemeManagerSwitchThemeMutation } from '@graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
 import { useToggleTheme } from '@util/hooks/theme/useToggleTheme'
@@ -14,10 +14,16 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 export default function Preferences() {
 	const insets = useSafeAreaInsets()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
+	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 
-	const [toggleTheme] = useToggleTheme()
+	const [toggleColorScheme] = useToggleTheme()
 
 	const { data: GATData, loading: GATLoading, error } = useGetAllThemesQuery()
+	const [updateSwitchTheme] = useUpdateThemeManagerSwitchThemeMutation()
+
+	const setTheme = async ({ colorScheme }: { colorScheme: 'light' | 'dark' | 'system' }) => {
+		toggleColorScheme({ colorScheme })
+	}
 
 	const renderItem = useCallback(
 		({ item }) => {
@@ -47,7 +53,31 @@ export default function Preferences() {
 			}
 
 			return (
-				<Pressable>
+				<Pressable
+					onPress={() => {
+						updateSwitchTheme({
+							variables: {
+								id: item.id,
+								themeId: item.id,
+							},
+							onCompleted: data => {
+								console.log('data', JSON.stringify(data.updateThemeManagerSwitchTheme.Theme, null, 2))
+								if (data.updateThemeManagerSwitchTheme) {
+									// AuthorizationReactiveVar({
+									// 	...rAuthorizationVar,
+									// 	Profile: {
+									// 		...rAuthorizationVar?.Profile,
+									// 		ThemeManager: {
+									// 			...rAuthorizationVar?.Profile?.ThemeManager,
+									// 			ProfileTheme: data.updateThemeManagerSwitchTheme,
+									// 		},
+									// 	},
+									// })
+								}
+							},
+						})
+					}}
+				>
 					<Box
 						key={item.id}
 						m={'$3'}
@@ -60,7 +90,7 @@ export default function Preferences() {
 						borderWidth={'$2'}
 						borderColor={
 							AuthorizationReactiveVar()?.Profile?.ThemeManager?.ProfileTheme[0]?.Theme.id === item.id
-								? 'primary.400'
+								? '$primary400'
 								: 'transparent'
 						}
 					>
@@ -158,10 +188,6 @@ export default function Preferences() {
 
 	if (GATLoading || !GATData?.getAllThemes) return null
 
-	const setTheme = async ({ colorScheme }: { colorScheme: 'light' | 'dark' | 'system' }) => {
-		toggleTheme({ colorScheme })
-	}
-
 	return (
 		<FlashList
 			estimatedItemSize={30}
@@ -212,7 +238,9 @@ export default function Preferences() {
 							borderColor={rTheme.localStorageColorScheme === 'system' ? '$primary300' : 'transparent'}
 							borderWidth={'$2'}
 						>
-							<Button.Text color={rTheme.colorScheme === 'light' ? '$black' : '$white'}>System</Button.Text>
+							<Button.Text color={rTheme.colorScheme === 'light' ? '$black' : '$white'}>
+								System
+							</Button.Text>
 						</Button>
 					</HStack>
 				)

@@ -33,6 +33,7 @@ const VenueHeader = (props: Props) => {
 				height: PUBLIC_VENUE_HEADER_IMAGE_HEIGHT,
 				overflow: 'hidden',
 			}}
+			rounded={'$none'}
 		>
 			<Image
 				source={{ uri: props.photos[0].url }}

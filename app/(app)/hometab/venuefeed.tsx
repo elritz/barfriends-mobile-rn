@@ -31,9 +31,10 @@ import {
 import { FlashList, MasonryFlashList } from '@shopify/flash-list'
 import useSetSearchAreaWithLocation from '@util/hooks/searcharea/useSetSearchAreaWithLocation'
 import useContentInsets from '@util/hooks/useContentInsets'
+import useGetDistance from '@util/hooks/useDistance'
 import { useRouter } from 'expo-router'
 import { Skeleton } from 'moti/skeleton'
-import { useEffect } from 'react'
+import { memo, useCallback, useEffect, useState } from 'react'
 import { Dimensions, NativeScrollEvent, ScrollView, View } from 'react-native'
 import CountryFlag from 'react-native-country-flag'
 
@@ -69,13 +70,13 @@ export default () => {
 		},
 	})
 
-	const onPullRefresh = () => {
+	const getNearbyVenues = useCallback(() => {
 		venuesNearbyQuery()
-	}
+	}, [])
 
 	useEffect(() => {
 		if (!data?.venuesNearby) {
-			venuesNearbyQuery()
+			getNearbyVenues()
 		}
 	}, [])
 
@@ -83,7 +84,6 @@ export default () => {
 		return (
 			<Box bg={'transparent'} py={'$2'}>
 				{/* {ENVIRONMENT === 'development' && <DevActions />} */}
-
 				<VStack bg={'transparent'} space={'md'}>
 					{rAuthorizationVar?.Profile?.ProfileType === ProfileType.Guest && (
 						<Box mx={'$2'} my={'$2'} p={'$5'} pt={'$10'}>
@@ -97,12 +97,13 @@ export default () => {
 			</Box>
 		)
 	}
+	const MemoizedListHeaderComponent = memo(ListheaderComponent)
 
 	if (!data?.venuesNearby || loading) {
 		return (
 			<MasonryFlashList
 				numColumns={2}
-				onRefresh={onPullRefresh}
+				onRefresh={getNearbyVenues}
 				refreshing={loading}
 				estimatedItemSize={260}
 				contentInset={{
@@ -110,7 +111,7 @@ export default () => {
 				}}
 				data={[...Array(6)]}
 				showsVerticalScrollIndicator={false}
-				ListHeaderComponent={<ListheaderComponent typename={data?.venuesNearby.__typename} />}
+				ListHeaderComponent={<MemoizedListHeaderComponent typename={data?.venuesNearby.__typename} />}
 				renderItem={({ item }) => {
 					return (
 						<View style={{ alignSelf: 'center', padding: 5 }}>
@@ -139,14 +140,6 @@ export default () => {
 		)
 	}
 
-	if (data.venuesNearby.__typename === 'Error') {
-		return (
-			<ScrollView>
-				<Text>{data.venuesNearby.message}</Text>
-			</ScrollView>
-		)
-	}
-
 	const ListFooterComponent = () => {
 		const rPermissionLocationVar = useReactiveVar(PermissionForegroundLocationReactiveVar)
 		const RecommendedAreaList = () => {
@@ -155,6 +148,29 @@ export default () => {
 					return (
 						<VStack>
 							{data.venuesNearby.recommendedAreas?.map((item, index) => {
+								const [distance, setDistance] = useState(0)
+								const [metric, setMetric] = useState('m')
+								const setDist = useCallback(
+									({ distanceInM }) => {
+										if (distanceInM) {
+											if (distanceInM > 1000) {
+												const val = parseInt((distanceInM / 1000).toFixed(1))
+												setDistance(val)
+												setMetric('km')
+											} else {
+												setDistance(distanceInM)
+												setMetric('m')
+											}
+										}
+									},
+									[item.distanceInM],
+								)
+
+								useEffect(() => {
+									if (item.distanceInM) {
+										setDist({ distanceInM: item.distanceInM })
+									}
+								}, [item.distanceInM])
 								return (
 									<Pressable
 										key={item.id + index}
@@ -168,23 +184,27 @@ export default () => {
 											})
 										}}
 									>
-										<Box key={item.id} flexDirection='row' m={'$2'} p={'$3'} justifyContent='space-between'>
+										<Box key={item.id} flexDirection='row' m={'$2'} p={'$3'} justifyContent='space-between' alignItems='center'>
 											<VStack>
-												<Heading
-													fontWeight={'$medium'}
-													fontSize={'$lg'}
-													numberOfLines={1}
-													ellipsizeMode={'tail'}
-												>
-													{item.Area?.City.name}
-												</Heading>
-												<Text>{item.Area?.Country.name}</Text>
+												<HStack alignItems='center'>
+													<Heading
+														fontWeight={'$medium'}
+														fontSize={'$xl'}
+														numberOfLines={1}
+														ellipsizeMode={'tail'}
+													>
+														{item.Area?.Country.flag}
+														{item.Area?.City.name}
+													</Heading>
+													<Text fontSize={'$md'}>
+														&nbsp; · &nbsp;
+														{distance}&nbsp;
+														{metric}
+													</Text>
+												</HStack>
+												<Text>{item.venuesProfileIds.length}&nbsp;venues</Text>
 											</VStack>
-											<VStack alignItems='center'>
-												<Text>{item.venuesProfileIds.length}</Text>
-												<Text>venues</Text>
-											</VStack>
-											<Text>{item.distanceInM}</Text>
+											<ArrowRightIcon />
 										</Box>
 									</Pressable>
 								)
@@ -217,23 +237,20 @@ export default () => {
 											alignItems='center'
 										>
 											<VStack>
-												<Heading
-													fontWeight={'$medium'}
-													fontSize={'$lg'}
-													numberOfLines={1}
-													ellipsizeMode={'tail'}
-												>
-													{item.Area?.City.name}
-												</Heading>
-												<Text>{item.Area?.Country.name}</Text>
+												<HStack alignItems='center'>
+													<Heading
+														fontWeight={'$medium'}
+														fontSize={'$xl'}
+														numberOfLines={1}
+														ellipsizeMode={'tail'}
+													>
+														{item.Area?.Country.flag}
+														{item.Area?.City.name}
+													</Heading>
+												</HStack>
+												<Text>{item.venuesProfileIds.length}&nbsp;venues</Text>
 											</VStack>
-											<HStack alignItems='center' space='sm'>
-												<VStack alignItems='center'>
-													<Text>{item.venuesProfileIds.length}</Text>
-													<Text>venues</Text>
-												</VStack>
-												<ArrowRightIcon />
-											</HStack>
+											<ArrowRightIcon />
 										</Box>
 									</Pressable>
 								)
@@ -265,20 +282,30 @@ export default () => {
 		)
 	}
 
+	const MemoizeFooterComponent = memo(ListFooterComponent)
+
+	if (data.venuesNearby.__typename === 'Error') {
+		return (
+			<ScrollView>
+				<Text>{data.venuesNearby.message}</Text>
+			</ScrollView>
+		)
+	}
+
 	if (data.venuesNearby.__typename === 'ComingAreaResponse') {
 		return (
 			<FlashList
 				data={data.venuesNearby.comingAreas}
 				overScrollMode='always'
 				keyExtractor={(item, index) => index.toString()}
-				onRefresh={onPullRefresh}
+				onRefresh={getNearbyVenues}
 				contentInset={{
 					...contentInsets,
 				}}
 				refreshing={loading}
 				estimatedItemSize={30}
-				ListHeaderComponent={<ListheaderComponent typename={data.venuesNearby.__typename} />}
-				ListFooterComponent={ListFooterComponent}
+				ListHeaderComponent={<MemoizedListHeaderComponent typename={data.venuesNearby.__typename} />}
+				ListFooterComponent={<MemoizeFooterComponent />}
 				renderItem={({ item }) => {
 					const lengthOfUpvote = item.Vote.filter(item => {
 						return item.upvote
@@ -367,7 +394,7 @@ export default () => {
 		return (
 			<MasonryFlashList
 				overScrollMode='always'
-				onRefresh={onPullRefresh}
+				onRefresh={getNearbyVenues}
 				refreshing={loading}
 				showsVerticalScrollIndicator={false}
 				numColumns={2}
@@ -382,8 +409,9 @@ export default () => {
 				)}
 				ItemSeparatorComponent={() => <Box bg={'transparent'} h={'$5'} />}
 				keyExtractor={item => item.id}
-				ListHeaderComponent={<ListheaderComponent typename={data.venuesNearby.__typename} />}
-				ListFooterComponent={ListFooterComponent}
+				ListHeaderComponent={<MemoizedListHeaderComponent typename={data.venuesNearby.__typename} />}
+				// ListFooterComponent={MemoizeFooterComponent}
+				ListFooterComponent={<MemoizeFooterComponent />}
 				automaticallyAdjustContentInsets
 			/>
 		)

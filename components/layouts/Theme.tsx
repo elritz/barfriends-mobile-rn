@@ -1,20 +1,19 @@
-import { useReactiveVar } from '@apollo/client';
-import AnimatedSplashScreen from '@components/screens/splash/AnimatedSplashScreen';
-import { LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME } from '@constants/StorageConstants';
-import { LocalStoragePreferenceThemeType } from '@ctypes/preferences';
-import { StyledProvider } from '@gluestack-style/react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ThemeProvider as ReactNavigationThemeProvider } from '@react-navigation/native';
-import { ThemeReactiveVar } from '@reactive';
-import { useToggleTheme } from '@util/hooks/theme/useToggleTheme';
-import { useEffect, useRef } from 'react';
-import { AppState, Appearance, StatusBar } from 'react-native';
-
+import { useReactiveVar } from '@apollo/client'
+import AnimatedSplashScreen from '@components/screens/splash/AnimatedSplashScreen'
+import { LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME } from '@constants/StorageConstants'
+import { LocalStoragePreferenceThemeType } from '@ctypes/preferences'
+import { StyledProvider } from '@gluestack-style/react'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { ThemeProvider as ReactNavigationThemeProvider } from '@react-navigation/native'
+import { ThemeReactiveVar } from '@reactive'
+import { useToggleTheme } from '@util/hooks/theme/useToggleTheme'
+import { useEffect, useRef, useState } from 'react'
+import { AppState, Appearance, StatusBar } from 'react-native'
 
 export default function Theme({ children }) {
 	const appState = useRef(AppState.currentState)
 	const rThemeVar = useReactiveVar(ThemeReactiveVar)
-	const [toggleThemes] = useToggleTheme()
+	const [toggleColorScheme] = useToggleTheme()
 
 	const setTheme = async () => {
 		const localStorageColorScheme = await AsyncStorage.getItem(
@@ -24,15 +23,17 @@ export default function Theme({ children }) {
 			String(localStorageColorScheme),
 		)
 
-		await toggleThemes({ colorScheme: valueLocalStorageColorScheme.colorScheme })
+		await toggleColorScheme({ colorScheme: valueLocalStorageColorScheme.colorScheme })
 	}
 
 	useEffect(() => {
-		if (!rThemeVar.theme) {
-			setTheme()
-		}
-	}, [rThemeVar])
-
+		setTheme()
+	}, [])
+	// useEffect(() => {
+	// 	if (!rThemeVar.theme) {
+	// 		setTheme()
+	// 	}
+	// }, [rThemeVar])
 
 	useEffect(() => {
 		const subscription = AppState.addEventListener('change', nextAppState => {
@@ -48,7 +49,7 @@ export default function Theme({ children }) {
 
 			/// beef yaki noodles
 			/// 40 guiza
-			
+
 			appState.current = nextAppState
 		})
 
@@ -56,7 +57,7 @@ export default function Theme({ children }) {
 			subscription.remove()
 		}
 	}, [])
-	
+
 	return (
 		<AnimatedSplashScreen>
 			<ReactNavigationThemeProvider value={rThemeVar.theme.reactnavigation}>

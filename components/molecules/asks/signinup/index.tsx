@@ -15,7 +15,7 @@ export default () => {
 				<Button
 					onPress={() =>
 						router.push({
-							pathname: '(app)/credential/personalcredentialstack/getstarted',
+							pathname: '(credential)/personalcredentialstack/getstarted',
 						})
 					}
 					sx={{
@@ -32,7 +32,7 @@ export default () => {
 					variant='link'
 					onPress={() =>
 						router.push({
-							pathname: '(app)/credential/logincredentialstack/authenticator',
+							pathname: '(credential)/logincredentialstack/authenticator',
 						})
 					}
 					sx={{

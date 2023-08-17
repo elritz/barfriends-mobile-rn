@@ -14,6 +14,7 @@ export default function _layout() {
 				name={'getstarted'}
 				options={{
 					title: '',
+					headerTransparent: true,
 					headerLeft: () => <ChevronBackArrow />,
 				}}
 			/>

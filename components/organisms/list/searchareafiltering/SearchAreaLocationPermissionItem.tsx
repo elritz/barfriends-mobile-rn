@@ -2,8 +2,8 @@
 import { useReactiveVar } from '@apollo/client'
 import { Box, HStack, Pressable, Text } from '@components/core'
 import { LOCAL_STORAGE_SEARCH_AREA } from '@constants/StorageConstants'
-import { FontAwesome5 } from '@expo/vector-icons'
 import { LocalStoragePreferenceSearchAreaType } from '@ctypes/preferences'
+import { FontAwesome5 } from '@expo/vector-icons'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
 	PermissionForegroundLocationReactiveVar,
@@ -13,6 +13,7 @@ import {
 import { capitalizeFirstLetter } from '@util/@fn/capitalizeFirstLetter'
 import useSetSearchAreaWithLocation from '@util/hooks/searcharea/useSetSearchAreaWithLocation'
 import * as IntentLauncher from 'expo-intent-launcher'
+import { useCallback } from 'react'
 import { Alert, Linking, Platform } from 'react-native'
 
 const SearchAreaLocationPermissionItem = () => {
@@ -39,13 +40,13 @@ const SearchAreaLocationPermissionItem = () => {
 			],
 		)
 
-	const handleOpenPhoneSettings = async () => {
+	const handleOpenPhoneSettings = useCallback(async () => {
 		if (Platform.OS === 'ios') {
 			Linking.openURL('app-settings://')
 		} else {
 			IntentLauncher.startActivityAsync(IntentLauncher.ActivityAction.LOCATION_SOURCE_SETTINGS)
 		}
-	}
+	}, [])
 
 	return (
 		<Pressable

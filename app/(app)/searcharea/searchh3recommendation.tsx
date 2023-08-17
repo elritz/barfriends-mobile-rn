@@ -25,12 +25,9 @@ export default function SearchH3Recommendation() {
 		}
 		return (
 			<Box bg='$transparent'>
-				<Heading lineHeight={'$4xl'} fontSize={'$4xl'}>
-					{data?.getH3Index6VenueRecommendationById?.Area?.City.name}
-				</Heading>
-				<Heading fontSize={'$xl'}>
+				<Heading lineHeight={'$3xl'} fontSize={'$3xl'}>
 					{data?.getH3Index6VenueRecommendationById?.Area?.Country.flag}
-					{data?.getH3Index6VenueRecommendationById?.Area?.State.name}
+					{data?.getH3Index6VenueRecommendationById?.Area?.City.name}
 				</Heading>
 			</Box>
 		)

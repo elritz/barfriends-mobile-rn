@@ -97,7 +97,7 @@ export default () => {
 					break
 				case 'Code':
 					router.push({
-						pathname: '(app)/credential/personalcredentialstack/confirmationcode',
+						pathname: '(credential)/personalcredentialstack/confirmationcode',
 						params: {
 							code: String(data.sendAuthenticatorDeviceOwnerCode.code),
 						},
@@ -222,7 +222,7 @@ export default () => {
 					<Pressable
 						onPress={() => {
 							router.push({
-								pathname: '(app)/credential/personalcredentialstack/email',
+								pathname: '(credential)/personalcredentialstack/email',
 							})
 						}}
 						sx={{
@@ -278,7 +278,7 @@ export default () => {
 							},
 						}}
 					/>
-					<Text fontSize={'$md'} color={'$error500'}>
+					<Text fontSize={'$sm'} color='$error700'>
 						{errors?.mobileNumber?.completeNumber?.message}
 					</Text>
 				</View>

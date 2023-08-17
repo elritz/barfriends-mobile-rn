@@ -17,7 +17,7 @@ const DetailTitle = (props: DetailTitleProps) => {
 	)
 }
 
-export default function Details(props) {
+export default function Details() {
 	const [showMore, setShowMore] = useState(false)
 	const params = useLocalSearchParams()
 	const rSearchAreaVar = useReactiveVar(SearchAreaReactiveVar)
@@ -83,10 +83,10 @@ export default function Details(props) {
 										fontSize={'$md'}
 										sx={{
 											_dark: {
-												color: '$white100',
+												color: '$white',
 											},
 											_light: {
-												color: '$dark100',
+												color: '$black',
 											},
 										}}
 									>{`${item.emoji} ${item.name}`}</Badge.Text>

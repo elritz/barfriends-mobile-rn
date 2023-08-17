@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Heading, Input, Pressable, Text } from '@components/core'
+import { Box, Heading, Input, Pressable, Text, VStack } from '@components/core'
 import { Feather, Ionicons } from '@expo/vector-icons'
 import { useCheckUsernameLazyQuery } from '@graphql/generated'
 import { useIsFocused } from '@react-navigation/native'
@@ -7,7 +7,7 @@ import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '@reactiv
 import { useRouter } from 'expo-router'
 import { useRef } from 'react'
 import { Controller, useForm, ValidateResult } from 'react-hook-form'
-import { InputAccessoryView, Platform, TextInput, TextInputProps, View } from 'react-native'
+import { InputAccessoryView, Platform, TextInput, View } from 'react-native'
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller'
 import Reanimated, { useAnimatedStyle, useDerivedValue } from 'react-native-reanimated'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -81,7 +81,7 @@ export default () => {
 			username: data.username,
 		})
 		router.push({
-			pathname: '(app)/credential/personalcredentialstack/password',
+			pathname: '(credential)/personalcredentialstack/password',
 		})
 	}
 
@@ -92,7 +92,7 @@ export default () => {
 		if (!CULoading && CUData?.checkUsername) {
 			return true
 		} else {
-			setError('username', { type: 'validate', message: 'Username has been taken' })
+			setError('username', { type: 'validate', message: 'Username taken!' })
 			return false
 		}
 	}
@@ -163,10 +163,10 @@ export default () => {
 	return (
 		<Box bg='$transparent' flex={1}>
 			<Reanimated.View style={{ flex: 1, marginHorizontal: 15 }}>
-				<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$3xl'}>
+				<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$2xl'}>
 					Choose your username
 				</Heading>
-				<View style={{ marginVertical: '10%', width: '100%' }}>
+				<VStack flex={1} my={'$6'} space='xs'>
 					<Controller
 						name='username'
 						control={control}
@@ -215,8 +215,10 @@ export default () => {
 							},
 						}}
 					/>
-					<Text>{errors?.username?.message}</Text>
-				</View>
+					<Text fontSize={'$sm'} color='$error700'>
+						{errors?.username?.message}
+					</Text>
+				</VStack>
 			</Reanimated.View>
 			{Platform.OS === 'ios' ? (
 				<InputAccessoryView nativeID={INPUT_ACCESSORY_VIEW_ID}>

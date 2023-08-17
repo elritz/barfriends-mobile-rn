@@ -13,7 +13,7 @@ export default (props: Props) => {
 
 	const _pressToLogin = () => {
 		router.push({
-			pathname: '(app)/credential/logincredentialstack/authenticator',
+			pathname: '(credential)/logincredentialstack/authenticator',
 		})
 	}
 
@@ -50,7 +50,7 @@ export default (props: Props) => {
 				<Button
 					onPress={() =>
 						router.push({
-							pathname: '(app)/credential/personalcredentialstack',
+							pathname: '(credential)/personalcredentialstack',
 						})
 					}
 					sx={{

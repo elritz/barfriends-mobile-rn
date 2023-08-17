@@ -23,7 +23,7 @@ export default function SignupCard() {
 					p={3.5}
 					w={'$full'}
 					onPress={() => {
-						router.push({ pathname: '(app)/credential/personalcredentialstack/getstarted' })
+						router.push({ pathname: '(credential)/personalcredentialstack/getstarted' })
 					}}
 					size={'lg'}
 				>

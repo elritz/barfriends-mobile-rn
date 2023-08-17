@@ -1,4 +1,4 @@
-import BirthdayScreen from '@app/(app)/credential/personalcredentialstack/birthday'
+import BirthdayScreen from '@app/(credential)/personalcredentialstack/birthday'
 import { render, screen, fireEvent, within } from '@testing-library/react-native'
 
 test('examples of some things', async () => {

@@ -1,3 +1,4 @@
+import { useReactiveVar } from '@apollo/client'
 import { Box, Heading, Pressable, Text } from '@components/core'
 import DeviceManagerProfileItemLarge from '@components/molecules/authorization/devicemanagerprofileitem/DeviceManagerProfileItemLarge'
 import {
@@ -12,6 +13,7 @@ import { SafeAreaView, View, ScrollView } from 'react-native'
 export default () => {
 	const router = useRouter()
 	const params = useLocalSearchParams()
+	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 
 	const { data, loading, error } = useAuthorizedProfilesQuery({
 		skip: !params.authenticator && !params.authenticator,
@@ -31,28 +33,32 @@ export default () => {
 	const [switchDeviceProfileMutation, { data: SWDPData, loading: SWDPLoading, error: SWDPError }] =
 		useSwitchDeviceProfileMutation()
 
-	const switchProfile = item => {
-		switchDeviceProfileMutation({
-			variables: {
-				profileId: item.id,
-			},
-			onCompleted: data => {
-				if (data?.switchDeviceProfile?.__typename === 'AuthorizationDeviceProfile') {
-					const deviceManager = data.switchDeviceProfile as AuthorizationDeviceProfile
-					AuthorizationReactiveVar(deviceManager)
-					setTimeout(() => router.replace('(app)/hometab'), 1000)
-				} else if (data.switchDeviceProfile.__typename === 'Error') {
-					router.push({
-						pathname: '(app)/credential/logincredentialstack/loginpassword',
-						params: {
-							username: item.IdentifiableInformation?.username,
-							photo: item.profilePhoto?.url,
-							profileid: item.id,
-						},
-					})
-				}
-			},
-		})
+	const _press = item => {
+		if (rAuthorizationVar?.Profile?.id === item.id) {
+			
+		} else {
+			switchDeviceProfileMutation({
+				variables: {
+					profileId: item.id,
+				},
+				onCompleted: data => {
+					if (data?.switchDeviceProfile?.__typename === 'AuthorizationDeviceProfile') {
+						const deviceManager = data.switchDeviceProfile as AuthorizationDeviceProfile
+						AuthorizationReactiveVar(deviceManager)
+						setTimeout(() => router.replace('(app)/hometab'), 1000)
+					} else if (data.switchDeviceProfile.__typename === 'Error') {
+						router.push({
+							pathname: '(credential)/logincredentialstack/loginpassword',
+							params: {
+								username: item.IdentifiableInformation?.username,
+								photo: item.profilePhoto?.url,
+								profileid: item.id,
+							},
+						})
+					}
+				},
+			})
+		}
 	}
 
 	if (loading) {
@@ -99,13 +105,14 @@ export default () => {
 					}}
 				>
 					{finalProfileArray.map(item => {
+						console.log('item :>> ', JSON.stringify(item, null, 4))
 						return (
-							<Pressable
-								disabled={loading || SWDPLoading}
-								key={item.id}
-								onPress={() => switchProfile(item)}
-							>
-								<DeviceManagerProfileItemLarge isActive={false} item={item} loading={SWDPLoading} />
+							<Pressable disabled={loading || SWDPLoading} key={item.id} onPress={() => _press(item)}>
+								<DeviceManagerProfileItemLarge
+									isActive={rAuthorizationVar?.Profile?.id === item.id}
+									item={item}
+									loading={SWDPLoading}
+								/>
 							</Pressable>
 						)
 					})}

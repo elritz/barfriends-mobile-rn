@@ -1,5 +1,15 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, EyeIcon, EyeOffIcon, Heading, Icon, Input, Pressable, Text } from '@components/core'
+import {
+	Box,
+	EyeIcon,
+	EyeOffIcon,
+	Heading,
+	Icon,
+	Input,
+	Pressable,
+	Text,
+	VStack,
+} from '@components/core'
 import { Feather } from '@expo/vector-icons'
 import { useIsFocused } from '@react-navigation/native'
 import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '@reactive'
@@ -145,7 +155,7 @@ export default function () {
 
 	const navigateToNextScreen = async (): Promise<void | null> => {
 		router.push({
-			pathname: '(app)/credential/personalcredentialstack/create',
+			pathname: '(credential)/personalcredentialstack/create',
 		})
 	}
 
@@ -161,7 +171,7 @@ export default function () {
 	return (
 		<Box bg='$transparent' flex={1}>
 			<Reanimated.View style={{ flex: 1, marginHorizontal: 15 }}>
-				<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$3xl'}>
+				<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$2xl'}>
 					Enter a password
 				</Heading>
 				<View style={{ marginVertical: '10%', width: '100%' }}>
@@ -201,7 +211,9 @@ export default function () {
 											<Icon as={showPassword ? EyeIcon : EyeOffIcon} color='$primary500' />
 										</Input.Icon>
 									</Input>
-									<Text>{errors?.password?.message}</Text>
+									<Text fontSize={'$sm'} color='$error700'>
+										{errors?.password?.message}
+									</Text>
 								</>
 							)
 						}}

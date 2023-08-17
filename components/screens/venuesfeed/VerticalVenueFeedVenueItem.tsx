@@ -12,7 +12,7 @@ import {
 import { AuthorizationReactiveVar } from '@reactive'
 import useGetDistance from '@util/hooks/useDistance'
 import { useRouter } from 'expo-router'
-import { useEffect, useState, memo } from 'react'
+import { useEffect, useState, memo, useCallback } from 'react'
 import { Image } from 'react-native'
 import { StyleSheet } from 'react-native'
 import { Blurhash } from 'react-native-blurhash'
@@ -33,6 +33,7 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 	const [hideBlur, setHideBlur] = useState(false)
 	const [distance, setDistance] = useState(0)
 	const [metric, setMetric] = useState('m')
+	const [loadingDistance, setLoadingDistance] = useState(false)
 	const [canJoin, setCanJoin] = useState(false)
 	const [isJoined, setIsJoined] = useState(false)
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
@@ -118,22 +119,29 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 		],
 	})
 
-	const setDist = ({ distanceInM }) => {
-		if (distanceInM) {
-			if (distanceInM > 1000) {
-				const val = parseInt((distanceInM / 1000).toFixed(1))
-				setDistance(val)
-				setMetric('km')
-				setCanJoin(false)
-			} else {
-				setDistance(distanceInM)
-				setMetric('m')
-				if (distanceInM < 25) {
-					setCanJoin(true)
+	const setDist = useCallback(
+		({ distanceInM }) => {
+			setLoadingDistance(true)
+			if (distanceInM) {
+				if (distanceInM > 1000) {
+					const val = parseInt((distanceInM / 1000).toFixed(1))
+					setDistance(val)
+					setMetric('km')
+					setCanJoin(false)
+				} else {
+					setDistance(distanceInM)
+					setMetric('m')
+					if (distanceInM < 25) {
+						setCanJoin(true)
+					}
 				}
 			}
-		}
-	}
+			setTimeout(() => {
+				setLoadingDistance(false)
+			}, 1000)
+		},
+		[distance],
+	)
 
 	useEffect(() => {
 		if (props.item.distanceInM) {
@@ -166,15 +174,6 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 	}
 
 	const _press = () => {
-		// router.push({
-		// 	pathname: `(app)/hometab/venuefeedstack/${props.item.id}`,
-		// 	params: {
-		// 		profileId: String(props.item.id),
-		// 		distanceInM: Number(props.item.distanceInM),
-		// 		latitude: Number(props.item.Venue?.Location?.Geometry?.latitude),
-		// 		longitude: Number(props.item.Venue?.Location?.Geometry?.longitude),
-		// 	},
-		// })
 		router.push({
 			pathname: `(app)/public/venue/${props.item.id}`,
 			params: {
@@ -192,117 +191,115 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 
 	return (
 		<Pressable disabled={JVLoading || RPJVLoading} onPress={() => _press()}>
-			{({ isPressed }) => {
-				return (
-					<VStack
-						space={'md'}
-						// width={width}
-						w={'100%'}
-						p={'$1.5'}
-						flex={1}
+			<VStack
+				space={'md'}
+				// width={width}
+				w={'100%'}
+				p={'$1.5'}
+				flex={1}
+				style={{
+					alignSelf: 'center',
+					overflow: 'hidden',
+				}}
+			>
+				<Box
+					bg='$transparent'
+					style={{
+						minHeight: 260,
+					}}
+				>
+					<Image
+						source={{ uri: props.item.photos[0]?.url }}
+						resizeMode='cover'
+						onLoadEnd={() => setHideBlur(true)}
 						style={{
-							alignSelf: 'center',
-							overflow: 'hidden',
+							...StyleSheet.absoluteFillObject,
+							borderRadius: 15,
 						}}
+					/>
+					{!hideBlur && (
+						<>
+							{props.item.photos[0]?.blurhash && (
+								<Blurhash
+									blurhash={String(props.item.photos[0].blurhash)}
+									style={{
+										flex: 1,
+										borderRadius: 10,
+										overflow: 'hidden',
+									}}
+								/>
+							)}
+						</>
+					)}
+				</Box>
+
+				<VStack space={'md'}>
+					<Heading
+						fontSize={'$lg'}
+						fontWeight={'$bold'}
+						textAlign={'left'}
+						numberOfLines={2}
+						lineHeight={'$xs'}
+						ellipsizeMode='tail'
+						// underline={isPressed}
 					>
-						<Box
-							bg='$transparent'
-							style={{
-								minHeight: 260,
-							}}
+						{getTitleCase(props?.item?.IdentifiableInformation?.fullname)}
+					</Heading>
+					{props.showDistance && (
+						<Heading
+							fontSize={'$md'}
+							fontWeight={'$bold'}
+							lineHeight={'$xs'}
+							textAlign={'left'}
+							numberOfLines={2}
+							ellipsizeMode='tail'
 						>
-							<Image
-								source={{ uri: props.item.photos[0]?.url }}
-								resizeMode='cover'
-								onLoadEnd={() => setHideBlur(true)}
-								style={{
-									...StyleSheet.absoluteFillObject,
-									borderRadius: 15,
-								}}
-							/>
-							{!hideBlur && (
+							{distance} {metric}
+						</Heading>
+					)}
+					{props.showJoin && (
+						<>
+							{canJoin ? (
 								<>
-									{props.item.photos[0]?.blurhash && (
-										<Blurhash
-											blurhash={String(props.item.photos[0].blurhash)}
-											style={{
-												flex: 1,
-												borderRadius: 10,
-												overflow: 'hidden',
-											}}
-										/>
-									)}
+									<Button
+										variant={'solid'}
+										onPress={() => _pressLeave()}
+										bgColor={isJoined ? '$error500' : '$primary500'}
+										rounded={'$md'}
+										width={'$full'}
+										sx={{
+											h: 45,
+										}}
+									>
+										{JVLoading || RPJVLoading ? (
+											<Button.Text>{isJoined ? 'Leaving' : 'Joining'}</Button.Text>
+										) : (
+											<Button.Text>{isJoined ? 'Leave' : 'Join'}</Button.Text>
+										)}
+									</Button>
 								</>
-							)}
-						</Box>
-
-						<VStack space={'md'}>
-							<Heading
-								fontSize={'$lg'}
-								fontWeight={'$bold'}
-								textAlign={'left'}
-								numberOfLines={2}
-								lineHeight={'$xs'}
-								ellipsizeMode='tail'
-								// underline={isPressed}
-							>
-								{getTitleCase(props?.item?.IdentifiableInformation?.fullname)}
-							</Heading>
-							{props.showDistance && (
-								<Heading
-									fontSize={'$md'}
-									fontWeight={'$bold'}
-									lineHeight={'$xs'}
-									textAlign={'left'}
-									numberOfLines={2}
-									ellipsizeMode='tail'
+							) : metric === 'm' && distance < 100 ? (
+								<Button
+									variant={'link'}
+									isDisabled={loadingDistance}
+									onPress={async () => {
+										setLoadingDistance(true)
+										const { distanceInM } = await refreshLocation({
+											vlat: props.item.Venue?.Location?.Geometry?.latitude,
+											vlng: props.item.Venue?.Location?.Geometry?.longitude,
+										})
+										setLoadingDistance(false)
+										setDist({ distanceInM })
+									}}
+									rounded={'$md'}
 								>
-									{distance} {metric}
-								</Heading>
-							)}
-							{props.showJoin && (
-								<>
-									{canJoin ? (
-										<>
-											<Button
-												variant={'solid'}
-												onPress={() => _pressLeave()}
-												bgColor={isJoined ? '$error500' : '$primary500'}
-												rounded={'$md'}
-												width={'$full'}
-												sx={{
-													h: 45,
-												}}
-											>
-												{JVLoading || RPJVLoading ? (
-													<Button.Text>{isJoined ? 'Leaving' : 'Joining'}</Button.Text>
-												) : (
-													<Button.Text>{isJoined ? 'Leave' : 'Join'}</Button.Text>
-												)}
-											</Button>
-										</>
-									) : metric === 'm' && distance < 100 ? (
-										<Button
-											variant={'link'}
-											onPress={async () => {
-												const { distanceInM } = await refreshLocation({
-													vlat: props.item.Venue?.Location?.Geometry?.latitude,
-													vlng: props.item.Venue?.Location?.Geometry?.longitude,
-												})
-
-												setDist({ distanceInM })
-											}}
-											rounded={'$md'}
-										>
-											<Button.Text>Refresh distance</Button.Text>
-										</Button>
-									) : null}
-								</>
-							)}
-						</VStack>
-					</VStack>
-				)
-			}}
+									<Button.Text>Refresh distance</Button.Text>
+								</Button>
+							) : null}
+						</>
+					)}
+				</VStack>
+			</VStack>
 		</Pressable>
 	)
 }

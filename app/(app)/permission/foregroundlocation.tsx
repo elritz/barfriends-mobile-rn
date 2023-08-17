@@ -188,7 +188,7 @@ export default () => {
 				</Box>
 			</ScrollView>
 			<VStack
-				space={'$2'}
+				space={'md'}
 				w={'$full'}
 				alignItems={'center'}
 				sx={{
@@ -226,7 +226,7 @@ export default () => {
 						{started && (
 							<Box
 								bg={'$transparent'}
-							sx={{
+								sx={{
 									h: 24,
 								}}
 							>

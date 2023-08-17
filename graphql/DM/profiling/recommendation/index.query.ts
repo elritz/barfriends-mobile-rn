@@ -52,6 +52,7 @@ export const VENUES_NEARBY_QUERY = gql`
 						}
 						Country {
 							id
+							flag
 							isoCode
 							name
 						}
@@ -92,6 +93,7 @@ export const VENUES_NEARBY_QUERY = gql`
 						}
 						Country {
 							id
+							flag
 							isoCode
 							name
 						}

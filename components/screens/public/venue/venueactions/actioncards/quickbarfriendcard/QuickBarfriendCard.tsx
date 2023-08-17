@@ -1,10 +1,10 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Heading, Pressable, Text, VStack } from '@components/core'
-import { useGetSecureFriendQrCodeDataQuery } from '@graphql/generated'
+import { Box, Button, Heading, Icon, Pressable, SlashIcon, VStack } from '@components/core'
+import { useGetSecureFriendQrCodeDataLazyQuery } from '@graphql/generated'
 import { AuthorizationReactiveVar, PermissionCameraReactiveVar } from '@reactive'
 import { useDisclose } from '@util/hooks/useDisclose'
 import { useRouter } from 'expo-router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { View } from 'react-native'
 import QRCode from 'react-native-qrcode-svg'
 
@@ -12,8 +12,8 @@ const LOGO_COASTER = require('../../../../../../../assets/images/company/company
 
 type Props = {
 	qrcodesize: number
-	logosize: number
-	showIcon?: boolean | true
+	logosize?: number
+	showIcon?: true
 	color?: string
 }
 
@@ -23,19 +23,41 @@ export default function QuickBarfriendCard({ qrcodesize, logosize, showIcon, col
 	const rPermissionCamera = useReactiveVar(PermissionCameraReactiveVar)
 	const { isOpen, onOpen, onClose } = useDisclose()
 	const [dataQR, setDataQR] = useState('')
+	const [retryCount, setRetryCount] = useState(0)
 
-	const { data, loading, error } = useGetSecureFriendQrCodeDataQuery({
-		onCompleted: data => {
-			const dataQRString = JSON.stringify({
-				dataHash: data.getSecureFriendQRCodeData,
-				qrCodeProfileId: rAuthorizationVar?.Profile?.id,
-			})
-			setDataQR(dataQRString)
-		},
-	})
+	const [getSecureFriendCodeQrData, { data, loading, error }] =
+		useGetSecureFriendQrCodeDataLazyQuery({
+			onCompleted: data => {
+				const dataQRString = JSON.stringify({
+					dataHash: data.getSecureFriendQRCodeData,
+					qrCodeProfileId: rAuthorizationVar?.Profile?.id,
+				})
+				setDataQR(dataQRString)
+			},
+			onError: err => {
+				setRetryCount(prevCount => prevCount + 1)
+			},
+		})
 
-	if (loading || !data || !dataQR) return null
+	useEffect(() => {
+		getSecureFriendCodeQrData()
+	}, [])
 
+	if (loading) return null
+
+	if (error || !dataQR) {
+		return (
+			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+				<Icon as={SlashIcon} w='$7' h='$7' color={'$error500'} />
+				<Heading fontWeight={'$black'} textAlign='center' fontSize={'$lg'} lineHeight={'$md'}>
+					QR code not generated
+				</Heading>
+				<Button variant='link' onPress={() => getSecureFriendCodeQrData()} disabled={retryCount > 5}>
+					<Button.Text>Refresh</Button.Text>
+				</Button>
+			</View>
+		)
+	}
 	return (
 		<View style={{ flex: 1 }}>
 			<Heading fontWeight={'$black'} fontSize={'$lg'}>
@@ -65,7 +87,7 @@ export default function QuickBarfriendCard({ qrcodesize, logosize, showIcon, col
 										value={dataQR}
 										color={color}
 										backgroundColor={'transparent'}
-										logo={showIcon && LOGO_COASTER}
+										logo={showIcon ? LOGO_COASTER : null}
 										logoSize={logosize}
 										logoBackgroundColor={'transparent'}
 									/>
@@ -75,19 +97,19 @@ export default function QuickBarfriendCard({ qrcodesize, logosize, showIcon, col
 					) : (
 						<Box bg={'transparent'} flexDirection={'column'} justifyContent={'space-around'}>
 							<Box bg={'transparent'} alignItems={'center'} justifyContent={'center'}>
-								<View>
+								<>
 									{dataQR && (
 										<QRCode
 											size={qrcodesize}
 											value={dataQR}
 											color={'#ff7000'}
 											backgroundColor={'transparent'}
-											logo={showIcon && LOGO_COASTER}
+											logo={showIcon ? LOGO_COASTER : null}
 											logoSize={logosize}
 											logoBackgroundColor={'transparent'}
 										/>
 									)}
-								</View>
+								</>
 							</Box>
 						</Box>
 					)}

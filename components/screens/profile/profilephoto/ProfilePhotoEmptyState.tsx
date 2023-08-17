@@ -24,11 +24,10 @@ export default function ProfilePhotoEmptyState() {
 	return (
 		<Pressable
 			onPress={pickImage}
-			flex={1}
-			p={'$4'}
+			p={'$2'}
 			sx={{
 				w: 120,
-				h: 120,
+				h: 130,
 				_light: {
 					bg: '$light300',
 				},
@@ -63,8 +62,8 @@ export default function ProfilePhotoEmptyState() {
 						_dark: {
 							borderColor: '$dark700',
 						},
-						bottom: -25,
-						right: -25,
+						bottom: -15,
+						right: -15,
 					}}
 					borderWidth={'$2'}
 					rounded={'$full'}
@@ -79,7 +78,7 @@ export default function ProfilePhotoEmptyState() {
 								? rTheme.theme?.gluestack.tokens.colors.light900
 								: rTheme.theme?.gluestack.tokens.colors.dark900
 						}
-						size={32}
+						size={26}
 						style={{
 							marginLeft: 2,
 							borderRadius: 50,

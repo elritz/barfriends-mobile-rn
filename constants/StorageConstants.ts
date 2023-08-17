@@ -10,4 +10,5 @@ export const LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION = '@preference_foregro
 
 // @data
 export const LOCAL_STORAGE_SEARCH_AREA = '@local_search_area'
-export const LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME = '@color_theme'
+export const LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME = '@color_scheme'
+export const LOCAL_STORAGE_PREFERENCE_THEME = '@theme'

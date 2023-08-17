@@ -8,36 +8,28 @@ import {
 import { AuthorizationReactiveVar } from '@reactive'
 import { AuthorizationDecoded } from '@util/hooks/auth/useCheckLocalStorageForAuthorizationToken'
 import { secureStorageItemDelete, secureStorageItemRead } from '@util/hooks/local/useSecureStorage'
-import { router, useRouter, useSegments } from 'expo-router'
-import { useEffect } from 'react'
+import { router } from 'expo-router'
+import { useCallback, useEffect, useState } from 'react'
 
 export default function Auth({ children }) {
-	const segments = useSegments()
-	const router = useRouter()
-
-	console.log('🚀 ~ file: Auth.tsx:18 ~ Auth ~ segments:', segments)
-
-	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
-
 	const [refreshDeviceManagerMutation, { data: RDMData, loading: RDMLoading, error: RDMError }] =
 		useRefreshDeviceManagerMutation({
 			fetchPolicy: 'network-only',
 			onCompleted: data => {
-				// console.log('🚀 ~ file: Auth.tsx:20 ~ Auth ~ data:', JSON.stringify(data, null, 2))
-
 				if (data.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile') {
 					const deviceProfile = data.refreshDeviceManager as AuthorizationDeviceProfile
 					AuthorizationReactiveVar(deviceProfile)
-					console.log('AuthorizationReactiveVar :>> ', AuthorizationReactiveVar())
-					// router.push('(app)/hometab/venuefeed')
+					setTimeout(() => {
+						router.push('(app)/hometab/venuefeed')
+					}, 1)
 				}
 				if (data.refreshDeviceManager?.__typename === 'Error') {
+					// setTimeout(() => {
+					// 	router.push('(app)/hometab/venuefeed')
+					// }, 1)
 				}
 			},
-			onError: e => {
-				console.log('🛑 ===============================e :>> ', e)
-				// router.push('(app)/hometab/venuefeed')
-			},
+			onError: e => {},
 		})
 
 	const [createGuestProfileMutation, { data, loading: CGLoading, error: CGPMError }] =
@@ -47,17 +39,17 @@ export default function Auth({ children }) {
 					const deviceProfile = data.createGuestProfile as AuthorizationDeviceProfile
 					if (deviceProfile) {
 						AuthorizationReactiveVar(deviceProfile)
-						// setTimeout(() => {
-						// 	router.replace({
-						// 		pathname: '(app)/hometab/venuefeed',
-						// 	})
-						// }, 1)
+						setTimeout(() => {
+							router.replace({
+								pathname: '(app)/hometab/venuefeed',
+							})
+						}, 1)
 					}
 				}
 			},
 		})
 
-	const applicationAuthorization = async () => {
+	const applicationAuthorization = useCallback(async () => {
 		// await secureStorageItemDelete({
 		// 	key: LOCAL_STORAGE_SEARCH_AREA,
 		// })
@@ -76,24 +68,11 @@ export default function Auth({ children }) {
 		} else {
 			refreshDeviceManagerMutation()
 		}
-	}
+	}, [])
 
 	useEffect(() => {
 		applicationAuthorization()
 	}, [])
-
-	useEffect(() => {
-		const inAuthGroup = segments[0] === '(auth)'
-
-		if (
-			// If the user is not signed in and the initial segment is not anything in the auth group.
-			!rAuthorizationVar &&
-			!inAuthGroup
-		) {
-			// Redirect to the sign-in page.
-			// router.replace('(auth)/credential/logincredentialstack/authenticator')
-		}
-	}, [rAuthorizationVar, segments])
 
 	if (RDMLoading || CGLoading) {
 		return null

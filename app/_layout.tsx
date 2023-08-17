@@ -46,7 +46,7 @@ import 'expo-dev-client'
 import { getForegroundPermissionsAsync, getBackgroundPermissionsAsync } from 'expo-location'
 import { getPermissionsAsync as getMediaPermissionAsync } from 'expo-media-library'
 import { getPermissionsAsync as getNotificiationPermissionAsync } from 'expo-notifications'
-import { Slot, SplashScreen, Stack } from 'expo-router'
+import { Slot, SplashScreen, router, useRouter, useSegments } from 'expo-router'
 import * as ScreenOrientation from 'expo-screen-orientation'
 import { useEffect } from 'react'
 import { Appearance } from 'react-native'
@@ -67,7 +67,6 @@ export const unstable_settings = {
 SplashScreen.preventAutoHideAsync()
 
 export default function Root() {
-	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 	async function changeScreenOrientation() {
 		await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP)
 	}
@@ -255,11 +254,7 @@ export default function Root() {
 		<ApolloProvider client={profilingclient}>
 			<SafeAreaProvider>
 				<KeyboardProvider statusBarTranslucent>
-					<Theme>
-						<Auth>
-							<Slot initialRouteName='(app)/hometab' />
-						</Auth>
-					</Theme>
+					<Slot initialRouteName='(app)/hometab/venuefeed' />
 				</KeyboardProvider>
 			</SafeAreaProvider>
 		</ApolloProvider>

@@ -1,6 +1,6 @@
 import ProfilePhoto from '../profilephoto'
 import { useReactiveVar } from '@apollo/client'
-import { Box, Divider, HStack, Heading, VStack } from '@components/core'
+import { Box, Divider, HStack, Heading, Text, VStack } from '@components/core'
 import CardPleaseSignup from '@components/molecules/asks/signuplogin'
 import { CondensedHorizontalFriendNotifciation } from '@components/molecules/notifications/friendnotification/CondensedHorizontalFriendNotifciation'
 import { FriendsList } from '@components/organisms/list/friendslist'
@@ -9,6 +9,7 @@ import QuickBarfriendCard from '@components/screens/public/venue/venueactions/ac
 import AddRelationship from '@components/screens/tonight/activity/ask/AddRelationship/AddRelationship'
 import { GetNotificationsQuery, ProfileType } from '@graphql/generated'
 import { AuthorizationReactiveVar } from '@reactive'
+import { DateTime } from 'luxon'
 import { View } from 'react-native'
 
 type Props = {
@@ -31,22 +32,34 @@ const PersonalScreen = ({ notifications }: Props) => {
 
 	return (
 		<Box bg={'transparent'}>
-			<View style={{ alignItems: 'center', marginVertical: 20 }}>
+			<HStack style={{ alignItems: 'flex-start', marginVertical: 20 }} mx={'$3'} space={'md'}>
 				<ProfilePhoto photo={rAuthorizationVar?.Profile?.profilePhoto} />
-				<View style={{ marginVertical: 20 }}>
-					<Heading
-						fontSize={'$3xl'}
-						numberOfLines={2}
-						style={{ textTransform: 'capitalize', textAlign: 'center' }}
-					>
-						{rAuthorizationVar?.Profile?.IdentifiableInformation?.fullname}
-					</Heading>
-					<Heading fontSize={'$md'} style={{ textTransform: 'uppercase', textAlign: 'center' }}>
-						@{rAuthorizationVar?.Profile?.IdentifiableInformation?.username}
-					</Heading>
-				</View>
-				{/* <Divider style={{ marginVertical: 10 }} /> */}
-			</View>
+				<VStack space='sm'>
+					<View>
+						<Heading fontSize={'$sm'} numberOfLines={1} lineHeight={'$sm'}>
+							NAME
+						</Heading>
+						<Text
+							fontSize={'$xl'}
+							numberOfLines={1}
+							lineHeight={'$md'}
+							style={{ textTransform: 'capitalize' }}
+						>
+							{rAuthorizationVar?.Profile?.IdentifiableInformation?.fullname}
+						</Text>
+					</View>
+					<View>
+						<Heading fontSize={'$sm'} numberOfLines={1} lineHeight={'$sm'}>
+							DATE OF BIRTH
+						</Heading>
+						<Text fontSize={'$lg'}>
+							{DateTime.fromISO(rAuthorizationVar?.Profile?.IdentifiableInformation?.birthday).toFormat(
+								'yyyy LLL dd',
+							)}
+						</Text>
+					</View>
+				</VStack>
+			</HStack>
 			<Box mx={'$2'}>
 				<CondensedVerticalFriendsNotficationsList
 					keyExtractor={item => String(item.id)}

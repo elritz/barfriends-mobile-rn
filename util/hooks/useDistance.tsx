@@ -1,13 +1,12 @@
-import * as Location from 'expo-location';
-import { getDistance } from 'geolib';
-import { GeolibInputCoordinates, GeolibLatitudeInputValue, GeolibLongitudeInputValue } from 'geolib/es/types';
-import { useCallback, useState } from 'react';
-
+import * as Location from 'expo-location'
+import { getDistance } from 'geolib'
+import { GeolibLatitudeInputValue, GeolibLongitudeInputValue } from 'geolib/es/types'
+import { useCallback, useState } from 'react'
 
 type DistMetric = {
-	distanceInM: number | undefined
-	metric: string | undefined
-	distance: number | undefined
+	distanceInM: number
+	metric: string
+	distance: number
 	isLoading: boolean
 }
 type RefreshLocationInputType = {
@@ -16,18 +15,20 @@ type RefreshLocationInputType = {
 }
 
 type DistanceHookType = {
-	metric: string | undefined
-	distanceInM: number | undefined
-	distance: number | undefined
+	metric: string
+	distanceInM: number
+	distance: number
+	canJoin: boolean
 	isLoading: boolean
 	refreshLocation: ({ vlat, vlng }: { vlat: any; vlng: any }) => Promise<DistMetric>
 }
 
 const useGetDistance = (): DistanceHookType => {
+	const [canJoin, setCanJoin] = useState<boolean>(false)
 	const [isLoading, setLoading] = useState<boolean>(true)
-	const [distance, setDistance] = useState<number | undefined>()
-	const [distanceInM, setDistanceInM] = useState<number | undefined>()
-	const [metric, setMetric] = useState<'km' | 'm' | undefined>('km')
+	const [distance, setDistance] = useState<number>(0)
+	const [distanceInM, setDistanceInM] = useState<number>(0)
+	const [metric, setMetric] = useState<'km' | 'm'>('km')
 
 	const refreshLocation = useCallback(
 		async ({ vlat, vlng }: RefreshLocationInputType): Promise<DistMetric> => {
@@ -54,9 +55,15 @@ const useGetDistance = (): DistanceHookType => {
 						const val = parseInt((dist / 1000).toFixed(1))
 						setDistance(val)
 						setMetric('km')
+						setCanJoin(false)
 					} else {
 						setDistance(dist)
 						setMetric('m')
+						if (dist < 25) {
+							setCanJoin(true)
+						} else {
+							setCanJoin(false)
+						}
 					}
 				}
 			} else {
@@ -75,9 +82,15 @@ const useGetDistance = (): DistanceHookType => {
 					const val = parseInt((dist / 1000).toFixed(1))
 					setDistance(val)
 					setMetric('km')
+					setCanJoin(false)
 				} else {
 					setDistance(dist)
 					setMetric('m')
+					if (dist < 25) {
+						setCanJoin(true)
+					} else {
+						setCanJoin(false)
+					}
 				}
 			}
 			setTimeout(() => setLoading(false), 1000)
@@ -92,6 +105,7 @@ const useGetDistance = (): DistanceHookType => {
 	)
 
 	return {
+		canJoin,
 		distanceInM,
 		metric,
 		distance,

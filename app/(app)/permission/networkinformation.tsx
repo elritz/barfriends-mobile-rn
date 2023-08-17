@@ -166,7 +166,8 @@ export default () => {
 
 					upsertDevicePushTokenMutation({
 						variables: {
-							androidToken: devicetoken.data,
+							type: 'ANDROID',
+							token: devicetoken.data,
 							expoToken: expoToken.data,
 						},
 					})

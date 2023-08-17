@@ -3,7 +3,6 @@ import { useReactiveVar } from '@apollo/client'
 import { Box, Button, Divider, Heading, Text, VStack } from '@components/core'
 import PermissionDetailItem from '@components/screens/permissions/PermissionDetailItem'
 import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
-import { useIsFocused } from '@react-navigation/native'
 import { PermissionMicrophoneReactiveVar, ThemeReactiveVar } from '@reactive'
 import { capitalizeFirstLetter } from '@util/@fn/capitalizeFirstLetter'
 import useTimer2 from '@util/hooks/useTimer2'
@@ -21,7 +20,6 @@ export default () => {
 	const router = useRouter()
 	const insets = useSafeAreaInsets()
 	const appStateRef = useRef(AppState.currentState)
-	const isFocused = useIsFocused()
 	const rMicrophonePermission = useReactiveVar(PermissionMicrophoneReactiveVar)
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const { finished, start, seconds, started } = useTimer2('0:2')
@@ -218,7 +216,7 @@ export default () => {
 				</Button>
 				{!started ? (
 					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
-						<Text fontWeight={'$medium'}>Close</Text>
+						<Button.Text fontWeight={'$medium'}>Close</Button.Text>
 					</Button>
 				) : (
 					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>

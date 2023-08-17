@@ -6,10 +6,10 @@ import { useToggleTheme } from '@util/hooks/theme/useToggleTheme'
 
 export default () => {
 	const rThemeVar = useReactiveVar(ThemeReactiveVar)
-	const [toggleThemes] = useToggleTheme()
+	const [toggleColorScheme] = useToggleTheme()
 
 	const setTheme = async ({ colorScheme }: { colorScheme: 'light' | 'dark' | 'system' }) => {
-		await toggleThemes({ colorScheme })
+		await toggleColorScheme({ colorScheme })
 	}
 
 	return (

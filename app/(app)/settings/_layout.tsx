@@ -25,7 +25,6 @@ export default function _layout() {
 			<Stack.Screen name={'securitysettingsscreen'} />
 			<Stack.Screen name={'notificationssettingsscreen'} />
 			<Stack.Screen name={'appearancesettingsscreen'} />
-			<Stack.Screen name={'privacytermsservicetabstack'} />
 		</Stack>
 	)
 }

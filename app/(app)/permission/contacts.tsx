@@ -169,7 +169,7 @@ export default () => {
 	})
 
 	return (
-		<Box bg={'$transparent'} style={{ flex: 1 }}>
+		<Box bg={'$transparent'} style={{ flex: 1 }} mb={'$5'}>
 			<Box bg={'$transparent'} alignItems={'center'} justifyContent={'flex-start'} my={'$5'}>
 				<Box
 					rounded={'$md'}
@@ -250,7 +250,7 @@ export default () => {
 						{started && (
 							<Box
 								bg={'$transparent'}
-							sx={{
+								sx={{
 									h: 24,
 								}}
 							>

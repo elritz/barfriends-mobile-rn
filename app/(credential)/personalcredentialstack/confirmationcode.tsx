@@ -97,7 +97,7 @@ export default () => {
 		clearErrors()
 		if (checkFinalCode(code)) {
 			router.replace({
-				pathname: '(app)/credential/personalcredentialstack/birthday',
+				pathname: '(credential)/personalcredentialstack/birthday',
 			})
 		} else {
 			setError('code', { type: 'validate', message: 'Wrong code' })
@@ -133,13 +133,7 @@ export default () => {
 				<Box bg={'$transparent'} justifyContent={'space-around'}>
 					{complete ? (
 						<VStack space={'sm'} justifyContent={'space-around'}>
-							<Button
-								variant={'link'}
-								size={'md'}
-								justifyContent={'flex-start'}
-								// onPress={() => navigation.goBack()}
-							>
-								{/* <Text fontSize={'lg'}>Resend code</Text> */}
+							<Button variant={'link'} size={'md'} justifyContent={'flex-start'}>
 								<Button.Text>Resend code</Button.Text>
 							</Button>
 							<Button
@@ -148,7 +142,7 @@ export default () => {
 								justifyContent={'flex-start'}
 								onPress={() => router.back()}
 							>
-								<Button.Text>Update phone number</Button.Text>
+								<Button.Text>Update information</Button.Text>
 							</Button>
 						</VStack>
 					) : (
@@ -181,7 +175,7 @@ export default () => {
 	return (
 		<Box bg='$transparent' flex={1}>
 			<Reanimated.View style={{ flex: 1, marginHorizontal: 15 }}>
-				<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$3xl'} sx={{ minHeight: 70 }}>
+				<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$2xl'} sx={{ minHeight: 70 }}>
 					{`Enter the 4-diget code sent to you at ${
 						credentialPersonalProfileVar.email
 							? credentialPersonalProfileVar.email
@@ -246,7 +240,9 @@ export default () => {
 							},
 						}}
 					/>
-					<Text style={{ color: 'red' }}>{errors?.code?.message}</Text>
+					<Text fontSize={'$sm'} color='$error700'>
+						{errors?.code?.message}
+					</Text>
 				</View>
 			</Reanimated.View>
 			{Platform.OS === 'ios' ? (
