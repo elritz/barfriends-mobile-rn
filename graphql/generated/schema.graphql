@@ -6743,6 +6743,14 @@ input JsonWithAggregatesFilter {
   string_starts_with: String
 }
 
+"""
+Returns the Profile latest Privacy and Terms of Service documents to the client.
+"""
+type LatestPrivacyAndTermsDocumentResponse {
+  privacy: Document!
+  termsofservice: Document!
+}
+
 type LegalAgreement {
   aggreed: Boolean!
   createdAt: DateTime!
@@ -11588,13 +11596,7 @@ input PopularSearchServiceWhereUniqueInput {
   id: String
 }
 
-"""
-Returns the Profile latest Privacy and Terms of Service documents to the client.
-"""
-type PrivacyAndTermsDocumentResponse {
-  privacy: Document!
-  termsofservice: Document!
-}
+union PrivacyTermsUpdateResponseUnion = Error | LatestPrivacyAndTermsDocumentResponse
 
 type Profile {
   bfsprofileid: String!
@@ -13593,6 +13595,7 @@ input PushTokenWhereUniqueInput {
 
 type Query {
   authorizedProfiles(where: AuthorizedProfilesWhereInput!): AuthorizedProfilesResponseUnion
+  checkPrivacyTermsDocumentUpdate: PrivacyTermsUpdateResponseUnion!
   checkUsername(username: String!): Boolean!
   currentVenue(currentLocationCoords: CoordsInput, cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): ProfileVenue
   emojimood(where: EmojimoodWhereUniqueInput!): Emojimood
@@ -13615,7 +13618,7 @@ type Query {
   H3IndexGrid(cell: String!, ringSize: Int! = 1): [String!]!
   H3IndexLatLng(cell: String!): [Float!]!
   loginPassword(password: String!, username: String!): Boolean!
-  privacyTermsDocuments: PrivacyAndTermsDocumentResponse!
+  privacyTermsDocuments: LatestPrivacyAndTermsDocumentResponse!
   profile(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): Profile
   profiles(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): [Profile!]!
   sendAuthenticatorDeviceOwnerCode: Boolean!

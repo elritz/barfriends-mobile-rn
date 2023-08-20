@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Divider, HStack, Heading, Text, VStack } from '@components/core'
+import { Box, Button, Divider, Heading, Text, VStack } from '@components/core'
 import NotificationNextAskModal from '@components/molecules/modals/asks/notificationnextaskmodal'
 import { TomorrowPreferencePermissionInitialState } from '@constants/Preferences'
 import { LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS } from '@constants/StorageConstants'

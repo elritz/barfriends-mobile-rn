@@ -151,12 +151,12 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 
 	useEffect(() => {
 		if (rAuthorizationVar?.Profile?.Personal) {
-			const joinedToVenue = rAuthorizationVar.Profile?.Personal?.LiveOutPersonal?.Out.map(item => {
-				return item.venueProfileId
-			})
-
-			if (joinedToVenue) {
-				setIsJoined(joinedToVenue.includes(String(props.item.id)))
+			if (
+				rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out.some(
+					item => item.venueProfileId === props.item.id,
+				)
+			) {
+				setIsJoined(true)
 			}
 		}
 	}, [rAuthorizationVar, isJoined])
@@ -260,24 +260,20 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 					{props.showJoin && (
 						<>
 							{canJoin ? (
-								<>
-									<Button
-										variant={'solid'}
-										onPress={() => _pressLeave()}
-										bgColor={isJoined ? '$error500' : '$primary500'}
-										rounded={'$md'}
-										width={'$full'}
-										sx={{
-											h: 45,
-										}}
-									>
-										{JVLoading || RPJVLoading ? (
-											<Button.Text>{isJoined ? 'Leaving' : 'Joining'}</Button.Text>
-										) : (
-											<Button.Text>{isJoined ? 'Leave' : 'Join'}</Button.Text>
-										)}
-									</Button>
-								</>
+								<Button
+									variant={isJoined ? 'outline' : 'solid'}
+									onPress={() => _pressLeave()}
+									bgColor={isJoined ? '$transparent' : '$primary500'}
+									rounded={'$md'}
+									size='sm'
+									w={'auto'}
+								>
+									{JVLoading || RPJVLoading ? (
+										<Button.Text>{isJoined ? 'Leaving' : 'Joining'}</Button.Text>
+									) : (
+										<Button.Text>{isJoined ? 'Leave' : 'Join'}</Button.Text>
+									)}
+								</Button>
 							) : metric === 'm' && distance < 100 ? (
 								<Button
 									variant={'link'}

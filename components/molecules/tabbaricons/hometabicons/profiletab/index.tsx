@@ -3,13 +3,12 @@ import CompanyCoasterLogoDynamic from '@assets/images/company/CompanyCoasterLogo
 import CompanyCoasterLogoDynamicInverse from '@assets/images/company/CompanyCoasterLogoDynamicInverse'
 import CompanyCoasterLogoDynamicOutline from '@assets/images/company/CompanyCoasterLogoDynamicOutline'
 import TabBarIcon, { TabProps } from '@components/atoms/icons/tabbaricon/TabBarIcon'
-import { Box, Pressable } from '@components/core'
-import { useGetNotificationsLazyQuery, useGetNotificationsQuery } from '@graphql/generated'
+import { Box } from '@components/core'
+import { useGetNotificationsQuery } from '@graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import * as Haptics from 'expo-haptics'
 import { useRouter } from 'expo-router'
-import { MotiPressable } from 'moti/interactions'
-import { useEffect, useMemo, useState } from 'react'
+import { useState } from 'react'
 import { Image } from 'react-native'
 
 const HEIGHT = 22

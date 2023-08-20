@@ -32,6 +32,7 @@ const useGetDistance = (): DistanceHookType => {
 
 	const refreshLocation = useCallback(
 		async ({ vlat, vlng }: RefreshLocationInputType): Promise<DistMetric> => {
+			setLoading(true)
 			const getLastKnowPosition = await Location.getLastKnownPositionAsync({
 				requiredAccuracy: 50,
 				maxAge: 1200000,

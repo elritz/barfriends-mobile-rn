@@ -1,36 +1,26 @@
 import { useReactiveVar } from '@apollo/client'
+import { Box } from '@components/core'
 import TermsLoadingState from '@components/screens/settings/TermsLoadingState'
 import { usePrivacyTermsDocumentsQuery } from '@graphql/generated'
 import { ThemeReactiveVar } from '@reactive'
-import { SafeAreaView, ScrollView, useWindowDimensions } from 'react-native'
+import { ScrollView, useWindowDimensions } from 'react-native'
 import RenderHTML from 'react-native-render-html'
 
-export default () => {
+export default function Service() {
 	const { width } = useWindowDimensions()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 
 	const { data, loading, error } = usePrivacyTermsDocumentsQuery()
 
-	if (loading && data) {
+	if ((loading && !data) || !data?.privacyTermsDocuments) {
 		return <TermsLoadingState />
 	}
-
-	const source = {
-		html: data?.privacyTermsDocuments.termsofservice.content,
-	}
-
 	return (
-		<ScrollView showsVerticalScrollIndicator={false}>
-			<SafeAreaView
-				style={{
-					flex: 1,
-					justifyContent: 'center',
-					margin: 10,
-				}}
-			>
+		<Box bg={'$transparent'} style={{ flex: 1 }} p={'$3'}>
+			<ScrollView>
 				<RenderHTML
 					contentWidth={width}
-					source={source}
+					source={{ html: data.privacyTermsDocuments.termsofservice.content }}
 					enableCSSInlineProcessing={true}
 					allowedStyles={['color', 'backgroundColor']}
 					classesStyles={{
@@ -53,7 +43,7 @@ export default () => {
 						},
 					}}
 				/>
-			</SafeAreaView>
-		</ScrollView>
+			</ScrollView>
+		</Box>
 	)
 }

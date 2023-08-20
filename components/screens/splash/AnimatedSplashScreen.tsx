@@ -4,7 +4,7 @@ import VectorFonts from '@helpers/VectorFonts'
 import { ThemeReactiveVar } from '@reactive'
 import { cacheFonts, cacheImages } from '@util/hooks/local/useCacheImages'
 import { useAssets } from 'expo-asset'
-import { SplashScreen } from 'expo-router'
+import { SplashScreen, router } from 'expo-router'
 import { useCallback, useEffect, useState } from 'react'
 import { View, StyleSheet, Image } from 'react-native'
 

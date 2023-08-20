@@ -6,7 +6,9 @@ import {
 import { ITabColor } from '@ctypes/app'
 import { MaterialIcons } from '@expo/vector-icons'
 import { ThemeReactiveVar } from '@reactive'
+import { BlurView } from 'expo-blur'
 import { Tabs } from 'expo-router'
+import { StyleSheet } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default function _layout() {
@@ -16,23 +18,25 @@ export default function _layout() {
 	return (
 		<Tabs
 			screenOptions={{
-				headerShown: false,
-				headerStyle: {},
-
+				tabBarBackground: () => (
+					<BlurView
+						tint={rTheme.deviceColorScheme === 'light' ? 'light' : 'dark'}
+						intensity={70}
+						style={[StyleSheet.absoluteFill]}
+					/>
+				),
 				tabBarStyle: {
-					backgroundColor:
-						rTheme.colorScheme === 'light'
-							? rTheme.theme?.gluestack.tokens.colors.light50
-							: rTheme.theme?.gluestack.tokens.colors.dark50,
 					height:
 						insets.bottom !== 0
 							? HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS
 							: HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
 					position: 'absolute',
 					alignItems: 'center',
-					paddingVertical: 10,
+					elevation: 0, // for Android
 					borderTopWidth: 0,
 				},
+				headerShown: false,
+				// tabBarShowLabel: false,
 			}}
 		>
 			<Tabs.Screen

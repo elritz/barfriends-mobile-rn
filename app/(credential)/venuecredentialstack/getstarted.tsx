@@ -4,7 +4,7 @@ import { Box, Heading, Pressable, Text, VStack } from '@components/core'
 import { Feather } from '@expo/vector-icons'
 import { usePrivacyTermsDocumentsQuery } from '@graphql/generated'
 import { CredentialPersonalProfileReactiveVar } from '@reactive'
-import { Link, useRouter } from 'expo-router'
+import { useRouter } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default () => {
@@ -23,11 +23,13 @@ export default () => {
 			pathname: '(credential)/personalcredentialstack/phone',
 		})
 	}
-
-	const _pressTermsServices = () => {
-		router.push({
-			pathname: '(information)/latestprivacyservicetoptab',
-		})
+	const _pressTermsServices = tab => {
+		switch (tab) {
+			case 'terms':
+				router.push({
+					pathname: '(information)/latestprivacyservicetoptab',
+				})
+		}
 	}
 
 	return (
@@ -43,10 +45,9 @@ export default () => {
 						fontSize={'$4xl'}
 						lineHeight={'$3xl'}
 					>
-						Let's Fucking Gooooooo out tonight!
+						Let's get people going out tonight!
 					</Heading>
-					{/* <Pressable disabled={PTSLoading} onPress={() => _pressTermsServices()}> */}
-						<Link href={'(information)/latestprivacyservicetoptab'}>
+					<Pressable disabled={PTSLoading} onPress={() => _pressTermsServices('terms')}>
 						<Text fontSize={'$lg'}>
 							By continuing, you agree to the
 							<Text fontSize={'$lg'} fontWeight={'$bold'} color={'$primary500'}>
@@ -59,8 +60,7 @@ export default () => {
 								Privacy Policies.
 							</Text>
 						</Text>
-						</Link>
-					{/* </Pressable> */}
+					</Pressable>
 				</Box>
 				<>
 					<Pressable disabled={PTSLoading} onPress={_press}>

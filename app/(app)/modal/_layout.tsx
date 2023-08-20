@@ -71,16 +71,15 @@ export default () => {
 						headerShown: true,
 						headerTitle: () => <LogoTransparent height={30} width={192} />,
 						headerLeft: () => <ChevronBackArrow />,
-						animation: 'fade',
 					}}
 				/>
+
 				<Stack.Screen
 					name={'Emojimood'}
 					options={{
 						headerShown: true,
 						title: '',
 						headerTransparent: true,
-						presentation: 'fullScreenModal',
 						header: () => {
 							return (
 								<BlurView tint={rTheme.deviceColorScheme === 'light' ? 'light' : 'dark'} intensity={70}>

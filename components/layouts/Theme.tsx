@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { ThemeProvider as ReactNavigationThemeProvider } from '@react-navigation/native'
 import { ThemeReactiveVar } from '@reactive'
 import { useToggleTheme } from '@util/hooks/theme/useToggleTheme'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { AppState, Appearance, StatusBar } from 'react-native'
 
 export default function Theme({ children }) {
@@ -29,11 +29,6 @@ export default function Theme({ children }) {
 	useEffect(() => {
 		setTheme()
 	}, [])
-	// useEffect(() => {
-	// 	if (!rThemeVar.theme) {
-	// 		setTheme()
-	// 	}
-	// }, [rThemeVar])
 
 	useEffect(() => {
 		const subscription = AppState.addEventListener('change', nextAppState => {

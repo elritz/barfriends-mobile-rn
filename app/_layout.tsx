@@ -1,5 +1,5 @@
 //TODO: Add notfication listener
-import { ApolloProvider, useReactiveVar } from '@apollo/client'
+import { ApolloProvider } from '@apollo/client'
 import Auth from '@components/layouts/Auth'
 import Theme from '@components/layouts/Theme'
 import { NowPreferencePermissionInitialState } from '@constants/Preferences'
@@ -10,7 +10,6 @@ import {
 	LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
 	LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION,
 	LOCAL_STORAGE_PREFERENCE_SYSTEM_OF_UNITS,
-	AUTHORIZATION,
 } from '@constants/StorageConstants'
 import {
 	LocalStoragePreferenceSearchAreaType,
@@ -46,7 +45,7 @@ import 'expo-dev-client'
 import { getForegroundPermissionsAsync, getBackgroundPermissionsAsync } from 'expo-location'
 import { getPermissionsAsync as getMediaPermissionAsync } from 'expo-media-library'
 import { getPermissionsAsync as getNotificiationPermissionAsync } from 'expo-notifications'
-import { Slot, SplashScreen, router, useRouter, useSegments } from 'expo-router'
+import { Slot, SplashScreen, Stack, router, useRouter, useSegments } from 'expo-router'
 import * as ScreenOrientation from 'expo-screen-orientation'
 import { useEffect } from 'react'
 import { Appearance } from 'react-native'
@@ -59,10 +58,10 @@ export {
 	ErrorBoundary,
 } from 'expo-router'
 
-export const unstable_settings = {
-	// Ensure that reloading on `/modal` keeps a back button present.
-	initialRouteName: '(app)/hometab/venuefeed',
-}
+// export const unstable_settings = {
+// 	// Ensure that reloading on `/modal` keeps a back button present.
+// 	initialRouteName: '(app)',
+// }
 
 SplashScreen.preventAutoHideAsync()
 
@@ -254,7 +253,32 @@ export default function Root() {
 		<ApolloProvider client={profilingclient}>
 			<SafeAreaProvider>
 				<KeyboardProvider statusBarTranslucent>
-					<Slot initialRouteName='(app)/hometab/venuefeed' />
+					{/* <Slot initialRouteName='(app)/hometab/venuefeed' /> */}
+					<Auth>
+						<Theme>
+							<Stack
+								initialRouteName='index'
+								screenOptions={{
+									headerShown: false,
+								}}
+							>
+								<Stack.Screen name='index' />
+								<Stack.Screen
+									name='(app)'
+									options={{
+										animation: 'fade',
+									}}
+								/>
+								<Stack.Screen name='(information)' options={{ presentation: 'modal' }} />
+								<Stack.Screen
+									name='(credential)'
+									options={{
+										animation: 'fade',
+									}}
+								/>
+							</Stack>
+						</Theme>
+					</Auth>
 				</KeyboardProvider>
 			</SafeAreaProvider>
 		</ApolloProvider>

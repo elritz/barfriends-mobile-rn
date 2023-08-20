@@ -1,4 +1,3 @@
-import { useReactiveVar } from '@apollo/client'
 import { AUTHORIZATION } from '@constants/StorageConstants'
 import {
 	AuthorizationDeviceProfile,
@@ -8,8 +7,7 @@ import {
 import { AuthorizationReactiveVar } from '@reactive'
 import { AuthorizationDecoded } from '@util/hooks/auth/useCheckLocalStorageForAuthorizationToken'
 import { secureStorageItemDelete, secureStorageItemRead } from '@util/hooks/local/useSecureStorage'
-import { router } from 'expo-router'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect } from 'react'
 
 export default function Auth({ children }) {
 	const [refreshDeviceManagerMutation, { data: RDMData, loading: RDMLoading, error: RDMError }] =
@@ -19,9 +17,9 @@ export default function Auth({ children }) {
 				if (data.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile') {
 					const deviceProfile = data.refreshDeviceManager as AuthorizationDeviceProfile
 					AuthorizationReactiveVar(deviceProfile)
-					setTimeout(() => {
-						router.push('(app)/hometab/venuefeed')
-					}, 1)
+					// setTimeout(() => {
+					// 	router.push('(app)/hometab/venuefeed')
+					// }, 1)
 				}
 				if (data.refreshDeviceManager?.__typename === 'Error') {
 					// setTimeout(() => {
@@ -39,11 +37,11 @@ export default function Auth({ children }) {
 					const deviceProfile = data.createGuestProfile as AuthorizationDeviceProfile
 					if (deviceProfile) {
 						AuthorizationReactiveVar(deviceProfile)
-						setTimeout(() => {
-							router.replace({
-								pathname: '(app)/hometab/venuefeed',
-							})
-						}, 1)
+						// setTimeout(() => {
+						// 	router.replace({
+						// 		pathname: '(app)/hometab/venuefeed',
+						// 	})
+						// }, 1)
 					}
 				}
 			},

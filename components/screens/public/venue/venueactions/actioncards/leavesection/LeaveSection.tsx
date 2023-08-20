@@ -1,20 +1,18 @@
 // TODO: FN(Join a venue functionality) The join button has no ability to join a venue or track the data
 import { useReactiveVar } from '@apollo/client'
-import { Button, HStack, Heading, Text, VStack } from '@components/core'
-import { Ionicons } from '@expo/vector-icons'
+import { Button, HStack, Heading } from '@components/core'
 import { GET_LIVE_VENUE_TOTALS_QUERY } from '@graphql/DM/profiling/out/index.query'
 import {
 	AuthorizationDeviceProfile,
 	Profile,
 	useRemovePersonalJoinsVenueMutation,
 } from '@graphql/generated'
-import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
+import { AuthorizationReactiveVar } from '@reactive'
 import { useGlobalSearchParams } from 'expo-router'
 
 export default function LeaveSection() {
 	const params = useGlobalSearchParams()
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
-	const rTheme = useReactiveVar(ThemeReactiveVar)
 
 	const [removePersonalJoinsVenueMutation, { data: JVData, loading: JVLoading, error: JVError }] =
 		useRemovePersonalJoinsVenueMutation({
@@ -53,8 +51,9 @@ export default function LeaveSection() {
 		})
 
 	if (
-		rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out[0]?.venueProfileId ===
-		params.profileid
+		rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out.some(
+			item => item.venueProfileId === params.profileid,
+		)
 	) {
 		return (
 			<HStack mt={'$3'} px={'$3'} justifyContent={'space-between'} w={'$full'}>
@@ -78,17 +77,10 @@ export default function LeaveSection() {
 					}}
 					justifyContent='space-between'
 					rounded={'$md'}
+					size='sm'
+					variant='outline'
 				>
-					<Ionicons
-						name={'ios-exit'}
-						size={25}
-						color={
-							rTheme.colorScheme === 'light'
-								? rTheme.theme?.gluestack.tokens.colors.light900
-								: rTheme.theme?.gluestack.tokens.colors.dark900
-						}
-					/>
-					<Text>{JVLoading ? 'Leaving' : 'Leave'}</Text>
+					<Button.Text>{JVLoading ? 'Leaving' : 'Leave'}</Button.Text>
 				</Button>
 			</HStack>
 		)

@@ -1,8 +1,8 @@
 import { useReactiveVar } from '@apollo/client'
 import { Button, Center, Divider, HStack, Heading, Modal, Text, VStack } from '@components/core'
 import { LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS } from '@constants/StorageConstants'
-import { Ionicons } from '@expo/vector-icons'
 import { LocalStoragePreferenceAskNotificationPermissionType } from '@ctypes/preferences'
+import { Ionicons } from '@expo/vector-icons'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
 	DaysPreferencePermissionInitialState,

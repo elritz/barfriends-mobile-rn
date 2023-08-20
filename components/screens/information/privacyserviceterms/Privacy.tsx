@@ -1,37 +1,34 @@
 import { useReactiveVar } from '@apollo/client'
+import { Box } from '@components/core'
 import TermsLoadingState from '@components/screens/settings/TermsLoadingState'
 import { usePrivacyTermsDocumentsQuery } from '@graphql/generated'
 import { ThemeReactiveVar } from '@reactive'
-import { SafeAreaView, ScrollView } from 'react-native'
+import { ScrollView } from 'react-native'
 import { useWindowDimensions } from 'react-native'
-import RenderHtml from 'react-native-render-html'
+import RenderHTML from 'react-native-render-html'
 
-export default () => {
-	const { width } = useWindowDimensions()
+export default function Privacy() {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
+	const { width } = useWindowDimensions()
 
-	const { data, loading, error } = usePrivacyTermsDocumentsQuery()
+	const { data, loading, error } = usePrivacyTermsDocumentsQuery({
+		onCompleted(data) {
+			const source = {
+				html: data?.privacyTermsDocuments.privacy.content,
+			}
+		},
+	})
 
-	if (loading && data) {
+	if ((loading && !data) || !data?.privacyTermsDocuments) {
 		return <TermsLoadingState />
 	}
 
-	const source = {
-		html: data?.privacyTermsDocuments.privacy.content,
-	}
-
 	return (
-		<ScrollView showsVerticalScrollIndicator={false}>
-			<SafeAreaView
-				style={{
-					flex: 1,
-					justifyContent: 'center',
-					margin: 10,
-				}}
-			>
-				<RenderHtml
+		<Box bg={'$transparent'} style={{ flex: 1 }} p={'$3'}>
+			<ScrollView>
+				<RenderHTML
 					contentWidth={width}
-					source={source}
+					source={{ html: data.privacyTermsDocuments.privacy.content }}
 					enableCSSInlineProcessing={true}
 					allowedStyles={['color', 'backgroundColor']}
 					classesStyles={{
@@ -54,7 +51,7 @@ export default () => {
 						},
 					}}
 				/>
-			</SafeAreaView>
-		</ScrollView>
+			</ScrollView>
+		</Box>
 	)
 }

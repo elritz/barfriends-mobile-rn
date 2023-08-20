@@ -1,6 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, HStack, Heading, Pressable, VStack } from '@components/core'
-import { SEARCH_BAR_HEIGHT } from '@constants/ReactNavigationConstants'
+import { Box, Button, HStack, Heading, VStack } from '@components/core'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import * as Haptics from 'expo-haptics'
@@ -12,8 +11,6 @@ export default function _layout() {
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const insets = useSafeAreaInsets()
-	const HEADER_HEIGHT = SEARCH_BAR_HEIGHT + 15
-	const h = insets.top + HEADER_HEIGHT
 
 	return (
 		<Stack

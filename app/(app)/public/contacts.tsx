@@ -6,7 +6,6 @@ import {
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
 	SEARCH_BAR_HEIGHT,
 } from '@constants/ReactNavigationConstants'
-import { Ionicons } from '@expo/vector-icons'
 import { ContactsReactiveVar, PermissionContactsReactiveVar, ThemeReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
 import { useDisclose } from '@util/hooks/useDisclose'

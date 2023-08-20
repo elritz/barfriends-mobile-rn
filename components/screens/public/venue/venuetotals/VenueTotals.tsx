@@ -62,16 +62,34 @@ export default function VenueTotals() {
 								opacity: loading ? 50 : 100,
 							},
 							height: 60,
-							width: (width - itemPadding) / 3,
+							width: (width - itemPadding) / 3.33,
 						}}
 						rounded={'$xl'}
 						alignItems='center'
 						justifyContent='center'
 					>
-						<Heading numberOfLines={1} fontSize={'$3xl'} fontWeight='$black' sx={{ letterSpacing: 0.01 }}>
+						<Heading
+							numberOfLines={1}
+							fontSize={'$2xl'}
+							fontWeight='$black'
+							sx={{
+								letterSpacing: 0.01,
+								_light: { color: item.name === 'friends' ? '$white' : '$black' },
+								_dark: { color: item.name === 'friends' ? '$white' : '$white' },
+							}}
+						>
 							{item.value}
 						</Heading>
-						<Text fontWeight={'$black'} lineHeight={'$xs'} fontSize={'$xs'} textTransform='uppercase'>
+						<Text
+							fontWeight={'$black'}
+							lineHeight={'$xs'}
+							fontSize={'$xs'}
+							textTransform='uppercase'
+							sx={{
+								_light: { color: item.name === 'friends' ? '$white' : '$black' },
+								_dark: { color: item.name === 'friends' ? '$white' : '$white' },
+							}}
+						>
 							{item.name}
 						</Text>
 					</Box>

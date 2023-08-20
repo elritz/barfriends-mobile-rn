@@ -28,7 +28,7 @@ export default () => {
 	const rCurrentLocationVar = useReactiveVar(CurrentLocationReactiveVar)
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 
-	const link = `https://revel.com/(app)/public/venue?profileid=${params.profileid}`
+	const link = `https://revel.com/app/public/venue?profileid=${params.profileid}`
 
 	const onShare = async () => {
 		try {

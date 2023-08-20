@@ -11,16 +11,18 @@ import {
 } from '@constants/ReactNavigationConstants'
 import { ITabColor } from '@ctypes/app'
 import { ENVIRONMENT } from '@env'
-import { ThemeReactiveVar } from '@reactive'
+import { ProfileType } from '@graphql/generated'
+import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import { BlurView } from 'expo-blur'
 import { Tabs } from 'expo-router'
 import { StyleSheet } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-
 export default () => {
 	const insets = useSafeAreaInsets()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
+	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
+
 	return (
 		<Tabs
 			initialRouteName='venuefeed'
@@ -51,9 +53,15 @@ export default () => {
 				name='venuefeed'
 				options={{
 					// headerShown: false,
+					href:
+						rAuthorizationVar?.Profile?.ProfileType === (ProfileType.Personal || ProfileType.Guest)
+							? '(app)/hometab/venuefeed'
+							: null,
 					tabBarLabel: 'outaboot',
 					tabBarShowLabel: false,
-					tabBarIcon: ({ color, focused }: ITabColor) => <VenueFeedTab color={color} focused={focused} />,
+					tabBarIcon: ({ color, focused }: ITabColor) => (
+						<VenueFeedTab color={color} focused={focused} />
+					),
 				}}
 			/>
 			<Tabs.Screen
@@ -83,19 +91,18 @@ export default () => {
 					tabBarIcon: ({ color, focused }: ITabColor) => <ProfileTab color={color} focused={focused} />,
 				}}
 			/>
-			{ENVIRONMENT === 'development' && (
-				<Tabs.Screen
-					name='developmentstack'
-					options={{
-						headerShown: false,
-						tabBarLabel: 'development',
-						tabBarShowLabel: false,
-						tabBarIcon: ({ color, focused }: ITabColor) => (
-							<DevelopmentTab color={color} focused={focused} />
-						),
-					}}
-				/>
-			)}
+			<Tabs.Screen
+				name='developmentstack'
+				options={{
+					href: ENVIRONMENT === 'development' ? '(app)/hometab/developmentstack' : null,
+					headerShown: false,
+					tabBarLabel: 'development',
+					tabBarShowLabel: false,
+					tabBarIcon: ({ color, focused }: ITabColor) => (
+						<DevelopmentTab color={color} focused={focused} />
+					),
+				}}
+			/>
 		</Tabs>
 	)
 }

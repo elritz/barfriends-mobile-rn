@@ -13,10 +13,8 @@ import {
 	ThemeReactiveVar,
 } from '@reactive'
 import { useDisclose } from '@util/hooks/useDisclose'
-import * as Location from 'expo-location'
-import { LocationAccuracy } from 'expo-location'
+import useGetDistance from '@util/hooks/useDistance'
 import { useLocalSearchParams } from 'expo-router'
-import { getDistance } from 'geolib'
 import { uniqueId } from 'lodash'
 import { MotiView } from 'moti'
 import { useEffect, useState } from 'react'
@@ -32,10 +30,8 @@ const CurrentLocationFromVenueDistance = () => {
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 	const rCurrentLocationVar = useReactiveVar(CurrentLocationReactiveVar)
 	const rSearchAreaVar = useReactiveVar(SearchAreaReactiveVar)
-	const [isLoading, setLoading] = useState<boolean>(true)
-	const [distance, setDistance] = useState<number | undefined>()
-	const [metric, setMetric] = useState<'km' | 'm' | undefined>('km')
 	const [appState, setAppState] = useState(AppState.currentState)
+	const { refreshLocation, canJoin, distance, distanceInM, isLoading, metric } = useGetDistance()
 	const {
 		isOpen: isForegroundLocationOn,
 		onOpen: onOpenForegroundLocationOn,
@@ -44,6 +40,7 @@ const CurrentLocationFromVenueDistance = () => {
 	} = useDisclose()
 
 	const { data, loading, error } = useCurrentVenueQuery({
+		skip: !params.profileid,
 		fetchPolicy: 'cache-first',
 		variables: {
 			where: {
@@ -60,74 +57,13 @@ const CurrentLocationFromVenueDistance = () => {
 					: Number(rSearchAreaVar?.searchArea.coords.longitude),
 			},
 		},
-		onCompleted: data => {
-			if (data?.currentVenue?.distanceInM) {
-				if (data?.currentVenue?.distanceInM > 1000) {
-					const val = parseInt((data.currentVenue?.distanceInM / 1000).toFixed(1))
-					setDistance(val)
-					setMetric('km')
-				} else {
-					setDistance(data?.currentVenue?.distanceInM)
-					setMetric('m')
-				}
-			}
-			setTimeout(() => setLoading(false), 2000)
+		onCompleted: async data => {
+			await refreshLocation({
+				vlat: data.currentVenue?.Venue?.Location?.Geometry?.latitude,
+				vlng: data.currentVenue?.Venue?.Location?.Geometry?.longitude,
+			})
 		},
 	})
-
-	const getDistanceFromVenue = async ({ vlat, vlng }) => {
-		const getLastKnowPosition = await Location.getLastKnownPositionAsync({
-			requiredAccuracy: 50,
-			maxAge: 1200000,
-		})
-
-		if (vlat && vlng) {
-			if (getLastKnowPosition && getLastKnowPosition.coords) {
-				const dist = getDistance(
-					{
-						latitude: getLastKnowPosition.coords.latitude,
-						longitude: getLastKnowPosition.coords.longitude,
-					},
-					{
-						latitude: vlat,
-						longitude: vlng,
-					},
-				)
-				if (data?.currentVenue) {
-				}
-				if (dist > 1000) {
-					const val = parseInt((dist / 1000).toFixed(1))
-
-					setDistance(val)
-					setMetric('km')
-				} else {
-					setDistance(dist)
-					setMetric('m')
-				}
-			}
-		} else {
-			const currentPosition = await Location.getCurrentPositionAsync({
-				accuracy: LocationAccuracy.High,
-			})
-			const dist = getDistance(
-				{ latitude: currentPosition.coords.latitude, longitude: currentPosition.coords.longitude },
-				{
-					latitude: vlat,
-					longitude: vlng,
-				},
-			)
-
-			if (dist > 1000) {
-				const val = parseInt((dist / 1000).toFixed(1))
-				setDistance(val)
-				setMetric('km')
-			} else {
-				setDistance(dist)
-				setMetric('m')
-			}
-		}
-		setTimeout(() => setLoading(false), 1000)
-	}
 
 	useEffect(() => {
 		if (rSearchAreaVar.useCurrentLocation) {
@@ -142,40 +78,6 @@ const CurrentLocationFromVenueDistance = () => {
 		}
 	}, [appState, isFocused])
 
-	// const appStateHandleForegroundLocation = async nextAppState => {
-	// 	const hasStarted = await Location.hasStartedLocationUpdatesAsync(FOREGROUND_LOCATION_TASK_NAME)
-	// 	if (isForegroundLocationOn && isFocused) {
-	// 		if (!hasStarted && nextAppState === 'inactive') {
-	// 			await unregisterForegroundFetchAsync()
-	// 		}
-	// 		if (appState !== nextAppState) {
-	// 			if (appState.match(/inactive|background/) && nextAppState === 'active') {
-	// 				if (metric === 'm' && distance && distance < 50) {
-	// 					await registerForegroundFetchAsync()
-	// 				}
-	// 				if (!hasStarted && nextAppState === 'inactive') {
-	// 					await unregisterForegroundFetchAsync()
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-
-	// 	if ((!isForegroundLocationOn && hasStarted) || !isFocused) {
-	// 		await unregisterForegroundFetchAsync()
-	// 	}
-
-	// 	AppState.currentState = nextAppState
-	// 	setAppState(AppState.currentState)
-	// }
-
-	// useEffect(() => {
-	// 	const appStateListen = AppState.addEventListener('change', appStateHandleForegroundLocation)
-
-	// 	return () => {
-	// 		appStateListen.remove()
-	// 	}
-	// }, [isForegroundLocationOn, appState, isFocused])
-
 	const styles = StyleSheet.create({
 		dot: {
 			height: size,
@@ -187,125 +89,111 @@ const CurrentLocationFromVenueDistance = () => {
 
 	useEffect(() => {
 		if (!distance) {
-			setLoading(true)
-			getDistanceFromVenue({
-				vlat: Number(params.latitude),
-				vlng: Number(params.longitude),
-			})
+			// setLoading(true)
+			const asynFunc = async () => {
+				await refreshLocation({
+					vlat: Number(params.latitude),
+					vlng: Number(params.longitude),
+				})
+			}
+			asynFunc()
 		}
-	}, [distance])
+	}, [])
+
+	const LoadingAnimationLocation = () => {
+		return (
+			<Box
+				bg={'transparent'}
+				style={[
+					styles.dot,
+					{
+						marginLeft: '50%',
+						transform: [{ translateX: -size / 2 }],
+						alignContent: 'center',
+						justifyContent: 'center',
+					},
+				]}
+			>
+				{[...Array(3).keys()].map((item, index) => {
+					return (
+						<MotiView
+							key={uniqueId()}
+							style={[styles.dot, StyleSheet.absoluteFillObject]}
+							from={{
+								opacity: 0.5,
+								scale: 1,
+							}}
+							animate={{
+								opacity: 0,
+								scale: 2,
+							}}
+							transition={{
+								type: 'timing',
+								duration: 2000,
+								easing: Easing.out(Easing.ease),
+								loop: true,
+								repeatReverse: true,
+								delay: index * 400,
+							}}
+						/>
+					)
+				})}
+				<MaterialIcons
+					style={{ alignSelf: 'center' }}
+					size={30}
+					name='location-pin'
+					color={
+						rTheme.colorScheme === 'light'
+							? rTheme.theme?.gluestack.tokens.colors.light200
+							: rTheme.theme?.gluestack.tokens.colors.dark900
+					}
+				/>
+			</Box>
+		)
+	}
+
+	if (isLoading || loading || !data) {
+		return <LoadingAnimationLocation />
+	}
 
 	return (
 		<>
-			{distance && distance > 10 ? (
-				<>
-					{rAuthorizationVar?.Profile?.ProfileType !== 'GUEST' ? (
-						<JoinCard />
-					) : (
-						<SignupCard />
-					)}
-				</>
+			{canJoin ? (
+				<>{rAuthorizationVar?.Profile?.ProfileType !== 'GUEST' ? <JoinCard /> : <SignupCard />}</>
 			) : (
-				<>
-					{loading || !data || isLoading ? (
-						<Box
-							bg={'transparent'}
-							style={[
-								styles.dot,
-								{
-									marginLeft: '50%',
-									transform: [{ translateX: -size / 2 }],
-									alignContent: 'center',
-									justifyContent: 'center',
-								},
-							]}
-						>
-							{[...Array(3).keys()].map((item, index) => {
-								return (
-									<MotiView
-										key={uniqueId()}
-										style={[styles.dot, StyleSheet.absoluteFillObject]}
-										from={{
-											opacity: 0.5,
-											scale: 1,
-										}}
-										animate={{
-											opacity: 0,
-											scale: 2,
-										}}
-										transition={{
-											type: 'timing',
-											duration: 2000,
-											easing: Easing.out(Easing.ease),
-											loop: true,
-											repeatReverse: true,
-											delay: index * 400,
-										}}
-									/>
-								)
-							})}
-							<MaterialIcons
-								style={{ alignSelf: 'center' }}
-								size={30}
-								name='location-pin'
-								color={
-									rTheme.colorScheme === 'light'
-										? rTheme.theme?.gluestack.tokens.colors.light200
-										: rTheme.theme?.gluestack.tokens.colors.dark900
-								}
-							/>
-							{/* <Icon
-								_light={{
-									color: 'light.50',
-								}}
-								_dark={{
-									color: 'dark.50',
-								}}
-								size={'2xl'}
-								name='location-pin'
-								as={MaterialIcons}
-								alignSelf={'center'}
-							/> */}
-						</Box>
-					) : (
-						<Box height={'100%'} justifyContent={'center'} mb={'$5'}>
-							<Heading
-								textAlign={'center'}
-								textTransform={'uppercase'}
-								fontWeight={'800'}
-								fontSize={'$lg'}
-								lineHeight={'$xs'}
-							>
-								{metric === 'km' ? `In your area` : `You're super close!`}
-							</Heading>
+				<Box height={'100%'} justifyContent={'center'} mb={'$5'}>
+					<Heading
+						textAlign={'center'}
+						textTransform={'uppercase'}
+						fontWeight={'800'}
+						fontSize={'$lg'}
+						lineHeight={'$xs'}
+					>
+						{metric === 'km' ? `In your area` : `You're super close!`}
+					</Heading>
 
-							<Box pb={'$1'} alignSelf={'center'} alignItems={'center'} flexDirection={'row'}>
-								<MaterialIcons name='location-pin' size={25} />
-								<Heading fontSize={'$2xl'} fontWeight={'$black'}>
-									{distance}&nbsp;{metric}
-								</Heading>
-							</Box>
-						</Box>
-					)}
-					{!isLoading && (
-						<Button
-							variant='link'
-							size={'xs'}
-							onPress={async () => {
-								setLoading(true)
-								await getDistanceFromVenue({
-									vlat: Number(params.latitude),
-									vlng: Number(params.longitude),
-								})
-							}}
-							position={'absolute'}
-							alignSelf={'center'}
-							bottom={'$1'}
-						>
-							<Text>Tap to refresh</Text>
-						</Button>
-					)}
-				</>
+					<Box pb={'$1'} alignSelf={'center'} alignItems={'center'} flexDirection={'row'}>
+						<MaterialIcons name='location-pin' size={25} />
+						<Heading fontSize={'$2xl'} fontWeight={'$black'}>
+							{distance}&nbsp;{metric}
+						</Heading>
+					</Box>
+					<Button
+						variant='link'
+						size={'xs'}
+						onPress={async () => {
+							await refreshLocation({
+								vlat: Number(params.latitude),
+								vlng: Number(params.longitude),
+							})
+						}}
+						position={'absolute'}
+						alignSelf={'center'}
+						bottom={'$1'}
+					>
+						<Text>Tap to refresh</Text>
+					</Button>
+				</Box>
 			)}
 		</>
 	)

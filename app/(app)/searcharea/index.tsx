@@ -13,7 +13,7 @@ export default () => {
 	const router = useRouter()
 	const contentInsets = useContentInsets()
 	const rSearchAreaVar = useReactiveVar(SearchAreaReactiveVar)
-	console.log('rSearchAreaVar?.searchArea.state.name :>> ', rSearchAreaVar?.searchArea.state);
+
 	const searchAreaLocation = [
 		{ name: 'Country', value: rSearchAreaVar?.searchArea.country.name },
 		{ name: 'State', value: rSearchAreaVar?.searchArea.state.name },

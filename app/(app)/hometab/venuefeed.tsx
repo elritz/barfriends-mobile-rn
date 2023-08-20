@@ -31,11 +31,10 @@ import {
 import { FlashList, MasonryFlashList } from '@shopify/flash-list'
 import useSetSearchAreaWithLocation from '@util/hooks/searcharea/useSetSearchAreaWithLocation'
 import useContentInsets from '@util/hooks/useContentInsets'
-import useGetDistance from '@util/hooks/useDistance'
 import { useRouter } from 'expo-router'
 import { Skeleton } from 'moti/skeleton'
 import { memo, useCallback, useEffect, useState } from 'react'
-import { Dimensions, NativeScrollEvent, ScrollView, View } from 'react-native'
+import { ScrollView, View } from 'react-native'
 import CountryFlag from 'react-native-country-flag'
 
 export default () => {
@@ -45,8 +44,6 @@ export default () => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const rSearchAreaVar = useReactiveVar(SearchAreaReactiveVar)
 	const rCurrentLocationVar = useReactiveVar(CurrentLocationReactiveVar)
-	const width = Dimensions.get('window').width / 2.15
-
 	const [
 		updateH6VenueRecommendationVoteMutation,
 		{ data: UVRData, loading: UVRLoading, error: UVRError },
@@ -184,7 +181,14 @@ export default () => {
 											})
 										}}
 									>
-										<Box key={item.id} flexDirection='row' m={'$2'} p={'$3'} justifyContent='space-between' alignItems='center'>
+										<Box
+											key={item.id}
+											flexDirection='row'
+											m={'$2'}
+											p={'$3'}
+											justifyContent='space-between'
+											alignItems='center'
+										>
 											<VStack>
 												<HStack alignItems='center'>
 													<Heading

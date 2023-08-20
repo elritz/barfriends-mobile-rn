@@ -6965,6 +6965,13 @@ export type JsonWithAggregatesFilter = {
   string_starts_with?: InputMaybe<Scalars['String']>;
 };
 
+/** Returns the Profile latest Privacy and Terms of Service documents to the client. */
+export type LatestPrivacyAndTermsDocumentResponse = {
+  __typename?: 'LatestPrivacyAndTermsDocumentResponse';
+  privacy: Document;
+  termsofservice: Document;
+};
+
 export type LegalAgreement = {
   __typename?: 'LegalAgreement';
   aggreed: Scalars['Boolean'];
@@ -12019,12 +12026,7 @@ export type PopularSearchServiceWhereUniqueInput = {
   id?: InputMaybe<Scalars['String']>;
 };
 
-/** Returns the Profile latest Privacy and Terms of Service documents to the client. */
-export type PrivacyAndTermsDocumentResponse = {
-  __typename?: 'PrivacyAndTermsDocumentResponse';
-  privacy: Document;
-  termsofservice: Document;
-};
+export type PrivacyTermsUpdateResponseUnion = Error | LatestPrivacyAndTermsDocumentResponse;
 
 export type Profile = {
   __typename?: 'Profile';
@@ -14030,6 +14032,7 @@ export type PushTokenWhereUniqueInput = {
 export type Query = {
   __typename?: 'Query';
   authorizedProfiles?: Maybe<AuthorizedProfilesResponseUnion>;
+  checkPrivacyTermsDocumentUpdate: PrivacyTermsUpdateResponseUnion;
   checkUsername: Scalars['Boolean'];
   currentVenue?: Maybe<ProfileVenue>;
   emojimood?: Maybe<Emojimood>;
@@ -14052,7 +14055,7 @@ export type Query = {
   H3IndexGrid: Array<Scalars['String']>;
   H3IndexLatLng: Array<Scalars['Float']>;
   loginPassword: Scalars['Boolean'];
-  privacyTermsDocuments: PrivacyAndTermsDocumentResponse;
+  privacyTermsDocuments: LatestPrivacyAndTermsDocumentResponse;
   profile?: Maybe<Profile>;
   profiles: Array<Profile>;
   sendAuthenticatorDeviceOwnerCode: Scalars['Boolean'];
@@ -18388,7 +18391,7 @@ export type AuthorizedProfilesQuery = { __typename?: 'Query', authorizedProfiles
 export type PrivacyTermsDocumentsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PrivacyTermsDocumentsQuery = { __typename?: 'Query', privacyTermsDocuments: { __typename?: 'PrivacyAndTermsDocumentResponse', privacy: { __typename?: 'Document', id: string, TypeOfDocument: TypeOfDocument, createdAt: any, updatedAt: any, content: string, LegalAgreement: Array<{ __typename?: 'LegalAgreement', id: string }> }, termsofservice: { __typename?: 'Document', id: string, TypeOfDocument: TypeOfDocument, createdAt: any, updatedAt: any, content: string, LegalAgreement: Array<{ __typename?: 'LegalAgreement', id: string }> } } };
+export type PrivacyTermsDocumentsQuery = { __typename?: 'Query', privacyTermsDocuments: { __typename?: 'LatestPrivacyAndTermsDocumentResponse', privacy: { __typename?: 'Document', id: string, TypeOfDocument: TypeOfDocument, createdAt: any, updatedAt: any, content: string, LegalAgreement: Array<{ __typename?: 'LegalAgreement', id: string }> }, termsofservice: { __typename?: 'Document', id: string, TypeOfDocument: TypeOfDocument, createdAt: any, updatedAt: any, content: string, LegalAgreement: Array<{ __typename?: 'LegalAgreement', id: string }> } } };
 
 export type LoginPasswordQueryVariables = Exact<{
   username: Scalars['String'];
@@ -18485,6 +18488,11 @@ export type GetSecureFriendQrCodeDataQueryVariables = Exact<{ [key: string]: nev
 
 
 export type GetSecureFriendQrCodeDataQuery = { __typename?: 'Query', getSecureFriendQRCodeData: string };
+
+export type CheckPrivacyTermsDocumentUpdateQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CheckPrivacyTermsDocumentUpdateQuery = { __typename?: 'Query', checkPrivacyTermsDocumentUpdate: { __typename?: 'Error', message: string, errorCode: string } | { __typename?: 'LatestPrivacyAndTermsDocumentResponse', privacy: { __typename?: 'Document', id: string }, termsofservice: { __typename?: 'Document', id: string } } };
 
 export type GetInterestsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -20300,6 +20308,51 @@ export function useGetSecureFriendQrCodeDataLazyQuery(baseOptions?: Apollo.LazyQ
 export type GetSecureFriendQrCodeDataQueryHookResult = ReturnType<typeof useGetSecureFriendQrCodeDataQuery>;
 export type GetSecureFriendQrCodeDataLazyQueryHookResult = ReturnType<typeof useGetSecureFriendQrCodeDataLazyQuery>;
 export type GetSecureFriendQrCodeDataQueryResult = Apollo.QueryResult<GetSecureFriendQrCodeDataQuery, GetSecureFriendQrCodeDataQueryVariables>;
+export const CheckPrivacyTermsDocumentUpdateDocument = gql`
+    query checkPrivacyTermsDocumentUpdate {
+  checkPrivacyTermsDocumentUpdate {
+    ... on Error {
+      message
+      errorCode
+    }
+    ... on LatestPrivacyAndTermsDocumentResponse {
+      privacy {
+        id
+      }
+      termsofservice {
+        id
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useCheckPrivacyTermsDocumentUpdateQuery__
+ *
+ * To run a query within a React component, call `useCheckPrivacyTermsDocumentUpdateQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCheckPrivacyTermsDocumentUpdateQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCheckPrivacyTermsDocumentUpdateQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useCheckPrivacyTermsDocumentUpdateQuery(baseOptions?: Apollo.QueryHookOptions<CheckPrivacyTermsDocumentUpdateQuery, CheckPrivacyTermsDocumentUpdateQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CheckPrivacyTermsDocumentUpdateQuery, CheckPrivacyTermsDocumentUpdateQueryVariables>(CheckPrivacyTermsDocumentUpdateDocument, options);
+      }
+export function useCheckPrivacyTermsDocumentUpdateLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CheckPrivacyTermsDocumentUpdateQuery, CheckPrivacyTermsDocumentUpdateQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CheckPrivacyTermsDocumentUpdateQuery, CheckPrivacyTermsDocumentUpdateQueryVariables>(CheckPrivacyTermsDocumentUpdateDocument, options);
+        }
+export type CheckPrivacyTermsDocumentUpdateQueryHookResult = ReturnType<typeof useCheckPrivacyTermsDocumentUpdateQuery>;
+export type CheckPrivacyTermsDocumentUpdateLazyQueryHookResult = ReturnType<typeof useCheckPrivacyTermsDocumentUpdateLazyQuery>;
+export type CheckPrivacyTermsDocumentUpdateQueryResult = Apollo.QueryResult<CheckPrivacyTermsDocumentUpdateQuery, CheckPrivacyTermsDocumentUpdateQueryVariables>;
 export const GetInterestsDocument = gql`
     query getInterests {
   getInterests {
