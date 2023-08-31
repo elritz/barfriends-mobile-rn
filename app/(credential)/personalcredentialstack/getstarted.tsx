@@ -46,7 +46,7 @@ export default () => {
 						Let's Fucking Gooooooo out tonight!
 					</Heading>
 					{/* <Pressable disabled={PTSLoading} onPress={() => _pressTermsServices()}> */}
-						<Link href={'(information)/latestprivacyservicetoptab'}>
+					<Link href={'/(information)/latestprivacyservicetoptab'}>
 						<Text fontSize={'$lg'}>
 							By continuing, you agree to the
 							<Text fontSize={'$lg'} fontWeight={'$bold'} color={'$primary500'}>
@@ -59,7 +59,7 @@ export default () => {
 								Privacy Policies.
 							</Text>
 						</Text>
-						</Link>
+					</Link>
 					{/* </Pressable> */}
 				</Box>
 				<>

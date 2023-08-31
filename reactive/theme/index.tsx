@@ -19,8 +19,8 @@ export interface ThemeInterface {
 
 export const ThemeEmptyState: ThemeInterface = {
 	localStorageColorScheme: 'system',
-	deviceColorScheme: 'dark',
-	colorScheme: 'dark',
+	deviceColorScheme: Appearance.getColorScheme(),
+	colorScheme: Appearance.getColorScheme(),
 	theme: {
 		reactnavigation:
 			Appearance.getColorScheme() === 'light'

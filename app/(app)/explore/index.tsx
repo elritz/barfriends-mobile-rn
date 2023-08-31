@@ -51,10 +51,7 @@ export default () => {
 									alignSelf={'center'}
 									onPress={() => {
 										router.push({
-											pathname: `(app)/public/personal/${item.id}`,
-											params: {
-												profileid: item.id,
-											},
+											pathname: `/(app)/public/personal/${item.id}`,
 										})
 									}}
 								>

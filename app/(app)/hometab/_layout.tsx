@@ -1,5 +1,4 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box } from '@components/core'
 import DevelopmentTab from '@components/molecules/tabbaricons/hometabicons/developmenttab'
 import MessageTab from '@components/molecules/tabbaricons/hometabicons/messagestab'
 import ProfileTab from '@components/molecules/tabbaricons/hometabicons/profiletab'
@@ -12,16 +11,26 @@ import {
 import { ITabColor } from '@ctypes/app'
 import { ENVIRONMENT } from '@env'
 import { ProfileType } from '@graphql/generated'
-import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
+import { AuthorizationReactiveVar, TermsServiceReactiveVar, ThemeReactiveVar } from '@reactive'
 import { BlurView } from 'expo-blur'
-import { Tabs } from 'expo-router'
+import { Tabs, useRouter } from 'expo-router'
+import { useEffect } from 'react'
 import { StyleSheet } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default () => {
 	const insets = useSafeAreaInsets()
+	const router = useRouter()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
+	const rTermsServiceVar = useReactiveVar(TermsServiceReactiveVar)
+	useEffect(() => {
+		if (rTermsServiceVar.update) {
+			router.push({
+				pathname: '/(information)/updatelatestprivacytermsservice',
+			})
+		}
+	}, [])
 
 	return (
 		<Tabs
@@ -54,8 +63,9 @@ export default () => {
 				options={{
 					// headerShown: false,
 					href:
-						rAuthorizationVar?.Profile?.ProfileType === (ProfileType.Personal || ProfileType.Guest)
-							? '(app)/hometab/venuefeed'
+						rAuthorizationVar?.Profile?.ProfileType === ProfileType.Personal ||
+						rAuthorizationVar?.Profile?.ProfileType === ProfileType.Guest
+							? '/(app)/hometab/venuefeed'
 							: null,
 					tabBarLabel: 'outaboot',
 					tabBarShowLabel: false,
@@ -67,7 +77,7 @@ export default () => {
 			<Tabs.Screen
 				name={'tonight'}
 				options={{
-					href: '(app)/hometab/tonight',
+					href: '/(app)/hometab/tonight',
 					headerShown: false,
 					tabBarLabel: 'tonight',
 					tabBarIcon: ({ color, focused }: ITabColor) => <TonightTab color={color} focused={focused} />,

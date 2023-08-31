@@ -241,7 +241,7 @@ export default () => {
 			icon: 'albums',
 			onPress: () =>
 				router.push({
-					pathname: '(app)/hometab/developmentstack/preferences',
+					pathname: '/(app)/hometab/developmentstack/preferences',
 				}),
 		},
 		{
@@ -250,7 +250,7 @@ export default () => {
 			icon: 'bookmarks',
 			onPress: () =>
 				router.push({
-					pathname: '(app)/hometab/developmentstack/permissionmodals',
+					pathname: '/(app)/hometab/developmentstack/permissionmodals',
 				}),
 		},
 		{
@@ -259,7 +259,7 @@ export default () => {
 			icon: 'color-palette-sharp',
 			onPress: () =>
 				router.push({
-					pathname: '(app)/hometab/developmentstack/theme',
+					pathname: '/(app)/hometab/developmentstack/theme',
 				}),
 		},
 		{
@@ -283,7 +283,7 @@ export default () => {
 			icon: 'color-palette-sharp',
 			onPress: () =>
 				router.push({
-					pathname: '(app)/hometab/developmentstack/theme',
+					pathname: '/(app)/hometab/developmentstack/theme',
 				}),
 		},
 		{
@@ -337,7 +337,7 @@ export default () => {
 			case 'setting':
 				return (
 					<Pressable key={index} onPress={item.onPress}>
-						{({ isHovered, isFocused, isPressed }) => {
+						{({ isPressed }) => {
 							return (
 								<Box
 									sx={{
@@ -487,11 +487,14 @@ export default () => {
 												<Heading textAlign={'center'} textTransform={'capitalize'} numberOfLines={1} my={'$2'}>
 													Token
 												</Heading>
+												<Heading textAlign={'center'} textTransform={'capitalize'} numberOfLines={1} my={'$2'}>
+													{token}
+												</Heading>
 											</Pressable>
 										)
 									}}
-									placement='top'
-									isOpen={isOpenToken}
+									placement='bottom'
+									isOpen={true}
 									openDelay={500}
 								>
 									<HStack
@@ -654,7 +657,7 @@ export default () => {
 								</Button>
 								<Divider />
 							</VStack>
-							<VStack space={'md'} w={'$full'} px={'$10'} my={'$3'}>
+							{/* <VStack space={'md'} w={'$full'} px={'$10'} my={'$3'}>
 								<Heading textAlign={'center'} textTransform={'capitalize'} numberOfLines={1} my={'$2'}>
 									Location tracking
 								</Heading>
@@ -689,7 +692,7 @@ export default () => {
 								>
 									<Button.Text>Stop in background</Button.Text>
 								</Button>
-							</VStack>
+							</VStack> */}
 						</VStack>
 					)
 				}}

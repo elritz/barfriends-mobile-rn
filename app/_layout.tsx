@@ -18,6 +18,7 @@ import {
 	LocalStoragePreferenceAskBackgroundLocationPermissionType,
 	LocalStoragePreferenceSystemsOfUnitsType,
 } from '@ctypes/preferences'
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
 import profilingclient from '@library/apollo/profiling/profiling-apollo-server'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
@@ -235,6 +236,7 @@ export default function Root() {
 		const notificationPermission = await getNotificiationPermissionAsync()
 
 		PermissionContactsReactiveVar(contactsPermission)
+		PermissionContactsReactiveVar(contactsPermission)
 		PermissionCameraReactiveVar(cameraPermission)
 		PermissionMicrophoneReactiveVar(microphonePermission)
 		PermissionForegroundLocationReactiveVar(foregroundLocationPermission)
@@ -253,32 +255,41 @@ export default function Root() {
 		<ApolloProvider client={profilingclient}>
 			<SafeAreaProvider>
 				<KeyboardProvider statusBarTranslucent>
-					{/* <Slot initialRouteName='(app)/hometab/venuefeed' /> */}
-					<Auth>
-						<Theme>
-							<Stack
-								initialRouteName='index'
-								screenOptions={{
-									headerShown: false,
-								}}
-							>
-								<Stack.Screen name='index' />
-								<Stack.Screen
-									name='(app)'
-									options={{
-										animation: 'fade',
+					<BottomSheetModalProvider>
+						{/* <Slot initialRouteName='(app)/hometab/venuefeed' /> */}
+						<Auth>
+							<Theme>
+								<Stack
+									initialRouteName='index'
+									screenOptions={{
+										headerShown: false,
 									}}
-								/>
-								<Stack.Screen name='(information)' options={{ presentation: 'modal' }} />
-								<Stack.Screen
-									name='(credential)'
-									options={{
-										animation: 'fade',
-									}}
-								/>
-							</Stack>
-						</Theme>
-					</Auth>
+								>
+									<Stack.Screen name='index' />
+									<Stack.Screen
+										name='(app)'
+										options={{
+											animation: 'fade',
+										}}
+									/>
+									<Stack.Screen
+										name='(information)'
+										options={{
+											presentation: 'modal',
+											fullScreenGestureEnabled: false,
+											gestureEnabled: false,
+										}}
+									/>
+									<Stack.Screen
+										name='(credential)'
+										options={{
+											animation: 'fade',
+										}}
+									/>
+								</Stack>
+							</Theme>
+						</Auth>
+					</BottomSheetModalProvider>
 				</KeyboardProvider>
 			</SafeAreaProvider>
 		</ApolloProvider>

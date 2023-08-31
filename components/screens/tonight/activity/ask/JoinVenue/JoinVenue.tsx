@@ -13,7 +13,7 @@ const JoinVenue = ({}) => {
 		<Pressable
 			onPress={() => {
 				router.push({
-					pathname: '(app)/hometab/venuefeed',
+					pathname: '/(app)/hometab/venuefeed',
 				})
 			}}
 			style={{

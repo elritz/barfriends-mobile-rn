@@ -1,63 +1,109 @@
 {
-	"extends": "expo/tsconfig.base",
-	"compilerOptions": {
-		"allowSyntheticDefaultImports": true,
-		"allowJs": true,
-		"isolatedModules": true,
-		"noImplicitAny": false,
-		"target": "es5",
-		"rootDirs": ["src", "stories"],
-		"declaration": true,
-		"typeRoots": ["node_modules/@types", "./types/navigation", "./types/*"],
-		"jsx": "react-native",
-		"lib": ["dom", "esnext"],
-		"moduleResolution": "node",
-		"module": "esnext",
-		"noEmit": true,
-		"skipLibCheck": true,
-		"resolveJsonModule": true,
-		"forceConsistentCasingInFileNames": true,
-		"esModuleInterop": true,
-		"strict": true,
-		"baseUrl": "./",
-		"paths": {
-			"@app/*": ["./app/*"],
-			"@preferences": ["./types/preferences.d"],
-			"@ctypes/*": ["./types/*"],
-			"@util/*": ["./util/*"],
-			"@gluestack": ["./gluestack-ui.config"],
-			"@helpers/*": ["./helpers/*"],
-			"@screens/*": ["./screens/*"],
-			"@assets/*": ["./assets/*"],
-			"@components/*": ["./components/*"],
-			"@graphql/*": ["./graphql/*"],
-			"@library/*": ["./library/*"],
-			"@context/*": ["./context/*"],
-			"@constants/*": ["./constants/*"],
-			"@reactive": ["./reactive/index.tsx"]
-		},
-		"plugins": [
-			{
-				"name": "typescript-styled-plugin",
-				"lint": {
-					"validProperties": [
-						"aspect-ratio",
-						"elevation",
-						"margin-vertical",
-						"margin-horizontal",
-						"padding-horizontal",
-						"padding-vertical",
-						"resize-mode",
-						"shadow-color",
-						"shadow-opacity",
-						"shadow-offset",
-						"shadow-radius",
-						"text-align-vertical",
-						"tint-color"
-					]
-				}
-			}
-		],
-		"types": ["jest"]
-	}
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "isolatedModules": true,
+    "noImplicitAny": false,
+    "target": "es5",
+    "rootDirs": [
+      "src",
+      "stories"
+    ],
+    "declaration": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "./types/navigation",
+      "./types/*"
+    ],
+    "jsx": "react-native",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "moduleResolution": "node",
+    "module": "esnext",
+    "noEmit": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "baseUrl": "./",
+    "paths": {
+      "@app/*": [
+        "./app/*"
+      ],
+      "@preferences": [
+        "./types/preferences.d"
+      ],
+      "@ctypes/*": [
+        "./types/*"
+      ],
+      "@util/*": [
+        "./util/*"
+      ],
+      "@gluestack": [
+        "./gluestack-ui.config"
+      ],
+      "@helpers/*": [
+        "./helpers/*"
+      ],
+      "@screens/*": [
+        "./screens/*"
+      ],
+      "@assets/*": [
+        "./assets/*"
+      ],
+      "@components/*": [
+        "./components/*"
+      ],
+      "@graphql/*": [
+        "./graphql/*"
+      ],
+      "@library/*": [
+        "./library/*"
+      ],
+      "@context/*": [
+        "./context/*"
+      ],
+      "@constants/*": [
+        "./constants/*"
+      ],
+      "@reactive": [
+        "./reactive/index.tsx"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin",
+        "lint": {
+          "validProperties": [
+            "aspect-ratio",
+            "elevation",
+            "margin-vertical",
+            "margin-horizontal",
+            "padding-horizontal",
+            "padding-vertical",
+            "resize-mode",
+            "shadow-color",
+            "shadow-opacity",
+            "shadow-offset",
+            "shadow-radius",
+            "text-align-vertical",
+            "tint-color"
+          ]
+        }
+      }
+    ],
+    "types": [
+      "jest"
+    ]
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
+  ]
 }

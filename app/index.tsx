@@ -1,15 +1,16 @@
 import { useReactiveVar } from '@apollo/client'
 import { Box } from '@components/core'
 import { useCheckPrivacyTermsDocumentUpdateQuery } from '@graphql/generated'
-import { ThemeReactiveVar } from '@reactive'
+import { ThemeReactiveVar, TermsServiceReactiveVar } from '@reactive'
 import { Redirect } from 'expo-router'
 import { uniqueId } from 'lodash'
 import { MotiView } from 'moti'
 import { useState } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { Dimensions, StyleSheet, View } from 'react-native'
 import { Easing } from 'react-native-reanimated'
 
 const size = 500
+const windowHeight = Dimensions.get('window').height
 
 export default () => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
@@ -22,11 +23,14 @@ export default () => {
 			if (
 				data.checkPrivacyTermsDocumentUpdate.__typename === 'LatestPrivacyAndTermsDocumentResponse'
 			) {
-				// router.replace({
-				// 	pathname: '(information)/latestprivacyservicetoptab',
-				// })
+				TermsServiceReactiveVar({
+					update: true,
+				})
 			}
 			if (data.checkPrivacyTermsDocumentUpdate.__typename === 'Error') {
+				TermsServiceReactiveVar({
+					update: false,
+				})
 				// router.replace({
 				// 	pathname: '(app)/hometab/venuefeed',
 				// })
@@ -52,6 +56,7 @@ export default () => {
 				style={[
 					styles.dot,
 					{
+						marginTop: windowHeight - size / 2,
 						marginLeft: '50%',
 						transform: [{ translateX: -size / 2 }],
 						alignContent: 'center',
@@ -93,18 +98,16 @@ export default () => {
 				style={{
 					flex: 1,
 					alignContent: 'center',
-					marginTop: size * 1.5,
+					// marginTop: size * 1.5,
+					backgroundColor:
+						rTheme.colorScheme === 'light'
+							? rTheme.theme?.gluestack.tokens.colors.light100
+							: rTheme.theme?.gluestack.tokens.colors.dark50,
 				}}
 			>
 				<LoadingAnimationLocation />
 			</View>
 		)
 	}
-
-	if (data.checkPrivacyTermsDocumentUpdate.__typename === 'Error') {
-		return <Redirect href={'(app)/hometab/venuefeed'} />
-	}
-	if (data.checkPrivacyTermsDocumentUpdate.__typename === 'LatestPrivacyAndTermsDocumentResponse') {
-		return <Redirect href={'(information)/latestprivacyservicetoptab'} />
-	}
+	return <Redirect href={'/(app)/hometab/venuefeed'} />
 }

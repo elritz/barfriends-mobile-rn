@@ -61,8 +61,12 @@ export default () => {
 					headerStyle: {
 						backgroundColor: 'transparent',
 					},
+					contentStyle: {
+						backgroundColor: 'transparent',
+					},
 					headerShown: false,
 					animation: 'fade',
+					presentation: 'modal',
 				}}
 			>
 				<Stack.Screen

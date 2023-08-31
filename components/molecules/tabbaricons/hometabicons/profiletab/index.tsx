@@ -4,7 +4,7 @@ import CompanyCoasterLogoDynamicInverse from '@assets/images/company/CompanyCoas
 import CompanyCoasterLogoDynamicOutline from '@assets/images/company/CompanyCoasterLogoDynamicOutline'
 import TabBarIcon, { TabProps } from '@components/atoms/icons/tabbaricon/TabBarIcon'
 import { Box } from '@components/core'
-import { useGetNotificationsQuery } from '@graphql/generated'
+// import { useGetNotificationsQuery } from '@graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import * as Haptics from 'expo-haptics'
 import { useRouter } from 'expo-router'
@@ -19,30 +19,30 @@ const ProfileTab = (props: TabProps) => {
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 	const [numNotification, setNumNotifications] = useState(0)
 
-	const {
-		data: GNData,
-		loading: GNLoading,
-		error,
-	} = useGetNotificationsQuery({
-		fetchPolicy: 'network-only',
-		onCompleted: data => {
-			if (data.getNotifications?.friendRequestNotifications?.length) {
-				const filterSentNotifications = data.getNotifications?.friendRequestNotifications.filter(
-					item => {
-						if (item?.receiverProfileId === rAuthorizationVar?.Profile?.id) {
-							return item
-						}
-					},
-				)
-				setNumNotifications(numNotification + filterSentNotifications.length)
-			}
-		},
-	})
+	// const {
+	// 	data: GNData,
+	// 	loading: GNLoading,
+	// 	error,
+	// } = useGetNotificationsQuery({
+	// 	fetchPolicy: 'network-only',
+	// 	onCompleted: data => {
+	// 		if (data.getNotifications?.friendRequestNotifications?.length) {
+	// 			const filterSentNotifications = data.getNotifications?.friendRequestNotifications.filter(
+	// 				item => {
+	// 					if (item?.receiverProfileId === rAuthorizationVar?.Profile?.id) {
+	// 						return item
+	// 					}
+	// 				},
+	// 			)
+	// 			setNumNotifications(numNotification + filterSentNotifications.length)
+	// 		}
+	// 	},
+	// })
 
 	const onLongPressProfileIcon = async () => {
 		await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
 		router.push({
-			pathname: '(app)/modal/DeviceManager',
+			pathname: '/(app)/modal/DeviceManager',
 		})
 	}
 
@@ -51,7 +51,7 @@ const ProfileTab = (props: TabProps) => {
 			<TabBarIcon
 				onPress={() => {
 					router.push({
-						pathname: '(app)/hometab/profilestack',
+						pathname: '/(app)/hometab/profilestack/UserProfileScreen',
 					})
 				}}
 				onLongPress={() => onLongPressProfileIcon()}
@@ -60,7 +60,7 @@ const ProfileTab = (props: TabProps) => {
 						<CompanyCoasterLogoDynamic
 							width={HEIGHT}
 							height={HEIGHT}
-							iconColor={'black'}
+							iconColor={rTheme.deviceColorScheme === 'dark' ? 'black' : 'white'}
 							backgroundColor={props.color}
 						/>
 					) : (

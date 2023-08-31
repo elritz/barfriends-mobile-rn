@@ -1,13 +1,9 @@
 import { useReactiveVar } from '@apollo/client'
 import { VStack } from '@components/core'
-import Auth from '@components/layouts/Auth'
-import Theme from '@components/layouts/Theme'
 import SearchInput from '@components/molecules/search/searchinput/SearchInput'
-import { useCheckPrivacyTermsDocumentUpdateQuery } from '@graphql/generated'
-import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
+import { ThemeReactiveVar } from '@reactive'
 import { BlurView } from 'expo-blur'
-import { Stack, router, useRouter, useSegments } from 'expo-router'
-import { useEffect } from 'react'
+import { Stack, useSegments } from 'expo-router'
 
 export default () => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
@@ -63,7 +59,13 @@ export default () => {
 					animation: 'fade',
 				}}
 			/>
-			<Stack.Screen name={'modal'} options={{ animation: 'fade' }} />
+			<Stack.Screen
+				name={'modal'}
+				options={{
+					presentation: 'modal',
+					animation: 'fade',
+				}}
+			/>
 			<Stack.Screen name={'public'} />
 			<Stack.Screen
 				name={'searcharea'}

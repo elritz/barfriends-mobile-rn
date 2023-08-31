@@ -6,11 +6,8 @@ import {
 	useGetADeviceManagerQuery,
 	useSwitchDeviceProfileMutation,
 } from '@graphql/generated'
-import GetSignInUpText from '@helpers/data/SignupinText'
 import { AuthorizationReactiveVar } from '@reactive'
 import { useState } from 'react'
-
-const text = GetSignInUpText()
 
 const DeviceManagerProfiles = () => {
 	const [selectedProfileId, setSelectedProfileId] = useState('')
@@ -19,8 +16,6 @@ const DeviceManagerProfiles = () => {
 	const { data, loading, error } = useGetADeviceManagerQuery({
 		fetchPolicy: 'network-only',
 		onCompleted: data => {
-			console.log('🚀 ~ file: DeviceManagerProfiles.tsx:23 ~ DeviceManagerProfiles ~ data:', data)
-
 			if (data.getADeviceManager?.__typename === 'DeviceManagerDeviceProfiles') {
 				const deviceProfiles = data?.getADeviceManager?.DeviceProfiles
 				setProfiles(deviceProfiles)
@@ -70,7 +65,6 @@ const DeviceManagerProfiles = () => {
 			{profiles.length ? (
 				<>
 					{profiles?.map((item, index) => {
-						console.log('item.isActive :>> ', item.isActive);
 						if (item.Profile?.ProfileType === ProfileType.Guest) return null
 						return (
 							<Pressable

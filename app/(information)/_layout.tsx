@@ -9,28 +9,37 @@ export default function _layout() {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 
 	return (
-		<Theme>
-			<Stack
-				screenOptions={{
+		<Stack
+			screenOptions={{
+				headerStyle: {
+					backgroundColor:
+						rTheme.colorScheme === 'light'
+							? rTheme.theme?.gluestack.tokens.colors.light50
+							: rTheme.theme?.gluestack.tokens.colors.dark50,
+				},
+				headerShown: false,
+			}}
+		>
+			<Stack.Screen
+				name={'updatelatestprivacytermsservice'}
+				options={{
 					headerStyle: {
-						backgroundColor:
-							rTheme.colorScheme === 'light'
-								? rTheme.theme?.gluestack.tokens.colors.light50
-								: rTheme.theme?.gluestack.tokens.colors.dark50,
+						backgroundColor: 'transparent',
 					},
+					headerShown: true,
+					headerTitle: () => <LogoTransparent height={30} width={192} />,
+					// headerLeft: () => <ChevronBackArrow />,
+				}}
+			/>
+			<Stack.Screen
+				name={'latestprivacyservicetoptab'}
+				options={{
+					presentation: 'fullScreenModal',
+					headerShown: true,
 					headerTitle: () => <LogoTransparent height={30} width={192} />,
 					headerLeft: () => <ChevronBackArrow />,
-					presentation: 'modal',
 				}}
-			>
-				<Stack.Screen name={'latestprivacytermsservicetabstack'} />
-				<Stack.Screen
-					name={'latestprivacyservicetoptab'}
-					options={{
-						presentation: 'modal',
-					}}
-				/>
-			</Stack>
-		</Theme>
+			/>
+		</Stack>
 	)
 }

@@ -68,7 +68,7 @@ export default function QuickBarfriendCard({ qrcodesize, logosize, showIcon, col
 					rPermissionCamera?.granted
 						? onOpen()
 						: router.push({
-								pathname: '(app)/permission/camera',
+								pathname: '/(app)/permission/camera',
 						  })
 				}
 			>

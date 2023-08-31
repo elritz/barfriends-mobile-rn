@@ -42,7 +42,7 @@ export default function DeviceManager() {
 					setTimeout(
 						() =>
 							router.push({
-								pathname: '(app)/hometab',
+								pathname: '/(app)/hometab/venuefeed',
 							}),
 						1000,
 					)
@@ -106,6 +106,11 @@ export default function DeviceManager() {
 						{profiles.length ? (
 							<ScrollView showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
 								{profiles?.map((item, index) => {
+									console.log(
+										'🚀 ~ file: DeviceManager.tsx:110 ~ {profiles?.map ~ item:',
+										JSON.stringify(item, null, 2),
+									)
+
 									if (item.Profile?.ProfileType === ProfileType.Guest) {
 										return null
 									} else {

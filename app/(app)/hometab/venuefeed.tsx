@@ -177,7 +177,7 @@ export default () => {
 													venueprofileids: JSON.stringify(item.venuesProfileIds),
 													id: item.id,
 												},
-												pathname: '(app)/searcharea/searchh3recommendation',
+												pathname: '/(app)/searcharea/searchh3recommendation',
 											})
 										}}
 									>
@@ -228,7 +228,7 @@ export default () => {
 													venueprofileids: JSON.stringify(item.venuesProfileIds),
 													id: item.id,
 												},
-												pathname: '(app)/searcharea/searchh3recommendation',
+												pathname: '/(app)/searcharea/searchh3recommendation',
 											})
 										}}
 									>
@@ -268,7 +268,7 @@ export default () => {
 			rPermissionLocationVar?.granted
 				? await useSetSearchAreaWithLocation()
 				: router.push({
-						pathname: '(app)/permission/foregroundlocation',
+						pathname: '/(app)/permission/foregroundlocation',
 				  })
 		}
 

@@ -47,6 +47,8 @@ export default function Auth({ children }) {
 			},
 		})
 
+	console.log('CGPMError :>> ', CGPMError)
+
 	const applicationAuthorization = useCallback(async () => {
 		// await secureStorageItemDelete({
 		// 	key: LOCAL_STORAGE_SEARCH_AREA,

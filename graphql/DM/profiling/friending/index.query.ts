@@ -9,24 +9,8 @@ export const GET_RELATIONSHIP_FRIENDREQUESTSTATUS_QUERY = gql`
 				errorCode
 				message
 			}
-			... on FriendRequest {
+			... on Request {
 				id
-				Notifications {
-					id
-					profileId
-					Profile {
-						id
-					}
-				}
-				receiverProfileId
-				senderProfileId
-				NotificationStatus {
-					id
-					isAccepted
-					isAnswered
-					isChecked
-				}
-				notificationStatusId
 			}
 			... on Relationship {
 				...RELATIONSHIP_FRAGMENT
