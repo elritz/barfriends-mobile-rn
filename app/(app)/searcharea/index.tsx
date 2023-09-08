@@ -42,7 +42,7 @@ export default () => {
 			case 'City':
 				if (rSearchAreaVar?.searchArea.country.isoCode && rSearchAreaVar?.searchArea.state.isoCode) {
 					router.push({
-						pathname: '(app)/searcharea/searchstatecities',
+						pathname: '/(app)/searcharea/searchstatecities',
 						params: {
 							countryIsoCode: rSearchAreaVar.searchArea.country.isoCode,
 							stateIsoCode: rSearchAreaVar.searchArea.state.isoCode,
@@ -53,7 +53,7 @@ export default () => {
 			case 'State':
 				if (rSearchAreaVar?.searchArea.country.isoCode && rSearchAreaVar?.searchArea.state.isoCode) {
 					router.push({
-						pathname: '(app)/searcharea/searchcountrystate',
+						pathname: '/(app)/searcharea/searchcountrystate',
 						params: {
 							countryIsoCode: rSearchAreaVar.searchArea.country.isoCode,
 						},
@@ -63,13 +63,13 @@ export default () => {
 			case 'Country':
 				if (rSearchAreaVar?.searchArea.country.isoCode && rSearchAreaVar?.searchArea.state.isoCode) {
 					router.push({
-						pathname: '(app)/searcharea/searchcountry',
+						pathname: '/(app)/searcharea/searchcountry',
 					})
 				}
 				break
 			default:
 				router.push({
-					pathname: '(app)/searcharea/searchcountry',
+					pathname: '/(app)/searcharea/searchcountry',
 				})
 		}
 	}
@@ -158,7 +158,7 @@ export default () => {
 								<Button
 									onPress={() => {
 										router.push({
-											pathname: '(app)/searcharea/searchcountry',
+											pathname: '/(app)/searcharea/searchcountry',
 										})
 									}}
 								>

@@ -57,7 +57,7 @@ const BackgroundLocationNextAskModal = ({ isOpen, onOpen, onClose }) => {
 							<Button
 								onPress={() =>
 									router.push({
-										pathname: '(app)/permission/backgroundlocation',
+										pathname: '/(app)/permission/backgroundlocation',
 									})
 								}
 								variant={'link'}

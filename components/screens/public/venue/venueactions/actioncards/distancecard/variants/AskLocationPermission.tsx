@@ -26,7 +26,7 @@ export default function AskForegroundLocationPermission() {
 				size={'lg'}
 				onPress={() =>
 					router.push({
-						pathname: '(app)/permission/foregroundlocation',
+						pathname: '/(app)/permission/foregroundlocation',
 					})
 				}
 			>

@@ -12,7 +12,7 @@ export default function Preferences() {
 					name: 'Foreground Location',
 					route: () => {
 						router.push({
-							pathname: '(app)/permission/foregroundlocation',
+							pathname: '/(app)/permission/foregroundlocation',
 						})
 					},
 				},
@@ -20,7 +20,7 @@ export default function Preferences() {
 					name: 'Background Location',
 					route: () => {
 						router.push({
-							pathname: '(app)/permission/backgroundlocation',
+							pathname: '/(app)/permission/backgroundlocation',
 						})
 					},
 				},
@@ -28,7 +28,7 @@ export default function Preferences() {
 					name: 'Contacts',
 					route: () => {
 						router.push({
-							pathname: '(app)/permission/contacts',
+							pathname: '/(app)/permission/contacts',
 						})
 					},
 				},
@@ -36,7 +36,7 @@ export default function Preferences() {
 					name: 'Notifications',
 					route: () => {
 						router.push({
-							pathname: '(app)/permission/notifications',
+							pathname: '/(app)/permission/notifications',
 						})
 					},
 				},
@@ -44,7 +44,7 @@ export default function Preferences() {
 					name: 'Media Library',
 					route: () => {
 						router.push({
-							pathname: '(app)/permission/medialibrary',
+							pathname: '/(app)/permission/medialibrary',
 						})
 					},
 				},
@@ -52,7 +52,7 @@ export default function Preferences() {
 					name: 'Camera',
 					route: () => {
 						router.push({
-							pathname: '(app)/permission/camera',
+							pathname: '/(app)/permission/camera',
 						})
 					},
 				},
@@ -60,7 +60,7 @@ export default function Preferences() {
 					name: 'Microphone',
 					route: () => {
 						router.push({
-							pathname: '(app)/permission/microphone',
+							pathname: '/(app)/permission/microphone',
 						})
 					},
 				},

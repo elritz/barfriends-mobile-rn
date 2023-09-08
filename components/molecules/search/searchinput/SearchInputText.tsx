@@ -1,13 +1,12 @@
 import { useReactiveVar } from '@apollo/client'
-import ChevronBackArrow from '@components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
-import { HStack, Input } from '@components/core'
+import { HStack, Input, Pressable, Text } from '@components/core'
 import { Ionicons } from '@expo/vector-icons'
 import { AntDesign } from '@expo/vector-icons'
 import { useExploreSearchLazyQuery } from '@graphql/generated'
 import { ThemeReactiveVar } from '@reactive'
 import useDebounce from '@util/hooks/useDebounce'
 import { useGlobalSearchParams, useRouter, useSegments } from 'expo-router'
-import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { TextInput } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -16,26 +15,15 @@ type Props = {
 	placeholder?: string
 }
 
-const SearchInput = (props: Props) => {
+const SearchInputText = (props: Props) => {
 	const insets = useSafeAreaInsets()
 	const _inputRef = useRef<TextInput | undefined>()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const router = useRouter()
 	const segments = useSegments()
 	const params = useGlobalSearchParams()
-	const [showBack, setShowBack] = useState(false)
 
-	const {
-		control,
-		setError,
-		clearErrors,
-		setValue,
-		getValues,
-		handleSubmit,
-		formState: { errors },
-		watch,
-		setFocus,
-	} = useForm({
+	const { control, setValue, handleSubmit, watch } = useForm({
 		defaultValues: {
 			searchtext: params.searchtext === undefined ? '' : String(params.searchtext),
 		},
@@ -57,8 +45,6 @@ const SearchInput = (props: Props) => {
 	useEffect(() => {
 		if (params.searchtext || params.searchtext !== undefined) {
 			setValue('searchtext', params.searchtext as string)
-		} else {
-			setValue('searchtext', '')
 		}
 	}, [params.searchtext])
 
@@ -71,8 +57,7 @@ const SearchInput = (props: Props) => {
 	})
 
 	const clearSearchInput = useCallback(() => {
-		_inputRef.current?.clear()
-		setValue('searchtext', '')
+		// _inputRef.current?.clear()
 		router.setParams({
 			searchtext: '',
 		})
@@ -126,18 +111,16 @@ const SearchInput = (props: Props) => {
 					<Input
 						flex={1}
 						variant='rounded'
-						mr={'$2'}
-						ml={!showBack ? '$2' : '$0'}
+						ml={'$2'}
 						zIndex={0}
 						hitSlop={{ top: 12, bottom: 12, left: 0, right: 15 }}
-						isReadOnly={!showBack}
 						bg={
 							rTheme.colorScheme === 'light'
 								? rTheme.theme?.gluestack.tokens.colors.light100
 								: rTheme.theme?.gluestack.tokens.colors.dark100
 						}
 					>
-						<Input.Icon ml={'$2'}>
+						<Input.Icon ml={'$3'}>
 							<Ionicons
 								color={
 									rTheme.colorScheme === 'light'
@@ -150,7 +133,7 @@ const SearchInput = (props: Props) => {
 						</Input.Icon>
 						<Input.Input
 							ref={_inputRef}
-							// autoFocus={autoFucus}
+							autoFocus={true}
 							placeholderTextColor={
 								rTheme.colorScheme === 'light'
 									? rTheme.theme?.gluestack.tokens.colors.light700
@@ -160,49 +143,6 @@ const SearchInput = (props: Props) => {
 							autoCorrect={false}
 							autoComplete='off'
 							value={value}
-							onPressIn={() => {
-								if (segments.includes('hometab')) {
-									router.push({
-										pathname: '/(app)/explore/searchtext',
-										params: {
-											searchtext: '',
-										},
-									})
-								}
-
-								if (segments.includes('explore') && segments.includes('searchtext')) {
-									router.replace({
-										params: {
-											searchtext: watch('searchtext'),
-										},
-										pathname: '/(app)/explore/searchtext',
-									})
-								}
-
-								if (segments.includes('searcharea')) {
-									if (segments.includes('searchexplore')) {
-										router.push({
-											pathname: '/(app)/searcharea',
-											params: {
-												searchtext: '',
-											},
-										})
-									} else {
-										if (
-											!segments.includes('searchcountry') ||
-											!segments.includes('searchcountrystates') ||
-											!segments.includes('searchstatecities')
-										) {
-											router.push({
-												pathname: '/(app)/searcharea/searchcountry',
-												params: {
-													searchtext: '',
-												},
-											})
-										}
-									}
-								}
-							}}
 							onChangeText={onChange}
 							placeholder={props.placeholder || 'Search'}
 							returnKeyType='search'
@@ -222,8 +162,11 @@ const SearchInput = (props: Props) => {
 					</Input>
 				)}
 			/>
+			<Pressable onPress={() => router.back()} mx={'$3'} justifyContent='center'>
+				<Text>Cancel</Text>
+			</Pressable>
 		</HStack>
 	)
 }
 
-export default SearchInput
+export default SearchInputText

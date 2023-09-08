@@ -1,59 +1,58 @@
-import { Box, Heading, Text } from '@components/core'
+import { Box, Heading } from '@components/core'
+import HorizontalMessageNotification from '@components/molecules/notifications/message/HorizontalMessageNotification'
+import useGenerateConversations, {
+	Conversation,
+} from '@helpers/generate/placeholder/useGenerateConversations'
+import { FlashList } from '@shopify/flash-list'
+import useContentInsets from '@util/hooks/useContentInsets'
+import { useEffect, useState } from 'react'
 
-export default function index() {
+const Messages = () => {
+	const contentInsets = useContentInsets()
+	const [data, setData] = useState<Conversation[]>([])
+	const [loading, setLoading] = useState<boolean>(true)
+	const { generateConversations } = useGenerateConversations()
+
+	useEffect(() => {
+		setLoading(true)
+		const conversations = generateConversations(10)
+		setData(conversations)
+		setLoading(false)
+	}, [])
+
+	if (loading) {
+		return null
+	}
+
 	return (
-		<Box bg={'$transparent'} flex={1} justifyContent={'center'} alignContent={'center'} mx={'$5'}>
-			<Heading fontSize={'$3xl'}>Messaging</Heading>
-			<Text>Enhance User Engagement and Communication with Messaging Feature on Revel</Text>
+		<Box flex={1} bg='$transparent' mx={'$2'}>
+			<FlashList
+				showsVerticalScrollIndicator={false}
+				onRefresh={() => {
+					setLoading(true)
+					const conversations = generateConversations(10)
+					setData(conversations)
+					setLoading(false)
+				}}
+				refreshing={loading}
+				data={data}
+				estimatedItemSize={75}
+				ListHeaderComponent={() => {
+					return (
+						<Heading my={'$2'} fontSize={'$3xl'}>
+							Messages
+						</Heading>
+					)
+				}}
+				contentInset={{
+					...contentInsets,
+				}}
+				keyExtractor={({ id }: { id: string }) => id.toString()}
+				renderItem={({ item }) => <HorizontalMessageNotification item={item} />}
+				snapToAlignment='center'
+			/>
 		</Box>
 	)
 }
 
-// import { useReactiveVar } from '@apollo/client'
-// import HorizontalMessageNotification from '@components/molecules/notifications/message/HorizontalMessageNotification'
-// import { Ionicons } from '@expo/vector-icons'
-// import GenerateMessageData from '@helpers/generate/placeholder/GenerateMessagesData'
-// import { PermissionNotificationReactiveVar } from '@reactive'
-// import { useRouter } from 'expo-router'
-// import { useRef } from 'react'
-// import { SafeAreaView } from 'react-native-safe-area-context'
-
-// const Messages = () => {
-// 	const _flatListRef = useRef<typeof FlatList>()
-// 	const router = useRouter()
-// 	const rPermissionNotificationVar = useReactiveVar(PermissionNotificationReactiveVar)
-// 	const data = GenerateMessageData(5, 2)
-
-// 	return (
-// 		<SafeAreaView style={{ flex: 1, marginHorizontal: 10 }}>
-// 			<HStack alignItems={'center'} justifyContent={'space-between'} mb={5}>
-// 				<Heading fontSize={'$3xl'}>Messages</Heading>
-// 				{!rPermissionNotificationVar?.granted && (
-// 					<Icon
-// 						as={Ionicons}
-// 						name={'ios-notifications'}
-// 						size={7}
-// 						color={'secondary.500'}
-// 						style={{}}
-// 						onPress={() =>
-// 							router.push({
-// 								pathname: '(app)/permission/notifications',
-// 							})
-// 						}
-// 					/>
-// 				)}
-// 			</HStack>
-// 			<FlatList
-// 				ref={_flatListRef}
-// 				style={{ elevation: 100, zIndex: 100, borderRadius: 15 }}
-// 				data={data}
-// 				contentInset={{ top: 0, left: 0, bottom: 90, right: 0 }}
-// 				keyExtractor={({ id }: { id: string }) => id.toString()}
-// 				renderItem={({ item }) => <HorizontalMessageNotification item={item} />}
-// 				snapToAlignment='center'
-// 			/>
-// 		</SafeAreaView>
-// 	)
-// }
-
-// export default Messages
+export default Messages

@@ -37,7 +37,7 @@ export default function InviteCard() {
 								pathname: '/public/contacts',
 						  })
 						: router.push({
-								pathname: '(app)/permission/contacts',
+								pathname: '/(app)/permission/contacts',
 						  })
 				}}
 				width={'$full'}

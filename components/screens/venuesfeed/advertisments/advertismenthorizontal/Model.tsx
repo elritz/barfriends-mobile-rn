@@ -60,7 +60,7 @@ export const products: Product[] = [
 		primaryTextColor: '#ffffff',
 		secondaryTextColor: '#ffffff',
 		buttoncta: 'Claim',
-		route: '(app)/ad',
+		route: '/(app)/ad',
 	},
 	{
 		type: '_ad2',
@@ -75,7 +75,7 @@ export const products: Product[] = [
 		secondaryTextColor: '#ffffff',
 		buttoncta: 'Continue',
 		aspectRatio: 1,
-		route: '(app)/ad',
+		route: '/(app)/ad',
 	},
 
 	{
@@ -89,7 +89,7 @@ export const products: Product[] = [
 		primaryTextColor: '#ffffff',
 		secondaryTextColor: '#ffffff',
 		buttoncta: 'Continue',
-		route: '(app)/ad',
+		route: '/(app)/ad',
 	},
 	{
 		type: '_ad4',
@@ -101,7 +101,7 @@ export const products: Product[] = [
 		primaryTextColor: '#ffffff',
 		secondaryTextColor: '#ffffff',
 		buttoncta: 'View',
-		route: '(app)/public/venue/1',
+		route: '/(app)/public/venue/1',
 	},
 
 	// Venue advertisments
@@ -117,7 +117,7 @@ export const products: Product[] = [
 		primaryTextColor: '#ffffff',
 		secondaryTextColor: '#ffffff',
 		buttoncta: 'View',
-		route: '(app)/public/venue/1',
+		route: '/(app)/public/venue/1',
 	},
 ]
 // {

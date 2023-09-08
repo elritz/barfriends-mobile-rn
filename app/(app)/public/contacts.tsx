@@ -82,7 +82,7 @@ export default () => {
 				<Button
 					onPress={() =>
 						router.push({
-							pathname: '(app)/permission/contacts',
+							pathname: '/(app)/permission/contacts',
 						})
 					}
 				>

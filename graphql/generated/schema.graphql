@@ -2568,10 +2568,12 @@ type Conversation {
   Members(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): [Profile!]!
   MembersConversationNotificationSetting(cursor: MemberConversationNotificationSettingWhereUniqueInput, distinct: [MemberConversationNotificationSettingScalarFieldEnum!], orderBy: [MemberConversationNotificationSettingOrderByWithRelationInput!], skip: Int, take: Int, where: MemberConversationNotificationSettingWhereInput): [MemberConversationNotificationSetting!]!
   Messages(cursor: MessageWhereUniqueInput, distinct: [MessageScalarFieldEnum!], orderBy: [MessageOrderByWithRelationInput!], skip: Int, take: Int, where: MessageWhereInput): [Message!]!
+  name: String
 }
 
 input ConversationCountOrderByAggregateInput {
   id: SortOrder
+  name: SortOrder
 }
 
 input ConversationCreateInput {
@@ -2579,10 +2581,12 @@ input ConversationCreateInput {
   Members: ProfileCreateNestedManyWithoutConversationsInput
   MembersConversationNotificationSetting: MemberConversationNotificationSettingCreateNestedManyWithoutConversationInput
   Messages: MessageCreateNestedManyWithoutConversationInput
+  name: String
 }
 
 input ConversationCreateManyInput {
   id: String
+  name: String
 }
 
 input ConversationCreateNestedManyWithoutMembersInput {
@@ -2622,18 +2626,21 @@ input ConversationCreateWithoutMembersConversationNotificationSettingInput {
   id: String
   Members: ProfileCreateNestedManyWithoutConversationsInput
   Messages: MessageCreateNestedManyWithoutConversationInput
+  name: String
 }
 
 input ConversationCreateWithoutMembersInput {
   id: String
   MembersConversationNotificationSetting: MemberConversationNotificationSettingCreateNestedManyWithoutConversationInput
   Messages: MessageCreateNestedManyWithoutConversationInput
+  name: String
 }
 
 input ConversationCreateWithoutMessagesInput {
   id: String
   Members: ProfileCreateNestedManyWithoutConversationsInput
   MembersConversationNotificationSetting: MemberConversationNotificationSettingCreateNestedManyWithoutConversationInput
+  name: String
 }
 
 input ConversationListRelationFilter {
@@ -2644,10 +2651,12 @@ input ConversationListRelationFilter {
 
 input ConversationMaxOrderByAggregateInput {
   id: SortOrder
+  name: SortOrder
 }
 
 input ConversationMinOrderByAggregateInput {
   id: SortOrder
+  name: SortOrder
 }
 
 input ConversationNullableRelationFilter {
@@ -2664,6 +2673,7 @@ input ConversationOrderByWithAggregationInput {
   _max: ConversationMaxOrderByAggregateInput
   _min: ConversationMinOrderByAggregateInput
   id: SortOrder
+  name: SortOrder
 }
 
 input ConversationOrderByWithRelationInput {
@@ -2671,15 +2681,18 @@ input ConversationOrderByWithRelationInput {
   Members: ProfileOrderByRelationAggregateInput
   MembersConversationNotificationSetting: MemberConversationNotificationSettingOrderByRelationAggregateInput
   Messages: MessageOrderByRelationAggregateInput
+  name: SortOrder
 }
 
 enum ConversationScalarFieldEnum {
   id
+  name
 }
 
 input ConversationScalarWhereInput {
   AND: [ConversationScalarWhereInput!]
   id: StringFilter
+  name: StringNullableFilter
   NOT: [ConversationScalarWhereInput!]
   OR: [ConversationScalarWhereInput!]
 }
@@ -2687,6 +2700,7 @@ input ConversationScalarWhereInput {
 input ConversationScalarWhereWithAggregatesInput {
   AND: [ConversationScalarWhereWithAggregatesInput!]
   id: StringWithAggregatesFilter
+  name: StringNullableWithAggregatesFilter
   NOT: [ConversationScalarWhereWithAggregatesInput!]
   OR: [ConversationScalarWhereWithAggregatesInput!]
 }
@@ -2696,10 +2710,12 @@ input ConversationUpdateInput {
   Members: ProfileUpdateManyWithoutConversationsNestedInput
   MembersConversationNotificationSetting: MemberConversationNotificationSettingUpdateManyWithoutConversationNestedInput
   Messages: MessageUpdateManyWithoutConversationNestedInput
+  name: NullableStringFieldUpdateOperationsInput
 }
 
 input ConversationUpdateManyMutationInput {
   id: StringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
 }
 
 input ConversationUpdateManyWithoutMembersNestedInput {
@@ -2754,18 +2770,21 @@ input ConversationUpdateWithoutMembersConversationNotificationSettingInput {
   id: StringFieldUpdateOperationsInput
   Members: ProfileUpdateManyWithoutConversationsNestedInput
   Messages: MessageUpdateManyWithoutConversationNestedInput
+  name: NullableStringFieldUpdateOperationsInput
 }
 
 input ConversationUpdateWithoutMembersInput {
   id: StringFieldUpdateOperationsInput
   MembersConversationNotificationSetting: MemberConversationNotificationSettingUpdateManyWithoutConversationNestedInput
   Messages: MessageUpdateManyWithoutConversationNestedInput
+  name: NullableStringFieldUpdateOperationsInput
 }
 
 input ConversationUpdateWithoutMessagesInput {
   id: StringFieldUpdateOperationsInput
   Members: ProfileUpdateManyWithoutConversationsNestedInput
   MembersConversationNotificationSetting: MemberConversationNotificationSettingUpdateManyWithoutConversationNestedInput
+  name: NullableStringFieldUpdateOperationsInput
 }
 
 input ConversationUpdateWithWhereUniqueWithoutMembersInput {
@@ -2797,6 +2816,7 @@ input ConversationWhereInput {
   Members: ProfileListRelationFilter
   MembersConversationNotificationSetting: MemberConversationNotificationSettingListRelationFilter
   Messages: MessageListRelationFilter
+  name: StringNullableFilter
   NOT: [ConversationWhereInput!]
   OR: [ConversationWhereInput!]
 }
@@ -2807,6 +2827,7 @@ input ConversationWhereUniqueInput {
   Members: ProfileListRelationFilter
   MembersConversationNotificationSetting: MemberConversationNotificationSettingListRelationFilter
   Messages: MessageListRelationFilter
+  name: StringNullableFilter
   NOT: [ConversationWhereInput!]
   OR: [ConversationWhereInput!]
 }
@@ -8554,10 +8575,10 @@ type Message {
   conversationId: String
   id: ID!
   messageId: String
-  Profile: Profile
-  profileId: String
   Replies(cursor: MessageWhereUniqueInput, distinct: [MessageScalarFieldEnum!], orderBy: [MessageOrderByWithRelationInput!], skip: Int, take: Int, where: MessageWhereInput): [Message!]!
   Reply: Message
+  Request: Request!
+  requestId: String!
 }
 
 input MessageCountOrderByAggregateInput {
@@ -8565,23 +8586,23 @@ input MessageCountOrderByAggregateInput {
   conversationId: SortOrder
   id: SortOrder
   messageId: SortOrder
-  profileId: SortOrder
+  requestId: SortOrder
 }
 
 input MessageCreateInput {
   content: Json!
   Conversation: ConversationCreateNestedOneWithoutMessagesInput
   id: String
-  Profile: ProfileCreateNestedOneWithoutMessageInput
   Replies: MessageCreateNestedManyWithoutReplyInput
   Reply: MessageCreateNestedOneWithoutRepliesInput
+  Request: RequestCreateNestedOneWithoutMessageInput!
 }
 
 input MessageCreateManyConversationInput {
   content: Json!
   id: String
   messageId: String
-  profileId: String
+  requestId: String!
 }
 
 input MessageCreateManyConversationInputEnvelope {
@@ -8594,26 +8615,14 @@ input MessageCreateManyInput {
   conversationId: String
   id: String
   messageId: String
-  profileId: String
-}
-
-input MessageCreateManyProfileInput {
-  content: Json!
-  conversationId: String
-  id: String
-  messageId: String
-}
-
-input MessageCreateManyProfileInputEnvelope {
-  data: [MessageCreateManyProfileInput!]!
-  skipDuplicates: Boolean
+  requestId: String!
 }
 
 input MessageCreateManyReplyInput {
   content: Json!
   conversationId: String
   id: String
-  profileId: String
+  requestId: String!
 }
 
 input MessageCreateManyReplyInputEnvelope {
@@ -8626,13 +8635,6 @@ input MessageCreateNestedManyWithoutConversationInput {
   connectOrCreate: [MessageCreateOrConnectWithoutConversationInput!]
   create: [MessageCreateWithoutConversationInput!]
   createMany: MessageCreateManyConversationInputEnvelope
-}
-
-input MessageCreateNestedManyWithoutProfileInput {
-  connect: [MessageWhereUniqueInput!]
-  connectOrCreate: [MessageCreateOrConnectWithoutProfileInput!]
-  create: [MessageCreateWithoutProfileInput!]
-  createMany: MessageCreateManyProfileInputEnvelope
 }
 
 input MessageCreateNestedManyWithoutReplyInput {
@@ -8648,13 +8650,14 @@ input MessageCreateNestedOneWithoutRepliesInput {
   create: MessageCreateWithoutRepliesInput
 }
 
-input MessageCreateOrConnectWithoutConversationInput {
-  create: MessageCreateWithoutConversationInput!
-  where: MessageWhereUniqueInput!
+input MessageCreateNestedOneWithoutRequestInput {
+  connect: MessageWhereUniqueInput
+  connectOrCreate: MessageCreateOrConnectWithoutRequestInput
+  create: MessageCreateWithoutRequestInput
 }
 
-input MessageCreateOrConnectWithoutProfileInput {
-  create: MessageCreateWithoutProfileInput!
+input MessageCreateOrConnectWithoutConversationInput {
+  create: MessageCreateWithoutConversationInput!
   where: MessageWhereUniqueInput!
 }
 
@@ -8668,36 +8671,41 @@ input MessageCreateOrConnectWithoutReplyInput {
   where: MessageWhereUniqueInput!
 }
 
+input MessageCreateOrConnectWithoutRequestInput {
+  create: MessageCreateWithoutRequestInput!
+  where: MessageWhereUniqueInput!
+}
+
 input MessageCreateWithoutConversationInput {
   content: Json!
   id: String
-  Profile: ProfileCreateNestedOneWithoutMessageInput
   Replies: MessageCreateNestedManyWithoutReplyInput
   Reply: MessageCreateNestedOneWithoutRepliesInput
-}
-
-input MessageCreateWithoutProfileInput {
-  content: Json!
-  Conversation: ConversationCreateNestedOneWithoutMessagesInput
-  id: String
-  Replies: MessageCreateNestedManyWithoutReplyInput
-  Reply: MessageCreateNestedOneWithoutRepliesInput
+  Request: RequestCreateNestedOneWithoutMessageInput!
 }
 
 input MessageCreateWithoutRepliesInput {
   content: Json!
   Conversation: ConversationCreateNestedOneWithoutMessagesInput
   id: String
-  Profile: ProfileCreateNestedOneWithoutMessageInput
   Reply: MessageCreateNestedOneWithoutRepliesInput
+  Request: RequestCreateNestedOneWithoutMessageInput!
 }
 
 input MessageCreateWithoutReplyInput {
   content: Json!
   Conversation: ConversationCreateNestedOneWithoutMessagesInput
   id: String
-  Profile: ProfileCreateNestedOneWithoutMessageInput
   Replies: MessageCreateNestedManyWithoutReplyInput
+  Request: RequestCreateNestedOneWithoutMessageInput!
+}
+
+input MessageCreateWithoutRequestInput {
+  content: Json!
+  Conversation: ConversationCreateNestedOneWithoutMessagesInput
+  id: String
+  Replies: MessageCreateNestedManyWithoutReplyInput
+  Reply: MessageCreateNestedOneWithoutRepliesInput
 }
 
 enum MessageEventType {
@@ -8714,14 +8722,14 @@ input MessageMaxOrderByAggregateInput {
   conversationId: SortOrder
   id: SortOrder
   messageId: SortOrder
-  profileId: SortOrder
+  requestId: SortOrder
 }
 
 input MessageMinOrderByAggregateInput {
   conversationId: SortOrder
   id: SortOrder
   messageId: SortOrder
-  profileId: SortOrder
+  requestId: SortOrder
 }
 
 input MessageNullableRelationFilter {
@@ -8741,7 +8749,7 @@ input MessageOrderByWithAggregationInput {
   conversationId: SortOrder
   id: SortOrder
   messageId: SortOrder
-  profileId: SortOrder
+  requestId: SortOrder
 }
 
 input MessageOrderByWithRelationInput {
@@ -8750,10 +8758,10 @@ input MessageOrderByWithRelationInput {
   conversationId: SortOrder
   id: SortOrder
   messageId: SortOrder
-  Profile: ProfileOrderByWithRelationInput
-  profileId: SortOrder
   Replies: MessageOrderByRelationAggregateInput
   Reply: MessageOrderByWithRelationInput
+  Request: RequestOrderByWithRelationInput
+  requestId: SortOrder
 }
 
 enum MessageScalarFieldEnum {
@@ -8761,7 +8769,7 @@ enum MessageScalarFieldEnum {
   conversationId
   id
   messageId
-  profileId
+  requestId
 }
 
 input MessageScalarWhereInput {
@@ -8772,7 +8780,7 @@ input MessageScalarWhereInput {
   messageId: StringNullableFilter
   NOT: [MessageScalarWhereInput!]
   OR: [MessageScalarWhereInput!]
-  profileId: StringNullableFilter
+  requestId: StringFilter
 }
 
 input MessageScalarWhereWithAggregatesInput {
@@ -8783,16 +8791,16 @@ input MessageScalarWhereWithAggregatesInput {
   messageId: StringNullableWithAggregatesFilter
   NOT: [MessageScalarWhereWithAggregatesInput!]
   OR: [MessageScalarWhereWithAggregatesInput!]
-  profileId: StringNullableWithAggregatesFilter
+  requestId: StringWithAggregatesFilter
 }
 
 input MessageUpdateInput {
   content: Json
   Conversation: ConversationUpdateOneWithoutMessagesNestedInput
   id: StringFieldUpdateOperationsInput
-  Profile: ProfileUpdateOneWithoutMessageNestedInput
   Replies: MessageUpdateManyWithoutReplyNestedInput
   Reply: MessageUpdateOneWithoutRepliesNestedInput
+  Request: RequestUpdateOneRequiredWithoutMessageNestedInput
 }
 
 input MessageUpdateManyMutationInput {
@@ -8814,20 +8822,6 @@ input MessageUpdateManyWithoutConversationNestedInput {
   upsert: [MessageUpsertWithWhereUniqueWithoutConversationInput!]
 }
 
-input MessageUpdateManyWithoutProfileNestedInput {
-  connect: [MessageWhereUniqueInput!]
-  connectOrCreate: [MessageCreateOrConnectWithoutProfileInput!]
-  create: [MessageCreateWithoutProfileInput!]
-  createMany: MessageCreateManyProfileInputEnvelope
-  delete: [MessageWhereUniqueInput!]
-  deleteMany: [MessageScalarWhereInput!]
-  disconnect: [MessageWhereUniqueInput!]
-  set: [MessageWhereUniqueInput!]
-  update: [MessageUpdateWithWhereUniqueWithoutProfileInput!]
-  updateMany: [MessageUpdateManyWithWhereWithoutProfileInput!]
-  upsert: [MessageUpsertWithWhereUniqueWithoutProfileInput!]
-}
-
 input MessageUpdateManyWithoutReplyNestedInput {
   connect: [MessageWhereUniqueInput!]
   connectOrCreate: [MessageCreateOrConnectWithoutReplyInput!]
@@ -8847,11 +8841,6 @@ input MessageUpdateManyWithWhereWithoutConversationInput {
   where: MessageScalarWhereInput!
 }
 
-input MessageUpdateManyWithWhereWithoutProfileInput {
-  data: MessageUpdateManyMutationInput!
-  where: MessageScalarWhereInput!
-}
-
 input MessageUpdateManyWithWhereWithoutReplyInput {
   data: MessageUpdateManyMutationInput!
   where: MessageScalarWhereInput!
@@ -8867,50 +8856,60 @@ input MessageUpdateOneWithoutRepliesNestedInput {
   upsert: MessageUpsertWithoutRepliesInput
 }
 
+input MessageUpdateOneWithoutRequestNestedInput {
+  connect: MessageWhereUniqueInput
+  connectOrCreate: MessageCreateOrConnectWithoutRequestInput
+  create: MessageCreateWithoutRequestInput
+  delete: MessageWhereInput
+  disconnect: MessageWhereInput
+  update: MessageUpdateToOneWithWhereWithoutRequestInput
+  upsert: MessageUpsertWithoutRequestInput
+}
+
 input MessageUpdateToOneWithWhereWithoutRepliesInput {
   data: MessageUpdateWithoutRepliesInput!
+  where: MessageWhereInput
+}
+
+input MessageUpdateToOneWithWhereWithoutRequestInput {
+  data: MessageUpdateWithoutRequestInput!
   where: MessageWhereInput
 }
 
 input MessageUpdateWithoutConversationInput {
   content: Json
   id: StringFieldUpdateOperationsInput
-  Profile: ProfileUpdateOneWithoutMessageNestedInput
   Replies: MessageUpdateManyWithoutReplyNestedInput
   Reply: MessageUpdateOneWithoutRepliesNestedInput
-}
-
-input MessageUpdateWithoutProfileInput {
-  content: Json
-  Conversation: ConversationUpdateOneWithoutMessagesNestedInput
-  id: StringFieldUpdateOperationsInput
-  Replies: MessageUpdateManyWithoutReplyNestedInput
-  Reply: MessageUpdateOneWithoutRepliesNestedInput
+  Request: RequestUpdateOneRequiredWithoutMessageNestedInput
 }
 
 input MessageUpdateWithoutRepliesInput {
   content: Json
   Conversation: ConversationUpdateOneWithoutMessagesNestedInput
   id: StringFieldUpdateOperationsInput
-  Profile: ProfileUpdateOneWithoutMessageNestedInput
   Reply: MessageUpdateOneWithoutRepliesNestedInput
+  Request: RequestUpdateOneRequiredWithoutMessageNestedInput
 }
 
 input MessageUpdateWithoutReplyInput {
   content: Json
   Conversation: ConversationUpdateOneWithoutMessagesNestedInput
   id: StringFieldUpdateOperationsInput
-  Profile: ProfileUpdateOneWithoutMessageNestedInput
   Replies: MessageUpdateManyWithoutReplyNestedInput
+  Request: RequestUpdateOneRequiredWithoutMessageNestedInput
+}
+
+input MessageUpdateWithoutRequestInput {
+  content: Json
+  Conversation: ConversationUpdateOneWithoutMessagesNestedInput
+  id: StringFieldUpdateOperationsInput
+  Replies: MessageUpdateManyWithoutReplyNestedInput
+  Reply: MessageUpdateOneWithoutRepliesNestedInput
 }
 
 input MessageUpdateWithWhereUniqueWithoutConversationInput {
   data: MessageUpdateWithoutConversationInput!
-  where: MessageWhereUniqueInput!
-}
-
-input MessageUpdateWithWhereUniqueWithoutProfileInput {
-  data: MessageUpdateWithoutProfileInput!
   where: MessageWhereUniqueInput!
 }
 
@@ -8925,15 +8924,15 @@ input MessageUpsertWithoutRepliesInput {
   where: MessageWhereInput
 }
 
+input MessageUpsertWithoutRequestInput {
+  create: MessageCreateWithoutRequestInput!
+  update: MessageUpdateWithoutRequestInput!
+  where: MessageWhereInput
+}
+
 input MessageUpsertWithWhereUniqueWithoutConversationInput {
   create: MessageCreateWithoutConversationInput!
   update: MessageUpdateWithoutConversationInput!
-  where: MessageWhereUniqueInput!
-}
-
-input MessageUpsertWithWhereUniqueWithoutProfileInput {
-  create: MessageCreateWithoutProfileInput!
-  update: MessageUpdateWithoutProfileInput!
   where: MessageWhereUniqueInput!
 }
 
@@ -8952,10 +8951,10 @@ input MessageWhereInput {
   messageId: StringNullableFilter
   NOT: [MessageWhereInput!]
   OR: [MessageWhereInput!]
-  Profile: ProfileWhereInput
-  profileId: StringNullableFilter
   Replies: MessageListRelationFilter
   Reply: MessageWhereInput
+  Request: RequestWhereInput
+  requestId: StringFilter
 }
 
 input MessageWhereUniqueInput {
@@ -8967,10 +8966,10 @@ input MessageWhereUniqueInput {
   messageId: StringNullableFilter
   NOT: [MessageWhereInput!]
   OR: [MessageWhereInput!]
-  Profile: ProfileWhereInput
-  profileId: StringNullableFilter
   Replies: MessageListRelationFilter
   Reply: MessageWhereInput
+  Request: RequestWhereInput
+  requestId: String
 }
 
 type Mutation {
@@ -8981,7 +8980,7 @@ type Mutation {
   createFriendRequest(receiversProfileId: [String!]!, senderProfileId: String!): Boolean!
   createGuestProfile: AuthenticationResponseUnion!
   createMessage(
-    content: String!
+    content: Json!
     conversationId: String
 
     """This is a list of ProfileIds."""
@@ -9014,6 +9013,7 @@ type Mutation {
   This function updates the upvote for a venue recommendation for a H3Index6. If the user has already upvoted, it will be set to false. If the user has not upvoted, it will be set to true.
   """
   updateH6VenueRemmendation(venueRecommendationId: String!): H3Index6VenueRecommendation!
+  updateManyMessageNotifications(conversationId: String): Boolean
   updateOneProfile(data: ProfileUpdateInput!, where: ProfileWhereUniqueInput!): Profile
   updateProfileIdentifiableInformation(data: IdentifiableInformationUpdateInput!): AuthenticationResponseUnion!
   updateProfilePrivacyTermsDocumentUpdate: Boolean!
@@ -9434,10 +9434,11 @@ type NotificationResponse {
 }
 
 type Notifications {
+  FriendRequests(cursor: RequestWhereUniqueInput, distinct: [RequestScalarFieldEnum!], orderBy: [RequestOrderByWithRelationInput!], skip: Int, take: Int, where: RequestWhereInput): [Request!]!
   id: ID!
+  MessageRequests(cursor: RequestWhereUniqueInput, distinct: [RequestScalarFieldEnum!], orderBy: [RequestOrderByWithRelationInput!], skip: Int, take: Int, where: RequestWhereInput): [Request!]!
   Profile: Profile!
   profileId: String!
-  Requests(cursor: RequestWhereUniqueInput, distinct: [RequestScalarFieldEnum!], orderBy: [RequestOrderByWithRelationInput!], skip: Int, take: Int, where: RequestWhereInput): [Request!]!
 }
 
 input NotificationsCountOrderByAggregateInput {
@@ -9446,9 +9447,10 @@ input NotificationsCountOrderByAggregateInput {
 }
 
 input NotificationsCreateInput {
+  FriendRequests: RequestCreateNestedManyWithoutNotificationFriendRequestInput
   id: String
+  MessageRequests: RequestCreateNestedManyWithoutNotificationMessageInput
   Profile: ProfileCreateNestedOneWithoutNotificationsInput!
-  Requests: RequestCreateNestedManyWithoutNotificationsInput
 }
 
 input NotificationsCreateManyInput {
@@ -9456,10 +9458,16 @@ input NotificationsCreateManyInput {
   profileId: String!
 }
 
-input NotificationsCreateNestedManyWithoutRequestsInput {
-  connect: [NotificationsWhereUniqueInput!]
-  connectOrCreate: [NotificationsCreateOrConnectWithoutRequestsInput!]
-  create: [NotificationsCreateWithoutRequestsInput!]
+input NotificationsCreateNestedOneWithoutFriendRequestsInput {
+  connect: NotificationsWhereUniqueInput
+  connectOrCreate: NotificationsCreateOrConnectWithoutFriendRequestsInput
+  create: NotificationsCreateWithoutFriendRequestsInput
+}
+
+input NotificationsCreateNestedOneWithoutMessageRequestsInput {
+  connect: NotificationsWhereUniqueInput
+  connectOrCreate: NotificationsCreateOrConnectWithoutMessageRequestsInput
+  create: NotificationsCreateWithoutMessageRequestsInput
 }
 
 input NotificationsCreateNestedOneWithoutProfileInput {
@@ -9468,30 +9476,37 @@ input NotificationsCreateNestedOneWithoutProfileInput {
   create: NotificationsCreateWithoutProfileInput
 }
 
+input NotificationsCreateOrConnectWithoutFriendRequestsInput {
+  create: NotificationsCreateWithoutFriendRequestsInput!
+  where: NotificationsWhereUniqueInput!
+}
+
+input NotificationsCreateOrConnectWithoutMessageRequestsInput {
+  create: NotificationsCreateWithoutMessageRequestsInput!
+  where: NotificationsWhereUniqueInput!
+}
+
 input NotificationsCreateOrConnectWithoutProfileInput {
   create: NotificationsCreateWithoutProfileInput!
   where: NotificationsWhereUniqueInput!
 }
 
-input NotificationsCreateOrConnectWithoutRequestsInput {
-  create: NotificationsCreateWithoutRequestsInput!
-  where: NotificationsWhereUniqueInput!
-}
-
-input NotificationsCreateWithoutProfileInput {
+input NotificationsCreateWithoutFriendRequestsInput {
   id: String
-  Requests: RequestCreateNestedManyWithoutNotificationsInput
+  MessageRequests: RequestCreateNestedManyWithoutNotificationMessageInput
+  Profile: ProfileCreateNestedOneWithoutNotificationsInput!
 }
 
-input NotificationsCreateWithoutRequestsInput {
+input NotificationsCreateWithoutMessageRequestsInput {
+  FriendRequests: RequestCreateNestedManyWithoutNotificationFriendRequestInput
   id: String
   Profile: ProfileCreateNestedOneWithoutNotificationsInput!
 }
 
-input NotificationsListRelationFilter {
-  every: NotificationsWhereInput
-  none: NotificationsWhereInput
-  some: NotificationsWhereInput
+input NotificationsCreateWithoutProfileInput {
+  FriendRequests: RequestCreateNestedManyWithoutNotificationFriendRequestInput
+  id: String
+  MessageRequests: RequestCreateNestedManyWithoutNotificationMessageInput
 }
 
 input NotificationsMaxOrderByAggregateInput {
@@ -9509,10 +9524,6 @@ input NotificationsNullableRelationFilter {
   isNot: NotificationsWhereInput
 }
 
-input NotificationsOrderByRelationAggregateInput {
-  _count: SortOrder
-}
-
 input NotificationsOrderByWithAggregationInput {
   _count: NotificationsCountOrderByAggregateInput
   _max: NotificationsMaxOrderByAggregateInput
@@ -9522,23 +9533,16 @@ input NotificationsOrderByWithAggregationInput {
 }
 
 input NotificationsOrderByWithRelationInput {
+  FriendRequests: RequestOrderByRelationAggregateInput
   id: SortOrder
+  MessageRequests: RequestOrderByRelationAggregateInput
   Profile: ProfileOrderByWithRelationInput
   profileId: SortOrder
-  Requests: RequestOrderByRelationAggregateInput
 }
 
 enum NotificationsScalarFieldEnum {
   id
   profileId
-}
-
-input NotificationsScalarWhereInput {
-  AND: [NotificationsScalarWhereInput!]
-  id: StringFilter
-  NOT: [NotificationsScalarWhereInput!]
-  OR: [NotificationsScalarWhereInput!]
-  profileId: StringFilter
 }
 
 input NotificationsScalarWhereWithAggregatesInput {
@@ -9763,31 +9767,34 @@ input NotificationStatusWhereUniqueInput {
 }
 
 input NotificationsUpdateInput {
+  FriendRequests: RequestUpdateManyWithoutNotificationFriendRequestNestedInput
   id: StringFieldUpdateOperationsInput
+  MessageRequests: RequestUpdateManyWithoutNotificationMessageNestedInput
   Profile: ProfileUpdateOneRequiredWithoutNotificationsNestedInput
-  Requests: RequestUpdateManyWithoutNotificationsNestedInput
 }
 
 input NotificationsUpdateManyMutationInput {
   id: StringFieldUpdateOperationsInput
 }
 
-input NotificationsUpdateManyWithoutRequestsNestedInput {
-  connect: [NotificationsWhereUniqueInput!]
-  connectOrCreate: [NotificationsCreateOrConnectWithoutRequestsInput!]
-  create: [NotificationsCreateWithoutRequestsInput!]
-  delete: [NotificationsWhereUniqueInput!]
-  deleteMany: [NotificationsScalarWhereInput!]
-  disconnect: [NotificationsWhereUniqueInput!]
-  set: [NotificationsWhereUniqueInput!]
-  update: [NotificationsUpdateWithWhereUniqueWithoutRequestsInput!]
-  updateMany: [NotificationsUpdateManyWithWhereWithoutRequestsInput!]
-  upsert: [NotificationsUpsertWithWhereUniqueWithoutRequestsInput!]
+input NotificationsUpdateOneWithoutFriendRequestsNestedInput {
+  connect: NotificationsWhereUniqueInput
+  connectOrCreate: NotificationsCreateOrConnectWithoutFriendRequestsInput
+  create: NotificationsCreateWithoutFriendRequestsInput
+  delete: NotificationsWhereInput
+  disconnect: NotificationsWhereInput
+  update: NotificationsUpdateToOneWithWhereWithoutFriendRequestsInput
+  upsert: NotificationsUpsertWithoutFriendRequestsInput
 }
 
-input NotificationsUpdateManyWithWhereWithoutRequestsInput {
-  data: NotificationsUpdateManyMutationInput!
-  where: NotificationsScalarWhereInput!
+input NotificationsUpdateOneWithoutMessageRequestsNestedInput {
+  connect: NotificationsWhereUniqueInput
+  connectOrCreate: NotificationsCreateOrConnectWithoutMessageRequestsInput
+  create: NotificationsCreateWithoutMessageRequestsInput
+  delete: NotificationsWhereInput
+  disconnect: NotificationsWhereInput
+  update: NotificationsUpdateToOneWithWhereWithoutMessageRequestsInput
+  upsert: NotificationsUpsertWithoutMessageRequestsInput
 }
 
 input NotificationsUpdateOneWithoutProfileNestedInput {
@@ -9800,24 +9807,49 @@ input NotificationsUpdateOneWithoutProfileNestedInput {
   upsert: NotificationsUpsertWithoutProfileInput
 }
 
+input NotificationsUpdateToOneWithWhereWithoutFriendRequestsInput {
+  data: NotificationsUpdateWithoutFriendRequestsInput!
+  where: NotificationsWhereInput
+}
+
+input NotificationsUpdateToOneWithWhereWithoutMessageRequestsInput {
+  data: NotificationsUpdateWithoutMessageRequestsInput!
+  where: NotificationsWhereInput
+}
+
 input NotificationsUpdateToOneWithWhereWithoutProfileInput {
   data: NotificationsUpdateWithoutProfileInput!
   where: NotificationsWhereInput
 }
 
-input NotificationsUpdateWithoutProfileInput {
+input NotificationsUpdateWithoutFriendRequestsInput {
   id: StringFieldUpdateOperationsInput
-  Requests: RequestUpdateManyWithoutNotificationsNestedInput
+  MessageRequests: RequestUpdateManyWithoutNotificationMessageNestedInput
+  Profile: ProfileUpdateOneRequiredWithoutNotificationsNestedInput
 }
 
-input NotificationsUpdateWithoutRequestsInput {
+input NotificationsUpdateWithoutMessageRequestsInput {
+  FriendRequests: RequestUpdateManyWithoutNotificationFriendRequestNestedInput
   id: StringFieldUpdateOperationsInput
   Profile: ProfileUpdateOneRequiredWithoutNotificationsNestedInput
 }
 
-input NotificationsUpdateWithWhereUniqueWithoutRequestsInput {
-  data: NotificationsUpdateWithoutRequestsInput!
-  where: NotificationsWhereUniqueInput!
+input NotificationsUpdateWithoutProfileInput {
+  FriendRequests: RequestUpdateManyWithoutNotificationFriendRequestNestedInput
+  id: StringFieldUpdateOperationsInput
+  MessageRequests: RequestUpdateManyWithoutNotificationMessageNestedInput
+}
+
+input NotificationsUpsertWithoutFriendRequestsInput {
+  create: NotificationsCreateWithoutFriendRequestsInput!
+  update: NotificationsUpdateWithoutFriendRequestsInput!
+  where: NotificationsWhereInput
+}
+
+input NotificationsUpsertWithoutMessageRequestsInput {
+  create: NotificationsCreateWithoutMessageRequestsInput!
+  update: NotificationsUpdateWithoutMessageRequestsInput!
+  where: NotificationsWhereInput
 }
 
 input NotificationsUpsertWithoutProfileInput {
@@ -9826,30 +9858,26 @@ input NotificationsUpsertWithoutProfileInput {
   where: NotificationsWhereInput
 }
 
-input NotificationsUpsertWithWhereUniqueWithoutRequestsInput {
-  create: NotificationsCreateWithoutRequestsInput!
-  update: NotificationsUpdateWithoutRequestsInput!
-  where: NotificationsWhereUniqueInput!
-}
-
 input NotificationsWhereInput {
   AND: [NotificationsWhereInput!]
+  FriendRequests: RequestListRelationFilter
   id: StringFilter
+  MessageRequests: RequestListRelationFilter
   NOT: [NotificationsWhereInput!]
   OR: [NotificationsWhereInput!]
   Profile: ProfileWhereInput
   profileId: StringFilter
-  Requests: RequestListRelationFilter
 }
 
 input NotificationsWhereUniqueInput {
   AND: [NotificationsWhereInput!]
+  FriendRequests: RequestListRelationFilter
   id: String
+  MessageRequests: RequestListRelationFilter
   NOT: [NotificationsWhereInput!]
   OR: [NotificationsWhereInput!]
   Profile: ProfileWhereInput
   profileId: String
-  Requests: RequestListRelationFilter
 }
 
 enum NotificationType {
@@ -12756,7 +12784,6 @@ input ProfileCreateInput {
   Groups: GroupCreateNestedManyWithoutProfileInput
   id: String
   IdentifiableInformation: IdentifiableInformationCreateNestedOneWithoutProfileInput
-  Message: MessageCreateNestedManyWithoutProfileInput
   Notifications: NotificationsCreateNestedOneWithoutProfileInput
   Personal: PersonalCreateNestedOneWithoutProfileInput
   Photos: PhotoCreateNestedManyWithoutProfileInput
@@ -12809,12 +12836,6 @@ input ProfileCreateNestedOneWithoutIdentifiableInformationInput {
   connect: ProfileWhereUniqueInput
   connectOrCreate: ProfileCreateOrConnectWithoutIdentifiableInformationInput
   create: ProfileCreateWithoutIdentifiableInformationInput
-}
-
-input ProfileCreateNestedOneWithoutMessageInput {
-  connect: ProfileWhereUniqueInput
-  connectOrCreate: ProfileCreateOrConnectWithoutMessageInput
-  create: ProfileCreateWithoutMessageInput
 }
 
 input ProfileCreateNestedOneWithoutNotificationsInput {
@@ -12908,11 +12929,6 @@ input ProfileCreateOrConnectWithoutIdentifiableInformationInput {
   where: ProfileWhereUniqueInput!
 }
 
-input ProfileCreateOrConnectWithoutMessageInput {
-  create: ProfileCreateWithoutMessageInput!
-  where: ProfileWhereUniqueInput!
-}
-
 input ProfileCreateOrConnectWithoutNotificationsInput {
   create: ProfileCreateWithoutNotificationsInput!
   where: ProfileWhereUniqueInput!
@@ -12977,7 +12993,6 @@ input ProfileCreateWithoutConversationsInput {
   Groups: GroupCreateNestedManyWithoutProfileInput
   id: String
   IdentifiableInformation: IdentifiableInformationCreateNestedOneWithoutProfileInput
-  Message: MessageCreateNestedManyWithoutProfileInput
   Notifications: NotificationsCreateNestedOneWithoutProfileInput
   Personal: PersonalCreateNestedOneWithoutProfileInput
   Photos: PhotoCreateNestedManyWithoutProfileInput
@@ -13002,7 +13017,6 @@ input ProfileCreateWithoutCredentialsInput {
   Groups: GroupCreateNestedManyWithoutProfileInput
   id: String
   IdentifiableInformation: IdentifiableInformationCreateNestedOneWithoutProfileInput
-  Message: MessageCreateNestedManyWithoutProfileInput
   Notifications: NotificationsCreateNestedOneWithoutProfileInput
   Personal: PersonalCreateNestedOneWithoutProfileInput
   Photos: PhotoCreateNestedManyWithoutProfileInput
@@ -13027,7 +13041,6 @@ input ProfileCreateWithoutDetailInformationInput {
   Groups: GroupCreateNestedManyWithoutProfileInput
   id: String
   IdentifiableInformation: IdentifiableInformationCreateNestedOneWithoutProfileInput
-  Message: MessageCreateNestedManyWithoutProfileInput
   Notifications: NotificationsCreateNestedOneWithoutProfileInput
   Personal: PersonalCreateNestedOneWithoutProfileInput
   Photos: PhotoCreateNestedManyWithoutProfileInput
@@ -13052,7 +13065,6 @@ input ProfileCreateWithoutGroupsInput {
   DeviceManager: [String!]
   id: String
   IdentifiableInformation: IdentifiableInformationCreateNestedOneWithoutProfileInput
-  Message: MessageCreateNestedManyWithoutProfileInput
   Notifications: NotificationsCreateNestedOneWithoutProfileInput
   Personal: PersonalCreateNestedOneWithoutProfileInput
   Photos: PhotoCreateNestedManyWithoutProfileInput
@@ -13077,32 +13089,6 @@ input ProfileCreateWithoutIdentifiableInformationInput {
   DeviceManager: [String!]
   Groups: GroupCreateNestedManyWithoutProfileInput
   id: String
-  Message: MessageCreateNestedManyWithoutProfileInput
-  Notifications: NotificationsCreateNestedOneWithoutProfileInput
-  Personal: PersonalCreateNestedOneWithoutProfileInput
-  Photos: PhotoCreateNestedManyWithoutProfileInput
-  ProfileType: ProfileType
-  Relationships: RelationshipCreateNestedManyWithoutProfileInput
-  SearchesService: SearchesServiceCreateNestedOneWithoutProfileInput
-  SecuredDataKeys: SecuredDataKeysCreateNestedManyWithoutProfileInput
-  Settings: SettingsCreateNestedOneWithoutProfileInput
-  Storys: StoryCreateNestedManyWithoutProfileInput
-  ThemeManager: ThemeManagerCreateNestedOneWithoutProfileInput
-  updatedAt: DateTime
-  Venue: VenueCreateNestedOneWithoutProfileInput
-  Vote: VoteCreateNestedManyWithoutProfileInput
-}
-
-input ProfileCreateWithoutMessageInput {
-  bfsprofileid: String
-  Conversations: ConversationCreateNestedManyWithoutMembersInput
-  createdAt: DateTime
-  Credentials: CredentialsCreateNestedOneWithoutProfileInput
-  DetailInformation: DetailInformationCreateNestedOneWithoutProfileInput
-  DeviceManager: [String!]
-  Groups: GroupCreateNestedManyWithoutProfileInput
-  id: String
-  IdentifiableInformation: IdentifiableInformationCreateNestedOneWithoutProfileInput
   Notifications: NotificationsCreateNestedOneWithoutProfileInput
   Personal: PersonalCreateNestedOneWithoutProfileInput
   Photos: PhotoCreateNestedManyWithoutProfileInput
@@ -13128,7 +13114,6 @@ input ProfileCreateWithoutNotificationsInput {
   Groups: GroupCreateNestedManyWithoutProfileInput
   id: String
   IdentifiableInformation: IdentifiableInformationCreateNestedOneWithoutProfileInput
-  Message: MessageCreateNestedManyWithoutProfileInput
   Personal: PersonalCreateNestedOneWithoutProfileInput
   Photos: PhotoCreateNestedManyWithoutProfileInput
   ProfileType: ProfileType
@@ -13153,7 +13138,6 @@ input ProfileCreateWithoutPersonalInput {
   Groups: GroupCreateNestedManyWithoutProfileInput
   id: String
   IdentifiableInformation: IdentifiableInformationCreateNestedOneWithoutProfileInput
-  Message: MessageCreateNestedManyWithoutProfileInput
   Notifications: NotificationsCreateNestedOneWithoutProfileInput
   Photos: PhotoCreateNestedManyWithoutProfileInput
   ProfileType: ProfileType
@@ -13178,7 +13162,6 @@ input ProfileCreateWithoutPhotosInput {
   Groups: GroupCreateNestedManyWithoutProfileInput
   id: String
   IdentifiableInformation: IdentifiableInformationCreateNestedOneWithoutProfileInput
-  Message: MessageCreateNestedManyWithoutProfileInput
   Notifications: NotificationsCreateNestedOneWithoutProfileInput
   Personal: PersonalCreateNestedOneWithoutProfileInput
   ProfileType: ProfileType
@@ -13203,7 +13186,6 @@ input ProfileCreateWithoutRelationshipsInput {
   Groups: GroupCreateNestedManyWithoutProfileInput
   id: String
   IdentifiableInformation: IdentifiableInformationCreateNestedOneWithoutProfileInput
-  Message: MessageCreateNestedManyWithoutProfileInput
   Notifications: NotificationsCreateNestedOneWithoutProfileInput
   Personal: PersonalCreateNestedOneWithoutProfileInput
   Photos: PhotoCreateNestedManyWithoutProfileInput
@@ -13228,7 +13210,6 @@ input ProfileCreateWithoutSearchesServiceInput {
   Groups: GroupCreateNestedManyWithoutProfileInput
   id: String
   IdentifiableInformation: IdentifiableInformationCreateNestedOneWithoutProfileInput
-  Message: MessageCreateNestedManyWithoutProfileInput
   Notifications: NotificationsCreateNestedOneWithoutProfileInput
   Personal: PersonalCreateNestedOneWithoutProfileInput
   Photos: PhotoCreateNestedManyWithoutProfileInput
@@ -13253,7 +13234,6 @@ input ProfileCreateWithoutSecuredDataKeysInput {
   Groups: GroupCreateNestedManyWithoutProfileInput
   id: String
   IdentifiableInformation: IdentifiableInformationCreateNestedOneWithoutProfileInput
-  Message: MessageCreateNestedManyWithoutProfileInput
   Notifications: NotificationsCreateNestedOneWithoutProfileInput
   Personal: PersonalCreateNestedOneWithoutProfileInput
   Photos: PhotoCreateNestedManyWithoutProfileInput
@@ -13278,7 +13258,6 @@ input ProfileCreateWithoutSettingsInput {
   Groups: GroupCreateNestedManyWithoutProfileInput
   id: String
   IdentifiableInformation: IdentifiableInformationCreateNestedOneWithoutProfileInput
-  Message: MessageCreateNestedManyWithoutProfileInput
   Notifications: NotificationsCreateNestedOneWithoutProfileInput
   Personal: PersonalCreateNestedOneWithoutProfileInput
   Photos: PhotoCreateNestedManyWithoutProfileInput
@@ -13303,7 +13282,6 @@ input ProfileCreateWithoutStorysInput {
   Groups: GroupCreateNestedManyWithoutProfileInput
   id: String
   IdentifiableInformation: IdentifiableInformationCreateNestedOneWithoutProfileInput
-  Message: MessageCreateNestedManyWithoutProfileInput
   Notifications: NotificationsCreateNestedOneWithoutProfileInput
   Personal: PersonalCreateNestedOneWithoutProfileInput
   Photos: PhotoCreateNestedManyWithoutProfileInput
@@ -13328,7 +13306,6 @@ input ProfileCreateWithoutThemeManagerInput {
   Groups: GroupCreateNestedManyWithoutProfileInput
   id: String
   IdentifiableInformation: IdentifiableInformationCreateNestedOneWithoutProfileInput
-  Message: MessageCreateNestedManyWithoutProfileInput
   Notifications: NotificationsCreateNestedOneWithoutProfileInput
   Personal: PersonalCreateNestedOneWithoutProfileInput
   Photos: PhotoCreateNestedManyWithoutProfileInput
@@ -13353,7 +13330,6 @@ input ProfileCreateWithoutVenueInput {
   Groups: GroupCreateNestedManyWithoutProfileInput
   id: String
   IdentifiableInformation: IdentifiableInformationCreateNestedOneWithoutProfileInput
-  Message: MessageCreateNestedManyWithoutProfileInput
   Notifications: NotificationsCreateNestedOneWithoutProfileInput
   Personal: PersonalCreateNestedOneWithoutProfileInput
   Photos: PhotoCreateNestedManyWithoutProfileInput
@@ -13378,7 +13354,6 @@ input ProfileCreateWithoutVoteInput {
   Groups: GroupCreateNestedManyWithoutProfileInput
   id: String
   IdentifiableInformation: IdentifiableInformationCreateNestedOneWithoutProfileInput
-  Message: MessageCreateNestedManyWithoutProfileInput
   Notifications: NotificationsCreateNestedOneWithoutProfileInput
   Personal: PersonalCreateNestedOneWithoutProfileInput
   Photos: PhotoCreateNestedManyWithoutProfileInput
@@ -13446,7 +13421,6 @@ input ProfileOrderByWithRelationInput {
   Groups: GroupOrderByRelationAggregateInput
   id: SortOrder
   IdentifiableInformation: IdentifiableInformationOrderByWithRelationInput
-  Message: MessageOrderByRelationAggregateInput
   Notifications: NotificationsOrderByWithRelationInput
   Personal: PersonalOrderByWithRelationInput
   Photos: PhotoOrderByRelationAggregateInput
@@ -13852,7 +13826,6 @@ input ProfileUpdateInput {
   Groups: GroupUpdateManyWithoutProfileNestedInput
   id: StringFieldUpdateOperationsInput
   IdentifiableInformation: IdentifiableInformationUpdateOneWithoutProfileNestedInput
-  Message: MessageUpdateManyWithoutProfileNestedInput
   Notifications: NotificationsUpdateOneWithoutProfileNestedInput
   Personal: PersonalUpdateOneWithoutProfileNestedInput
   Photos: PhotoUpdateManyWithoutProfileNestedInput
@@ -14001,16 +13974,6 @@ input ProfileUpdateOneRequiredWithoutVoteNestedInput {
   upsert: ProfileUpsertWithoutVoteInput
 }
 
-input ProfileUpdateOneWithoutMessageNestedInput {
-  connect: ProfileWhereUniqueInput
-  connectOrCreate: ProfileCreateOrConnectWithoutMessageInput
-  create: ProfileCreateWithoutMessageInput
-  delete: ProfileWhereInput
-  disconnect: ProfileWhereInput
-  update: ProfileUpdateToOneWithWhereWithoutMessageInput
-  upsert: ProfileUpsertWithoutMessageInput
-}
-
 input ProfileUpdateOneWithoutPhotosNestedInput {
   connect: ProfileWhereUniqueInput
   connectOrCreate: ProfileCreateOrConnectWithoutPhotosInput
@@ -14053,11 +14016,6 @@ input ProfileUpdateToOneWithWhereWithoutDetailInformationInput {
 
 input ProfileUpdateToOneWithWhereWithoutIdentifiableInformationInput {
   data: ProfileUpdateWithoutIdentifiableInformationInput!
-  where: ProfileWhereInput
-}
-
-input ProfileUpdateToOneWithWhereWithoutMessageInput {
-  data: ProfileUpdateWithoutMessageInput!
   where: ProfileWhereInput
 }
 
@@ -14125,7 +14083,6 @@ input ProfileUpdateWithoutConversationsInput {
   Groups: GroupUpdateManyWithoutProfileNestedInput
   id: StringFieldUpdateOperationsInput
   IdentifiableInformation: IdentifiableInformationUpdateOneWithoutProfileNestedInput
-  Message: MessageUpdateManyWithoutProfileNestedInput
   Notifications: NotificationsUpdateOneWithoutProfileNestedInput
   Personal: PersonalUpdateOneWithoutProfileNestedInput
   Photos: PhotoUpdateManyWithoutProfileNestedInput
@@ -14150,7 +14107,6 @@ input ProfileUpdateWithoutCredentialsInput {
   Groups: GroupUpdateManyWithoutProfileNestedInput
   id: StringFieldUpdateOperationsInput
   IdentifiableInformation: IdentifiableInformationUpdateOneWithoutProfileNestedInput
-  Message: MessageUpdateManyWithoutProfileNestedInput
   Notifications: NotificationsUpdateOneWithoutProfileNestedInput
   Personal: PersonalUpdateOneWithoutProfileNestedInput
   Photos: PhotoUpdateManyWithoutProfileNestedInput
@@ -14175,7 +14131,6 @@ input ProfileUpdateWithoutDetailInformationInput {
   Groups: GroupUpdateManyWithoutProfileNestedInput
   id: StringFieldUpdateOperationsInput
   IdentifiableInformation: IdentifiableInformationUpdateOneWithoutProfileNestedInput
-  Message: MessageUpdateManyWithoutProfileNestedInput
   Notifications: NotificationsUpdateOneWithoutProfileNestedInput
   Personal: PersonalUpdateOneWithoutProfileNestedInput
   Photos: PhotoUpdateManyWithoutProfileNestedInput
@@ -14200,7 +14155,6 @@ input ProfileUpdateWithoutGroupsInput {
   DeviceManager: [String!]
   id: StringFieldUpdateOperationsInput
   IdentifiableInformation: IdentifiableInformationUpdateOneWithoutProfileNestedInput
-  Message: MessageUpdateManyWithoutProfileNestedInput
   Notifications: NotificationsUpdateOneWithoutProfileNestedInput
   Personal: PersonalUpdateOneWithoutProfileNestedInput
   Photos: PhotoUpdateManyWithoutProfileNestedInput
@@ -14225,32 +14179,6 @@ input ProfileUpdateWithoutIdentifiableInformationInput {
   DeviceManager: [String!]
   Groups: GroupUpdateManyWithoutProfileNestedInput
   id: StringFieldUpdateOperationsInput
-  Message: MessageUpdateManyWithoutProfileNestedInput
-  Notifications: NotificationsUpdateOneWithoutProfileNestedInput
-  Personal: PersonalUpdateOneWithoutProfileNestedInput
-  Photos: PhotoUpdateManyWithoutProfileNestedInput
-  ProfileType: EnumProfileTypeFieldUpdateOperationsInput
-  Relationships: RelationshipUpdateManyWithoutProfileNestedInput
-  SearchesService: SearchesServiceUpdateOneWithoutProfileNestedInput
-  SecuredDataKeys: SecuredDataKeysUpdateManyWithoutProfileNestedInput
-  Settings: SettingsUpdateOneWithoutProfileNestedInput
-  Storys: StoryUpdateManyWithoutProfileNestedInput
-  ThemeManager: ThemeManagerUpdateOneWithoutProfileNestedInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-  Venue: VenueUpdateOneWithoutProfileNestedInput
-  Vote: VoteUpdateManyWithoutProfileNestedInput
-}
-
-input ProfileUpdateWithoutMessageInput {
-  bfsprofileid: StringFieldUpdateOperationsInput
-  Conversations: ConversationUpdateManyWithoutMembersNestedInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  Credentials: CredentialsUpdateOneWithoutProfileNestedInput
-  DetailInformation: DetailInformationUpdateOneWithoutProfileNestedInput
-  DeviceManager: [String!]
-  Groups: GroupUpdateManyWithoutProfileNestedInput
-  id: StringFieldUpdateOperationsInput
-  IdentifiableInformation: IdentifiableInformationUpdateOneWithoutProfileNestedInput
   Notifications: NotificationsUpdateOneWithoutProfileNestedInput
   Personal: PersonalUpdateOneWithoutProfileNestedInput
   Photos: PhotoUpdateManyWithoutProfileNestedInput
@@ -14276,7 +14204,6 @@ input ProfileUpdateWithoutNotificationsInput {
   Groups: GroupUpdateManyWithoutProfileNestedInput
   id: StringFieldUpdateOperationsInput
   IdentifiableInformation: IdentifiableInformationUpdateOneWithoutProfileNestedInput
-  Message: MessageUpdateManyWithoutProfileNestedInput
   Personal: PersonalUpdateOneWithoutProfileNestedInput
   Photos: PhotoUpdateManyWithoutProfileNestedInput
   ProfileType: EnumProfileTypeFieldUpdateOperationsInput
@@ -14301,7 +14228,6 @@ input ProfileUpdateWithoutPersonalInput {
   Groups: GroupUpdateManyWithoutProfileNestedInput
   id: StringFieldUpdateOperationsInput
   IdentifiableInformation: IdentifiableInformationUpdateOneWithoutProfileNestedInput
-  Message: MessageUpdateManyWithoutProfileNestedInput
   Notifications: NotificationsUpdateOneWithoutProfileNestedInput
   Photos: PhotoUpdateManyWithoutProfileNestedInput
   ProfileType: EnumProfileTypeFieldUpdateOperationsInput
@@ -14326,7 +14252,6 @@ input ProfileUpdateWithoutPhotosInput {
   Groups: GroupUpdateManyWithoutProfileNestedInput
   id: StringFieldUpdateOperationsInput
   IdentifiableInformation: IdentifiableInformationUpdateOneWithoutProfileNestedInput
-  Message: MessageUpdateManyWithoutProfileNestedInput
   Notifications: NotificationsUpdateOneWithoutProfileNestedInput
   Personal: PersonalUpdateOneWithoutProfileNestedInput
   ProfileType: EnumProfileTypeFieldUpdateOperationsInput
@@ -14351,7 +14276,6 @@ input ProfileUpdateWithoutRelationshipsInput {
   Groups: GroupUpdateManyWithoutProfileNestedInput
   id: StringFieldUpdateOperationsInput
   IdentifiableInformation: IdentifiableInformationUpdateOneWithoutProfileNestedInput
-  Message: MessageUpdateManyWithoutProfileNestedInput
   Notifications: NotificationsUpdateOneWithoutProfileNestedInput
   Personal: PersonalUpdateOneWithoutProfileNestedInput
   Photos: PhotoUpdateManyWithoutProfileNestedInput
@@ -14376,7 +14300,6 @@ input ProfileUpdateWithoutSearchesServiceInput {
   Groups: GroupUpdateManyWithoutProfileNestedInput
   id: StringFieldUpdateOperationsInput
   IdentifiableInformation: IdentifiableInformationUpdateOneWithoutProfileNestedInput
-  Message: MessageUpdateManyWithoutProfileNestedInput
   Notifications: NotificationsUpdateOneWithoutProfileNestedInput
   Personal: PersonalUpdateOneWithoutProfileNestedInput
   Photos: PhotoUpdateManyWithoutProfileNestedInput
@@ -14401,7 +14324,6 @@ input ProfileUpdateWithoutSecuredDataKeysInput {
   Groups: GroupUpdateManyWithoutProfileNestedInput
   id: StringFieldUpdateOperationsInput
   IdentifiableInformation: IdentifiableInformationUpdateOneWithoutProfileNestedInput
-  Message: MessageUpdateManyWithoutProfileNestedInput
   Notifications: NotificationsUpdateOneWithoutProfileNestedInput
   Personal: PersonalUpdateOneWithoutProfileNestedInput
   Photos: PhotoUpdateManyWithoutProfileNestedInput
@@ -14426,7 +14348,6 @@ input ProfileUpdateWithoutSettingsInput {
   Groups: GroupUpdateManyWithoutProfileNestedInput
   id: StringFieldUpdateOperationsInput
   IdentifiableInformation: IdentifiableInformationUpdateOneWithoutProfileNestedInput
-  Message: MessageUpdateManyWithoutProfileNestedInput
   Notifications: NotificationsUpdateOneWithoutProfileNestedInput
   Personal: PersonalUpdateOneWithoutProfileNestedInput
   Photos: PhotoUpdateManyWithoutProfileNestedInput
@@ -14451,7 +14372,6 @@ input ProfileUpdateWithoutStorysInput {
   Groups: GroupUpdateManyWithoutProfileNestedInput
   id: StringFieldUpdateOperationsInput
   IdentifiableInformation: IdentifiableInformationUpdateOneWithoutProfileNestedInput
-  Message: MessageUpdateManyWithoutProfileNestedInput
   Notifications: NotificationsUpdateOneWithoutProfileNestedInput
   Personal: PersonalUpdateOneWithoutProfileNestedInput
   Photos: PhotoUpdateManyWithoutProfileNestedInput
@@ -14476,7 +14396,6 @@ input ProfileUpdateWithoutThemeManagerInput {
   Groups: GroupUpdateManyWithoutProfileNestedInput
   id: StringFieldUpdateOperationsInput
   IdentifiableInformation: IdentifiableInformationUpdateOneWithoutProfileNestedInput
-  Message: MessageUpdateManyWithoutProfileNestedInput
   Notifications: NotificationsUpdateOneWithoutProfileNestedInput
   Personal: PersonalUpdateOneWithoutProfileNestedInput
   Photos: PhotoUpdateManyWithoutProfileNestedInput
@@ -14501,7 +14420,6 @@ input ProfileUpdateWithoutVenueInput {
   Groups: GroupUpdateManyWithoutProfileNestedInput
   id: StringFieldUpdateOperationsInput
   IdentifiableInformation: IdentifiableInformationUpdateOneWithoutProfileNestedInput
-  Message: MessageUpdateManyWithoutProfileNestedInput
   Notifications: NotificationsUpdateOneWithoutProfileNestedInput
   Personal: PersonalUpdateOneWithoutProfileNestedInput
   Photos: PhotoUpdateManyWithoutProfileNestedInput
@@ -14526,7 +14444,6 @@ input ProfileUpdateWithoutVoteInput {
   Groups: GroupUpdateManyWithoutProfileNestedInput
   id: StringFieldUpdateOperationsInput
   IdentifiableInformation: IdentifiableInformationUpdateOneWithoutProfileNestedInput
-  Message: MessageUpdateManyWithoutProfileNestedInput
   Notifications: NotificationsUpdateOneWithoutProfileNestedInput
   Personal: PersonalUpdateOneWithoutProfileNestedInput
   Photos: PhotoUpdateManyWithoutProfileNestedInput
@@ -14566,12 +14483,6 @@ input ProfileUpsertWithoutDetailInformationInput {
 input ProfileUpsertWithoutIdentifiableInformationInput {
   create: ProfileCreateWithoutIdentifiableInformationInput!
   update: ProfileUpdateWithoutIdentifiableInformationInput!
-  where: ProfileWhereInput
-}
-
-input ProfileUpsertWithoutMessageInput {
-  create: ProfileCreateWithoutMessageInput!
-  update: ProfileUpdateWithoutMessageInput!
   where: ProfileWhereInput
 }
 
@@ -14682,7 +14593,6 @@ input ProfileWhereInput {
   Groups: GroupListRelationFilter
   id: StringFilter
   IdentifiableInformation: IdentifiableInformationWhereInput
-  Message: MessageListRelationFilter
   NOT: [ProfileWhereInput!]
   Notifications: NotificationsWhereInput
   OR: [ProfileWhereInput!]
@@ -14711,7 +14621,6 @@ input ProfileWhereUniqueInput {
   Groups: GroupListRelationFilter
   id: String
   IdentifiableInformation: IdentifiableInformationWhereInput
-  Message: MessageListRelationFilter
   NOT: [ProfileWhereInput!]
   Notifications: NotificationsWhereInput
   OR: [ProfileWhereInput!]
@@ -14975,6 +14884,12 @@ type Query {
   emojimood(where: EmojimoodWhereUniqueInput!): Emojimood
   emojimoods: [Emojimood!]!
   exploreSearch(search: String!): ExploreResponse!
+  findConversationByIdOrMembers(
+    conversationId: String
+
+    """This is a list of ProfileIds."""
+    members: [String!]
+  ): Conversation
   friendsFromContacts(contact: [ContactInput!]!): String!
   getADeviceManager: DeviceManagerDeviceProfilesResponseUnion!
   getAllCitiesByState(countryIsoCode: String!, stateIsoCode: String!): OrganizedCityResponseObject!
@@ -15463,7 +15378,8 @@ input RelationshipWhereUniqueInput {
 type Request {
   createdAt: DateTime!
   id: ID!
-  Notifications: [Notifications!]!
+  NotificationFriendRequest: Notifications!
+  NotificationMessage: Notifications!
   receiverProfileId: [RequestReceiver!]!
   senderProfile: Profile!
   senderProfileId: String!
@@ -15473,6 +15389,8 @@ type Request {
 input RequestCountOrderByAggregateInput {
   createdAt: SortOrder
   id: SortOrder
+  notificationFriendRequestId: SortOrder
+  notificationMesageId: SortOrder
   NotificationType: SortOrder
   senderProfileId: SortOrder
   updatedAt: SortOrder
@@ -15481,7 +15399,9 @@ input RequestCountOrderByAggregateInput {
 input RequestCreateInput {
   createdAt: DateTime
   id: String
-  Notifications: NotificationsCreateNestedManyWithoutRequestsInput
+  Message: MessageCreateNestedOneWithoutRequestInput
+  NotificationFriendRequest: NotificationsCreateNestedOneWithoutFriendRequestsInput
+  NotificationMessage: NotificationsCreateNestedOneWithoutMessageRequestsInput
   NotificationType: NotificationType
   receivers: RequestReceiverCreateNestedManyWithoutRequestInput
   senderProfileId: String!
@@ -15491,15 +15411,59 @@ input RequestCreateInput {
 input RequestCreateManyInput {
   createdAt: DateTime
   id: String
+  notificationFriendRequestId: String
+  notificationMesageId: String
   NotificationType: NotificationType
   senderProfileId: String!
   updatedAt: DateTime
 }
 
-input RequestCreateNestedManyWithoutNotificationsInput {
+input RequestCreateManyNotificationFriendRequestInput {
+  createdAt: DateTime
+  id: String
+  notificationMesageId: String
+  NotificationType: NotificationType
+  senderProfileId: String!
+  updatedAt: DateTime
+}
+
+input RequestCreateManyNotificationFriendRequestInputEnvelope {
+  data: [RequestCreateManyNotificationFriendRequestInput!]!
+  skipDuplicates: Boolean
+}
+
+input RequestCreateManyNotificationMessageInput {
+  createdAt: DateTime
+  id: String
+  notificationFriendRequestId: String
+  NotificationType: NotificationType
+  senderProfileId: String!
+  updatedAt: DateTime
+}
+
+input RequestCreateManyNotificationMessageInputEnvelope {
+  data: [RequestCreateManyNotificationMessageInput!]!
+  skipDuplicates: Boolean
+}
+
+input RequestCreateNestedManyWithoutNotificationFriendRequestInput {
   connect: [RequestWhereUniqueInput!]
-  connectOrCreate: [RequestCreateOrConnectWithoutNotificationsInput!]
-  create: [RequestCreateWithoutNotificationsInput!]
+  connectOrCreate: [RequestCreateOrConnectWithoutNotificationFriendRequestInput!]
+  create: [RequestCreateWithoutNotificationFriendRequestInput!]
+  createMany: RequestCreateManyNotificationFriendRequestInputEnvelope
+}
+
+input RequestCreateNestedManyWithoutNotificationMessageInput {
+  connect: [RequestWhereUniqueInput!]
+  connectOrCreate: [RequestCreateOrConnectWithoutNotificationMessageInput!]
+  create: [RequestCreateWithoutNotificationMessageInput!]
+  createMany: RequestCreateManyNotificationMessageInputEnvelope
+}
+
+input RequestCreateNestedOneWithoutMessageInput {
+  connect: RequestWhereUniqueInput
+  connectOrCreate: RequestCreateOrConnectWithoutMessageInput
+  create: RequestCreateWithoutMessageInput
 }
 
 input RequestCreateNestedOneWithoutReceiversInput {
@@ -15508,8 +15472,18 @@ input RequestCreateNestedOneWithoutReceiversInput {
   create: RequestCreateWithoutReceiversInput
 }
 
-input RequestCreateOrConnectWithoutNotificationsInput {
-  create: RequestCreateWithoutNotificationsInput!
+input RequestCreateOrConnectWithoutMessageInput {
+  create: RequestCreateWithoutMessageInput!
+  where: RequestWhereUniqueInput!
+}
+
+input RequestCreateOrConnectWithoutNotificationFriendRequestInput {
+  create: RequestCreateWithoutNotificationFriendRequestInput!
+  where: RequestWhereUniqueInput!
+}
+
+input RequestCreateOrConnectWithoutNotificationMessageInput {
+  create: RequestCreateWithoutNotificationMessageInput!
   where: RequestWhereUniqueInput!
 }
 
@@ -15518,9 +15492,33 @@ input RequestCreateOrConnectWithoutReceiversInput {
   where: RequestWhereUniqueInput!
 }
 
-input RequestCreateWithoutNotificationsInput {
+input RequestCreateWithoutMessageInput {
   createdAt: DateTime
   id: String
+  NotificationFriendRequest: NotificationsCreateNestedOneWithoutFriendRequestsInput
+  NotificationMessage: NotificationsCreateNestedOneWithoutMessageRequestsInput
+  NotificationType: NotificationType
+  receivers: RequestReceiverCreateNestedManyWithoutRequestInput
+  senderProfileId: String!
+  updatedAt: DateTime
+}
+
+input RequestCreateWithoutNotificationFriendRequestInput {
+  createdAt: DateTime
+  id: String
+  Message: MessageCreateNestedOneWithoutRequestInput
+  NotificationMessage: NotificationsCreateNestedOneWithoutMessageRequestsInput
+  NotificationType: NotificationType
+  receivers: RequestReceiverCreateNestedManyWithoutRequestInput
+  senderProfileId: String!
+  updatedAt: DateTime
+}
+
+input RequestCreateWithoutNotificationMessageInput {
+  createdAt: DateTime
+  id: String
+  Message: MessageCreateNestedOneWithoutRequestInput
+  NotificationFriendRequest: NotificationsCreateNestedOneWithoutFriendRequestsInput
   NotificationType: NotificationType
   receivers: RequestReceiverCreateNestedManyWithoutRequestInput
   senderProfileId: String!
@@ -15530,7 +15528,9 @@ input RequestCreateWithoutNotificationsInput {
 input RequestCreateWithoutReceiversInput {
   createdAt: DateTime
   id: String
-  Notifications: NotificationsCreateNestedManyWithoutRequestsInput
+  Message: MessageCreateNestedOneWithoutRequestInput
+  NotificationFriendRequest: NotificationsCreateNestedOneWithoutFriendRequestsInput
+  NotificationMessage: NotificationsCreateNestedOneWithoutMessageRequestsInput
   NotificationType: NotificationType
   senderProfileId: String!
   updatedAt: DateTime
@@ -15545,6 +15545,8 @@ input RequestListRelationFilter {
 input RequestMaxOrderByAggregateInput {
   createdAt: SortOrder
   id: SortOrder
+  notificationFriendRequestId: SortOrder
+  notificationMesageId: SortOrder
   NotificationType: SortOrder
   senderProfileId: SortOrder
   updatedAt: SortOrder
@@ -15553,6 +15555,8 @@ input RequestMaxOrderByAggregateInput {
 input RequestMinOrderByAggregateInput {
   createdAt: SortOrder
   id: SortOrder
+  notificationFriendRequestId: SortOrder
+  notificationMesageId: SortOrder
   NotificationType: SortOrder
   senderProfileId: SortOrder
   updatedAt: SortOrder
@@ -15573,6 +15577,8 @@ input RequestOrderByWithAggregationInput {
   _min: RequestMinOrderByAggregateInput
   createdAt: SortOrder
   id: SortOrder
+  notificationFriendRequestId: SortOrder
+  notificationMesageId: SortOrder
   NotificationType: SortOrder
   senderProfileId: SortOrder
   updatedAt: SortOrder
@@ -15581,7 +15587,11 @@ input RequestOrderByWithAggregationInput {
 input RequestOrderByWithRelationInput {
   createdAt: SortOrder
   id: SortOrder
-  Notifications: NotificationsOrderByRelationAggregateInput
+  Message: MessageOrderByWithRelationInput
+  NotificationFriendRequest: NotificationsOrderByWithRelationInput
+  notificationFriendRequestId: SortOrder
+  notificationMesageId: SortOrder
+  NotificationMessage: NotificationsOrderByWithRelationInput
   NotificationType: SortOrder
   receivers: RequestReceiverOrderByRelationAggregateInput
   senderProfileId: SortOrder
@@ -15596,30 +15606,38 @@ type RequestReceiver {
 }
 
 input RequestReceiverCountOrderByAggregateInput {
+  createdAt: SortOrder
   id: SortOrder
   notificationStatusId: SortOrder
   profileId: SortOrder
   requestId: SortOrder
+  updatedAt: SortOrder
 }
 
 input RequestReceiverCreateInput {
+  createdAt: DateTime
   id: String
   NotificationStatus: NotificationStatusCreateNestedOneWithoutRequestReceiverInput!
   profileId: String!
   Request: RequestCreateNestedOneWithoutReceiversInput
+  updatedAt: DateTime
 }
 
 input RequestReceiverCreateManyInput {
+  createdAt: DateTime
   id: String
   notificationStatusId: String!
   profileId: String!
   requestId: String
+  updatedAt: DateTime
 }
 
 input RequestReceiverCreateManyRequestInput {
+  createdAt: DateTime
   id: String
   notificationStatusId: String!
   profileId: String!
+  updatedAt: DateTime
 }
 
 input RequestReceiverCreateManyRequestInputEnvelope {
@@ -15651,15 +15669,19 @@ input RequestReceiverCreateOrConnectWithoutRequestInput {
 }
 
 input RequestReceiverCreateWithoutNotificationStatusInput {
+  createdAt: DateTime
   id: String
   profileId: String!
   Request: RequestCreateNestedOneWithoutReceiversInput
+  updatedAt: DateTime
 }
 
 input RequestReceiverCreateWithoutRequestInput {
+  createdAt: DateTime
   id: String
   NotificationStatus: NotificationStatusCreateNestedOneWithoutRequestReceiverInput!
   profileId: String!
+  updatedAt: DateTime
 }
 
 input RequestReceiverListRelationFilter {
@@ -15669,17 +15691,21 @@ input RequestReceiverListRelationFilter {
 }
 
 input RequestReceiverMaxOrderByAggregateInput {
+  createdAt: SortOrder
   id: SortOrder
   notificationStatusId: SortOrder
   profileId: SortOrder
   requestId: SortOrder
+  updatedAt: SortOrder
 }
 
 input RequestReceiverMinOrderByAggregateInput {
+  createdAt: SortOrder
   id: SortOrder
   notificationStatusId: SortOrder
   profileId: SortOrder
   requestId: SortOrder
+  updatedAt: SortOrder
 }
 
 input RequestReceiverNullableRelationFilter {
@@ -15695,58 +15721,72 @@ input RequestReceiverOrderByWithAggregationInput {
   _count: RequestReceiverCountOrderByAggregateInput
   _max: RequestReceiverMaxOrderByAggregateInput
   _min: RequestReceiverMinOrderByAggregateInput
+  createdAt: SortOrder
   id: SortOrder
   notificationStatusId: SortOrder
   profileId: SortOrder
   requestId: SortOrder
+  updatedAt: SortOrder
 }
 
 input RequestReceiverOrderByWithRelationInput {
+  createdAt: SortOrder
   id: SortOrder
   NotificationStatus: NotificationStatusOrderByWithRelationInput
   notificationStatusId: SortOrder
   profileId: SortOrder
   Request: RequestOrderByWithRelationInput
   requestId: SortOrder
+  updatedAt: SortOrder
 }
 
 enum RequestReceiverScalarFieldEnum {
+  createdAt
   id
   notificationStatusId
   profileId
   requestId
+  updatedAt
 }
 
 input RequestReceiverScalarWhereInput {
   AND: [RequestReceiverScalarWhereInput!]
+  createdAt: DateTimeFilter
   id: StringFilter
   NOT: [RequestReceiverScalarWhereInput!]
   notificationStatusId: StringFilter
   OR: [RequestReceiverScalarWhereInput!]
   profileId: StringFilter
   requestId: StringNullableFilter
+  updatedAt: DateTimeFilter
 }
 
 input RequestReceiverScalarWhereWithAggregatesInput {
   AND: [RequestReceiverScalarWhereWithAggregatesInput!]
+  createdAt: DateTimeWithAggregatesFilter
   id: StringWithAggregatesFilter
   NOT: [RequestReceiverScalarWhereWithAggregatesInput!]
   notificationStatusId: StringWithAggregatesFilter
   OR: [RequestReceiverScalarWhereWithAggregatesInput!]
   profileId: StringWithAggregatesFilter
   requestId: StringNullableWithAggregatesFilter
+  updatedAt: DateTimeWithAggregatesFilter
 }
 
 input RequestReceiverUpdateInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   NotificationStatus: NotificationStatusUpdateOneRequiredWithoutRequestReceiverNestedInput
   profileId: StringFieldUpdateOperationsInput
   Request: RequestUpdateOneWithoutReceiversNestedInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input RequestReceiverUpdateManyMutationInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   profileId: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input RequestReceiverUpdateManyWithoutRequestNestedInput {
@@ -15784,15 +15824,19 @@ input RequestReceiverUpdateToOneWithWhereWithoutNotificationStatusInput {
 }
 
 input RequestReceiverUpdateWithoutNotificationStatusInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   profileId: StringFieldUpdateOperationsInput
   Request: RequestUpdateOneWithoutReceiversNestedInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input RequestReceiverUpdateWithoutRequestInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   NotificationStatus: NotificationStatusUpdateOneRequiredWithoutRequestReceiverNestedInput
   profileId: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input RequestReceiverUpdateWithWhereUniqueWithoutRequestInput {
@@ -15814,6 +15858,7 @@ input RequestReceiverUpsertWithWhereUniqueWithoutRequestInput {
 
 input RequestReceiverWhereInput {
   AND: [RequestReceiverWhereInput!]
+  createdAt: DateTimeFilter
   id: StringFilter
   NOT: [RequestReceiverWhereInput!]
   NotificationStatus: NotificationStatusWhereInput
@@ -15822,10 +15867,12 @@ input RequestReceiverWhereInput {
   profileId: StringFilter
   Request: RequestWhereInput
   requestId: StringNullableFilter
+  updatedAt: DateTimeFilter
 }
 
 input RequestReceiverWhereUniqueInput {
   AND: [RequestReceiverWhereInput!]
+  createdAt: DateTimeFilter
   id: String
   NOT: [RequestReceiverWhereInput!]
   NotificationStatus: NotificationStatusWhereInput
@@ -15834,11 +15881,19 @@ input RequestReceiverWhereUniqueInput {
   profileId: StringFilter
   Request: RequestWhereInput
   requestId: StringNullableFilter
+  updatedAt: DateTimeFilter
+}
+
+input RequestRelationFilter {
+  is: RequestWhereInput
+  isNot: RequestWhereInput
 }
 
 enum RequestScalarFieldEnum {
   createdAt
   id
+  notificationFriendRequestId
+  notificationMesageId
   NotificationType
   senderProfileId
   updatedAt
@@ -15849,6 +15904,8 @@ input RequestScalarWhereInput {
   createdAt: DateTimeFilter
   id: StringFilter
   NOT: [RequestScalarWhereInput!]
+  notificationFriendRequestId: StringNullableFilter
+  notificationMesageId: StringNullableFilter
   NotificationType: EnumNotificationTypeFilter
   OR: [RequestScalarWhereInput!]
   senderProfileId: StringFilter
@@ -15860,6 +15917,8 @@ input RequestScalarWhereWithAggregatesInput {
   createdAt: DateTimeWithAggregatesFilter
   id: StringWithAggregatesFilter
   NOT: [RequestScalarWhereWithAggregatesInput!]
+  notificationFriendRequestId: StringNullableWithAggregatesFilter
+  notificationMesageId: StringNullableWithAggregatesFilter
   NotificationType: EnumNotificationTypeWithAggregatesFilter
   OR: [RequestScalarWhereWithAggregatesInput!]
   senderProfileId: StringWithAggregatesFilter
@@ -15869,7 +15928,9 @@ input RequestScalarWhereWithAggregatesInput {
 input RequestUpdateInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
-  Notifications: NotificationsUpdateManyWithoutRequestsNestedInput
+  Message: MessageUpdateOneWithoutRequestNestedInput
+  NotificationFriendRequest: NotificationsUpdateOneWithoutFriendRequestsNestedInput
+  NotificationMessage: NotificationsUpdateOneWithoutMessageRequestsNestedInput
   NotificationType: EnumNotificationTypeFieldUpdateOperationsInput
   receivers: RequestReceiverUpdateManyWithoutRequestNestedInput
   senderProfileId: StringFieldUpdateOperationsInput
@@ -15884,22 +15945,50 @@ input RequestUpdateManyMutationInput {
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
-input RequestUpdateManyWithoutNotificationsNestedInput {
+input RequestUpdateManyWithoutNotificationFriendRequestNestedInput {
   connect: [RequestWhereUniqueInput!]
-  connectOrCreate: [RequestCreateOrConnectWithoutNotificationsInput!]
-  create: [RequestCreateWithoutNotificationsInput!]
+  connectOrCreate: [RequestCreateOrConnectWithoutNotificationFriendRequestInput!]
+  create: [RequestCreateWithoutNotificationFriendRequestInput!]
+  createMany: RequestCreateManyNotificationFriendRequestInputEnvelope
   delete: [RequestWhereUniqueInput!]
   deleteMany: [RequestScalarWhereInput!]
   disconnect: [RequestWhereUniqueInput!]
   set: [RequestWhereUniqueInput!]
-  update: [RequestUpdateWithWhereUniqueWithoutNotificationsInput!]
-  updateMany: [RequestUpdateManyWithWhereWithoutNotificationsInput!]
-  upsert: [RequestUpsertWithWhereUniqueWithoutNotificationsInput!]
+  update: [RequestUpdateWithWhereUniqueWithoutNotificationFriendRequestInput!]
+  updateMany: [RequestUpdateManyWithWhereWithoutNotificationFriendRequestInput!]
+  upsert: [RequestUpsertWithWhereUniqueWithoutNotificationFriendRequestInput!]
 }
 
-input RequestUpdateManyWithWhereWithoutNotificationsInput {
+input RequestUpdateManyWithoutNotificationMessageNestedInput {
+  connect: [RequestWhereUniqueInput!]
+  connectOrCreate: [RequestCreateOrConnectWithoutNotificationMessageInput!]
+  create: [RequestCreateWithoutNotificationMessageInput!]
+  createMany: RequestCreateManyNotificationMessageInputEnvelope
+  delete: [RequestWhereUniqueInput!]
+  deleteMany: [RequestScalarWhereInput!]
+  disconnect: [RequestWhereUniqueInput!]
+  set: [RequestWhereUniqueInput!]
+  update: [RequestUpdateWithWhereUniqueWithoutNotificationMessageInput!]
+  updateMany: [RequestUpdateManyWithWhereWithoutNotificationMessageInput!]
+  upsert: [RequestUpsertWithWhereUniqueWithoutNotificationMessageInput!]
+}
+
+input RequestUpdateManyWithWhereWithoutNotificationFriendRequestInput {
   data: RequestUpdateManyMutationInput!
   where: RequestScalarWhereInput!
+}
+
+input RequestUpdateManyWithWhereWithoutNotificationMessageInput {
+  data: RequestUpdateManyMutationInput!
+  where: RequestScalarWhereInput!
+}
+
+input RequestUpdateOneRequiredWithoutMessageNestedInput {
+  connect: RequestWhereUniqueInput
+  connectOrCreate: RequestCreateOrConnectWithoutMessageInput
+  create: RequestCreateWithoutMessageInput
+  update: RequestUpdateToOneWithWhereWithoutMessageInput
+  upsert: RequestUpsertWithoutMessageInput
 }
 
 input RequestUpdateOneWithoutReceiversNestedInput {
@@ -15912,14 +16001,43 @@ input RequestUpdateOneWithoutReceiversNestedInput {
   upsert: RequestUpsertWithoutReceiversInput
 }
 
+input RequestUpdateToOneWithWhereWithoutMessageInput {
+  data: RequestUpdateWithoutMessageInput!
+  where: RequestWhereInput
+}
+
 input RequestUpdateToOneWithWhereWithoutReceiversInput {
   data: RequestUpdateWithoutReceiversInput!
   where: RequestWhereInput
 }
 
-input RequestUpdateWithoutNotificationsInput {
+input RequestUpdateWithoutMessageInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
+  NotificationFriendRequest: NotificationsUpdateOneWithoutFriendRequestsNestedInput
+  NotificationMessage: NotificationsUpdateOneWithoutMessageRequestsNestedInput
+  NotificationType: EnumNotificationTypeFieldUpdateOperationsInput
+  receivers: RequestReceiverUpdateManyWithoutRequestNestedInput
+  senderProfileId: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input RequestUpdateWithoutNotificationFriendRequestInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  Message: MessageUpdateOneWithoutRequestNestedInput
+  NotificationMessage: NotificationsUpdateOneWithoutMessageRequestsNestedInput
+  NotificationType: EnumNotificationTypeFieldUpdateOperationsInput
+  receivers: RequestReceiverUpdateManyWithoutRequestNestedInput
+  senderProfileId: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input RequestUpdateWithoutNotificationMessageInput {
+  createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  Message: MessageUpdateOneWithoutRequestNestedInput
+  NotificationFriendRequest: NotificationsUpdateOneWithoutFriendRequestsNestedInput
   NotificationType: EnumNotificationTypeFieldUpdateOperationsInput
   receivers: RequestReceiverUpdateManyWithoutRequestNestedInput
   senderProfileId: StringFieldUpdateOperationsInput
@@ -15929,15 +16047,28 @@ input RequestUpdateWithoutNotificationsInput {
 input RequestUpdateWithoutReceiversInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
-  Notifications: NotificationsUpdateManyWithoutRequestsNestedInput
+  Message: MessageUpdateOneWithoutRequestNestedInput
+  NotificationFriendRequest: NotificationsUpdateOneWithoutFriendRequestsNestedInput
+  NotificationMessage: NotificationsUpdateOneWithoutMessageRequestsNestedInput
   NotificationType: EnumNotificationTypeFieldUpdateOperationsInput
   senderProfileId: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
-input RequestUpdateWithWhereUniqueWithoutNotificationsInput {
-  data: RequestUpdateWithoutNotificationsInput!
+input RequestUpdateWithWhereUniqueWithoutNotificationFriendRequestInput {
+  data: RequestUpdateWithoutNotificationFriendRequestInput!
   where: RequestWhereUniqueInput!
+}
+
+input RequestUpdateWithWhereUniqueWithoutNotificationMessageInput {
+  data: RequestUpdateWithoutNotificationMessageInput!
+  where: RequestWhereUniqueInput!
+}
+
+input RequestUpsertWithoutMessageInput {
+  create: RequestCreateWithoutMessageInput!
+  update: RequestUpdateWithoutMessageInput!
+  where: RequestWhereInput
 }
 
 input RequestUpsertWithoutReceiversInput {
@@ -15946,9 +16077,15 @@ input RequestUpsertWithoutReceiversInput {
   where: RequestWhereInput
 }
 
-input RequestUpsertWithWhereUniqueWithoutNotificationsInput {
-  create: RequestCreateWithoutNotificationsInput!
-  update: RequestUpdateWithoutNotificationsInput!
+input RequestUpsertWithWhereUniqueWithoutNotificationFriendRequestInput {
+  create: RequestCreateWithoutNotificationFriendRequestInput!
+  update: RequestUpdateWithoutNotificationFriendRequestInput!
+  where: RequestWhereUniqueInput!
+}
+
+input RequestUpsertWithWhereUniqueWithoutNotificationMessageInput {
+  create: RequestCreateWithoutNotificationMessageInput!
+  update: RequestUpdateWithoutNotificationMessageInput!
   where: RequestWhereUniqueInput!
 }
 
@@ -15956,8 +16093,12 @@ input RequestWhereInput {
   AND: [RequestWhereInput!]
   createdAt: DateTimeFilter
   id: StringFilter
+  Message: MessageWhereInput
   NOT: [RequestWhereInput!]
-  Notifications: NotificationsListRelationFilter
+  NotificationFriendRequest: NotificationsWhereInput
+  notificationFriendRequestId: StringNullableFilter
+  notificationMesageId: StringNullableFilter
+  NotificationMessage: NotificationsWhereInput
   NotificationType: EnumNotificationTypeFilter
   OR: [RequestWhereInput!]
   receivers: RequestReceiverListRelationFilter
@@ -15969,8 +16110,12 @@ input RequestWhereUniqueInput {
   AND: [RequestWhereInput!]
   createdAt: DateTimeFilter
   id: String
+  Message: MessageWhereInput
   NOT: [RequestWhereInput!]
-  Notifications: NotificationsListRelationFilter
+  NotificationFriendRequest: NotificationsWhereInput
+  notificationFriendRequestId: StringNullableFilter
+  notificationMesageId: StringNullableFilter
+  NotificationMessage: NotificationsWhereInput
   NotificationType: EnumNotificationTypeFilter
   OR: [RequestWhereInput!]
   receivers: RequestReceiverListRelationFilter

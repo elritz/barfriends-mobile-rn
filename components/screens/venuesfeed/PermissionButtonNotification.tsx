@@ -12,7 +12,7 @@ export default function SearchAreaLocationPermissionButton() {
 		rPermissionNotificationVar?.granted
 			? await useSetSearchAreaWithLocation()
 			: router.push({
-					pathname: '(app)/permission/notifications',
+					pathname: '/(app)/permission/notifications',
 			  })
 	}
 

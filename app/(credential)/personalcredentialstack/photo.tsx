@@ -83,7 +83,7 @@ export default () => {
 	const _pickMediaPicker = async () => {
 		if (!rPermissionMediaReactiveVar?.granted) {
 			router.push({
-				pathname: '(app)/permission/medialibrary',
+				pathname: '/(app)/permission/medialibrary',
 			})
 		} else {
 			const result = await ImagePicker.launchImageLibraryAsync({
@@ -156,7 +156,7 @@ export default () => {
 			}
 		} else {
 			router.push({
-				pathname: '(app)/permission/medialibrary',
+				pathname: '/(app)/permission/medialibrary',
 			})
 		}
 	}, [rPermissionMediaReactiveVar, mediaLoading])
@@ -184,7 +184,7 @@ export default () => {
 								variant='solid'
 								onPress={async () =>
 									router.push({
-										pathname: '(app)/permission/medialibrary',
+										pathname: '/(app)/permission/medialibrary',
 									})
 								}
 								mt={'$10'}

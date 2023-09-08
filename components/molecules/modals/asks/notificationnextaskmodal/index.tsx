@@ -57,7 +57,7 @@ const NotificationNextAskModal = ({ isOpen, onOpen, onClose }) => {
 						<Button
 							onPress={() =>
 								router.push({
-									pathname: '(app)/permission/notifications',
+									pathname: '/(app)/permission/notifications',
 								})
 							}
 							variant={'link'}

@@ -61,7 +61,7 @@ export default function CurrentVenue() {
 			<Pressable
 				onPress={() => {
 					router.push({
-						pathname: '(app)/public/venue',
+						pathname: '/(app)/public/venue',
 						params: {
 							profileid: item?.friendProfile?.id,
 							latitude: Number(data.currentVenue?.Venue?.Location?.Geometry?.latitude),

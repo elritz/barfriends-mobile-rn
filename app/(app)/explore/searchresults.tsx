@@ -50,7 +50,7 @@ export default function searchresulttabs() {
 			renderTabBar={renderTabBar}
 			onIndexChange={setIndex}
 			style={{
-				top: contentInsets.top,
+				top: contentInsets.top - 10,
 			}}
 			initialLayout={{ width: layout.width }}
 		/>

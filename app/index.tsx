@@ -2,6 +2,7 @@ import { useReactiveVar } from '@apollo/client'
 import { Box } from '@components/core'
 import { useCheckPrivacyTermsDocumentUpdateQuery } from '@graphql/generated'
 import { ThemeReactiveVar, TermsServiceReactiveVar } from '@reactive'
+import { useRouterNotifications } from '@util/hooks/useRouterNotifications'
 import { Redirect } from 'expo-router'
 import { uniqueId } from 'lodash'
 import { MotiView } from 'moti'
@@ -13,6 +14,7 @@ const size = 500
 const windowHeight = Dimensions.get('window').height
 
 export default () => {
+	useRouterNotifications()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const [isLoading, setLoading] = useState(true)
 	const { data, loading, error } = useCheckPrivacyTermsDocumentUpdateQuery({
@@ -31,9 +33,6 @@ export default () => {
 				TermsServiceReactiveVar({
 					update: false,
 				})
-				// router.replace({
-				// 	pathname: '(app)/hometab/venuefeed',
-				// })
 			}
 		},
 	})

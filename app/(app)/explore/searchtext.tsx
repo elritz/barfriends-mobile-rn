@@ -8,7 +8,7 @@ import { FlashList } from '@shopify/flash-list'
 import useContentInsets from '@util/hooks/useContentInsets'
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import { Skeleton } from 'moti/skeleton'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { View } from 'react-native'
 
 type Item = {
@@ -21,19 +21,28 @@ export default () => {
 	const contentInsets = useContentInsets()
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 	const rTheme = useReactiveVar(ThemeReactiveVar)
+	const [showPastItems, setShotPastItems] = useState(true)
 
 	const [exploreSearchQuery, { data, loading, error }] = useExploreSearchLazyQuery({
 		fetchPolicy: 'cache-first',
 		onError: error => {},
+		onCompleted: data => {
+			// if (data.exploreSearch.people.length && data.exploreSearch.venues.length) {
+			// 	setShotPastItems(true)
+			// }
+		},
 	})
 
 	useEffect(() => {
 		if (params.searchtext?.length) {
+			setShotPastItems(false)
 			exploreSearchQuery({
 				variables: {
 					search: String(params.searchtext),
 				},
 			})
+		} else {
+			setShotPastItems(true)
 		}
 	}, [params.searchtext])
 
@@ -46,7 +55,98 @@ export default () => {
 		'search',
 	)
 
-	if (loading ) {
+	const PastSearchItem = (item: Item) => {
+		return (
+			<Pressable
+				px={'$2'}
+				onPress={() => {
+					exploreSearchQuery({
+						variables: {
+							search: item.search,
+						},
+						onCompleted: data => {
+							router.setParams({
+								searchtext: item.search,
+							})
+						},
+					})
+				}}
+			>
+				<HStack
+					sx={{
+						w: '100%',
+						h: 55,
+					}}
+					justifyContent={'flex-start'}
+					alignItems={'center'}
+					space={'md'}
+				>
+					<Box
+						alignContent='center'
+						justifyContent='center'
+						alignItems='center'
+						borderWidth={'$2'}
+						// borderColor='$primary500'
+						rounded={'$md'}
+						sx={{
+							h: 35,
+							w: 35,
+						}}
+					>
+						<Ionicons
+							name='ios-search'
+							size={18}
+							color={
+								rTheme.colorScheme === 'light'
+									? rTheme.theme?.gluestack.tokens.colors.light900
+									: rTheme.theme?.gluestack.tokens.colors.dark900
+							}
+						/>
+					</Box>
+					<VStack>
+						<Text fontSize={'$md'} fontWeight={'$medium'}>
+							{item.search}
+						</Text>
+					</VStack>
+				</HStack>
+			</Pressable>
+		)
+	}
+
+	if (!params?.searchtext?.length && !loading) {
+		return (
+			<Box bg={'$transparent'} flex={1} px={'$2'}>
+				<FlashList
+					data={filteredRecentSearches as Array<Item>}
+					ListHeaderComponent={() => {
+						return (
+							<>
+								{filteredRecentSearches.length ? (
+									<Heading>Recent</Heading>
+								) : (
+									<Heading textAlign='center' mt={'$10'}>
+										No recent searches
+									</Heading>
+								)}
+							</>
+						)
+					}}
+					numColumns={1}
+					estimatedItemSize={55}
+					scrollEnabled={true}
+					renderItem={item => <PastSearchItem search={item.item.search} />}
+					contentInset={{
+						...contentInsets,
+					}}
+					automaticallyAdjustsScrollIndicatorInsets
+					keyboardDismissMode='on-drag'
+					ItemSeparatorComponent={() => <View style={{ height: 5 }} />}
+				/>
+			</Box>
+		)
+	}
+
+	if (loading) {
 		return (
 			<FlashList
 				data={[...Array(20)]}
@@ -128,98 +228,6 @@ export default () => {
 		)
 	}
 
-	const PastSearchItem = (item: Item) => {
-		return (
-			<Pressable
-				px={'$2'}
-				onPress={() => {
-					exploreSearchQuery({
-						variables: {
-							search: item.search,
-						},
-						onCompleted: data => {
-							router.setParams({
-								searchtext: item.search,
-							})
-						},
-					})
-				}}
-			>
-				<HStack
-					sx={{
-						w: '100%',
-						h: 55,
-					}}
-					justifyContent={'flex-start'}
-					alignItems={'center'}
-					space={'md'}
-				>
-					<Box
-						alignContent='center'
-						justifyContent='center'
-						alignItems='center'
-						borderWidth={'$2'}
-						// borderColor='$primary500'
-						rounded={'$md'}
-						sx={{
-							h: 35,
-							w: 35,
-						}}
-					>
-						<Ionicons
-							name='ios-search'
-							size={18}
-							color={
-								rTheme.colorScheme === 'light'
-									? rTheme.theme?.gluestack.tokens.colors.light900
-									: rTheme.theme?.gluestack.tokens.colors.dark900
-							}
-						/>
-					</Box>
-					<VStack>
-						<Text fontSize={'$md'} fontWeight={'$medium'}>
-							{item.search}
-						</Text>
-					</VStack>
-				</HStack>
-			</Pressable>
-		)
-	}
-
-	if (!params?.searchtext?.length) {
-		return (
-			<Box bg={'$transparent'} flex={1} px={'$2'}>
-				<FlashList
-					data={filteredRecentSearches as Array<Item>}
-					ListHeaderComponent={() => {
-						return (
-							<>
-								{filteredRecentSearches.length ? (
-									<Heading>Recent</Heading>
-								) : (
-									<Heading textAlign='center' mt={'$10'}>
-										No recent searches
-									</Heading>
-								)}
-							</>
-						)
-					}}
-					numColumns={1}
-					estimatedItemSize={55}
-					scrollEnabled={true}
-					renderItem={item => <PastSearchItem search={item.item.search} />}
-					contentInset={{
-						...contentInsets,
-					}}
-					automaticallyAdjustsScrollIndicatorInsets
-					keyboardDismissMode='on-drag'
-					ItemSeparatorComponent={() => <View style={{ height: 5 }} />}
-				/>
-			</Box>
-		)
-	}
-	console.log('data?.exploreSearch.people :>> ', data?.exploreSearch.people)
-	console.log('data?.exploreSearch.people :>> ', data?.exploreSearch.venues)
 	return (
 		<Box bg={'$transparent'} flex={1} px={'$2'}>
 			<FlashList
@@ -230,6 +238,7 @@ export default () => {
 				}}
 				automaticallyAdjustKeyboardInsets
 				automaticallyAdjustContentInsets
+				refreshing={loading}
 				keyboardDismissMode='on-drag'
 				ItemSeparatorComponent={() => <Box bg='$transparent' h={'$5'} />}
 				ListHeaderComponent={() => {

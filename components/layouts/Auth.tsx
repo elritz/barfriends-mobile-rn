@@ -18,12 +18,12 @@ export default function Auth({ children }) {
 					const deviceProfile = data.refreshDeviceManager as AuthorizationDeviceProfile
 					AuthorizationReactiveVar(deviceProfile)
 					// setTimeout(() => {
-					// 	router.push('(app)/hometab/venuefeed')
+					// 	router.push('/(app)/hometab/venuefeed')
 					// }, 1)
 				}
 				if (data.refreshDeviceManager?.__typename === 'Error') {
 					// setTimeout(() => {
-					// 	router.push('(app)/hometab/venuefeed')
+					// 	router.push('/(app)/hometab/venuefeed')
 					// }, 1)
 				}
 			},
@@ -39,7 +39,7 @@ export default function Auth({ children }) {
 						AuthorizationReactiveVar(deviceProfile)
 						// setTimeout(() => {
 						// 	router.replace({
-						// 		pathname: '(app)/hometab/venuefeed',
+						// 		pathname: '/(app)/hometab/venuefeed',
 						// 	})
 						// }, 1)
 					}

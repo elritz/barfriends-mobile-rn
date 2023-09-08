@@ -7,7 +7,7 @@ export default function VenueFeedSearchAreaEmptyState() {
 
 	const _pressToSearchArea = () => {
 		router.push({
-			pathname: '(app)/searcharea',
+			pathname: '/(app)/searcharea/',
 		})
 	}
 

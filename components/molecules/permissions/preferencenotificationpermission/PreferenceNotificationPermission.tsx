@@ -66,7 +66,7 @@ export default function PreferenceNotificationPermission() {
 								<Button
 									onPress={() =>
 										router.push({
-											pathname: '(app)/permission/notifications',
+											pathname: '/(app)/permission/notifications',
 										})
 									}
 									mt={'$4'}
@@ -75,7 +75,7 @@ export default function PreferenceNotificationPermission() {
 									}}
 									rounded={'$md'}
 								>
-									<Button.Text fontWeight='$bold' fontSize={'$md'}>
+									<Button.Text fontWeight='$bold' fontSize={'$lg'}>
 										Continue
 									</Button.Text>
 								</Button>
@@ -99,7 +99,9 @@ export default function PreferenceNotificationPermission() {
 										})
 									}}
 								>
-									<Text>Not now</Text>
+									<Text fontSize={'$lg'} alignSelf='center'>
+										Not now
+									</Text>
 								</Button>
 							</VStack>
 						</MotiView>

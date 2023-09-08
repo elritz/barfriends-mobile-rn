@@ -31,7 +31,7 @@ const Item = ({ uri, onPress }: TileProps) => {
 				rPermissionMedia?.granted
 					? onPress()
 					: router.push({
-							pathname: '(app)/permission/medialibrary',
+							pathname: '/(app)/permission/medialibrary',
 					  })
 			}}
 		>

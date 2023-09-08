@@ -4,7 +4,8 @@ export default function _layout() {
 	return (
 		<Stack
 			screenOptions={{
-				headerShown: false,
+				headerTransparent: true,
+				headerShown: true,
 			}}
 		/>
 	)

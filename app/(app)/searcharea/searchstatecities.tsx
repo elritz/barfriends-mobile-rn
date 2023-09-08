@@ -169,7 +169,7 @@ export default function SearchStateCities() {
 				...newSearchAreaValue,
 			})
 			router.push({
-				pathname: '(app)/searcharea',
+				pathname: '/(app)/searcharea',
 			})
 		}
 

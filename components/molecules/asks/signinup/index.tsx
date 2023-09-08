@@ -32,7 +32,7 @@ export default () => {
 					variant='link'
 					onPress={() =>
 						router.push({
-							pathname: '(credential)/logincredentialstack/authenticator',
+							pathname: '/(credential)/logincredentialstack/authenticator',
 						})
 					}
 					sx={{

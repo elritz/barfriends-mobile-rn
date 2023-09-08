@@ -11,7 +11,7 @@ export default function SearchAreaHeader({ typename }) {
 
 	const _press = () => {
 		router.push({
-			pathname: '(app)/searcharea',
+			pathname: '/(app)/searcharea',
 		})
 	}
 

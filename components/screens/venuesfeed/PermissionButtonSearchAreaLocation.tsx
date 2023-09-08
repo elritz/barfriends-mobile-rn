@@ -12,7 +12,7 @@ export default function PermissionButtonSearchAreaLocation() {
 		rPermissionLocationVar?.granted
 			? await useSetSearchAreaWithLocation()
 			: route.push({
-					pathname: '(app)/permission/foregroundlocation',
+					pathname: '/(app)/permission/foregroundlocation',
 			  })
 	}
 

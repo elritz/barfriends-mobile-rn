@@ -93,7 +93,7 @@ export const CondensedHorizontalFriendNotifciation = ({
 					<Pressable
 						onPress={() => {
 							router.push({
-								pathname: '(app)/public/personal',
+								pathname: '/(app)/public/personal',
 								params: {
 									profileid: String(item.receiverProfile?.id),
 								},
@@ -155,7 +155,7 @@ export const CondensedHorizontalFriendNotifciation = ({
 					<Pressable
 						onPress={() => {
 							router.push({
-								pathname: '(app)/public/personal',
+								pathname: '/(app)/public/personal',
 								params: {
 									profileid: String(item.senderProfile?.id),
 								},

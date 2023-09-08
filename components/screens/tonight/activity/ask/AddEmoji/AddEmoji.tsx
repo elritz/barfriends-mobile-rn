@@ -12,7 +12,7 @@ const AddEmoji = () => {
 		<Pressable
 			onPress={() =>
 				router.push({
-					pathname: '(app)/modal/Emojimood',
+					pathname: '/(app)/modal/Emojimood',
 				})
 			}
 			style={{

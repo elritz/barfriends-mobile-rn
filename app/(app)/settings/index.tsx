@@ -37,7 +37,7 @@ export default () => {
 				if (data?.switchDeviceProfile?.__typename === 'AuthorizationDeviceProfile') {
 					const deviceManager = data.switchDeviceProfile as AuthorizationDeviceProfile
 					AuthorizationReactiveVar(deviceManager)
-					setTimeout(() => router.replace('(app)/hometab'), 1000)
+					setTimeout(() => router.replace('/(app)/hometab'), 1000)
 				}
 			},
 		})
@@ -88,10 +88,10 @@ export default () => {
 				onPress={() => {
 					rAuthorizationVar?.Profile?.ProfileType === 'PERSONAL'
 						? router.push({
-								pathname: '(app)/settings/profilesettings/personal',
+								pathname: '/(app)/settings/profilesettings/personal',
 						  })
 						: router.push({
-								pathname: '(app)/settings/profilesettings/venue',
+								pathname: '/(app)/settings/profilesettings/venue',
 						  })
 				}}
 			>
@@ -116,7 +116,7 @@ export default () => {
 			<RoundedListItem
 				onPress={() => {
 					router.push({
-						pathname: '(app)/settings/notificationssettingsscreen',
+						pathname: '/(app)/settings/notificationssettingsscreen',
 					})
 				}}
 			>
@@ -163,7 +163,7 @@ export default () => {
 				<RoundedListItem
 					onPress={() => {
 						router.push({
-							pathname: '(app)/settings/securitysettingsscreen',
+							pathname: '/(app)/settings/securitysettingsscreen',
 						})
 					}}
 				>
@@ -188,7 +188,7 @@ export default () => {
 			<RoundedListItem
 				onPress={() => {
 					router.push({
-						pathname: '(app)/settings/appearancesettingsscreen',
+						pathname: '/(app)/settings/appearancesettingsscreen',
 					})
 				}}
 			>

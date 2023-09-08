@@ -52,7 +52,7 @@ export default function Actions({ profile }: Props) {
 						isGuest
 							? onOpenSignupModal()
 							: router.push({
-									pathname: '(app)/messages',
+									pathname: '/(app)/messages',
 									params: {
 										roomid: '',
 									},

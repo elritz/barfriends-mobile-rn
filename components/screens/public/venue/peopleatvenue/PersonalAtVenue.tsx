@@ -21,7 +21,7 @@ const PersonalAtVenue = ({ item }: PersonalAtVenueProps) => {
 			alignSelf={'center'}
 			onPress={() => {
 				router.push({
-					pathname: '(app)/public/venue',
+					pathname: '/(app)/public/venue',
 					params: {
 						profileid: '',
 					},

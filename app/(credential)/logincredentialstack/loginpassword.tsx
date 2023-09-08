@@ -70,7 +70,7 @@ export default () => {
 					const deviceManager = data.switchDeviceProfile as AuthorizationDeviceProfile
 					AuthorizationReactiveVar(deviceManager)
 					router.push({
-						pathname: '(app)/hometab',
+						pathname: '/(app)/hometab/venuefeed',
 					})
 				}
 			},

@@ -56,7 +56,7 @@ const ForegroundLocationNextAskModal = ({ isOpen, onOpen, onClose }) => {
 							<Button
 								onPress={() =>
 									router.push({
-										pathname: '(app)/permission/foregroundlocation',
+										pathname: '/(app)/permission/foregroundlocation',
 									})
 								}
 								variant={'link'}

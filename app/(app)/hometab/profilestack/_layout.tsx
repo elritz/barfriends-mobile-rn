@@ -17,7 +17,6 @@ export default function _layout() {
 			screenOptions={{
 				gestureEnabled: false,
 				headerTransparent: false,
-
 				headerShown: true,
 				headerStyle: {
 					backgroundColor:
@@ -45,7 +44,7 @@ export default function _layout() {
 										variant='link'
 										onPress={async () => {
 											await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
-											router.push('(app)/modal/DeviceManager')
+											router.push('/(app)/modal/DeviceManager')
 										}}
 									>
 										<HStack ml={'$2'} space={'md'} alignItems={'center'} justifyContent='flex-start' flex={1}>
@@ -89,7 +88,7 @@ export default function _layout() {
 								variant='link'
 								onPress={() =>
 									router.push({
-										pathname: '(app)/settings',
+										pathname: '/(app)/settings',
 									})
 								}
 							>

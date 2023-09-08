@@ -132,7 +132,7 @@ export default function SearchCountryStates() {
 				},
 			})
 			router.replace({
-				pathname: '(app)/searcharea/searchstatecities',
+				pathname: '/(app)/searcharea/searchstatecities',
 				params: {
 					countryIsoCode: item.countryCode,
 					stateIsoCode: item.isoCode,

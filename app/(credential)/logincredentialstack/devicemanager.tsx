@@ -35,7 +35,6 @@ export default () => {
 
 	const _press = item => {
 		if (rAuthorizationVar?.Profile?.id === item.id) {
-			
 		} else {
 			switchDeviceProfileMutation({
 				variables: {
@@ -45,10 +44,10 @@ export default () => {
 					if (data?.switchDeviceProfile?.__typename === 'AuthorizationDeviceProfile') {
 						const deviceManager = data.switchDeviceProfile as AuthorizationDeviceProfile
 						AuthorizationReactiveVar(deviceManager)
-						setTimeout(() => router.replace('(app)/hometab'), 1000)
+						setTimeout(() => router.replace('/(app)/hometab/venuefeed'), 1000)
 					} else if (data.switchDeviceProfile.__typename === 'Error') {
 						router.push({
-							pathname: '(credential)/logincredentialstack/loginpassword',
+							pathname: '/(credential)/logincredentialstack/loginpassword',
 							params: {
 								username: item.IdentifiableInformation?.username,
 								photo: item.profilePhoto?.url,

@@ -1,17 +1,6 @@
 // TODO: FN(Change theme functionality with database and local storage save)
 import { useReactiveVar } from '@apollo/client'
-import {
-	Box,
-	Button,
-	Divider,
-	HStack,
-	Heading,
-	Pressable,
-	Spinner,
-	Text,
-	Tooltip,
-	VStack,
-} from '@components/core'
+import { Box, Divider, HStack, Heading, Pressable, Spinner, Text, VStack } from '@components/core'
 import {
 	AUTHORIZATION,
 	LOCAL_STORAGE_SEARCH_AREA,
@@ -31,9 +20,9 @@ import {
 	ThemeReactiveVar,
 } from '@reactive'
 import { secureStorageItemDelete, secureStorageItemRead } from '@util/hooks/local/useSecureStorage'
-import { useDisclose } from '@util/hooks/useDisclose'
 import * as Application from 'expo-application'
 import * as Clipboard from 'expo-clipboard'
+import Constants from 'expo-constants'
 import * as Device from 'expo-device'
 import * as IntentLauncher from 'expo-intent-launcher'
 import * as Location from 'expo-location'
@@ -88,46 +77,16 @@ export default () => {
 	const router = useRouter()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
-	const [token, setToken] = useState('')
-	const [pushNotificationToken, setPushNotificationToken] = useState('')
+
 	const [appState, setAppState] = useState(AppState.currentState)
+	const [isCopiedTokenDone, setIsCopiedTokenDone] = useState(false)
+	const [isCopiedProfileIdDone, setIsCopiedProfileIdDone] = useState(false)
+	const [isCopiedPushTokenDone, setIsCopiedPushTokenDone] = useState(false)
+	const [token, setToken] = useState('')
+	const [expoPushNotificationToken, setExpoPushNotificationToken] = useState('')
+	const [pushNotificationToken, setPushNotificationToken] = useState('')
 	const [searchAreaDeleteLoading, setSearchAreaDeleteLoading] = useState(false)
 	const [authorizationDeleteLoading, setAuthorizationDeleteLoading] = useState(false)
-
-	const {
-		isOpen: isForegroundLocationOn,
-		onOpen: onOpenForegroundLocationOn,
-		onClose: onCloseForegroundLocationOn,
-		onToggle: onToggleForegroundLocationOn,
-	} = useDisclose()
-
-	const {
-		isOpen: isBackgroundLocationOn,
-		onOpen: onOpenBackgroundLocationOn,
-		onClose: onCloseBackgroundLocationOn,
-		onToggle: onToggleBackgroundLocationOn,
-	} = useDisclose()
-
-	const {
-		isOpen: isOpenToken,
-		onOpen: onOpenToken,
-		onClose: onCloseToken,
-		onToggle: onToggleToken,
-	} = useDisclose()
-
-	const {
-		isOpen: isOpenProfileId,
-		onOpen: onOpenProfileId,
-		onClose: onCloseProfileId,
-		onToggle: onToggleProfileId,
-	} = useDisclose()
-
-	const {
-		isOpen: isOpenPushNotif,
-		onOpen: onOpenPushNotif,
-		onClose: onClosePushNotif,
-		onToggle: onTogglePushNotif,
-	} = useDisclose()
 
 	const appStateHandleBackgroundLocation = async nextAppState => {
 		const hasStarted = await Location.hasStartedLocationUpdatesAsync(
@@ -162,13 +121,26 @@ export default () => {
 
 	async function getPushNotificationToken() {
 		const IOSenv = await Application.getIosPushNotificationServiceEnvironmentAsync()
+		const notificationtoken = await Notifications.getDevicePushTokenAsync()
+
+		console.log(
+			'🚀 ~ file: index.tsx:124 ~ getPushNotificationToken ~ notificationtoken:',
+			notificationtoken,
+		)
+
+		setPushNotificationToken(String(notificationtoken.data))
 
 		const expoToken = await Notifications.getExpoPushTokenAsync({
 			applicationId: String(Application.applicationId),
-			development: IOSenv === 'development' ? true : false,
+			projectId: Constants?.expoConfig?.extra?.eas.projectId,
+			// development: IOSenv === 'development' ? true : false,
+			development: true,
 		})
+		console.log('🚀 ~ file: index.tsx:138 ~ getPushNotificationToken ~ IOSenv:', IOSenv)
 
-		setPushNotificationToken(String(expoToken.data))
+		console.log('🚀 ~ file: index.tsx:139 ~ getPushNotificationToken ~ expoToken:', expoToken)
+
+		setExpoPushNotificationToken(String(expoToken.data))
 	}
 
 	useEffect(() => {
@@ -176,12 +148,12 @@ export default () => {
 		getPushNotificationToken()
 	}, [])
 
-	useEffect(() => {
-		const appStateListen = AppState.addEventListener('change', appStateHandleBackgroundLocation)
-		return () => {
-			appStateListen.remove()
-		}
-	}, [isBackgroundLocationOn])
+	// useEffect(() => {
+	// 	const appStateListen = AppState.addEventListener('change', appStateHandleBackgroundLocation)
+	// 	return () => {
+	// 		appStateListen.remove()
+	// 	}
+	// }, [isBackgroundLocationOn])
 
 	// useEffect(() => {
 	// 	registerForPushNotificationsAsync().then(token => setPushNotificationToken(token))
@@ -332,6 +304,45 @@ export default () => {
 		},
 	]
 
+	const GeneralOptions = [
+		{
+			type: 'generalinformation',
+			title: 'Authorization Token',
+			value: token,
+			icon: '',
+			onPress: async () => {
+				await Clipboard.setStringAsync(token)
+			},
+		},
+		{
+			type: 'generalinformation',
+			title: 'Profile Id',
+			value: rAuthorizationVar?.Profile?.id,
+			icon: '',
+			onPress: async () => {
+				await Clipboard.setStringAsync(String(rAuthorizationVar?.Profile?.id))
+			},
+		},
+		{
+			type: 'generalinformation',
+			title: 'Expo Push Token',
+			value: expoPushNotificationToken,
+			icon: '',
+			onPress: async () => {
+				await Clipboard.setStringAsync(token)
+			},
+		},
+		{
+			type: 'generalinformation',
+			title: 'Device Push Token',
+			value: pushNotificationToken,
+			icon: '',
+			onPress: async () => {
+				await Clipboard.setStringAsync(pushNotificationToken)
+			},
+		},
+	]
+
 	const Item = ({ item, index, loading }) => {
 		switch (item.type) {
 			case 'setting':
@@ -418,6 +429,31 @@ export default () => {
 						}}
 					</Pressable>
 				)
+			case 'generalinformation':
+				return (
+					<Pressable onPress={item.onPress}>
+						<Divider />
+						<VStack>
+							<Heading fontSize={'$lg'}>{item.title}</Heading>
+							<HStack rounded={'$md'} alignItems={'center'} justifyContent={'space-between'} py={'$4'}>
+								<Text
+									fontSize={'$md'}
+									textTransform={'capitalize'}
+									fontWeight={'$black'}
+									ellipsizeMode={'tail'}
+									flex={1}
+									numberOfLines={1}
+									maxWidth={'80%'}
+								>
+									{item.value}
+								</Text>
+								<View style={{ marginHorizontal: 2 }}>
+									<Feather color={rTheme.theme?.gluestack.tokens.colors.primary500} size={25} name='copy' />
+								</View>
+							</HStack>
+						</VStack>
+					</Pressable>
+				)
 		}
 	}
 
@@ -470,233 +506,11 @@ export default () => {
 				contentInset={{
 					bottom: 100,
 				}}
-				ListHeaderComponent={() => {
-					return (
-						<VStack>
-							<Box my={5} bg={'$transparent'}>
-								<Tooltip
-									trigger={() => {
-										return (
-											<Pressable
-												onPress={async () => {
-													onToggleToken()
-													await Clipboard.setStringAsync(token)
-													setTimeout(() => onCloseToken(), 500)
-												}}
-											>
-												<Heading textAlign={'center'} textTransform={'capitalize'} numberOfLines={1} my={'$2'}>
-													Token
-												</Heading>
-												<Heading textAlign={'center'} textTransform={'capitalize'} numberOfLines={1} my={'$2'}>
-													{token}
-												</Heading>
-											</Pressable>
-										)
-									}}
-									placement='bottom'
-									isOpen={true}
-									openDelay={500}
-								>
-									<HStack
-										sx={{
-											_light: {
-												bg: '$light100',
-											},
-											_dark: {
-												bg: '$dark100',
-											},
-										}}
-										rounded={'$md'}
-										alignItems={'center'}
-										justifyContent={'space-around'}
-										py={'$3'}
-									>
-										<Text
-											fontSize={'$md'}
-											textTransform={'capitalize'}
-											fontWeight={'$black'}
-											ellipsizeMode={'tail'}
-											flex={1}
-											marginLeft={'$5'}
-											numberOfLines={1}
-										>
-											{token}
-										</Text>
-										<View style={{ marginHorizontal: 2 }}>
-											<Feather
-												color={rTheme.theme?.gluestack.tokens.colors.primary500}
-												size={30}
-												name='copy'
-											/>
-										</View>
-									</HStack>
-								</Tooltip>
-								<Divider my={3} />
-								<Tooltip
-									placement='top'
-									isOpen={isOpenProfileId}
-									trigger={() => {
-										return (
-											<Pressable
-												onPress={async () => {
-													onToggleProfileId()
-													await Clipboard.setStringAsync(String(rAuthorizationVar?.Profile?.id))
-													setTimeout(() => onCloseProfileId(), 500)
-												}}
-											>
-												<Heading textAlign={'center'} textTransform={'capitalize'} numberOfLines={1} my={'$2'}>
-													Profile ID
-												</Heading>
-											</Pressable>
-										)
-									}}
-									openDelay={500}
-								>
-									<HStack
-										sx={{
-											_light: {
-												bg: '$light100',
-											},
-											_dark: {
-												bg: '$dark100',
-											},
-										}}
-										rounded={'$md'}
-										alignItems={'center'}
-										justifyContent={'space-around'}
-										py={'$3'}
-									>
-										<Text
-											fontSize={'$md'}
-											textTransform={'capitalize'}
-											fontWeight={'$black'}
-											ellipsizeMode={'tail'}
-											flex={1}
-											marginLeft={'$5'}
-											numberOfLines={1}
-										>
-											{rAuthorizationVar?.Profile?.id}
-										</Text>
-										<View style={{ marginHorizontal: 2 }}>
-											<Feather
-												color={rTheme.theme?.gluestack.tokens.colors.primary500}
-												size={30}
-												name='copy'
-											/>
-										</View>
-									</HStack>
-								</Tooltip>
-								<Divider my={3} />
-
-								<Tooltip
-									placement='top'
-									isOpen={isOpenPushNotif}
-									openDelay={500}
-									trigger={() => {
-										return (
-											<Pressable
-												onPress={async () => {
-													onTogglePushNotif()
-													await Clipboard.setStringAsync(String(pushNotificationToken))
-													setTimeout(() => onClosePushNotif(), 500)
-												}}
-											>
-												<Heading textAlign={'center'} textTransform={'capitalize'} numberOfLines={1} my={'$2'}>
-													Expo Push Token
-												</Heading>
-											</Pressable>
-										)
-									}}
-								>
-									<HStack
-										sx={{
-											_light: {
-												bg: '$light100',
-											},
-											_dark: {
-												bg: '$dark100',
-											},
-										}}
-										rounded={'$md'}
-										alignItems={'center'}
-										justifyContent={'space-around'}
-										py={'$3'}
-									>
-										<Text
-											fontSize={'$md'}
-											textTransform={'capitalize'}
-											fontWeight={'$black'}
-											ellipsizeMode={'tail'}
-											flex={1}
-											marginLeft={'$5'}
-											numberOfLines={1}
-										>
-											{pushNotificationToken}
-										</Text>
-										<View style={{ marginHorizontal: 2 }}>
-											<Feather
-												color={rTheme.theme?.gluestack.tokens.colors.primary500}
-												size={30}
-												name='copy'
-											/>
-										</View>
-									</HStack>
-								</Tooltip>
-								<Divider my={3} />
-							</Box>
-							<VStack space={'md'} w={'$full'} px={'$10'} my={'$3'}>
-								<Heading textAlign={'center'} textTransform={'capitalize'} numberOfLines={1} my={'$2'}>
-									Notification
-								</Heading>
-								<Button
-									onPress={async () => {
-										await schedulePushNotification()
-									}}
-								>
-									<Button.Text>Send notification</Button.Text>
-								</Button>
-								<Divider />
-							</VStack>
-							{/* <VStack space={'md'} w={'$full'} px={'$10'} my={'$3'}>
-								<Heading textAlign={'center'} textTransform={'capitalize'} numberOfLines={1} my={'$2'}>
-									Location tracking
-								</Heading>
-								<Button
-									onPress={toggleForegroundLocationTask}
-									isDisabled={isForegroundLocationOn}
-									bg='$green400'
-								>
-									<Button.Text>Start in foreground</Button.Text>
-								</Button>
-								<Divider />
-								<Button
-									onPress={toggleForegroundLocationTask}
-									isDisabled={!isForegroundLocationOn}
-									bg={'$red500'}
-								>
-									<Button.Text>Stop in foreground</Button.Text>
-								</Button>
-								<Divider />
-								<Button
-									onPress={onToggleBackgroundLocationOn}
-									isDisabled={isBackgroundLocationOn}
-									bg='$green400'
-								>
-									<Button.Text>Start in background</Button.Text>
-								</Button>
-								<Divider />
-								<Button
-									onPress={onToggleBackgroundLocationOn}
-									isDisabled={!isBackgroundLocationOn}
-									bg='$red400'
-								>
-									<Button.Text>Stop in background</Button.Text>
-								</Button>
-							</VStack> */}
-						</VStack>
-					)
-				}}
 				sections={[
+					{
+						title: 'General',
+						data: GeneralOptions,
+					},
 					{
 						title: 'Settings',
 						data: settingsOptions,
@@ -706,7 +520,6 @@ export default () => {
 						data: tokenOptions,
 					},
 				]}
-				// keyExtractor={(item, index) => index}
 				renderItem={({ item, index }) => <Item index={index} item={item} />}
 				renderSectionHeader={({ section: { title } }) => (
 					<Box py={'$3'} rounded={'$none'} bg={'transparent'} justifyContent='center'>

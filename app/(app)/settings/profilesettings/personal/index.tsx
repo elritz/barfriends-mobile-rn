@@ -62,7 +62,7 @@ export default ({}: EditableOptionsScreenProps) => {
 			<RoundedListItem
 				onPress={() => {
 					router.push({
-						pathname: '(app)/settings/profilesettings/personal/fullname',
+						pathname: '/(app)/settings/profilesettings/personal/fullname',
 					})
 				}}
 				title='Full name'
@@ -80,7 +80,7 @@ export default ({}: EditableOptionsScreenProps) => {
 			<RoundedListItem
 				onPress={() =>
 					router.push({
-						pathname: '(app)/settings/profilesettings/personal/username',
+						pathname: '/(app)/settings/profilesettings/personal/username',
 					})
 				}
 				title='Username'
@@ -112,7 +112,7 @@ export default ({}: EditableOptionsScreenProps) => {
 			<RoundedListItem
 				onPress={() =>
 					router.push({
-						pathname: '(app)/settings/profilesettings/personal/description',
+						pathname: '/(app)/settings/profilesettings/personal/description',
 					})
 				}
 				title='About me'
@@ -126,7 +126,7 @@ export default ({}: EditableOptionsScreenProps) => {
 			<RoundedListItem
 				onPress={() =>
 					router.push({
-						pathname: '(app)/settings/profilesettings/personal/interests',
+						pathname: '/(app)/settings/profilesettings/personal/interests',
 					})
 				}
 				title={'My interests'}
@@ -168,7 +168,7 @@ export default ({}: EditableOptionsScreenProps) => {
 			<RoundedListItem
 				onPress={() =>
 					router.push({
-						pathname: '(app)/settings/profilesettings/personal/gender',
+						pathname: '/(app)/settings/profilesettings/personal/gender',
 					})
 				}
 				title={`I am a ...`}
@@ -181,7 +181,7 @@ export default ({}: EditableOptionsScreenProps) => {
 			<RoundedListItem
 				onPress={() =>
 					router.push({
-						pathname: '(app)/settings/profilesettings/personal/lookingfor',
+						pathname: '/(app)/settings/profilesettings/personal/lookingfor',
 					})
 				}
 				title={`I'm looking for a ...`}
@@ -194,7 +194,7 @@ export default ({}: EditableOptionsScreenProps) => {
 			<RoundedListItem
 				onPress={() =>
 					router.push({
-						pathname: '(app)/settings/profilesettings/personal/relationship',
+						pathname: '/(app)/settings/profilesettings/personal/relationship',
 					})
 				}
 				title={`Relationship`}
@@ -204,7 +204,7 @@ export default ({}: EditableOptionsScreenProps) => {
 			<RoundedListItem
 				onPress={() =>
 					router.push({
-						pathname: '(app)/settings/profilesettings/personal/hometown',
+						pathname: '/(app)/settings/profilesettings/personal/hometown',
 					})
 				}
 				title={`Add your hometown`}
@@ -214,7 +214,7 @@ export default ({}: EditableOptionsScreenProps) => {
 			<RoundedListItem
 				onPress={() =>
 					router.push({
-						pathname: '(app)/settings/profilesettings/personal/currenttown',
+						pathname: '/(app)/settings/profilesettings/personal/currenttown',
 					})
 				}
 				title={'Add your city'}

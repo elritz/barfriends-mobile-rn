@@ -37,7 +37,6 @@ import {
 	PermissionBackgroundLocationReactiveVar,
 	PermissionMediaReactiveVar,
 	PermissionNotificationReactiveVar,
-	AuthorizationReactiveVar,
 } from '@reactive'
 import useSetSearchAreaWithLocation from '@util/hooks/searcharea/useSetSearchAreaWithLocation'
 import { Camera } from 'expo-camera'
@@ -46,7 +45,7 @@ import 'expo-dev-client'
 import { getForegroundPermissionsAsync, getBackgroundPermissionsAsync } from 'expo-location'
 import { getPermissionsAsync as getMediaPermissionAsync } from 'expo-media-library'
 import { getPermissionsAsync as getNotificiationPermissionAsync } from 'expo-notifications'
-import { Slot, SplashScreen, Stack, router, useRouter, useSegments } from 'expo-router'
+import { SplashScreen, Stack } from 'expo-router'
 import * as ScreenOrientation from 'expo-screen-orientation'
 import { useEffect } from 'react'
 import { Appearance } from 'react-native'
@@ -256,7 +255,6 @@ export default function Root() {
 			<SafeAreaProvider>
 				<KeyboardProvider statusBarTranslucent>
 					<BottomSheetModalProvider>
-						{/* <Slot initialRouteName='(app)/hometab/venuefeed' /> */}
 						<Auth>
 							<Theme>
 								<Stack

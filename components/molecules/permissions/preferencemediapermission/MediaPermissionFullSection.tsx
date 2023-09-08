@@ -48,7 +48,7 @@ export default function MediaPermissionFullSection() {
 						<Button
 							onPress={() =>
 								router.push({
-									pathname: '(app)/permission/medialibrary',
+									pathname: '/(app)/permission/medialibrary',
 								})
 							}
 							size={'sm'}

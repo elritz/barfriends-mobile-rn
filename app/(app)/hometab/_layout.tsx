@@ -1,4 +1,7 @@
 import { useReactiveVar } from '@apollo/client'
+import { VStack } from '@components/core'
+import SearchInput from '@components/molecules/search/searchinput/SearchInput'
+import SearchInputVenueFeed from '@components/molecules/search/searchinput/SearchInputVenueFeed'
 import DevelopmentTab from '@components/molecules/tabbaricons/hometabicons/developmenttab'
 import MessageTab from '@components/molecules/tabbaricons/hometabicons/messagestab'
 import ProfileTab from '@components/molecules/tabbaricons/hometabicons/profiletab'
@@ -13,12 +16,13 @@ import { ENVIRONMENT } from '@env'
 import { ProfileType } from '@graphql/generated'
 import { AuthorizationReactiveVar, TermsServiceReactiveVar, ThemeReactiveVar } from '@reactive'
 import { BlurView } from 'expo-blur'
-import { Tabs, useRouter } from 'expo-router'
+import { Tabs, useRouter, useSegments } from 'expo-router'
 import { useEffect } from 'react'
 import { StyleSheet } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default () => {
+	const segments = useSegments()
 	const insets = useSafeAreaInsets()
 	const router = useRouter()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
@@ -54,8 +58,34 @@ export default () => {
 					elevation: 0, // for Android
 					borderTopWidth: 0,
 				},
-				headerShown: false,
+				headerShown: true,
 				tabBarShowLabel: false,
+				headerTransparent: true,
+				header: () => {
+					return (
+						<BlurView
+							style={{
+								backgroundColor: segments.includes('tonight')
+									? 'transparent'
+									: rTheme.colorScheme === 'light'
+									? rTheme.theme?.gluestack.tokens.colors.light100
+									: rTheme.theme?.gluestack.tokens.colors.dark50,
+							}}
+							intensity={segments.includes('tonight') ? 70 : 0}
+							tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+						>
+							<VStack
+								justifyContent={'flex-start'}
+								sx={{
+									_light: { bg: !segments.includes('tonight') ? '$light100' : 'transparent' },
+									_dark: { bg: !segments.includes('tonight') ? '$dark50' : 'transparent' },
+								}}
+							>
+								<SearchInputVenueFeed />
+							</VStack>
+						</BlurView>
+					)
+				},
 			}}
 		>
 			<Tabs.Screen
@@ -104,7 +134,7 @@ export default () => {
 			<Tabs.Screen
 				name='developmentstack'
 				options={{
-					href: ENVIRONMENT === 'development' ? '(app)/hometab/developmentstack' : null,
+					href: ENVIRONMENT === 'development' ? '/(app)/hometab/developmentstack' : null,
 					headerShown: false,
 					tabBarLabel: 'development',
 					tabBarShowLabel: false,

@@ -1,18 +1,9 @@
 // TODO: Create message navigator
-import { Badge, Box, HStack, Heading, Pressable, Text, VStack } from '@components/core'
-import { Image } from 'react-native'
+import { Box, HStack, Heading, Pressable, Text, VStack } from '@components/core'
+import { Image } from 'expo-image'
 
-interface HorizontalMessageNotificationProps {
-	item: {
-		avatar: string
-		name: string
-		messages: []
-		time: string
-		badge: number
-	}
-}
-
-const HorizontalMessageNotification = ({ item }: HorizontalMessageNotificationProps) => {
+const HorizontalMessageNotification = ({ item }) => {
+	// console.log('item', JSON.stringify(item, null, 2))
 	return (
 		<Box
 			flex={1}
@@ -31,7 +22,7 @@ const HorizontalMessageNotification = ({ item }: HorizontalMessageNotificationPr
 			<Pressable
 				onPress={() => {
 					// router.push({
-					// 	pathname: '(app)/permission/medialibrary',
+					// 	pathname: '/(app)/permission/medialibrary',
 					// })
 				}}
 				sx={{
@@ -41,19 +32,22 @@ const HorizontalMessageNotification = ({ item }: HorizontalMessageNotificationPr
 				<HStack justifyContent={'space-around'}>
 					<HStack flex={1} space={'md'}>
 						<Image
-							alt={item.name.slice(0, 1)}
-							source={{ uri: item.avatar }}
+							alt={item.user?.name.slice(0, 1)}
+							source={{ uri: item.user?.avatar }}
+							contentFit='cover'
+							placeholder={item.user.blurhash}
+							transition={100}
 							style={{
-								borderRadius: 15,
-								height: 45,
-								width: 45,
+								borderRadius: 5,
+								height: 40,
+								width: 40,
 								backgroundColor: 'transparent',
 							}}
 						/>
-						<Box>
+						<Box bg={'$transparent'}>
 							<VStack>
-								<Heading fontSize={'$md'} fontWeight={'$bold'}>
-									{item.name}
+								<Heading lineHeight={'$sm'} fontSize={'$md'} fontWeight={'$bold'}>
+									{item.user.name}
 								</Heading>
 								<Text
 									fontSize={'$xs'}
@@ -66,7 +60,7 @@ const HorizontalMessageNotification = ({ item }: HorizontalMessageNotificationPr
 							</VStack>
 						</Box>
 					</HStack>
-					<Badge
+					{/* <Badge
 						h={30}
 						w={30}
 						bg='$primary500'
@@ -76,7 +70,7 @@ const HorizontalMessageNotification = ({ item }: HorizontalMessageNotificationPr
 						alignSelf='center'
 					>
 						{`${item.badge}`}
-					</Badge>
+					</Badge> */}
 				</HStack>
 			</Pressable>
 		</Box>

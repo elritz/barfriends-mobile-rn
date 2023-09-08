@@ -16,7 +16,7 @@ type Props = {
 	placeholder?: string
 }
 
-const SearchInput = (props: Props) => {
+const SearchInputVenueFeed = (props: Props) => {
 	const insets = useSafeAreaInsets()
 	const _inputRef = useRef<TextInput | undefined>()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
@@ -48,9 +48,19 @@ const SearchInput = (props: Props) => {
 		shouldUnregister: true,
 	})
 
-	useEffect(() => {
-		if (segments.includes('searchtext')) {
-			_inputRef.current?.focus()
+	useLayoutEffect(() => {
+		if (router.canGoBack()) {
+			if (!segments.includes('hometab')) {
+				if (segments.includes('explore')) {
+					_inputRef.current?.focus()
+				}
+				if (
+					segments.includes('searcharea') &&
+					segments.includes('searchcountry' || 'searchstate' || 'searchstatecities')
+				) {
+					_inputRef.current?.focus()
+				}
+			}
 		}
 	}, [segments])
 
@@ -62,14 +72,6 @@ const SearchInput = (props: Props) => {
 		}
 	}, [params.searchtext])
 
-	const [exploreSearchQuery, { data, loading, error }] = useExploreSearchLazyQuery({
-		onCompleted: data => {
-			router.setParams({
-				searchtext: String(watch().searchtext),
-			})
-		},
-	})
-
 	const clearSearchInput = useCallback(() => {
 		_inputRef.current?.clear()
 		setValue('searchtext', '')
@@ -79,6 +81,7 @@ const SearchInput = (props: Props) => {
 	}, [])
 
 	const handleSearchSubmitEditting = data => {
+		console.log('segments.include :>> ', segments)
 		if (segments.includes('searchresults')) {
 			router.push({
 				pathname: '/(app)/explore/searchresults',
@@ -90,7 +93,6 @@ const SearchInput = (props: Props) => {
 				pathname: '/(app)/explore/searchresults',
 				params: { searchtext: data.searchtext },
 			})
-			_inputRef.current?.blur()
 		}
 
 		if (
@@ -104,18 +106,6 @@ const SearchInput = (props: Props) => {
 			})
 		}
 	}
-
-	const debouncedSearchResults = useDebounce(watch().searchtext, 700)
-
-	useMemo(() => {
-		if (watch().searchtext) {
-			exploreSearchQuery({
-				variables: {
-					search: String(watch().searchtext),
-				},
-			})
-		}
-	}, [debouncedSearchResults])
 
 	return (
 		<HStack position={'relative'} flex={1} sx={{ mt: insets.top }} pb={'$2'}>
@@ -137,7 +127,7 @@ const SearchInput = (props: Props) => {
 								: rTheme.theme?.gluestack.tokens.colors.dark100
 						}
 					>
-						<Input.Icon ml={'$2'}>
+						<Input.Icon ml={'$3'}>
 							<Ionicons
 								color={
 									rTheme.colorScheme === 'light'
@@ -169,39 +159,6 @@ const SearchInput = (props: Props) => {
 										},
 									})
 								}
-
-								if (segments.includes('explore') && segments.includes('searchtext')) {
-									router.replace({
-										params: {
-											searchtext: watch('searchtext'),
-										},
-										pathname: '/(app)/explore/searchtext',
-									})
-								}
-
-								if (segments.includes('searcharea')) {
-									if (segments.includes('searchexplore')) {
-										router.push({
-											pathname: '/(app)/searcharea',
-											params: {
-												searchtext: '',
-											},
-										})
-									} else {
-										if (
-											!segments.includes('searchcountry') ||
-											!segments.includes('searchcountrystates') ||
-											!segments.includes('searchstatecities')
-										) {
-											router.push({
-												pathname: '/(app)/searcharea/searchcountry',
-												params: {
-													searchtext: '',
-												},
-											})
-										}
-									}
-								}
 							}}
 							onChangeText={onChange}
 							placeholder={props.placeholder || 'Search'}
@@ -226,4 +183,4 @@ const SearchInput = (props: Props) => {
 	)
 }
 
-export default SearchInput
+export default SearchInputVenueFeed

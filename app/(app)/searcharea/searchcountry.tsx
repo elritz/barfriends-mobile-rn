@@ -131,7 +131,7 @@ export default function SearchCountry() {
 				},
 			})
 			router.push({
-				pathname: '(app)/searcharea/searchcountrystate',
+				pathname: '/(app)/searcharea/searchcountrystate',
 				params: {
 					countryIsoCode: item.isoCode,
 				},

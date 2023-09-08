@@ -71,7 +71,7 @@ export default function ForegroundLocationPermissionFullSection() {
 									<Button
 										onPress={() =>
 											router.push({
-												pathname: '(app)/permission/foregroundlocation',
+												pathname: '/(app)/permission/foregroundlocation',
 											})
 										}
 										size={'sm'}
@@ -80,7 +80,7 @@ export default function ForegroundLocationPermissionFullSection() {
 											w: '85%',
 										}}
 									>
-										<Text fontWeight='$bold' fontSize={'$sm'}>
+										<Text fontWeight='$bold' fontSize={'$lg'}>
 											Use Current Location
 										</Text>
 									</Button>

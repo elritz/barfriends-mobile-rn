@@ -74,7 +74,7 @@ export default function PreferenceBackgroundLocationPermissionFullSection() {
 									<Button
 										onPress={() =>
 											router.push({
-												pathname: '(app)/permission/backgroundlocation',
+												pathname: '/(app)/permission/backgroundlocation',
 											})
 										}
 										size={'sm'}
@@ -83,7 +83,7 @@ export default function PreferenceBackgroundLocationPermissionFullSection() {
 											w: '85%',
 										}}
 									>
-										<Text fontWeight='$bold' fontSize={'$sm'}>
+										<Text fontWeight='$bold' fontSize={'$lg'}>
 											Use "always allow"
 										</Text>
 									</Button>

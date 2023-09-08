@@ -39,7 +39,7 @@ const HorizontalVenueFeedVenueItem = (props: Props) => {
 			key={props.item.id}
 			onPress={() => {
 				router.push({
-					pathname: '(app)/public/venue',
+					pathname: '/(app)/public/venue',
 					params: {
 						profileid: String(props.item.id),
 						latitude: Number(props.item.Venue?.Location?.Geometry?.latitude),

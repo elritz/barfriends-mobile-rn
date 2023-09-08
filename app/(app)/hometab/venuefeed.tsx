@@ -314,6 +314,8 @@ export default () => {
 					const lengthOfUpvote = item.Vote.filter(item => {
 						return item.upvote
 					}).length
+
+					console.log('item', JSON.stringify(item, null, 2))
 					return (
 						<Box key={item.id} py={'$1'} m={'$2'} rounded={'$xl'}>
 							<HStack flex={1} justifyContent={'space-between'}>
@@ -344,7 +346,7 @@ export default () => {
 										</Text>
 										<Ionicons
 											name='md-caret-up'
-											size={30}
+											size={25}
 											color={
 												rTheme.colorScheme === 'light'
 													? item.toBeNotifiedProfileIds.some(item => item === rAuthorizationVar?.Profile?.id)
@@ -373,7 +375,7 @@ export default () => {
 									>
 										<Ionicons
 											name='ios-notifications-sharp'
-											size={25}
+											size={23}
 											color={
 												rTheme.colorScheme === 'light'
 													? item.toBeNotifiedProfileIds.some(item => item === rAuthorizationVar?.Profile?.id)
