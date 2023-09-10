@@ -62,16 +62,6 @@ export default function SearchCountry() {
 		}
 	}, [params.searchtext])
 
-	useEffect(() => {
-		if (params.searchtext) {
-			filterList(params.searchtext)
-		} else {
-			if (data?.getAllCountries) {
-				setCountries(data.getAllCountries)
-			}
-		}
-	}, [params.searchtext])
-
 	if (loading) {
 		return (
 			<FlashList

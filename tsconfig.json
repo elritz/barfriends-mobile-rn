@@ -47,7 +47,7 @@
         "./gluestack-ui.config"
       ],
       "@helpers/*": [
-        "./helpers/*"
+        "util/helpers/*"
       ],
       "@screens/*": [
         "./screens/*"

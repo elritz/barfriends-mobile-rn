@@ -5,7 +5,7 @@ import PermissionDetailItem from '@components/screens/permissions/PermissionDeta
 import { FontAwesome, Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 import { useIsFocused } from '@react-navigation/native'
 import { ContactsReactiveVar, PermissionContactsReactiveVar, ThemeReactiveVar } from '@reactive'
-import { capitalizeFirstLetter } from '@util/@fn/capitalizeFirstLetter'
+import { capitalizeFirstLetter } from '@util/helpers/capitalizeFirstLetter'
 import useTimer2 from '@util/hooks/useTimer2'
 import * as Contacts from 'expo-contacts'
 import * as Device from 'expo-device'

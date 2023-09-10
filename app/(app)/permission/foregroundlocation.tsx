@@ -6,7 +6,7 @@ import PermissionDetailItem from '@components/screens/permissions/PermissionDeta
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { useIsFocused } from '@react-navigation/native'
 import { PermissionForegroundLocationReactiveVar, ThemeReactiveVar } from '@reactive'
-import { capitalizeFirstLetter } from '@util/@fn/capitalizeFirstLetter'
+import { capitalizeFirstLetter } from '@util/helpers/capitalizeFirstLetter'
 import useSetSearchAreaWithLocation from '@util/hooks/searcharea/useSetSearchAreaWithLocation'
 import useTimer2 from '@util/hooks/useTimer2'
 import * as IntentLauncher from 'expo-intent-launcher'

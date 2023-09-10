@@ -1,6 +1,6 @@
 import { Box, Pressable, Text } from '@components/core'
 import { Relationship } from '@graphql/generated'
-import { capitalizeFirstLetter } from '@util/@fn/capitalizeFirstLetter'
+import { capitalizeFirstLetter } from '@util/helpers/capitalizeFirstLetter'
 import { LinearGradient } from 'expo-linear-gradient'
 import { useRouter } from 'expo-router'
 import { Image } from 'react-native'

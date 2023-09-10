@@ -1,6 +1,7 @@
 // TODO: FN(Change theme functionality with database and local storage save)
 import { useReactiveVar } from '@apollo/client'
 import { Box, Divider, HStack, Heading, Pressable, Spinner, Text, VStack } from '@components/core'
+import { InitialStateSearchArea } from '@constants/Preferences'
 import {
 	AUTHORIZATION,
 	LOCAL_STORAGE_SEARCH_AREA,
@@ -9,16 +10,11 @@ import {
 import {
 	DEVELOPMENT_FOREGROUND_LOCATION_TASK_NAME,
 	DEVELOPMENT_BACKGROUND_LOCATION_TASK_NAME,
-} from '@constants/TaskManagerConstants'
+} from '@constants/TaskManager'
 import { ENVIRONMENT } from '@env'
 import { Feather, Ionicons } from '@expo/vector-icons'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import {
-	AuthorizationReactiveVar,
-	searchAreaInitialState,
-	SearchAreaReactiveVar,
-	ThemeReactiveVar,
-} from '@reactive'
+import { AuthorizationReactiveVar, SearchAreaReactiveVar, ThemeReactiveVar } from '@reactive'
 import { secureStorageItemDelete, secureStorageItemRead } from '@util/hooks/local/useSecureStorage'
 import * as Application from 'expo-application'
 import * as Clipboard from 'expo-clipboard'
@@ -123,11 +119,6 @@ export default () => {
 		const IOSenv = await Application.getIosPushNotificationServiceEnvironmentAsync()
 		const notificationtoken = await Notifications.getDevicePushTokenAsync()
 
-		console.log(
-			'🚀 ~ file: index.tsx:124 ~ getPushNotificationToken ~ notificationtoken:',
-			notificationtoken,
-		)
-
 		setPushNotificationToken(String(notificationtoken.data))
 
 		const expoToken = await Notifications.getExpoPushTokenAsync({
@@ -136,9 +127,6 @@ export default () => {
 			// development: IOSenv === 'development' ? true : false,
 			development: true,
 		})
-		console.log('🚀 ~ file: index.tsx:138 ~ getPushNotificationToken ~ IOSenv:', IOSenv)
-
-		console.log('🚀 ~ file: index.tsx:139 ~ getPushNotificationToken ~ expoToken:', expoToken)
 
 		setExpoPushNotificationToken(String(expoToken.data))
 	}
@@ -281,7 +269,7 @@ export default () => {
 			onPress: async () => {
 				setSearchAreaDeleteLoading(true)
 				await AsyncStorage.removeItem(LOCAL_STORAGE_SEARCH_AREA)
-				SearchAreaReactiveVar(searchAreaInitialState)
+				SearchAreaReactiveVar(InitialStateSearchArea)
 				setTimeout(() => {
 					setSearchAreaDeleteLoading(false)
 				}, 1500)

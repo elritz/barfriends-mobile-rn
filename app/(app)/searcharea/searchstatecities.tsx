@@ -2,8 +2,8 @@ import { Form } from './_layout'
 import { useReactiveVar } from '@apollo/client'
 import { Box, Button, HStack, Heading, Text, VStack } from '@components/core'
 import { LOCAL_STORAGE_SEARCH_AREA } from '@constants/StorageConstants'
-import { CityResponseObject, useGetAllCitiesByStateQuery } from '@graphql/generated'
 import { LocalStoragePreferenceSearchAreaType } from '@ctypes/preferences'
+import { CityResponseObject, useGetAllCitiesByStateQuery } from '@graphql/generated'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { SearchAreaReactiveVar, ThemeReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
@@ -14,7 +14,6 @@ import { Skeleton } from 'moti/skeleton'
 import { memo, useEffect, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { View } from 'react-native'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 // TODO: FN(When done save this data to the backend as recent SearchAreas)
 type CityState = {
@@ -141,6 +140,8 @@ export default function SearchStateCities() {
 
 	function CityItem({ index, item }) {
 		const _pressItem = async item => {
+			console.log('🚀 ~ file: searchstatecities.tsx:145 ~ CityItem ~ item:', item)
+
 			setValue('city', {
 				name: item.name,
 				isoCode: '',
@@ -168,7 +169,8 @@ export default function SearchStateCities() {
 			SearchAreaReactiveVar({
 				...newSearchAreaValue,
 			})
-			router.push({
+			console.log('here :>> ')
+			router.replace({
 				pathname: '/(app)/searcharea',
 			})
 		}

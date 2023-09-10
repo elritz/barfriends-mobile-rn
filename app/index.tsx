@@ -14,9 +14,11 @@ const size = 500
 const windowHeight = Dimensions.get('window').height
 
 export default () => {
-	useRouterNotifications()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const [isLoading, setLoading] = useState(true)
+
+	useRouterNotifications()
+
 	const { data, loading, error } = useCheckPrivacyTermsDocumentUpdateQuery({
 		onCompleted: data => {
 			setTimeout(() => {

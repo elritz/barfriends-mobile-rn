@@ -1,6 +1,8 @@
 import { useReactiveVar } from '@apollo/client'
+import ChevronBackArrow from '@components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
 import { Box, VStack } from '@components/core'
 import SearchInput from '@components/molecules/search/searchinput/SearchInput'
+import SearchInputSearchArea from '@components/molecules/search/searchinput/SearchInputSearchArea'
 import { SEARCH_BAR_HEIGHT } from '@constants/ReactNavigationConstants'
 import { PlaceType } from '@ctypes/preferences'
 import { SearchAreaReactiveVar, ThemeReactiveVar } from '@reactive'
@@ -69,7 +71,12 @@ export default function _layout() {
 		<FormProvider {...methods}>
 			<Stack
 				screenOptions={{
-					headerShown: false,
+					headerShown: true,
+					headerTransparent: true,
+					headerTitle: 'Search Area',
+					headerLeft: () => {
+						return <ChevronBackArrow />
+					},
 				}}
 			>
 				<Stack.Screen
@@ -85,32 +92,15 @@ export default function _layout() {
 					name={'searchcountry'}
 					options={{
 						animation: 'fade',
-						contentStyle: {
-							// backgroundColor: rTheme.colorScheme === 'dark' ? 'black' : 'white',
-						},
+						headerShown: true,
+						headerTransparent: true,
 						header: () => {
 							return (
-								<VStack
-									justifyContent={'flex-end'}
-									sx={{
-										pt: insets.top,
-										h,
-										_light: { bg: '$light100' },
-										_dark: { bg: '$dark50' },
-									}}
-									pb={'$2'}
-								>
-									{Platform.OS === 'ios' ? (
-										<BlurView
-											style={StyleSheet.absoluteFill}
-											tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-											intensity={80}
-										/>
-									) : (
-										<Box bg='$transparent' style={[StyleSheet.absoluteFill]} />
-									)}
-									<SearchInput placeholder='Search country' />
-								</VStack>
+								<Box>
+									<VStack justifyContent={'flex-start'}>
+										<SearchInputSearchArea placeholder='Search countries' />
+									</VStack>
+								</Box>
 							)
 						},
 					}}
@@ -119,32 +109,15 @@ export default function _layout() {
 					name={'searchcountrystate'}
 					options={{
 						animation: 'fade',
-						contentStyle: {
-							// backgroundColor: rTheme.colorScheme === 'dark' ? 'black' : 'white',
-						},
+						headerShown: true,
+						headerTransparent: true,
 						header: () => {
 							return (
-								<VStack
-									justifyContent={'flex-end'}
-									sx={{
-										pt: insets.top,
-										h,
-										_light: { bg: '$light100' },
-										_dark: { bg: '$dark50' },
-									}}
-									pb={'$2'}
-								>
-									{Platform.OS === 'ios' ? (
-										<BlurView
-											style={StyleSheet.absoluteFill}
-											tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-											intensity={80}
-										/>
-									) : (
-										<Box bg='$transparent' style={[StyleSheet.absoluteFill]} />
-									)}
-									<SearchInput placeholder='Search states' />
-								</VStack>
+								<Box>
+									<VStack justifyContent={'flex-start'}>
+										<SearchInputSearchArea placeholder='Search states' />
+									</VStack>
+								</Box>
 							)
 						},
 					}}
@@ -153,29 +126,15 @@ export default function _layout() {
 					name={'searchstatecities'}
 					options={{
 						animation: 'fade',
-						contentStyle: {
-							// backgroundColor: rTheme.colorScheme === 'dark' ? 'black' : 'white',
-						},
+						headerShown: true,
+						headerTransparent: true,
 						header: () => {
 							return (
-								<VStack
-									justifyContent={'flex-end'}
-									pb={'$3'}
-									sx={{
-										pt: insets.top + 5,
-									}}
-								>
-									{Platform.OS === 'ios' ? (
-										<BlurView
-											style={StyleSheet.absoluteFill}
-											tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-											intensity={80}
-										/>
-									) : (
-										<Box bg='$transparent' style={[StyleSheet.absoluteFill]} />
-									)}
-									<SearchInput placeholder='Search cities' />
-								</VStack>
+								<Box>
+									<VStack justifyContent={'flex-start'}>
+										<SearchInputSearchArea placeholder='Search cities' />
+									</VStack>
+								</Box>
 							)
 						},
 					}}

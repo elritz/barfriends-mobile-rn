@@ -24,8 +24,6 @@ export default function SearchCountryStates() {
 
 	const { watch, getValues, setValue } = formContext
 
-	console.log('🚀 ~ file: searchcountrystate.tsx:27 ~ SearchCountryStates ~ watch:', watch())
-
 	const { data, loading, error } = useGetAllStatesByCountryQuery({
 		skip: !String(params.countryIsoCode),
 		variables: {

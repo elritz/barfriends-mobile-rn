@@ -1,5 +1,5 @@
 import { Box, Button, Center, Divider, Text } from '@components/core'
-import GetSignInUpText from '@helpers/data/SignupinText'
+import GetSignInUpText from '@util/helpers/data/SignupinText'
 import { useRouter } from 'expo-router'
 
 export default () => {

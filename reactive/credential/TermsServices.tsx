@@ -1,11 +1,5 @@
 import { makeVar } from '@apollo/client'
+import { InitialStateTermsService } from '@constants/Preferences'
+import { TermsServiceType } from '@ctypes/app'
 
-type TermsServiceType = {
-	update: boolean
-}
-
-export const termsServiceInitialState: TermsServiceType = {
-	update: false,
-}
-
-export const TermsServiceReactiveVar = makeVar<TermsServiceType>(termsServiceInitialState)
+export const TermsServiceReactiveVar = makeVar<TermsServiceType>(InitialStateTermsService)

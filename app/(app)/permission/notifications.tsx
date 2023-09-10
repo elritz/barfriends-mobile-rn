@@ -10,7 +10,7 @@ import {
 } from '@graphql/generated'
 import { useIsFocused } from '@react-navigation/native'
 import { PermissionNotificationReactiveVar, ThemeReactiveVar } from '@reactive'
-import { capitalizeFirstLetter } from '@util/@fn/capitalizeFirstLetter'
+import { capitalizeFirstLetter } from '@util/helpers/capitalizeFirstLetter'
 import useTimer2 from '@util/hooks/useTimer2'
 import * as Application from 'expo-application'
 import Constants from 'expo-constants'

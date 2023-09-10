@@ -11,3 +11,24 @@ export type DynamicIllustrationProps = {
 	secondary?: string
 	tertiary?: string
 }
+
+export type CredentialPersoanlType = {
+	PrivacyId?: string
+	ServiceId?: string
+	email?: string
+	birthday?: string
+	password?: string
+	username?: string
+	firstname?: string
+	lastname?: string
+	phone?: {
+		number?: string
+		completeNumber?: string
+		countryCallingCode?: string
+		countryCode?: string
+	}
+}
+
+export type TermsServiceType = {
+	update: boolean
+}

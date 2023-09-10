@@ -1,5 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, HStack, Heading, Text, VStack } from '@components/core'
+import { Box, Button, HStack, Heading, Pressable, Text, VStack } from '@components/core'
+import InformationJoinVenue from '@components/molecules/information/informationjoinvenue'
 import Details from '@components/screens/public/venue/details/Details'
 import PersonalAtVenue from '@components/screens/public/venue/peopleatvenue/PersonalAtVenue'
 import VenueActions from '@components/screens/public/venue/venueactions/VenueActions'
@@ -227,7 +228,7 @@ export default () => {
 			ListHeaderComponent={
 				<VStack mb={'$5'}>
 					<VenueHeader key={uniqueId()} loading={loading} photos={data.currentVenue?.photos} />
-					<Box  rounded={'$none'} key={uniqueId()} py={'$4'} borderBottomEndRadius={5} >
+					<Box rounded={'$none'} key={uniqueId()} py={'$4'} borderBottomEndRadius={5}>
 						<HStack px={'$2'} justifyContent={'space-between'}>
 							<VStack space='xs'>
 								<Heading fontSize={'$2xl'} lineHeight={'$lg'} fontWeight={'$black'} numberOfLines={1}>
@@ -270,6 +271,8 @@ export default () => {
 						<VenueTotals />
 						<LeaveSection />
 					</Box>
+
+					<InformationJoinVenue />
 					<VenueActions key={uniqueId()} />
 				</VStack>
 			}

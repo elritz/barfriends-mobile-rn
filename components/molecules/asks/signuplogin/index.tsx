@@ -1,6 +1,6 @@
 import { VStack, Text, Button, Pressable, Heading, Box } from '@components/core'
 import DeviceManagerProfiles from '@components/organisms/list/DeviceManagerProfiles'
-import GetSignInUpText from '@helpers/data/SignupinText'
+import GetSignInUpText from '@util/helpers/data/SignupinText'
 import { useRouter } from 'expo-router'
 
 const text = GetSignInUpText()

@@ -1,6 +1,7 @@
 import { useReactiveVar } from '@apollo/client'
 import { Box, Button, Divider, HStack, Heading, Pressable, Text, VStack } from '@components/core'
 import BackgroundLocationNextAskModal from '@components/molecules/modals/asks/backgroundlocationnextaskmodal'
+import { TomorrowPreferencePermissionInitialState } from '@constants/Preferences'
 import { LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION } from '@constants/StorageConstants'
 import { LocalStoragePreferenceAskBackgroundLocationPermissionType } from '@ctypes/preferences'
 import { EvilIcons } from '@expo/vector-icons'
@@ -8,7 +9,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
 	PermissionBackgroundLocationReactiveVar,
 	PreferenceBackgroundLocationPermissionReactiveVar,
-	TomorrowPreferencePermissionInitialState,
 } from '@reactive'
 import { useDisclose } from '@util/hooks/useDisclose'
 import { useRouter } from 'expo-router'
@@ -28,7 +28,7 @@ export default function PreferenceBackgroundLocationPermissionFullSection() {
 		<>
 			<BackgroundLocationNextAskModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
 			{rPreferenceBackgroundLocationPermission?.canShowAgain &&
-				DateTime.fromISO(rPreferenceBackgroundLocationPermission?.dateToShowAgain) <=
+				DateTime.fromISO(rPreferenceBackgroundLocationPermission?.dateToShowAgain.toString()) <=
 					DateTime.now() && (
 					<Box key={uniqueId()}>
 						<Divider />

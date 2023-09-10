@@ -3,8 +3,9 @@ import { Box, Button, HStack, Heading, Text, VStack } from '@components/core'
 import LocationPermissionItemEmptyState from '@components/organisms/list/searchareafiltering/LocationPermissionItemEmptyState'
 import SearchAreaLocationPermissionItem from '@components/organisms/list/searchareafiltering/SearchAreaLocationPermissionItem'
 import { LOCAL_STORAGE_SEARCH_AREA } from '@constants/StorageConstants'
+import { Ionicons } from '@expo/vector-icons'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { SearchAreaReactiveVar } from '@reactive'
+import { SearchAreaReactiveVar, ThemeReactiveVar } from '@reactive'
 import useContentInsets from '@util/hooks/useContentInsets'
 import { useRouter } from 'expo-router'
 import { ScrollView } from 'react-native'
@@ -12,7 +13,9 @@ import { ScrollView } from 'react-native'
 export default () => {
 	const router = useRouter()
 	const contentInsets = useContentInsets()
+
 	const rSearchAreaVar = useReactiveVar(SearchAreaReactiveVar)
+	const rTheme = useReactiveVar(ThemeReactiveVar)
 
 	const searchAreaLocation = [
 		{ name: 'Country', value: rSearchAreaVar?.searchArea.country.name },
@@ -76,12 +79,10 @@ export default () => {
 
 	return (
 		<ScrollView
+			contentInset={contentInsets}
 			style={{
 				marginHorizontal: 4,
 				flex: 1,
-			}}
-			contentInset={{
-				...contentInsets,
 			}}
 		>
 			<VStack space={'md'} my={'$4'} mx={'$2'}>
@@ -214,6 +215,29 @@ export default () => {
 									})}
 								</HStack>
 								<SearchAreaLocationPermissionItem />
+								<HStack justifyContent='flex-end'>
+									<Button
+										onPress={() => {
+											router.push({
+												pathname: '/(app)/searcharea/searchcountry',
+											})
+										}}
+									>
+										<Button.Text>Find new Area</Button.Text>
+										<Ionicons
+											color={
+												rTheme.colorScheme === 'light'
+													? rTheme.theme?.gluestack.tokens.colors.light700
+													: rTheme.theme?.gluestack.tokens.colors.dark900
+											}
+											name='ios-arrow-forward'
+											size={27}
+											style={{
+												marginLeft: 8,
+											}}
+										/>
+									</Button>
+								</HStack>
 							</VStack>
 						)}
 					</HStack>

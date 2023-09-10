@@ -3,7 +3,7 @@ import { Box, Button, Divider, Heading, Text, VStack } from '@components/core'
 import NotificationNextAskModal from '@components/molecules/modals/asks/notificationnextaskmodal'
 import { TomorrowPreferencePermissionInitialState } from '@constants/Preferences'
 import { LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS } from '@constants/StorageConstants'
-import { DefaultPreferenceToPermission } from '@ctypes/preferences'
+import { DefaultPreferenceToPermissionType } from '@ctypes/preferences'
 import { useGetCurrentPushNotificationTokenQuery } from '@graphql/generated'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
@@ -92,7 +92,7 @@ export default function PreferenceNotificationPermission() {
 												numberOfTimesDismissed: rPreferenceNotificationPermission?.numberOfTimesDismissed
 													? rPreferenceNotificationPermission.numberOfTimesDismissed + 1
 													: 1,
-											} as DefaultPreferenceToPermission),
+											} as DefaultPreferenceToPermissionType),
 										)
 										PreferencePermissionNotificationReactiveVar({
 											...TomorrowPreferencePermissionInitialState,

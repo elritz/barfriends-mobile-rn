@@ -1,9 +1,9 @@
 import { Box, Heading } from '@components/core'
 import HorizontalMessageNotification from '@components/molecules/notifications/message/HorizontalMessageNotification'
+import { FlashList } from '@shopify/flash-list'
 import useGenerateConversations, {
 	Conversation,
-} from '@helpers/generate/placeholder/useGenerateConversations'
-import { FlashList } from '@shopify/flash-list'
+} from '@util/hooks/placeholder/useGenerateConversations'
 import useContentInsets from '@util/hooks/useContentInsets'
 import { useEffect, useState } from 'react'
 

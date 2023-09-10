@@ -1,4 +1,4 @@
-import { useReactiveVar } from '@apollo/client'
+// TODO: This is incomplete, was maybe suppose to take over the _layout screen
 import {
 	PermissionBackgroundLocationReactiveVar,
 	PermissionForegroundLocationReactiveVar,

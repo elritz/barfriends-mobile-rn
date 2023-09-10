@@ -2,7 +2,12 @@
 import { ApolloProvider } from '@apollo/client'
 import Auth from '@components/layouts/Auth'
 import Theme from '@components/layouts/Theme'
-import { NowPreferencePermissionInitialState } from '@constants/Preferences'
+import {
+	NowPreferencePermissionInitialState,
+	InitialStateJoiningInformationPreferencePermission,
+	InitialStateSearchArea,
+	InitialStatePreferenceSystemsOfUnits,
+} from '@constants/Preferences'
 import {
 	LOCAL_STORAGE_SEARCH_AREA,
 	LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME,
@@ -10,6 +15,7 @@ import {
 	LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
 	LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION,
 	LOCAL_STORAGE_PREFERENCE_SYSTEM_OF_UNITS,
+	LOCAL_STORAGE_INFORMATION_JOIN_VENUE,
 } from '@constants/StorageConstants'
 import {
 	LocalStoragePreferenceSearchAreaType,
@@ -17,18 +23,16 @@ import {
 	LocalStoragePreferenceAskNotificationPermissionType,
 	LocalStoragePreferenceAskBackgroundLocationPermissionType,
 	LocalStoragePreferenceSystemsOfUnitsType,
+	LocalStorageInformationJoinVenueType,
 } from '@ctypes/preferences'
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
-import profilingclient from '@library/apollo/profiling/profiling-apollo-server'
+import profilingclient from '@graphql/apollo/profiling/profiling-apollo-server'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
 	SearchAreaReactiveVar,
-	searchAreaInitialState,
 	ThemeReactiveVar,
 	PreferencePermissionNotificationReactiveVar,
-	PreferenceBackgroundLocationPermissionReactiveVar,
 	PreferenceForegroundLocationPermissionReactiveVar,
-	PreferenceSystemsOfUnitsInitialState,
 	PreferenceSystemsOfUnitsReactiveVar,
 	PermissionContactsReactiveVar,
 	PermissionCameraReactiveVar,
@@ -37,6 +41,7 @@ import {
 	PermissionBackgroundLocationReactiveVar,
 	PermissionMediaReactiveVar,
 	PermissionNotificationReactiveVar,
+	InformationJoinVenueReactiveVar,
 } from '@reactive'
 import useSetSearchAreaWithLocation from '@util/hooks/searcharea/useSetSearchAreaWithLocation'
 import { Camera } from 'expo-camera'
@@ -47,6 +52,7 @@ import { getPermissionsAsync as getMediaPermissionAsync } from 'expo-media-libra
 import { getPermissionsAsync as getNotificiationPermissionAsync } from 'expo-notifications'
 import { SplashScreen, Stack } from 'expo-router'
 import * as ScreenOrientation from 'expo-screen-orientation'
+import * as SQLite from 'expo-sqlite'
 import { useEffect } from 'react'
 import { Appearance } from 'react-native'
 import 'react-native-gesture-handler'
@@ -65,6 +71,8 @@ export {
 
 SplashScreen.preventAutoHideAsync()
 
+const db = SQLite.openDatabase('../SQLite/database.db')
+
 export default function Root() {
 	async function changeScreenOrientation() {
 		await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP)
@@ -77,6 +85,22 @@ export default function Root() {
 			// await AsyncStorage.removeItem(LOCAL_STORAGE_PREFERENCE_SYSTEM_OF_UNITS)
 			// await AsyncStorage.removeItem(LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION)
 			// await AsyncStorage.removeItem(LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION)
+
+			// INFORMATION JOIN VENUE PROMPT ~ START
+			const getInformationJoinVenue = await AsyncStorage.getItem(LOCAL_STORAGE_INFORMATION_JOIN_VENUE)
+			if (getInformationJoinVenue !== null) {
+				const values: LocalStorageInformationJoinVenueType = JSON.parse(getInformationJoinVenue)
+				InformationJoinVenueReactiveVar({
+					...values,
+				})
+			} else {
+				const newJoinVenueInformation = JSON.stringify({
+					...InitialStateJoiningInformationPreferencePermission,
+				} as LocalStorageInformationJoinVenueType)
+
+				await AsyncStorage.setItem(LOCAL_STORAGE_INFORMATION_JOIN_VENUE, newJoinVenueInformation)
+			}
+			// INFORMATION JOIN VENUE PROMPT ~ END
 
 			// SEARCHAREA_PREFERENCE ~ START
 			const getLocalStorageSearchArea = await AsyncStorage.getItem(LOCAL_STORAGE_SEARCH_AREA)
@@ -92,7 +116,7 @@ export default function Root() {
 				}
 			} else {
 				const newSearchAreaValue = JSON.stringify({
-					...searchAreaInitialState,
+					...InitialStateSearchArea,
 				} as LocalStoragePreferenceSearchAreaType)
 
 				await AsyncStorage.setItem(LOCAL_STORAGE_SEARCH_AREA, newSearchAreaValue)
@@ -175,7 +199,7 @@ export default function Root() {
 					getLocalStoragePreferenceBackgroundLocationPreference,
 				)
 
-				PreferenceBackgroundLocationPermissionReactiveVar({
+				InformationJoinVenueReactiveVar({
 					...values,
 				})
 			}
@@ -210,7 +234,7 @@ export default function Root() {
 			if (!getLocalStorageSystemOfUnitsPreference) {
 				await AsyncStorage.setItem(
 					LOCAL_STORAGE_PREFERENCE_SYSTEM_OF_UNITS,
-					JSON.stringify(PreferenceSystemsOfUnitsInitialState),
+					JSON.stringify(InitialStatePreferenceSystemsOfUnits),
 				)
 			} else {
 				const values: LocalStoragePreferenceSystemsOfUnitsType = JSON.parse(
@@ -244,7 +268,66 @@ export default function Root() {
 		PermissionNotificationReactiveVar(notificationPermission)
 	}
 
+	// const setSQLiteDatabaseStorageData = async () => {
+	// 	// 		const getInformationJoinVenue = await AsyncStorage.getItem(LOCAL_STORAGE_INFORMATION_JOIN_VENUE)
+	// 	// if (getInformationJoinVenue !== null) {
+	// 	// 	const values: LocalStorageInformationJoinVenueType = JSON.parse(getInformationJoinVenue)
+	// 	// 	InformationJoinVenueReactiveVar({
+	// 	// 		...values,
+	// 	// 	})
+	// 	// } else {
+	// 	// 	const newJoinVenueInformation = JSON.stringify({
+	// 	// 		...JoiningInformationPromptPreferencePermissionInitialState,
+	// 	// 	} as LocalStorageInformationJoinVenueType)
+
+	// 	// 	await AsyncStorage.setItem(LOCAL_STORAGE_INFORMATION_JOIN_VENUE, newJoinVenueInformation)
+	// 	// }
+	// 	// db.transaction(tx => {
+	// 	// 	tx.executeSql(
+	// 	// 		'SELECT * FROM Preferences WHERE name = "Information Join Venue"',
+	// 	// 		[],
+	// 	// 		(tx, results) => {
+	// 	// 			console.log('results😨 :>> ', JSON.stringify(results.rows, null, 4))
+	// 	// 		},
+	// 	// 	)
+	// 	// 	// tx.executeSql(
+	// 	// 	// 	`INSERT INTO Preferences (name, dateLastShown, dateToShowAgain, numberOfTimesDismissed, canShowAgain) VALUES (?,?,?,?,?)`,
+	// 	// 	// 	[
+	// 	// 	InitalStateStorage.information.joinvenue.
+	// 	// 	// 		JoiningInformationPromptPreferencePermissionInitialState.dateLastShown.toString(),
+	// 	// 	// 		JoiningInformationPromptPreferencePermissionInitialState.dateToShowAgain.toString(),
+	// 	// 	// 		JoiningInformationPromptPreferencePermissionInitialState.numberOfTimesDismissed,
+	// 	// 	// 		JoiningInformationPromptPreferencePermissionInitialState.canShowAgain,
+	// 	// 	// 	],
+	// 	// 	// )
+	// 	// })
+	// }
+
+	// const createPreferenceTable = () => {
+	// 	// db.transaction(tx => {
+	// 	// 	tx.executeSql('DROP TABLE IF EXISTS Preferences;'),
+	// 	// 		[],
+	// 	// 		(tx, results) => {
+	// 	// 			console.log('results :>> ', results)
+	// 	// 		}
+	// 	// })
+
+	// 	db.transaction(tx => {
+	// 		tx.executeSql(
+	// 			'CREATE TABLE IF NOT EXISTS ' +
+	// 				'Preferences' +
+	// 				'(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, dateLastShown NUMERIC, dateToShowAgain NUMERIC, numberOfTimesDismissed INT, canShowAgain BOOLEAN)',
+	// 		)
+	// 	})
+	// }
+
+	// const initializeDatabase = async () => {
+	// 	// createPreferenceTable()
+	// 	// await setSQLiteDatabaseStorageData()
+	// }
+
 	useEffect(() => {
+		// initializeDatabase()
 		changeScreenOrientation()
 		setAsyncPreferencesLocalStorageData()
 		setPermissions()

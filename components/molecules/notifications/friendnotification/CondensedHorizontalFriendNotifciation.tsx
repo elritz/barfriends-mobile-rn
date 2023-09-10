@@ -6,7 +6,7 @@ import { NOTIFICATIONS_QUERY } from '@graphql/DM/profiling/notifications/index.q
 import { useAcceptFriendRequestMutation, useDeleteFriendRequestMutation } from '@graphql/generated'
 import { useNavigation } from '@react-navigation/native'
 import { AuthorizationReactiveVar } from '@reactive'
-import { capitalizeFirstLetter } from '@util/@fn/capitalizeFirstLetter'
+import { capitalizeFirstLetter } from '@util/helpers/capitalizeFirstLetter'
 import { useDisclose } from '@util/hooks/useDisclose'
 import { useRouter } from 'expo-router'
 import { Image } from 'react-native'

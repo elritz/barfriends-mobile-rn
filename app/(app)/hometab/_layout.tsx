@@ -71,17 +71,17 @@ export default () => {
 									? rTheme.theme?.gluestack.tokens.colors.light100
 									: rTheme.theme?.gluestack.tokens.colors.dark50,
 							}}
-							intensity={segments.includes('tonight') ? 70 : 0}
+							intensity={70}
 							tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 						>
 							<VStack
 								justifyContent={'flex-start'}
-								sx={{
-									_light: { bg: !segments.includes('tonight') ? '$light100' : 'transparent' },
-									_dark: { bg: !segments.includes('tonight') ? '$dark50' : 'transparent' },
-								}}
+								// sx={{
+								// 	_light: { bg: !segments.includes('tonight') ? '$light100' : 'transparent' },
+								// 	_dark: { bg: !segments.includes('tonight') ? '$dark50' : 'transparent' },
+								// }}
 							>
-								<SearchInputVenueFeed />
+								<SearchInputVenueFeed placeholder='Explore' />
 							</VStack>
 						</BlurView>
 					)
@@ -108,7 +108,7 @@ export default () => {
 				name={'tonight'}
 				options={{
 					href: '/(app)/hometab/tonight',
-					headerShown: false,
+					// headerShown: false,
 					tabBarLabel: 'tonight',
 					tabBarIcon: ({ color, focused }: ITabColor) => <TonightTab color={color} focused={focused} />,
 				}}
@@ -116,7 +116,7 @@ export default () => {
 			<Tabs.Screen
 				name='messagestack'
 				options={{
-					headerShown: false,
+					// headerShown: false,
 					tabBarLabel: 'messages',
 					tabBarShowLabel: false,
 					tabBarIcon: ({ color, focused }: ITabColor) => <MessageTab color={color} focused={focused} />,

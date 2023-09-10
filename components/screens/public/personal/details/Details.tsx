@@ -1,6 +1,6 @@
 import { Heading, Text, VStack } from '@components/core'
 import { Profile } from '@graphql/generated'
-import { capitalizeFirstLetter } from '@util/@fn/capitalizeFirstLetter'
+import { capitalizeFirstLetter } from '@util/helpers/capitalizeFirstLetter'
 import React, { useState } from 'react'
 
 type Props = {

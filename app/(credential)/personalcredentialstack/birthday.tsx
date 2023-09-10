@@ -4,7 +4,7 @@ import { Feather } from '@expo/vector-icons'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { useIsFocused } from '@react-navigation/native'
 import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '@reactive'
-import diffNow from '@util/@fn/luxon'
+import { calcDateDiffFromNow } from '@util/helpers/luxon'
 import { secureStorageItemCreate } from '@util/hooks/local/useSecureStorage'
 import { useRouter } from 'expo-router'
 import { useEffect, useState } from 'react'
@@ -42,7 +42,7 @@ export default () => {
 	const onDateChange = async (selectedDate: Date | undefined): Promise<boolean> => {
 		setValue('date', selectedDate as Date)
 		if (selectedDate) {
-			const { days, months, years } = diffNow(selectedDate)
+			const { days, months, years } = calcDateDiffFromNow(selectedDate)
 			clearErrors('date')
 			if (years === 0) {
 				setError('date', {
@@ -86,7 +86,7 @@ export default () => {
 				birthday: String(birthday),
 			})
 			router.push({
-				pathname: '(credential)/personalcredentialstack/name',
+				pathname: '/(credential)/personalcredentialstack/name',
 			})
 		} catch (e) {
 			return setError('date', {

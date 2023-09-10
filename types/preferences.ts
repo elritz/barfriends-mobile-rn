@@ -1,3 +1,4 @@
+import { LocationGeocodedAddress, LocationObject, LocationOptions } from 'expo-location'
 import { DateTime } from 'luxon'
 
 export type ThemeColorSchemeOptionsType = 'light' | 'dark' | 'system'
@@ -11,29 +12,37 @@ export enum SystemsOfUnits {
 	Metric = 'Metric',
 }
 
-export type DefaultPreferenceToPermission = {
+export type DefaultPreferenceToPermissionType = {
+	dateLastShown: DateTime
 	dateToShowAgain: DateTime
 	numberOfTimesDismissed: number
 	canShowAgain: boolean
 }
 
 export interface LocalStoragePreferenceAskNotificationPermissionType
-	extends DefaultPreferenceToPermission {}
+	extends DefaultPreferenceToPermissionType {}
+
+export interface LocalStorageInformationJoinVenueType extends DefaultPreferenceToPermissionType {}
 
 export interface LocalStoragePreferenceAskBackgroundLocationPermissionType
-	extends DefaultPreferenceToPermission {}
+	extends DefaultPreferenceToPermissionType {}
 
 export interface LocalStoragePreferenceAskNotificationPermissionType
-	extends DefaultPreferenceToPermission {}
+	extends DefaultPreferenceToPermissionType {}
 
 export interface LocalStoragePreferenceAskForegroundLocationPermissionType
-	extends DefaultPreferenceToPermission {}
+	extends DefaultPreferenceToPermissionType {}
 
 export interface LocalStoragePreferenceAskSystemOfUnitsPermissionType
-	extends DefaultPreferenceToPermission {}
+	extends DefaultPreferenceToPermissionType {}
 
-export interface LocalStoragePreferenceSystemsOfUnitsType extends DefaultPreferenceToPermission {
+export interface LocalStoragePreferenceSystemsOfUnitsType
+	extends DefaultPreferenceToPermissionType {
 	system: SystemsOfUnits
+}
+
+export type ServerNetworkType = {
+	isConnected: Boolean
 }
 
 export type Coords = {
@@ -59,4 +68,10 @@ export type LocalStoragePreferenceSearchAreaType = {
 		value: number
 		distance: number
 	}
+}
+
+export type LocationType = {
+	watchPosition?: LocationOptions
+	current?: LocationObject
+	reverseGeocoded?: LocationGeocodedAddress
 }

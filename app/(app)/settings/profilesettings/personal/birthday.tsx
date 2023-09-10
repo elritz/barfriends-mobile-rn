@@ -7,7 +7,7 @@ import {
 	useUpdateOneProfileMutation,
 } from '@graphql/generated'
 import { AuthorizationReactiveVar } from '@reactive'
-import diffNow from '@util/@fn/luxon'
+import { calcDateDiffFromNow } from '@util/helpers/luxon'
 import { secureStorageItemCreate } from '@util/hooks/local/useSecureStorage'
 import { useRouter } from 'expo-router'
 import { useState } from 'react'
@@ -65,7 +65,7 @@ export default () => {
 		if (!selectedDate) {
 			return false
 		}
-		const { days, months, years } = diffNow(selectedDate)
+		const { days, months, years } = calcDateDiffFromNow(selectedDate)
 		if (years === 0) {
 			return false
 		}
@@ -76,7 +76,7 @@ export default () => {
 		if (!selectedDate) {
 			return false
 		}
-		const { days, months, years } = diffNow(selectedDate)
+		const { days, months, years } = calcDateDiffFromNow(selectedDate)
 		if (years + 1 === legalAge && months >= 11 && days >= 27) {
 			await secureStorageItemCreate({
 				key: 'BIRTHDAY',

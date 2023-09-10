@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
 import { ENVIRONMENT } from '@env'
-import VectorFonts from '@helpers/VectorFonts'
+import VectorFonts from '@util/helpers/VectorFonts'
 import { ThemeReactiveVar } from '@reactive'
 import { cacheFonts, cacheImages } from '@util/hooks/local/useCacheImages'
 import { useAssets } from 'expo-asset'
