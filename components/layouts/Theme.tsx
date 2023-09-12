@@ -60,6 +60,7 @@ export default function Theme({ children }) {
 					config={rThemeVar.theme.gluestack}
 					colorMode={rThemeVar.colorScheme === 'light' ? 'light' : 'dark'}
 				>
+					
 					<StatusBar
 						animated
 						barStyle={rThemeVar.colorScheme === 'light' ? 'dark-content' : 'light-content'}

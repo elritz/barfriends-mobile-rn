@@ -14,38 +14,6 @@ export default () => {
 			initialRouteName='hometab'
 			screenOptions={{
 				headerShown: false,
-				// headerShown:
-				// 	segments.includes('messagestack') ||
-				// 	segments.includes('venuefeed') ||
-				// 	segments.includes('searcharea') ||
-				// 	segments.includes('tonight') ||
-				// 	segments.includes('explore'),
-				// headerTransparent: true,
-				// header: () => {
-				// 	return (
-				// 		<BlurView
-				// 			style={{
-				// 				backgroundColor: segments.includes('tonight')
-				// 					? 'transparent'
-				// 					: rTheme.colorScheme === 'light'
-				// 					? rTheme.theme?.gluestack.tokens.colors.light100
-				// 					: rTheme.theme?.gluestack.tokens.colors.dark50,
-				// 			}}
-				// 			intensity={segments.includes('tonight') ? 70 : 0}
-				// 			tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-				// 		>
-				// 			<VStack
-				// 				justifyContent={'flex-start'}
-				// 				sx={{
-				// 					_light: { bg: !segments.includes('tonight') ? '$light100' : 'transparent' },
-				// 					_dark: { bg: !segments.includes('tonight') ? '$dark50' : 'transparent' },
-				// 				}}
-				// 			>
-				// 				<SearchInput />
-				// 			</VStack>
-				// 		</BlurView>
-				// 	)
-				// },
 			}}
 		>
 			<Stack.Screen

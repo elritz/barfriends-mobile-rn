@@ -1,4 +1,4 @@
-import { Box, Button, Center, Divider, Text } from '@components/core'
+import { Box, Button, Center, Divider, Text, VStack } from '@components/core'
 import GetSignInUpText from '@util/helpers/data/SignupinText'
 import { useRouter } from 'expo-router'
 
@@ -8,7 +8,7 @@ export default () => {
 
 	return (
 		<Box bg='$transparent'>
-			<Center flexDirection='column'>
+			<VStack flexDirection='column' justifyContent='center' space='md'>
 				<Text allowFontScaling fontWeight='$bold' alignSelf='center' textAlign='center'>
 					{text[1].subTitle}
 				</Text>
@@ -43,7 +43,7 @@ export default () => {
 						Log in
 					</Text>
 				</Button>
-			</Center>
+			</VStack>
 			<Divider my={'$5'} />
 		</Box>
 	)

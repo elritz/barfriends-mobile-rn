@@ -46,7 +46,7 @@ export default (props: Props) => {
 					Cool slogans here
 				</Text>
 			</Box>
-			<VStack w={'$full'} alignItems={'center'} space={'lg'}>
+			<VStack w={'$full'} alignItems={'center'} space={'md'}>
 				<Button
 					onPress={() =>
 						router.push({

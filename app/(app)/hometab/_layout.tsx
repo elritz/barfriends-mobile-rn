@@ -28,6 +28,7 @@ export default () => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 	const rTermsServiceVar = useReactiveVar(TermsServiceReactiveVar)
+
 	useEffect(() => {
 		if (rTermsServiceVar.update) {
 			router.push({
@@ -35,6 +36,11 @@ export default () => {
 			})
 		}
 	}, [])
+
+	console.log(
+		'rAuthorizationVar?.Profile?.ProfileType :>> ',
+		rAuthorizationVar?.Profile?.ProfileType,
+	)
 
 	return (
 		<Tabs
@@ -92,11 +98,7 @@ export default () => {
 				name='venuefeed'
 				options={{
 					// headerShown: false,
-					href:
-						rAuthorizationVar?.Profile?.ProfileType === ProfileType.Personal ||
-						rAuthorizationVar?.Profile?.ProfileType === ProfileType.Guest
-							? '/(app)/hometab/venuefeed'
-							: null,
+					href: '/(app)/hometab/venuefeed',
 					tabBarLabel: 'outaboot',
 					tabBarShowLabel: false,
 					tabBarIcon: ({ color, focused }: ITabColor) => (

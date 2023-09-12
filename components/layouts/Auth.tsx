@@ -63,6 +63,9 @@ export default function Auth({ children }) {
 			decode: true,
 		})) as AuthorizationDecoded
 
+		console.log("🚀 ~ file: Auth.tsx:66 ~ applicationAuthorization ~ getAuthorization:", getAuthorization)
+
+
 		if (!getAuthorization) {
 			createGuestProfileMutation()
 		} else {

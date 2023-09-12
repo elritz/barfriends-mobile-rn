@@ -8577,8 +8577,7 @@ type Message {
   messageId: String
   Replies(cursor: MessageWhereUniqueInput, distinct: [MessageScalarFieldEnum!], orderBy: [MessageOrderByWithRelationInput!], skip: Int, take: Int, where: MessageWhereInput): [Message!]!
   Reply: Message
-  Request: Request!
-  requestId: String!
+  Request: Request
 }
 
 input MessageCountOrderByAggregateInput {
@@ -8586,7 +8585,6 @@ input MessageCountOrderByAggregateInput {
   conversationId: SortOrder
   id: SortOrder
   messageId: SortOrder
-  requestId: SortOrder
 }
 
 input MessageCreateInput {
@@ -8595,14 +8593,13 @@ input MessageCreateInput {
   id: String
   Replies: MessageCreateNestedManyWithoutReplyInput
   Reply: MessageCreateNestedOneWithoutRepliesInput
-  Request: RequestCreateNestedOneWithoutMessageInput!
+  Request: RequestCreateNestedOneWithoutMessageInput
 }
 
 input MessageCreateManyConversationInput {
   content: Json!
   id: String
   messageId: String
-  requestId: String!
 }
 
 input MessageCreateManyConversationInputEnvelope {
@@ -8615,14 +8612,12 @@ input MessageCreateManyInput {
   conversationId: String
   id: String
   messageId: String
-  requestId: String!
 }
 
 input MessageCreateManyReplyInput {
   content: Json!
   conversationId: String
   id: String
-  requestId: String!
 }
 
 input MessageCreateManyReplyInputEnvelope {
@@ -8681,7 +8676,7 @@ input MessageCreateWithoutConversationInput {
   id: String
   Replies: MessageCreateNestedManyWithoutReplyInput
   Reply: MessageCreateNestedOneWithoutRepliesInput
-  Request: RequestCreateNestedOneWithoutMessageInput!
+  Request: RequestCreateNestedOneWithoutMessageInput
 }
 
 input MessageCreateWithoutRepliesInput {
@@ -8689,7 +8684,7 @@ input MessageCreateWithoutRepliesInput {
   Conversation: ConversationCreateNestedOneWithoutMessagesInput
   id: String
   Reply: MessageCreateNestedOneWithoutRepliesInput
-  Request: RequestCreateNestedOneWithoutMessageInput!
+  Request: RequestCreateNestedOneWithoutMessageInput
 }
 
 input MessageCreateWithoutReplyInput {
@@ -8697,7 +8692,7 @@ input MessageCreateWithoutReplyInput {
   Conversation: ConversationCreateNestedOneWithoutMessagesInput
   id: String
   Replies: MessageCreateNestedManyWithoutReplyInput
-  Request: RequestCreateNestedOneWithoutMessageInput!
+  Request: RequestCreateNestedOneWithoutMessageInput
 }
 
 input MessageCreateWithoutRequestInput {
@@ -8722,14 +8717,12 @@ input MessageMaxOrderByAggregateInput {
   conversationId: SortOrder
   id: SortOrder
   messageId: SortOrder
-  requestId: SortOrder
 }
 
 input MessageMinOrderByAggregateInput {
   conversationId: SortOrder
   id: SortOrder
   messageId: SortOrder
-  requestId: SortOrder
 }
 
 input MessageNullableRelationFilter {
@@ -8749,7 +8742,6 @@ input MessageOrderByWithAggregationInput {
   conversationId: SortOrder
   id: SortOrder
   messageId: SortOrder
-  requestId: SortOrder
 }
 
 input MessageOrderByWithRelationInput {
@@ -8761,7 +8753,6 @@ input MessageOrderByWithRelationInput {
   Replies: MessageOrderByRelationAggregateInput
   Reply: MessageOrderByWithRelationInput
   Request: RequestOrderByWithRelationInput
-  requestId: SortOrder
 }
 
 enum MessageScalarFieldEnum {
@@ -8769,7 +8760,6 @@ enum MessageScalarFieldEnum {
   conversationId
   id
   messageId
-  requestId
 }
 
 input MessageScalarWhereInput {
@@ -8780,7 +8770,6 @@ input MessageScalarWhereInput {
   messageId: StringNullableFilter
   NOT: [MessageScalarWhereInput!]
   OR: [MessageScalarWhereInput!]
-  requestId: StringFilter
 }
 
 input MessageScalarWhereWithAggregatesInput {
@@ -8791,7 +8780,6 @@ input MessageScalarWhereWithAggregatesInput {
   messageId: StringNullableWithAggregatesFilter
   NOT: [MessageScalarWhereWithAggregatesInput!]
   OR: [MessageScalarWhereWithAggregatesInput!]
-  requestId: StringWithAggregatesFilter
 }
 
 input MessageUpdateInput {
@@ -8800,7 +8788,7 @@ input MessageUpdateInput {
   id: StringFieldUpdateOperationsInput
   Replies: MessageUpdateManyWithoutReplyNestedInput
   Reply: MessageUpdateOneWithoutRepliesNestedInput
-  Request: RequestUpdateOneRequiredWithoutMessageNestedInput
+  Request: RequestUpdateOneWithoutMessageNestedInput
 }
 
 input MessageUpdateManyMutationInput {
@@ -8881,7 +8869,7 @@ input MessageUpdateWithoutConversationInput {
   id: StringFieldUpdateOperationsInput
   Replies: MessageUpdateManyWithoutReplyNestedInput
   Reply: MessageUpdateOneWithoutRepliesNestedInput
-  Request: RequestUpdateOneRequiredWithoutMessageNestedInput
+  Request: RequestUpdateOneWithoutMessageNestedInput
 }
 
 input MessageUpdateWithoutRepliesInput {
@@ -8889,7 +8877,7 @@ input MessageUpdateWithoutRepliesInput {
   Conversation: ConversationUpdateOneWithoutMessagesNestedInput
   id: StringFieldUpdateOperationsInput
   Reply: MessageUpdateOneWithoutRepliesNestedInput
-  Request: RequestUpdateOneRequiredWithoutMessageNestedInput
+  Request: RequestUpdateOneWithoutMessageNestedInput
 }
 
 input MessageUpdateWithoutReplyInput {
@@ -8897,7 +8885,7 @@ input MessageUpdateWithoutReplyInput {
   Conversation: ConversationUpdateOneWithoutMessagesNestedInput
   id: StringFieldUpdateOperationsInput
   Replies: MessageUpdateManyWithoutReplyNestedInput
-  Request: RequestUpdateOneRequiredWithoutMessageNestedInput
+  Request: RequestUpdateOneWithoutMessageNestedInput
 }
 
 input MessageUpdateWithoutRequestInput {
@@ -8954,7 +8942,6 @@ input MessageWhereInput {
   Replies: MessageListRelationFilter
   Reply: MessageWhereInput
   Request: RequestWhereInput
-  requestId: StringFilter
 }
 
 input MessageWhereUniqueInput {
@@ -8969,7 +8956,6 @@ input MessageWhereUniqueInput {
   Replies: MessageListRelationFilter
   Reply: MessageWhereInput
   Request: RequestWhereInput
-  requestId: String
 }
 
 type Mutation {
@@ -9458,16 +9444,16 @@ input NotificationsCreateManyInput {
   profileId: String!
 }
 
-input NotificationsCreateNestedOneWithoutFriendRequestsInput {
-  connect: NotificationsWhereUniqueInput
-  connectOrCreate: NotificationsCreateOrConnectWithoutFriendRequestsInput
-  create: NotificationsCreateWithoutFriendRequestsInput
+input NotificationsCreateNestedManyWithoutFriendRequestsInput {
+  connect: [NotificationsWhereUniqueInput!]
+  connectOrCreate: [NotificationsCreateOrConnectWithoutFriendRequestsInput!]
+  create: [NotificationsCreateWithoutFriendRequestsInput!]
 }
 
-input NotificationsCreateNestedOneWithoutMessageRequestsInput {
-  connect: NotificationsWhereUniqueInput
-  connectOrCreate: NotificationsCreateOrConnectWithoutMessageRequestsInput
-  create: NotificationsCreateWithoutMessageRequestsInput
+input NotificationsCreateNestedManyWithoutMessageRequestsInput {
+  connect: [NotificationsWhereUniqueInput!]
+  connectOrCreate: [NotificationsCreateOrConnectWithoutMessageRequestsInput!]
+  create: [NotificationsCreateWithoutMessageRequestsInput!]
 }
 
 input NotificationsCreateNestedOneWithoutProfileInput {
@@ -9509,6 +9495,12 @@ input NotificationsCreateWithoutProfileInput {
   MessageRequests: RequestCreateNestedManyWithoutNotificationMessageInput
 }
 
+input NotificationsListRelationFilter {
+  every: NotificationsWhereInput
+  none: NotificationsWhereInput
+  some: NotificationsWhereInput
+}
+
 input NotificationsMaxOrderByAggregateInput {
   id: SortOrder
   profileId: SortOrder
@@ -9522,6 +9514,10 @@ input NotificationsMinOrderByAggregateInput {
 input NotificationsNullableRelationFilter {
   is: NotificationsWhereInput
   isNot: NotificationsWhereInput
+}
+
+input NotificationsOrderByRelationAggregateInput {
+  _count: SortOrder
 }
 
 input NotificationsOrderByWithAggregationInput {
@@ -9543,6 +9539,14 @@ input NotificationsOrderByWithRelationInput {
 enum NotificationsScalarFieldEnum {
   id
   profileId
+}
+
+input NotificationsScalarWhereInput {
+  AND: [NotificationsScalarWhereInput!]
+  id: StringFilter
+  NOT: [NotificationsScalarWhereInput!]
+  OR: [NotificationsScalarWhereInput!]
+  profileId: StringFilter
 }
 
 input NotificationsScalarWhereWithAggregatesInput {
@@ -9777,24 +9781,40 @@ input NotificationsUpdateManyMutationInput {
   id: StringFieldUpdateOperationsInput
 }
 
-input NotificationsUpdateOneWithoutFriendRequestsNestedInput {
-  connect: NotificationsWhereUniqueInput
-  connectOrCreate: NotificationsCreateOrConnectWithoutFriendRequestsInput
-  create: NotificationsCreateWithoutFriendRequestsInput
-  delete: NotificationsWhereInput
-  disconnect: NotificationsWhereInput
-  update: NotificationsUpdateToOneWithWhereWithoutFriendRequestsInput
-  upsert: NotificationsUpsertWithoutFriendRequestsInput
+input NotificationsUpdateManyWithoutFriendRequestsNestedInput {
+  connect: [NotificationsWhereUniqueInput!]
+  connectOrCreate: [NotificationsCreateOrConnectWithoutFriendRequestsInput!]
+  create: [NotificationsCreateWithoutFriendRequestsInput!]
+  delete: [NotificationsWhereUniqueInput!]
+  deleteMany: [NotificationsScalarWhereInput!]
+  disconnect: [NotificationsWhereUniqueInput!]
+  set: [NotificationsWhereUniqueInput!]
+  update: [NotificationsUpdateWithWhereUniqueWithoutFriendRequestsInput!]
+  updateMany: [NotificationsUpdateManyWithWhereWithoutFriendRequestsInput!]
+  upsert: [NotificationsUpsertWithWhereUniqueWithoutFriendRequestsInput!]
 }
 
-input NotificationsUpdateOneWithoutMessageRequestsNestedInput {
-  connect: NotificationsWhereUniqueInput
-  connectOrCreate: NotificationsCreateOrConnectWithoutMessageRequestsInput
-  create: NotificationsCreateWithoutMessageRequestsInput
-  delete: NotificationsWhereInput
-  disconnect: NotificationsWhereInput
-  update: NotificationsUpdateToOneWithWhereWithoutMessageRequestsInput
-  upsert: NotificationsUpsertWithoutMessageRequestsInput
+input NotificationsUpdateManyWithoutMessageRequestsNestedInput {
+  connect: [NotificationsWhereUniqueInput!]
+  connectOrCreate: [NotificationsCreateOrConnectWithoutMessageRequestsInput!]
+  create: [NotificationsCreateWithoutMessageRequestsInput!]
+  delete: [NotificationsWhereUniqueInput!]
+  deleteMany: [NotificationsScalarWhereInput!]
+  disconnect: [NotificationsWhereUniqueInput!]
+  set: [NotificationsWhereUniqueInput!]
+  update: [NotificationsUpdateWithWhereUniqueWithoutMessageRequestsInput!]
+  updateMany: [NotificationsUpdateManyWithWhereWithoutMessageRequestsInput!]
+  upsert: [NotificationsUpsertWithWhereUniqueWithoutMessageRequestsInput!]
+}
+
+input NotificationsUpdateManyWithWhereWithoutFriendRequestsInput {
+  data: NotificationsUpdateManyMutationInput!
+  where: NotificationsScalarWhereInput!
+}
+
+input NotificationsUpdateManyWithWhereWithoutMessageRequestsInput {
+  data: NotificationsUpdateManyMutationInput!
+  where: NotificationsScalarWhereInput!
 }
 
 input NotificationsUpdateOneWithoutProfileNestedInput {
@@ -9805,16 +9825,6 @@ input NotificationsUpdateOneWithoutProfileNestedInput {
   disconnect: NotificationsWhereInput
   update: NotificationsUpdateToOneWithWhereWithoutProfileInput
   upsert: NotificationsUpsertWithoutProfileInput
-}
-
-input NotificationsUpdateToOneWithWhereWithoutFriendRequestsInput {
-  data: NotificationsUpdateWithoutFriendRequestsInput!
-  where: NotificationsWhereInput
-}
-
-input NotificationsUpdateToOneWithWhereWithoutMessageRequestsInput {
-  data: NotificationsUpdateWithoutMessageRequestsInput!
-  where: NotificationsWhereInput
 }
 
 input NotificationsUpdateToOneWithWhereWithoutProfileInput {
@@ -9840,22 +9850,32 @@ input NotificationsUpdateWithoutProfileInput {
   MessageRequests: RequestUpdateManyWithoutNotificationMessageNestedInput
 }
 
-input NotificationsUpsertWithoutFriendRequestsInput {
-  create: NotificationsCreateWithoutFriendRequestsInput!
-  update: NotificationsUpdateWithoutFriendRequestsInput!
-  where: NotificationsWhereInput
+input NotificationsUpdateWithWhereUniqueWithoutFriendRequestsInput {
+  data: NotificationsUpdateWithoutFriendRequestsInput!
+  where: NotificationsWhereUniqueInput!
 }
 
-input NotificationsUpsertWithoutMessageRequestsInput {
-  create: NotificationsCreateWithoutMessageRequestsInput!
-  update: NotificationsUpdateWithoutMessageRequestsInput!
-  where: NotificationsWhereInput
+input NotificationsUpdateWithWhereUniqueWithoutMessageRequestsInput {
+  data: NotificationsUpdateWithoutMessageRequestsInput!
+  where: NotificationsWhereUniqueInput!
 }
 
 input NotificationsUpsertWithoutProfileInput {
   create: NotificationsCreateWithoutProfileInput!
   update: NotificationsUpdateWithoutProfileInput!
   where: NotificationsWhereInput
+}
+
+input NotificationsUpsertWithWhereUniqueWithoutFriendRequestsInput {
+  create: NotificationsCreateWithoutFriendRequestsInput!
+  update: NotificationsUpdateWithoutFriendRequestsInput!
+  where: NotificationsWhereUniqueInput!
+}
+
+input NotificationsUpsertWithWhereUniqueWithoutMessageRequestsInput {
+  create: NotificationsCreateWithoutMessageRequestsInput!
+  update: NotificationsUpdateWithoutMessageRequestsInput!
+  where: NotificationsWhereUniqueInput!
 }
 
 input NotificationsWhereInput {
@@ -15378,8 +15398,8 @@ input RelationshipWhereUniqueInput {
 type Request {
   createdAt: DateTime!
   id: ID!
-  NotificationFriendRequest: Notifications!
-  NotificationMessage: Notifications!
+  NotificationFriendRequest: [Notifications!]!
+  NotificationMessage: [Notifications!]!
   receiverProfileId: [RequestReceiver!]!
   senderProfile: Profile!
   senderProfileId: String!
@@ -15389,8 +15409,7 @@ type Request {
 input RequestCountOrderByAggregateInput {
   createdAt: SortOrder
   id: SortOrder
-  notificationFriendRequestId: SortOrder
-  notificationMesageId: SortOrder
+  messageId: SortOrder
   NotificationType: SortOrder
   senderProfileId: SortOrder
   updatedAt: SortOrder
@@ -15400,8 +15419,8 @@ input RequestCreateInput {
   createdAt: DateTime
   id: String
   Message: MessageCreateNestedOneWithoutRequestInput
-  NotificationFriendRequest: NotificationsCreateNestedOneWithoutFriendRequestsInput
-  NotificationMessage: NotificationsCreateNestedOneWithoutMessageRequestsInput
+  NotificationFriendRequest: NotificationsCreateNestedManyWithoutFriendRequestsInput
+  NotificationMessage: NotificationsCreateNestedManyWithoutMessageRequestsInput
   NotificationType: NotificationType
   receivers: RequestReceiverCreateNestedManyWithoutRequestInput
   senderProfileId: String!
@@ -15411,53 +15430,22 @@ input RequestCreateInput {
 input RequestCreateManyInput {
   createdAt: DateTime
   id: String
-  notificationFriendRequestId: String
-  notificationMesageId: String
+  messageId: String
   NotificationType: NotificationType
   senderProfileId: String!
   updatedAt: DateTime
-}
-
-input RequestCreateManyNotificationFriendRequestInput {
-  createdAt: DateTime
-  id: String
-  notificationMesageId: String
-  NotificationType: NotificationType
-  senderProfileId: String!
-  updatedAt: DateTime
-}
-
-input RequestCreateManyNotificationFriendRequestInputEnvelope {
-  data: [RequestCreateManyNotificationFriendRequestInput!]!
-  skipDuplicates: Boolean
-}
-
-input RequestCreateManyNotificationMessageInput {
-  createdAt: DateTime
-  id: String
-  notificationFriendRequestId: String
-  NotificationType: NotificationType
-  senderProfileId: String!
-  updatedAt: DateTime
-}
-
-input RequestCreateManyNotificationMessageInputEnvelope {
-  data: [RequestCreateManyNotificationMessageInput!]!
-  skipDuplicates: Boolean
 }
 
 input RequestCreateNestedManyWithoutNotificationFriendRequestInput {
   connect: [RequestWhereUniqueInput!]
   connectOrCreate: [RequestCreateOrConnectWithoutNotificationFriendRequestInput!]
   create: [RequestCreateWithoutNotificationFriendRequestInput!]
-  createMany: RequestCreateManyNotificationFriendRequestInputEnvelope
 }
 
 input RequestCreateNestedManyWithoutNotificationMessageInput {
   connect: [RequestWhereUniqueInput!]
   connectOrCreate: [RequestCreateOrConnectWithoutNotificationMessageInput!]
   create: [RequestCreateWithoutNotificationMessageInput!]
-  createMany: RequestCreateManyNotificationMessageInputEnvelope
 }
 
 input RequestCreateNestedOneWithoutMessageInput {
@@ -15495,8 +15483,8 @@ input RequestCreateOrConnectWithoutReceiversInput {
 input RequestCreateWithoutMessageInput {
   createdAt: DateTime
   id: String
-  NotificationFriendRequest: NotificationsCreateNestedOneWithoutFriendRequestsInput
-  NotificationMessage: NotificationsCreateNestedOneWithoutMessageRequestsInput
+  NotificationFriendRequest: NotificationsCreateNestedManyWithoutFriendRequestsInput
+  NotificationMessage: NotificationsCreateNestedManyWithoutMessageRequestsInput
   NotificationType: NotificationType
   receivers: RequestReceiverCreateNestedManyWithoutRequestInput
   senderProfileId: String!
@@ -15507,7 +15495,7 @@ input RequestCreateWithoutNotificationFriendRequestInput {
   createdAt: DateTime
   id: String
   Message: MessageCreateNestedOneWithoutRequestInput
-  NotificationMessage: NotificationsCreateNestedOneWithoutMessageRequestsInput
+  NotificationMessage: NotificationsCreateNestedManyWithoutMessageRequestsInput
   NotificationType: NotificationType
   receivers: RequestReceiverCreateNestedManyWithoutRequestInput
   senderProfileId: String!
@@ -15518,7 +15506,7 @@ input RequestCreateWithoutNotificationMessageInput {
   createdAt: DateTime
   id: String
   Message: MessageCreateNestedOneWithoutRequestInput
-  NotificationFriendRequest: NotificationsCreateNestedOneWithoutFriendRequestsInput
+  NotificationFriendRequest: NotificationsCreateNestedManyWithoutFriendRequestsInput
   NotificationType: NotificationType
   receivers: RequestReceiverCreateNestedManyWithoutRequestInput
   senderProfileId: String!
@@ -15529,8 +15517,8 @@ input RequestCreateWithoutReceiversInput {
   createdAt: DateTime
   id: String
   Message: MessageCreateNestedOneWithoutRequestInput
-  NotificationFriendRequest: NotificationsCreateNestedOneWithoutFriendRequestsInput
-  NotificationMessage: NotificationsCreateNestedOneWithoutMessageRequestsInput
+  NotificationFriendRequest: NotificationsCreateNestedManyWithoutFriendRequestsInput
+  NotificationMessage: NotificationsCreateNestedManyWithoutMessageRequestsInput
   NotificationType: NotificationType
   senderProfileId: String!
   updatedAt: DateTime
@@ -15545,8 +15533,7 @@ input RequestListRelationFilter {
 input RequestMaxOrderByAggregateInput {
   createdAt: SortOrder
   id: SortOrder
-  notificationFriendRequestId: SortOrder
-  notificationMesageId: SortOrder
+  messageId: SortOrder
   NotificationType: SortOrder
   senderProfileId: SortOrder
   updatedAt: SortOrder
@@ -15555,8 +15542,7 @@ input RequestMaxOrderByAggregateInput {
 input RequestMinOrderByAggregateInput {
   createdAt: SortOrder
   id: SortOrder
-  notificationFriendRequestId: SortOrder
-  notificationMesageId: SortOrder
+  messageId: SortOrder
   NotificationType: SortOrder
   senderProfileId: SortOrder
   updatedAt: SortOrder
@@ -15577,8 +15563,7 @@ input RequestOrderByWithAggregationInput {
   _min: RequestMinOrderByAggregateInput
   createdAt: SortOrder
   id: SortOrder
-  notificationFriendRequestId: SortOrder
-  notificationMesageId: SortOrder
+  messageId: SortOrder
   NotificationType: SortOrder
   senderProfileId: SortOrder
   updatedAt: SortOrder
@@ -15588,10 +15573,9 @@ input RequestOrderByWithRelationInput {
   createdAt: SortOrder
   id: SortOrder
   Message: MessageOrderByWithRelationInput
-  NotificationFriendRequest: NotificationsOrderByWithRelationInput
-  notificationFriendRequestId: SortOrder
-  notificationMesageId: SortOrder
-  NotificationMessage: NotificationsOrderByWithRelationInput
+  messageId: SortOrder
+  NotificationFriendRequest: NotificationsOrderByRelationAggregateInput
+  NotificationMessage: NotificationsOrderByRelationAggregateInput
   NotificationType: SortOrder
   receivers: RequestReceiverOrderByRelationAggregateInput
   senderProfileId: SortOrder
@@ -15884,16 +15868,10 @@ input RequestReceiverWhereUniqueInput {
   updatedAt: DateTimeFilter
 }
 
-input RequestRelationFilter {
-  is: RequestWhereInput
-  isNot: RequestWhereInput
-}
-
 enum RequestScalarFieldEnum {
   createdAt
   id
-  notificationFriendRequestId
-  notificationMesageId
+  messageId
   NotificationType
   senderProfileId
   updatedAt
@@ -15903,9 +15881,8 @@ input RequestScalarWhereInput {
   AND: [RequestScalarWhereInput!]
   createdAt: DateTimeFilter
   id: StringFilter
+  messageId: StringNullableFilter
   NOT: [RequestScalarWhereInput!]
-  notificationFriendRequestId: StringNullableFilter
-  notificationMesageId: StringNullableFilter
   NotificationType: EnumNotificationTypeFilter
   OR: [RequestScalarWhereInput!]
   senderProfileId: StringFilter
@@ -15916,9 +15893,8 @@ input RequestScalarWhereWithAggregatesInput {
   AND: [RequestScalarWhereWithAggregatesInput!]
   createdAt: DateTimeWithAggregatesFilter
   id: StringWithAggregatesFilter
+  messageId: StringNullableWithAggregatesFilter
   NOT: [RequestScalarWhereWithAggregatesInput!]
-  notificationFriendRequestId: StringNullableWithAggregatesFilter
-  notificationMesageId: StringNullableWithAggregatesFilter
   NotificationType: EnumNotificationTypeWithAggregatesFilter
   OR: [RequestScalarWhereWithAggregatesInput!]
   senderProfileId: StringWithAggregatesFilter
@@ -15929,8 +15905,8 @@ input RequestUpdateInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   Message: MessageUpdateOneWithoutRequestNestedInput
-  NotificationFriendRequest: NotificationsUpdateOneWithoutFriendRequestsNestedInput
-  NotificationMessage: NotificationsUpdateOneWithoutMessageRequestsNestedInput
+  NotificationFriendRequest: NotificationsUpdateManyWithoutFriendRequestsNestedInput
+  NotificationMessage: NotificationsUpdateManyWithoutMessageRequestsNestedInput
   NotificationType: EnumNotificationTypeFieldUpdateOperationsInput
   receivers: RequestReceiverUpdateManyWithoutRequestNestedInput
   senderProfileId: StringFieldUpdateOperationsInput
@@ -15949,7 +15925,6 @@ input RequestUpdateManyWithoutNotificationFriendRequestNestedInput {
   connect: [RequestWhereUniqueInput!]
   connectOrCreate: [RequestCreateOrConnectWithoutNotificationFriendRequestInput!]
   create: [RequestCreateWithoutNotificationFriendRequestInput!]
-  createMany: RequestCreateManyNotificationFriendRequestInputEnvelope
   delete: [RequestWhereUniqueInput!]
   deleteMany: [RequestScalarWhereInput!]
   disconnect: [RequestWhereUniqueInput!]
@@ -15963,7 +15938,6 @@ input RequestUpdateManyWithoutNotificationMessageNestedInput {
   connect: [RequestWhereUniqueInput!]
   connectOrCreate: [RequestCreateOrConnectWithoutNotificationMessageInput!]
   create: [RequestCreateWithoutNotificationMessageInput!]
-  createMany: RequestCreateManyNotificationMessageInputEnvelope
   delete: [RequestWhereUniqueInput!]
   deleteMany: [RequestScalarWhereInput!]
   disconnect: [RequestWhereUniqueInput!]
@@ -15983,10 +15957,12 @@ input RequestUpdateManyWithWhereWithoutNotificationMessageInput {
   where: RequestScalarWhereInput!
 }
 
-input RequestUpdateOneRequiredWithoutMessageNestedInput {
+input RequestUpdateOneWithoutMessageNestedInput {
   connect: RequestWhereUniqueInput
   connectOrCreate: RequestCreateOrConnectWithoutMessageInput
   create: RequestCreateWithoutMessageInput
+  delete: RequestWhereInput
+  disconnect: RequestWhereInput
   update: RequestUpdateToOneWithWhereWithoutMessageInput
   upsert: RequestUpsertWithoutMessageInput
 }
@@ -16014,8 +15990,8 @@ input RequestUpdateToOneWithWhereWithoutReceiversInput {
 input RequestUpdateWithoutMessageInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
-  NotificationFriendRequest: NotificationsUpdateOneWithoutFriendRequestsNestedInput
-  NotificationMessage: NotificationsUpdateOneWithoutMessageRequestsNestedInput
+  NotificationFriendRequest: NotificationsUpdateManyWithoutFriendRequestsNestedInput
+  NotificationMessage: NotificationsUpdateManyWithoutMessageRequestsNestedInput
   NotificationType: EnumNotificationTypeFieldUpdateOperationsInput
   receivers: RequestReceiverUpdateManyWithoutRequestNestedInput
   senderProfileId: StringFieldUpdateOperationsInput
@@ -16026,7 +16002,7 @@ input RequestUpdateWithoutNotificationFriendRequestInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   Message: MessageUpdateOneWithoutRequestNestedInput
-  NotificationMessage: NotificationsUpdateOneWithoutMessageRequestsNestedInput
+  NotificationMessage: NotificationsUpdateManyWithoutMessageRequestsNestedInput
   NotificationType: EnumNotificationTypeFieldUpdateOperationsInput
   receivers: RequestReceiverUpdateManyWithoutRequestNestedInput
   senderProfileId: StringFieldUpdateOperationsInput
@@ -16037,7 +16013,7 @@ input RequestUpdateWithoutNotificationMessageInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   Message: MessageUpdateOneWithoutRequestNestedInput
-  NotificationFriendRequest: NotificationsUpdateOneWithoutFriendRequestsNestedInput
+  NotificationFriendRequest: NotificationsUpdateManyWithoutFriendRequestsNestedInput
   NotificationType: EnumNotificationTypeFieldUpdateOperationsInput
   receivers: RequestReceiverUpdateManyWithoutRequestNestedInput
   senderProfileId: StringFieldUpdateOperationsInput
@@ -16048,8 +16024,8 @@ input RequestUpdateWithoutReceiversInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   Message: MessageUpdateOneWithoutRequestNestedInput
-  NotificationFriendRequest: NotificationsUpdateOneWithoutFriendRequestsNestedInput
-  NotificationMessage: NotificationsUpdateOneWithoutMessageRequestsNestedInput
+  NotificationFriendRequest: NotificationsUpdateManyWithoutFriendRequestsNestedInput
+  NotificationMessage: NotificationsUpdateManyWithoutMessageRequestsNestedInput
   NotificationType: EnumNotificationTypeFieldUpdateOperationsInput
   senderProfileId: StringFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
@@ -16094,11 +16070,10 @@ input RequestWhereInput {
   createdAt: DateTimeFilter
   id: StringFilter
   Message: MessageWhereInput
+  messageId: StringNullableFilter
   NOT: [RequestWhereInput!]
-  NotificationFriendRequest: NotificationsWhereInput
-  notificationFriendRequestId: StringNullableFilter
-  notificationMesageId: StringNullableFilter
-  NotificationMessage: NotificationsWhereInput
+  NotificationFriendRequest: NotificationsListRelationFilter
+  NotificationMessage: NotificationsListRelationFilter
   NotificationType: EnumNotificationTypeFilter
   OR: [RequestWhereInput!]
   receivers: RequestReceiverListRelationFilter
@@ -16111,11 +16086,10 @@ input RequestWhereUniqueInput {
   createdAt: DateTimeFilter
   id: String
   Message: MessageWhereInput
+  messageId: String
   NOT: [RequestWhereInput!]
-  NotificationFriendRequest: NotificationsWhereInput
-  notificationFriendRequestId: StringNullableFilter
-  notificationMesageId: StringNullableFilter
-  NotificationMessage: NotificationsWhereInput
+  NotificationFriendRequest: NotificationsListRelationFilter
+  NotificationMessage: NotificationsListRelationFilter
   NotificationType: EnumNotificationTypeFilter
   OR: [RequestWhereInput!]
   receivers: RequestReceiverListRelationFilter
