@@ -81,7 +81,6 @@ const SearchInputVenueFeed = (props: Props) => {
 	}, [])
 
 	const handleSearchSubmitEditting = data => {
-		console.log('segments.include :>> ', segments)
 		if (segments.includes('searchresults')) {
 			router.push({
 				pathname: '/(app)/explore/searchresults',
@@ -164,8 +163,8 @@ const SearchInputVenueFeed = (props: Props) => {
 							placeholder={props.placeholder || 'Search'}
 							returnKeyType='search'
 							underlineColorAndroid='transparent'
-							onSubmitEditing={handleSubmit(handleSearchSubmitEditting)}
 							keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+							onSubmitEditing={handleSubmit(handleSearchSubmitEditting)}
 						/>
 						{watch('searchtext')?.length ? (
 							<Input.Icon mr={'$3'} onPress={() => clearSearchInput()}>

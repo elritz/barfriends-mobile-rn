@@ -14916,6 +14916,12 @@ type Query {
   getAllCountries: [CountryResponseObject!]!
   getAllStatesByCountry(countryIsoCode: String!): [StateResponseObject!]!
   getAllThemes: [Theme!]!
+  getConversations(
+    conversationId: String
+
+    """This is a list of ProfileIds."""
+    members: [String!]
+  ): [Conversation!]
   getCurrentPushNotificationToken: PushToken
   getH3Index6VenueRecommendationById(id: String!, venuesProfileIds: [String!]): H3Index6VenueRecommendation
   getInterests: [Category!]!

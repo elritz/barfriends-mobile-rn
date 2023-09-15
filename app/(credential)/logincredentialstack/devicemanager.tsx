@@ -104,7 +104,6 @@ export default () => {
 					}}
 				>
 					{finalProfileArray.map(item => {
-						console.log('item :>> ', JSON.stringify(item, null, 4))
 						return (
 							<Pressable disabled={loading || SWDPLoading} key={item.id} onPress={() => _press(item)}>
 								<DeviceManagerProfileItemLarge

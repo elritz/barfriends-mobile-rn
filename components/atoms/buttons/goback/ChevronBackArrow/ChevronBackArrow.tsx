@@ -8,7 +8,7 @@ const ChevronBackArrow = () => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 
 	return (
-		<GoBack height={parseInt(wp(10).toFixed(0))} width={parseInt(wp(13).toFixed(0))}>
+		<GoBack height={parseInt(wp(10).toFixed(0))} width={parseInt(wp(6).toFixed(0))}>
 			<Ionicons
 				name='md-chevron-back-outline'
 				size={35}

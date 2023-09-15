@@ -63,8 +63,6 @@ export default function Photos() {
 			quality: 1,
 		})
 
-		console.log('result', JSON.stringify(result, null, 2))
-
 		if (result.assets) {
 			const resultSettled = await Promise.allSettled(
 				result.assets.map(async item => {
@@ -72,7 +70,6 @@ export default function Photos() {
 					return data.secure_url
 				}),
 			)
-			// console.log('resultSettled', JSON.stringify(resultSettled, null, 2))
 
 			const images: PhotoCreateManyProfileInput[] = resultSettled.map((item, index) => {
 				if (item.status === 'fulfilled' && item.value) {

@@ -61,7 +61,6 @@ export default function Preferences() {
 								themeId: item.id,
 							},
 							onCompleted: data => {
-								console.log('data', JSON.stringify(data.updateThemeManagerSwitchTheme.Theme, null, 2))
 								if (data.updateThemeManagerSwitchTheme) {
 									// AuthorizationReactiveVar({
 									// 	...rAuthorizationVar,

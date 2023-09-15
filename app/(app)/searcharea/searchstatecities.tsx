@@ -140,8 +140,6 @@ export default function SearchStateCities() {
 
 	function CityItem({ index, item }) {
 		const _pressItem = async item => {
-			console.log('🚀 ~ file: searchstatecities.tsx:145 ~ CityItem ~ item:', item)
-
 			setValue('city', {
 				name: item.name,
 				isoCode: '',
@@ -169,7 +167,7 @@ export default function SearchStateCities() {
 			SearchAreaReactiveVar({
 				...newSearchAreaValue,
 			})
-			console.log('here :>> ')
+			
 			router.replace({
 				pathname: '/(app)/searcharea',
 			})

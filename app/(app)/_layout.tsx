@@ -1,14 +1,7 @@
-import { useReactiveVar } from '@apollo/client'
-import { VStack } from '@components/core'
-import SearchInput from '@components/molecules/search/searchinput/SearchInput'
-import { ThemeReactiveVar } from '@reactive'
-import { BlurView } from 'expo-blur'
-import { Stack, useSegments } from 'expo-router'
+import { Button, Text } from '@components/core'
+import { Stack, router } from 'expo-router'
 
 export default () => {
-	const rTheme = useReactiveVar(ThemeReactiveVar)
-	const segments = useSegments()
-
 	return (
 		<Stack
 			initialRouteName='hometab'
@@ -20,6 +13,47 @@ export default () => {
 				name={'hometab'}
 				options={{
 					animation: 'fade',
+				}}
+			/>
+			<Stack.Screen
+				name={'newconversation'}
+				options={{
+					headerShown: true,
+					animation: 'fade_from_bottom',
+					presentation: 'modal',
+					headerTitle: () => (
+						<Text fontWeight='$bold' fontSize={'$md'}>
+							New Message
+						</Text>
+					),
+					headerRight: () => {
+						return (
+							<Button
+								onPress={() =>
+									router.canGoBack() ? router.back() : router.push({ pathname: '/(app)/hometab/venuefeed' })
+								}
+								size='md'
+								variant='link'
+							>
+								<Button.Text>Cancel</Button.Text>
+							</Button>
+						)
+					},
+				}}
+			/>
+			<Stack.Screen
+				name={'friendslist'}
+				options={{
+					headerShown: false,
+					presentation: 'modal',
+					animation: 'slide_from_right',
+				}}
+			/>
+			<Stack.Screen
+				name={'conversation'}
+				options={{
+					headerShown: false,
+					animation: 'slide_from_right',
 				}}
 			/>
 			<Stack.Screen

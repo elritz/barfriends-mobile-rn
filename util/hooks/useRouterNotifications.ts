@@ -4,7 +4,6 @@ import { useEffect } from 'react'
 
 export function useRouterNotifications() {
 	const router = useRouter()
-	console.log('here :>> ')
 	useEffect(() => {
 		let isMounted = true
 
@@ -28,9 +27,6 @@ export function useRouterNotifications() {
 		// Listen to expo push notifications
 		const subscription = Notifications.addNotificationResponseReceivedListener(response => {
 			const url = response.notification.request.content.data.url
-
-			console.log('🚀 ~ file: useRouterNotifications.ts:37 ~ subscription ~ response:', response)
-
 			router.replace(processUrl(url))
 		})
 

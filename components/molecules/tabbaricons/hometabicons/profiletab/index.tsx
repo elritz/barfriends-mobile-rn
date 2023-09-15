@@ -82,7 +82,7 @@ const ProfileTab = (props: TabProps) => {
 			<TabBarIcon
 				onPress={() => {
 					router.push({
-						pathname: '/(app)/hometab/profilestack',
+						pathname: '/(app)/hometab/profilestack/UserProfileScreen',
 					})
 				}}
 				onLongPress={() => onLongPressProfileIcon()}

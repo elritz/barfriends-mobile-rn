@@ -3,7 +3,6 @@ import { Box, HStack, Heading, Pressable, Text, VStack } from '@components/core'
 import { Image } from 'expo-image'
 
 const HorizontalMessageNotification = ({ item }) => {
-	// console.log('item', JSON.stringify(item, null, 2))
 	return (
 		<Box
 			flex={1}

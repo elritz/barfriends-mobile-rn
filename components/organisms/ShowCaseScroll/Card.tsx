@@ -1,8 +1,6 @@
 // TODO: UX(Complete this card for venues etc....)
 import { Product } from './Model'
 import Button from './components/Button'
-import CardHeader from './components/CardHeader'
-import { useReactiveVar } from '@apollo/client'
 import { Dimensions, View, StyleSheet, Text } from 'react-native'
 
 const { width } = Dimensions.get('window')

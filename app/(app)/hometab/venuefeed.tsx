@@ -314,8 +314,6 @@ export default () => {
 					const lengthOfUpvote = item.Vote.filter(item => {
 						return item.upvote
 					}).length
-
-					console.log('item', JSON.stringify(item, null, 2))
 					return (
 						<Box key={item.id} py={'$1'} m={'$2'} rounded={'$xl'}>
 							<HStack flex={1} justifyContent={'space-between'}>

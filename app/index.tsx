@@ -23,7 +23,7 @@ export default () => {
 		onCompleted: data => {
 			setTimeout(() => {
 				setLoading(false)
-			}, 1500)
+			}, 500)
 			if (
 				data.checkPrivacyTermsDocumentUpdate.__typename === 'LatestPrivacyAndTermsDocumentResponse'
 			) {
@@ -110,5 +110,7 @@ export default () => {
 			</View>
 		)
 	}
-	return <Redirect href={'/(app)/hometab/venuefeed'} />
+	// return <Redirect href={'/(app)/hometab/venuefeed'} />
+	// return <Redirect href={'/(app)/conversation'} />
+	return <Redirect href={'/(app)/hometab/messagestack'} />
 }

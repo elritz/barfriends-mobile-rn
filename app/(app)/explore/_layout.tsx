@@ -1,24 +1,13 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, VStack } from '@components/core'
-import SearchInput from '@components/molecules/search/searchinput/SearchInput'
+import { VStack } from '@components/core'
 import SearchInputResults from '@components/molecules/search/searchinput/SearchInputResults'
 import SearchInputText from '@components/molecules/search/searchinput/SearchInputText'
-import { SEARCH_BAR_HEIGHT } from '@constants/ReactNavigationConstants'
 import { ThemeReactiveVar } from '@reactive'
 import { BlurView } from 'expo-blur'
-import { Stack, useRouter, useSegments } from 'expo-router'
-import { StyleSheet } from 'react-native'
-import { Platform } from 'react-native'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { Stack } from 'expo-router'
 
 export default function _layout() {
-	const router = useRouter()
-	const segments = useSegments()
-	const insets = useSafeAreaInsets()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
-
-	const HEADER_HEIGHT = SEARCH_BAR_HEIGHT + 15
-	const h = insets.top + HEADER_HEIGHT
 
 	return (
 		<Stack
@@ -26,8 +15,7 @@ export default function _layout() {
 			screenOptions={{
 				// headerShown: false,
 				animation: 'fade',
-				gestureDirection: 'horizontal'
-				
+				gestureDirection: 'horizontal',
 			}}
 		>
 			<Stack.Screen options={{}} name={'index'} />

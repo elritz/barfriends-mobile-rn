@@ -1,6 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { VStack } from '@components/core'
-import SearchInput from '@components/molecules/search/searchinput/SearchInput'
+import { Button, HStack, Heading, Pressable, Text, VStack } from '@components/core'
 import SearchInputVenueFeed from '@components/molecules/search/searchinput/SearchInputVenueFeed'
 import DevelopmentTab from '@components/molecules/tabbaricons/hometabicons/developmenttab'
 import MessageTab from '@components/molecules/tabbaricons/hometabicons/messagestab'
@@ -13,8 +12,8 @@ import {
 } from '@constants/ReactNavigationConstants'
 import { ITabColor } from '@ctypes/app'
 import { ENVIRONMENT } from '@env'
-import { ProfileType } from '@graphql/generated'
-import { AuthorizationReactiveVar, TermsServiceReactiveVar, ThemeReactiveVar } from '@reactive'
+import { Entypo, MaterialIcons } from '@expo/vector-icons'
+import { TermsServiceReactiveVar, ThemeReactiveVar } from '@reactive'
 import { BlurView } from 'expo-blur'
 import { Tabs, useRouter, useSegments } from 'expo-router'
 import { useEffect } from 'react'
@@ -26,7 +25,6 @@ export default () => {
 	const insets = useSafeAreaInsets()
 	const router = useRouter()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
-	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 	const rTermsServiceVar = useReactiveVar(TermsServiceReactiveVar)
 
 	useEffect(() => {
@@ -36,11 +34,6 @@ export default () => {
 			})
 		}
 	}, [])
-
-	console.log(
-		'rAuthorizationVar?.Profile?.ProfileType :>> ',
-		rAuthorizationVar?.Profile?.ProfileType,
-	)
 
 	return (
 		<Tabs
@@ -118,10 +111,48 @@ export default () => {
 			<Tabs.Screen
 				name='messagestack'
 				options={{
-					// headerShown: false,
+					headerShown: true,
+					headerTransparent: true,
 					tabBarLabel: 'messages',
 					tabBarShowLabel: false,
 					tabBarIcon: ({ color, focused }: ITabColor) => <MessageTab color={color} focused={focused} />,
+					header: () => {
+						return (
+							<BlurView intensity={70} tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}>
+								<HStack
+									flex={1}
+									pb={'$2'}
+									sx={{ mt: insets.top }}
+									px={'$4'}
+									alignItems='center'
+									justifyContent={'space-between'}
+								>
+									<Button variant='link'>
+										<Button.Text fontSize={'$lg'}>Edit</Button.Text>
+									</Button>
+									<Heading>Messages</Heading>
+									<Pressable
+										hitSlop={25}
+										onPress={() => {
+											router.push({
+												pathname: '/(app)/newconversation',
+											})
+										}}
+									>
+										<MaterialIcons
+											name='add-box'
+											size={23}
+											color={
+												rTheme.colorScheme === 'light'
+													? rTheme.theme?.gluestack.tokens.colors.light900
+													: rTheme.theme?.gluestack.tokens.colors.dark900
+											}
+										/>
+									</Pressable>
+								</HStack>
+							</BlurView>
+						)
+					},
 				}}
 			/>
 			<Tabs.Screen

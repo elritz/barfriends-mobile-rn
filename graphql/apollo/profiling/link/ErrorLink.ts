@@ -2,10 +2,9 @@
 import { onError } from '@apollo/client/link/error'
 
 const errorLink = onError(({ graphQLErrors, networkError, operation, forward }) => {
-	console.log(' ==========>OPERATION:', operation, ' ==========>OPERATION:')
+	// console.log(' ==========>OPERATION:', operation, ' ==========>OPERATION:')
 	if (graphQLErrors) {
-		console.log('🚀 ~ file: ErrorLink.ts:7 ~ errorLink ~ graphQLErrors:', graphQLErrors[0])
-		console.log(' ==========>GQLERROS:', graphQLErrors[0], ' ==========>GQLERRORS:')
+		// console.log('🚀 ~ file: ErrorLink.ts:7 ~ errorLink ~ graphQLErrors:', graphQLErrors[0])
 
 		for (let err of graphQLErrors) {
 			switch (err?.extensions?.code) {
@@ -22,7 +21,7 @@ const errorLink = onError(({ graphQLErrors, networkError, operation, forward }) 
 		}
 	}
 	if (networkError) {
-		console.log('NETWORKERROR   ============ ', networkError, 'NETWORKERROR   ============ ')
+		// console.log('NETWORKERROR   ============ ', networkError, 'NETWORKERROR   ============ ')
 		switch (networkError.name) {
 			case 'ServerError':
 				return forward(operation)

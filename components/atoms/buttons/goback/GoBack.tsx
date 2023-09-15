@@ -31,7 +31,7 @@ const GoBack: React.FC<ButtonProps> = (props: ButtonProps) => {
 	return (
 		<Pressable
 			style={{
-				// backgroundColor: 'red',
+				backgroundColor: 'red',
 				flex: 1,
 				maxWidth: width,
 				height,
