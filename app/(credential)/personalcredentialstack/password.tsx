@@ -1,15 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import {
-	Box,
-	EyeIcon,
-	EyeOffIcon,
-	Heading,
-	Icon,
-	Input,
-	Pressable,
-	Text,
-	VStack,
-} from '@components/core'
+import { Box, EyeIcon, EyeOffIcon, Heading, Icon, Input, Pressable, Text } from '@components/core'
 import { Feather } from '@expo/vector-icons'
 import { useIsFocused } from '@react-navigation/native'
 import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '@reactive'
@@ -18,35 +8,11 @@ import { useEffect, useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { InputAccessoryView, Platform, TextInput, View } from 'react-native'
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller'
-import * as Keychain from 'react-native-keychain'
 import Reanimated, { useAnimatedStyle, useDerivedValue } from 'react-native-reanimated'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-const ACCESS_CONTROL_OPTIONS = ['None', 'Passcode', 'Password']
-const ACCESS_CONTROL_OPTIONS_ANDROID = ['None']
-const ACCESS_CONTROL_MAP = [
-	null,
-	Keychain.ACCESS_CONTROL.DEVICE_PASSCODE,
-	Keychain.ACCESS_CONTROL.APPLICATION_PASSWORD,
-	Keychain.ACCESS_CONTROL.BIOMETRY_CURRENT_SET,
-]
-const ACCESS_CONTROL_MAP_ANDROID = [null, Keychain.ACCESS_CONTROL.BIOMETRY_CURRENT_SET]
-const SECURITY_LEVEL_OPTIONS = ['Any', 'Software', 'Hardware']
-const SECURITY_LEVEL_MAP = [
-	Keychain.SECURITY_LEVEL.ANY,
-	Keychain.SECURITY_LEVEL.SECURE_SOFTWARE,
-	Keychain.SECURITY_LEVEL.SECURE_HARDWARE,
-]
-
-const SECURITY_STORAGE_OPTIONS = ['Best', 'FB', 'AES', 'RSA']
-const SECURITY_STORAGE_MAP = [
-	null,
-	Keychain.STORAGE_TYPE.FB,
-	Keychain.STORAGE_TYPE.AES,
-	Keychain.STORAGE_TYPE.RSA,
-]
-
 export default function () {
+	const INPUT_CONTAINER_HEIGHT = 90
 	const INPUT_ACCESSORY_VIEW_ID = 'pc-1298187263'
 	const _passwordRef = useRef<TextInput>(null)
 	const router = useRouter()
@@ -56,15 +22,12 @@ export default function () {
 	const credentialPersonalProfileVar = useReactiveVar(CredentialPersonalProfileReactiveVar)
 
 	const [showPassword, setShowPassword] = useState(false)
-	const handleState = () => {
+	const handleShowPassword = () => {
 		setShowPassword(showState => {
 			return !showState
 		})
 	}
-
 	const { height: platform } = useReanimatedKeyboardAnimation()
-	const INPUT_CONTAINER_HEIGHT = 90
-
 	const height = useDerivedValue(() => platform.value, [isFocused])
 
 	const InnerContent = () => {
@@ -155,7 +118,7 @@ export default function () {
 
 	const navigateToNextScreen = async (): Promise<void | null> => {
 		router.push({
-			pathname: '(credential)/personalcredentialstack/create',
+			pathname: '/(credential)/personalcredentialstack/create',
 		})
 	}
 
@@ -206,9 +169,9 @@ export default function () {
 											autoCapitalize='none'
 											numberOfLines={1}
 										/>
-										<Input.Icon pr='$3' onPress={handleState}>
+										<Input.Icon pr='$3' onPress={handleShowPassword}>
 											{/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
-											<Icon as={showPassword ? EyeIcon : EyeOffIcon} color='$primary500' />
+											<Icon as={showPassword ? EyeIcon : EyeOffIcon} size={'lg'} color='$primary500' />
 										</Input.Icon>
 									</Input>
 									<Text fontSize={'$sm'} color='$error700'>

@@ -73,7 +73,7 @@ export default () => {
 					break
 				case 'Code':
 					router.push({
-						pathname: '(credential)/personalcredentialstack/confirmationcode',
+						pathname: '/(credential)/personalcredentialstack/confirmationcode',
 						params: {
 							code: data.sendAuthenticatorDeviceOwnerCode.code,
 						},

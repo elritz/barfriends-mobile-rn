@@ -155,7 +155,7 @@ export default function () {
 
 	const navigateToNextScreen = async (): Promise<void | null> => {
 		router.push({
-			pathname: '(credential)/personalcredentialstack/create',
+			pathname: '/(credential)/personalcredentialstack/create',
 		})
 	}
 

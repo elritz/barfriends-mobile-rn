@@ -1,6 +1,17 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Center, Icon, Input, Spinner, Text, VStack } from '@components/core'
-import { Feather, Ionicons } from '@expo/vector-icons'
+import {
+	Box,
+	EyeIcon,
+	EyeOffIcon,
+	HStack,
+	Icon,
+	Input,
+	Pressable,
+	Spinner,
+	Text,
+	VStack,
+} from '@components/core'
+import { Feather } from '@expo/vector-icons'
 import {
 	AuthorizationDeviceProfile,
 	useLoginPasswordLazyQuery,
@@ -11,25 +22,31 @@ import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import { useLocalSearchParams, useRouter } from 'expo-router'
 import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { Image } from 'react-native'
 import { InputAccessoryView, Platform } from 'react-native'
-import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller'
+import {
+	KeyboardAvoidingView,
+	useReanimatedKeyboardAnimation,
+} from 'react-native-keyboard-controller'
 import Reanimated, { useAnimatedStyle, useDerivedValue } from 'react-native-reanimated'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-
-const IMAGE_SIZE = 85
 
 export default () => {
 	const INPUT_ACCESSORY_VIEW_ID = 'lp-21565434tw'
 	const router = useRouter()
 	const params = useLocalSearchParams()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
-	const [showPassword, setShowPassword] = useState<boolean>(true)
+	const [showPassword, setShowPassword] = useState<boolean>(false)
 
 	const isFocused = useIsFocused()
 	const { bottom } = useSafeAreaInsets()
 	const { height: platform } = useReanimatedKeyboardAnimation()
 	const INPUT_CONTAINER_HEIGHT = 90
+
+	const handleShowPassword = () => {
+		setShowPassword(showState => {
+			return !showState
+		})
+	}
 
 	const height = useDerivedValue(() => platform.value, [isFocused])
 
@@ -66,6 +83,10 @@ export default () => {
 	const [switchDeviceProfileMutation, { data: SDPData, loading: SDPLoading, error: SDPError }] =
 		useSwitchDeviceProfileMutation({
 			onCompleted: data => {
+				if (data.switchDeviceProfile.__typename == 'Error') {
+					setError('password', { type: 'validate', message: 'Incorrect password' })
+				}
+
 				if (data.switchDeviceProfile.__typename == 'AuthorizationDeviceProfile') {
 					const deviceManager = data.switchDeviceProfile as AuthorizationDeviceProfile
 					AuthorizationReactiveVar(deviceManager)
@@ -107,6 +128,7 @@ export default () => {
 				display={isFocused ? 'flex' : 'none'}
 				flexDirection={'row'}
 				justifyContent={'flex-end'}
+				alignItems='center'
 				alignContent={'space-around'}
 				px={'$2'}
 				sx={{
@@ -119,91 +141,53 @@ export default () => {
 					},
 				}}
 			>
-				<Button
-					disabled={!!errors?.password}
-					onPress={handleSubmit(onSubmit)}
-					variant={'solid'}
-					isDisabled={!!errors.password || LPLoading || SDPLoading}
-					rounded={'$full'}
-					style={{
-						justifyContent: 'center',
-						height: 60,
-						width: 60,
-						paddingHorizontal: 20,
-						alignSelf: 'center',
-					}}
-				>
-					<Icon
-						as={Feather}
-						name='arrow-right'
-						size={'xl'}
-						color={errors.password ? 'primary.700' : 'white'}
-					/>
-				</Button>
+				<HStack justifyContent='space-around' flexDirection='row'>
+					<Pressable onPress={handleSubmit(onSubmit)}>
+						<Box
+							alignItems='center'
+							justifyContent='center'
+							sx={{
+								h: 50,
+								w: 50,
+							}}
+							rounded={'$full'}
+							bg='$primary500'
+						>
+							<Feather name='arrow-right' size={32} color={errors?.password ? '#292524' : 'white'} />
+						</Box>
+					</Pressable>
+				</HStack>
 			</Box>
 		)
 	}
 
 	return (
-		<Box flex={1}>
-			<Reanimated.View style={{ flex: 1, marginVertical: 15, marginHorizontal: 15 }}>
-				<VStack space={'md'}>
-					<Center>
-						{params.photo ? (
-							<Image
-								source={{ uri: String(params.photo) }}
-								style={{
-									marginTop: 5,
-									height: IMAGE_SIZE,
-									width: IMAGE_SIZE,
-									alignSelf: 'center',
-									borderRadius: 10,
-								}}
-							/>
-						) : (
-							<Box
-								sx={{
-									h: 40,
-									w: 40,
-								}}
-								rounded={'$md'}
-							>
-								<Box
-									sx={{
-										h: '100%',
-									}}
-								>
-									<Center>
-										<Icon
-											sx={{
-												_light: {
-													color: '$light300',
-												},
-												_dark: {
-													color: '$dark300',
-												},
-											}}
-											as={Ionicons}
-											size={'lg'}
-											name={'ios-person'}
-										/>
-									</Center>
-								</Box>
-							</Box>
-						)}
-					</Center>
+		<KeyboardAvoidingView
+			behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+			style={{
+				flex: 1,
+				height: 'auto',
+				flexDirection: 'column',
+				marginHorizontal: '5%',
+			}}
+		>
+			<Reanimated.View style={{ flex: 1 }}>
+				<VStack sx={{ h: 110 }} mt={'$12'}>
 					<Controller
 						name='password'
 						control={control}
 						defaultValue=''
 						render={({ field: { onChange, onBlur, value } }) => {
 							return (
-								<Input>
+								<Input variant={'underlined'} size='lg' alignItems='center'>
 									<Input.Input
 										keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 										value={value}
 										placeholder='Password'
-										type='password'
+										fontSize={'$2xl'}
+										lineHeight={'$2xl'}
+										fontWeight='$medium'
+										type={showPassword ? 'text' : 'password'}
 										py={'$2'}
 										sx={{
 											h: 50,
@@ -222,12 +206,11 @@ export default () => {
 										autoCapitalize='none'
 										numberOfLines={1}
 									/>
+									<Input.Icon pr='$3' onPress={handleShowPassword}>
+										{/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
+										<Icon as={showPassword ? EyeIcon : EyeOffIcon} size={'lg'} color='$primary500' />
+									</Input.Icon>
 									{LPLoading && <Spinner size='large' accessibilityLabel={'Loading...'} />}
-									<Input.Input
-										fontSize={'$2xl'}
-										fontWeight='$medium'
-										type={showPassword ? 'text' : 'password'}
-									/>
 								</Input>
 								// <Input
 								// 	variant={'underlined'}
@@ -300,6 +283,6 @@ export default () => {
 					<InnerContent />
 				</Reanimated.View>
 			)}
-		</Box>
+		</KeyboardAvoidingView>
 	)
 }

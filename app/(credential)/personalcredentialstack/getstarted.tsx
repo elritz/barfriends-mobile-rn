@@ -20,13 +20,13 @@ export default () => {
 			PrivacyId: PTSData?.privacyTermsDocuments.privacy.id,
 		})
 		router.push({
-			pathname: '(credential)/personalcredentialstack/phone',
+			pathname: '/(credential)/personalcredentialstack/phone',
 		})
 	}
 
 	const _pressTermsServices = () => {
 		router.push({
-			pathname: '(information)/latestprivacyservicetoptab',
+			pathname: '/(information)/latestprivacyservicetoptab',
 		})
 	}
 

@@ -97,7 +97,7 @@ export default () => {
 					break
 				case 'Code':
 					router.push({
-						pathname: '(credential)/personalcredentialstack/confirmationcode',
+						pathname: '/(credential)/personalcredentialstack/confirmationcode',
 						params: {
 							code: String(data.sendAuthenticatorDeviceOwnerCode.code),
 						},
@@ -222,7 +222,7 @@ export default () => {
 					<Pressable
 						onPress={() => {
 							router.push({
-								pathname: '(credential)/personalcredentialstack/email',
+								pathname: '/(credential)/personalcredentialstack/email',
 							})
 						}}
 						sx={{

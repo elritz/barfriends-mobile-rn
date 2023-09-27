@@ -141,7 +141,7 @@ export default () => {
 									>
 										<MaterialIcons
 											name='add-box'
-											size={23}
+											size={25}
 											color={
 												rTheme.colorScheme === 'light'
 													? rTheme.theme?.gluestack.tokens.colors.light900

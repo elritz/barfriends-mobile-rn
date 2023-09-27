@@ -8,6 +8,8 @@ import {
 	ProfileType, // useGetNotificationsLazyQuery
 } from '@graphql/generated'
 import { AuthorizationReactiveVar } from '@reactive'
+import { FlashList } from '@shopify/flash-list'
+import useContentInsets from '@util/hooks/useContentInsets'
 import { uniqueId } from 'lodash'
 import { AnimatePresence } from 'moti'
 import { useCallback, useEffect, useState } from 'react'
@@ -16,6 +18,7 @@ import { RefreshControl, ScrollView } from 'react-native'
 export default () => {
 	const [refreshing, setRefreshing] = useState(false)
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
+	const insets = useContentInsets()
 
 	// const [getNotificationQuery, { data: GNData, loading: GNLoading, error }] =
 	// 	useGetNotificationsLazyQuery({
@@ -41,7 +44,7 @@ export default () => {
 		switch (param) {
 			case ProfileType.Guest:
 				return (
-					<Box m={'$2'} p={'$5'} pt={'$10'}>
+					<Box m={'$2'} p={'$5'}>
 						<CardPleaseSignup signupTextId={4} />
 					</Box>
 				)
@@ -55,16 +58,32 @@ export default () => {
 	}
 
 	return (
-		<ScrollView
-			contentInset={{ top: 0, left: 0, bottom: 150, right: 0 }}
+		<FlashList
 			showsVerticalScrollIndicator={false}
-			scrollEventThrottle={16}
 			refreshControl={<RefreshControl refreshing={false} onRefresh={onRefresh} />}
-		>
-			<AnimatePresence key={uniqueId()}>
-				<PreferenceNotificationPermission />
-			</AnimatePresence>
-			{renderProfile(rAuthorizationVar?.Profile?.ProfileType as ProfileType)}
-		</ScrollView>
+			contentInset={{ ...insets, top: 0, bottom: 150 }}
+			data={[1]}
+			estimatedItemSize={100}
+			renderItem={() => {
+				return null
+			}}
+			ListHeaderComponent={() => {
+				return (
+					<>
+						<AnimatePresence key={uniqueId()}>
+							<PreferenceNotificationPermission />
+						</AnimatePresence>
+						{renderProfile(rAuthorizationVar?.Profile?.ProfileType as ProfileType)}
+					</>
+				)
+			}}
+		/>
+		// <ScrollView
+		// 	showsVerticalScrollIndicator={false}
+		// 	scrollEventThrottle={16}
+		// 	refreshControl={<RefreshControl refreshing={false} onRefresh={onRefresh} />}
+		// >
+
+		// </ScrollView>
 	)
 }

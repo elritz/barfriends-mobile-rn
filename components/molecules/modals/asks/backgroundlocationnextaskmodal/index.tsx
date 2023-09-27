@@ -40,20 +40,11 @@ const BackgroundLocationNextAskModal = ({ isOpen, onOpen, onClose }) => {
 								variant={'link'}
 								size={'lg'}
 							>
-								<Text
-									sx={{
-										_dark: {
-											color: '$dark900',
-										},
-										_light: {
-											color: '$dark900',
-										},
-									}}
-								>
+								<Text textTransform='uppercase' fontSize={'$lg'} fontWeight={'$bold'} alignSelf='center'>
 									Not now
 								</Text>
 							</Button>
-							<Divider />
+							<Divider mt={'$1'} />
 							<Button
 								onPress={() =>
 									router.push({

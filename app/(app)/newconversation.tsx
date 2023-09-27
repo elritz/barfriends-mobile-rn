@@ -1,23 +1,35 @@
 import { useReactiveVar } from '@apollo/client'
-import { AddIcon, Button, Text, Input, Pressable, HStack, VStack } from '@components/core'
+import {
+	AddIcon,
+	Button,
+	Text,
+	Input,
+	Pressable,
+	HStack,
+	VStack,
+	CloseIcon,
+	CloseCircleIcon,
+} from '@components/core'
 import ContactItem from '@components/screens/conversations/ContactItem'
+import SearchResultContactItem from '@components/screens/conversations/SearchResultContactItem'
 import { ThemeReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
 import useContentInsets from '@util/hooks/useContentInsets'
-import { filter } from 'lodash'
-import { useState } from 'react'
+import useDebounce from '@util/hooks/useDebounce'
+import Fuse from 'fuse.js'
+import { useMemo, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 
 const contactslist = [
-	{ key: '1', value: 'Mobiles', disabled: true },
-	{ key: '2', value: 'Appliances' },
-	{ key: '3', value: 'Cameras' },
-	{ key: '4', value: 'Computers', disabled: true },
-	{ key: '5', value: 'Vegetables' },
-	{ key: '6', value: 'Diary Products' },
-	{ key: '7', value: 'Drinks' },
-	{ key: '5', value: 'Vegetables' },
-	{ key: '126', value: 'Diary Products' },
+	{ key: '1', value: 'mobiles', disabled: true },
+	{ key: '2', value: 'appliances' },
+	{ key: '3', value: 'cameras' },
+	{ key: '4', value: 'computers', disabled: true },
+	{ key: '5', value: 'vegetables' },
+	{ key: '6', value: 'diary Products' },
+	{ key: '7', value: 'drinks' },
+	{ key: '5', value: 'vegetables' },
+	{ key: '126', value: 'diary Products' },
 	{ key: '12w7', value: 'Drinks' },
 	{ key: '125', value: 'Vegetables' },
 	{ key: '12w6', value: 'Diary Products' },
@@ -33,7 +45,10 @@ const contactslist = [
 export default function NewConversation() {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const insets = useContentInsets()
+
+	const [searchFilterIsLoading, setSearchFilterIsLoading] = useState(true)
 	const [selected, setSelected] = useState([])
+	const [filteredContacts, setFilteredContacts] = useState([])
 	const [contacts, setContacts] = useState(
 		contactslist.sort((a, b) => {
 			const nameA = a.value.toLowerCase()
@@ -44,6 +59,12 @@ export default function NewConversation() {
 			return 0
 		}),
 	)
+
+	const options = {
+		keys: ['value'],
+	}
+
+	const fuse = new Fuse(contacts, options)
 
 	const { control, setValue, handleSubmit, watch } = useForm({
 		defaultValues: {
@@ -60,12 +81,41 @@ export default function NewConversation() {
 	})
 
 	type onPressProps = {
-		listType: 'contacts' | 'selected'
+		listType: 'contacts' | 'selected' | 'searchresult'
 		item: any
 	}
 
 	const _pressItemFromList = ({ listType, item }: onPressProps) => {
 		switch (listType) {
+			case 'searchresult':
+				const indexToRemoveContacts = contacts.indexOf(item.item)
+				const indexToRemoveFiltered = filteredContacts.indexOf(item)
+
+				if (indexToRemoveFiltered !== -1) {
+					const filteredSorted = [
+						...filteredContacts.slice(0, indexToRemoveFiltered),
+						...filteredContacts.slice(indexToRemoveFiltered + 1),
+					]
+					setFilteredContacts(filteredSorted)
+
+					setSelected(prev => [...prev, item.item])
+				}
+
+				if (indexToRemoveContacts !== -1) {
+					const sorted = [
+						...contacts.slice(0, indexToRemoveContacts),
+						...contacts.slice(indexToRemoveContacts + 1),
+					].sort((a, b) => {
+						const nameA = a.value.toLowerCase()
+						const nameB = b.value.toLowerCase()
+
+						if (nameA < nameB) return -1
+						if (nameA > nameB) return 1
+						return 0
+					})
+					setContacts(sorted)
+				}
+				return
 			case 'contacts':
 				const indexToRemove = contacts.indexOf(item)
 				if (indexToRemove !== -1) {
@@ -81,8 +131,6 @@ export default function NewConversation() {
 						return 0
 					})
 					setContacts(sorted)
-					setSelected(prev => [...prev, item])
-				} else {
 					setSelected(prev => [...prev, item])
 				}
 				return
@@ -120,9 +168,27 @@ export default function NewConversation() {
 				break
 		}
 	}
-	// const filteredData = filter(contacts, item =>
-	// 	item.name.toLowerCase().includes(watch().toLowerCase()),
-	// )
+
+	const debouncedSearchResults = useDebounce(watch().searchtext, 400)
+
+	const searchFilterFunction = text => {
+		setSearchFilterIsLoading(true)
+		if (text) {
+			const result = fuse.search(text)
+
+			setFilteredContacts(result)
+		} else {
+			setFilteredContacts([])
+		}
+		setSearchFilterIsLoading(false)
+	}
+
+	useMemo(() => {
+		if (watch().searchtext) {
+		}
+		searchFilterFunction(watch().searchtext)
+	}, [debouncedSearchResults])
+
 	return (
 		<>
 			<Input
@@ -134,13 +200,15 @@ export default function NewConversation() {
 				sx={{
 					height: 'auto',
 					borderBottomWidth: 1,
-					borderTopWidth: 1,
-					borderColor: '$gray300',
+					// borderTopWidth: 1,
+					_light: {
+						borderColor: '$light400',
+					},
+					_dark: {
+						borderColor: '$dark200',
+					},
 				}}
 			>
-				<Text color='$gray400' mr={'$2'} fontSize={'$sm'}>
-					To:
-				</Text>
 				<VStack flex={1}>
 					<Controller
 						control={control}
@@ -167,7 +235,7 @@ export default function NewConversation() {
 										size='xs'
 										px={'$2'}
 										my={'$1'}
-										h={'$6'}
+										h={'$7'}
 									>
 										<Button.Text
 											sx={{
@@ -181,6 +249,7 @@ export default function NewConversation() {
 											fontWeight='$normal'
 											letterSpacing={'$lg'}
 											fontSize={'$sm'}
+											textTransform='capitalize'
 										>
 											{item.value}
 										</Button.Text>
@@ -193,18 +262,27 @@ export default function NewConversation() {
 						control={control}
 						name='searchtext'
 						render={({ field: { value, onChange } }) => (
-							<HStack justifyContent='space-between' alignItems='center'>
+							<HStack justifyContent='space-between' alignItems='center' mt={'$2'}>
+								<Text color='$gray400' fontSize={'$sm'}>
+									To:
+								</Text>
 								<Input.Input
 									autoFocus
 									borderWidth={'$0'}
 									returnKeyType='default'
 									w={'$full'}
 									pr={'$2'}
+									onFocus={() => setSearchFilterIsLoading(true)}
 									py={'$1'}
-									mt={'$2'}
+									m={'$2'}
 									underlineColorAndroid='transparent'
 									keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 									value={value}
+									// onChangeText={text => {
+									// 	console.log('text :>> ', text)
+									// 	onChange(text)
+									// 	fuse.search(text)
+									// }}
 									onChangeText={onChange}
 									// onKeyPress={e => {
 									// 	if (value.length === 0 && e.nativeEvent.key == 'Backspace') {
@@ -216,77 +294,82 @@ export default function NewConversation() {
 									}}
 									blurOnSubmit={false}
 								/>
-								<Button
-									size='sm'
-									// bg='transparent'
-
-									px={'$0'}
-									h={'$5'}
-									w={'$5'}
-									hitSlop={{
-										top: 12,
-										bottom: 12,
-										left: 12,
-										right: 12,
-									}}
-									rounded={'$full'}
-									borderWidth={'$1'}
-									borderColor='$primary500'
-									onPress={() => {
-										console.log('OPEN SECONDARY modal')
-									}}
-								>
-									<Button.Icon as={AddIcon} />
-								</Button>
+								{value.length > 0 && (
+									<Button
+										size='sm'
+										px={'$0'}
+										h={'$5'}
+										w={'$5'}
+										hitSlop={{
+											top: 12,
+											bottom: 12,
+											left: 12,
+											right: 12,
+										}}
+										variant='link'
+										rounded={'$full'}
+										borderWidth={'$1'}
+										borderColor='$primary500'
+										onPress={() => {
+											setValue('searchtext', '')
+										}}
+									>
+										<Button.Icon as={CloseIcon} />
+									</Button>
+								)}
 							</HStack>
 						)}
 					/>
 				</VStack>
 			</Input>
 
-			<FlashList
-				data={contacts}
-				estimatedItemSize={80}
-				contentInset={{
-					bottom: insets.bottom,
-				}}
-				renderItem={({ item, index }) => {
-					console.log('item :>> ', item)
-					return (
-						<Pressable
-							sx={{
-								h: 50,
-							}}
-							bg='$red800'
-							my={'$1'}
-							onPress={() => {
-								_pressItemFromList({
-									listType: 'contacts',
-									item,
-								})
-							}}
-						>
-							<ContactItem index={index} item={item} />
-						</Pressable>
-					)
-				}}
-				// renderItem={item => {
-				// 	return (
-				// 		<Pressable
-				// 			sx={{
-				// 				h: 50,
-				// 			}}
-				// 			bg='$red800'
-				// 			my={'$1'}
-				// 			onPress={() => {
-				// 				setSelected(prev => [...prev, item.item])
-				// 			}}
-				// 		>
-				// 			<Text>{item.item.value}</Text>
-				// 		</Pressable>
-				// 	)
-				// }}
-			/>
+			{watch().searchtext.length && !searchFilterIsLoading ? (
+				<FlashList
+					data={watch().searchtext.length ? filteredContacts : contacts}
+					estimatedItemSize={80}
+					keyboardDismissMode='on-drag'
+					contentInset={{
+						bottom: insets.bottom,
+					}}
+					renderItem={({ item, index }) => {
+						return (
+							<Pressable
+								onPress={() => {
+									_pressItemFromList({
+										listType: 'searchresult',
+										item,
+									})
+								}}
+							>
+								<ContactItem index={index} item={item.item} />
+							</Pressable>
+						)
+					}}
+				/>
+			) : (
+				<FlashList
+					data={contacts}
+					estimatedItemSize={80}
+					keyboardDismissMode='on-drag'
+					contentInset={{
+						bottom: insets.bottom,
+					}}
+					renderItem={({ item, index }) => {
+						return (
+							<Pressable
+								onPress={() => {
+									_pressItemFromList({
+										listType: 'contacts',
+										item,
+									})
+								}}
+							>
+								<ContactItem index={index} item={item} />
+							</Pressable>
+						)
+					}}
+				/>
+			)}
 		</>
 	)
 }

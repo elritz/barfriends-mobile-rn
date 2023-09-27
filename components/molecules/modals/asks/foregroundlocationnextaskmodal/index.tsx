@@ -50,9 +50,11 @@ const ForegroundLocationNextAskModal = ({ isOpen, onOpen, onClose }) => {
 								variant={'link'}
 								size={'lg'}
 							>
-								<Text>Not now</Text>
+								<Text textTransform='uppercase' fontSize={'$lg'} fontWeight={'$bold'} alignSelf='center'>
+									Not now
+								</Text>
 							</Button>
-							<Divider />
+							<Divider mt={'$1'} />
 							<Button
 								onPress={() =>
 									router.push({

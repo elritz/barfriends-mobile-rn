@@ -86,7 +86,7 @@ export default () => {
 				birthday: String(birthday),
 			})
 			router.push({
-				pathname: '(credential)/personalcredentialstack/name',
+				pathname: '/(credential)/personalcredentialstack/name',
 			})
 		} catch (e) {
 			return setError('date', {

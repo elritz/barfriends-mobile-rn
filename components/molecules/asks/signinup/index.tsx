@@ -8,14 +8,14 @@ export default () => {
 
 	return (
 		<Box bg='$transparent'>
-			<VStack flexDirection='column' justifyContent='center' space='md'>
+			<VStack flexDirection='column' justifyContent='center' space='md' alignItems='center'>
 				<Text allowFontScaling fontWeight='$bold' alignSelf='center' textAlign='center'>
 					{text[1].subTitle}
 				</Text>
 				<Button
 					onPress={() =>
 						router.push({
-							pathname: '(credential)/personalcredentialstack/getstarted',
+							pathname: '/(credential)/personalcredentialstack/getstarted',
 						})
 					}
 					sx={{

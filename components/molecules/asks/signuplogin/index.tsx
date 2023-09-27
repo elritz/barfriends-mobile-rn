@@ -13,7 +13,12 @@ export default (props: Props) => {
 
 	const _pressToLogin = () => {
 		router.push({
-			pathname: '(credential)/logincredentialstack/authenticator',
+			pathname: '/(credential)/logincredentialstack/authenticator',
+		})
+	}
+	const _pressToSignup = () => {
+		router.push({
+			pathname: '/(credential)/personalcredentialstack/getstarted',
 		})
 	}
 
@@ -48,11 +53,7 @@ export default (props: Props) => {
 			</Box>
 			<VStack w={'$full'} alignItems={'center'} space={'md'}>
 				<Button
-					onPress={() =>
-						router.push({
-							pathname: '(credential)/personalcredentialstack',
-						})
-					}
+					onPress={_pressToSignup}
 					sx={{
 						w: '95%',
 					}}
@@ -67,7 +68,7 @@ export default (props: Props) => {
 						Sign up
 					</Button.Text>
 				</Button>
-				<Pressable w={'100%'} onPress={_pressToLogin}>
+				<Pressable py={'$2'} w={'100%'} onPress={_pressToLogin}>
 					<Text textTransform='uppercase' fontSize={'$lg'} fontWeight={'$bold'} alignSelf='center'>
 						Log in
 					</Text>

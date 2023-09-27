@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Input, Pressable, Text, VStack } from '@components/core'
-import { Entypo, Feather } from '@expo/vector-icons'
+import { Box, Button, HStack, Input, Pressable, VStack } from '@components/core'
+import { Entypo, Feather, Ionicons } from '@expo/vector-icons'
 import {
 	useAuthorizedProfilesLazyQuery,
 	useSendAuthenticatorDeviceOwnerCodeMutation,
@@ -10,7 +10,7 @@ import { ThemeReactiveVar } from '@reactive'
 import { useRouter } from 'expo-router'
 import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { View, InputAccessoryView, Platform, KeyboardAvoidingView } from 'react-native'
+import { InputAccessoryView, KeyboardAvoidingView, Platform } from 'react-native'
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller'
 import Reanimated, { useAnimatedStyle, useDerivedValue } from 'react-native-reanimated'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -30,7 +30,6 @@ export default () => {
 	const INPUT_CONTAINER_HEIGHT = 90
 
 	const height = useDerivedValue(() => platform.value, [isFocused])
-
 	const textInputContainerStyle = useAnimatedStyle(
 		() => ({
 			width: '100%',
@@ -49,7 +48,7 @@ export default () => {
 				rounded={'$none'}
 				display={isFocused ? 'flex' : 'none'}
 				flexDirection={'row'}
-				justifyContent={'flex-end'}
+				justifyContent={'space-between'}
 				alignItems='center'
 				alignContent={'space-around'}
 				px={'$2'}
@@ -63,13 +62,26 @@ export default () => {
 					},
 				}}
 			>
-				<View
-					style={{
-						display: 'flex',
-						flexDirection: 'column',
-						justifyContent: 'space-around',
-					}}
+				<Pressable
+					p={'$2'}
+					pr={'$3'}
+					onPress={() =>
+						keyboardType === 'number-pad' ? setKeyboardType('email') : setKeyboardType('number-pad')
+					}
 				>
+					<Ionicons
+						name='text-sharp'
+						size={29}
+						color={
+							keyboardType === 'email'
+								? rTheme.theme?.gluestack.tokens.colors.primary500
+								: rTheme.colorScheme === 'light'
+								? rTheme.theme?.gluestack.tokens.colors.light900
+								: rTheme.theme?.gluestack.tokens.colors.dark900
+						}
+					/>
+				</Pressable>
+				<HStack justifyContent='space-around' flexDirection='row'>
 					<Pressable onPress={handleSubmit(onSubmit)}>
 						<Box
 							alignItems='center'
@@ -84,7 +96,7 @@ export default () => {
 							<Feather name='arrow-right' size={32} color={errors?.authenticator ? '#292524' : 'white'} />
 						</Box>
 					</Pressable>
-				</View>
+				</HStack>
 			</Box>
 		)
 	}
@@ -119,7 +131,7 @@ export default () => {
 						authenticator: values.authenticator,
 						code: data.sendAuthenticatorDeviceOwnerCode.code,
 					},
-					pathname: '(credential)/logincredentialstack/confirmationcode',
+					pathname: '/(credential)/logincredentialstack/confirmationcode',
 				})
 			}
 		},
@@ -136,9 +148,10 @@ export default () => {
 				if (data.authorizedProfiles?.username.length) {
 					router.push({
 						params: {
-							profile: String(data.authorizedProfiles?.username[0].id),
+							profileid: data.authorizedProfiles.username[0].id,
+							username: data.authorizedProfiles.username[0].IdentifiableInformation?.username,
 						},
-						pathname: '(credential)/logincredentialstack/loginpassword',
+						pathname: '/(credential)/logincredentialstack/loginpassword',
 					})
 				}
 
@@ -198,13 +211,14 @@ export default () => {
 		switch (keyboardType) {
 			case 'number-pad':
 				return (
-					<Entypo
+					<Ionicons
 						onPress={() => setKeyboardType('email')}
-						size={25}
-						name='phone'
-						style={{ marginRight: 4 }}
+						name='text-sharp'
+						size={29}
 						color={
-							rTheme.colorScheme === 'light'
+							keyboardType === 'number-pad'
+								? rTheme.theme?.gluestack.tokens.colors.primary500
+								: rTheme.colorScheme === 'light'
 								? rTheme.theme?.gluestack.tokens.colors.light900
 								: rTheme.theme?.gluestack.tokens.colors.dark900
 						}
@@ -215,10 +229,12 @@ export default () => {
 					<Entypo
 						onPress={() => setKeyboardType('number-pad')}
 						size={25}
-						name='email'
+						name='phone'
 						style={{ marginRight: 4 }}
 						color={
-							rTheme.colorScheme === 'light'
+							keyboardType === 'email'
+								? rTheme.theme?.gluestack.tokens.colors.primary500
+								: rTheme.colorScheme === 'light'
 								? rTheme.theme?.gluestack.tokens.colors.light900
 								: rTheme.theme?.gluestack.tokens.colors.dark900
 						}
@@ -280,7 +296,6 @@ export default () => {
 										}
 									}}
 								/>
-								<RightIcon />
 							</Input>
 						)}
 						rules={{
@@ -294,7 +309,7 @@ export default () => {
 						<Button
 							onPress={() => {
 								router.replace({
-									pathname: '(credential)/personalcredentialstack/getstarted',
+									pathname: '/(credential)/personalcredentialstack/getstarted',
 								})
 							}}
 							my={'$3'}

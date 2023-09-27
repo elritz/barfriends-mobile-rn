@@ -112,5 +112,6 @@ export default () => {
 	}
 	// return <Redirect href={'/(app)/hometab/venuefeed'} />
 	// return <Redirect href={'/(app)/conversation'} />
-	return <Redirect href={'/(app)/hometab/messagestack'} />
+	// return <Redirect href={'/(app)/hometab/messagestack'} />
+	return <Redirect href={`/(app)/public/personal/${'4068040c-5929-4140-9e28-666904c20243'}`} />
 }

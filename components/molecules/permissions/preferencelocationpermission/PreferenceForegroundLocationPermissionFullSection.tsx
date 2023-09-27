@@ -105,14 +105,14 @@ export default function ForegroundLocationPermissionFullSection() {
 											})
 										}}
 									>
-										<Text fontWeight='$bold' fontSize={'$md'}>
+										<Text textTransform='uppercase' fontSize={'$lg'} fontWeight={'$bold'} alignSelf='center'>
 											Not now
 										</Text>
 									</Button>
 								</VStack>
 							</MotiView>
 						)}
-						<Divider />
+						<Divider mt={'$1'} />
 					</Box>
 				)}
 		</>

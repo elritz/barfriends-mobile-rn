@@ -81,7 +81,7 @@ export default () => {
 			username: data.username,
 		})
 		router.push({
-			pathname: '(credential)/personalcredentialstack/password',
+			pathname: '/(credential)/personalcredentialstack/password',
 		})
 	}
 

@@ -13,7 +13,7 @@ const LOGO_COASTER = require('../../../../../../../assets/images/company/company
 type Props = {
 	qrcodesize: number
 	logosize?: number
-	showIcon?: true
+	showIcon?: boolean
 	color?: string
 }
 

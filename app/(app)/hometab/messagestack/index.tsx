@@ -58,7 +58,7 @@ const Messages = () => {
 
 	const { data, loading, error } = useGetConversationsQuery()
 
-	console.log("🚀 ~ file: index.tsx:61 ~ Messages ~ data:", data)
+	// console.log("🚀 ~ file: index.tsx:61 ~ Messages ~ data:", data)
 
 
 	if (loading) {

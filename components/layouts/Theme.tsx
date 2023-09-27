@@ -3,6 +3,7 @@ import AnimatedSplashScreen from '@components/screens/splash/AnimatedSplashScree
 import { LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME } from '@constants/StorageConstants'
 import { LocalStoragePreferenceThemeType } from '@ctypes/preferences'
 import { StyledProvider } from '@gluestack-style/react'
+import { GluestackUIProvider, config } from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { ThemeProvider as ReactNavigationThemeProvider } from '@react-navigation/native'
 import { ThemeReactiveVar } from '@reactive'
@@ -56,17 +57,21 @@ export default function Theme({ children }) {
 	return (
 		<AnimatedSplashScreen>
 			<ReactNavigationThemeProvider value={rThemeVar.theme.reactnavigation}>
-				<StyledProvider
-					config={rThemeVar.theme.gluestack}
+				<GluestackUIProvider
 					colorMode={rThemeVar.colorScheme === 'light' ? 'light' : 'dark'}
+					config={rThemeVar.theme.gluestack}
 				>
-					
-					<StatusBar
-						animated
-						barStyle={rThemeVar.colorScheme === 'light' ? 'dark-content' : 'light-content'}
-					/>
-					{children}
-				</StyledProvider>
+					<StyledProvider
+						config={rThemeVar.theme.gluestack}
+						colorMode={rThemeVar.colorScheme === 'light' ? 'light' : 'dark'}
+					>
+						<StatusBar
+							animated
+							barStyle={rThemeVar.colorScheme === 'light' ? 'dark-content' : 'light-content'}
+						/>
+						{children}
+					</StyledProvider>
+				</GluestackUIProvider>
 			</ReactNavigationThemeProvider>
 		</AnimatedSplashScreen>
 	)

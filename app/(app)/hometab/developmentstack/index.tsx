@@ -335,7 +335,7 @@ export default () => {
 		switch (item.type) {
 			case 'setting':
 				return (
-					<Pressable key={index} onPress={item.onPress}>
+					<Pressable mx={'$3'} key={index} onPress={item.onPress}>
 						{({ isPressed }) => {
 							return (
 								<Box
@@ -371,7 +371,7 @@ export default () => {
 				)
 			case 'token':
 				return (
-					<Pressable key={index} onPress={item.onPress}>
+					<Pressable mx={'$3'} key={index} onPress={item.onPress}>
 						{({ isPressed }) => {
 							return (
 								<Box
@@ -419,7 +419,7 @@ export default () => {
 				)
 			case 'generalinformation':
 				return (
-					<Pressable onPress={item.onPress}>
+					<Pressable mx={'$3'} onPress={item.onPress}>
 						<Divider />
 						<VStack>
 							<Heading fontSize={'$lg'}>{item.title}</Heading>
@@ -488,7 +488,7 @@ export default () => {
 	}
 
 	return (
-		<Box flex={1} mx={'$3'} bg={'$transparent'}>
+		<Box flex={1} bg={'$transparent'}>
 			<SectionList
 				showsVerticalScrollIndicator={false}
 				contentInset={{
@@ -510,7 +510,7 @@ export default () => {
 				]}
 				renderItem={({ item, index }) => <Item index={index} item={item} />}
 				renderSectionHeader={({ section: { title } }) => (
-					<Box py={'$3'} rounded={'$none'} bg={'transparent'} justifyContent='center'>
+					<Box p={'$3'} rounded={'$none'} justifyContent='center'>
 						<Heading mt={'$4'} fontSize={'$2xl'}>
 							{title}
 						</Heading>

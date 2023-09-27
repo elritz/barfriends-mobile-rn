@@ -223,7 +223,7 @@ export default () => {
 					}}
 					onPress={() =>
 						router.replace({
-							pathname: '(credential)/logincredentialstack/authenticator',
+							pathname: '/(credential)/logincredentialstack/authenticator',
 						})
 					}
 				>

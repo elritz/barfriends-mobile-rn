@@ -102,7 +102,7 @@ export default () => {
 				params: {
 					authenticator: params.authenticator,
 				},
-				pathname: '(credential)/logincredentialstack/devicemanager',
+				pathname: '/(credential)/logincredentialstack/devicemanager',
 			})
 		} else {
 			setError('code', { type: 'validate', message: 'Wrong code' })

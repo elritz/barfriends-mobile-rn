@@ -97,7 +97,7 @@ export default () => {
 		clearErrors()
 		if (checkFinalCode(code)) {
 			router.replace({
-				pathname: '(credential)/personalcredentialstack/birthday',
+				pathname: '/(credential)/personalcredentialstack/birthday',
 			})
 		} else {
 			setError('code', { type: 'validate', message: 'Wrong code' })

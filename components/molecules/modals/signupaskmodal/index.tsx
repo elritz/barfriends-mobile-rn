@@ -25,7 +25,7 @@ export default function SignupAskModal({ isOpen, onClose }: Props) {
 						onPress={() => {
 							onClose()
 							router.push({
-								pathname: '(credential)/personalcredentialstack/getstarted',
+								pathname: '/(credential)/personalcredentialstack/getstarted',
 							})
 						}}
 					>

@@ -173,7 +173,15 @@ const CurrentLocationFromVenueDistance = () => {
 					</Heading>
 
 					<Box pb={'$1'} alignSelf={'center'} alignItems={'center'} flexDirection={'row'}>
-						<MaterialIcons name='location-pin' size={25} />
+						<MaterialIcons
+							color={
+								rTheme.colorScheme === 'light'
+									? rTheme.theme?.gluestack.tokens.colors.light200
+									: rTheme.theme?.gluestack.tokens.colors.dark900
+							}
+							name='location-pin'
+							size={25}
+						/>
 						<Heading fontSize={'$2xl'} fontWeight={'$black'}>
 							{distance}&nbsp;{metric}
 						</Heading>

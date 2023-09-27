@@ -20,6 +20,10 @@ const GoBack: React.FC<ButtonProps> = (props: ButtonProps) => {
 	const handleOnPress = () => {
 		if (router.canGoBack()) {
 			router.back()
+		} else {
+			router.push({
+				pathname: '/(app)/hometab/venuefeed',
+			})
 		}
 		// router.setParams({
 		// 	searchtext: '',
@@ -31,7 +35,6 @@ const GoBack: React.FC<ButtonProps> = (props: ButtonProps) => {
 	return (
 		<Pressable
 			style={{
-				backgroundColor: 'red',
 				flex: 1,
 				maxWidth: width,
 				height,
