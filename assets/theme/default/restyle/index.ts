@@ -1,25 +1,25 @@
-// import { config } from '../../../../gluestack-ui.config'
-// import gluestack from '../gluestack'
-// import { BaseTheme } from '@shopify/restyle'
+import { config } from '../../../../gluestack-ui.config'
+import gluestack from '../gluestack'
+import tokens from '@shopify/polaris-tokens'
+import { BaseTheme } from '@shopify/restyle'
 
-// const restyle: BaseTheme = {
-// 	colors: {
-// 		...gluestack,
-// 	},
-// 	spacing: {
-// 		...config.theme.tokens.space,
-// 	},
-// 	borderRadii: {
-// 		...config.theme.tokens.radii,
-// 	},
-// 	letterSpacings: {
-// 		...config.theme.tokens.letterSpacings,
-// 	},
-// 	breakpoints: {
-// 		...config.theme.tokens.breakpoints,
-// 	},
-// 	zIndices: {},
-// }
+const restyle: BaseTheme = {
+	...tokens,
+	colors: {
+		...tokens.color,
+		...gluestack,
+	},
+	spacing: {
+		...tokens.space,
+		...config.tokens.space,
+	},
+	borderRadii: {
+		...config.tokens.radii,
+	},
+	breakpoints: {
+		...config.tokens.breakpoints,
+	},
+	zIndices: {},
+}
 
-
-// export default restyle
+export default restyle

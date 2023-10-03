@@ -1,5 +1,5 @@
-import { Box, Heading, Text } from '@gluestack-ui/themed'
 import HorizontalMessageNotification from '@components/molecules/notifications/message/HorizontalMessageNotification'
+import { Box, Heading, Text } from '@gluestack-ui/themed'
 import { useGetConversationsQuery } from '@graphql/generated'
 import { FlashList } from '@shopify/flash-list'
 import useGenerateConversations, {
@@ -60,13 +60,13 @@ const Messages = () => {
 
 	// console.log("🚀 ~ file: index.tsx:61 ~ Messages ~ data:", data)
 
-
 	if (loading) {
 		return <Text>Loading...</Text>
 	}
 
 	return (
-		<Box flex={1} bg='$green700' mx={'$2'}>
+		<Box flex={1} bg='$green700' mx={'$2'} pt={'$24'}>
+			<Heading textAlign='center'>Do the messaging thing headerShown</Heading>
 			{/* <FlashList
 				data={data}
 				showsVerticalScrollIndicator={false}

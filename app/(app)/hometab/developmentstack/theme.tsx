@@ -3,16 +3,7 @@ import {
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
 } from '@constants/ReactNavigationConstants'
-import {
-	Box,
-	Button,
-	Divider,
-	HStack,
-	Heading,
-	Pressable,
-	Text,
-	VStack,
-} from '@gluestack-ui/themed'
+import { Box, Button, Divider, HStack, Heading, Pressable, VStack } from '@gluestack-ui/themed'
 import { useGetAllThemesQuery, useUpdateThemeManagerSwitchThemeMutation } from '@graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
@@ -29,8 +20,12 @@ export default function Preferences() {
 
 	const [toggleColorScheme] = useToggleTheme()
 
-	const { data: GATData, loading: GATLoading, error } = useGetAllThemesQuery()
-	const [updateSwitchTheme] = useUpdateThemeManagerSwitchThemeMutation()
+	const { data: GATData, loading: GATLoading, error } = useGetAllThemesQuery({})
+	const [updateSwitchTheme] = useUpdateThemeManagerSwitchThemeMutation({
+		onCompleted: data => {
+			setTheme({ colorScheme: rTheme.localStorageColorScheme })
+		},
+	})
 
 	const setTheme = async ({ colorScheme }: { colorScheme: 'light' | 'dark' | 'system' }) => {
 		toggleColorScheme({ colorScheme })
@@ -38,7 +33,6 @@ export default function Preferences() {
 
 	const renderItem = useCallback(
 		({ item }) => {
-			console.log('item.theme', JSON.stringify(item.theme, null, 2))
 			const company = {
 				dark: [
 					item.theme.styled.dark.palette.company.primary,
@@ -68,24 +62,11 @@ export default function Preferences() {
 			return (
 				<Pressable
 					onPress={() => {
+						console.log('preessed :>> ')
 						updateSwitchTheme({
 							variables: {
 								id: item.id,
 								themeId: item.id,
-							},
-							onCompleted: data => {
-								if (data.updateThemeManagerSwitchTheme) {
-									// AuthorizationReactiveVar({
-									// 	...rAuthorizationVar,
-									// 	Profile: {
-									// 		...rAuthorizationVar?.Profile,
-									// 		ThemeManager: {
-									// 			...rAuthorizationVar?.Profile?.ThemeManager,
-									// 			ProfileTheme: data.updateThemeManagerSwitchTheme,
-									// 		},
-									// 	},
-									// })
-								}
 							},
 						})
 					}}

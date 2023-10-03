@@ -3,11 +3,13 @@ import { makeVar } from '@apollo/client'
 import { defaulttheme } from '@assets/theme/default'
 import { ThemeColorSchemeOptionsType } from '@ctypes/preferences'
 import { Theme } from '@react-navigation/native'
+// import { BaseTheme } from '@shopify/restyle'
 import { Appearance, ColorSchemeName } from 'react-native'
 
 export type IBFSTheme = {
 	reactnavigation: Theme
 	gluestack: Config
+	// restyle: BaseTheme
 }
 
 export interface ThemeInterface {
@@ -27,6 +29,7 @@ export const ThemeEmptyState: ThemeInterface = {
 				? defaulttheme.reactnavigation.light
 				: defaulttheme.reactnavigation.dark,
 		gluestack: config,
+		// restyle: defaulttheme.restyle,
 	},
 }
 

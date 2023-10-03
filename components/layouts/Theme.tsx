@@ -4,11 +4,11 @@ import restyle from '@assets/theme/default/restyle'
 import AnimatedSplashScreen from '@components/screens/splash/AnimatedSplashScreen'
 import { LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME } from '@constants/StorageConstants'
 import { LocalStoragePreferenceThemeType } from '@ctypes/preferences'
-// import { StyledProvider } from '@gluestack-style/react'
 import { GluestackUIProvider } from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { ThemeProvider as ReactNavigationThemeProvider } from '@react-navigation/native'
 import { ThemeReactiveVar } from '@reactive'
+import { ThemeProvider as RestyleThemeProvider } from '@shopify/restyle'
 import { useToggleTheme } from '@util/hooks/theme/useToggleTheme'
 import { useEffect, useRef } from 'react'
 import { AppState, Appearance, StatusBar } from 'react-native'
@@ -63,16 +63,13 @@ export default function Theme({ children }) {
 					colorMode={rThemeVar.colorScheme === 'light' ? 'light' : 'dark'}
 					config={rThemeVar.theme.gluestack}
 				>
-					{/* <StyledProvider
-						config={rThemeVar.theme.gluestack}
-						colorMode={rThemeVar.colorScheme === 'light' ? 'light' : 'dark'}
-					> */}
+					<RestyleThemeProvider theme={rThemeVar.theme.restyle}>
 						<StatusBar
 							animated
 							barStyle={rThemeVar.colorScheme === 'light' ? 'dark-content' : 'light-content'}
 						/>
 						{children}
-					{/* </StyledProvider> */}
+					</RestyleThemeProvider>
 				</GluestackUIProvider>
 			</ReactNavigationThemeProvider>
 		</AnimatedSplashScreen>
