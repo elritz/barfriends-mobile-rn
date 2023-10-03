@@ -1,6 +1,6 @@
 // TODO: FN(Join a venue functionality) The join button has no ability to join a venue or track the data
 import JoinVenue from '@components/atoms/buttons/joinvenue/JoinVenue'
-import { HStack, Heading, Text, VStack } from '@components/core'
+import { HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import { View } from 'react-native'
 
 export default function JoinCard() {

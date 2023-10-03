@@ -411,7 +411,7 @@ export default styled(
           '_dark': {
             'bg': 'transparent',
             ':hover': {
-              bg: '$backgroundDark900',
+              bg: '$backgroundlight100',
             },
             ':active': {
               bg: 'transparent',
@@ -446,7 +446,7 @@ export default styled(
           '_dark': {
             'bg': 'transparent',
             ':hover': {
-              bg: '$backgroundDark900',
+              bg: '$backgroundlight100',
             },
             ':active': {
               bg: 'transparent',
@@ -683,7 +683,7 @@ export default styled(
           '_dark': {
             'bg': 'transparent',
             ':hover': {
-              bg: '$backgroundDark900',
+              bg: '$backgroundlight100',
             },
             ':active': {
               bg: 'transparent',
@@ -705,7 +705,7 @@ export default styled(
           '_dark': {
             'bg': 'transparent',
             ':hover': {
-              bg: '$backgroundDark900',
+              bg: '$backgroundlight100',
             },
             ':active': {
               bg: 'transparent',
@@ -727,7 +727,7 @@ export default styled(
           '_dark': {
             'bg': 'transparent',
             ':hover': {
-              bg: '$backgroundDark900',
+              bg: '$backgroundlight100',
             },
             ':active': {
               bg: 'transparent',
@@ -749,7 +749,7 @@ export default styled(
           '_dark': {
             'bg': 'transparent',
             ':hover': {
-              bg: '$backgroundDark900',
+              bg: '$backgroundlight100',
             },
             ':active': {
               bg: 'transparent',

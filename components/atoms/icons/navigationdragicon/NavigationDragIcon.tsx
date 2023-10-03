@@ -11,7 +11,7 @@ export default function NavigationDragIcon() {
 			color={
 				rTheme.colorScheme === 'light'
 					? rTheme.theme?.gluestack.tokens.colors.light900
-					: rTheme.theme?.gluestack.tokens.colors.dark900
+					: rTheme.theme?.gluestack.tokens.colors.light100
 			}
 		/>
 	)

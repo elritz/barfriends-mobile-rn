@@ -1,6 +1,6 @@
 import { Form } from './_layout'
 import { useReactiveVar } from '@apollo/client'
-import { Button, Text } from '@components/core'
+import { Button, Text } from '@gluestack-ui/themed'
 import { CountryResponseObject, useGetAllCountriesQuery } from '@graphql/generated'
 import { ThemeReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
@@ -99,8 +99,8 @@ export default function SearchCountry() {
 											String(rTheme.theme?.gluestack.tokens.colors.light300),
 									  ]
 									: [
-											String(rTheme.theme?.gluestack.tokens.colors.dark100),
-											String(rTheme.theme?.gluestack.tokens.colors.dark300),
+											String(rTheme.theme?.gluestack.tokens.colors.light900),
+											String(rTheme.theme?.gluestack.tokens.colors.light700),
 									  ]
 							}
 						/>
@@ -146,7 +146,7 @@ export default function SearchCountry() {
 						bg: watch('country.name') === item.name ? '$primary500' : '$light100',
 					},
 					_dark: {
-						bg: watch('country.name') === item.name ? '$primary500' : '$dark100',
+						bg: watch('country.name') === item.name ? '$primary500' : '$light800',
 					},
 				}}
 				rounded={'$md'}

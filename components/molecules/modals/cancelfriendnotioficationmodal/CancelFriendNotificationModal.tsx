@@ -1,4 +1,4 @@
-import { Button, Modal, Text } from '@components/core'
+import { Button, Modal, Text } from '@gluestack-ui/themed'
 import { GET_RELATIONSHIP_FRIENDREQUESTSTATUS_QUERY } from '@graphql/DM/profiling/friending/index.query'
 import { NOTIFICATIONS_QUERY } from '@graphql/DM/profiling/notifications/index.query'
 import { useDeleteFriendRequestMutation } from '@graphql/generated'

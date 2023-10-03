@@ -1,4 +1,4 @@
-import { Center, HStack, VStack } from '@components/core'
+import { Center, HStack, VStack } from '@gluestack-ui/themed'
 import { Skeleton } from 'moti/skeleton'
 import { Dimensions } from 'react-native'
 

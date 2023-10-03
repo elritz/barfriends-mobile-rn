@@ -1,6 +1,6 @@
 import { Form } from './_layout'
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, HStack, Heading, Text, VStack } from '@components/core'
+import { Box, Button, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import { LOCAL_STORAGE_SEARCH_AREA } from '@constants/StorageConstants'
 import { LocalStoragePreferenceSearchAreaType } from '@ctypes/preferences'
 import { CityResponseObject, useGetAllCitiesByStateQuery } from '@graphql/generated'
@@ -126,8 +126,8 @@ export default function SearchStateCities() {
 												String(rTheme.theme?.gluestack.tokens.colors.light300),
 										  ]
 										: [
-												String(rTheme.theme?.gluestack.tokens.colors.dark100),
-												String(rTheme.theme?.gluestack.tokens.colors.dark300),
+												String(rTheme.theme?.gluestack.tokens.colors.light900),
+												String(rTheme.theme?.gluestack.tokens.colors.light700),
 										  ]
 								}
 							/>
@@ -189,7 +189,7 @@ export default function SearchStateCities() {
 						bg: watch('city.name') === item.name ? '$primary500' : '$light50',
 					},
 					_dark: {
-						bg: watch('city.name') === item.name ? '$primary500' : '$dark100',
+						bg: watch('city.name') === item.name ? '$primary500' : '$light800',
 					},
 				}}
 				rounded={'$md'}

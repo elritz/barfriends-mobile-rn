@@ -1,4 +1,4 @@
-import { Box, Text } from '@components/core'
+import { Box, Text } from '@gluestack-ui/themed'
 import { Image } from 'expo-image'
 import { memo } from 'react'
 

@@ -26,7 +26,7 @@ export const ThemeEmptyState: ThemeInterface = {
 			Appearance.getColorScheme() === 'light'
 				? defaulttheme.reactnavigation.light
 				: defaulttheme.reactnavigation.dark,
-		gluestack: config.theme,
+		gluestack: config,
 	},
 }
 

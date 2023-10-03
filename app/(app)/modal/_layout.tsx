@@ -1,7 +1,7 @@
 import { useReactiveVar } from '@apollo/client'
 import LogoTransparent from '@assets/images/company/LogoTransparent'
 import ChevronBackArrow from '@components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
-import { Button, HStack, Text } from '@components/core'
+import { Button, HStack, Text } from '@gluestack-ui/themed'
 import { Emojimood, Story, useUpdateStoryEmojimoodMutation } from '@graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import { BlurView } from 'expo-blur'
@@ -86,7 +86,7 @@ export default () => {
 						headerTransparent: true,
 						header: () => {
 							return (
-								<BlurView tint={rTheme.deviceColorScheme === 'light' ? 'light' : 'dark'} intensity={70}>
+								<BlurView tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'} intensity={70}>
 									<HStack
 										justifyContent='space-between'
 										alignItems='center'

@@ -13,7 +13,7 @@ export default function _layout() {
 					backgroundColor:
 						rThemeVar.colorScheme === 'light'
 							? rThemeVar.theme?.gluestack.tokens.colors.light50
-							: rThemeVar.theme?.gluestack.tokens.colors.dark50,
+							: rThemeVar.theme?.gluestack.tokens.colors.light900,
 				},
 				headerTitle: () => <LogoTransparent height={30} width={192} />,
 				headerLeft: () => <ChevronBackArrow />,

@@ -3,8 +3,6 @@ import TabBarIcon from '@components/atoms/icons/tabbaricon/TabBarIcon'
 import { TabProps } from '@components/atoms/icons/tabbaricon/TabBarIcon'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { ThemeReactiveVar } from '@reactive'
-import { MotiPressable } from 'moti/interactions'
-import { useMemo } from 'react'
 
 const DevelopmentTab = (props: TabProps) => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
@@ -19,9 +17,7 @@ const DevelopmentTab = (props: TabProps) => {
 					}}
 					size={38}
 					name='dev-to'
-					color={
-						!props.focused ? (rTheme.deviceColorScheme === 'dark' ? 'white' : 'black') : props.color
-					}
+					color={!props.focused ? (rTheme.colorScheme === 'dark' ? 'white' : 'black') : props.color}
 				/>
 			}
 		/>

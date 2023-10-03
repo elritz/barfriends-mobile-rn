@@ -1,4 +1,4 @@
-import { darkCompanyColors, lightCompanyColors } from '../colors'
+import { darkCompanyColors, lightCompanyColors } from '../companycolors'
 import * as colors from '@assets/theme/colors'
 import { revelCompanyColors } from '@assets/theme/default/revel'
 

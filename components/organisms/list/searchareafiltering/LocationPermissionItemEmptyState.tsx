@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { HStack, Pressable, Text } from '@components/core'
+import { HStack, Pressable, Text } from '@gluestack-ui/themed'
 import { LOCAL_STORAGE_SEARCH_AREA } from '@constants/StorageConstants'
 import { LocalStoragePreferenceSearchAreaType } from '@ctypes/preferences'
 import AsyncStorage from '@react-native-async-storage/async-storage'

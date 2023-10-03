@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Button } from '@components/core'
+import { Button } from '@gluestack-ui/themed'
 import { GET_LIVE_VENUE_TOTALS_QUERY } from '@graphql/DM/profiling/out/index.query'
 import {
 	AuthorizationDeviceProfile,

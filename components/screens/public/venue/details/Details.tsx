@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Badge, Box, Button, HStack, Text, VStack } from '@components/core'
+import { Badge, Box, Button, HStack, Text, VStack } from '@gluestack-ui/themed'
 import { useCurrentVenueQuery } from '@graphql/generated'
 import { SearchAreaReactiveVar } from '@reactive'
 import { useLocalSearchParams } from 'expo-router'

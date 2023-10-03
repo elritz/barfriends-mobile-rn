@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Input } from '@components/core'
+import { Input } from '@gluestack-ui/themed'
 import { ThemeReactiveVar } from '@reactive'
 import { useState } from 'react'
 import { View } from 'react-native'
@@ -26,12 +26,12 @@ export default ({}: CurrentPlacceScreenProps) => {
 						color:
 							rTheme.colorScheme === 'light'
 								? rTheme.theme?.gluestack.tokens.colors.light900
-								: rTheme.theme?.gluestack.tokens.colors.dark900,
+								: rTheme.theme?.gluestack.tokens.colors.light100,
 						borderBottomColor: 'transparent',
 						backgroundColor:
 							rTheme.colorScheme === 'light'
 								? rTheme.theme?.gluestack.tokens.colors.light50
-								: rTheme.theme?.gluestack.tokens.colors.dark50,
+								: rTheme.theme?.gluestack.tokens.colors.light900,
 					}}
 					placeholder='Search...'
 					onChangeText={(text: string) => setSearch(text)}

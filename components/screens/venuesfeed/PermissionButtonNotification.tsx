@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Button } from '@components/core'
+import { Button } from '@gluestack-ui/themed'
 import { PermissionNotificationReactiveVar } from '@reactive'
 import useSetSearchAreaWithLocation from '@util/hooks/searcharea/useSetSearchAreaWithLocation'
 import { useRouter } from 'expo-router'

@@ -1,4 +1,4 @@
-import { VStack, Text, Button, Pressable, Heading, Box } from '@components/core'
+import { VStack, Text, Button, Pressable, Heading, Box } from '@gluestack-ui/themed'
 import DeviceManagerProfiles from '@components/organisms/list/DeviceManagerProfiles'
 import GetSignInUpText from '@util/helpers/data/SignupinText'
 import { useRouter } from 'expo-router'

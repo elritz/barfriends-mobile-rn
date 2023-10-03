@@ -1,11 +1,11 @@
 // TODO: FX() Settings still needs to be done
 import { useReactiveVar } from '@apollo/client'
-import { Button, HStack, VStack } from '@components/core'
 import SearchInput from '@components/molecules/search/searchinput/SearchInput'
 import { SEARCH_BAR_HEIGHT } from '@constants/ReactNavigationConstants'
 import { Ionicons, Entypo } from '@expo/vector-icons'
+import { Button, HStack, VStack } from '@gluestack-ui/themed'
 import { ThemeReactiveVar } from '@reactive'
-import { Stack, router } from 'expo-router'
+import { Stack, router, useGlobalSearchParams, useRouter } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default () => {
@@ -13,6 +13,7 @@ export default () => {
 	const insets = useSafeAreaInsets()
 	const HEADER_HEIGHT = SEARCH_BAR_HEIGHT + 15
 	const h = insets.top + HEADER_HEIGHT
+	const params = useGlobalSearchParams()
 
 	return (
 		<Stack>
@@ -36,7 +37,7 @@ export default () => {
 							}}
 							rounded={'$full'}
 							size='xs'
-							bg={rTheme.colorScheme === 'light' ? '$light50' : '$dark50'}
+							bg={rTheme.colorScheme === 'light' ? '$light50' : '$light900'}
 						>
 							<Ionicons
 								name='md-chevron-back-outline'
@@ -44,7 +45,7 @@ export default () => {
 								color={
 									rTheme.colorScheme === 'light'
 										? rTheme.theme?.gluestack.tokens.colors.light900
-										: rTheme.theme?.gluestack.tokens.colors.dark900
+										: rTheme.theme?.gluestack.tokens.colors.light100
 								}
 							/>
 						</Button>
@@ -56,7 +57,7 @@ export default () => {
 							size='xs'
 							my={'$2'}
 							mr={'$2'}
-							bg={rTheme.colorScheme === 'light' ? '$light50' : '$dark50'}
+							bg={rTheme.colorScheme === 'light' ? '$light50' : '$light900'}
 						>
 							<Entypo
 								name='dots-three-vertical'
@@ -64,7 +65,7 @@ export default () => {
 								color={
 									rTheme.colorScheme === 'light'
 										? rTheme.theme?.gluestack.tokens.colors.light900
-										: rTheme.theme?.gluestack.tokens.colors.dark900
+										: rTheme.theme?.gluestack.tokens.colors.light100
 								}
 							/>
 						</Button>
@@ -77,9 +78,9 @@ export default () => {
 				name={'personal'}
 				options={{
 					headerShown: true,
-					// headerTransparent: true,
+					headerTransparent: true,
 					headerStyle: {
-						backgroundColor: 'transparent',
+						// backgroundColor: 'transparent',
 					},
 					headerLeft: () => (
 						<HStack
@@ -93,7 +94,7 @@ export default () => {
 							mb={'$1'}
 						>
 							<Button
-								bg={rTheme.colorScheme === 'light' ? '$light50' : '$dark50'}
+								bg={rTheme.colorScheme === 'light' ? '$light50' : '$light900'}
 								rounded={'$full'}
 								onPress={() => {
 									router.canGoBack()
@@ -109,7 +110,7 @@ export default () => {
 									color={
 										rTheme.colorScheme === 'light'
 											? rTheme.theme?.gluestack.tokens.colors.light900
-											: rTheme.theme?.gluestack.tokens.colors.dark900
+											: rTheme.theme?.gluestack.tokens.colors.light100
 									}
 								/>
 							</Button>
@@ -118,16 +119,24 @@ export default () => {
 					headerRight: () => (
 						<Button
 							mb={'$1'}
-							bg={rTheme.colorScheme === 'light' ? '$light50' : '$dark50'}
+							bg={rTheme.colorScheme === 'light' ? '$light50' : '$light900'}
 							rounded={'$full'}
 							onPress={() => router.back()}
 							mr={'$2'}
 							py={'$1'}
 						>
-							<Entypo name={'dots-three-vertical'} size={20} />
+							<Entypo
+								name={'dots-three-vertical'}
+								size={20}
+								color={
+									rTheme.colorScheme === 'light'
+										? rTheme.theme?.gluestack.tokens.colors.light900
+										: rTheme.theme?.gluestack.tokens.colors.light100
+								}
+							/>
 						</Button>
 					),
-					headerTitle: '',
+					headerTitle: '⭐️',
 				}}
 			/>
 			<Stack.Screen
@@ -150,7 +159,7 @@ export default () => {
 								size='xs'
 								my={'$2'}
 								mr={'$2'}
-								bg={rTheme.colorScheme === 'light' ? '$light50' : '$dark50'}
+								bg={rTheme.colorScheme === 'light' ? '$light50' : '$light900'}
 							>
 								<Ionicons name='md-chevron-back-outline' size={30} />
 							</Button>
@@ -160,7 +169,7 @@ export default () => {
 						backgroundColor:
 							rTheme.colorScheme === 'light'
 								? rTheme.theme?.gluestack.tokens.colors.light100
-								: rTheme.theme?.gluestack.tokens.colors.dark100,
+								: rTheme.theme?.gluestack.tokens.colors.light900,
 					},
 					headerTransparent: true,
 					header: () => {
@@ -171,7 +180,7 @@ export default () => {
 									pt: insets.top,
 									h,
 									_light: { bg: '$light100' },
-									_dark: { bg: '$dark50' },
+									_dark: { bg: '$light900' },
 								}}
 								pb={'$2'}
 							>

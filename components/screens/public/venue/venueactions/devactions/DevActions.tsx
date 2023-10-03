@@ -1,7 +1,7 @@
 import JoinCard from './joincard/JoinCard'
 import LeaveCard from './leavecard/LeaveCard'
 import TotalCard from './totalcard/TotalCard'
-import { Box, HStack, Heading, Pressable, Text, VStack } from '@components/core'
+import { Box, HStack, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { useState } from 'react'
 
 export default function DevActions() {

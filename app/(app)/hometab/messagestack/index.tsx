@@ -1,4 +1,4 @@
-import { Box, Heading, Text } from '@components/core'
+import { Box, Heading, Text } from '@gluestack-ui/themed'
 import HorizontalMessageNotification from '@components/molecules/notifications/message/HorizontalMessageNotification'
 import { useGetConversationsQuery } from '@graphql/generated'
 import { FlashList } from '@shopify/flash-list'

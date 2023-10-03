@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Pressable, Button, Text } from '@components/core'
+import { Pressable, Button, Text } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
 import {
 	AuthorizationDeviceProfile,
@@ -110,7 +110,7 @@ export default () => {
 												backgroundColor:
 													rTheme.colorScheme === 'light'
 														? rTheme.theme?.gluestack.tokens.colors.light900
-														: rTheme.theme?.gluestack.tokens.colors.dark900,
+														: rTheme.theme?.gluestack.tokens.colors.light100,
 												width: '95%',
 												padding: 15,
 												marginVertical: 5,
@@ -131,7 +131,7 @@ export default () => {
 													color={
 														rTheme.colorScheme === 'light'
 															? rTheme.theme?.gluestack.tokens.colors.light900
-															: rTheme.theme?.gluestack.tokens.colors.dark900
+															: rTheme.theme?.gluestack.tokens.colors.light100
 													}
 												/>
 											)}
@@ -151,7 +151,7 @@ export default () => {
 						backgroundColor:
 							rTheme.colorScheme === 'light'
 								? rTheme.theme?.gluestack.tokens.colors.light900
-								: rTheme.theme?.gluestack.tokens.colors.dark900,
+								: rTheme.theme?.gluestack.tokens.colors.light100,
 						position: 'absolute',
 						bottom: 0,
 						flexDirection: 'row',
@@ -168,7 +168,7 @@ export default () => {
 						borderRadius={14}
 						sx={{
 							_dark: {
-								bg: '$dark500',
+								bg: '$light9000',
 							},
 							_light: {
 								bg: '$light500',

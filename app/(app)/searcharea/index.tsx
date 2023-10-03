@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, HStack, Heading, Text, VStack } from '@components/core'
+import { Box, Button, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import LocationPermissionItemEmptyState from '@components/organisms/list/searchareafiltering/LocationPermissionItemEmptyState'
 import SearchAreaLocationPermissionItem from '@components/organisms/list/searchareafiltering/SearchAreaLocationPermissionItem'
 import { LOCAL_STORAGE_SEARCH_AREA } from '@constants/StorageConstants'
@@ -228,7 +228,7 @@ export default () => {
 											color={
 												rTheme.colorScheme === 'light'
 													? rTheme.theme?.gluestack.tokens.colors.light700
-													: rTheme.theme?.gluestack.tokens.colors.dark900
+													: rTheme.theme?.gluestack.tokens.colors.light100
 											}
 											name='ios-arrow-forward'
 											size={27}

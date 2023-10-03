@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, HStack, Heading, Text } from '@components/core'
+import { Box, HStack, Heading, Text } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
 import {
 	AuthorizationDeviceProfile,
@@ -102,7 +102,7 @@ export default () => {
 						color={
 							rTheme.colorScheme === 'light'
 								? rTheme.theme?.gluestack.tokens.colors.light900
-								: rTheme.theme?.gluestack.tokens.colors.dark900
+								: rTheme.theme?.gluestack.tokens.colors.light100
 						}
 					/>
 					<Text fontWeight={'$bold'} fontSize={'$lg'}>
@@ -126,7 +126,7 @@ export default () => {
 						color={
 							rTheme.colorScheme === 'light'
 								? rTheme.theme?.gluestack.tokens.colors.light900
-								: rTheme.theme?.gluestack.tokens.colors.dark900
+								: rTheme.theme?.gluestack.tokens.colors.light100
 						}
 						name='notifications-circle-outline'
 					/>
@@ -148,7 +148,7 @@ export default () => {
 							color={
 								rTheme.colorScheme === 'light'
 									? rTheme.theme?.gluestack.tokens.colors.light900
-									: rTheme.theme?.gluestack.tokens.colors.dark900
+									: rTheme.theme?.gluestack.tokens.colors.light100
 							}
 						/>
 						{/* <MaterialCommunityIcons name="" size={24} color="black" /> */}
@@ -174,7 +174,7 @@ export default () => {
 							color={
 								rTheme.colorScheme === 'light'
 									? rTheme.theme?.gluestack.tokens.colors.light900
-									: rTheme.theme?.gluestack.tokens.colors.dark900
+									: rTheme.theme?.gluestack.tokens.colors.light100
 							}
 						/>
 
@@ -198,7 +198,7 @@ export default () => {
 						color={
 							rTheme.colorScheme === 'light'
 								? rTheme.theme?.gluestack.tokens.colors.light900
-								: rTheme.theme?.gluestack.tokens.colors.dark900
+								: rTheme.theme?.gluestack.tokens.colors.light100
 						}
 						size={30}
 					/>

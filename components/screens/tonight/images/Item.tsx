@@ -1,6 +1,6 @@
 import { MARGIN, SIZE } from './Config'
 import { useReactiveVar } from '@apollo/client'
-import { Box, Text } from '@components/core'
+import { Box, Text } from '@gluestack-ui/themed'
 import { MaterialIcons } from '@expo/vector-icons'
 import { PermissionMediaReactiveVar, ThemeReactiveVar } from '@reactive'
 import { useRouter } from 'expo-router'
@@ -57,7 +57,7 @@ const Item = ({ uri, onPress }: TileProps) => {
 							color={
 								rTheme.colorScheme === 'light'
 									? rTheme.theme?.gluestack.tokens.colors.light900
-									: rTheme.theme?.gluestack.tokens.colors.dark900
+									: rTheme.theme?.gluestack.tokens.colors.light100
 							}
 						/>
 						<Text fontSize={'$xl'}>Add photo</Text>

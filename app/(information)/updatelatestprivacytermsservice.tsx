@@ -1,5 +1,5 @@
 // TODO: FN(What functionality was suppose to be here)
-import { Box, Button, HStack, Heading, Text } from '@components/core'
+import { Box, Button, HStack, Heading, Text } from '@gluestack-ui/themed'
 import { useUpdateProfilePrivacyTermsDocumentUpdateMutation } from '@graphql/generated'
 import { Link, useRouter } from 'expo-router'
 

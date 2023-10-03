@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
 import CompanyCoasterLogoDynamic from '@assets/images/company/CompanyCoasterLogoDynamic'
-import { Box, Heading, Pressable, Spinner, Text, VStack } from '@components/core'
+import { Box, Heading, Pressable, Spinner, Text, VStack } from '@gluestack-ui/themed'
 import { Feather } from '@expo/vector-icons'
 import {
 	AuthorizationDeviceProfile,

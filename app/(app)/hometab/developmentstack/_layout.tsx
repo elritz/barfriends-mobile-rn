@@ -1,5 +1,5 @@
 import ChevronBackArrow from '@components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
-import { Box, Text, VStack } from '@components/core'
+import { Box, Text, VStack } from '@gluestack-ui/themed'
 import { SEARCH_BAR_HEIGHT } from '@constants/ReactNavigationConstants'
 import { ENVIRONMENT } from '@env'
 import { Stack } from 'expo-router'
@@ -27,7 +27,7 @@ export default () => {
 									pt: insets.top,
 									h,
 									_light: { bg: '$light100' },
-									_dark: { bg: '$dark50' },
+									_dark: { bg: '$light900' },
 								}}
 								pb={'$2'}
 							>

@@ -1,4 +1,4 @@
-import { Heading } from '@components/core'
+import { Heading } from '@gluestack-ui/themed'
 import { FlashList } from '@shopify/flash-list'
 import * as MediaLibrary from 'expo-media-library'
 import { useState } from 'react'

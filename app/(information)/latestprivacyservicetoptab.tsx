@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Text } from '@components/core'
+import { Text } from '@gluestack-ui/themed'
 import Privacy from '@components/screens/information/privacyserviceterms/Privacy'
 import Service from '@components/screens/information/privacyserviceterms/Service'
 import { ThemeReactiveVar } from '@reactive'
@@ -31,7 +31,7 @@ export default () => {
 			style={{
 				backgroundColor:
 					rTheme.colorScheme === 'dark'
-						? rTheme.theme?.gluestack.tokens.colors.dark50
+						? rTheme.theme?.gluestack.tokens.colors.light900
 						: rTheme.theme?.gluestack.tokens.colors.light50,
 			}}
 			renderLabel={({ route, focused, color }) => {

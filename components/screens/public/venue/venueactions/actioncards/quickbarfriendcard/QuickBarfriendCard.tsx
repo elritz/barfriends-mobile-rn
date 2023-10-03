@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Heading, Icon, Pressable, SlashIcon, VStack } from '@components/core'
+import { Box, Button, Heading, Icon, Pressable, SlashIcon, VStack } from '@gluestack-ui/themed'
 import { useGetSecureFriendQrCodeDataLazyQuery } from '@graphql/generated'
 import { AuthorizationReactiveVar, PermissionCameraReactiveVar } from '@reactive'
 import { useDisclose } from '@util/hooks/useDisclose'

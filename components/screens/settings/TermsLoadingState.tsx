@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { VStack } from '@components/core'
+import { VStack } from '@gluestack-ui/themed'
 import { ThemeReactiveVar } from '@reactive'
 import { Skeleton } from 'moti/skeleton'
 
@@ -20,8 +20,8 @@ export default function TermsLoadingState() {
 								String(rTheme.theme?.gluestack.tokens.colors.light300),
 						  ]
 						: [
-								String(rTheme.theme?.gluestack.tokens.colors.dark100),
-								String(rTheme.theme?.gluestack.tokens.colors.dark300),
+								String(rTheme.theme?.gluestack.tokens.colors.light900),
+								String(rTheme.theme?.gluestack.tokens.colors.light700),
 						  ]
 				}
 			/>
@@ -40,8 +40,8 @@ export default function TermsLoadingState() {
 										String(rTheme.theme?.gluestack.tokens.colors.light300),
 								  ]
 								: [
-										String(rTheme.theme?.gluestack.tokens.colors.dark100),
-										String(rTheme.theme?.gluestack.tokens.colors.dark300),
+										String(rTheme.theme?.gluestack.tokens.colors.light900),
+										String(rTheme.theme?.gluestack.tokens.colors.light700),
 								  ]
 						}
 					/>

@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, HStack, Heading, Pressable, VStack, Button, Text } from '@components/core'
+import { Box, HStack, Heading, Pressable, VStack, Button, Text } from '@gluestack-ui/themed'
 // import CancelFriendNotificationModal from '@components/molecules/modals/cancelfriendnotioficationmodal/CancelFriendNotificationModal'
 import { Ionicons } from '@expo/vector-icons'
 import { NOTIFICATIONS_QUERY } from '@graphql/DM/profiling/notifications/index.query'

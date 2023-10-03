@@ -1,4 +1,4 @@
-import { Box, Heading, VStack } from '@components/core'
+import { Box, Heading, VStack } from '@gluestack-ui/themed'
 import { Profile } from '@graphql/generated'
 import { BlurView } from 'expo-blur'
 import { useRouter } from 'expo-router'

@@ -1,4 +1,4 @@
-import { Button, Text } from '@components/core'
+import { Button, Text } from '@gluestack-ui/themed'
 import { Stack, router } from 'expo-router'
 
 export default () => {

@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, HStack, Heading, Pressable, Text, VStack } from '@components/core'
+import { Box, Button, HStack, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import InformationJoinVenue from '@components/molecules/information/informationjoinvenue'
 import Details from '@components/screens/public/venue/details/Details'
 import PersonalAtVenue from '@components/screens/public/venue/peopleatvenue/PersonalAtVenue'
@@ -93,8 +93,8 @@ export default () => {
 									String(rTheme.theme?.gluestack.tokens.colors.light300),
 							  ]
 							: [
-									String(rTheme.theme?.gluestack.tokens.colors.dark100),
-									String(rTheme.theme?.gluestack.tokens.colors.dark300),
+									String(rTheme.theme?.gluestack.tokens.colors.light900),
+									String(rTheme.theme?.gluestack.tokens.colors.light700),
 							  ]
 					}
 				/>
@@ -112,8 +112,8 @@ export default () => {
 										String(rTheme.theme?.gluestack.tokens.colors.light300),
 								  ]
 								: [
-										String(rTheme.theme?.gluestack.tokens.colors.dark100),
-										String(rTheme.theme?.gluestack.tokens.colors.dark300),
+										String(rTheme.theme?.gluestack.tokens.colors.light900),
+										String(rTheme.theme?.gluestack.tokens.colors.light700),
 								  ]
 						}
 					/>
@@ -130,8 +130,8 @@ export default () => {
 										String(rTheme.theme?.gluestack.tokens.colors.light300),
 								  ]
 								: [
-										String(rTheme.theme?.gluestack.tokens.colors.dark100),
-										String(rTheme.theme?.gluestack.tokens.colors.dark300),
+										String(rTheme.theme?.gluestack.tokens.colors.light900),
+										String(rTheme.theme?.gluestack.tokens.colors.light700),
 								  ]
 						}
 					/>
@@ -152,8 +152,8 @@ export default () => {
 												String(rTheme.theme?.gluestack.tokens.colors.light300),
 										  ]
 										: [
-												String(rTheme.theme?.gluestack.tokens.colors.dark100),
-												String(rTheme.theme?.gluestack.tokens.colors.dark300),
+												String(rTheme.theme?.gluestack.tokens.colors.light900),
+												String(rTheme.theme?.gluestack.tokens.colors.light700),
 										  ]
 								}
 							/>
@@ -176,8 +176,8 @@ export default () => {
 												String(rTheme.theme?.gluestack.tokens.colors.light300),
 										  ]
 										: [
-												String(rTheme.theme?.gluestack.tokens.colors.dark100),
-												String(rTheme.theme?.gluestack.tokens.colors.dark300),
+												String(rTheme.theme?.gluestack.tokens.colors.light900),
+												String(rTheme.theme?.gluestack.tokens.colors.light700),
 										  ]
 								}
 							/>
@@ -197,8 +197,8 @@ export default () => {
 									String(rTheme.theme?.gluestack.tokens.colors.light300),
 							  ]
 							: [
-									String(rTheme.theme?.gluestack.tokens.colors.dark100),
-									String(rTheme.theme?.gluestack.tokens.colors.dark300),
+									String(rTheme.theme?.gluestack.tokens.colors.light900),
+									String(rTheme.theme?.gluestack.tokens.colors.light700),
 							  ]
 					}
 				/>
@@ -241,7 +241,7 @@ export default () => {
 											color: '$light600',
 										},
 										_dark: {
-											color: '$dark600',
+											color: '$light400',
 										},
 									}}
 									lineHeight={'$sm'}
@@ -263,7 +263,7 @@ export default () => {
 									color={
 										rTheme.colorScheme === 'light'
 											? rTheme.theme?.gluestack.tokens.colors.light900
-											: rTheme.theme?.gluestack.tokens.colors.dark900
+											: rTheme.theme?.gluestack.tokens.colors.light100
 									}
 								/>
 							</Button>

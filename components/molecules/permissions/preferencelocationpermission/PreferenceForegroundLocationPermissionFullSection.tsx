@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Divider, HStack, Heading, Text, VStack } from '@components/core'
+import { Box, Button, Divider, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import ForegroundLocationNextAskModal from '@components/molecules/modals/asks/foregroundlocationnextaskmodal'
 import { LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION } from '@constants/StorageConstants'
 import { LocalStoragePreferenceAskForegroundLocationPermissionType } from '@ctypes/preferences'

@@ -1,7 +1,7 @@
 import AskForegroundLocationPermission from './variants/AskLocationPermission'
 import CurrentLocationFromVenueDistance from './variants/CurrentLocationFromVenueDistance'
 import { useReactiveVar } from '@apollo/client'
-import { Box } from '@components/core'
+import { Box } from '@gluestack-ui/themed'
 import { PermissionForegroundLocationReactiveVar } from '@reactive'
 
 export default function DistanceCard() {

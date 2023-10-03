@@ -1,4 +1,4 @@
-import { Button, Heading, Text, VStack } from '@components/core'
+import { Button, Heading, Text, VStack } from '@gluestack-ui/themed'
 import { useRouter } from 'expo-router'
 
 export default function AskForegroundLocationPermission() {

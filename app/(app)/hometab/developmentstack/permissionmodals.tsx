@@ -1,4 +1,4 @@
-import { Divider, HStack, Heading, Pressable } from '@components/core'
+import { Divider, HStack, Heading, Pressable } from '@gluestack-ui/themed'
 import { FlashList } from '@shopify/flash-list'
 import { useRouter } from 'expo-router'
 

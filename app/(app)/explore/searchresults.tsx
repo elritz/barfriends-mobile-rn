@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Text } from '@components/core'
+import { Text } from '@gluestack-ui/themed'
 import SearchAccounts from '@components/screens/search/textsearchtabs/SearchAccounts'
 import SearchVenues from '@components/screens/search/textsearchtabs/SearchVenues'
 import { ThemeReactiveVar } from '@reactive'
@@ -34,7 +34,7 @@ export default function searchresulttabs() {
 			style={{
 				backgroundColor:
 					rTheme.colorScheme === 'dark'
-						? rTheme.theme?.gluestack.tokens.colors.dark50
+						? rTheme.theme?.gluestack.tokens.colors.light900
 						: rTheme.theme?.gluestack.tokens.colors.light50,
 			}}
 			renderLabel={({ route, focused, color }) => {

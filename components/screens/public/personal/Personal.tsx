@@ -1,5 +1,5 @@
 import Actions from './actions/Actions'
-import { HStack, VStack } from '@components/core'
+import { HStack, VStack } from '@gluestack-ui/themed'
 import CurrentVenue from '@components/screens/public/personal/currentvenue/CurrentVenue'
 import Relationships from '@components/screens/public/personal/relationship/Relationships'
 import { PersonalProfileStackParamList } from '@ctypes/app'

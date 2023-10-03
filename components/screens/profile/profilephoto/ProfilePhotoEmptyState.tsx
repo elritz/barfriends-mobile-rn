@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Center, Pressable } from '@components/core'
+import { Box, Center, Pressable } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
 import { ThemeReactiveVar } from '@reactive'
 import * as ImagePicker from 'expo-image-picker'
@@ -32,7 +32,7 @@ export default function ProfilePhotoEmptyState() {
 					bg: '$light300',
 				},
 				_dark: {
-					bg: '$dark100',
+					bg: '$light800',
 				},
 			}}
 			rounded={'$md'}
@@ -50,7 +50,7 @@ export default function ProfilePhotoEmptyState() {
 						color={
 							rTheme.colorScheme === 'light'
 								? rTheme.theme?.gluestack.tokens.colors.light900
-								: rTheme.theme?.gluestack.tokens.colors.dark900
+								: rTheme.theme?.gluestack.tokens.colors.light100
 						}
 					/>
 				</Center>
@@ -60,7 +60,7 @@ export default function ProfilePhotoEmptyState() {
 							borderColor: '$light700',
 						},
 						_dark: {
-							borderColor: '$dark700',
+							borderColor: '$light400',
 						},
 						bottom: -15,
 						right: -15,
@@ -76,7 +76,7 @@ export default function ProfilePhotoEmptyState() {
 						color={
 							rTheme.colorScheme === 'light'
 								? rTheme.theme?.gluestack.tokens.colors.light900
-								: rTheme.theme?.gluestack.tokens.colors.dark900
+								: rTheme.theme?.gluestack.tokens.colors.light100
 						}
 						size={26}
 						style={{

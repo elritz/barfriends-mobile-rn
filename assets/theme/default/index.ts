@@ -1,6 +1,10 @@
-import { darkCompanyColors, lightCompanyColors } from './colors'
-import gluestack from './gluestack'
-import { DarkReactNavigationTheme, LightReactNavigationTheme } from './reactnavigation'
+import { darkCompanyColors, lightCompanyColors } from '@assets/theme/default/companycolors'
+import gluestack from '@assets/theme/default/gluestack'
+import {
+	DarkReactNavigationTheme,
+	LightReactNavigationTheme,
+} from '@assets/theme/default/reactnavigation'
+// import restyle from '@assets/theme/default/restyle'
 
 export const defaulttheme = {
 	revel: {
@@ -12,4 +16,5 @@ export const defaulttheme = {
 		light: LightReactNavigationTheme,
 		dark: DarkReactNavigationTheme,
 	},
+	// restyle,
 } as const

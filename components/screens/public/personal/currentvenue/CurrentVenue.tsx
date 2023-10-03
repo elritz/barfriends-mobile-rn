@@ -1,4 +1,4 @@
-import { Box, Button, Heading, Text, VStack } from '@components/core'
+import { Box, Button, Heading, Text, VStack } from '@gluestack-ui/themed'
 
 export default function CurrentVenue() {
 	return (

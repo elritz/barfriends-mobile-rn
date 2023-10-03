@@ -1,4 +1,4 @@
-import { Box, Heading } from '@components/core'
+import { Box, Heading } from '@gluestack-ui/themed'
 
 type Props = {
 	total: number

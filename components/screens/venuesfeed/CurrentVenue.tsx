@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Divider, HStack, Heading, Pressable, Text } from '@components/core'
+import { Box, Button, Divider, HStack, Heading, Pressable, Text } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
 import { useCurrentVenueQuery } from '@graphql/generated'
 import { AuthorizationReactiveVar } from '@reactive'
@@ -106,7 +106,7 @@ export default function CurrentVenue() {
 								bg: '$light100',
 							},
 							_dark: {
-								bg: '$dark100',
+								bg: '$light800',
 							},
 							h: 75,
 						}}
@@ -132,7 +132,7 @@ export default function CurrentVenue() {
 											bg: '$light100',
 										},
 										_dark: {
-											bg: '$dark100',
+											bg: '$light800',
 										},
 									}}
 									rounded={'$lg'}
@@ -152,7 +152,7 @@ export default function CurrentVenue() {
 													bg: '$light200',
 												},
 												_dark: {
-													bg: '$dark200',
+													bg: '$light700',
 												},
 											}}
 											rounded={'$lg'}

@@ -1,4 +1,4 @@
-import { Button, Modal, Text } from '@components/core'
+import { Button, Modal, Text } from '@gluestack-ui/themed'
 import { useRouter } from 'expo-router'
 
 type Props = {

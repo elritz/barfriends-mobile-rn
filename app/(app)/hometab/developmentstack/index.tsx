@@ -1,6 +1,5 @@
 // TODO: FN(Change theme functionality with database and local storage save)
 import { useReactiveVar } from '@apollo/client'
-import { Box, Divider, HStack, Heading, Pressable, Spinner, Text, VStack } from '@components/core'
 import { InitialStateSearchArea } from '@constants/Preferences'
 import {
 	AUTHORIZATION,
@@ -10,9 +9,19 @@ import {
 import {
 	DEVELOPMENT_FOREGROUND_LOCATION_TASK_NAME,
 	DEVELOPMENT_BACKGROUND_LOCATION_TASK_NAME,
-} from '@constants/TaskManager'
+} from '@constants/TaskManagerConstants'
 import { ENVIRONMENT } from '@env'
 import { Feather, Ionicons } from '@expo/vector-icons'
+import {
+	Box,
+	Divider,
+	HStack,
+	Heading,
+	Pressable,
+	Spinner,
+	Text,
+	VStack,
+} from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { AuthorizationReactiveVar, SearchAreaReactiveVar, ThemeReactiveVar } from '@reactive'
 import { secureStorageItemDelete, secureStorageItemRead } from '@util/hooks/local/useSecureStorage'
@@ -344,7 +353,7 @@ export default () => {
 											bg: isPressed ? '$light100' : 'transparent',
 										},
 										_dark: {
-											bg: isPressed ? '$dark100' : 'transparent',
+											bg: isPressed ? '$light800' : 'transparent',
 										},
 									}}
 									height={ITEM_HEIGHT}
@@ -358,7 +367,7 @@ export default () => {
 											color={
 												rTheme.colorScheme === 'light'
 													? rTheme.theme?.gluestack.tokens.colors.light900
-													: rTheme.theme?.gluestack.tokens.colors.dark900
+													: rTheme.theme?.gluestack.tokens.colors.light100
 											}
 										/>
 										<Heading fontSize={'$lg'}>{item.title}</Heading>
@@ -380,7 +389,7 @@ export default () => {
 											bg: isPressed ? '$light100' : 'transparent',
 										},
 										_dark: {
-											bg: isPressed ? '$dark100' : 'transparent',
+											bg: isPressed ? '$light800' : 'transparent',
 										},
 									}}
 									height={ITEM_HEIGHT}
@@ -395,7 +404,7 @@ export default () => {
 												color={
 													rTheme.colorScheme === 'light'
 														? rTheme.theme?.gluestack.tokens.colors.light900
-														: rTheme.theme?.gluestack.tokens.colors.dark900
+														: rTheme.theme?.gluestack.tokens.colors.light100
 												}
 											/>
 											<Heading fontSize={'$lg'}>{item.title}</Heading>
@@ -407,7 +416,7 @@ export default () => {
 												style={{ marginRight: 3 }}
 												name='trash'
 												size={18}
-												color={rTheme.theme?.gluestack.tokens.colors.danger500}
+												color={rTheme.theme?.gluestack.tokens.colors.error500}
 											/>
 										)}
 									</HStack>

@@ -8,7 +8,7 @@ import {
 	Pressable,
 	RemoveIcon,
 	Text,
-} from '@components/core'
+} from '@gluestack-ui/themed'
 import { MaterialIcons } from '@expo/vector-icons'
 import { PhotoCreateManyProfileInput, useAddStoryPhotosMutation } from '@graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
@@ -194,7 +194,7 @@ export default function Photos() {
 															color:
 																rTheme.colorScheme === 'light'
 																	? rTheme.theme?.gluestack.tokens.colors.light100
-																	: rTheme.theme?.gluestack.tokens.colors.dark900,
+																	: rTheme.theme?.gluestack.tokens.colors.light100,
 														}}
 														size={40}
 														name={'photo-size-select-actual'}
@@ -375,7 +375,7 @@ export default function Photos() {
 										color:
 											rTheme.colorScheme === 'light'
 												? rTheme.theme?.gluestack.tokens.colors.light100
-												: rTheme.theme?.gluestack.tokens.colors.dark900,
+												: rTheme.theme?.gluestack.tokens.colors.light100,
 									}}
 									size={40}
 									name={'photo-size-select-actual'}

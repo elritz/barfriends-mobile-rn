@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { HStack, Input } from '@components/core'
+import { HStack, Input } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
 import { AntDesign } from '@expo/vector-icons'
 import { useExploreSearchLazyQuery } from '@graphql/generated'
@@ -133,7 +133,7 @@ const SearchInput = (props: Props) => {
 						bg={
 							rTheme.colorScheme === 'light'
 								? rTheme.theme?.gluestack.tokens.colors.light100
-								: rTheme.theme?.gluestack.tokens.colors.dark100
+								: rTheme.theme?.gluestack.tokens.colors.light900
 						}
 					>
 						<Input.Icon ml={'$2'}>
@@ -141,7 +141,7 @@ const SearchInput = (props: Props) => {
 								color={
 									rTheme.colorScheme === 'light'
 										? rTheme.theme?.gluestack.tokens.colors.light700
-										: rTheme.theme?.gluestack.tokens.colors.dark900
+										: rTheme.theme?.gluestack.tokens.colors.light100
 								}
 								name='ios-search'
 								size={20}
@@ -153,7 +153,7 @@ const SearchInput = (props: Props) => {
 							placeholderTextColor={
 								rTheme.colorScheme === 'light'
 									? rTheme.theme?.gluestack.tokens.colors.light700
-									: rTheme.theme?.gluestack.tokens.colors.dark900
+									: rTheme.theme?.gluestack.tokens.colors.light100
 							}
 							autoCapitalize={'none'}
 							autoCorrect={false}

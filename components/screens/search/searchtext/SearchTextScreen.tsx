@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Center, HStack, Heading, Pressable, Text, VStack } from '@components/core'
+import { Box, Button, Center, HStack, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import SearchCard from '@components/screens/search/components/SearchCard'
 import {
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
@@ -107,8 +107,8 @@ const SearchTextScreen = () => {
 													String(rTheme.theme?.gluestack.tokens.colors.light300),
 											  ]
 											: [
-													String(rTheme.theme?.gluestack.tokens.colors.dark100),
-													String(rTheme.theme?.gluestack.tokens.colors.dark300),
+													String(rTheme.theme?.gluestack.tokens.colors.light900),
+													String(rTheme.theme?.gluestack.tokens.colors.light700),
 											  ]
 									}
 								/>
@@ -125,8 +125,8 @@ const SearchTextScreen = () => {
 														String(rTheme.theme?.gluestack.tokens.colors.light300),
 												  ]
 												: [
-														String(rTheme.theme?.gluestack.tokens.colors.dark100),
-														String(rTheme.theme?.gluestack.tokens.colors.dark300),
+														String(rTheme.theme?.gluestack.tokens.colors.light900),
+														String(rTheme.theme?.gluestack.tokens.colors.light700),
 												  ]
 										}
 									/>
@@ -142,8 +142,8 @@ const SearchTextScreen = () => {
 														String(rTheme.theme?.gluestack.tokens.colors.light300),
 												  ]
 												: [
-														String(rTheme.theme?.gluestack.tokens.colors.dark100),
-														String(rTheme.theme?.gluestack.tokens.colors.dark300),
+														String(rTheme.theme?.gluestack.tokens.colors.light900),
+														String(rTheme.theme?.gluestack.tokens.colors.light700),
 												  ]
 										}
 									/>

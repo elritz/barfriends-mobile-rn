@@ -1,5 +1,5 @@
 // TODO: Create message navigator
-import { Box, HStack, Heading, Pressable, Text, VStack } from '@components/core'
+import { Box, HStack, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { Image } from 'expo-image'
 
 const HorizontalMessageNotification = ({ item }) => {
@@ -14,7 +14,7 @@ const HorizontalMessageNotification = ({ item }) => {
 					borderBottomColor: '$light800',
 				},
 				_dark: {
-					borderBottomColor: '$dark500',
+					borderBottomColor: '$light9000',
 				},
 			}}
 		>

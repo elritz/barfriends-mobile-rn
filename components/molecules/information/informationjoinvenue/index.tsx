@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, HStack, Heading, Pressable, VStack, Text, Button } from '@components/core'
+import { Box, HStack, Heading, Pressable, VStack, Text, Button } from '@gluestack-ui/themed'
 import { TomorrowPreferencePermissionInitialState } from '@constants/Preferences'
 import { LOCAL_STORAGE_INFORMATION_JOIN_VENUE } from '@constants/StorageConstants'
 import { DefaultPreferenceToPermissionType } from '@ctypes/preferences'
@@ -51,7 +51,7 @@ export default function InformationJoinVenue() {
 											backgroundColor: '$light300',
 										},
 										_dark: {
-											backgroundColor: '$dark200',
+											backgroundColor: '$light700',
 										},
 									}}
 									onPress={async () => {
@@ -75,7 +75,7 @@ export default function InformationJoinVenue() {
 												color: '$light800',
 											},
 											_dark: {
-												color: '$dark800',
+												color: '$light300',
 											},
 										}}
 									>

@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Heading, Pressable, Text, VStack } from '@components/core'
+import { Box, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { Feather } from '@expo/vector-icons'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { useIsFocused } from '@react-navigation/native'

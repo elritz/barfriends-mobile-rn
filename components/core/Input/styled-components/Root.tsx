@@ -39,7 +39,7 @@ export default styled(
     },
 
     '_dark': {
-      'borderColor': '$borderDark700',
+      'borderColor': '$borderlight400',
       ':hover': {
         borderColor: '$borderDark400',
       },
@@ -51,7 +51,7 @@ export default styled(
       },
       ':disabled': {
         ':hover': {
-          borderColor: '$borderDark700',
+          borderColor: '$borderlight400',
         },
       },
     },

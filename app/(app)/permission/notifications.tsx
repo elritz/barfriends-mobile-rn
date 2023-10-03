@@ -1,6 +1,6 @@
 // TODO: UX(handleAppStateChange) check if location permission is enabled and go somewhere with it
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Divider, Heading, Text, VStack } from '@components/core'
+import { Box, Button, Divider, Heading, Text, VStack } from '@gluestack-ui/themed'
 import PermissionDetailItem from '@components/screens/permissions/PermissionDetailItem'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import {
@@ -47,7 +47,7 @@ export default () => {
 					color={
 						rTheme.colorScheme === 'light'
 							? rTheme.theme?.gluestack.tokens.colors.light900
-							: rTheme.theme?.gluestack.tokens.colors.dark900
+							: rTheme.theme?.gluestack.tokens.colors.light100
 					}
 				/>
 			),
@@ -65,7 +65,7 @@ export default () => {
 					color={
 						rTheme.colorScheme === 'light'
 							? rTheme.theme?.gluestack.tokens.colors.light900
-							: rTheme.theme?.gluestack.tokens.colors.dark900
+							: rTheme.theme?.gluestack.tokens.colors.light100
 					}
 				/>
 			),
@@ -84,7 +84,7 @@ export default () => {
 					color={
 						rTheme.colorScheme === 'light'
 							? rTheme.theme?.gluestack.tokens.colors.light900
-							: rTheme.theme?.gluestack.tokens.colors.dark900
+							: rTheme.theme?.gluestack.tokens.colors.light100
 					}
 				/>
 			),

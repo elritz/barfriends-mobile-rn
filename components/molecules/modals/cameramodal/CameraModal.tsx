@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Center, Modal, Text } from '@components/core'
+import { Box, Button, Center, Modal, Text } from '@gluestack-ui/themed'
 import { useGetSecureFriendQrCodeDataQuery, useQrAddFriendMutation } from '@graphql/generated'
 import { AuthorizationReactiveVar, PermissionCameraReactiveVar } from '@reactive'
 import { BarCodeScanner } from 'expo-barcode-scanner'
@@ -92,7 +92,7 @@ const CameraModal = ({ isOpen, onOpen, onClose }) => {
 						justifyContent={'flex-end'}
 						pb={'$4'}
 					>
-						<Box p={'$3'} borderRadius={'$md'} bg={'$dark50'}>
+						<Box p={'$3'} borderRadius={'$md'} bg={'$light900'}>
 							{dataQR && (
 								<QRCode
 									size={120}

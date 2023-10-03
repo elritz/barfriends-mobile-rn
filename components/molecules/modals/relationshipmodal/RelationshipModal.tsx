@@ -1,4 +1,4 @@
-import { Box, Button, HStack, Modal, Text, VStack } from '@components/core'
+import { Box, Button, HStack, Modal, Text, VStack } from '@gluestack-ui/themed'
 import { GET_RELATIONSHIP_FRIENDREQUESTSTATUS_QUERY } from '@graphql/DM/profiling/friending/index.query'
 import {
 	useGetRelationshipFriendRequestStatusLazyQuery,

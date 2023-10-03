@@ -1,4 +1,4 @@
-import { Box } from '@components/core'
+import { Box } from '@gluestack-ui/themed'
 import { uniqueId } from 'lodash'
 import { useWindowDimensions } from 'react-native'
 
@@ -23,7 +23,7 @@ export default function ActionCard({ children, numColumns, bg, h }: Props) {
 			justifyContent={'center'}
 			sx={{
 				_dark: {
-					bg: bg || '$dark100',
+					bg: bg || '$light800',
 				},
 				_light: {
 					bg: bg || '$light50',

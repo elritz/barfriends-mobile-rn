@@ -1,6 +1,6 @@
 import { FriendsListEmptyState } from './FriendsListEmptyState'
 import { useReactiveVar } from '@apollo/client'
-import { Divider, HStack, VStack } from '@components/core'
+import { Divider, HStack, VStack } from '@gluestack-ui/themed'
 import { CardFullImageNameEmoji } from '@components/molecules/personal/CardFullImageNameEmoji'
 import { AuthorizationReactiveVar } from '@reactive'
 import { useWindowDimensions } from 'react-native'

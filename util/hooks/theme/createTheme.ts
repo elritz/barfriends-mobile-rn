@@ -1,8 +1,11 @@
 import { Config, config } from '../../../gluestack-ui.config'
 import { defaulttheme } from '@assets/theme/default'
+import restyle from '@assets/theme/default/restyle'
 import { ThemeColorSchemeOptionsType } from '@ctypes/preferences'
+import { createConfig } from '@gluestack-ui/themed'
 import { DefaultTheme } from '@react-navigation/native'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
+import { createTheme as restyleCreateTheme } from '@shopify/restyle'
 import { Appearance, ColorSchemeName } from 'react-native'
 
 type Props = {
@@ -20,19 +23,8 @@ const createTheme = ({ themeScheme, localStorageColorScheme }: Props) => {
 		return rn
 	}
 
-	const createGlueStackTheme: Config = {
-		...config,
-		aliases: {
-			...config.theme.aliases,
-		},
-		tokens: {
-			...config.theme.tokens,
-			colors: {
-				...config.theme.tokens.colors,
-				...theme.gluestack,
-			},
-		},
-	}
+	// const restyletheme = restyleCreateTheme(restyle)
+
 	const _newtheme = {
 		reactnavigation: {
 			...DefaultTheme,
@@ -42,7 +34,8 @@ const createTheme = ({ themeScheme, localStorageColorScheme }: Props) => {
 				...rnColors(),
 			},
 		},
-		gluestack: createGlueStackTheme,
+		gluestack: config,
+		// restyle: restyletheme,
 	}
 
 	const colorScheme = () => {

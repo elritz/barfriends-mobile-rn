@@ -1,6 +1,6 @@
 import ProfilePhoto from '../profilephoto'
 import { useReactiveVar } from '@apollo/client'
-import { Box,  HStack, Heading, Text, VStack } from '@components/core'
+import { Box,  HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import CardPleaseSignup from '@components/molecules/asks/signuplogin'
 import { CondensedHorizontalFriendNotifciation } from '@components/molecules/notifications/friendnotification/CondensedHorizontalFriendNotifciation'
 import { FriendsList } from '@components/organisms/list/friendslist'

@@ -1,10 +1,11 @@
-import { GraphQLWsLink } from '@apollo/client/link/subscriptions'
-import { SERVER_ENDPOINT } from '@env'
-import { createClient } from 'graphql-ws'
+import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
+import { SERVER_ENDPOINT } from '@env';
+import { createClient } from 'graphql-ws';
+
 
 const WSLink = new GraphQLWsLink(
 	createClient({
-		url: 'ws://192.168.86.23:5004/graphql',
+		url: 'ws://192.168.86.40:5004/graphql',
 	}),
 )
 export default WSLink

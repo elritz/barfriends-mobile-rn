@@ -1,4 +1,4 @@
-import { Center, Text } from '@components/core'
+import { Center, Text } from '@gluestack-ui/themed'
 import { View } from 'react-native'
 
 const NotFound = () => (

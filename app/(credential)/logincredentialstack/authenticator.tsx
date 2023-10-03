@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, HStack, Input, Pressable, VStack } from '@components/core'
+import { Box, Button, HStack, Input, Pressable, VStack } from '@gluestack-ui/themed'
 import { Entypo, Feather, Ionicons } from '@expo/vector-icons'
 import {
 	useAuthorizedProfilesLazyQuery,
@@ -77,7 +77,7 @@ export default () => {
 								? rTheme.theme?.gluestack.tokens.colors.primary500
 								: rTheme.colorScheme === 'light'
 								? rTheme.theme?.gluestack.tokens.colors.light900
-								: rTheme.theme?.gluestack.tokens.colors.dark900
+								: rTheme.theme?.gluestack.tokens.colors.light100
 						}
 					/>
 				</Pressable>
@@ -220,7 +220,7 @@ export default () => {
 								? rTheme.theme?.gluestack.tokens.colors.primary500
 								: rTheme.colorScheme === 'light'
 								? rTheme.theme?.gluestack.tokens.colors.light900
-								: rTheme.theme?.gluestack.tokens.colors.dark900
+								: rTheme.theme?.gluestack.tokens.colors.light100
 						}
 					/>
 				)
@@ -236,7 +236,7 @@ export default () => {
 								? rTheme.theme?.gluestack.tokens.colors.primary500
 								: rTheme.colorScheme === 'light'
 								? rTheme.theme?.gluestack.tokens.colors.light900
-								: rTheme.theme?.gluestack.tokens.colors.dark900
+								: rTheme.theme?.gluestack.tokens.colors.light100
 						}
 					/>
 				)

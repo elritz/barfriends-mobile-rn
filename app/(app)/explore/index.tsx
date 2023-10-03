@@ -1,4 +1,4 @@
-import { Box, Pressable, Text } from '@components/core'
+import { Box, Pressable, Text } from '@gluestack-ui/themed'
 import { ProfileType, useProfilesQuery } from '@graphql/generated'
 import { FlashList } from '@shopify/flash-list'
 import useContentInsets from '@util/hooks/useContentInsets'

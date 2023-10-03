@@ -1,5 +1,5 @@
 import PermissionButtonSearchAreaLocation from './PermissionButtonSearchAreaLocation'
-import { Box, Heading, Pressable, Text, VStack } from '@components/core'
+import { Box, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { useRouter } from 'expo-router'
 
 export default function VenueFeedSearchAreaEmptyState() {

@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Input, Text } from '@components/core'
+import { Box, Input, Text } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
 import { useKeyboard } from '@react-native-community/hooks'
 import { ThemeReactiveVar } from '@reactive'
@@ -181,7 +181,7 @@ export default function MessageRoom(props) {
 							color={
 								rTheme.colorScheme === 'light'
 									? rTheme.theme?.gluestack.tokens.colors.light900
-									: rTheme.theme?.gluestack.tokens.colors.dark900
+									: rTheme.theme?.gluestack.tokens.colors.light100
 							}
 							style={{
 								marginHorizontal: 2,
@@ -195,7 +195,7 @@ export default function MessageRoom(props) {
 				bg={
 					rTheme.colorScheme === 'light'
 						? rTheme.theme?.gluestack.tokens.colors.light100
-						: rTheme.theme?.gluestack.tokens.colors.dark100
+						: rTheme.theme?.gluestack.tokens.colors.light900
 				}
 				style={{
 					position: 'absolute',

@@ -3,7 +3,7 @@ import CompanyCoasterLogoDynamic from '@assets/images/company/CompanyCoasterLogo
 import CompanyCoasterLogoDynamicInverse from '@assets/images/company/CompanyCoasterLogoDynamicInverse'
 import CompanyCoasterLogoDynamicOutline from '@assets/images/company/CompanyCoasterLogoDynamicOutline'
 import TabBarIcon, { TabProps } from '@components/atoms/icons/tabbaricon/TabBarIcon'
-import { Box } from '@components/core'
+import { Box } from '@gluestack-ui/themed'
 // import { useGetNotificationsQuery } from '@graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import * as Haptics from 'expo-haptics'
@@ -60,7 +60,7 @@ const ProfileTab = (props: TabProps) => {
 						<CompanyCoasterLogoDynamic
 							width={HEIGHT}
 							height={HEIGHT}
-							iconColor={rTheme.deviceColorScheme === 'dark' ? 'black' : 'white'}
+							iconColor={rTheme.colorScheme === 'dark' ? 'black' : 'white'}
 							backgroundColor={props.color}
 						/>
 					) : (
@@ -68,7 +68,7 @@ const ProfileTab = (props: TabProps) => {
 							width={HEIGHT}
 							height={HEIGHT}
 							backgroundColor={
-								!props.focused ? (rTheme.deviceColorScheme === 'dark' ? 'white' : 'black') : props.color
+								!props.focused ? (rTheme.colorScheme === 'dark' ? 'white' : 'black') : props.color
 							}
 						/>
 					)
@@ -105,13 +105,13 @@ const ProfileTab = (props: TabProps) => {
 									<CompanyCoasterLogoDynamicOutline
 										width={HEIGHT}
 										height={HEIGHT}
-										backgroundColor={rTheme.deviceColorScheme === 'dark' ? 'white' : 'black'}
+										backgroundColor={rTheme.colorScheme === 'dark' ? 'white' : 'black'}
 									/>
 								) : (
 									<CompanyCoasterLogoDynamicInverse
 										width={HEIGHT}
 										height={HEIGHT}
-										backgroundColor={rTheme.deviceColorScheme === 'dark' ? 'white' : 'black'}
+										backgroundColor={rTheme.colorScheme === 'dark' ? 'white' : 'black'}
 									/>
 								)}
 							</>

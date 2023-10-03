@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Center, HStack, Heading, Text, VStack } from '@components/core'
+import { Box, Center, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 import { Profile } from '@graphql/generated'
 import { ThemeReactiveVar } from '@reactive'
@@ -60,7 +60,7 @@ const DeviceManagerProfileItemLarge = ({ item, isActive, loading }: ProfileItemT
 									color={
 										rTheme.colorScheme === 'light'
 											? rTheme.theme?.gluestack.tokens.colors.light900
-											: rTheme.theme?.gluestack.tokens.colors.dark900
+											: rTheme.theme?.gluestack.tokens.colors.light100
 									}
 									size={30}
 									name={'ios-person'}

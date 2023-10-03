@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Button } from '@components/core'
+import { Button } from '@gluestack-ui/themed'
 import { UBER_CLIENT_ID_KEY } from '@env'
 import { FontAwesome5 } from '@expo/vector-icons'
 import { useCurrentVenueQuery } from '@graphql/generated'

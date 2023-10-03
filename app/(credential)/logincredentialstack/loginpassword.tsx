@@ -10,7 +10,7 @@ import {
 	Spinner,
 	Text,
 	VStack,
-} from '@components/core'
+} from '@gluestack-ui/themed'
 import { Feather } from '@expo/vector-icons'
 import {
 	AuthorizationDeviceProfile,

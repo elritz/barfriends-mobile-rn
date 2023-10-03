@@ -1,6 +1,6 @@
 import { FormType } from './_layout'
 import { useReactiveVar } from '@apollo/client'
-import { Box, Heading, Pressable, Text } from '@components/core'
+import { Box, Heading, Pressable, Text } from '@gluestack-ui/themed'
 import Photos from '@components/screens/tonight/photos'
 import { useEmojimoodsQuery } from '@graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'

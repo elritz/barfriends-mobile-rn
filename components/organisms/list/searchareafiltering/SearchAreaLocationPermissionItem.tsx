@@ -1,6 +1,6 @@
 // TODO: UX() location icon when searchArea is using Currently Location over preset
 import { useReactiveVar } from '@apollo/client'
-import { Box, HStack, Pressable, Text } from '@components/core'
+import { Box, HStack, Pressable, Text } from '@gluestack-ui/themed'
 import { LOCAL_STORAGE_SEARCH_AREA } from '@constants/StorageConstants'
 import { LocalStoragePreferenceSearchAreaType } from '@ctypes/preferences'
 import { FontAwesome5 } from '@expo/vector-icons'
@@ -80,7 +80,7 @@ const SearchAreaLocationPermissionItem = () => {
 									: '$light300',
 							},
 							_dark: {
-								bg: isPressed ? '#00000040' : rSearchAreaVar?.useCurrentLocation ? '$blue500' : '$dark200',
+								bg: isPressed ? '#00000040' : rSearchAreaVar?.useCurrentLocation ? '$blue500' : '$light700',
 							},
 						}}
 						p={'$3'}
@@ -101,10 +101,10 @@ const SearchAreaLocationPermissionItem = () => {
 								h: 35,
 								w: 35,
 								_light: {
-									bg: rSearchAreaVar?.useCurrentLocation ? '$dark100' : '$light200',
+									bg: rSearchAreaVar?.useCurrentLocation ? '$light800' : '$light200',
 								},
 								_dark: {
-									bg: rSearchAreaVar?.useCurrentLocation ? '$dark100' : '$light500',
+									bg: rSearchAreaVar?.useCurrentLocation ? '$light800' : '$light500',
 								},
 							}}
 							alignSelf={'center'}

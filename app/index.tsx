@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box } from '@components/core'
+import { Box } from '@gluestack-ui/themed'
 import { useCheckPrivacyTermsDocumentUpdateQuery } from '@graphql/generated'
 import { ThemeReactiveVar, TermsServiceReactiveVar } from '@reactive'
 import { useRouterNotifications } from '@util/hooks/useRouterNotifications'
@@ -47,13 +47,13 @@ export default () => {
 			backgroundColor:
 				rTheme.colorScheme === 'light'
 					? rTheme.theme?.gluestack.tokens.colors.light200
-					: rTheme.theme?.gluestack.tokens.colors.dark100,
+					: rTheme.theme?.gluestack.tokens.colors.light800,
 		},
 	})
 	const LoadingAnimationLocation = () => {
 		return (
-			<Box
-				bg={'transparent'}
+			<View
+				// bg={'transparent'}
 				style={[
 					styles.dot,
 					{
@@ -89,7 +89,7 @@ export default () => {
 						/>
 					)
 				})}
-			</Box>
+			</View>
 		)
 	}
 
@@ -103,15 +103,15 @@ export default () => {
 					backgroundColor:
 						rTheme.colorScheme === 'light'
 							? rTheme.theme?.gluestack.tokens.colors.light100
-							: rTheme.theme?.gluestack.tokens.colors.dark50,
+							: rTheme.theme?.gluestack.tokens.colors.light800,
 				}}
 			>
 				<LoadingAnimationLocation />
 			</View>
 		)
 	}
-	// return <Redirect href={'/(app)/hometab/venuefeed'} />
+	return <Redirect href={'/(app)/hometab/venuefeed'} />
 	// return <Redirect href={'/(app)/conversation'} />
 	// return <Redirect href={'/(app)/hometab/messagestack'} />
-	return <Redirect href={`/(app)/public/personal/${'4068040c-5929-4140-9e28-666904c20243'}`} />
+	// return <Redirect href={`/(app)/public/personal/${'4068040c-5929-4140-9e28-666904c20243'}`} />
 }

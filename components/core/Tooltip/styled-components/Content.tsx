@@ -39,9 +39,9 @@ export default styled(
     },
 
     '_dark': {
-      bg: '$backgroundDark800',
+      bg: '$backgroundlight300',
       _text: {
-        color: '$textDark50',
+        color: '$textlight900',
       },
     },
     'defaultProps': {

@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
 import ChevronBackArrow from '@components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
-import { Box, VStack } from '@components/core'
+import { Box, VStack } from '@gluestack-ui/themed'
 import SearchInput from '@components/molecules/search/searchinput/SearchInput'
 import SearchInputSearchArea from '@components/molecules/search/searchinput/SearchInputSearchArea'
 import { SEARCH_BAR_HEIGHT } from '@constants/ReactNavigationConstants'

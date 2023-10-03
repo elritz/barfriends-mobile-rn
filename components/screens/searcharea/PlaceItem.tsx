@@ -1,5 +1,5 @@
 import { Form } from '@app/(app)/searcharea/_layout'
-import { Button } from '@components/core'
+import { Button } from '@gluestack-ui/themed'
 import { useFormContext } from 'react-hook-form'
 
 export default function PlaceItem({ item, onPress, index, itemType }) {
@@ -17,7 +17,7 @@ export default function PlaceItem({ item, onPress, index, itemType }) {
 				px: 2,
 				justifyContent: 'space-between',
 				_light: {
-					bg: watch('country.name') === item.name ? '$primary500' : '$dark50',
+					bg: watch('country.name') === item.name ? '$primary500' : '$light900',
 				},
 			}}
 			rounded={'$md'}

@@ -14658,6 +14658,19 @@ input ProfileWhereUniqueInput {
   Vote: VoteListRelationFilter
 }
 
+type PublicProfilePersonal {
+  createdAt: DateTime!
+  DetailInformation: DetailInformation
+  friendStatus: Boolean!
+  id: String!
+  IdentifiableInformation: IdentifiableInformation
+  profilePhoto: Photo
+  ProfileType: ProfileType!
+  Relationships: [Relationship!]!
+  tonightStory: Story
+  updatedAt: DateTime!
+}
+
 type PushToken {
   createdAt: DateTime
   Device: Device
@@ -14936,6 +14949,7 @@ type Query {
   privacyTermsDocuments: LatestPrivacyAndTermsDocumentResponse!
   profile(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): Profile
   profiles(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): [Profile!]!
+  publicProfile: PublicProfilePersonal!
   sendAuthenticatorDeviceOwnerCode: Boolean!
   venue(cursor: VenueWhereUniqueInput, distinct: [VenueScalarFieldEnum!], orderBy: [VenueOrderByWithRelationInput!], skip: Int, take: Int, where: VenueWhereInput): Venue
   venues(cursor: VenueWhereUniqueInput, distinct: [VenueScalarFieldEnum!], orderBy: [VenueOrderByWithRelationInput!], skip: Int, take: Int, where: VenueWhereInput): [Venue!]!

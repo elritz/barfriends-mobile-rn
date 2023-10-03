@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Input } from '@components/core'
+import { Input } from '@gluestack-ui/themed'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -51,12 +51,12 @@ export default ({}: HomeTownScreenProps) => {
 					color={
 						rTheme.colorScheme === 'light'
 							? rTheme.theme?.gluestack.tokens.colors.light900
-							: rTheme.theme?.gluestack.tokens.colors.dark900
+							: rTheme.theme?.gluestack.tokens.colors.light100
 					}
 					backgroundColor={
 						rTheme.colorScheme === 'light'
 							? rTheme.theme?.gluestack.tokens.colors.light100
-							: rTheme.theme?.gluestack.tokens.colors.dark100
+							: rTheme.theme?.gluestack.tokens.colors.light900
 					}
 				/>
 			</Input>

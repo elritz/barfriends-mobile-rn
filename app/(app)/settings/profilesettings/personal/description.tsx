@@ -1,6 +1,6 @@
 //TODO FN(Update to change to detail information) mutation is broken here
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Input, Text } from '@components/core'
+import { Box, Button, Input, Text } from '@gluestack-ui/themed'
 import {
 	AuthorizationDeviceProfile,
 	Profile,

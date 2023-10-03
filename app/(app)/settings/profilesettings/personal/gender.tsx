@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Input, Text } from '@components/core'
+import { Box, Button, Input, Text } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
 import {
 	useUpdateProfileIdentifiableInformationMutation,
@@ -131,7 +131,7 @@ export default ({}: GenderScreenProps) => {
 											color={
 												rTheme.colorScheme === 'light'
 													? rTheme.theme?.gluestack.tokens.colors.light900
-													: rTheme.theme?.gluestack.tokens.colors.dark900
+													: rTheme.theme?.gluestack.tokens.colors.light100
 											}
 										/>
 									)}
@@ -198,7 +198,7 @@ export default ({}: GenderScreenProps) => {
 										rounded={'$md'}
 										sx={{
 											_dark: {
-												bg: '$dark500',
+												bg: '$light9000',
 											},
 											_light: {
 												bg: '$light500',

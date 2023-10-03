@@ -1,4 +1,4 @@
-import { Text } from "@components/core"
+import { Text } from "@gluestack-ui/themed"
 import { View } from "react-native"
 
 

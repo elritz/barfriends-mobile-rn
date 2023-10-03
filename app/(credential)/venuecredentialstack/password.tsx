@@ -9,7 +9,7 @@ import {
 	Pressable,
 	Text,
 	VStack,
-} from '@components/core'
+} from '@gluestack-ui/themed'
 import { Feather } from '@expo/vector-icons'
 import { useIsFocused } from '@react-navigation/native'
 import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '@reactive'

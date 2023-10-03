@@ -27,10 +27,13 @@ export default function Auth({ children }) {
 					// }, 1)
 				}
 			},
-			onError: e => {},
+			onError: e => {
+				console.log('11111111111111111111111111e :>> ', e)
+				console.log('11111111111111111111111111e :>> ',)
+			},
 		})
-
-	const [createGuestProfileMutation, { data, loading: CGLoading, error: CGPMError }] =
+		
+		const [createGuestProfileMutation, { data, loading: CGLoading, error: CGPMError }] =
 		useCreateGuestProfileMutation({
 			onCompleted: async data => {
 				if (data?.createGuestProfile.__typename === 'AuthorizationDeviceProfile') {
@@ -38,13 +41,18 @@ export default function Auth({ children }) {
 					if (deviceProfile) {
 						AuthorizationReactiveVar(deviceProfile)
 						// setTimeout(() => {
-						// 	router.replace({
-						// 		pathname: '/(app)/hometab/venuefeed',
+							// 	router.replace({
+								// 		pathname: '/(app)/hometab/venuefeed',
 						// 	})
 						// }, 1)
 					}
 				}
 			},
+			onError: e => {
+				console.log('222222222222222222222222222222 :>> ', e)
+				console.log('22222222222222222222222222222222222222222222222222222 :>> ',)
+			},
+			
 		})
 
 	const applicationAuthorization = useCallback(async () => {
@@ -60,7 +68,6 @@ export default function Auth({ children }) {
 			key: AUTHORIZATION,
 			decode: true,
 		})) as AuthorizationDecoded
-
 
 		if (!getAuthorization) {
 			createGuestProfileMutation()

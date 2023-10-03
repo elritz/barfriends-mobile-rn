@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box } from '@components/core'
+import { Box } from '@gluestack-ui/themed'
 import CardPleaseSignup from '@components/molecules/asks/signuplogin'
 import PreferenceNotificationPermission from '@components/molecules/permissions/preferencenotificationpermission/PreferenceNotificationPermission'
 import PersonalScreen from '@components/screens/profile/personalprofile/PersonalProfile'

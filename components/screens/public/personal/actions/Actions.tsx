@@ -1,6 +1,6 @@
 import Details from '../details/Details'
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, HStack, Text, VStack } from '@components/core'
+import { Box, Button, HStack, Text, VStack } from '@gluestack-ui/themed'
 import SignupModal from '@components/molecules/modals/signupaskmodal'
 import { Ionicons } from '@expo/vector-icons'
 import { Profile, useGetRelationshipFriendRequestStatusQuery } from '@graphql/generated'
@@ -66,7 +66,7 @@ export default function Actions({ profile }: Props) {
 						color={
 							rTheme.colorScheme === 'light'
 								? rTheme.theme?.gluestack.tokens.colors.light900
-								: rTheme.theme?.gluestack.tokens.colors.dark900
+								: rTheme.theme?.gluestack.tokens.colors.light100
 						}
 						style={{
 							zIndex: 100,

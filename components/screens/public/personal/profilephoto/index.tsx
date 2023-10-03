@@ -1,4 +1,4 @@
-import { Box } from '@components/core'
+import { Box } from '@gluestack-ui/themed'
 import { Maybe, Photo } from '@graphql/generated'
 import { Image } from 'react-native'
 

@@ -1,4 +1,4 @@
-import { Heading, Text, Box, Button, VStack } from '@components/core'
+import { Heading, Text, Box, Button, VStack } from '@gluestack-ui/themed'
 import { Feather } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
 

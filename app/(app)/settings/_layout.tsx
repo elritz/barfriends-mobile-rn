@@ -14,7 +14,7 @@ export default function _layout() {
 					backgroundColor:
 						rTheme.colorScheme === 'light'
 							? rTheme.theme?.gluestack.tokens.colors.light50
-							: rTheme.theme?.gluestack.tokens.colors.dark50,
+							: rTheme.theme?.gluestack.tokens.colors.light900,
 				},
 				headerTitle: () => <LogoTransparent height={30} width={192} />,
 				headerLeft: () => <ChevronBackArrow />,

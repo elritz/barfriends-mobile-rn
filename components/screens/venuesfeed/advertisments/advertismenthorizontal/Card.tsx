@@ -1,6 +1,6 @@
 // TODO: UX(Complete this card for venues etc....)
 import { Product } from './Model'
-import { Box, Button, HStack, Heading, Text, VStack } from '@components/core'
+import { Box, Button, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import { Image } from 'react-native'
 import { Dimensions, View } from 'react-native'
 

@@ -2,7 +2,10 @@
 import { onError } from '@apollo/client/link/error'
 
 const errorLink = onError(({ graphQLErrors, networkError, operation, forward }) => {
+	console.log("🚀 ~ file: ErrorLink.ts:7 ~ errorLink ~ graphQLErrors:", graphQLErrors)
 	if (graphQLErrors) {
+
+
 		for (let err of graphQLErrors) {
 			switch (err?.extensions?.code) {
 				case 'UNAUTHENTICATED':
@@ -18,7 +21,7 @@ const errorLink = onError(({ graphQLErrors, networkError, operation, forward }) 
 		}
 	}
 	if (networkError) {
-		// console.log('NETWORKERROR   ============ ', networkError, 'NETWORKERROR   ============ ')
+		console.log('NETWORKERROR   ============ ', networkError, 'NETWORKERROR   ============ ')
 		switch (networkError.name) {
 			case 'ServerError':
 				return forward(operation)

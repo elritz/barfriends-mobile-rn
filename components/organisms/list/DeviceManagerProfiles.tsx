@@ -1,4 +1,4 @@
-import { Center, Pressable } from '@components/core'
+import { Center, Pressable } from '@gluestack-ui/themed'
 import DeviceManagerProfileItemLarge from '@components/molecules/authorization/devicemanagerprofileitem/DeviceManagerProfileItemLarge'
 import {
 	AuthorizationDeviceProfile,

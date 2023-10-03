@@ -1,4 +1,4 @@
-import { Box, HStack, Heading, Text } from '@components/core'
+import { Box, HStack, Heading, Text } from '@gluestack-ui/themed'
 import { useGetLiveVenueTotalsQuery } from '@graphql/generated'
 import { useGlobalSearchParams } from 'expo-router'
 import { uniqueId } from 'lodash'
@@ -58,7 +58,7 @@ export default function VenueTotals() {
 								opacity: loading ? 50 : 100,
 							},
 							_dark: {
-								bg: item.name !== 'friends' ? '$dark50' : '$primary500',
+								bg: item.name !== 'friends' ? '$light900' : '$primary500',
 								opacity: loading ? 50 : 100,
 							},
 							height: 60,

@@ -2,6 +2,7 @@
 	"extends": [
 		"stylelint-config-standard",
 		"stylelint-config-prettier",
+		"@shopify/stylelint-polaris",
 		"stylelint-config-idiomatic-order"
 	],
 	"plugins": ["stylelint-react-native", "stylelint-order"],

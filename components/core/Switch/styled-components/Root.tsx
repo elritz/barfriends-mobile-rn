@@ -112,7 +112,7 @@ export default styled(
     '_dark': {
       'props': {
         //@ts-ignore
-        trackColor: { false: '$backgroundDark700', true: '$primary500' },
+        trackColor: { false: '$backgroundlight400', true: '$primary500' },
         thumbColor: '$backgroundDark0',
         activeThumbColor: '$backgroundDark0',
       },
@@ -124,7 +124,7 @@ export default styled(
       ':hover': {
         'props': {
           //@ts-ignore
-          trackColor: { false: '$backgroundDark600', true: '$primary600' },
+          trackColor: { false: '$backgroundlight400', true: '$primary600' },
           ios_backgroundColor: '$backgroundLight400',
         },
         ':invalid': {
@@ -135,7 +135,7 @@ export default styled(
             // hacky fix for the above
             //@ts-ignore
 
-            trackColor: { false: '$backgroundDark700', true: '$primary600' },
+            trackColor: { false: '$backgroundlight400', true: '$primary600' },
           },
         },
       },
@@ -154,7 +154,7 @@ export default styled(
         ':hover': {
           props: {
             //@ts-ignore
-            trackColor: { false: '$backgroundDark700', true: '$primary500' },
+            trackColor: { false: '$backgroundlight400', true: '$primary500' },
           },
         },
       },

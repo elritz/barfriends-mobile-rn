@@ -1,9 +1,9 @@
-import { Box, Pressable, Text } from '@components/core'
+import { Box, Pressable, Text } from '@gluestack-ui/themed'
 import { Relationship } from '@graphql/generated'
 import { capitalizeFirstLetter } from '@util/helpers/capitalizeFirstLetter'
+import { Image } from 'expo-image'
 import { LinearGradient } from 'expo-linear-gradient'
 import { useRouter } from 'expo-router'
-import { Image } from 'react-native'
 import { useWindowDimensions } from 'react-native'
 
 interface CardFullImageNameEmojiProps {
@@ -21,10 +21,7 @@ export const CardFullImageNameEmoji = ({ item, cardWidth }: CardFullImageNameEmo
 		<Pressable
 			onPress={() => {
 				router.push({
-					pathname: '/(app)/public/personal',
-					params: {
-						profileid: item?.friendProfile?.id,
-					},
+					pathname: `/(app)/public/profile/${item?.friendProfile?.id}`,
 				})
 			}}
 		>
@@ -97,7 +94,7 @@ export const CardFullImageNameEmoji = ({ item, cardWidth }: CardFullImageNameEmo
 				<Image
 					alt={'Profile image'}
 					source={{ uri: item.friendProfile?.photos?.url }}
-					resizeMode='cover'
+					contentFit='cover'
 					style={{ height: 170, flexDirection: 'column-reverse', borderRadius: 10 }}
 				/>
 			</Box>

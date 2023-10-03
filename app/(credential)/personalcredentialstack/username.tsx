@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Heading, Input, Pressable, Text, VStack } from '@components/core'
+import { Box, Heading, Input, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { Feather, Ionicons } from '@expo/vector-icons'
 import { useCheckUsernameLazyQuery } from '@graphql/generated'
 import { useIsFocused } from '@react-navigation/native'

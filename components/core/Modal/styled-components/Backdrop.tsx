@@ -34,7 +34,7 @@ export default styled(
     'bottom': 0,
     'bg': '$backgroundLight950',
     '_dark': {
-      bg: '$backgroundDark950',
+      bg: '$backgroundlight50',
     },
     '_web': {
       cursor: 'default',

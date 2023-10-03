@@ -1,6 +1,6 @@
 // TODO: If user is joined to the venue remove join button show joined
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Heading, Pressable, Text, VStack } from '@components/core'
+import { Box, Button, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { GET_LIVE_VENUE_TOTALS_QUERY } from '@graphql/DM/profiling/out/index.query'
 import {
 	AuthorizationDeviceProfile,

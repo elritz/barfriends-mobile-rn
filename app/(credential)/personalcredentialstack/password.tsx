@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, EyeIcon, EyeOffIcon, Heading, Icon, Input, Pressable, Text } from '@components/core'
+import { Box, EyeIcon, EyeOffIcon, Heading, Icon, Input, Pressable, Text } from '@gluestack-ui/themed'
 import { Feather } from '@expo/vector-icons'
 import { useIsFocused } from '@react-navigation/native'
 import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '@reactive'

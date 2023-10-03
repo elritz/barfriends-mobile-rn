@@ -1,6 +1,6 @@
 // TODO: FN()
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Center, HStack, Pressable, Text, VStack } from '@components/core'
+import { Box, Button, Center, HStack, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { Feather, Ionicons, MaterialIcons } from '@expo/vector-icons'
 import {
 	CredentialPersonalProfileReactiveVar,
@@ -213,8 +213,8 @@ export default () => {
 															String(rTheme.theme?.gluestack.tokens.colors.light300),
 													  ]
 													: [
-															String(rTheme.theme?.gluestack.tokens.colors.dark100),
-															String(rTheme.theme?.gluestack.tokens.colors.dark300),
+															String(rTheme.theme?.gluestack.tokens.colors.light900),
+															String(rTheme.theme?.gluestack.tokens.colors.light700),
 													  ]
 											}
 										/>

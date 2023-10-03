@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Divider, HStack, Heading, Text, VStack } from '@components/core'
+import { Box, Button, Divider, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import { APP_STORE_URL_LINK } from '@constants/App'
 import {
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
@@ -125,8 +125,8 @@ export default () => {
 													String(rTheme.theme?.gluestack.tokens.colors.light300),
 											  ]
 											: [
-													String(rTheme.theme?.gluestack.tokens.colors.dark100),
-													String(rTheme.theme?.gluestack.tokens.colors.dark300),
+													String(rTheme.theme?.gluestack.tokens.colors.light900),
+													String(rTheme.theme?.gluestack.tokens.colors.light700),
 											  ]
 									}
 								/>

@@ -1,4 +1,4 @@
-import { Pressable } from '@components/core'
+import { Pressable } from '@gluestack-ui/themed'
 import { useRouter } from 'expo-router'
 import * as React from 'react'
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen'

@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Badge, Box, HStack, Heading, Pressable, Text, VStack } from '@components/core'
+import { Badge, Box, HStack, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { useGetInterestsQuery } from '@graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
@@ -51,8 +51,8 @@ export default () => {
 													String(rTheme.theme?.gluestack.tokens.colors.light300),
 											  ]
 											: [
-													String(rTheme.theme?.gluestack.tokens.colors.dark100),
-													String(rTheme.theme?.gluestack.tokens.colors.dark300),
+													String(rTheme.theme?.gluestack.tokens.colors.light900),
+													String(rTheme.theme?.gluestack.tokens.colors.light700),
 											  ]
 									}
 								/>
@@ -72,8 +72,8 @@ export default () => {
 																String(rTheme.theme?.gluestack.tokens.colors.light300),
 														  ]
 														: [
-																String(rTheme.theme?.gluestack.tokens.colors.dark100),
-																String(rTheme.theme?.gluestack.tokens.colors.dark300),
+																String(rTheme.theme?.gluestack.tokens.colors.light900),
+																String(rTheme.theme?.gluestack.tokens.colors.light700),
 														  ]
 												}
 											/>
@@ -144,7 +144,7 @@ export default () => {
 																e => e.id === item.id,
 															)
 																? '$primary500'
-																: '$dark300',
+																: '$light400',
 													},
 												}}
 												px={'$3'}
@@ -155,7 +155,7 @@ export default () => {
 													color={
 														rTheme.colorScheme === 'light'
 															? rTheme.theme?.gluestack.tokens.colors.light900
-															: rTheme.theme?.gluestack.tokens.colors.dark900
+															: rTheme.theme?.gluestack.tokens.colors.light100
 													}
 												>
 													{tag.emoji}

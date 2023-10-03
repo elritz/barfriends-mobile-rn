@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Heading, Pressable } from '@components/core'
+import { Box, Heading, Pressable } from '@gluestack-ui/themed'
 import { MaterialIcons } from '@expo/vector-icons'
 import { ThemeReactiveVar } from '@reactive'
 import { useRouter } from 'expo-router'
@@ -28,7 +28,7 @@ const AddEmoji = () => {
 					color={
 						rTheme.colorScheme === 'light'
 							? rTheme.theme?.gluestack.tokens.colors.light900
-							: rTheme.theme?.gluestack.tokens.colors.dark900
+							: rTheme.theme?.gluestack.tokens.colors.light100
 					}
 				/>
 			</Box>

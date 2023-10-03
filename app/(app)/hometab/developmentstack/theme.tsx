@@ -1,18 +1,29 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Divider, HStack, Heading, Pressable, Text, VStack } from '@components/core'
 import {
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
 } from '@constants/ReactNavigationConstants'
+import {
+	Box,
+	Button,
+	Divider,
+	HStack,
+	Heading,
+	Pressable,
+	Text,
+	VStack,
+} from '@gluestack-ui/themed'
 import { useGetAllThemesQuery, useUpdateThemeManagerSwitchThemeMutation } from '@graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
 import { useToggleTheme } from '@util/hooks/theme/useToggleTheme'
+import useContentInsets from '@util/hooks/useContentInsets'
 import { useCallback } from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default function Preferences() {
 	const insets = useSafeAreaInsets()
+	const contentInsets = useContentInsets()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 
@@ -27,6 +38,7 @@ export default function Preferences() {
 
 	const renderItem = useCallback(
 		({ item }) => {
+			console.log('item.theme', JSON.stringify(item.theme, null, 2))
 			const company = {
 				dark: [
 					item.theme.styled.dark.palette.company.primary,
@@ -39,6 +51,7 @@ export default function Preferences() {
 					item.theme.styled.light.palette.company.tertiary,
 				],
 			}
+
 			const revel = {
 				dark: [
 					item.theme.styled.dark.palette.revel.primary,
@@ -197,6 +210,7 @@ export default function Preferences() {
 				paddingHorizontal: 10,
 			}}
 			contentInset={{
+				top: contentInsets.top,
 				bottom:
 					insets.bottom !== 0
 						? HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS
@@ -222,7 +236,7 @@ export default function Preferences() {
 							onPress={async () => {
 								await setTheme({ colorScheme: 'dark' })
 							}}
-							bg={'$dark100'}
+							bg={'$light800'}
 							borderColor={rTheme.localStorageColorScheme === 'dark' ? '$primary300' : 'transparent'}
 							borderWidth={'$2'}
 						>
@@ -232,7 +246,7 @@ export default function Preferences() {
 							onPress={async () => {
 								await setTheme({ colorScheme: 'system' })
 							}}
-							bg={rTheme.colorScheme === 'light' ? '$light100' : '$dark100'}
+							bg={rTheme.colorScheme === 'light' ? '$light100' : '$light800'}
 							flex={1}
 							borderColor={rTheme.localStorageColorScheme === 'system' ? '$primary300' : 'transparent'}
 							borderWidth={'$2'}

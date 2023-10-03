@@ -1,13 +1,10 @@
 import { useReactiveVar } from '@apollo/client'
-import ChevronBackArrow from '@components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
-import { HStack, Input } from '@components/core'
 import { Ionicons } from '@expo/vector-icons'
 import { AntDesign } from '@expo/vector-icons'
-import { useExploreSearchLazyQuery } from '@graphql/generated'
+import { HStack, Input, InputField } from '@gluestack-ui/themed'
 import { ThemeReactiveVar } from '@reactive'
-import useDebounce from '@util/hooks/useDebounce'
-import { useGlobalSearchParams, useRouter, useSegments } from 'expo-router'
-import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { useGlobalSearchParams, useRouter, useSegments, router as _Router } from 'expo-router'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { TextInput } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -49,7 +46,7 @@ const SearchInputVenueFeed = (props: Props) => {
 	})
 
 	useLayoutEffect(() => {
-		if (router.canGoBack()) {
+		if (_Router.canGoBack()) {
 			if (!segments.includes('hometab')) {
 				if (segments.includes('explore')) {
 					_inputRef.current?.focus()
@@ -113,37 +110,45 @@ const SearchInputVenueFeed = (props: Props) => {
 				name='searchtext'
 				render={({ field: { value, onChange } }) => (
 					<Input
+						alignItems='center'
 						flex={1}
 						variant='rounded'
 						mr={'$2'}
 						ml={!showBack ? '$2' : '$0'}
-						zIndex={0}
-						hitSlop={{ top: 12, bottom: 12, left: 0, right: 15 }}
-						isReadOnly={!showBack}
 						bg={
 							rTheme.colorScheme === 'light'
 								? rTheme.theme?.gluestack.tokens.colors.light100
-								: rTheme.theme?.gluestack.tokens.colors.dark100
+								: rTheme.theme?.gluestack.tokens.colors.light900
 						}
 					>
-						<Input.Icon ml={'$3'}>
-							<Ionicons
-								color={
-									rTheme.colorScheme === 'light'
-										? rTheme.theme?.gluestack.tokens.colors.light700
-										: rTheme.theme?.gluestack.tokens.colors.dark900
-								}
-								name='ios-search'
-								size={20}
-							/>
-						</Input.Icon>
-						<Input.Input
+						<Ionicons
+							color={
+								rTheme.colorScheme === 'light'
+									? rTheme.theme?.gluestack.tokens.colors.light700
+									: rTheme.theme?.gluestack.tokens.colors.light100
+							}
+							name='ios-search'
+							style={{
+								marginLeft: 10,
+							}}
+							size={20}
+						/>
+
+						<InputField
+							zIndex={0}
+							hitSlop={{ top: 12, bottom: 12, left: 0, right: 15 }}
+							isReadOnly={!showBack}
+							bg={
+								rTheme.colorScheme === 'light'
+									? rTheme.theme?.gluestack.tokens.colors.light100
+									: rTheme.theme?.gluestack.tokens.colors.light900
+							}
 							ref={_inputRef}
 							// autoFocus={autoFucus}
 							placeholderTextColor={
 								rTheme.colorScheme === 'light'
-									? rTheme.theme?.gluestack.tokens.colors.light700
-									: rTheme.theme?.gluestack.tokens.colors.dark900
+									? rTheme.theme?.gluestack.tokens.colors.light900
+									: rTheme.theme?.gluestack.tokens.colors.light100
 							}
 							autoCapitalize={'none'}
 							autoCorrect={false}
@@ -167,13 +172,12 @@ const SearchInputVenueFeed = (props: Props) => {
 							onSubmitEditing={handleSubmit(handleSearchSubmitEditting)}
 						/>
 						{watch('searchtext')?.length ? (
-							<Input.Icon mr={'$3'} onPress={() => clearSearchInput()}>
-								<AntDesign
-									name='closecircle'
-									size={20}
-									color={rTheme.colorScheme === 'light' ? 'black' : 'white'}
-								/>
-							</Input.Icon>
+							<AntDesign
+								onPress={() => clearSearchInput()}
+								name='closecircle'
+								size={20}
+								color={rTheme.colorScheme === 'light' ? 'black' : 'white'}
+							/>
 						) : null}
 					</Input>
 				)}

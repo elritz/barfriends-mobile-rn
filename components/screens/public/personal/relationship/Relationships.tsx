@@ -1,5 +1,5 @@
 import { PublicProfileRouteProp } from '../friendship/Friendship'
-import { Box, Text } from '@components/core'
+import { Box, Text } from '@gluestack-ui/themed'
 import { RelationshipStatus, useGetRelationshipFriendRequestStatusQuery } from '@graphql/generated'
 import { useRoute } from '@react-navigation/native'
 import { DateTime } from 'luxon'

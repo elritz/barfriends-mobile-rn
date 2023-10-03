@@ -1,12 +1,13 @@
 import { useReactiveVar } from '@apollo/client'
 import { ENVIRONMENT } from '@env'
-import VectorFonts from '@util/helpers/VectorFonts'
 import { ThemeReactiveVar } from '@reactive'
+import VectorFonts from '@util/helpers/VectorFonts'
 import { cacheFonts, cacheImages } from '@util/hooks/local/useCacheImages'
 import { useAssets } from 'expo-asset'
-import { SplashScreen, router } from 'expo-router'
+import { Image } from 'expo-image'
+import { SplashScreen } from 'expo-router'
 import { useCallback, useEffect, useState } from 'react'
-import { View, StyleSheet, Image } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 
 function AnimatedSplashScreen({ children }) {
 	const rThemeVar = useReactiveVar(ThemeReactiveVar)
@@ -24,14 +25,6 @@ function AnimatedSplashScreen({ children }) {
 			SplashScreen.hideAsync()
 		}
 	}, [isAppReady])
-
-	useEffect(() => {
-		// Perform some sort of async data or asset fetching.
-		setTimeout(() => {
-			// When all loading is setup, unmount the splash screen component.
-			setTimeout(() => setAppReady(true), 1000)
-		}, 1000)
-	}, [])
 
 	const onImageLoaded = useCallback(async () => {
 		try {
@@ -64,20 +57,21 @@ function AnimatedSplashScreen({ children }) {
 			>
 				<Image
 					onLoad={onImageLoaded}
-					source={
-						rThemeVar.localStorageColorScheme === 'system'
-							? rThemeVar.colorScheme === 'light'
-								? assets[0]
-								: assets[1]
-							: rThemeVar.colorScheme === 'light'
-							? assets[0]
-							: assets[1]
-					}
+					source={{
+						uri:
+							rThemeVar.localStorageColorScheme === 'system'
+								? rThemeVar.colorScheme === 'light'
+									? assets[0].uri
+									: assets[1].uri
+								: rThemeVar.colorScheme === 'light'
+								? assets[0].uri
+								: assets[1].uri,
+					}}
 					style={{
 						width: '100%',
 						height: '100%',
-						resizeMode: 'cover',
 					}}
+					contentFit='cover'
 				/>
 			</View>
 		)

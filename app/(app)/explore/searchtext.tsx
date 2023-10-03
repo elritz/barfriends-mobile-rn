@@ -1,7 +1,7 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Center, HStack, Heading, Pressable, Text, VStack } from '@components/core'
 import SearchCard from '@components/screens/search/components/SearchCard'
 import { Ionicons } from '@expo/vector-icons'
+import { Box, Center, HStack, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { useExploreSearchLazyQuery } from '@graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
@@ -99,7 +99,7 @@ export default () => {
 							color={
 								rTheme.colorScheme === 'light'
 									? rTheme.theme?.gluestack.tokens.colors.light900
-									: rTheme.theme?.gluestack.tokens.colors.dark900
+									: rTheme.theme?.gluestack.tokens.colors.light50
 							}
 						/>
 					</Box>
@@ -184,8 +184,8 @@ export default () => {
 												String(rTheme.theme?.gluestack.tokens.colors.light300),
 										  ]
 										: [
-												String(rTheme.theme?.gluestack.tokens.colors.dark100),
-												String(rTheme.theme?.gluestack.tokens.colors.dark300),
+												String(rTheme.theme?.gluestack.tokens.colors.light800),
+												String(rTheme.theme?.gluestack.tokens.colors.light600),
 										  ]
 								}
 							/>
@@ -198,8 +198,8 @@ export default () => {
 													String(rTheme.theme?.gluestack.tokens.colors.light300),
 											  ]
 											: [
-													String(rTheme.theme?.gluestack.tokens.colors.dark100),
-													String(rTheme.theme?.gluestack.tokens.colors.dark300),
+													String(rTheme.theme?.gluestack.tokens.colors.light800),
+													String(rTheme.theme?.gluestack.tokens.colors.light600),
 											  ]
 									}
 									width={250}
@@ -213,8 +213,8 @@ export default () => {
 													String(rTheme.theme?.gluestack.tokens.colors.light300),
 											  ]
 											: [
-													String(rTheme.theme?.gluestack.tokens.colors.dark100),
-													String(rTheme.theme?.gluestack.tokens.colors.dark300),
+													String(rTheme.theme?.gluestack.tokens.colors.light800),
+													String(rTheme.theme?.gluestack.tokens.colors.light600),
 											  ]
 									}
 									width={100}

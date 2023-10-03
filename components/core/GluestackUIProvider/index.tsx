@@ -1,6 +1,7 @@
+import '@gluestack-ui/themed'
 import { StyledProvider } from '@gluestack-style/react'
 import { OverlayProvider } from '@gluestack-ui/overlay'
-import { createProvider, GluestackUIContextProvider } from '@gluestack-ui/provider'
+import { createProvider } from '@gluestack-ui/provider'
 import { ToastProvider } from '@gluestack-ui/toast'
 
 const GluestackUIStyledProvider = createProvider({ StyledProvider })
@@ -15,4 +16,4 @@ const GluestackUIProvider = ({ children, ...props }: any) => {
 	)
 }
 
-export { GluestackUIProvider, GluestackUIStyledProvider, GluestackUIContextProvider }
+export { GluestackUIProvider, GluestackUIStyledProvider }

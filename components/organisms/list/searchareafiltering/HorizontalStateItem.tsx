@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
 import { HorizontalStateItemProps } from '@app/(app)/searcharea/_layout'
-import { HStack, Text } from '@components/core'
+import { HStack, Text } from '@gluestack-ui/themed'
 import { Feather } from '@expo/vector-icons'
 import { ThemeReactiveVar } from '@reactive'
 import { useFormContext } from 'react-hook-form'
@@ -17,7 +17,7 @@ const HorizontalStateItem = ({ index, item }: ListRenderItemInfo<HorizontalState
 			bg={
 				rTheme.colorScheme === 'light'
 					? rTheme.theme?.gluestack.tokens.colors.light100
-					: rTheme.theme?.gluestack.tokens.colors.dark100
+					: rTheme.theme?.gluestack.tokens.colors.light900
 			}
 			py={'$4'}
 			px={'$4'}

@@ -1,4 +1,4 @@
-import { Box, HStack, Heading, Pressable, Text, VStack, Button } from '@components/core'
+import { Box, HStack, Heading, Pressable, Text, VStack, Button } from '@gluestack-ui/themed'
 import { useRemoveAllFromVenueDeveloperMutation } from '@graphql/generated'
 import { useState } from 'react'
 

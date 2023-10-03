@@ -49,7 +49,7 @@ export default styled(
       },
     },
     _dark: {
-      bg: '$backgroundDark700',
+      bg: '$backgroundlight400',
     },
     defaultProps: {
       size: 'md',

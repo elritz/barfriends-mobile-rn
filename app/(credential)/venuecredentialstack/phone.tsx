@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Heading, Text, Pressable, VStack, Box, Input } from '@components/core'
+import { Heading, Text, Pressable, VStack, Box, Input } from '@gluestack-ui/themed'
 import { Feather } from '@expo/vector-icons'
 import { useSendAuthenticatorDeviceOwnerCodeMutation } from '@graphql/generated'
 import { useIsFocused } from '@react-navigation/native'

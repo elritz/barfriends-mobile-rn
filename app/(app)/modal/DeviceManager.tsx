@@ -1,6 +1,6 @@
 // TODO: FN(What functionality was suppose to be here)
 import { useReactiveVar } from '@apollo/client'
-import { Box, Pressable, VStack } from '@components/core'
+import { Box, Pressable, VStack } from '@gluestack-ui/themed'
 import WithDeviceProfiles from '@components/molecules/asks/signinup'
 import DeviceManagerProfileItemLarge from '@components/molecules/authorization/devicemanagerprofileitem/DeviceManagerProfileItemLarge'
 import {
@@ -93,8 +93,8 @@ export default function DeviceManager() {
 													String(rTheme.theme?.gluestack.tokens.colors.light300),
 											  ]
 											: [
-													String(rTheme.theme?.gluestack.tokens.colors.dark100),
-													String(rTheme.theme?.gluestack.tokens.colors.dark300),
+													String(rTheme.theme?.gluestack.tokens.colors.light900),
+													String(rTheme.theme?.gluestack.tokens.colors.light700),
 											  ]
 									}
 								/>

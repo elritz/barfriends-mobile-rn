@@ -42,19 +42,19 @@ export default styled(
       },
       ':hover': {
         _icon: {
-          color: '$backgroundDark200',
+          color: '$backgroundlight700',
         },
         _text: {
-          color: '$backgroundDark200',
+          color: '$backgroundlight700',
         },
       },
 
       ':active': {
         _icon: {
-          color: '$backgroundDark100',
+          color: '$backgroundlight800',
         },
         _text: {
-          color: '$backgroundDark100',
+          color: '$backgroundlight800',
         },
       },
     },
@@ -67,7 +67,7 @@ export default styled(
         color: '$backgroundLight900',
       },
       _dark: {
-        bg: '$backgroundDark700',
+        bg: '$backgroundlight400',
         _icon: {
           color: '$backgroundLight100',
         },

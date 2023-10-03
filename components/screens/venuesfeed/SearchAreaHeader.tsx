@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Heading, VStack, Pressable, HStack, Text } from '@components/core'
+import { Heading, VStack, Pressable, HStack, Text } from '@gluestack-ui/themed'
 import { FontAwesome5 } from '@expo/vector-icons'
 import { SearchAreaReactiveVar, ThemeReactiveVar } from '@reactive'
 import { useRouter } from 'expo-router'

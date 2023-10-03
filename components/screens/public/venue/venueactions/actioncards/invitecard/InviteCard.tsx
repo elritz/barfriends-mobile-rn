@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Button, Heading, VStack, Box, Text } from '@components/core'
+import { Button, Heading, VStack, Box, Text } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
 import { PermissionContactsReactiveVar } from '@reactive'
 import { useRouter } from 'expo-router'

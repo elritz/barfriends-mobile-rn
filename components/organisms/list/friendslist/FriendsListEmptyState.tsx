@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Heading, Pressable, Text, VStack } from '@components/core'
+import { Box, Button, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
 import { PermissionContactsReactiveVar, ThemeReactiveVar } from '@reactive'
 import { useRouter } from 'expo-router'
@@ -56,7 +56,7 @@ export const FriendsListEmptyState = () => {
 						color={
 							rTheme.colorScheme === 'light'
 								? rTheme.theme?.gluestack.tokens.colors.light900
-								: rTheme.theme?.gluestack.tokens.colors.dark900
+								: rTheme.theme?.gluestack.tokens.colors.light100
 						}
 					/>
 					<Text

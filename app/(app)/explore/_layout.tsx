@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { VStack } from '@components/core'
+import { VStack } from '@gluestack-ui/themed'
 import SearchInputResults from '@components/molecules/search/searchinput/SearchInputResults'
 import SearchInputText from '@components/molecules/search/searchinput/SearchInputText'
 import { ThemeReactiveVar } from '@reactive'
@@ -32,7 +32,7 @@ export default function _layout() {
 									backgroundColor:
 										rTheme.colorScheme === 'light'
 											? rTheme.theme?.gluestack.tokens.colors.light100
-											: rTheme.theme?.gluestack.tokens.colors.dark50,
+											: rTheme.theme?.gluestack.tokens.colors.light900,
 								}}
 								intensity={70}
 								tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
@@ -41,7 +41,7 @@ export default function _layout() {
 									justifyContent={'flex-start'}
 									sx={{
 										_light: { bg: '$light100' },
-										_dark: { bg: '$dark50' },
+										_dark: { bg: '$light900' },
 									}}
 								>
 									<SearchInputText />
@@ -63,7 +63,7 @@ export default function _layout() {
 									justifyContent={'flex-start'}
 									sx={{
 										_light: { bg: '$light100' },
-										_dark: { bg: '$dark50' },
+										_dark: { bg: '$light900' },
 									}}
 								>
 									<SearchInputResults />

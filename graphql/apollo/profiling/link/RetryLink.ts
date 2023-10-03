@@ -3,7 +3,8 @@ import { RetryLink } from '@apollo/client/link/retry'
 const retryLink = new RetryLink({
 	delay: {
 		initial: 300,
-		max: Infinity,
+		// max: Infinity,
+		max: 5,
 		jitter: true,
 	},
 	attempts: {

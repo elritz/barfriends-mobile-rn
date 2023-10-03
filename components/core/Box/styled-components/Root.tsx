@@ -4,7 +4,7 @@ import { View } from 'react-native'
 export default styled(
 	View,
 	{
-		_dark: { bg: '$dark100' },
+		_dark: { bg: '$light800' },
 		_light: { bg: '$light50' },
 		rounded: '$lg',
 	},

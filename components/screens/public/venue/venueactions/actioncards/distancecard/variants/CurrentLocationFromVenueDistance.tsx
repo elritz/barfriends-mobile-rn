@@ -2,7 +2,7 @@
 import JoinCard from '../../joincard/JoinCard'
 import SignupCard from '../../signupcard/SignupCard'
 import { useReactiveVar } from '@apollo/client'
-import { Box, Text, Heading, Button } from '@components/core'
+import { Box, Text, Heading, Button } from '@gluestack-ui/themed'
 import { MaterialIcons } from '@expo/vector-icons'
 import { useCurrentVenueQuery } from '@graphql/generated'
 import { useIsFocused } from '@react-navigation/native'
@@ -145,7 +145,7 @@ const CurrentLocationFromVenueDistance = () => {
 					color={
 						rTheme.colorScheme === 'light'
 							? rTheme.theme?.gluestack.tokens.colors.light200
-							: rTheme.theme?.gluestack.tokens.colors.dark900
+							: rTheme.theme?.gluestack.tokens.colors.light100
 					}
 				/>
 			</Box>
@@ -177,7 +177,7 @@ const CurrentLocationFromVenueDistance = () => {
 							color={
 								rTheme.colorScheme === 'light'
 									? rTheme.theme?.gluestack.tokens.colors.light200
-									: rTheme.theme?.gluestack.tokens.colors.dark900
+									: rTheme.theme?.gluestack.tokens.colors.light100
 							}
 							name='location-pin'
 							size={25}

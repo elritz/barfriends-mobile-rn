@@ -17,7 +17,7 @@ const MapTab = (props: TabProps) => {
 					name='map-marker-alt'
 					size={26}
 					color={
-						!props.focused ? (rTheme.deviceColorScheme === 'dark' ? 'white' : 'black') : props.color
+							!props.focused ? (rTheme.colorScheme === 'dark' ? 'white' : 'black') : props.color
 					}
 				/>
 			}

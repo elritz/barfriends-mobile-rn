@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Heading } from '@components/core'
+import { Box, Heading } from '@gluestack-ui/themed'
 import { FontAwesome5 } from '@expo/vector-icons'
 import { ThemeReactiveVar } from '@reactive'
 import { useRouter } from 'expo-router'
@@ -31,7 +31,7 @@ const JoinVenue = ({}) => {
 					color={
 						rTheme.colorScheme === 'light'
 							? rTheme.theme?.gluestack.tokens.colors.light900
-							: rTheme.theme?.gluestack.tokens.colors.dark900
+							: rTheme.theme?.gluestack.tokens.colors.light100
 					}
 				/>
 			</Box>

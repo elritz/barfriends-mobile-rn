@@ -1,4 +1,4 @@
-import { Box, Text } from '@components/core'
+import { Box, Text } from '@gluestack-ui/themed'
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
 
 export default function PermissionDetailItem({ title, detail, icon }) {

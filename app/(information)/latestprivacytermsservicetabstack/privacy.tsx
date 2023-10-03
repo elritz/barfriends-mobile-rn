@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box } from '@components/core'
+import { Box } from '@gluestack-ui/themed'
 import TermsLoadingState from '@components/screens/settings/TermsLoadingState'
 import { usePrivacyTermsDocumentsQuery } from '@graphql/generated'
 import { ThemeReactiveVar } from '@reactive'
@@ -41,14 +41,14 @@ export default () => {
 								color:
 									rTheme.colorScheme === 'light'
 										? rTheme.theme?.gluestack.tokens.colors.light900
-										: rTheme.theme?.gluestack.tokens.colors.dark900,
+										: rTheme.theme?.gluestack.tokens.colors.light100,
 								fontSize: 19,
 							},
 							'lisitem-1': {
 								color:
 									rTheme.colorScheme === 'light'
 										? rTheme.theme?.gluestack.tokens.colors.light900
-										: rTheme.theme?.gluestack.tokens.colors.dark900,
+										: rTheme.theme?.gluestack.tokens.colors.light100,
 								fontSize: 19,
 							},
 							highlight: {

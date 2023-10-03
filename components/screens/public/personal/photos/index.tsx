@@ -1,15 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
-import {
-	AddIcon,
-	Box,
-	Button,
-	Center,
-	Heading,
-	Pressable,
-	RemoveIcon,
-	Text,
-} from '@components/core'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
+import { AddIcon, Box, Button, Center, Heading, Pressable, RemoveIcon } from '@gluestack-ui/themed'
 import { PhotoCreateManyProfileInput, useAddStoryPhotosMutation } from '@graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import useCloudinaryImageUploading from '@util/uploading/useCloudinaryImageUploading'
@@ -194,7 +185,7 @@ export default function Photos() {
 															color:
 																rTheme.colorScheme === 'light'
 																	? rTheme.theme?.gluestack.tokens.colors.light100
-																	: rTheme.theme?.gluestack.tokens.colors.dark900,
+																	: rTheme.theme?.gluestack.tokens.colors.light100,
 														}}
 														size={40}
 														name={'photo-size-select-actual'}
@@ -352,10 +343,15 @@ export default function Photos() {
 					style={{ borderRadius: 15, overflow: 'hidden' }}
 				>
 					<Box
-						bg={'$transparent'}
 						sx={{
 							h: containerHeight,
 							w: '100%',
+							_dark: {
+								bg: '$light900',
+							},
+							_light: {
+								bg: '$light200',
+							},
 						}}
 						rounded={'$md'}
 					>
@@ -373,7 +369,7 @@ export default function Photos() {
 									color={
 										rTheme.colorScheme === 'light'
 											? rTheme.theme?.gluestack.tokens.colors.light900
-											: rTheme.theme?.gluestack.tokens.colors.dark900
+											: rTheme.theme?.gluestack.tokens.colors.light100
 									}
 									name={'ios-person'}
 								/>

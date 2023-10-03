@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Divider, Heading, Text, VStack } from '@components/core'
+import { Box, Button, Divider, Heading, Text, VStack } from '@gluestack-ui/themed'
 import NotificationNextAskModal from '@components/molecules/modals/asks/notificationnextaskmodal'
 import { useGetCurrentPushNotificationTokenQuery } from '@graphql/generated'
 import {

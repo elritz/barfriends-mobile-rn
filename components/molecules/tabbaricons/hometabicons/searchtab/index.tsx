@@ -1,7 +1,7 @@
 import { useReactiveVar } from '@apollo/client'
 import TabBarIcon, { TabProps } from '@components/atoms/icons/tabbaricon/TabBarIcon'
-import { Box } from '@components/core'
 import { Ionicons } from '@expo/vector-icons'
+import { Box } from '@gluestack-ui/themed'
 import { ThemeReactiveVar } from '@reactive'
 
 const SearchTab = (props: TabProps) => {
@@ -17,9 +17,7 @@ const SearchTab = (props: TabProps) => {
 						}}
 						size={28}
 						name='search'
-						color={
-							!props.focused ? (rTheme.deviceColorScheme === 'dark' ? 'white' : 'black') : props.color
-						}
+						color={!props.focused ? (rTheme.colorScheme === 'dark' ? 'white' : 'black') : props.color}
 					/>
 				}
 			/>

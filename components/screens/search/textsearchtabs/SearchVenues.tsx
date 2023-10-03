@@ -1,6 +1,6 @@
 import SearchCard from '../components/SearchCard'
 import { useReactiveVar } from '@apollo/client'
-import { Box, Center, HStack, Heading, VStack } from '@components/core'
+import { Box, Center, HStack, Heading, VStack } from '@gluestack-ui/themed'
 import { useExploreSearchQuery } from '@graphql/generated'
 import { ThemeReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
@@ -59,8 +59,8 @@ export default function SearchVenues() {
 												String(rTheme.theme?.gluestack.tokens.colors.light300),
 										  ]
 										: [
-												String(rTheme.theme?.gluestack.tokens.colors.dark100),
-												String(rTheme.theme?.gluestack.tokens.colors.dark300),
+												String(rTheme.theme?.gluestack.tokens.colors.light900),
+												String(rTheme.theme?.gluestack.tokens.colors.light700),
 										  ]
 								}
 							/>
@@ -73,8 +73,8 @@ export default function SearchVenues() {
 													String(rTheme.theme?.gluestack.tokens.colors.light300),
 											  ]
 											: [
-													String(rTheme.theme?.gluestack.tokens.colors.dark100),
-													String(rTheme.theme?.gluestack.tokens.colors.dark300),
+													String(rTheme.theme?.gluestack.tokens.colors.light900),
+													String(rTheme.theme?.gluestack.tokens.colors.light700),
 											  ]
 									}
 									width={250}
@@ -88,8 +88,8 @@ export default function SearchVenues() {
 													String(rTheme.theme?.gluestack.tokens.colors.light300),
 											  ]
 											: [
-													String(rTheme.theme?.gluestack.tokens.colors.dark100),
-													String(rTheme.theme?.gluestack.tokens.colors.dark300),
+													String(rTheme.theme?.gluestack.tokens.colors.light900),
+													String(rTheme.theme?.gluestack.tokens.colors.light700),
 											  ]
 									}
 									width={100}

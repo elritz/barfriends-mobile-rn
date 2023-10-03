@@ -1,4 +1,4 @@
-import { Box, Text } from '@components/core'
+import { Box, Text } from '@gluestack-ui/themed'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 interface StatusScreenProps {}

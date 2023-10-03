@@ -9,7 +9,7 @@ import {
 	VStack,
 	CloseIcon,
 	CloseCircleIcon,
-} from '@components/core'
+} from '@gluestack-ui/themed'
 import ContactItem from '@components/screens/conversations/ContactItem'
 import SearchResultContactItem from '@components/screens/conversations/SearchResultContactItem'
 import { ThemeReactiveVar } from '@reactive'
@@ -205,7 +205,7 @@ export default function NewConversation() {
 						borderColor: '$light400',
 					},
 					_dark: {
-						borderColor: '$dark200',
+						borderColor: '$light700',
 					},
 				}}
 			>
@@ -228,7 +228,7 @@ export default function NewConversation() {
 												bg: '$light200',
 											},
 											_dark: {
-												bg: '$dark200',
+												bg: '$light700',
 											},
 										}}
 										alignSelf='center'

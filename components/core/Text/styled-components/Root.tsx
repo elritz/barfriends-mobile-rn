@@ -9,7 +9,7 @@ export default styled(
 		fontFamily: '$body',
 		fontStyle: 'normal',
 		_dark: {
-			color: '$textDark200',
+			color: '$textlight700',
 		},
 		_light: {
 			color: '$textLight950',

@@ -30,7 +30,7 @@ export default styled(
       },
     },
     '_dark': {
-      bg: '$backgroundDark900',
+      bg: '$backgroundlight100',
     },
 
     'defaultProps': {

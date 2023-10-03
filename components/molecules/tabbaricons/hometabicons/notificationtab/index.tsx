@@ -15,9 +15,7 @@ const NotificationTab = (props: TabProps) => {
 					}}
 					name='notifications'
 					size={28}
-					color={
-						!props.focused ? (rTheme.deviceColorScheme === 'dark' ? 'white' : 'black') : props.color
-					}
+					color={!props.focused ? (rTheme.colorScheme === 'dark' ? 'white' : 'black') : props.color}
 				/>
 			}
 		/>

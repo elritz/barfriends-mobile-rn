@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, HStack, Heading, VStack } from '@components/core'
+import { Box, Button, HStack, Heading, VStack } from '@gluestack-ui/themed'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import * as Haptics from 'expo-haptics'
@@ -22,7 +22,7 @@ export default function _layout() {
 					backgroundColor:
 						rTheme.colorScheme === 'light'
 							? rTheme.theme?.gluestack.tokens.colors.light100
-							: rTheme.theme?.gluestack.tokens.colors.dark50,
+							: rTheme.theme?.gluestack.tokens.colors.light900,
 				},
 				// headerTitle: '',
 				header: () => (
@@ -70,7 +70,7 @@ export default function _layout() {
 												color={
 													rTheme.colorScheme === 'light'
 														? rTheme.theme?.gluestack.tokens.colors.light900
-														: rTheme.theme?.gluestack.tokens.colors.dark900
+														: rTheme.theme?.gluestack.tokens.colors.light100
 												}
 												style={{
 													marginLeft: -10,
@@ -98,7 +98,7 @@ export default function _layout() {
 									color={
 										rTheme.colorScheme === 'light'
 											? rTheme.theme?.gluestack.tokens.colors.light900
-											: rTheme.theme?.gluestack.tokens.colors.dark900
+											: rTheme.theme?.gluestack.tokens.colors.light100
 									}
 								/>
 							</Button>

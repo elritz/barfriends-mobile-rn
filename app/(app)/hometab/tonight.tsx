@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box } from '@components/core'
+import { Box } from '@gluestack-ui/themed'
 import CardPleaseSignup from '@components/molecules/asks/signuplogin'
 import InviteCard from '@components/screens/public/venue/venueactions/actioncards/invitecard/InviteCard'
 import QuickBarfriendCard from '@components/screens/public/venue/venueactions/actioncards/quickbarfriendcard/QuickBarfriendCard'

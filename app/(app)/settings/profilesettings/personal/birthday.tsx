@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
 import DatePicker from '@components/atoms/inputs/DatePicker'
-import { Box, Button, Text } from '@components/core'
+import { Box, Button, Text } from '@gluestack-ui/themed'
 import {
 	AuthorizationDeviceProfile,
 	Profile,
@@ -159,7 +159,7 @@ export default () => {
 						rounded={'$md'}
 						sx={{
 							_dark: {
-								bg: '$dark500',
+								bg: '$light9000',
 							},
 							_light: {
 								bg: '$light500',

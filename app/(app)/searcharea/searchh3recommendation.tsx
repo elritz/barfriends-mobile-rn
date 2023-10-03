@@ -1,4 +1,4 @@
-import { Box, Heading, Text } from '@components/core'
+import { Box, Heading, Text } from '@gluestack-ui/themed'
 import MemoizedVerticalVenueFeedVenueItem from '@components/screens/venuesfeed/VerticalVenueFeedVenueItem'
 import { useGetH3Index6VenueRecommendationByIdQuery } from '@graphql/generated'
 import { MasonryFlashList } from '@shopify/flash-list'

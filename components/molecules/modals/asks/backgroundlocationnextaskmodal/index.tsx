@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Button, Center, Divider, Modal, Text, VStack } from '@components/core'
+import { Button, Center, Divider, Modal, Text, VStack } from '@gluestack-ui/themed'
 import { DaysPreferencePermissionInitialState } from '@constants/Preferences'
 import { LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION } from '@constants/StorageConstants'
 import { LocalStoragePreferenceAskBackgroundLocationPermissionType } from '@ctypes/preferences'

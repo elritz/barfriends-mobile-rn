@@ -1,4 +1,4 @@
-import { Box, Button, Center, Divider, Text, VStack } from '@components/core'
+import { Box, Button, Center, Divider, Text, VStack } from '@gluestack-ui/themed'
 import GetSignInUpText from '@util/helpers/data/SignupinText'
 import { useRouter } from 'expo-router'
 

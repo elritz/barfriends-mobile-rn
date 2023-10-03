@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Badge, Box, HStack, Heading, Text, VStack } from '@components/core'
+import { Badge, Box, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
 import { useProfileQuery } from '@graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
@@ -103,7 +103,7 @@ export default ({}: EditableOptionsScreenProps) => {
 						color={
 							rTheme.colorScheme === 'light'
 								? rTheme.theme?.gluestack.tokens.colors.light400
-								: rTheme.theme?.gluestack.tokens.colors.dark400
+								: rTheme.theme?.gluestack.tokens.colors.light600
 						}
 						size={20}
 					/>
@@ -143,7 +143,7 @@ export default ({}: EditableOptionsScreenProps) => {
 											color={
 												rTheme.colorScheme === 'light'
 													? rTheme.theme?.gluestack.tokens.colors.light100
-													: rTheme.theme?.gluestack.tokens.colors.dark100
+													: rTheme.theme?.gluestack.tokens.colors.light900
 											}
 										>
 											{item.emoji}

@@ -1,4 +1,4 @@
-import { Box } from '@components/core'
+import { Box } from '@gluestack-ui/themed'
 import { CondensedHorizontalFriendNotifciation } from '@components/molecules/notifications/friendnotification/CondensedHorizontalFriendNotifciation'
 import { FriendRequestNotification } from '@graphql/generated'
 

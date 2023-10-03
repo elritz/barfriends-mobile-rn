@@ -1,5 +1,5 @@
 // TODO: Choose to remove or to compelete
-import { Box, Heading } from '@components/core'
+import { Box, Heading } from '@gluestack-ui/themed'
 
 export default function SearchTop() {
 	return (

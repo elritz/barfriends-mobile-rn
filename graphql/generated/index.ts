@@ -15149,6 +15149,20 @@ export type ProfileWhereUniqueInput = {
   Vote?: InputMaybe<VoteListRelationFilter>;
 };
 
+export type PublicProfilePersonal = {
+  __typename?: 'PublicProfilePersonal';
+  createdAt: Scalars['DateTime'];
+  DetailInformation?: Maybe<DetailInformation>;
+  friendStatus: Scalars['Boolean'];
+  id: Scalars['String'];
+  IdentifiableInformation?: Maybe<IdentifiableInformation>;
+  profilePhoto?: Maybe<Photo>;
+  ProfileType: ProfileType;
+  Relationships: Array<Relationship>;
+  tonightStory?: Maybe<Story>;
+  updatedAt: Scalars['DateTime'];
+};
+
 export type PushToken = {
   __typename?: 'PushToken';
   createdAt?: Maybe<Scalars['DateTime']>;
@@ -15419,6 +15433,7 @@ export type Query = {
   privacyTermsDocuments: LatestPrivacyAndTermsDocumentResponse;
   profile?: Maybe<Profile>;
   profiles: Array<Profile>;
+  publicProfile: PublicProfilePersonal;
   sendAuthenticatorDeviceOwnerCode: Scalars['Boolean'];
   venue?: Maybe<Venue>;
   venues: Array<Venue>;

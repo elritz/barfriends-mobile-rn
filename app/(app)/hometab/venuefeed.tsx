@@ -8,7 +8,7 @@ import {
 	Heading,
 	Button,
 	ArrowRightIcon,
-} from '@components/core'
+} from '@gluestack-ui/themed'
 import CardPleaseSignup from '@components/molecules/asks/signuplogin'
 import SearchAreaHeader from '@components/screens/venuesfeed/SearchAreaHeader'
 import VenueFeedSearchAreaEmptyState from '@components/screens/venuesfeed/VenueFeedSearchAreaEmptyState'
@@ -124,8 +124,8 @@ export default () => {
 												String(rTheme.theme?.gluestack.tokens.colors.light300),
 										  ]
 										: [
-												String(rTheme.theme?.gluestack.tokens.colors.dark100),
-												String(rTheme.theme?.gluestack.tokens.colors.dark300),
+												String(rTheme.theme?.gluestack.tokens.colors.light800),
+												String(rTheme.theme?.gluestack.tokens.colors.light600),
 										  ]
 								}
 							/>
@@ -352,7 +352,7 @@ export default () => {
 														: rTheme.theme?.gluestack.tokens.colors.light700
 													: item.toBeNotifiedProfileIds.some(item => item === rAuthorizationVar?.Profile?.id)
 													? rTheme.theme?.gluestack.tokens.colors.blue500
-													: rTheme.theme?.gluestack.tokens.colors.dark700
+													: rTheme.theme?.gluestack.tokens.colors.light300
 											}
 										/>
 									</Pressable>
@@ -381,7 +381,7 @@ export default () => {
 														: rTheme.theme?.gluestack.tokens.colors.light700
 													: item.toBeNotifiedProfileIds.some(item => item === rAuthorizationVar?.Profile?.id)
 													? rTheme.theme?.gluestack.tokens.colors.primary500
-													: rTheme.theme?.gluestack.tokens.colors.dark700
+													: rTheme.theme?.gluestack.tokens.colors.light300
 											}
 										/>
 									</Pressable>

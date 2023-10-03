@@ -1,7 +1,7 @@
 import { useReactiveVar } from '@apollo/client'
 import TabBarIcon from '@components/atoms/icons/tabbaricon/TabBarIcon'
 import { TabProps } from '@components/atoms/icons/tabbaricon/TabBarIcon'
-import { Box } from '@components/core'
+import { Box } from '@gluestack-ui/themed'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { ThemeReactiveVar } from '@reactive'
 import { MotiPressable } from 'moti/interactions'
@@ -21,7 +21,7 @@ const MessageTab = (props: TabProps) => {
 						size={25}
 						name={!props.focused ? 'md-chatbubble-ellipses-outline' : 'md-chatbubble-ellipses-sharp'}
 						color={
-							!props.focused ? (rTheme.deviceColorScheme === 'dark' ? 'white' : 'black') : props.color
+								!props.focused ? (rTheme.colorScheme === 'dark' ? 'white' : 'black') : props.color
 						}
 					/>
 				}

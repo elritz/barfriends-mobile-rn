@@ -1,5 +1,4 @@
 import { useReactiveVar } from '@apollo/client'
-import { Button, HStack, Heading, Pressable, Text, VStack } from '@components/core'
 import SearchInputVenueFeed from '@components/molecules/search/searchinput/SearchInputVenueFeed'
 import DevelopmentTab from '@components/molecules/tabbaricons/hometabicons/developmenttab'
 import MessageTab from '@components/molecules/tabbaricons/hometabicons/messagestab'
@@ -12,7 +11,8 @@ import {
 } from '@constants/ReactNavigationConstants'
 import { ITabColor } from '@ctypes/app'
 import { ENVIRONMENT } from '@env'
-import { Entypo, MaterialIcons } from '@expo/vector-icons'
+import { MaterialIcons } from '@expo/vector-icons'
+import { Button, HStack, Heading, Pressable, VStack } from '@gluestack-ui/themed'
 import { TermsServiceReactiveVar, ThemeReactiveVar } from '@reactive'
 import { BlurView } from 'expo-blur'
 import { Tabs, useRouter, useSegments } from 'expo-router'
@@ -42,7 +42,7 @@ export default () => {
 				// tabBarBackground: () => <Box style={[StyleSheet.absoluteFill]} />,
 				tabBarBackground: () => (
 					<BlurView
-						tint={rTheme.deviceColorScheme === 'light' ? 'light' : 'dark'}
+						tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 						intensity={70}
 						style={[StyleSheet.absoluteFill]}
 					/>
@@ -68,7 +68,7 @@ export default () => {
 									? 'transparent'
 									: rTheme.colorScheme === 'light'
 									? rTheme.theme?.gluestack.tokens.colors.light100
-									: rTheme.theme?.gluestack.tokens.colors.dark50,
+									: rTheme.theme?.gluestack.tokens.colors.light900,
 							}}
 							intensity={70}
 							tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
@@ -77,7 +77,7 @@ export default () => {
 								justifyContent={'flex-start'}
 								// sx={{
 								// 	_light: { bg: !segments.includes('tonight') ? '$light100' : 'transparent' },
-								// 	_dark: { bg: !segments.includes('tonight') ? '$dark50' : 'transparent' },
+								// 	_dark: { bg: !segments.includes('tonight') ? '$light900' : 'transparent' },
 								// }}
 							>
 								<SearchInputVenueFeed placeholder='Explore' />
@@ -145,7 +145,7 @@ export default () => {
 											color={
 												rTheme.colorScheme === 'light'
 													? rTheme.theme?.gluestack.tokens.colors.light900
-													: rTheme.theme?.gluestack.tokens.colors.dark900
+													: rTheme.theme?.gluestack.tokens.colors.light100
 											}
 										/>
 									</Pressable>

@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Heading, Text } from '@components/core'
+import { Box, Button, Heading, Text } from '@gluestack-ui/themed'
 import { PermissionMediaReactiveVar } from '@reactive'
 import { useRouter } from 'expo-router'
 import { uniqueId } from 'lodash'

@@ -4,7 +4,7 @@ import { MARGIN } from './Config'
 import Item from './Item'
 import SortableList from './SortableList'
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Heading, Text, VStack } from '@components/core'
+import { Box, Button, Heading, Text, VStack } from '@gluestack-ui/themed'
 import { MaterialIcons } from '@expo/vector-icons'
 import { ThemeReactiveVar } from '@reactive'
 import * as ImagePicker from 'expo-image-picker'
@@ -80,7 +80,7 @@ const TonightImages = () => {
 								color={
 									rTheme.colorScheme === 'light'
 										? rTheme.theme?.gluestack.tokens.colors.light900
-										: rTheme.theme?.gluestack.tokens.colors.dark900
+										: rTheme.theme?.gluestack.tokens.colors.light100
 								}
 							/>
 						</Button>

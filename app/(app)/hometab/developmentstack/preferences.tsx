@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Divider, HStack, Pressable, Spinner, Text, VStack } from '@components/core'
+import { Box, Divider, HStack, Pressable, Spinner, Text, VStack } from '@gluestack-ui/themed'
 import {
 	TomorrowPreferencePermissionInitialState,
 	NowPreferencePermissionInitialState,
@@ -144,7 +144,7 @@ export default function Preferences() {
 									color={
 										rTheme.colorScheme === 'light'
 											? rTheme.theme?.gluestack.tokens.colors.light900
-											: rTheme.theme?.gluestack.tokens.colors.dark900
+											: rTheme.theme?.gluestack.tokens.colors.light100
 									}
 								/>
 								<Text sx={{ maxWidth: 275 }} numberOfLines={2} fontSize={'$md'}>
@@ -159,7 +159,7 @@ export default function Preferences() {
 										name={'trash-2'}
 										style={{ marginRight: 3 }}
 										size={20}
-										color={rTheme.theme?.gluestack.tokens.colors.danger500}
+										color={rTheme.theme?.gluestack.tokens.colors.error500}
 									/>
 								)}
 							</Box>

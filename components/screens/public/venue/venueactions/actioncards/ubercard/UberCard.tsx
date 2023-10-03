@@ -1,6 +1,6 @@
 import UberButton from './UberButton'
 import { useReactiveVar } from '@apollo/client'
-import { HStack, Heading, Text, VStack } from '@components/core'
+import { HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import { UBER_CLIENT_ID_KEY } from '@env'
 import { useCurrentVenueQuery } from '@graphql/generated'
 import { AuthorizationReactiveVar } from '@reactive'
