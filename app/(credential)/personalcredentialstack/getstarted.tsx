@@ -62,7 +62,7 @@ export default () => {
 					</Link>
 					{/* </Pressable> */}
 				</Box>
-				<>
+				<VStack space='xs' alignItems='center'>
 					<Pressable disabled={PTSLoading} onPress={_press}>
 						<Box
 							alignItems='center'
@@ -77,7 +77,7 @@ export default () => {
 							<Feather name='arrow-right' size={32} color={'white'} />
 						</Box>
 					</Pressable>
-				</>
+				</VStack>
 			</VStack>
 		</SafeAreaView>
 	)

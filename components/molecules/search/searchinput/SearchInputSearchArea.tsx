@@ -1,8 +1,8 @@
 import { useReactiveVar } from '@apollo/client'
 import ChevronBackArrow from '@components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
-import { HStack, Input } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
 import { AntDesign } from '@expo/vector-icons'
+import { HStack, Input, InputField, InputIcon, Pressable } from '@gluestack-ui/themed'
 import { ThemeReactiveVar } from '@reactive'
 import useDebounce from '@util/hooks/useDebounce'
 import { useRouter } from 'expo-router'
@@ -75,7 +75,8 @@ const SearchInputSearchArea = (props: Props) => {
 					<Input
 						flex={1}
 						variant='rounded'
-						mr={'$3'}
+						alignItems='center'
+						mx={'$3'}
 						zIndex={0}
 						hitSlop={{ top: 12, bottom: 12, left: 0, right: 15 }}
 						bg={
@@ -84,18 +85,17 @@ const SearchInputSearchArea = (props: Props) => {
 								: rTheme.theme?.gluestack.tokens.colors.light900
 						}
 					>
-						<Input.Icon ml={'$2'}>
-							<Ionicons
-								color={
-									rTheme.colorScheme === 'light'
-										? rTheme.theme?.gluestack.tokens.colors.light700
-										: rTheme.theme?.gluestack.tokens.colors.light100
-								}
-								name='ios-search'
-								size={20}
-							/>
-						</Input.Icon>
-						<Input.Input
+						<Ionicons
+							style={{ marginLeft: 10 }}
+							color={
+								rTheme.colorScheme === 'light'
+									? rTheme.theme?.gluestack.tokens.colors.light700
+									: rTheme.theme?.gluestack.tokens.colors.light100
+							}
+							name='ios-search'
+							size={20}
+						/>
+						<InputField
 							ref={_inputRef}
 							autoFocus
 							placeholderTextColor={
@@ -116,13 +116,13 @@ const SearchInputSearchArea = (props: Props) => {
 						/>
 
 						{watch('searchtext')?.length ? (
-							<Input.Icon mr={'$3'} onPress={() => clearSearchInput()}>
+							<Pressable mr={'$3'} onPress={() => clearSearchInput()}>
 								<AntDesign
 									name='closecircle'
 									size={20}
 									color={rTheme.colorScheme === 'light' ? 'black' : 'white'}
 								/>
-							</Input.Icon>
+							</Pressable>
 						) : null}
 					</Input>
 				)}

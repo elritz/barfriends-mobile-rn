@@ -1,9 +1,10 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Heading, Input, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { Feather, Ionicons } from '@expo/vector-icons'
+import { Box, Heading, Input, InputField, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { useCheckUsernameLazyQuery } from '@graphql/generated'
 import { useIsFocused } from '@react-navigation/native'
 import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '@reactive'
+import useContentInsets from '@util/hooks/useContentInsets'
 import { useRouter } from 'expo-router'
 import { useRef } from 'react'
 import { Controller, useForm, ValidateResult } from 'react-hook-form'
@@ -14,6 +15,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default () => {
 	const INPUT_ACCESSORY_VIEW_ID = 'un-1298187263'
+	const contentInsets = useContentInsets()
 	const { bottom } = useSafeAreaInsets()
 	const router = useRouter()
 	const isFocused = useIsFocused()
@@ -161,7 +163,7 @@ export default () => {
 	}
 
 	return (
-		<Box bg='$transparent' flex={1}>
+		<Box bg='$transparent' flex={1} mt={contentInsets.top}>
 			<Reanimated.View style={{ flex: 1, marginHorizontal: 15 }}>
 				<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$2xl'}>
 					Choose your username
@@ -173,7 +175,7 @@ export default () => {
 						defaultValue=''
 						render={({ field: { onChange, onBlur, value } }) => (
 							<Input key={'username'} variant={'underlined'} py={'$1'} size={'lg'}>
-								<Input.Input
+								<InputField
 									ref={_usernameRef}
 									type='text'
 									value={value}
@@ -190,16 +192,13 @@ export default () => {
 									textContentType='nickname'
 									autoComplete='username-new'
 									returnKeyType='done'
-									py={'$1'}
 									numberOfLines={1}
 									keyboardType='default'
 									autoCapitalize='none'
 									inputAccessoryViewID={INPUT_ACCESSORY_VIEW_ID}
 									blurOnSubmit={false}
 								/>
-								<Input.Icon>
-									<InputRightIcon />
-								</Input.Icon>
+								<InputRightIcon />
 							</Input>
 						)}
 						rules={{

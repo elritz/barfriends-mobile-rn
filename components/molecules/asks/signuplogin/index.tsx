@@ -1,5 +1,5 @@
-import { VStack, Text, Button, Pressable, Heading, Box } from '@gluestack-ui/themed'
 import DeviceManagerProfiles from '@components/organisms/list/DeviceManagerProfiles'
+import { VStack, Text, Button, Pressable, Heading, Box, ButtonText } from '@gluestack-ui/themed'
 import GetSignInUpText from '@util/helpers/data/SignupinText'
 import { useRouter } from 'expo-router'
 
@@ -24,7 +24,7 @@ export default (props: Props) => {
 
 	return (
 		<VStack space='lg'>
-			<Box bg='$transparent'>
+			<VStack alignItems='center'>
 				<Heading
 					numberOfLines={3}
 					ellipsizeMode='tail'
@@ -38,7 +38,7 @@ export default (props: Props) => {
 					fontWeight={'$black'}
 					fontSize={'$xl'}
 				>
-					{text[props.signupTextId ?? 1].title}
+					{text[props.signupTextId || 1].title}
 				</Heading>
 				<Text
 					allowFontScaling
@@ -50,7 +50,10 @@ export default (props: Props) => {
 					{/* {text[props.signupTextId ?? 1].subTitle} */}
 					Cool slogans here
 				</Text>
-			</Box>
+				<Text fontSize={'$sm'} color='$coolGray500' fontWeight='$bold'>
+					2 min
+				</Text>
+			</VStack>
 			<VStack w={'$full'} alignItems={'center'} space={'md'}>
 				<Button
 					onPress={_pressToSignup}
@@ -59,14 +62,14 @@ export default (props: Props) => {
 					}}
 					rounded={'$md'}
 				>
-					<Button.Text
+					<ButtonText
 						textTransform='uppercase'
 						fontWeight='$bold'
 						fontSize={'$lg'}
 						// _text={{ textTransform: 'uppercase', fontWeight: '700', fontSize: 'lg' }}
 					>
 						Sign up
-					</Button.Text>
+					</ButtonText>
 				</Button>
 				<Pressable py={'$2'} w={'100%'} onPress={_pressToLogin}>
 					<Text textTransform='uppercase' fontSize={'$lg'} fontWeight={'$bold'} alignSelf='center'>

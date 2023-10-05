@@ -1,6 +1,6 @@
 import { Form } from './_layout'
 import { useReactiveVar } from '@apollo/client'
-import { Button, Text } from '@gluestack-ui/themed'
+import { Button, ButtonText, Text } from '@gluestack-ui/themed'
 import { CountryResponseObject, useGetAllCountriesQuery } from '@graphql/generated'
 import { ThemeReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
@@ -152,7 +152,7 @@ export default function SearchCountry() {
 				rounded={'$md'}
 				justifyContent='flex-start'
 			>
-				<Button.Text
+				<ButtonText
 					mt={'$0.5'}
 					ml={'$3'}
 					textAlign={'center'}
@@ -166,10 +166,10 @@ export default function SearchCountry() {
 					<Text fontWeight={'$medium'} fontSize={'$lg'} numberOfLines={1} ellipsizeMode={'tail'}>
 						{item.name}
 					</Text>
-				</Button.Text>
+				</ButtonText>
 				{watch('country.name') === item.name ? (
 					<Button onPress={() => _pressItem(item)} rounded={'$full'} bg='$blue500' size='xs' mr={'$3'}>
-						<Button.Text fontSize={'$xs'}>Continue</Button.Text>
+						<ButtonText fontSize={'$xs'}>Continue</ButtonText>
 					</Button>
 				) : null}
 			</Button>

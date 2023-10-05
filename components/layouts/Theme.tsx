@@ -19,6 +19,7 @@ export default function Theme({ children }) {
 	const [toggleColorScheme] = useToggleTheme()
 
 	const setTheme = async () => {
+		console.log('THEME :>>');
 		const localStorageColorScheme = await AsyncStorage.getItem(
 			LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME,
 		)
@@ -63,13 +64,11 @@ export default function Theme({ children }) {
 					colorMode={rThemeVar.colorScheme === 'light' ? 'light' : 'dark'}
 					config={rThemeVar.theme.gluestack}
 				>
-					<RestyleThemeProvider theme={rThemeVar.theme.restyle}>
-						<StatusBar
-							animated
-							barStyle={rThemeVar.colorScheme === 'light' ? 'dark-content' : 'light-content'}
-						/>
-						{children}
-					</RestyleThemeProvider>
+					<StatusBar
+						animated
+						barStyle={rThemeVar.colorScheme === 'light' ? 'dark-content' : 'light-content'}
+					/>
+					{children}
 				</GluestackUIProvider>
 			</ReactNavigationThemeProvider>
 		</AnimatedSplashScreen>

@@ -1,7 +1,7 @@
 import { useReactiveVar } from '@apollo/client'
-import { HStack, Input } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
 import { AntDesign } from '@expo/vector-icons'
+import { HStack, Input, InputField, InputIcon, Pressable } from '@gluestack-ui/themed'
 import { useExploreSearchLazyQuery } from '@graphql/generated'
 import { ThemeReactiveVar } from '@reactive'
 import useDebounce from '@util/hooks/useDebounce'
@@ -136,88 +136,92 @@ const SearchInput = (props: Props) => {
 								: rTheme.theme?.gluestack.tokens.colors.light900
 						}
 					>
-						<Input.Icon ml={'$2'}>
-							<Ionicons
-								color={
+						<HStack alignItems='center'>
+							<InputIcon ml={'$2'}>
+								<Ionicons
+									color={
+										rTheme.colorScheme === 'light'
+											? rTheme.theme?.gluestack.tokens.colors.light700
+											: rTheme.theme?.gluestack.tokens.colors.light100
+									}
+									name='ios-search'
+									size={20}
+								/>
+							</InputIcon>
+							<InputField
+								ref={_inputRef}
+								// autoFocus={autoFucus}
+								placeholderTextColor={
 									rTheme.colorScheme === 'light'
 										? rTheme.theme?.gluestack.tokens.colors.light700
 										: rTheme.theme?.gluestack.tokens.colors.light100
 								}
-								name='ios-search'
-								size={20}
-							/>
-						</Input.Icon>
-						<Input.Input
-							ref={_inputRef}
-							// autoFocus={autoFucus}
-							placeholderTextColor={
-								rTheme.colorScheme === 'light'
-									? rTheme.theme?.gluestack.tokens.colors.light700
-									: rTheme.theme?.gluestack.tokens.colors.light100
-							}
-							autoCapitalize={'none'}
-							autoCorrect={false}
-							autoComplete='off'
-							value={value}
-							onPressIn={() => {
-								if (segments.includes('hometab')) {
-									router.push({
-										pathname: '/(app)/explore/searchtext',
-										params: {
-											searchtext: '',
-										},
-									})
-								}
-
-								if (segments.includes('explore') && segments.includes('searchtext')) {
-									router.replace({
-										params: {
-											searchtext: watch('searchtext'),
-										},
-										pathname: '/(app)/explore/searchtext',
-									})
-								}
-
-								if (segments.includes('searcharea')) {
-									if (segments.includes('searchexplore')) {
+								autoCapitalize={'none'}
+								autoCorrect={false}
+								autoComplete='off'
+								value={value}
+								onPressIn={() => {
+									if (segments.includes('hometab')) {
 										router.push({
-											pathname: '/(app)/searcharea',
+											pathname: '/(app)/explore/searchtext',
 											params: {
 												searchtext: '',
 											},
 										})
-									} else {
-										if (
-											!segments.includes('searchcountry') ||
-											!segments.includes('searchcountrystates') ||
-											!segments.includes('searchstatecities')
-										) {
+									}
+
+									if (segments.includes('explore') && segments.includes('searchtext')) {
+										router.replace({
+											params: {
+												searchtext: watch('searchtext'),
+											},
+											pathname: '/(app)/explore/searchtext',
+										})
+									}
+
+									if (segments.includes('searcharea')) {
+										if (segments.includes('searchexplore')) {
 											router.push({
-												pathname: '/(app)/searcharea/searchcountry',
+												pathname: '/(app)/searcharea',
 												params: {
 													searchtext: '',
 												},
 											})
+										} else {
+											if (
+												!segments.includes('searchcountry') ||
+												!segments.includes('searchcountrystates') ||
+												!segments.includes('searchstatecities')
+											) {
+												router.push({
+													pathname: '/(app)/searcharea/searchcountry',
+													params: {
+														searchtext: '',
+													},
+												})
+											}
 										}
 									}
-								}
-							}}
-							onChangeText={onChange}
-							placeholder={props.placeholder || 'Search'}
-							returnKeyType='search'
-							underlineColorAndroid='transparent'
-							onSubmitEditing={handleSubmit(handleSearchSubmitEditting)}
-							keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-						/>
-						{watch('searchtext')?.length ? (
-							<Input.Icon mr={'$3'} onPress={() => clearSearchInput()}>
-								<AntDesign
-									name='closecircle'
-									size={20}
-									color={rTheme.colorScheme === 'light' ? 'black' : 'white'}
-								/>
-							</Input.Icon>
-						) : null}
+								}}
+								onChangeText={onChange}
+								placeholder={props.placeholder || 'Search'}
+								returnKeyType='search'
+								underlineColorAndroid='transparent'
+								onSubmitEditing={handleSubmit(handleSearchSubmitEditting)}
+								keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+							/>
+							{watch('searchtext')?.length ? (
+								<Pressable onPress={() => clearSearchInput()}>
+									<InputIcon mr={'$3'}>
+										<AntDesign
+											name='closecircle'
+											size={20}
+											color={rTheme.colorScheme === 'light' ? 'black' : 'white'}
+										/>
+									</InputIcon>
+								</Pressable>
+							) : null}
+						</HStack>
 					</Input>
 				)}
 			/>

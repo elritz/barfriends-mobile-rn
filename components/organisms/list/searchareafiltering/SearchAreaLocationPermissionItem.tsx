@@ -1,9 +1,9 @@
 // TODO: UX() location icon when searchArea is using Currently Location over preset
 import { useReactiveVar } from '@apollo/client'
-import { Box, HStack, Pressable, Text } from '@gluestack-ui/themed'
 import { LOCAL_STORAGE_SEARCH_AREA } from '@constants/StorageConstants'
 import { LocalStoragePreferenceSearchAreaType } from '@ctypes/preferences'
 import { FontAwesome5 } from '@expo/vector-icons'
+import { Box, ButtonText, HStack, Pressable, Text } from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
 	PermissionForegroundLocationReactiveVar,
@@ -74,9 +74,9 @@ const SearchAreaLocationPermissionItem = () => {
 							h: 50,
 							_light: {
 								bg: isPressed
-									? '#ffffff40'
+									? '#ffffff100'
 									: rSearchAreaVar?.useCurrentLocation
-									? '$light300'
+									? '$blue500'
 									: '$light300',
 							},
 							_dark: {
@@ -86,16 +86,16 @@ const SearchAreaLocationPermissionItem = () => {
 						p={'$3'}
 						justifyContent={'space-between'}
 					>
-						<Text
+						<ButtonText
 							textAlign={'left'}
 							fontWeight={'$medium'}
 							fontSize={'$lg'}
 							ellipsizeMode={'tail'}
 							alignSelf={'center'}
-							color={rTheme.colorScheme === 'light' ? '$black' : '$white'}
+							color={rSearchAreaVar?.useCurrentLocation ? '$white' : '$black'}
 						>
 							{rSearchAreaVar?.useCurrentLocation ? 'Using current location' : 'Use current location'}
-						</Text>
+						</ButtonText>
 						<Box
 							sx={{
 								h: 35,

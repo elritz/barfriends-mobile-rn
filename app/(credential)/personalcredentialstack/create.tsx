@@ -1,7 +1,7 @@
 import { useReactiveVar } from '@apollo/client'
 import CompanyCoasterLogoDynamic from '@assets/images/company/CompanyCoasterLogoDynamic'
-import { Box, Heading, Pressable, Spinner, Text, VStack } from '@gluestack-ui/themed'
 import { Feather } from '@expo/vector-icons'
+import { Box, Heading, Pressable, Spinner, Text, VStack } from '@gluestack-ui/themed'
 import {
 	AuthorizationDeviceProfile,
 	useCreatePersonalProfileMutation,
@@ -70,14 +70,14 @@ export default () => {
 				<VStack space={'md'} alignItems={'center'} justifyContent={'center'}>
 					<CompanyCoasterLogoDynamic backgroundColor='black' />
 					<Heading fontWeight={'$black'} lineHeight={'$3xl'} fontSize={'$4xl'}>
-						Time to Revel
+						Welcome to Revel
 					</Heading>
 					<Box bg='$transparent'>
 						<Text textAlign='center' fontSize={'$lg'}>
 							We are those we hang around.
 						</Text>
 						<Text mt={'$3'} textAlign='center' fontSize={'$lg'}>
-							If you're not feeling it find and make new experiences. We help do that.
+							We help find and make new experiences.
 						</Text>
 					</Box>
 				</VStack>

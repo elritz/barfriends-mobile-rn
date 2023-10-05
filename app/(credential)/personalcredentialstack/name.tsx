@@ -1,8 +1,9 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Heading, Input, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { Feather } from '@expo/vector-icons'
+import { Box, Heading, Input, InputField, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { useIsFocused } from '@react-navigation/native'
 import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '@reactive'
+import useContentInsets from '@util/hooks/useContentInsets'
 import { useRouter } from 'expo-router'
 import { useRef } from 'react'
 import { Controller, useForm } from 'react-hook-form'
@@ -15,6 +16,7 @@ export default () => {
 	const INPUT_ACCESSORY_VIEW_ID = 'n-1298187263'
 	const router = useRouter()
 	const isFocused = useIsFocused()
+	const contentInsets = useContentInsets()
 	const { bottom } = useSafeAreaInsets()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const credentialPersonalProfileVar = useReactiveVar(CredentialPersonalProfileReactiveVar)
@@ -118,7 +120,7 @@ export default () => {
 	}
 
 	return (
-		<Box bg='$transparent' flex={1}>
+		<Box bg='$transparent' flex={1} mt={contentInsets.top}>
 			<Reanimated.View style={{ flex: 1, marginHorizontal: 15 }}>
 				<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$3xl'}>
 					Enter your name
@@ -128,28 +130,32 @@ export default () => {
 						name='firstname'
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => (
-							<Input key={'name'} variant={'underlined'} py={'$1'} size={'lg'}>
-								<Input.Input
-									ref={_firstnameRef}
-									keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-									key={'name'}
-									returnKeyType='next'
-									textContentType='givenName'
-									autoComplete={'name-given'}
-									autoCapitalize={'none'}
-									keyboardType='default'
-									numberOfLines={1}
-									autoFocus
-									placeholder='First name'
-									inputAccessoryViewID={INPUT_ACCESSORY_VIEW_ID}
-									py={'$1'}
-									onSubmitEditing={() => _lastnameRef?.current?.focus()}
-									onBlur={onBlur}
-									blurOnSubmit={false}
-									onChangeText={onChange}
-									value={value.toLowerCase()}
-								/>
-							</Input>
+							<VStack space='xs'>
+								<Input key={'name'} variant={'underlined'} size={'lg'}>
+									<InputField
+										ref={_firstnameRef}
+										keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+										key={'name'}
+										returnKeyType='next'
+										textContentType='givenName'
+										autoComplete={'name-given'}
+										autoCapitalize={'none'}
+										keyboardType='default'
+										numberOfLines={1}
+										autoFocus
+										placeholder='First name'
+										inputAccessoryViewID={INPUT_ACCESSORY_VIEW_ID}
+										onSubmitEditing={() => _lastnameRef?.current?.focus()}
+										onBlur={onBlur}
+										blurOnSubmit={false}
+										onChangeText={onChange}
+										value={value.toLowerCase()}
+									/>
+								</Input>
+								<Text fontSize={'$sm'} fontWeight='$bold' lineHeight='$xs'>
+									First name
+								</Text>
+							</VStack>
 						)}
 						rules={{
 							required: {
@@ -166,27 +172,31 @@ export default () => {
 						name='lastname'
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => (
-							<Input key={'lname'} variant={'underlined'} py={'$1'} size={'lg'}>
-								<Input.Input
-									ref={_lastnameRef}
-									keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-									key={'lastname'}
-									returnKeyType='done'
-									textContentType='familyName'
-									autoComplete={'name-family'}
-									autoCapitalize={'none'}
-									keyboardType='default'
-									numberOfLines={1}
-									placeholder='Last name'
-									inputAccessoryViewID={INPUT_ACCESSORY_VIEW_ID}
-									py={'$1'}
-									onBlur={onBlur}
-									onSubmitEditing={handleSubmit(onSubmit)}
-									blurOnSubmit={false}
-									onChangeText={onChange}
-									value={value.toLowerCase()}
-								/>
-							</Input>
+							<VStack space='xs'>
+								<Input key={'lname'} variant={'underlined'} size={'lg'}>
+									<InputField
+										ref={_lastnameRef}
+										keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+										key={'lastname'}
+										returnKeyType='done'
+										textContentType='familyName'
+										autoComplete={'name-family'}
+										autoCapitalize={'none'}
+										keyboardType='default'
+										numberOfLines={1}
+										placeholder='Last name'
+										inputAccessoryViewID={INPUT_ACCESSORY_VIEW_ID}
+										onBlur={onBlur}
+										onSubmitEditing={handleSubmit(onSubmit)}
+										blurOnSubmit={false}
+										onChangeText={onChange}
+										value={value.toLowerCase()}
+									/>
+								</Input>
+								<Text fontSize={'$sm'} fontWeight='$bold' lineHeight='$xs'>
+									Last name
+								</Text>
+							</VStack>
 						)}
 						rules={{
 							required: {

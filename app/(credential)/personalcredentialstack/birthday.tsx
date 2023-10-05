@@ -1,11 +1,12 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { Feather } from '@expo/vector-icons'
+import { Box, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { useIsFocused } from '@react-navigation/native'
 import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '@reactive'
 import { calcDateDiffFromNow } from '@util/helpers/luxon'
 import { secureStorageItemCreate } from '@util/hooks/local/useSecureStorage'
+import useContentInsets from '@util/hooks/useContentInsets'
 import { useRouter } from 'expo-router'
 import { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
@@ -14,6 +15,7 @@ import { View } from 'react-native'
 export default () => {
 	const router = useRouter()
 	const isFocused = useIsFocused()
+	const contentInsets = useContentInsets()
 	const credentialPersonalProfileVar = useReactiveVar(CredentialPersonalProfileReactiveVar)
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const [legalAge] = useState<number>(19)
@@ -110,7 +112,7 @@ export default () => {
 			alignItems='center'
 			flexDirection='column'
 			justifyContent='space-between'
-			mt={'$5'}
+			mt={contentInsets.top}
 			bg='$transparent'
 		>
 			<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$3xl'}>

@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { HStack, Input, Pressable } from '@gluestack-ui/themed'
+import { HStack, Input, InputField, Pressable } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
 import { ThemeReactiveVar } from '@reactive'
 import { useGlobalSearchParams, useRouter } from 'expo-router'
@@ -45,7 +45,7 @@ const SearchInputResults = (props: Props) => {
 				}
 				isReadOnly
 			>
-				<Input.Input
+				<InputField
 					placeholderTextColor={
 						rTheme.colorScheme === 'light'
 							? rTheme.theme?.gluestack.tokens.colors.light700

@@ -29,6 +29,11 @@ export const SignupinText = [
 		title: `Go out tonight, be ready for an adventure.`,
 		subTitle: 'Find venues. Meet people. Be fun.',
 	},
+	{
+		id: 7,
+		title: 'Sign up tonight in just 2 min.',
+		subTitle: 'Find venues. Meet people. Be fun.',
+	},
 ]
 
 const GetSignInUpText = () => {

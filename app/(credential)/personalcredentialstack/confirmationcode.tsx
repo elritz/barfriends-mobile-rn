@@ -1,13 +1,14 @@
 // TODO: FN(onPress(Resend Code)) - ln:162 -- when the user presses resend code need to resend and keep track of how many times
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { Feather } from '@expo/vector-icons'
+import { Box, Button, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { useIsFocused } from '@react-navigation/native'
 import {
 	ConfirmationCodeReactiveVar,
 	CredentialPersonalProfileReactiveVar,
 	ThemeReactiveVar,
 } from '@reactive'
+import useContentInsets from '@util/hooks/useContentInsets'
 import Countdown from '@util/hooks/useTimer'
 import { useLocalSearchParams, useRouter } from 'expo-router'
 import { useEffect, useState } from 'react'
@@ -27,13 +28,13 @@ export default () => {
 	const INPUT_ACCESSORY_VIEW_ID = 'cc-1298187263'
 	const router = useRouter()
 	const params = useLocalSearchParams()
+	const contentInsets = useContentInsets()
 	const { bottom } = useSafeAreaInsets()
 	const isFocused = useIsFocused()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
-	const confirmationCode = useReactiveVar(ConfirmationCodeReactiveVar)
 	const credentialPersonalProfileVar = useReactiveVar(CredentialPersonalProfileReactiveVar)
 	const CELL_COUNT = String(params?.code).length
-	const ref = useBlurOnFulfill({ value: confirmationCode.code, cellCount: CELL_COUNT })
+	const ref = useBlurOnFulfill({ value: params?.code, cellCount: CELL_COUNT })
 
 	const { num, complete } = Countdown(9)
 	const [codeValue, setCodeValue] = useState('')
@@ -97,7 +98,7 @@ export default () => {
 		clearErrors()
 		if (checkFinalCode(code)) {
 			router.replace({
-				pathname: '/(/credential)/personalcredentialstack/birthday',
+				pathname: '/(credential)/personalcredentialstack/birthday',
 			})
 		} else {
 			setError('code', { type: 'validate', message: 'Wrong code' })
@@ -173,7 +174,7 @@ export default () => {
 	}
 
 	return (
-		<Box bg='$transparent' flex={1}>
+		<Box bg='$transparent' flex={1} mt={contentInsets.top}>
 			<Reanimated.View style={{ flex: 1, marginHorizontal: 15 }}>
 				<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$2xl'} sx={{ minHeight: 70 }}>
 					{`Enter the 4-diget code sent to you at ${

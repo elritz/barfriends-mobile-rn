@@ -4,11 +4,17 @@ import {
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
 } from '@constants/ReactNavigationConstants'
 import { Box, Button, Divider, HStack, Heading, Pressable, VStack } from '@gluestack-ui/themed'
-import { useGetAllThemesQuery, useUpdateThemeManagerSwitchThemeMutation } from '@graphql/generated'
+import {
+	AuthorizationDeviceProfile,
+	useGetAllThemesQuery,
+	useRefreshDeviceManagerMutation,
+	useUpdateThemeManagerSwitchThemeMutation,
+} from '@graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
 import { useToggleTheme } from '@util/hooks/theme/useToggleTheme'
 import useContentInsets from '@util/hooks/useContentInsets'
+import { router } from 'expo-router'
 import { useCallback } from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
@@ -16,14 +22,31 @@ export default function Preferences() {
 	const insets = useSafeAreaInsets()
 	const contentInsets = useContentInsets()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
-	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
+	const [toggleColorScheme, switchTheme] = useToggleTheme()
 
-	const [toggleColorScheme] = useToggleTheme()
+	const { data: GATData, loading: GATLoading, error } = useGetAllThemesQuery()
 
-	const { data: GATData, loading: GATLoading, error } = useGetAllThemesQuery({})
 	const [updateSwitchTheme] = useUpdateThemeManagerSwitchThemeMutation({
 		onCompleted: data => {
-			setTheme({ colorScheme: rTheme.localStorageColorScheme })
+			refreshMutation()
+		},
+	})
+
+	const [refreshMutation, { data, loading }] = useRefreshDeviceManagerMutation({
+		onCompleted: data => {
+			if (data.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile') {
+				const deviceProfile = data.refreshDeviceManager as AuthorizationDeviceProfile
+				AuthorizationReactiveVar(deviceProfile)
+				setTheme({ colorScheme: rTheme.localStorageColorScheme })
+				setTimeout(() => {
+					router.back()
+				}, 500)
+			}
+			if (data.refreshDeviceManager?.__typename === 'Error') {
+				// setTimeout(() => {
+				// 	router.push('/(app)/hometab/venuefeed')
+				// }, 1)
+			}
 		},
 	})
 

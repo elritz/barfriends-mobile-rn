@@ -1,9 +1,9 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import LocationPermissionItemEmptyState from '@components/organisms/list/searchareafiltering/LocationPermissionItemEmptyState'
 import SearchAreaLocationPermissionItem from '@components/organisms/list/searchareafiltering/SearchAreaLocationPermissionItem'
 import { LOCAL_STORAGE_SEARCH_AREA } from '@constants/StorageConstants'
 import { Ionicons } from '@expo/vector-icons'
+import { Box, Button, ButtonText, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { SearchAreaReactiveVar, ThemeReactiveVar } from '@reactive'
 import useContentInsets from '@util/hooks/useContentInsets'
@@ -150,7 +150,7 @@ export default () => {
 									my={'$2'}
 								>
 									<Heading fontSize={'$lg'} lineHeight={'$sm'}>
-										Find Venues Near{`\n`}
+										Find Venues Near you{`\n`}
 										<Text fontSize={'$md'} lineHeight={'$sm'}>
 											Find your area and we will show you what we have for venues.
 										</Text>
@@ -163,7 +163,7 @@ export default () => {
 										})
 									}}
 								>
-									<Text fontSize={'$lg'}>Search area</Text>
+									<ButtonText fontSize={'$lg'}>Search area</ButtonText>
 								</Button>
 								<LocationPermissionItemEmptyState />
 							</Box>
@@ -195,21 +195,15 @@ export default () => {
 												flex={1}
 												height={50}
 											>
-												<Text
+												<ButtonText
 													ellipsizeMode={'tail'}
 													numberOfLines={1}
 													sx={{
-														_dark: {
-															color: 'white',
-														},
-														_light: {
-															color: 'white',
-														},
 														fontWeight: 'medium',
 													}}
 												>
 													{item.value}
-												</Text>
+												</ButtonText>
 											</Button>
 										)
 									})}
@@ -223,11 +217,11 @@ export default () => {
 											})
 										}}
 									>
-										<Button.Text>Find new Area</Button.Text>
+										<ButtonText>Find new Area</ButtonText>
 										<Ionicons
 											color={
 												rTheme.colorScheme === 'light'
-													? rTheme.theme?.gluestack.tokens.colors.light700
+													? rTheme.theme?.gluestack.tokens.colors.light100
 													: rTheme.theme?.gluestack.tokens.colors.light100
 											}
 											name='ios-arrow-forward'

@@ -1,8 +1,19 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, EyeIcon, EyeOffIcon, Heading, Icon, Input, Pressable, Text } from '@gluestack-ui/themed'
 import { Feather } from '@expo/vector-icons'
+import {
+	Box,
+	EyeIcon,
+	EyeOffIcon,
+	Heading,
+	Icon,
+	Input,
+	InputField,
+	Pressable,
+	Text,
+} from '@gluestack-ui/themed'
 import { useIsFocused } from '@react-navigation/native'
 import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '@reactive'
+import useContentInsets from '@util/hooks/useContentInsets'
 import { useRouter } from 'expo-router'
 import { useEffect, useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
@@ -17,10 +28,10 @@ export default function () {
 	const _passwordRef = useRef<TextInput>(null)
 	const router = useRouter()
 	const isFocused = useIsFocused()
+	const contentInsets = useContentInsets()
 	const { bottom } = useSafeAreaInsets()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const credentialPersonalProfileVar = useReactiveVar(CredentialPersonalProfileReactiveVar)
-
 	const [showPassword, setShowPassword] = useState(false)
 	const handleShowPassword = () => {
 		setShowPassword(showState => {
@@ -132,7 +143,7 @@ export default function () {
 	}
 
 	return (
-		<Box bg='$transparent' flex={1}>
+		<Box bg='$transparent' flex={1} mt={contentInsets.top}>
 			<Reanimated.View style={{ flex: 1, marginHorizontal: 15 }}>
 				<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$2xl'}>
 					Enter a password
@@ -146,9 +157,9 @@ export default function () {
 							return (
 								<>
 									<Input key={'password'} variant={'underlined'} py={'$1'} size={'lg'}>
-										<Input.Input
-											value={value}
+										<InputField
 											ref={_passwordRef}
+											value={value}
 											keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 											onChangeText={onChange}
 											onSubmitEditing={handleSubmit(onSubmit)}
@@ -169,10 +180,9 @@ export default function () {
 											autoCapitalize='none'
 											numberOfLines={1}
 										/>
-										<Input.Icon pr='$3' onPress={handleShowPassword}>
-											{/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
+										<Pressable pr={'$3'} onPress={handleShowPassword}>
 											<Icon as={showPassword ? EyeIcon : EyeOffIcon} size={'lg'} color='$primary500' />
-										</Input.Icon>
+										</Pressable>
 									</Input>
 									<Text fontSize={'$sm'} color='$error700'>
 										{errors?.password?.message}

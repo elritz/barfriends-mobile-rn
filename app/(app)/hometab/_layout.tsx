@@ -21,6 +21,8 @@ import { StyleSheet } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default () => {
+	const showDev = true
+
 	const segments = useSegments()
 	const insets = useSafeAreaInsets()
 	const router = useRouter()
@@ -167,7 +169,7 @@ export default () => {
 			<Tabs.Screen
 				name='developmentstack'
 				options={{
-					href: ENVIRONMENT === 'development' ? '/(app)/hometab/developmentstack' : null,
+					href: showDev && ENVIRONMENT === 'development' ? '/(app)/hometab/developmentstack' : null,
 					headerShown: false,
 					tabBarLabel: 'development',
 					tabBarShowLabel: false,

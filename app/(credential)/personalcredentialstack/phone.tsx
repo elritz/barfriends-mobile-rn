@@ -1,9 +1,10 @@
 import { useReactiveVar } from '@apollo/client'
-import { Heading, Text, Pressable, VStack, Box, Input } from '@gluestack-ui/themed'
 import { Feather } from '@expo/vector-icons'
+import { Heading, Text, Pressable, VStack, Box, Input, InputField } from '@gluestack-ui/themed'
 import { useSendAuthenticatorDeviceOwnerCodeMutation } from '@graphql/generated'
 import { useIsFocused } from '@react-navigation/native'
 import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '@reactive'
+import useContentInsets from '@util/hooks/useContentInsets'
 import { useRouter } from 'expo-router'
 import { CountryCode } from 'libphonenumber-js'
 import { useEffect, useRef } from 'react'
@@ -34,6 +35,7 @@ export type CountrySelector = {
 }
 
 export default () => {
+	const INPUT_CONTAINER_HEIGHT = 90
 	const INPUT_ACCESSORY_VIEW_ID = 'p-1298187263'
 	const router = useRouter()
 	const { bottom } = useSafeAreaInsets()
@@ -42,7 +44,7 @@ export default () => {
 	const credentialPersonalProfileVar = useReactiveVar(CredentialPersonalProfileReactiveVar)
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const { height: platform } = useReanimatedKeyboardAnimation()
-	const INPUT_CONTAINER_HEIGHT = 90
+	const contentInsets = useContentInsets()
 
 	const height = useDerivedValue(() => platform.value, [isFocused])
 
@@ -212,6 +214,7 @@ export default () => {
 				height: 'auto',
 				flexDirection: 'column',
 				marginHorizontal: '5%',
+				marginTop: contentInsets.top,
 			}}
 		>
 			<Reanimated.View style={{ flex: 1 }}>
@@ -242,11 +245,10 @@ export default () => {
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => (
 							<Input variant={'underlined'} size='lg'>
-								<Input.Input
+								<InputField
 									keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 									value={value}
 									type='text'
-									py={'$2'}
 									autoFocus
 									sx={{
 										h: 50,

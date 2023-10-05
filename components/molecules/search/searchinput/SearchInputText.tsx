@@ -1,7 +1,7 @@
 import { useReactiveVar } from '@apollo/client'
-import { HStack, Input, Pressable, Text } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
 import { AntDesign } from '@expo/vector-icons'
+import { HStack, Input, InputField, InputIcon, Pressable, Text } from '@gluestack-ui/themed'
 import { useExploreSearchLazyQuery } from '@graphql/generated'
 import { ThemeReactiveVar } from '@reactive'
 import useDebounce from '@util/hooks/useDebounce'
@@ -110,6 +110,7 @@ const SearchInputText = (props: Props) => {
 				render={({ field: { value, onChange } }) => (
 					<Input
 						flex={1}
+						alignItems='center'
 						variant='rounded'
 						ml={'$2'}
 						zIndex={0}
@@ -120,18 +121,17 @@ const SearchInputText = (props: Props) => {
 								: rTheme.theme?.gluestack.tokens.colors.light900
 						}
 					>
-						<Input.Icon ml={'$3'}>
-							<Ionicons
-								color={
-									rTheme.colorScheme === 'light'
-										? rTheme.theme?.gluestack.tokens.colors.light700
-										: rTheme.theme?.gluestack.tokens.colors.light100
-								}
-								name='ios-search'
-								size={20}
-							/>
-						</Input.Icon>
-						<Input.Input
+						<Ionicons
+						style={{ marginLeft: 10 }}
+							color={
+								rTheme.colorScheme === 'light'
+									? rTheme.theme?.gluestack.tokens.colors.light700
+									: rTheme.theme?.gluestack.tokens.colors.light100
+							}
+							name='ios-search'
+							size={20}
+						/>
+						<InputField
 							ref={_inputRef}
 							autoFocus={true}
 							placeholderTextColor={
@@ -151,13 +151,13 @@ const SearchInputText = (props: Props) => {
 							keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 						/>
 						{watch('searchtext')?.length ? (
-							<Input.Icon mr={'$3'} onPress={() => clearSearchInput()}>
+							<Pressable mr={'$3'} onPress={() => clearSearchInput()}>
 								<AntDesign
 									name='closecircle'
 									size={20}
 									color={rTheme.colorScheme === 'light' ? 'black' : 'white'}
 								/>
-							</Input.Icon>
+							</Pressable>
 						) : null}
 					</Input>
 				)}

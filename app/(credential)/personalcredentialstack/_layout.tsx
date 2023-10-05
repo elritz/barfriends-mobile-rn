@@ -7,6 +7,7 @@ export default function _layout() {
 		<Stack
 			initialRouteName='getstarted'
 			screenOptions={{
+				headerShown: true,
 				headerBackground: () => <></>,
 			}}
 		>
@@ -17,7 +18,7 @@ export default function _layout() {
 					headerTransparent: true,
 					headerLeft: () => <ChevronBackArrow />,
 				}}
-			/>
+				/>
 			<Stack.Screen
 				name={'phone'}
 				options={{
