@@ -35,7 +35,7 @@ export default function ProfilePhotoEmptyState() {
 					bg: '$light800',
 				},
 			}}
-			rounded={'$md'}
+			rounded={'$lg'}
 		>
 			<Box
 				sx={{

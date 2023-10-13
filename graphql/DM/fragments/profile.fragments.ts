@@ -132,25 +132,129 @@ export const PROFILE_FRAGMENT = gql`
 	}
 `
 
-export const PUBLIC_PROFILE_FRAGMENT = gql`
+// export const PUBLIC_PERSONAL_FRAGMENT = gql`
+// 	${CREDENTIALS_FRAGMENT}
+// 	${INDETIFIABLE_INFORMATION_FRAGMENT}
+// 	${DETAIL_INFORMATION_FRAGMENT}
+// 	${LOCATION_FRAGMENT}
+// 	${RELATIONSHIP_FRAGMENT}
+// 	fragment PUBLIC_PERSONAL_FRAGMENT on Profile {
+// 		__typename
+// 		id
+// 		ProfileType
+// 		IdentifiableInformation {
+// 			...INDETIFIABLE_INFORMATION_FRAGMENT
+// 		}
+// 		DetailInformation {
+// 			...DETAIL_INFORMATION_FRAGMENT
+// 		}
+// 		Relationships {
+// 			...RELATIONSHIP_FRAGMENT
+// 		}
+// 		profilePhoto {
+// 			id
+// 			url
+// 			type
+// 			position
+// 			active
+// 			ratio
+// 			blurhash
+// 			createdAt
+// 			updatedAt
+// 		}
+// 		photos {
+// 			id
+// 			url
+// 			type
+// 			position
+// 			active
+// 			ratio
+// 			blurhash
+// 			createdAt
+// 			updatedAt
+// 		}
+// 		Personal {
+// 			id
+// 			Profile {
+// 				id
+// 				createdAt
+// 				updatedAt
+// 			}
+// 			profileId
+// 			PersonalStats {
+// 				id
+// 				Out {
+// 					id
+// 					type
+// 					personalProfileId
+// 					venueProfileId
+// 					createdAt
+// 					updatedAt
+// 				}
+// 			}
+// 			LiveOutPersonal {
+// 				id
+// 				Out {
+// 					id
+// 					venueProfileId
+// 					personalProfileId
+// 				}
+// 				createdAt
+// 				updatedAt
+// 			}
+// 			createdAt
+// 			updatedAt
+// 		}
+// 		tonightStory {
+// 			id
+// 			date
+
+// 			emojimood {
+// 				id
+// 				emojiname
+// 				emoji
+// 				colors
+// 			}
+// 			Profile {
+// 				id
+// 			}
+// 			photos {
+// 				id
+// 				url
+// 				active
+// 				blurhash
+// 				ratio
+// 				type
+// 				position
+// 				createdAt
+// 				updatedAt
+// 			}
+// 			startDate
+// 			createdAt
+// 			updatedAt
+// 		}
+// 	}
+// `
+
+export const PUBLIC_PERSONAL_FRAGMENT = gql`
 	${CREDENTIALS_FRAGMENT}
 	${INDETIFIABLE_INFORMATION_FRAGMENT}
 	${DETAIL_INFORMATION_FRAGMENT}
 	${LOCATION_FRAGMENT}
 	${RELATIONSHIP_FRAGMENT}
-	fragment PUBLIC_PROFILE_FRAGMENT on Profile {
+	fragment PUBLIC_PERSONAL_FRAGMENT on PublicProfilePersonal {
 		__typename
 		id
 		ProfileType
-		IdentifiableInformation {
-			...INDETIFIABLE_INFORMATION_FRAGMENT
-		}
+		# IdentifiableInformation {
+		# 	...INDETIFIABLE_INFORMATION_FRAGMENT
+		# }
 		DetailInformation {
 			...DETAIL_INFORMATION_FRAGMENT
 		}
-		Relationships {
-			...RELATIONSHIP_FRAGMENT
-		}
+		# Relationships {
+		# 	...RELATIONSHIP_FRAGMENT
+		# }
 		profilePhoto {
 			id
 			url
@@ -162,70 +266,49 @@ export const PUBLIC_PROFILE_FRAGMENT = gql`
 			createdAt
 			updatedAt
 		}
-		photos {
-			id
-			url
-			type
-			position
-			active
-			ratio
-			blurhash
-			createdAt
-			updatedAt
-		}
-		Personal {
-			id
-			Profile {
-				id
-				createdAt
-				updatedAt
-			}
-			profileId
-			PersonalStats {
-				id
-				Out {
-					id
-					type
-					personalProfileId
-					venueProfileId
-					createdAt
-					updatedAt
-				}
-			}
-			LiveOutPersonal {
-				id
-				Out {
-					id
-					venueProfileId
-					personalProfileId
-				}
-				createdAt
-				updatedAt
-			}
-			createdAt
-			updatedAt
-		}
-		Venue {
-			id
-			Profile {
-				id
-				createdAt
-				updatedAt
-			}
-			LiveOutVenue {
-				id
-				Out {
-					id
-					venueProfileId
-					personalProfileId
-				}
-			}
-			Location {
-				...LOCATION_FRAGMENT
-			}
-			createdAt
-			updatedAt
-		}
+		# photos {
+		# 	id
+		# 	url
+		# 	type
+		# 	position
+		# 	active
+		# 	ratio
+		# 	blurhash
+		# 	createdAt
+		# 	updatedAt
+		# }
+		# Personal {
+		# 	id
+		# 	Profile {
+		# 		id
+		# 		createdAt
+		# 		updatedAt
+		# 	}
+		# 	profileId
+		# 	PersonalStats {
+		# 		id
+		# 		Out {
+		# 			id
+		# 			type
+		# 			personalProfileId
+		# 			venueProfileId
+		# 			createdAt
+		# 			updatedAt
+		# 		}
+		# 	}
+		# 	LiveOutPersonal {
+		# 		id
+		# 		Out {
+		# 			id
+		# 			venueProfileId
+		# 			personalProfileId
+		# 		}
+		# 		createdAt
+		# 		updatedAt
+		# 	}
+		# 	createdAt
+		# 	updatedAt
+		# }
 		tonightStory {
 			id
 			date

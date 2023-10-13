@@ -2,9 +2,9 @@
 import JoinCard from '../../joincard/JoinCard'
 import SignupCard from '../../signupcard/SignupCard'
 import { useReactiveVar } from '@apollo/client'
-import { Box, Text, Heading, Button } from '@gluestack-ui/themed'
 import { MaterialIcons } from '@expo/vector-icons'
-import { useCurrentVenueQuery } from '@graphql/generated'
+import { Box, Text, Heading, Button } from '@gluestack-ui/themed'
+import { usePublicVenueQuery } from '@graphql/generated'
 import { useIsFocused } from '@react-navigation/native'
 import {
 	AuthorizationReactiveVar,
@@ -39,7 +39,7 @@ const CurrentLocationFromVenueDistance = () => {
 		onToggle: onToggleForegroundLocationOn,
 	} = useDisclose()
 
-	const { data, loading, error } = useCurrentVenueQuery({
+	const { data, loading, error } = usePublicVenueQuery({
 		skip: !params.profileid,
 		fetchPolicy: 'cache-first',
 		variables: {
@@ -59,8 +59,8 @@ const CurrentLocationFromVenueDistance = () => {
 		},
 		onCompleted: async data => {
 			await refreshLocation({
-				vlat: data.currentVenue?.Venue?.Location?.Geometry?.latitude,
-				vlng: data.currentVenue?.Venue?.Location?.Geometry?.longitude,
+				vlat: data.publicVenue?.Venue?.Location?.Geometry?.latitude,
+				vlng: data.publicVenue?.Venue?.Location?.Geometry?.longitude,
 			})
 		},
 	})

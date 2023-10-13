@@ -50,7 +50,7 @@ export const config = createConfig({
 			theme: {
 				rounded: '$md',
 				_dark: {
-					backgroundColor: '$light800',
+					backgroundColor: '$light900',
 				},
 				_light: {
 					backgroundColor: '$light50',

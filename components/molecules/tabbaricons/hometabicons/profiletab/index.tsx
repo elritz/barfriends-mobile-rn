@@ -111,7 +111,7 @@ const ProfileTab = (props: TabProps) => {
 									<CompanyCoasterLogoDynamicInverse
 										width={HEIGHT}
 										height={HEIGHT}
-										backgroundColor={rTheme.colorScheme === 'dark' ? 'white' : 'black'}
+										backgroundColor={props.color}
 									/>
 								)}
 							</>

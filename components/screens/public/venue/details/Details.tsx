@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
 import { Badge, Box, Button, HStack, Text, VStack } from '@gluestack-ui/themed'
-import { useCurrentVenueQuery } from '@graphql/generated'
+import { usePublicVenueQuery } from '@graphql/generated'
 import { SearchAreaReactiveVar } from '@reactive'
 import { useLocalSearchParams } from 'expo-router'
 import { useState } from 'react'
@@ -31,7 +31,7 @@ export default function Details() {
 		  }
 		: null
 
-	const { data, loading, error } = useCurrentVenueQuery({
+	const { data, loading, error } = usePublicVenueQuery({
 		skip: !params.profileId,
 		fetchPolicy: 'cache-first',
 		variables: {
@@ -54,13 +54,13 @@ export default function Details() {
 				<Box bg='$transparent'>
 					<DetailTitle title={'Address'} />
 					<Text fontSize={'$xl'} fontWeight={'$medium'}>
-						{data?.currentVenue?.Venue?.Location?.Address?.formattedAddress}
+						{data?.publicVenue?.Venue?.Location?.Address?.formattedAddress}
 					</Text>
 				</Box>
 				<Box bg={'transparent'}>
 					<DetailTitle title={'Type'} />
 					<HStack flexWrap={'wrap'} justifyContent={'flex-start'}>
-						{data.currentVenue?.DetailInformation?.Tags.map((item, index) => {
+						{data.publicVenue?.DetailInformation?.Tags.map((item, index) => {
 							return (
 								<Badge
 									key={item.id}
@@ -98,19 +98,19 @@ export default function Details() {
 				<Box bg={'transparent'}>
 					<DetailTitle title={'Capacity'} />
 					<Text fontSize={'$2xl'} lineHeight={'$lg'} fontWeight={'$medium'}>
-						{data?.currentVenue?.DetailInformation?.capacity}
+						{data?.publicVenue?.DetailInformation?.capacity}
 					</Text>
 				</Box>
 				<Box bg={'transparent'} flex={1}>
 					<DetailTitle title={'Description'} />
-					{data?.currentVenue?.DetailInformation?.description ? (
+					{data?.publicVenue?.DetailInformation?.description ? (
 						<Box bg={'transparent'}>
 							{!showMore ? (
 								<Text fontSize={'$lg'} numberOfLines={4}>
-									{data.currentVenue.DetailInformation?.description}
+									{data.publicVenue.DetailInformation?.description}
 								</Text>
 							) : (
-								<Text fontSize={'$lg'}>{data.currentVenue.DetailInformation?.description}</Text>
+								<Text fontSize={'$lg'}>{data.publicVenue.DetailInformation?.description}</Text>
 							)}
 							<Button mt={'$2'} onPress={() => setShowMore(!showMore)} variant={'link'}>
 								<Text>{showMore ? 'Show Less' : 'Show More'}</Text>

@@ -1,5 +1,4 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, HStack, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import InformationJoinVenue from '@components/molecules/information/informationjoinvenue'
 import Details from '@components/screens/public/venue/details/Details'
 import PersonalAtVenue from '@components/screens/public/venue/peopleatvenue/PersonalAtVenue'
@@ -9,7 +8,8 @@ import VenueHeader from '@components/screens/public/venue/venueheader/VenueHeade
 import VenueTotals from '@components/screens/public/venue/venuetotals/VenueTotals'
 import { PUBLIC_VENUE_HEADER_IMAGE_HEIGHT } from '@constants/Layout'
 import { Ionicons } from '@expo/vector-icons'
-import { useCurrentVenueQuery } from '@graphql/generated'
+import { Box, Button, HStack, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
+import { usePublicVenueQuery } from '@graphql/generated'
 import { CurrentLocationReactiveVar, SearchAreaReactiveVar, ThemeReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
 import { useLocalSearchParams } from 'expo-router'
@@ -57,7 +57,7 @@ export default () => {
 		}
 	}
 
-	const { data, loading, error } = useCurrentVenueQuery({
+	const { data, loading, error } = usePublicVenueQuery({
 		skip: !params.profileid,
 		fetchPolicy: 'network-only',
 		variables: {
@@ -77,7 +77,7 @@ export default () => {
 		},
 	})
 
-	if (loading || !data?.currentVenue) {
+	if (loading || !data?.publicVenue) {
 		return (
 			<VStack flex={1} space={'md'}>
 				<Skeleton
@@ -215,8 +215,8 @@ export default () => {
 		)
 	}
 
-	const venueData = data.currentVenue
-	const name = venueData.IdentifiableInformation?.fullname
+	const venueData = data.publicVenue
+	const name = venueData.Venue?.name
 	const username = venueData.IdentifiableInformation?.username
 
 	return (
@@ -227,8 +227,8 @@ export default () => {
 			showsVerticalScrollIndicator={false}
 			ListHeaderComponent={
 				<VStack mb={'$5'}>
-					<VenueHeader key={uniqueId()} loading={loading} photos={data.currentVenue?.photos} />
-					<Box rounded={'$none'} key={uniqueId()} py={'$4'} borderBottomEndRadius={5}>
+					<VenueHeader key={uniqueId()} loading={loading} photos={data.publicVenue?.photos} />
+					<Box rounded={'$none'} key={uniqueId()} py={'$4'} borderBottomEndRadius={5} mb={'$2'}>
 						<HStack px={'$2'} justifyContent={'space-between'}>
 							<VStack space='xs'>
 								<Heading fontSize={'$2xl'} lineHeight={'$lg'} fontWeight={'$black'} numberOfLines={1}>

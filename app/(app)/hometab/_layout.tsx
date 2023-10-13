@@ -1,5 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
 import SearchInputVenueFeed from '@components/molecules/search/searchinput/SearchInputVenueFeed'
+import SearchInputVenueFeedDisabled from '@components/molecules/search/searchinput/SearchInputVenueFeedDisabled'
 import DevelopmentTab from '@components/molecules/tabbaricons/hometabicons/developmenttab'
 import MessageTab from '@components/molecules/tabbaricons/hometabicons/messagestab'
 import ProfileTab from '@components/molecules/tabbaricons/hometabicons/profiletab'
@@ -12,7 +13,7 @@ import {
 import { ITabColor } from '@ctypes/app'
 import { ENVIRONMENT } from '@env'
 import { MaterialIcons } from '@expo/vector-icons'
-import { Button, HStack, Heading, Pressable, VStack } from '@gluestack-ui/themed'
+import { Button, ButtonText, HStack, Heading, Pressable, VStack } from '@gluestack-ui/themed'
 import { TermsServiceReactiveVar, ThemeReactiveVar } from '@reactive'
 import { BlurView } from 'expo-blur'
 import { Tabs, useRouter, useSegments } from 'expo-router'
@@ -21,7 +22,7 @@ import { StyleSheet } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default () => {
-	const showDev = true
+	const showDev = false
 
 	const segments = useSegments()
 	const insets = useSafeAreaInsets()
@@ -75,14 +76,8 @@ export default () => {
 							intensity={70}
 							tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 						>
-							<VStack
-								justifyContent={'flex-start'}
-								// sx={{
-								// 	_light: { bg: !segments.includes('tonight') ? '$light100' : 'transparent' },
-								// 	_dark: { bg: !segments.includes('tonight') ? '$light900' : 'transparent' },
-								// }}
-							>
-								<SearchInputVenueFeed placeholder='Explore' />
+							<VStack justifyContent={'flex-start'}>
+								<SearchInputVenueFeedDisabled placeholder='Explore' />
 							</VStack>
 						</BlurView>
 					)
@@ -113,7 +108,6 @@ export default () => {
 			<Tabs.Screen
 				name='messagestack'
 				options={{
-					headerShown: true,
 					headerTransparent: true,
 					tabBarLabel: 'messages',
 					tabBarShowLabel: false,
@@ -130,7 +124,7 @@ export default () => {
 									justifyContent={'space-between'}
 								>
 									<Button variant='link'>
-										<Button.Text fontSize={'$lg'}>Edit</Button.Text>
+										<ButtonText fontSize={'$lg'}>Edit</ButtonText>
 									</Button>
 									<Heading>Messages</Heading>
 									<Pressable

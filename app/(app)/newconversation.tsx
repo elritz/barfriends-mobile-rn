@@ -1,4 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
+import ContactItem from '@components/screens/conversations/ContactItem'
+import SearchResultContactItem from '@components/screens/conversations/SearchResultContactItem'
 import {
 	AddIcon,
 	Button,
@@ -9,9 +11,8 @@ import {
 	VStack,
 	CloseIcon,
 	CloseCircleIcon,
+	ButtonText,
 } from '@gluestack-ui/themed'
-import ContactItem from '@components/screens/conversations/ContactItem'
-import SearchResultContactItem from '@components/screens/conversations/SearchResultContactItem'
 import { ThemeReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
 import useContentInsets from '@util/hooks/useContentInsets'
@@ -237,7 +238,7 @@ export default function NewConversation() {
 										my={'$1'}
 										h={'$7'}
 									>
-										<Button.Text
+										<ButtonText
 											sx={{
 												_light: {
 													color: '$primary500',
@@ -252,7 +253,7 @@ export default function NewConversation() {
 											textTransform='capitalize'
 										>
 											{item.value}
-										</Button.Text>
+										</ButtonText>
 									</Button>
 								))}
 							</HStack>
@@ -263,9 +264,7 @@ export default function NewConversation() {
 						name='searchtext'
 						render={({ field: { value, onChange } }) => (
 							<HStack justifyContent='space-between' alignItems='center' mt={'$2'}>
-								<Text color='$gray400' fontSize={'$sm'}>
-									To:
-								</Text>
+								<Text fontSize={'$sm'}>To:</Text>
 								<Input.Input
 									autoFocus
 									borderWidth={'$0'}

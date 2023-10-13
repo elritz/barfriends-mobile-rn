@@ -14666,7 +14666,6 @@ type PublicProfilePersonal {
   IdentifiableInformation: IdentifiableInformation
   profilePhoto: Photo
   ProfileType: ProfileType!
-  Relationships: [Relationship!]!
   tonightStory: Story
   updatedAt: DateTime!
 }
@@ -14913,7 +14912,6 @@ type Query {
   authorizedProfiles(where: AuthorizedProfilesWhereInput!): AuthorizedProfilesResponseUnion
   checkPrivacyTermsDocumentUpdate: PrivacyTermsUpdateResponseUnion!
   checkUsername(username: String!): Boolean!
-  currentVenue(currentLocationCoords: CoordsInput, cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): ProfileVenue
   emojimood(where: EmojimoodWhereUniqueInput!): Emojimood
   emojimoods: [Emojimood!]!
   exploreSearch(search: String!): ExploreResponse!
@@ -14936,6 +14934,7 @@ type Query {
     members: [String!]
   ): [Conversation!]
   getCurrentPushNotificationToken: PushToken
+  getFriends: [PublicProfilePersonal!]
   getH3Index6VenueRecommendationById(id: String!, venuesProfileIds: [String!]): H3Index6VenueRecommendation
   getInterests: [Category!]!
   getLiveVenueTotals(profileIdVenue: String): LiveVenueTotals!
@@ -14948,8 +14947,9 @@ type Query {
   loginPassword(password: String!, username: String!): Boolean!
   privacyTermsDocuments: LatestPrivacyAndTermsDocumentResponse!
   profile(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): Profile
-  profiles(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): [Profile!]!
-  publicProfile: PublicProfilePersonal!
+  profiles(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): [Profile!]
+  publicProfile(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): PublicProfilePersonal
+  publicVenue(currentLocationCoords: CoordsInput, cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): ProfileVenue
   sendAuthenticatorDeviceOwnerCode: Boolean!
   venue(cursor: VenueWhereUniqueInput, distinct: [VenueScalarFieldEnum!], orderBy: [VenueOrderByWithRelationInput!], skip: Int, take: Int, where: VenueWhereInput): Venue
   venues(cursor: VenueWhereUniqueInput, distinct: [VenueScalarFieldEnum!], orderBy: [VenueOrderByWithRelationInput!], skip: Int, take: Int, where: VenueWhereInput): [Venue!]!
@@ -15153,7 +15153,6 @@ type RejectedFriendsResponse {
 type Relationship {
   createdAt: DateTime!
   friendProfile: Profile
-  friendProfileId: String!
   id: ID!
   Profile: Profile
   profileId: String
@@ -15164,7 +15163,6 @@ type Relationship {
 
 input RelationshipCountOrderByAggregateInput {
   createdAt: SortOrder
-  friendProfileId: SortOrder
   id: SortOrder
   profileId: SortOrder
   RelationshipStatus: SortOrder
@@ -15174,7 +15172,6 @@ input RelationshipCountOrderByAggregateInput {
 
 input RelationshipCreateInput {
   createdAt: DateTime
-  friendProfileId: String!
   id: String
   Profile: ProfileCreateNestedOneWithoutRelationshipsInput
   RelationshipStatus: [RelationshipStatus!]
@@ -15184,7 +15181,6 @@ input RelationshipCreateInput {
 
 input RelationshipCreateManyInput {
   createdAt: DateTime
-  friendProfileId: String!
   id: String
   profileId: String
   RelationshipStatus: [RelationshipStatus!]
@@ -15194,7 +15190,6 @@ input RelationshipCreateManyInput {
 
 input RelationshipCreateManyProfileInput {
   createdAt: DateTime
-  friendProfileId: String!
   id: String
   RelationshipStatus: [RelationshipStatus!]
   updatedAt: DateTime
@@ -15224,7 +15219,6 @@ input RelationshipCreateRelationshipStatusInput {
 
 input RelationshipCreateWithoutProfileInput {
   createdAt: DateTime
-  friendProfileId: String!
   id: String
   RelationshipStatus: [RelationshipStatus!]
   updatedAt: DateTime
@@ -15239,7 +15233,6 @@ input RelationshipListRelationFilter {
 
 input RelationshipMaxOrderByAggregateInput {
   createdAt: SortOrder
-  friendProfileId: SortOrder
   id: SortOrder
   profileId: SortOrder
   updatedAt: SortOrder
@@ -15248,7 +15241,6 @@ input RelationshipMaxOrderByAggregateInput {
 
 input RelationshipMinOrderByAggregateInput {
   createdAt: SortOrder
-  friendProfileId: SortOrder
   id: SortOrder
   profileId: SortOrder
   updatedAt: SortOrder
@@ -15264,7 +15256,6 @@ input RelationshipOrderByWithAggregationInput {
   _max: RelationshipMaxOrderByAggregateInput
   _min: RelationshipMinOrderByAggregateInput
   createdAt: SortOrder
-  friendProfileId: SortOrder
   id: SortOrder
   profileId: SortOrder
   RelationshipStatus: SortOrder
@@ -15274,7 +15265,6 @@ input RelationshipOrderByWithAggregationInput {
 
 input RelationshipOrderByWithRelationInput {
   createdAt: SortOrder
-  friendProfileId: SortOrder
   id: SortOrder
   Profile: ProfileOrderByWithRelationInput
   profileId: SortOrder
@@ -15285,7 +15275,6 @@ input RelationshipOrderByWithRelationInput {
 
 enum RelationshipScalarFieldEnum {
   createdAt
-  friendProfileId
   id
   profileId
   RelationshipStatus
@@ -15296,7 +15285,6 @@ enum RelationshipScalarFieldEnum {
 input RelationshipScalarWhereInput {
   AND: [RelationshipScalarWhereInput!]
   createdAt: DateTimeFilter
-  friendProfileId: StringFilter
   id: StringFilter
   NOT: [RelationshipScalarWhereInput!]
   OR: [RelationshipScalarWhereInput!]
@@ -15309,7 +15297,6 @@ input RelationshipScalarWhereInput {
 input RelationshipScalarWhereWithAggregatesInput {
   AND: [RelationshipScalarWhereWithAggregatesInput!]
   createdAt: DateTimeWithAggregatesFilter
-  friendProfileId: StringWithAggregatesFilter
   id: StringWithAggregatesFilter
   NOT: [RelationshipScalarWhereWithAggregatesInput!]
   OR: [RelationshipScalarWhereWithAggregatesInput!]
@@ -15326,7 +15313,6 @@ enum RelationshipStatus {
 
 input RelationshipUpdateInput {
   createdAt: DateTimeFieldUpdateOperationsInput
-  friendProfileId: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   Profile: ProfileUpdateOneWithoutRelationshipsNestedInput
   RelationshipStatus: [RelationshipStatus!]
@@ -15336,7 +15322,6 @@ input RelationshipUpdateInput {
 
 input RelationshipUpdateManyMutationInput {
   createdAt: DateTimeFieldUpdateOperationsInput
-  friendProfileId: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   RelationshipStatus: [RelationshipStatus!]
   updatedAt: DateTimeFieldUpdateOperationsInput
@@ -15369,7 +15354,6 @@ input RelationshipUpdateRelationshipStatusInput {
 
 input RelationshipUpdateWithoutProfileInput {
   createdAt: DateTimeFieldUpdateOperationsInput
-  friendProfileId: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   RelationshipStatus: [RelationshipStatus!]
   updatedAt: DateTimeFieldUpdateOperationsInput
@@ -15390,7 +15374,6 @@ input RelationshipUpsertWithWhereUniqueWithoutProfileInput {
 input RelationshipWhereInput {
   AND: [RelationshipWhereInput!]
   createdAt: DateTimeFilter
-  friendProfileId: StringFilter
   id: StringFilter
   NOT: [RelationshipWhereInput!]
   OR: [RelationshipWhereInput!]
@@ -15404,7 +15387,6 @@ input RelationshipWhereInput {
 input RelationshipWhereUniqueInput {
   AND: [RelationshipWhereInput!]
   createdAt: DateTimeFilter
-  friendProfileId: StringFilter
   id: String
   NOT: [RelationshipWhereInput!]
   OR: [RelationshipWhereInput!]

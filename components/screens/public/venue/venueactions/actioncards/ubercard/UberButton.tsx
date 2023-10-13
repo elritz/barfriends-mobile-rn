@@ -1,8 +1,8 @@
 import { useReactiveVar } from '@apollo/client'
-import { Button } from '@gluestack-ui/themed'
 import { UBER_CLIENT_ID_KEY } from '@env'
 import { FontAwesome5 } from '@expo/vector-icons'
-import { useCurrentVenueQuery } from '@graphql/generated'
+import { Button } from '@gluestack-ui/themed'
+import { usePublicVenueQuery } from '@graphql/generated'
 import { AuthorizationReactiveVar } from '@reactive'
 import { useCallback } from 'react'
 import { Alert, Linking } from 'react-native'
@@ -13,7 +13,7 @@ export default function UberButton({ params }) {
 		data: PData,
 		loading: PLoading,
 		error: PError,
-	} = useCurrentVenueQuery({
+	} = usePublicVenueQuery({
 		skip: !params.profileid || !rAuthorizationVar,
 		fetchPolicy: 'cache-only',
 		variables: {
@@ -23,7 +23,7 @@ export default function UberButton({ params }) {
 		},
 	})
 
-	const urlUberWithVenue = `https://m.uber.com/ul/?client_id=${UBER_CLIENT_ID_KEY}&action=setPickup&pickup[my_location]&pickup[nickname]=MyLocation&pickup[formatted_address]=1455%20Market%20St%2C%20San%20Francisco%2C%20CA%2094103&dropoff[latitude]=${PData?.currentVenue?.Venue?.Location?.Geometry?.latitude}&dropoff[longitude]=${PData?.currentVenue?.Venue?.Location?.Geometry?.longitude}&dropoff[nickname]=Coit%20Tower&dropoff[formatted_address]=1%20Telegraph%20Hill%20Blvd%2C%20San%20Francisco%2C%20CA%2094133&product_id=a1111c8c-c720-46c3-8534-2fcdd730040d`
+	const urlUberWithVenue = `https://m.uber.com/ul/?client_id=${UBER_CLIENT_ID_KEY}&action=setPickup&pickup[my_location]&pickup[nickname]=MyLocation&pickup[formatted_address]=1455%20Market%20St%2C%20San%20Francisco%2C%20CA%2094103&dropoff[latitude]=${PData?.publicVenue?.Venue?.Location?.Geometry?.latitude}&dropoff[longitude]=${PData?.publicVenue?.Venue?.Location?.Geometry?.longitude}&dropoff[nickname]=Coit%20Tower&dropoff[formatted_address]=1%20Telegraph%20Hill%20Blvd%2C%20San%20Francisco%2C%20CA%2094133&product_id=a1111c8c-c720-46c3-8534-2fcdd730040d`
 	const urlUber = `https://m.uber.com/ul/?client_id=${UBER_CLIENT_ID_KEY}&action=setPickup&pickup[my_location]&pickup[nickname]=MyLocation&pickup[formatted_address]=1455%20Market%20St%2C%20San%20Francisco%2C%20CA%2094103&&dropoff[formatted_address]=1%20Telegraph%20Hill%20Blvd%2C%20San%20Francisco%2C%20CA%2094133&product_id=a1111c8c-c720-46c3-8534-2fcdd730040d`
 
 	const handleUberWithVenuePress = useCallback(async () => {
@@ -56,8 +56,8 @@ export default function UberButton({ params }) {
 			rounded={'$md'}
 			onPress={() => {
 				!params.profileid ||
-				(!PData?.currentVenue?.Venue?.Location?.Geometry?.latitude &&
-					!PData?.currentVenue?.Venue?.Location?.Geometry?.latitude)
+				(!PData?.publicVenue?.Venue?.Location?.Geometry?.latitude &&
+					!PData?.publicVenue?.Venue?.Location?.Geometry?.latitude)
 					? handleUberNoVenuePress()
 					: handleUberWithVenuePress()
 			}}

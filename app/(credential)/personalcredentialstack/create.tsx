@@ -94,7 +94,7 @@ export default () => {
 						bg='$primary500'
 					>
 						{CPPLoading || SDPLoading ? (
-							<Spinner color={'black'} size='large' />
+							<Spinner color={'black'} size='small' />
 						) : (
 							<Feather name='arrow-right' size={32} color={'white'} />
 						)}

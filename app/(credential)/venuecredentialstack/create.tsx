@@ -1,7 +1,7 @@
 import { useReactiveVar } from '@apollo/client'
 import CompanyCoasterLogoDynamic from '@assets/images/company/CompanyCoasterLogoDynamic'
-import { Box, Heading, Pressable, Spinner, Text, VStack } from '@gluestack-ui/themed'
 import { Feather } from '@expo/vector-icons'
+import { Box, Heading, Pressable, Spinner, Text, VStack } from '@gluestack-ui/themed'
 import {
 	AuthorizationDeviceProfile,
 	useCreatePersonalProfileMutation,
@@ -94,7 +94,7 @@ export default () => {
 						bg='$primary500'
 					>
 						{CPPLoading || SDPLoading ? (
-							<Spinner color={'black'} size='large' />
+							<Spinner color={'black'} size='small' />
 						) : (
 							<Feather name='arrow-right' size={32} color={'white'} />
 						)}

@@ -1,25 +1,19 @@
-import { gql } from '@apollo/client'
-import { PUBLIC_PROFILE_FRAGMENT, VENUE_FRAGMENT } from '@graphql/DM/fragments/index.fragments'
+import { gql } from '@apollo/client';
+import { PUBLIC_PERSONAL_FRAGMENT, VENUE_FRAGMENT, PROFILE_FRAGMENT } from '@graphql/DM/fragments/index.fragments';
+import { PROFILE_VENUE_FRAGMENT } from '@graphql/DM/fragments/profilevenue.fragments';
+
 
 export const PROFILE = gql`
-	${PUBLIC_PROFILE_FRAGMENT}
+	${PROFILE_FRAGMENT}
 	query profile($where: ProfileWhereInput) {
 		profile(where: $where) {
-			...PUBLIC_PROFILE_FRAGMENT
+			...PROFILE_FRAGMENT
 		}
 	}
 `
 
-export const PROFILE_VENUE = gql`
-	${PUBLIC_PROFILE_FRAGMENT}
-	query profileVenue($where: ProfileWhereInput) {
-		profile(where: $where) {
-			...PUBLIC_PROFILE_FRAGMENT
-		}
-	}
-`
 export const PROFILES = gql`
-	${PUBLIC_PROFILE_FRAGMENT}
+	${PROFILE_FRAGMENT}
 	query profiles(
 		$where: ProfileWhereInput
 		$take: Int
@@ -27,7 +21,7 @@ export const PROFILES = gql`
 		$distinct: [ProfileScalarFieldEnum!]
 	) {
 		profiles(where: $where, take: $take, skip: $skip, distinct: $distinct) {
-			...PUBLIC_PROFILE_FRAGMENT
+			...PROFILE_FRAGMENT
 		}
 	}
 `
@@ -45,6 +39,39 @@ export const VENUES = gql`
 	query venues($where: VenueWhereInput) {
 		venues(where: $where) {
 			...VENUE_FRAGMENT
+		}
+	}
+`
+
+export const PUBLIC_VENUE_QUERY = gql`
+	${PROFILE_VENUE_FRAGMENT}
+	query publicVenue($where: ProfileWhereInput, $currentLocationCoords: CoordsInput) {
+		publicVenue(where: $where, currentLocationCoords: $currentLocationCoords) {
+			...PROFILE_VENUE_FRAGMENT
+		}
+	}
+`
+
+export const PUBLIC_PERSONAL_QUERY = gql`
+	${PUBLIC_PERSONAL_FRAGMENT}
+	query publicProfile($where: ProfileWhereInput) {
+		publicProfile(where: $where) {
+			...PUBLIC_PERSONAL_FRAGMENT
+		}
+	}
+`
+
+export const GET_LIVE_VENUE_TOTALS_QUERY = gql`
+	query getLiveVenueTotals($profileIdVenue: String!) {
+		getLiveVenueTotals(profileIdVenue: $profileIdVenue) {
+			totaled {
+				id
+				personalProfileId
+			}
+			joined {
+				id
+				personalProfileId
+			}
 		}
 	}
 `

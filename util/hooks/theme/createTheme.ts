@@ -1,10 +1,8 @@
 import { defaulttheme } from '@assets/theme/default'
-import restyle from '@assets/theme/default/restyle'
 import { ThemeColorSchemeOptionsType } from '@ctypes/preferences'
 import { createConfig, config as defaultConfig } from '@gluestack-ui/themed'
 import { DefaultTheme } from '@react-navigation/native'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
-// import { createTheme as restyleCreateTheme } from '@shopify/restyle'
 import { Appearance, ColorSchemeName } from 'react-native'
 
 type Props = {
@@ -57,8 +55,6 @@ const createTheme = ({ themeScheme, localStorageColorScheme }: Props) => {
 		},
 	})
 
-	// const restyletheme = restyleCreateTheme(restyle)
-
 	const _newtheme = {
 		reactnavigation: {
 			...DefaultTheme,
@@ -69,7 +65,6 @@ const createTheme = ({ themeScheme, localStorageColorScheme }: Props) => {
 			},
 		},
 		gluestack: config,
-		// restyle: restyletheme,
 	}
 
 	const colorScheme = () => {

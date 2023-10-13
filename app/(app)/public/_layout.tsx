@@ -18,6 +18,7 @@ export default () => {
 	return (
 		<Stack>
 			<Stack.Screen
+				name={'venue'}
 				options={{
 					headerShown: true,
 					headerTransparent: true,
@@ -27,28 +28,39 @@ export default () => {
 					presentation: 'modal',
 					animation: 'fade',
 					headerLeft: () => (
-						<Button
-							onPress={() => {
-								router.canGoBack()
-									? router.back()
-									: router.replace({
-											pathname: '/(app)/hometab/venuefeed',
-									  })
+						<HStack
+							justifyContent={'flex-start'}
+							sx={{
+								maxWidth: '90%',
 							}}
-							rounded={'$full'}
-							size='xs'
-							bg={rTheme.colorScheme === 'light' ? '$light50' : '$light900'}
+							space={'md'}
+							alignItems={'center'}
+							ml={'$2'}
+							mb={'$1'}
 						>
-							<Ionicons
-								name='md-chevron-back-outline'
-								size={30}
-								color={
-									rTheme.colorScheme === 'light'
-										? rTheme.theme?.gluestack.tokens.colors.light900
-										: rTheme.theme?.gluestack.tokens.colors.light100
-								}
-							/>
-						</Button>
+							<Button
+								onPress={() => {
+									router.canGoBack()
+										? router.back()
+										: router.replace({
+												pathname: '/(app)/hometab/venuefeed',
+										  })
+								}}
+								rounded={'$full'}
+								size='xs'
+								bg={rTheme.colorScheme === 'light' ? '$light50' : '$light900'}
+							>
+								<Ionicons
+									name='md-chevron-back-outline'
+									size={30}
+									color={
+										rTheme.colorScheme === 'light'
+											? rTheme.theme?.gluestack.tokens.colors.light900
+											: rTheme.theme?.gluestack.tokens.colors.light100
+									}
+								/>
+							</Button>
+						</HStack>
 					),
 					headerRight: () => (
 						<Button
@@ -72,7 +84,6 @@ export default () => {
 					),
 					headerTitle: '',
 				}}
-				name={'venue'}
 			/>
 			<Stack.Screen
 				name={'personal'}
@@ -122,12 +133,13 @@ export default () => {
 							bg={rTheme.colorScheme === 'light' ? '$light50' : '$light900'}
 							rounded={'$full'}
 							onPress={() => router.back()}
+							size='xs'
+							my={'$2'}
 							mr={'$2'}
-							py={'$1'}
 						>
 							<Entypo
 								name={'dots-three-vertical'}
-								size={20}
+								size={23}
 								color={
 									rTheme.colorScheme === 'light'
 										? rTheme.theme?.gluestack.tokens.colors.light900
@@ -149,7 +161,7 @@ export default () => {
 						<HStack
 							justifyContent={'flex-start'}
 							maxWidth={'90%'}
-							space={'$md'}
+							space={'md'}
 							alignItems={'center'}
 							ml={'$2'}
 						>

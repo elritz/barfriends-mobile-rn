@@ -1,8 +1,17 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, HStack, Heading, Pressable, VStack, Text, Button } from '@gluestack-ui/themed'
 import { TomorrowPreferencePermissionInitialState } from '@constants/Preferences'
 import { LOCAL_STORAGE_INFORMATION_JOIN_VENUE } from '@constants/StorageConstants'
 import { DefaultPreferenceToPermissionType } from '@ctypes/preferences'
+import {
+	Box,
+	HStack,
+	Heading,
+	Pressable,
+	VStack,
+	Text,
+	Button,
+	ButtonText,
+} from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { InformationJoinVenueReactiveVar } from '@reactive'
 import { uniqueId } from 'lodash'
@@ -13,7 +22,7 @@ export default function InformationJoinVenue() {
 	const rInformationJoinVenue = useReactiveVar(InformationJoinVenueReactiveVar)
 
 	return (
-		<>
+		<Box>
 			{rInformationJoinVenue?.canShowAgain &&
 			DateTime.fromISO(rInformationJoinVenue?.dateToShowAgain) <= DateTime.now() ? (
 				<AnimatePresence key={uniqueId()}>
@@ -69,7 +78,7 @@ export default function InformationJoinVenue() {
 										})
 									}}
 								>
-									<Button.Text
+									<ButtonText
 										sx={{
 											_light: {
 												color: '$light800',
@@ -80,13 +89,13 @@ export default function InformationJoinVenue() {
 										}}
 									>
 										Ok, got it
-									</Button.Text>
+									</ButtonText>
 								</Button>
 							</HStack>
 						</VStack>
 					</Box>
 				</AnimatePresence>
 			) : null}
-		</>
+		</Box>
 	)
 }

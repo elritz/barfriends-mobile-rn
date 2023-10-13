@@ -1,10 +1,19 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Divider, HStack, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import BackgroundLocationNextAskModal from '@components/molecules/modals/asks/backgroundlocationnextaskmodal'
 import { TomorrowPreferencePermissionInitialState } from '@constants/Preferences'
 import { LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION } from '@constants/StorageConstants'
 import { LocalStoragePreferenceAskBackgroundLocationPermissionType } from '@ctypes/preferences'
 import { EvilIcons } from '@expo/vector-icons'
+import {
+	Box,
+	Button,
+	Divider,
+	HStack,
+	Heading,
+	Pressable,
+	Text,
+	VStack,
+} from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
 	PermissionBackgroundLocationReactiveVar,
@@ -104,8 +113,7 @@ export default function PreferenceBackgroundLocationPermissionFullSection() {
 											)
 										}}
 									>
-										_text=
-										<Text textTransform='uppercase' fontSize={'$lg'} fontWeight={'$bold'} alignSelf='center'>
+										<Text fontSize={'$lg'} fontWeight={'$bold'} alignSelf='center'>
 											Not now
 										</Text>
 									</Button>

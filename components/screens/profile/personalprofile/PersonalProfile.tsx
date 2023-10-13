@@ -1,12 +1,12 @@
 import ProfilePhoto from '../profilephoto'
 import { useReactiveVar } from '@apollo/client'
-import { Box,  HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import CardPleaseSignup from '@components/molecules/asks/signuplogin'
 import { CondensedHorizontalFriendNotifciation } from '@components/molecules/notifications/friendnotification/CondensedHorizontalFriendNotifciation'
 import { FriendsList } from '@components/organisms/list/friendslist'
 import CondensedVerticalFriendsNotficationsList from '@components/organisms/list/notifications/friends/CondensedVerticalFriendsNotficationsList'
 import QuickBarfriendCard from '@components/screens/public/venue/venueactions/actioncards/quickbarfriendcard/QuickBarfriendCard'
 import AddRelationship from '@components/screens/tonight/activity/ask/AddRelationship/AddRelationship'
+import { Box, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import { GetNotificationsQuery, ProfileType } from '@graphql/generated'
 import { AuthorizationReactiveVar } from '@reactive'
 import { DateTime } from 'luxon'
@@ -37,7 +37,8 @@ const PersonalScreen = ({ notifications }: Props) => {
 							NAME
 						</Heading>
 						<Text
-							fontSize={'$xl'}
+							fontSize={'$md'}
+							fontWeight='$bold'
 							numberOfLines={1}
 							lineHeight={'$md'}
 							style={{ textTransform: 'capitalize' }}
@@ -49,7 +50,7 @@ const PersonalScreen = ({ notifications }: Props) => {
 						<Heading fontSize={'$sm'} numberOfLines={1} lineHeight={'$sm'}>
 							DATE OF BIRTH
 						</Heading>
-						<Text fontSize={'$lg'}>
+						<Text fontSize={'$md'} fontWeight='$bold'>
 							{DateTime.fromISO(rAuthorizationVar?.Profile?.IdentifiableInformation?.birthday).toFormat(
 								'yyyy LLL dd',
 							)}

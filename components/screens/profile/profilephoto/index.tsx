@@ -18,7 +18,7 @@ export default function ProfilePhoto({ photo }: Props) {
 				h: 100,
 				w: 100,
 			}}
-			rounded={'$md'}
+			rounded={'$lg'}
 			overflow={'hidden'}
 			mb={'$3'}
 		>

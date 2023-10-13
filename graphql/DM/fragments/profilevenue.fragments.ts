@@ -4,12 +4,12 @@ import { DETAIL_INFORMATION_FRAGMENT } from '@graphql/DM/fragments/detail_inform
 import { INDETIFIABLE_INFORMATION_FRAGMENT } from '@graphql/DM/fragments/identifiable_information.fragments'
 import { LOCATION_FRAGMENT } from '@graphql/DM/fragments/location.fragments'
 
-export const PROFILE_VENUES_FRAGMENT = gql`
+export const PROFILE_VENUE_FRAGMENT = gql`
 	${CREDENTIALS_FRAGMENT}
 	${INDETIFIABLE_INFORMATION_FRAGMENT}
 	${DETAIL_INFORMATION_FRAGMENT}
 	${LOCATION_FRAGMENT}
-	fragment PROFILE_VENUES_FRAGMENT on ProfileVenue {
+	fragment PROFILE_VENUE_FRAGMENT on ProfileVenue {
 		__typename
 		id
 		ProfileType
@@ -33,6 +33,7 @@ export const PROFILE_VENUES_FRAGMENT = gql`
 		}
 		Venue {
 			id
+			name
 			Profile {
 				id
 				createdAt

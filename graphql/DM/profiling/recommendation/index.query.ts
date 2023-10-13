@@ -1,8 +1,9 @@
-import { gql } from '@apollo/client'
-import { PROFILE_VENUES_FRAGMENT, AREA_FRAGMENT } from '@graphql/DM/fragments/index.fragments'
+import { gql } from '@apollo/client';
+import { PROFILE_VENUE_FRAGMENT, AREA_FRAGMENT } from '@graphql/DM/fragments/index.fragments';
+
 
 export const VENUES_NEARBY_QUERY = gql`
-	${PROFILE_VENUES_FRAGMENT}
+	${PROFILE_VENUE_FRAGMENT}
 	${AREA_FRAGMENT}
 	query venuesNearby(
 		$countryIsoCode: String!
@@ -73,7 +74,7 @@ export const VENUES_NEARBY_QUERY = gql`
 					...AREA_FRAGMENT
 				}
 				venuesNearby {
-					...PROFILE_VENUES_FRAGMENT
+					...PROFILE_VENUE_FRAGMENT
 				}
 				recommendedAreas {
 					id
@@ -156,7 +157,7 @@ export const GET_ALL_CITIES_BY_STATE_QUERY = gql`
 `
 
 export const GET_H3INDEX6_RECOMMENDATION_QUERY = gql`
-	${PROFILE_VENUES_FRAGMENT}
+	${PROFILE_VENUE_FRAGMENT}
 	query getH3Index6VenueRecommendationById($id: String!, $venuesProfileIds: [String!]) {
 		getH3Index6VenueRecommendationById(id: $id, venuesProfileIds: $venuesProfileIds) {
 			id
@@ -199,7 +200,7 @@ export const GET_H3INDEX6_RECOMMENDATION_QUERY = gql`
 				updatedAt
 			}
 			venues {
-				...PROFILE_VENUES_FRAGMENT
+				...PROFILE_VENUE_FRAGMENT
 			}
 			updatedAt
 			createdAt

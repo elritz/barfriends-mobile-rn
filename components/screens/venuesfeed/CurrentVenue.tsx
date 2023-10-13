@@ -1,7 +1,17 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Divider, HStack, Heading, Pressable, Text } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
-import { useCurrentVenueQuery } from '@graphql/generated'
+import {
+	Box,
+	Button,
+	ButtonGroup,
+	Divider,
+	HStack,
+	Heading,
+	Icon,
+	Pressable,
+	Text,
+} from '@gluestack-ui/themed'
+import { usePublicVenueQuery } from '@graphql/generated'
 import { AuthorizationReactiveVar } from '@reactive'
 import { useDisclose } from '@util/hooks/useDisclose'
 import { useRouter } from 'expo-router'
@@ -16,20 +26,6 @@ export default function CurrentVenue() {
 	const { isOpen, onClose, onOpen, onToggle } = useDisclose()
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 
-	const { data, loading, error } = useCurrentVenueQuery({
-		skip:
-			!rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out[0]?.venueProfileId,
-		fetchPolicy: 'cache-only',
-		variables: {
-			where: {
-				id: {
-					equals:
-						rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out[0]?.venueProfileId,
-				},
-			},
-		},
-	})
-
 	const getTitleCase = str => {
 		const titleCase = str
 			.toLowerCase()
@@ -41,6 +37,18 @@ export default function CurrentVenue() {
 
 		return titleCase
 	}
+
+	const { data, loading, error } = usePublicVenueQuery({
+		skip: !rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out[0]?.venueProfileId,
+		fetchPolicy: 'cache-only',
+		variables: {
+			where: {
+				id: {
+					equals: rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out[0]?.venueProfileId,
+				},
+			},
+		},
+	})
 
 	if (loading || !data) return null
 
@@ -64,8 +72,8 @@ export default function CurrentVenue() {
 						pathname: '/(app)/public/venue',
 						params: {
 							profileid: item?.friendProfile?.id,
-							latitude: Number(data.currentVenue?.Venue?.Location?.Geometry?.latitude),
-							longitude: Number(data.currentVenue?.Venue?.Location?.Geometry?.longitude),
+							latitude: Number(data.publicVenue?.Venue?.Location?.Geometry?.latitude),
+							longitude: Number(data.publicVenue?.Venue?.Location?.Geometry?.longitude),
 						},
 					})
 				}}
@@ -81,7 +89,7 @@ export default function CurrentVenue() {
 				>
 					{!loading ? (
 						<Image
-							source={{ uri: data.currentVenue?.photos[0]?.url }}
+							source={{ uri: data.publicVenue?.photos[0]?.url }}
 							resizeMode='cover'
 							onLoadEnd={() => setHideBlur(true)}
 							style={{
@@ -93,7 +101,7 @@ export default function CurrentVenue() {
 					) : null}
 					{!hideBlur && (
 						<Blurhash
-							blurhash={String(data.currentVenue?.photos[0]?.blurhash)}
+							blurhash={String(data.publicVenue?.photos[0]?.blurhash)}
 							style={{
 								flex: 1,
 							}}
@@ -121,11 +129,11 @@ export default function CurrentVenue() {
 								alignSelf={'flex-start'}
 								ellipsizeMode='tail'
 							>
-								{getTitleCase(data.currentVenue?.IdentifiableInformation?.fullname)}
+								{getTitleCase(data.publicVenue?.Venue?.name)}
 							</Heading>
 						</Box>
 						<Box alignContent={'center'} justifyContent={'center'} px={2}>
-							<Button.Group rounded={'$md'} isAttached>
+							<ButtonGroup rounded={'$md'} isAttached>
 								<Button
 									sx={{
 										_light: {
@@ -160,7 +168,7 @@ export default function CurrentVenue() {
 										/>
 									</>
 								)}
-							</Button.Group>
+							</ButtonGroup>
 						</Box>
 					</HStack>
 				</Box>

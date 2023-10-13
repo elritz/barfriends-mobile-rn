@@ -71,7 +71,7 @@ export default (props: Props) => {
 						Sign up
 					</ButtonText>
 				</Button>
-				<Pressable py={'$2'} w={'100%'} onPress={_pressToLogin}>
+				<Pressable onPress={_pressToLogin}>
 					<Text textTransform='uppercase' fontSize={'$lg'} fontWeight={'$bold'} alignSelf='center'>
 						Log in
 					</Text>

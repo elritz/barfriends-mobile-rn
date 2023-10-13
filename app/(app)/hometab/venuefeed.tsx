@@ -1,4 +1,10 @@
 import { useReactiveVar } from '@apollo/client'
+import CardPleaseSignup from '@components/molecules/asks/signuplogin'
+import SearchAreaHeader from '@components/screens/venuesfeed/SearchAreaHeader'
+import VenueFeedSearchAreaEmptyState from '@components/screens/venuesfeed/VenueFeedSearchAreaEmptyState'
+import MemoizedVerticalVenueFeedVenueItem from '@components/screens/venuesfeed/VerticalVenueFeedVenueItem'
+import AdvertismentHorizontal from '@components/screens/venuesfeed/advertisments/advertismenthorizontal'
+import { Ionicons } from '@expo/vector-icons'
 import {
 	Box,
 	VStack,
@@ -8,13 +14,9 @@ import {
 	Heading,
 	Button,
 	ArrowRightIcon,
+	ButtonText,
+	ButtonIcon,
 } from '@gluestack-ui/themed'
-import CardPleaseSignup from '@components/molecules/asks/signuplogin'
-import SearchAreaHeader from '@components/screens/venuesfeed/SearchAreaHeader'
-import VenueFeedSearchAreaEmptyState from '@components/screens/venuesfeed/VenueFeedSearchAreaEmptyState'
-import MemoizedVerticalVenueFeedVenueItem from '@components/screens/venuesfeed/VerticalVenueFeedVenueItem'
-import AdvertismentHorizontal from '@components/screens/venuesfeed/advertisments/advertismenthorizontal'
-import { Ionicons } from '@expo/vector-icons'
 import {
 	ProfileType,
 	useUpdateComingAreaToBeNotifiedMutation,
@@ -273,16 +275,18 @@ export default () => {
 		}
 
 		return (
-			<VStack>
-				<VStack space='xs' p={'$2'} flex={1}>
-					<Heading>Recommended Areas</Heading>
-					<Button variant='link' width={'50%'} size='md' onPress={_press} justifyContent='flex-start'>
-						<Button.Text>Filter by distance</Button.Text>
-						<Button.Icon as={ArrowRightIcon} ml='$1' />
-					</Button>
+			<Box>
+				<VStack>
+					<VStack space='xs' p={'$2'} flex={1}>
+						<Heading>Recommended Areas</Heading>
+						<Button variant='link' width={'50%'} size='md' onPress={_press} justifyContent='flex-start'>
+							<ButtonText>Filter by distance</ButtonText>
+							<ButtonIcon as={ArrowRightIcon} ml='$1' />
+						</Button>
+					</VStack>
+					<RecommendedAreaList />
 				</VStack>
-				<RecommendedAreaList />
-			</VStack>
+			</Box>
 		)
 	}
 

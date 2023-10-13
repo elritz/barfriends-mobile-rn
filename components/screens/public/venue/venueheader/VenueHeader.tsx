@@ -1,7 +1,7 @@
-import { Box } from '@gluestack-ui/themed'
 import { PUBLIC_VENUE_HEADER_IMAGE_HEIGHT } from '@constants/Layout'
+import { Box } from '@gluestack-ui/themed'
 import { Photo } from '@graphql/generated'
-import { Image } from 'react-native'
+import { Image } from 'expo-image'
 import { useWindowDimensions } from 'react-native'
 
 type Props = {

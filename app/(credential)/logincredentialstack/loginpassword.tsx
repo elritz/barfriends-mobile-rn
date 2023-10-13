@@ -1,4 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
+import { Feather } from '@expo/vector-icons'
 import {
 	Box,
 	EyeIcon,
@@ -6,12 +7,12 @@ import {
 	HStack,
 	Icon,
 	Input,
+	InputIcon,
 	Pressable,
 	Spinner,
 	Text,
 	VStack,
 } from '@gluestack-ui/themed'
-import { Feather } from '@expo/vector-icons'
 import {
 	AuthorizationDeviceProfile,
 	useLoginPasswordLazyQuery,
@@ -206,11 +207,13 @@ export default () => {
 										autoCapitalize='none'
 										numberOfLines={1}
 									/>
-									<Input.Icon pr='$3' onPress={handleShowPassword}>
-										{/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
-										<Icon as={showPassword ? EyeIcon : EyeOffIcon} size={'lg'} color='$primary500' />
-									</Input.Icon>
-									{LPLoading && <Spinner size='large' accessibilityLabel={'Loading...'} />}
+									<Pressable onPress={handleShowPassword}>
+										<InputIcon pr='$3'>
+											{/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
+											<Icon as={showPassword ? EyeIcon : EyeOffIcon} size={'lg'} color='$primary500' />
+										</InputIcon>
+									</Pressable>
+									{LPLoading && <Spinner size='small' accessibilityLabel={'Loading...'} />}
 								</Input>
 								// <Input
 								// 	variant={'underlined'}

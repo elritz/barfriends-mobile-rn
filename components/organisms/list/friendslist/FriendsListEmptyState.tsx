@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
+import { Box, Button, ButtonText, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { PermissionContactsReactiveVar, ThemeReactiveVar } from '@reactive'
 import { useRouter } from 'expo-router'
 
@@ -32,9 +32,9 @@ export const FriendsListEmptyState = () => {
 						})
 					}
 				>
-					<Button.Text fontSize={'$lg'} fontWeight={'$bold'}>
+					<ButtonText fontSize={'$lg'} fontWeight={'$bold'}>
 						{permissionContactsVar?.granted ? 'All Contacts' : 'Use Contacts'}
-					</Button.Text>
+					</ButtonText>
 				</Button>
 				<Pressable
 					w={'100%'}
@@ -52,21 +52,15 @@ export const FriendsListEmptyState = () => {
 				>
 					<Ionicons
 						name='search'
-						size={25}
+						size={20}
 						color={
 							rTheme.colorScheme === 'light'
 								? rTheme.theme?.gluestack.tokens.colors.light900
 								: rTheme.theme?.gluestack.tokens.colors.light100
 						}
 					/>
-					<Text
-						ml='$2'
-						textTransform='uppercase'
-						fontSize={'$lg'}
-						fontWeight={'$bold'}
-						alignSelf='center'
-					>
-						search
+					<Text ml='$2' fontSize={'$lg'} fontWeight={'$bold'}>
+						Search
 					</Text>
 				</Pressable>
 			</VStack>

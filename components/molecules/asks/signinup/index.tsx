@@ -1,4 +1,4 @@
-import { Box, Button, Center, Divider, Text, VStack } from '@gluestack-ui/themed'
+import { Box, Button, ButtonText, Center, Divider, Text, VStack } from '@gluestack-ui/themed'
 import GetSignInUpText from '@util/helpers/data/SignupinText'
 import { useRouter } from 'expo-router'
 
@@ -21,12 +21,12 @@ export default () => {
 					sx={{
 						w: '95%',
 					}}
-					my={'$4'}
+					mt={'$4'}
 					rounded={'$md'}
 				>
-					<Button.Text textTransform='uppercase' fontWeight='$bold' fontSize={'$lg'}>
+					<ButtonText textTransform='uppercase' fontWeight='$bold' fontSize={'$lg'}>
 						Sign up
-					</Button.Text>
+					</ButtonText>
 				</Button>
 				<Button
 					variant='link'
@@ -35,9 +35,6 @@ export default () => {
 							pathname: '/(credential)/logincredentialstack/authenticator',
 						})
 					}
-					sx={{
-						w: '95%',
-					}}
 				>
 					<Text textTransform='uppercase' fontSize={'$lg'} fontWeight={'$bold'} alignSelf='center'>
 						Log in

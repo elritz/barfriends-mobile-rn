@@ -1,11 +1,19 @@
-import { Button, Text } from '@gluestack-ui/themed'
+import { useReactiveVar } from '@apollo/client'
+import SearchInputText from '@components/molecules/search/searchinput/SearchInputText'
+import { Button, ButtonText, Text, VStack } from '@gluestack-ui/themed'
+import { ThemeReactiveVar } from '@reactive'
+import { BlurView } from 'expo-blur'
 import { Stack, router } from 'expo-router'
 
 export default () => {
+	const rTheme = useReactiveVar(ThemeReactiveVar)
+
 	return (
 		<Stack
 			initialRouteName='hometab'
 			screenOptions={{
+				headerTransparent: true,
+				animation: 'fade',
 				headerShown: false,
 			}}
 		>
@@ -35,7 +43,7 @@ export default () => {
 								size='md'
 								variant='link'
 							>
-								<Button.Text>Cancel</Button.Text>
+								<ButtonText>Cancel</ButtonText>
 							</Button>
 						)
 					},

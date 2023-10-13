@@ -1,3 +1,4 @@
+
 const gluestack = {
 	primary0: '#ffefdb',
 	primary50: '#ffefdb',
@@ -37,4 +38,4 @@ const gluestack = {
 	tertiary950: '#000a21',
 }
 
-export default gluestack;
+export default gluestack

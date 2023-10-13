@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Divider, Heading, Text, VStack } from '@gluestack-ui/themed'
 import NotificationNextAskModal from '@components/molecules/modals/asks/notificationnextaskmodal'
+import { Box, Button, Divider, Heading, Text, VStack } from '@gluestack-ui/themed'
 import { useGetCurrentPushNotificationTokenQuery } from '@graphql/generated'
 import {
 	PermissionNotificationReactiveVar,
@@ -100,7 +100,7 @@ export default function PreferenceNotificationPermission() {
 									// onPress={async () => _pressUpdateNotificationPreferencePermission()}
 									onPress={onOpen}
 								>
-									<Text textTransform='uppercase' fontSize={'$lg'} fontWeight={'$bold'} alignSelf='center'>
+									<Text fontSize={'$lg'} fontWeight={'$bold'} alignSelf='center'>
 										Not now
 									</Text>
 								</Button>

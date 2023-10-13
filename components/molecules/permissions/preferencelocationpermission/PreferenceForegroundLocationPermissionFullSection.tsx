@@ -1,9 +1,9 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Divider, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import ForegroundLocationNextAskModal from '@components/molecules/modals/asks/foregroundlocationnextaskmodal'
 import { LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION } from '@constants/StorageConstants'
 import { LocalStoragePreferenceAskForegroundLocationPermissionType } from '@ctypes/preferences'
 import { EvilIcons } from '@expo/vector-icons'
+import { Box, Button, Divider, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
 	DaysPreferencePermissionInitialState,
@@ -105,7 +105,7 @@ export default function ForegroundLocationPermissionFullSection() {
 											})
 										}}
 									>
-										<Text textTransform='uppercase' fontSize={'$lg'} fontWeight={'$bold'} alignSelf='center'>
+										<Text fontSize={'$lg'} fontWeight={'$bold'} alignSelf='center'>
 											Not now
 										</Text>
 									</Button>

@@ -122,7 +122,7 @@ const SearchInputText = (props: Props) => {
 						}
 					>
 						<Ionicons
-						style={{ marginLeft: 10 }}
+							style={{ paddingLeft: 10 }}
 							color={
 								rTheme.colorScheme === 'light'
 									? rTheme.theme?.gluestack.tokens.colors.light700
@@ -133,16 +133,27 @@ const SearchInputText = (props: Props) => {
 						/>
 						<InputField
 							ref={_inputRef}
-							autoFocus={true}
 							placeholderTextColor={
 								rTheme.colorScheme === 'light'
 									? rTheme.theme?.gluestack.tokens.colors.light700
 									: rTheme.theme?.gluestack.tokens.colors.light100
 							}
+							pl={7}
 							autoCapitalize={'none'}
 							autoCorrect={false}
 							autoComplete='off'
 							value={value}
+							lineHeight={'$sm'}
+							onFocus={() => {
+								if (segments.includes('hometab')) {
+									router.push({
+										pathname: '/(app)/explore/searchtext',
+										params: {
+											searchtext: '',
+										},
+									})
+								}
+							}}
 							onChangeText={onChange}
 							placeholder={props.placeholder || 'Search'}
 							returnKeyType='search'
