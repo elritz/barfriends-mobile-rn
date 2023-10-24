@@ -32,6 +32,7 @@ const CurrentLocationFromVenueDistance = () => {
 	const rSearchAreaVar = useReactiveVar(SearchAreaReactiveVar)
 	const [appState, setAppState] = useState(AppState.currentState)
 	const { refreshLocation, canJoin, distance, distanceInM, isLoading, metric } = useGetDistance()
+
 	const {
 		isOpen: isForegroundLocationOn,
 		onOpen: onOpenForegroundLocationOn,
@@ -86,19 +87,6 @@ const CurrentLocationFromVenueDistance = () => {
 			backgroundColor: '#FF7000',
 		},
 	})
-
-	useEffect(() => {
-		if (!distance) {
-			// setLoading(true)
-			const asynFunc = async () => {
-				await refreshLocation({
-					vlat: Number(params.latitude),
-					vlng: Number(params.longitude),
-				})
-			}
-			asynFunc()
-		}
-	}, [])
 
 	const LoadingAnimationLocation = () => {
 		return (
@@ -174,11 +162,7 @@ const CurrentLocationFromVenueDistance = () => {
 
 					<Box pb={'$1'} alignSelf={'center'} alignItems={'center'} flexDirection={'row'}>
 						<MaterialIcons
-							color={
-								rTheme.colorScheme === 'light'
-									? rTheme.theme?.gluestack.tokens.colors.light200
-									: rTheme.theme?.gluestack.tokens.colors.light100
-							}
+							color={rTheme.theme?.gluestack.tokens.colors.blue500}
 							name='location-pin'
 							size={25}
 						/>
@@ -189,12 +173,12 @@ const CurrentLocationFromVenueDistance = () => {
 					<Button
 						variant='link'
 						size={'xs'}
-						onPress={async () => {
+						onPress={async () =>
 							await refreshLocation({
-								vlat: Number(params.latitude),
-								vlng: Number(params.longitude),
+								vlat: data.publicVenue?.Venue?.Location?.Geometry?.latitude,
+								vlng: data.publicVenue?.Venue?.Location?.Geometry?.longitude,
 							})
-						}}
+						}
 						position={'absolute'}
 						alignSelf={'center'}
 						bottom={'$1'}

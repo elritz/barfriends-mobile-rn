@@ -1,9 +1,12 @@
-import { Box, HStack, Heading, Text } from '@gluestack-ui/themed'
+import { useReactiveVar } from '@apollo/client'
+import { Ionicons } from '@expo/vector-icons'
+import { Box, Button, HStack, Heading, Text } from '@gluestack-ui/themed'
 import { useGetLiveVenueTotalsQuery } from '@graphql/generated'
+import { ThemeReactiveVar } from '@reactive'
 import { useGlobalSearchParams } from 'expo-router'
 import { uniqueId } from 'lodash'
 import { useState } from 'react'
-import { useWindowDimensions } from 'react-native'
+import { Alert, Platform, Share, useWindowDimensions } from 'react-native'
 
 type Totals = {
 	name: 'friends' | 'total' | 'joined'
@@ -15,10 +18,38 @@ export default function VenueTotals() {
 	const { width } = useWindowDimensions()
 	const numColumns = 3
 	const itemPadding = (width / 33.33) * numColumns
-
+	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const [total, setTotal] = useState<Totals>({ name: 'total', value: 0 })
 	const [friends, setFriends] = useState<Totals>({ name: 'friends', value: 0 })
 	const [joined, setJoined] = useState<Totals>({ name: 'joined', value: 0 })
+
+	const link = `https://revel.com/app/public/venue?profileid=${params.profileid}`
+
+	const onShare = async () => {
+		try {
+			const result = await Share.share(
+				{
+					message: 'Revel | The nightlife app',
+					url: Platform.OS === 'ios' ? link : '',
+				},
+				{
+					dialogTitle: 'Join me on Revel',
+					subject: 'Invite to Revel',
+				},
+			)
+			if (result.action === Share.sharedAction) {
+				if (result.activityType) {
+					// shared with activity type of result.activityType
+				} else {
+					// shared
+				}
+			} else if (result.action === Share.dismissedAction) {
+				// dismissed
+			}
+		} catch (error: any) {
+			Alert.alert(error.message)
+		}
+	}
 
 	const { data, loading, error } = useGetLiveVenueTotalsQuery({
 		skip: !String(params.profileid),
@@ -45,8 +76,8 @@ export default function VenueTotals() {
 				flexDirection: 'row',
 				justifyContent: 'space-around',
 			}}
-			mt={'$3'}
-			mx={'$1'}
+			space='sm'
+			mx={'$2'}
 		>
 			{[friends, total, joined].map((item, index) => {
 				return (
@@ -61,16 +92,19 @@ export default function VenueTotals() {
 								bg: item.name !== 'friends' ? '$light900' : '$primary500',
 								opacity: loading ? 50 : 100,
 							},
-							height: 60,
-							width: (width - itemPadding) / 3.33,
+							// height: 50,
+							// width: (width - itemPadding) / 3.33,
+							flex: 1
 						}}
+						p={'$1'}
 						rounded={'$xl'}
 						alignItems='center'
-						justifyContent='center'
+						justifyContent='space-around'
 					>
 						<Heading
 							numberOfLines={1}
 							fontSize={'$2xl'}
+							lineHeight={'$xl'}
 							fontWeight='$black'
 							sx={{
 								letterSpacing: 0.01,
@@ -95,6 +129,24 @@ export default function VenueTotals() {
 					</Box>
 				)
 			})}
+			<Button
+				bg={'transparent'}
+				onPress={onShare}
+				alignSelf={'center'}
+				variant={'solid'}
+				size={'lg'}
+				height={'$full'}
+			>
+				<Ionicons
+					name={'share'}
+					size={23}
+					color={
+						rTheme.colorScheme === 'light'
+							? rTheme.theme?.gluestack.tokens.colors.light900
+							: rTheme.theme?.gluestack.tokens.colors.light100
+					}
+				/>
+			</Button>
 		</HStack>
 	)
 }

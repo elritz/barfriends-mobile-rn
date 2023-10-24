@@ -1,7 +1,8 @@
-import * as Location from 'expo-location'
-import { getDistance } from 'geolib'
-import { GeolibLatitudeInputValue, GeolibLongitudeInputValue } from 'geolib/es/types'
-import { useCallback, useState } from 'react'
+import * as Location from 'expo-location';
+import { getDistance } from 'geolib';
+import { GeolibLatitudeInputValue, GeolibLongitudeInputValue } from 'geolib/es/types';
+import { useCallback, useState } from 'react';
+
 
 type DistMetric = {
 	distanceInM: number

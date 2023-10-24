@@ -10,7 +10,6 @@ type Props = {
 }
 
 export const useToggleTheme = () => {
-	
 	const toggleColorScheme = useCallback(async (props: Props) => {
 		const localStorageColorScheme = await AsyncStorage.getItem(
 			LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME,
@@ -23,11 +22,20 @@ export const useToggleTheme = () => {
 				colorScheme: props.colorScheme,
 			})
 
+			console.log(
+				'🚀 ~ file: useToggleTheme.ts:26 ~ toggleColorScheme ~ initialThemeColorSchemeState:',
+				initialThemeColorSchemeState,
+			)
+
 			await AsyncStorage.setItem(
 				LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME,
 				initialThemeColorSchemeState,
 			)
 		}
+		console.log(
+			'🚀 ~ file: useToggleTheme.ts:37 ~ toggleColorScheme ~ props.colorScheme:',
+			props.colorScheme,
+		)
 
 		switch (props.colorScheme) {
 			case 'system':

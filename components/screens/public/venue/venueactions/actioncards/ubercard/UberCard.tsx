@@ -62,7 +62,7 @@ export default function UberCard() {
 				</Heading>
 				<Text>Focused on safety, wherever you go</Text>
 			</View>
-			<HStack>
+			<HStack justifyContent='center'>
 				<UberButton params={params} />
 			</HStack>
 		</VStack>

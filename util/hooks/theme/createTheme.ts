@@ -55,6 +55,9 @@ const createTheme = ({ themeScheme, localStorageColorScheme }: Props) => {
 		},
 	})
 
+	
+
+
 	const _newtheme = {
 		reactnavigation: {
 			...DefaultTheme,

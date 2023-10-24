@@ -8976,6 +8976,7 @@ type Mutation {
   createVenueProfile(data: CreateVenueDataInput): AuthenticationResponseUnion!
   declineFriendRequest(friendRequestId: String!): Boolean!
   deleteFriendRequest(friendRequestId: String!): Boolean!
+  getAllFriends: Boolean!
   qrAddFriend(dataHash: String!, qrCodeProfileId: String!): Relationship!
   refreshDeviceManager: AuthenticationResponseUnion!
   removeAllFromVenueDeveloper(profileIdVenue: String): Boolean!
@@ -15153,6 +15154,7 @@ type RejectedFriendsResponse {
 type Relationship {
   createdAt: DateTime!
   friendProfile: Profile
+  friendProfileId: String!
   id: ID!
   Profile: Profile
   profileId: String
@@ -15163,6 +15165,7 @@ type Relationship {
 
 input RelationshipCountOrderByAggregateInput {
   createdAt: SortOrder
+  friendProfileId: SortOrder
   id: SortOrder
   profileId: SortOrder
   RelationshipStatus: SortOrder
@@ -15172,6 +15175,7 @@ input RelationshipCountOrderByAggregateInput {
 
 input RelationshipCreateInput {
   createdAt: DateTime
+  friendProfileId: String!
   id: String
   Profile: ProfileCreateNestedOneWithoutRelationshipsInput
   RelationshipStatus: [RelationshipStatus!]
@@ -15181,6 +15185,7 @@ input RelationshipCreateInput {
 
 input RelationshipCreateManyInput {
   createdAt: DateTime
+  friendProfileId: String!
   id: String
   profileId: String
   RelationshipStatus: [RelationshipStatus!]
@@ -15190,6 +15195,7 @@ input RelationshipCreateManyInput {
 
 input RelationshipCreateManyProfileInput {
   createdAt: DateTime
+  friendProfileId: String!
   id: String
   RelationshipStatus: [RelationshipStatus!]
   updatedAt: DateTime
@@ -15219,6 +15225,7 @@ input RelationshipCreateRelationshipStatusInput {
 
 input RelationshipCreateWithoutProfileInput {
   createdAt: DateTime
+  friendProfileId: String!
   id: String
   RelationshipStatus: [RelationshipStatus!]
   updatedAt: DateTime
@@ -15233,6 +15240,7 @@ input RelationshipListRelationFilter {
 
 input RelationshipMaxOrderByAggregateInput {
   createdAt: SortOrder
+  friendProfileId: SortOrder
   id: SortOrder
   profileId: SortOrder
   updatedAt: SortOrder
@@ -15241,6 +15249,7 @@ input RelationshipMaxOrderByAggregateInput {
 
 input RelationshipMinOrderByAggregateInput {
   createdAt: SortOrder
+  friendProfileId: SortOrder
   id: SortOrder
   profileId: SortOrder
   updatedAt: SortOrder
@@ -15256,6 +15265,7 @@ input RelationshipOrderByWithAggregationInput {
   _max: RelationshipMaxOrderByAggregateInput
   _min: RelationshipMinOrderByAggregateInput
   createdAt: SortOrder
+  friendProfileId: SortOrder
   id: SortOrder
   profileId: SortOrder
   RelationshipStatus: SortOrder
@@ -15265,6 +15275,7 @@ input RelationshipOrderByWithAggregationInput {
 
 input RelationshipOrderByWithRelationInput {
   createdAt: SortOrder
+  friendProfileId: SortOrder
   id: SortOrder
   Profile: ProfileOrderByWithRelationInput
   profileId: SortOrder
@@ -15275,6 +15286,7 @@ input RelationshipOrderByWithRelationInput {
 
 enum RelationshipScalarFieldEnum {
   createdAt
+  friendProfileId
   id
   profileId
   RelationshipStatus
@@ -15285,6 +15297,7 @@ enum RelationshipScalarFieldEnum {
 input RelationshipScalarWhereInput {
   AND: [RelationshipScalarWhereInput!]
   createdAt: DateTimeFilter
+  friendProfileId: StringFilter
   id: StringFilter
   NOT: [RelationshipScalarWhereInput!]
   OR: [RelationshipScalarWhereInput!]
@@ -15297,6 +15310,7 @@ input RelationshipScalarWhereInput {
 input RelationshipScalarWhereWithAggregatesInput {
   AND: [RelationshipScalarWhereWithAggregatesInput!]
   createdAt: DateTimeWithAggregatesFilter
+  friendProfileId: StringWithAggregatesFilter
   id: StringWithAggregatesFilter
   NOT: [RelationshipScalarWhereWithAggregatesInput!]
   OR: [RelationshipScalarWhereWithAggregatesInput!]
@@ -15313,6 +15327,7 @@ enum RelationshipStatus {
 
 input RelationshipUpdateInput {
   createdAt: DateTimeFieldUpdateOperationsInput
+  friendProfileId: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   Profile: ProfileUpdateOneWithoutRelationshipsNestedInput
   RelationshipStatus: [RelationshipStatus!]
@@ -15322,6 +15337,7 @@ input RelationshipUpdateInput {
 
 input RelationshipUpdateManyMutationInput {
   createdAt: DateTimeFieldUpdateOperationsInput
+  friendProfileId: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   RelationshipStatus: [RelationshipStatus!]
   updatedAt: DateTimeFieldUpdateOperationsInput
@@ -15354,6 +15370,7 @@ input RelationshipUpdateRelationshipStatusInput {
 
 input RelationshipUpdateWithoutProfileInput {
   createdAt: DateTimeFieldUpdateOperationsInput
+  friendProfileId: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   RelationshipStatus: [RelationshipStatus!]
   updatedAt: DateTimeFieldUpdateOperationsInput
@@ -15374,6 +15391,7 @@ input RelationshipUpsertWithWhereUniqueWithoutProfileInput {
 input RelationshipWhereInput {
   AND: [RelationshipWhereInput!]
   createdAt: DateTimeFilter
+  friendProfileId: StringFilter
   id: StringFilter
   NOT: [RelationshipWhereInput!]
   OR: [RelationshipWhereInput!]
@@ -15387,6 +15405,7 @@ input RelationshipWhereInput {
 input RelationshipWhereUniqueInput {
   AND: [RelationshipWhereInput!]
   createdAt: DateTimeFilter
+  friendProfileId: StringFilter
   id: String
   NOT: [RelationshipWhereInput!]
   OR: [RelationshipWhereInput!]

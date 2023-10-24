@@ -1,12 +1,13 @@
-import { Heading, Text, Box, Button, VStack } from '@gluestack-ui/themed'
 import { Feather } from '@expo/vector-icons'
+import { Heading, Text, Box, Button, VStack, ButtonText, HStack } from '@gluestack-ui/themed'
 import { useRouter } from 'expo-router'
+import { View } from 'react-native'
 
 export default function SignupCard() {
 	const router = useRouter()
 	return (
-		<VStack flexDirection={'column'} justifyContent={'space-around'} height={'100%'}>
-			<VStack space={'md'} flex={1} justifyContent={'flex-start'}>
+		<VStack flex={1} justifyContent='space-between' flexDirection={'column'}>
+			<View>
 				<Heading
 					textTransform={'uppercase'}
 					lineHeight={'$xs'}
@@ -17,20 +18,23 @@ export default function SignupCard() {
 					Sign up, Join, Socialize
 				</Heading>
 				<Text>Also focused on stuff</Text>
-			</VStack>
-			<Box bg={'transparent'}>
+			</View>
+			<HStack justifyContent='center'>
 				<Button
 					p={3.5}
 					w={'$full'}
+					size={'lg'}
+					alignItems='center'
+					justifyContent='center'
+					rounded={'$full'}
 					onPress={() => {
 						router.push({ pathname: '/(credential)/personalcredentialstack/getstarted' })
 					}}
-					size={'lg'}
 				>
-					<Button.Text>Continue</Button.Text>
+					<ButtonText>Continue</ButtonText>
 					<Feather name='arrow-right' size={20} color={'white'} />
 				</Button>
-			</Box>
+			</HStack>
 		</VStack>
 	)
 }

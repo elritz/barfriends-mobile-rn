@@ -3,86 +3,32 @@ import { useReactiveVar } from '@apollo/client'
 import SearchInput from '@components/molecules/search/searchinput/SearchInput'
 import { SEARCH_BAR_HEIGHT } from '@constants/ReactNavigationConstants'
 import { Ionicons, Entypo } from '@expo/vector-icons'
-import { Button, HStack, VStack } from '@gluestack-ui/themed'
-import { ThemeReactiveVar } from '@reactive'
-import { Stack, router, useGlobalSearchParams, useRouter } from 'expo-router'
+import { Button, HStack, Text, VStack } from '@gluestack-ui/themed'
+import { usePublicVenueQuery } from '@graphql/generated'
+import { CurrentLocationReactiveVar, SearchAreaReactiveVar, ThemeReactiveVar } from '@reactive'
+import { BlurView } from 'expo-blur'
+import { Stack, router, useGlobalSearchParams, useLocalSearchParams, useRouter } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default () => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
+	const rSearchAreaVar = useReactiveVar(SearchAreaReactiveVar)
+	const rCurrentLocationVar = useReactiveVar(CurrentLocationReactiveVar)
 	const insets = useSafeAreaInsets()
 	const HEADER_HEIGHT = SEARCH_BAR_HEIGHT + 15
 	const h = insets.top + HEADER_HEIGHT
-	const params = useGlobalSearchParams()
+	const params = useLocalSearchParams()
+
+	console.log('🚀 ~ file: _layout.tsx:22 ~ params:', params)
+
+	const NAVIGATION_BUTTON_HEIGHT = 38
 
 	return (
 		<Stack>
 			<Stack.Screen
 				name={'venue'}
 				options={{
-					headerShown: true,
-					headerTransparent: true,
-					headerStyle: {
-						backgroundColor: 'transparent',
-					},
-					presentation: 'modal',
-					animation: 'fade',
-					headerLeft: () => (
-						<HStack
-							justifyContent={'flex-start'}
-							sx={{
-								maxWidth: '90%',
-							}}
-							space={'md'}
-							alignItems={'center'}
-							ml={'$2'}
-							mb={'$1'}
-						>
-							<Button
-								onPress={() => {
-									router.canGoBack()
-										? router.back()
-										: router.replace({
-												pathname: '/(app)/hometab/venuefeed',
-										  })
-								}}
-								rounded={'$full'}
-								size='xs'
-								bg={rTheme.colorScheme === 'light' ? '$light50' : '$light900'}
-							>
-								<Ionicons
-									name='md-chevron-back-outline'
-									size={30}
-									color={
-										rTheme.colorScheme === 'light'
-											? rTheme.theme?.gluestack.tokens.colors.light900
-											: rTheme.theme?.gluestack.tokens.colors.light100
-									}
-								/>
-							</Button>
-						</HStack>
-					),
-					headerRight: () => (
-						<Button
-							onPress={() => router.back()}
-							rounded={'$full'}
-							size='xs'
-							my={'$2'}
-							mr={'$2'}
-							bg={rTheme.colorScheme === 'light' ? '$light50' : '$light900'}
-						>
-							<Entypo
-								name='dots-three-vertical'
-								size={23}
-								color={
-									rTheme.colorScheme === 'light'
-										? rTheme.theme?.gluestack.tokens.colors.light900
-										: rTheme.theme?.gluestack.tokens.colors.light100
-								}
-							/>
-						</Button>
-					),
-					headerTitle: '',
+					headerShown: false,
 				}}
 			/>
 			<Stack.Screen
@@ -90,65 +36,68 @@ export default () => {
 				options={{
 					headerShown: true,
 					headerTransparent: true,
-					headerStyle: {
-						// backgroundColor: 'transparent',
-					},
-					headerLeft: () => (
-						<HStack
-							justifyContent={'flex-start'}
-							sx={{
-								maxWidth: '90%',
-							}}
-							space={'md'}
-							alignItems={'center'}
-							ml={'$2'}
-							mb={'$1'}
-						>
-							<Button
-								bg={rTheme.colorScheme === 'light' ? '$light50' : '$light900'}
-								rounded={'$full'}
-								onPress={() => {
-									router.canGoBack()
-										? router.back()
-										: router.replace({
-												pathname: '/(app)/hometab/venuefeed',
-										  })
+					headerBlurEffect: rTheme.colorScheme === 'light' ? 'light' : 'dark',
+					header: () => {
+						return (
+							<BlurView
+								style={{
+									paddingTop: insets.top,
+									paddingBottom: 4,
 								}}
+								intensity={60}
+								tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 							>
-								<Ionicons
-									name='md-chevron-back-outline'
-									size={30}
-									color={
-										rTheme.colorScheme === 'light'
-											? rTheme.theme?.gluestack.tokens.colors.light900
-											: rTheme.theme?.gluestack.tokens.colors.light100
-									}
-								/>
-							</Button>
-						</HStack>
-					),
-					headerRight: () => (
-						<Button
-							mb={'$1'}
-							bg={rTheme.colorScheme === 'light' ? '$light50' : '$light900'}
-							rounded={'$full'}
-							onPress={() => router.back()}
-							size='xs'
-							my={'$2'}
-							mr={'$2'}
-						>
-							<Entypo
-								name={'dots-three-vertical'}
-								size={23}
-								color={
-									rTheme.colorScheme === 'light'
-										? rTheme.theme?.gluestack.tokens.colors.light900
-										: rTheme.theme?.gluestack.tokens.colors.light100
-								}
-							/>
-						</Button>
-					),
-					headerTitle: '⭐️',
+								<HStack justifyContent='space-between' space='md' px={'$3'} alignItems={'center'}>
+									<HStack flex={1} justifyContent={'flex-start'} space={'md'} alignItems={'center'}>
+										<Button
+											// bg={rTheme.colorScheme === 'light' ? '$light50' : '$light900'}
+											variant='link'
+											rounded={'$full'}
+											height={NAVIGATION_BUTTON_HEIGHT}
+											onPress={() => {
+												router.canGoBack()
+													? router.back()
+													: router.replace({
+															pathname: '/(app)/hometab/venuefeed',
+													  })
+											}}
+										>
+											<Ionicons
+												name='md-chevron-back-outline'
+												size={30}
+												color={
+													rTheme.colorScheme === 'light'
+														? rTheme.theme?.gluestack.tokens.colors.light900
+														: rTheme.theme?.gluestack.tokens.colors.light100
+												}
+											/>
+										</Button>
+									</HStack>
+									<Text>⭐️</Text>
+									<HStack flex={1} justifyContent={'flex-end'} space={'md'} alignItems={'center'}>
+										<Button
+											height={NAVIGATION_BUTTON_HEIGHT}
+											// bg={rTheme.colorScheme === 'light' ? '$light50' : '$light900'}
+											rounded={'$full'}
+											variant='link'
+											onPress={() => router.back()}
+											size='xs'
+										>
+											<Entypo
+												name={'dots-three-vertical'}
+												size={23}
+												color={
+													rTheme.colorScheme === 'light'
+														? rTheme.theme?.gluestack.tokens.colors.light900
+														: rTheme.theme?.gluestack.tokens.colors.light100
+												}
+											/>
+										</Button>
+									</HStack>
+								</HStack>
+							</BlurView>
+						)
+					},
 				}}
 			/>
 			<Stack.Screen

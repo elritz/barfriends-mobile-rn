@@ -1,5 +1,5 @@
-import { Box, Heading, Text } from '@gluestack-ui/themed'
 import MemoizedVerticalVenueFeedVenueItem from '@components/screens/venuesfeed/VerticalVenueFeedVenueItem'
+import { Box, Heading, Text } from '@gluestack-ui/themed'
 import { useGetH3Index6VenueRecommendationByIdQuery } from '@graphql/generated'
 import { MasonryFlashList } from '@shopify/flash-list'
 import useContentInsets from '@util/hooks/useContentInsets'
@@ -10,10 +10,10 @@ export default function SearchH3Recommendation() {
 	const contentInsets = useContentInsets()
 
 	const { data, loading, error } = useGetH3Index6VenueRecommendationByIdQuery({
-		skip: !params.id || !params.venueprofileids,
+		skip: !params.id || !params.profileids,
 		variables: {
 			id: String(params.id),
-			venuesProfileIds: JSON.parse(String(params.venueprofileids)),
+			venuesProfileIds: JSON.parse(String(params.profileids)),
 		},
 	})
 

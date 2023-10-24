@@ -55,6 +55,7 @@ export default function InformationJoinVenue() {
 								</Pressable>
 								<Button
 									size='sm'
+									rounded={'$full'}
 									sx={{
 										_light: {
 											backgroundColor: '$light300',

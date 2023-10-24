@@ -163,7 +163,7 @@ export default () => {
 										})
 									}}
 								>
-									<ButtonText fontSize={'$lg'}>Search area</ButtonText>
+									<ButtonText fontSize={'$lg'}>Area</ButtonText>
 								</Button>
 								<LocationPermissionItemEmptyState />
 							</Box>
@@ -183,7 +183,7 @@ export default () => {
 										return (
 											<Button
 												key={index}
-												bg={!rSearchAreaVar?.useCurrentLocation ? '$primary500' : '$blue500'}
+												bg={!rSearchAreaVar?.useCurrentLocation ? '$light800' : '$blue500'}
 												variant={'solid'}
 												// isDisabled
 												sx={{
@@ -193,7 +193,8 @@ export default () => {
 												}}
 												onPress={() => switchRouter(item.name)}
 												flex={1}
-												height={50}
+												rounded={'$full'}
+												height={40}
 											>
 												<ButtonText
 													ellipsizeMode={'tail'}
@@ -211,6 +212,7 @@ export default () => {
 								<SearchAreaLocationPermissionItem />
 								<HStack justifyContent='flex-end'>
 									<Button
+									rounded={'$full'}
 										onPress={() => {
 											router.push({
 												pathname: '/(app)/searcharea/searchcountry',

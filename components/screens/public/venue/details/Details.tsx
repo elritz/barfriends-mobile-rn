@@ -59,24 +59,25 @@ export default function Details() {
 				</Box>
 				<Box bg={'transparent'}>
 					<DetailTitle title={'Type'} />
-					<HStack flexWrap={'wrap'} justifyContent={'flex-start'}>
+					<HStack py={'$2'} space='xs' flexWrap='wrap'>
 						{data.publicVenue?.DetailInformation?.Tags.map((item, index) => {
 							return (
 								<Badge
 									key={item.id}
-									mx={'$1'}
-									my={'$2'}
+									size='lg'
+									my={'$1'}
+									p={'$1'}
 									px={'$3'}
-									py={'$2'}
+									variant='solid'
+									borderRadius='$full'
 									sx={{
 										_dark: {
 											bg: '$black',
 										},
 										_light: {
-											bg: '$gray200',
+											bg: '$light200',
 										},
 									}}
-									rounded={'$lg'}
 								>
 									<Badge.Text
 										textTransform='capitalize'
@@ -89,7 +90,9 @@ export default function Details() {
 												color: '$black',
 											},
 										}}
-									>{`${item.emoji} ${item.name}`}</Badge.Text>
+									>
+										{`${item.emoji}`}&nbsp;{`${item.name}`}
+									</Badge.Text>
 								</Badge>
 							)
 						})}

@@ -63,7 +63,7 @@ export default function Auth({ children }) {
 		// await secureStorageItemDelete({
 		// 	key: AUTHORIZATION,
 		// })
-
+		
 		const getAuthorization = (await secureStorageItemRead({
 			key: AUTHORIZATION,
 			decode: true,

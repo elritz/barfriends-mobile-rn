@@ -1,7 +1,7 @@
 import { useReactiveVar } from '@apollo/client'
 import { UBER_CLIENT_ID_KEY } from '@env'
 import { FontAwesome5 } from '@expo/vector-icons'
-import { Button } from '@gluestack-ui/themed'
+import { Button, ButtonText } from '@gluestack-ui/themed'
 import { usePublicVenueQuery } from '@graphql/generated'
 import { AuthorizationReactiveVar } from '@reactive'
 import { useCallback } from 'react'
@@ -48,12 +48,13 @@ export default function UberButton({ params }) {
 
 	return (
 		<Button
-			size={'lg'}
 			bg={'$black'}
+			p={3.5}
 			w={'$full'}
+			size={'lg'}
 			alignItems='center'
 			justifyContent='center'
-			rounded={'$md'}
+			rounded={'$full'}
 			onPress={() => {
 				!params.profileid ||
 				(!PData?.publicVenue?.Venue?.Location?.Geometry?.latitude &&
@@ -63,7 +64,7 @@ export default function UberButton({ params }) {
 			}}
 		>
 			<FontAwesome5 name={'uber'} color={'white'} size={20} />
-			<Button.Text ml={'$1'}>{PLoading ? 'loading' : 'Open Uber'}</Button.Text>
+			<ButtonText ml={'$1'}>{PLoading ? 'loading' : 'Open Uber'}</ButtonText>
 		</Button>
 	)
 }

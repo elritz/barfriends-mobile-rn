@@ -120,7 +120,7 @@ export default function Photos() {
 			height: size - 15,
 			width: size - 15,
 			borderRadius: size / 2,
-			backgroundColor: rTheme.theme?.gluestack.tokens.colors.tertiary400,
+			backgroundColor: rTheme.theme?.gluestack?.tokens.colors.tertiary400,
 		},
 		dotSm: {
 			top: 20,
@@ -129,7 +129,7 @@ export default function Photos() {
 			height: size - 25,
 			width: size - 25,
 			borderRadius: size / 2,
-			backgroundColor: rTheme.theme?.gluestack.tokens.colors.secondary700,
+			backgroundColor: rTheme.theme?.gluestack?.tokens.colors.secondary700,
 			zIndex: 3,
 		},
 	})
@@ -138,7 +138,8 @@ export default function Photos() {
 		<Box bg={'$transparent'}>
 			{rAuthorizationVar?.Profile?.tonightStory?.photos?.length ? (
 				<Box
-					bg='$transparent'
+					// bg='$transparent'
+					bg='$red900'
 					sx={{
 						h: containerHeight,
 					}}
@@ -162,7 +163,8 @@ export default function Photos() {
 								if (item?.__typename === 'upload') {
 									return (
 										<Box
-											bg={'$transparent'}
+											// bg={'$transparent'}
+											bg='$red300'
 											sx={{
 												h: containerHeight,
 												w: ITEM_WIDTH,
@@ -175,7 +177,8 @@ export default function Photos() {
 														w: '100%',
 														mb: 25,
 													}}
-													bg='$transparent'
+													// bg='$transparent'
+													bg='$blue900'
 													alignItems={'center'}
 												>
 													<MaterialIcons
@@ -184,8 +187,8 @@ export default function Photos() {
 															marginTop: 10,
 															color:
 																rTheme.colorScheme === 'light'
-																	? rTheme.theme?.gluestack.tokens.colors.light100
-																	: rTheme.theme?.gluestack.tokens.colors.light100,
+																	? rTheme.theme?.gluestack?.tokens.colors.light100
+																	: rTheme.theme?.gluestack?.tokens.colors.light100,
 														}}
 														size={40}
 														name={'photo-size-select-actual'}
@@ -224,9 +227,7 @@ export default function Photos() {
 													Upload another image
 												</Heading>
 												<Button onPress={pickImage} bg={'$tertiary400'} rounded={'$md'} zIndex={20}>
-													<Button.Icon>
-														<AddIcon />
-													</Button.Icon>
+													<AddIcon />
 												</Button>
 											</Center>
 										</Box>
@@ -235,7 +236,14 @@ export default function Photos() {
 
 								return (
 									<View key={index}>
-										<Box h={'100%'} w={ITEM_WIDTH} rounded={'$md'} overflow='hidden' bg='$transparent'>
+										<Box
+											h={'100%'}
+											w={ITEM_WIDTH}
+											rounded={'$md'}
+											overflow='hidden'
+											// bg='$transparent'
+											bg='$green200'
+										>
 											<Pressable
 												position={'absolute'}
 												top={0}
@@ -338,44 +346,48 @@ export default function Photos() {
 				</Box>
 			) : (
 				<BlurView
+					style={{
+						borderRadius: 13,
+						overflow: 'hidden',
+						height: containerHeight,
+					}}
+					intensity={80}
 					tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-					intensity={40}
-					style={{ borderRadius: 15, overflow: 'hidden' }}
 				>
-					<Box
+					{/* <Box
+						bg='$red900'
 						sx={{
-							h: containerHeight,
 							w: '100%',
 							_dark: {
 								bg: '$light900',
 							},
 							_light: {
-								bg: '$light200',
+								bg: '$light100',
 							},
 						}}
 						rounded={'$md'}
-					>
-						<Center flex={1} mx={'$5'}>
-							<Box
-								sx={{
-									w: '100%',
-									mb: 25,
-								}}
-								bg={'$transparent'}
-								alignItems={'center'}
-							>
-								<Ionicons
-									size={32}
-									color={
-										rTheme.colorScheme === 'light'
-											? rTheme.theme?.gluestack.tokens.colors.light900
-											: rTheme.theme?.gluestack.tokens.colors.light100
-									}
-									name={'ios-person'}
-								/>
-							</Box>
-						</Center>
-					</Box>
+					> */}
+					<Center flex={1} mx={'$5'}>
+						<Box
+							sx={{
+								w: '100%',
+								mb: 25,
+							}}
+							bg={'$transparent'}
+							alignItems={'center'}
+						>
+							<Ionicons
+								size={32}
+								color={
+									rTheme.colorScheme === 'light'
+										? rTheme.theme?.gluestack.tokens.colors.light900
+										: rTheme.theme?.gluestack.tokens.colors.light100
+								}
+								name={'ios-person'}
+							/>
+						</Box>
+					</Center>
+					{/* </Box> */}
 				</BlurView>
 			)}
 		</Box>

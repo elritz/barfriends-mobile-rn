@@ -90,7 +90,7 @@ export default () => {
 						</Box>
 					)}
 					{rSearchAreaVar.searchArea.city.name && <SearchAreaHeader typename={typename || null} />}
-					<AdvertismentHorizontal />
+					{/* <AdvertismentHorizontal /> */}
 					{!rSearchAreaVar.searchArea.city.name && <VenueFeedSearchAreaEmptyState />}
 				</VStack>
 			</Box>

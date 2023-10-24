@@ -1,7 +1,7 @@
 import { FormType } from './_layout'
 import { useReactiveVar } from '@apollo/client'
-import { Box, Heading, Pressable, Text } from '@gluestack-ui/themed'
 import Photos from '@components/screens/tonight/photos'
+import { Box, Heading, Pressable, Text } from '@gluestack-ui/themed'
 import { useEmojimoodsQuery } from '@graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
@@ -77,7 +77,7 @@ export default () => {
 										>
 											<BlurView
 												tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-												intensity={70}
+												intensity={60}
 												style={{
 													width: '100%',
 													maxWidth: '90%',
@@ -111,21 +111,9 @@ export default () => {
 												>
 													<Text>{item.emoji}</Text>
 												</LinearGradient>
-												{/* <BlurView
-												tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-												intensity={70}
-												style={{
-													overflow: 'hidden',
-													borderRadius: 15,
-													marginTop: 5,
-													paddingHorizontal: 10,
-													paddingVertical: 5,
-												}}
-											> */}
-												<Text mt={'$3'} fontWeight='$bold'>
+												<Text mt={'$3'} fontWeight='$medium'>
 													{item.emojiname}
 												</Text>
-												{/* </BlurView> */}
 											</BlurView>
 										</Pressable>
 									)
@@ -134,7 +122,7 @@ export default () => {
 						)}
 					/>
 				</Box>
-				<View style={{ marginTop: insets.top + 60, marginBottom: 10 }}>
+				<View style={{ marginTop: insets.top + 30, marginBottom: 10 }}>
 					<Photos />
 				</View>
 			</Box>

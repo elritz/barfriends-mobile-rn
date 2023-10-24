@@ -10,9 +10,9 @@ import {
 	Pressable,
 	Text,
 	VStack,
-	Divider,
 	ButtonText,
 } from '@gluestack-ui/themed'
+import { usePublicProfileQuery } from '@graphql/generated'
 import { ThemeReactiveVar } from '@reactive'
 import { generateRandomBlurhash } from '@util/helpers/generateBlurhash'
 import useContentInsets from '@util/hooks/useContentInsets'
@@ -22,114 +22,111 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { useLocalSearchParams } from 'expo-router'
 import { ScrollView } from 'react-native'
 
-const items = [
+const tags = [
 	{ name: 'Software developer', icon: '💻' },
 	{ name: 'Athletic', icon: '👟' },
 	{ name: 'Creative', icon: '🎨' },
 ]
 
-const SectionHeader = ({ title }: { title: string }) => {
-	return (
-		<Heading py={'$2'} fontSize={'$md'} fontWeight='$bold'>
-			{title}
-		</Heading>
-	)
-}
-const SectionContainer = ({ children }) => {
-	return (
-		<Box py={'$2'} rounded={'$2xl'}>
-			{children}
-		</Box>
-	)
-}
-
 export default () => {
 	const params = useLocalSearchParams()
 
-	console.log("🚀 ~ file: [profileid].tsx:49 ~ params:", params)
+	console.log('🚀 ~ file: [profileid].tsx:49 ~ params:', params)
 
 	const contentInsets = useContentInsets()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 
-
-
-	const Information = () => {
-		const Relationship = () => {
-			// todo: Relationshop can be friend and other!
-			return (
-				<HStack space='md'>
-					<Box
-						bg='$primary500'
-						alignItems='center'
-						justifyContent='center'
-						rounded={'$sm'}
-						sx={{
-							h: 28,
-							w: 20,
-						}}
-					>
-						<Ionicons name='person' size={16} color='white' />
-					</Box>
-					<Button
-						size='xs'
-						height={28}
-						onPress={() => {
-							console.log('//todo: Message icon to conversation with this person')
-						}}
-					>
-						<ButtonText fontSize={'$sm'}>Barfriend</ButtonText>
-					</Button>
-					<Divider orientation='vertical' />
-					<Pressable
-						onPress={() => {
-							console.log('//todo: Message icon to conversation with this person')
-						}}
-					>
-						<Ionicons
-							color={
-								rTheme.colorScheme === 'light'
-									? rTheme.theme?.gluestack.tokens.colors.light700
-									: rTheme.theme?.gluestack.tokens.colors.light100
-							}
-							name='chatbubble-ellipses'
-							size={28}
-						/>
-					</Pressable>
-				</HStack>
-			)
-		}
-
-		const IdentifiableInformation = () => {
-			return (
-				<VStack maxWidth={'$5/6'} flex={1} position='relative' mt={'$3'}>
-					<Text
-						fontSize={'$sm'}
-						fontWeight={'$extrabold'}
-						position='absolute'
-						numberOfLines={1}
-						sx={{
-							top: -20,
-						}}
-					>
-						@username 343
-					</Text>
-					<Text fontSize={'$xl'} letterSpacing={'$sm'} numberOfLines={2}>
-						Christian Firmi
-					</Text>
-				</VStack>
-			)
-		}
-
+	const SectionHeader = ({ title }: { title: string }) => {
 		return (
-			<Box flex={1} rounded={'$2xl'} marginTop={'$3'}>
-				<Photos />
-				<SectionContainer>
-					<HStack justifyContent='space-between' alignItems='center' p={'$2'} space='md'>
-						<IdentifiableInformation />
-						<Relationship />
-					</HStack>
-				</SectionContainer>
-			</Box>
+			<Heading py={'$2'} fontSize={'$md'} fontWeight='$bold'>
+				{title}
+			</Heading>
+		)
+	}
+	const SectionContainer = ({ children }) => {
+		return (
+			<BlurView
+				style={{
+					padding: 10,
+					borderRadius: 13,
+					overflow: 'hidden',
+				}}
+				intensity={80}
+				tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+			>
+				{children}
+			</BlurView>
+		)
+	}
+
+	const { data, loading, error } = usePublicProfileQuery({
+		skip: !params.profileid,
+		variables: {
+			where: {
+				id: {
+					equals: params.profileid,
+				},
+			},
+		},
+	})
+
+	if (loading)
+		return (
+			<Text fontSize={'$2xl'} mt={'$12'}>
+				Loading...
+			</Text>
+		)
+
+	const IdentifiableInformation = () => {
+		return (
+			<>
+				<HStack py={'$3'} alignItems='center' space='md'>
+					<VStack flex={1} position='relative' mt={'$3'} space='sm'>
+						<HStack justifyContent='space-between'>
+							<Text
+								fontSize={'$sm'}
+								fontWeight={'$medium'}
+								position='absolute'
+								numberOfLines={1}
+								color={rTheme.colorScheme === 'light' ? '$light800' : '$light100'}
+								sx={{
+									top: -20,
+								}}
+							>
+								@username 343
+							</Text>
+							<HStack>
+								<Text
+									lineHeight={'$2xl'}
+									fontSize={'$3xl'}
+									letterSpacing={'$sm'}
+									numberOfLines={2}
+									fontWeight='$bold'
+									color={rTheme.colorScheme === 'light' ? '$light900' : '$light100'}
+								>
+									Christian Firmi
+								</Text>
+							</HStack>
+						</HStack>
+					</VStack>
+					<Button
+						onPress={() => {
+							console.log('//todo: Message icon to conversation with this person')
+						}}
+						size='xs'
+						rounded={'$full'}
+					>
+						<ButtonText fontSize={'$sm'} mr={'$2'}>
+							Message
+						</ButtonText>
+						<Ionicons
+							color={rTheme.theme?.gluestack?.tokens.colors.light100}
+							name='chatbubble-ellipses'
+							size={20}
+						/>
+					</Button>
+				</HStack>
+			</>
 		)
 	}
 
@@ -172,82 +169,184 @@ export default () => {
 		)
 	}
 
-	const Basics = () => {
+	const RelationShip = () => {
 		return (
-			<>
-				<SectionHeader title='My basics' />
-				<HStack alignItems='center' justifyContent='space-between'>
-					<HStack alignItems='center' space='sm'>
-						<Image
-							source={{
-								uri: 'https://images.unsplash.com/photo-1544450030-1fccab69a2f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80',
-							}}
-							style={{
-								width: 40,
-								height: 40,
-								borderRadius: 5,
-							}}
-							placeholder={generateRandomBlurhash()}
-						/>
-						<HStack justifyContent='space-between' flex={1}>
-							<Text fontSize={'$lg'}>Christian Firmi</Text>
-							<Text fontSize={'$sm'} fontStyle={'italic'}>
-								dating
-							</Text>
-						</HStack>
+			<HStack alignItems='center' justifyContent='space-between'>
+				<HStack alignItems='center' space='sm'>
+					<Image
+						source={{
+							uri: 'https://images.unsplash.com/photo-1544450030-1fccab69a2f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80',
+						}}
+						style={{
+							width: 40,
+							height: 40,
+							borderRadius: 5,
+						}}
+						placeholder={generateRandomBlurhash()}
+					/>
+					<HStack justifyContent='space-between' flex={1}>
+						<Text fontSize={'$lg'}>Christian Firmi</Text>
+						<Text fontSize={'$sm'} fontStyle={'italic'}>
+							dating
+						</Text>
 					</HStack>
 				</HStack>
-			</>
+			</HStack>
 		)
 	}
 
-	const Details = () => {
-		return (
-			<Box p={'$3'} rounded={'$2xl'}>
-				<SectionContainer>
-					<VStack></VStack>
-				</SectionContainer>
-				<SectionContainer>
-					<TonightVenue />
-					<Basics />
-				</SectionContainer>
-				<SectionContainer>
-					<HStack space='sm' flexWrap='wrap'>
-						{items.map(interest => {
-							return (
-								<Badge
-									size='lg'
-									my={'$1'}
-									p={'$1'}
-									variant='solid'
-									borderRadius='$sm'
-									bgColor='$primary200'
-								>
-									<Badge.Text fontSize={'$sm'} textTransform='capitalize' pr={'$0.5'}>
-										{interest.icon}
-									</Badge.Text>
-									<Text color='$black' fontWeight='$medium' fontSize={'$sm'} textTransform='capitalize'>
-										{interest.name}
+	type FriendStatus = 'friends' | 'requested' | 'notfriends'
+
+	type FriendRequestProps = {
+		status: FriendStatus
+	}
+
+	const FriendRequest = (props: FriendRequestProps) => {
+		switch (props.status) {
+			case 'friends':
+				return (
+					<SectionContainer>
+						<HStack py={'$3'} w={'$full'} justifyContent='space-between' alignItems='center'>
+							<VStack>
+								<Text>
+									Friends since <Text fontWeight={'$bold'}>2020</Text>
+								</Text>
+								<Text>
+									Met at{' '}
+									<Text fontWeight={'$bold'} underline>
+										Dallas Night Club
 									</Text>
-								</Badge>
-							)
-						})}
-					</HStack>
-				</SectionContainer>
-				<SectionContainer>
-					<SectionHeader title='About me' />
-					<HStack space='sm' flexWrap='wrap'>
-						<Text fontSize={'$lg'} fontWeight='$normal' lineHeight={'$xl'}>
-							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos voluptate, earum quasi dolor
-							quod quis asperiores, fugiat ratione cumque exercitationem assumenda laudantium animi
-							reprehenderit temporibus esse? Ab quia dolorum consequatur repellendus, libero minima
-							exercitationem rem omnis itaque optio laboriosam quae, ut odit, aperiam non ducimus
-							doloribus! Iste veritatis a officia, aliquam exercitationem ducimus. Laudantium aspernatur
-							sint fuga eius eveniet vel.
-						</Text>
-					</HStack>
-				</SectionContainer>
-			</Box>
+								</Text>
+							</VStack>
+							<Button rounded={'$lg'} size='xs'>
+								<Box
+									bg='$transparent'
+									alignItems='center'
+									justifyContent='center'
+									sx={{
+										h: 30,
+									}}
+								>
+									<Ionicons name='person' size={17} color='white' />
+								</Box>
+							</Button>
+						</HStack>
+					</SectionContainer>
+				)
+			case 'requested':
+				return (
+					<SectionContainer>
+						<HStack py={'$3'} w={'$full'} justifyContent='space-between' alignItems='center'>
+							<Text fontSize={'$lg'} fontWeight='$medium'>
+								Want to be Barfriends
+							</Text>
+							<HStack space='sm'>
+								<Button
+									size='xs'
+									variant='link'
+									height={28}
+									onPress={() => {
+										console.log('//todo: Message icon to conversation with this person')
+									}}
+								>
+									<Text fontSize={'$sm'} fontWeight='$bold'>
+										Decline
+									</Text>
+								</Button>
+								<Button
+									size='xs'
+									height={28}
+									onPress={() => {
+										console.log('//todo: Message icon to conversation with this person')
+									}}
+								>
+									<ButtonText fontSize={'$sm'}>Accept</ButtonText>
+								</Button>
+							</HStack>
+						</HStack>
+					</SectionContainer>
+				)
+
+			case 'notfriends':
+				return (
+					<SectionContainer>
+						<HStack py={'$3'} w={'$full'} justifyContent='space-between' alignItems='center'>
+							<Text fontWeight='$medium' fontSize={'$md'}>
+								Add to your friends
+							</Text>
+							<Button
+								// rounded={'$full'}
+								rounded={'$lg'}
+								height={30}
+								onPress={() => console.log('FRIEND')}
+								size='xs'
+							>
+								<ButtonText fontSize={'$sm'}>Barfriend</ButtonText>
+							</Button>
+						</HStack>
+					</SectionContainer>
+				)
+		}
+	}
+
+	const Tags = () => {
+		return (
+			<HStack py={'$2'} space='xs' flexWrap='wrap'>
+				{tags.map(interest => {
+					return (
+						<Badge
+							size='lg'
+							my={'$1'}
+							p={'$1'}
+							px={'$3'}
+							variant='solid'
+							borderRadius='$full'
+							sx={{
+								_dark: {
+									bg: '$black',
+								},
+								_light: {
+									bg: '$light200',
+								},
+							}}
+						>
+							<Badge.Text fontSize={'$sm'} textTransform='capitalize' pr={'$0.5'}>
+								{interest.icon}
+							</Badge.Text>
+							<Text
+								sx={{
+									_dark: {
+										color: '$white',
+									},
+									_light: {
+										color: '$black',
+									},
+								}}
+								fontWeight='$medium'
+								fontSize={'$sm'}
+								textTransform='capitalize'
+							>
+								{interest.name}
+							</Text>
+						</Badge>
+					)
+				})}
+			</HStack>
+		)
+	}
+
+	const Description = () => {
+		return (
+			<>
+				<SectionHeader title='About me' />
+				<HStack space='sm' flexWrap='wrap'>
+					<Text fontSize={'$lg'} fontWeight='$normal' lineHeight={'$xl'}>
+						Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos voluptate, earum quasi dolor
+						quod quis asperiores, fugiat ratione cumque exercitationem assumenda laudantium animi
+						reprehenderit tempo..
+					</Text>
+				</HStack>
+			</>
 		)
 	}
 
@@ -256,13 +355,21 @@ export default () => {
 			style={{
 				flex: 1,
 			}}
-			// colors={['#FF9800', '#F44336']}
-			colors={[]}
+			colors={['#339800', '#F446']}
+			// colors={[]}
 		>
 			<ScrollView contentInset={contentInsets}>
 				<VStack mx={'$3'} space='md'>
-					<Information />
-					<Details />
+					<Photos />
+					<FriendRequest status='friends' />
+					<SectionContainer>
+						<IdentifiableInformation />
+						<TonightVenue />
+						<SectionHeader title='My basics' />
+						<RelationShip />
+						<Tags />
+						<Description />
+					</SectionContainer>
 				</VStack>
 			</ScrollView>
 		</LinearGradient>

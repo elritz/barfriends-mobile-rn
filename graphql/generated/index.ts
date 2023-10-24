@@ -9259,6 +9259,7 @@ export type Mutation = {
   createVenueProfile: AuthenticationResponseUnion;
   declineFriendRequest: Scalars['Boolean'];
   deleteFriendRequest: Scalars['Boolean'];
+  getAllFriends: Scalars['Boolean'];
   qrAddFriend: Relationship;
   refreshDeviceManager: AuthenticationResponseUnion;
   removeAllFromVenueDeveloper: Scalars['Boolean'];
@@ -15790,6 +15791,7 @@ export type Relationship = {
   __typename?: 'Relationship';
   createdAt: Scalars['DateTime'];
   friendProfile?: Maybe<Profile>;
+  friendProfileId: Scalars['String'];
   id: Scalars['ID'];
   Profile?: Maybe<Profile>;
   profileId?: Maybe<Scalars['String']>;
@@ -15800,6 +15802,7 @@ export type Relationship = {
 
 export type RelationshipCountOrderByAggregateInput = {
   createdAt?: InputMaybe<SortOrder>;
+  friendProfileId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   profileId?: InputMaybe<SortOrder>;
   RelationshipStatus?: InputMaybe<SortOrder>;
@@ -15809,6 +15812,7 @@ export type RelationshipCountOrderByAggregateInput = {
 
 export type RelationshipCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  friendProfileId: Scalars['String'];
   id?: InputMaybe<Scalars['String']>;
   Profile?: InputMaybe<ProfileCreateNestedOneWithoutRelationshipsInput>;
   RelationshipStatus?: InputMaybe<Array<RelationshipStatus>>;
@@ -15818,6 +15822,7 @@ export type RelationshipCreateInput = {
 
 export type RelationshipCreateManyInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  friendProfileId: Scalars['String'];
   id?: InputMaybe<Scalars['String']>;
   profileId?: InputMaybe<Scalars['String']>;
   RelationshipStatus?: InputMaybe<Array<RelationshipStatus>>;
@@ -15827,6 +15832,7 @@ export type RelationshipCreateManyInput = {
 
 export type RelationshipCreateManyProfileInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  friendProfileId: Scalars['String'];
   id?: InputMaybe<Scalars['String']>;
   RelationshipStatus?: InputMaybe<Array<RelationshipStatus>>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
@@ -15856,6 +15862,7 @@ export type RelationshipCreateRelationshipStatusInput = {
 
 export type RelationshipCreateWithoutProfileInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  friendProfileId: Scalars['String'];
   id?: InputMaybe<Scalars['String']>;
   RelationshipStatus?: InputMaybe<Array<RelationshipStatus>>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
@@ -15870,6 +15877,7 @@ export type RelationshipListRelationFilter = {
 
 export type RelationshipMaxOrderByAggregateInput = {
   createdAt?: InputMaybe<SortOrder>;
+  friendProfileId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   profileId?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
@@ -15878,6 +15886,7 @@ export type RelationshipMaxOrderByAggregateInput = {
 
 export type RelationshipMinOrderByAggregateInput = {
   createdAt?: InputMaybe<SortOrder>;
+  friendProfileId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   profileId?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
@@ -15893,6 +15902,7 @@ export type RelationshipOrderByWithAggregationInput = {
   _max?: InputMaybe<RelationshipMaxOrderByAggregateInput>;
   _min?: InputMaybe<RelationshipMinOrderByAggregateInput>;
   createdAt?: InputMaybe<SortOrder>;
+  friendProfileId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   profileId?: InputMaybe<SortOrder>;
   RelationshipStatus?: InputMaybe<SortOrder>;
@@ -15902,6 +15912,7 @@ export type RelationshipOrderByWithAggregationInput = {
 
 export type RelationshipOrderByWithRelationInput = {
   createdAt?: InputMaybe<SortOrder>;
+  friendProfileId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   Profile?: InputMaybe<ProfileOrderByWithRelationInput>;
   profileId?: InputMaybe<SortOrder>;
@@ -15912,6 +15923,7 @@ export type RelationshipOrderByWithRelationInput = {
 
 export enum RelationshipScalarFieldEnum {
   CreatedAt = 'createdAt',
+  FriendProfileId = 'friendProfileId',
   Id = 'id',
   ProfileId = 'profileId',
   RelationshipStatus = 'RelationshipStatus',
@@ -15922,6 +15934,7 @@ export enum RelationshipScalarFieldEnum {
 export type RelationshipScalarWhereInput = {
   AND?: InputMaybe<Array<RelationshipScalarWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
+  friendProfileId?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
   NOT?: InputMaybe<Array<RelationshipScalarWhereInput>>;
   OR?: InputMaybe<Array<RelationshipScalarWhereInput>>;
@@ -15934,6 +15947,7 @@ export type RelationshipScalarWhereInput = {
 export type RelationshipScalarWhereWithAggregatesInput = {
   AND?: InputMaybe<Array<RelationshipScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
+  friendProfileId?: InputMaybe<StringWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   NOT?: InputMaybe<Array<RelationshipScalarWhereWithAggregatesInput>>;
   OR?: InputMaybe<Array<RelationshipScalarWhereWithAggregatesInput>>;
@@ -15950,6 +15964,7 @@ export enum RelationshipStatus {
 
 export type RelationshipUpdateInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  friendProfileId?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   Profile?: InputMaybe<ProfileUpdateOneWithoutRelationshipsNestedInput>;
   RelationshipStatus?: InputMaybe<Array<RelationshipStatus>>;
@@ -15959,6 +15974,7 @@ export type RelationshipUpdateInput = {
 
 export type RelationshipUpdateManyMutationInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  friendProfileId?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   RelationshipStatus?: InputMaybe<Array<RelationshipStatus>>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -15991,6 +16007,7 @@ export type RelationshipUpdateRelationshipStatusInput = {
 
 export type RelationshipUpdateWithoutProfileInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  friendProfileId?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   RelationshipStatus?: InputMaybe<Array<RelationshipStatus>>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -16011,6 +16028,7 @@ export type RelationshipUpsertWithWhereUniqueWithoutProfileInput = {
 export type RelationshipWhereInput = {
   AND?: InputMaybe<Array<RelationshipWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
+  friendProfileId?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
   NOT?: InputMaybe<Array<RelationshipWhereInput>>;
   OR?: InputMaybe<Array<RelationshipWhereInput>>;
@@ -16024,6 +16042,7 @@ export type RelationshipWhereInput = {
 export type RelationshipWhereUniqueInput = {
   AND?: InputMaybe<Array<RelationshipWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
+  friendProfileId?: InputMaybe<StringFilter>;
   id?: InputMaybe<Scalars['String']>;
   NOT?: InputMaybe<Array<RelationshipWhereInput>>;
   OR?: InputMaybe<Array<RelationshipWhereInput>>;
@@ -20699,6 +20718,13 @@ export type GetCurrentPushNotificationTokenQueryVariables = Exact<{ [key: string
 
 export type GetCurrentPushNotificationTokenQuery = { __typename?: 'Query', getCurrentPushNotificationToken?: { __typename?: 'PushToken', id: string, expoToken?: string | null, updatedAt?: any | null, createdAt?: any | null } | null };
 
+export type RemoveDeviceProfileFromDeviceManagerMutationVariables = Exact<{
+  profileId: Scalars['String'];
+}>;
+
+
+export type RemoveDeviceProfileFromDeviceManagerMutation = { __typename?: 'Mutation', removeDeviceProfileFromDeviceManager: boolean };
+
 export type SwitchDeviceProfileMutationVariables = Exact<{
   profileId: Scalars['String'];
 }>;
@@ -21703,6 +21729,37 @@ export function useGetCurrentPushNotificationTokenLazyQuery(baseOptions?: Apollo
 export type GetCurrentPushNotificationTokenQueryHookResult = ReturnType<typeof useGetCurrentPushNotificationTokenQuery>;
 export type GetCurrentPushNotificationTokenLazyQueryHookResult = ReturnType<typeof useGetCurrentPushNotificationTokenLazyQuery>;
 export type GetCurrentPushNotificationTokenQueryResult = Apollo.QueryResult<GetCurrentPushNotificationTokenQuery, GetCurrentPushNotificationTokenQueryVariables>;
+export const RemoveDeviceProfileFromDeviceManagerDocument = gql`
+    mutation removeDeviceProfileFromDeviceManager($profileId: String!) {
+  removeDeviceProfileFromDeviceManager(profileId: $profileId)
+}
+    `;
+export type RemoveDeviceProfileFromDeviceManagerMutationFn = Apollo.MutationFunction<RemoveDeviceProfileFromDeviceManagerMutation, RemoveDeviceProfileFromDeviceManagerMutationVariables>;
+
+/**
+ * __useRemoveDeviceProfileFromDeviceManagerMutation__
+ *
+ * To run a mutation, you first call `useRemoveDeviceProfileFromDeviceManagerMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveDeviceProfileFromDeviceManagerMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeDeviceProfileFromDeviceManagerMutation, { data, loading, error }] = useRemoveDeviceProfileFromDeviceManagerMutation({
+ *   variables: {
+ *      profileId: // value for 'profileId'
+ *   },
+ * });
+ */
+export function useRemoveDeviceProfileFromDeviceManagerMutation(baseOptions?: Apollo.MutationHookOptions<RemoveDeviceProfileFromDeviceManagerMutation, RemoveDeviceProfileFromDeviceManagerMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RemoveDeviceProfileFromDeviceManagerMutation, RemoveDeviceProfileFromDeviceManagerMutationVariables>(RemoveDeviceProfileFromDeviceManagerDocument, options);
+      }
+export type RemoveDeviceProfileFromDeviceManagerMutationHookResult = ReturnType<typeof useRemoveDeviceProfileFromDeviceManagerMutation>;
+export type RemoveDeviceProfileFromDeviceManagerMutationResult = Apollo.MutationResult<RemoveDeviceProfileFromDeviceManagerMutation>;
+export type RemoveDeviceProfileFromDeviceManagerMutationOptions = Apollo.BaseMutationOptions<RemoveDeviceProfileFromDeviceManagerMutation, RemoveDeviceProfileFromDeviceManagerMutationVariables>;
 export const SwitchDeviceProfileDocument = gql`
     mutation switchDeviceProfile($profileId: String!) {
   switchDeviceProfile(profileId: $profileId) {

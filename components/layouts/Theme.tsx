@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { ThemeProvider as ReactNavigationThemeProvider } from '@react-navigation/native'
 import { ThemeReactiveVar } from '@reactive'
 import { useToggleTheme } from '@util/hooks/theme/useToggleTheme'
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { AppState, Appearance, StatusBar } from 'react-native'
 
 export default function Theme({ children }) {
@@ -22,23 +22,29 @@ export default function Theme({ children }) {
 		const valueLocalStorageColorScheme: LocalStoragePreferenceThemeType = JSON.parse(
 			String(localStorageColorScheme),
 		)
+		console.log('here :>> ')
 
 		await toggleColorScheme({ colorScheme: valueLocalStorageColorScheme.colorScheme })
 	}
 
-	useEffect(() => {
+	const handleTheme = useCallback(() => {
 		setTheme()
-	}, [])
+	}, [rThemeVar.colorScheme])
 
 	useEffect(() => {
 		const subscription = AppState.addEventListener('change', nextAppState => {
 			if (appState.current.match(/inactive|background/) && nextAppState === 'active') {
-				setTheme()
-			}
-			if (rThemeVar.localStorageColorScheme === 'system') {
 				const currentDeviceAppearance = Appearance.getColorScheme()
-				if (currentDeviceAppearance !== rThemeVar.colorScheme) {
-					setTheme()
+				if (rThemeVar.localStorageColorScheme === 'system') {
+					if (currentDeviceAppearance !== rThemeVar.colorScheme) {
+						console.log('switch  111:>> ')
+						handleTheme()
+					}
+				} else {
+					if (currentDeviceAppearance !== rThemeVar.deviceColorScheme) {
+						console.log('switch  2222:>> ')
+						handleTheme()
+					}
 				}
 			}
 

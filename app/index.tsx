@@ -110,10 +110,16 @@ export default () => {
 			</View>
 		)
 	}
+
+	const venue_id = '0aa05a59-c4aa-47d0-9ba7-3b1d54a3cd21'
+	const personal_id = '4068040c-5929-4140-9e28-666904c20243'
 	return <Redirect href={'/(app)/hometab/venuefeed'} />
+
 	// return <Redirect href={'/(app)/conversation'} />
 	// return <Redirect href={'/(credential)/personalcredentialstack/create'} />
 	// return <Redirect href={'/(credential)/personalcredentialstack/name'} />
 	// return <Redirect href={'/(app)/hometab/messagestack'} />
-	// return <Redirect href={`/(app)/public/personal/${'4068040c-5929-4140-9e28-666904c20243'}`} />
+
+	// return <Redirect href={`/(app)/public/personal/${personal_id}`} />
+	// return <Redirect href={`/(app)/public/venue/${venue_id}`} />
 }

@@ -22,7 +22,7 @@ import { StyleSheet } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default () => {
-	const showDev = false
+	const showDev = true
 
 	const segments = useSegments()
 	const insets = useSafeAreaInsets()

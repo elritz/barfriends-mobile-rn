@@ -8,21 +8,21 @@ import VenueHeader from '@components/screens/public/venue/venueheader/VenueHeade
 import VenueTotals from '@components/screens/public/venue/venuetotals/VenueTotals'
 import { PUBLIC_VENUE_HEADER_IMAGE_HEIGHT } from '@constants/Layout'
 import { Ionicons } from '@expo/vector-icons'
-import { Box, Button, HStack, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
+import { Box, Button, HStack, Text, VStack } from '@gluestack-ui/themed'
 import { usePublicVenueQuery } from '@graphql/generated'
 import { CurrentLocationReactiveVar, SearchAreaReactiveVar, ThemeReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
+import useContentInsets from '@util/hooks/useContentInsets'
 import { useLocalSearchParams } from 'expo-router'
 import { uniqueId } from 'lodash'
 import { Skeleton } from 'moti/skeleton'
 import { Alert, Platform, Share, useWindowDimensions } from 'react-native'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 const numColumns = 2
 
 export default () => {
-	const { bottom } = useSafeAreaInsets()
 	const { width } = useWindowDimensions()
+	const contentInsets = useContentInsets()
 	const itemPadding = (width / 33.33) * numColumns
 	const params = useLocalSearchParams()
 	const rSearchAreaVar = useReactiveVar(SearchAreaReactiveVar)
@@ -30,32 +30,6 @@ export default () => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 
 	const link = `https://revel.com/app/public/venue?profileid=${params.profileid}`
-
-	const onShare = async () => {
-		try {
-			const result = await Share.share(
-				{
-					message: 'Revel | The nightlife app',
-					url: Platform.OS === 'ios' ? link : '',
-				},
-				{
-					dialogTitle: 'Join me on Revel',
-					subject: 'Invite to Revel',
-				},
-			)
-			if (result.action === Share.sharedAction) {
-				if (result.activityType) {
-					// shared with activity type of result.activityType
-				} else {
-					// shared
-				}
-			} else if (result.action === Share.dismissedAction) {
-				// dismissed
-			}
-		} catch (error: any) {
-			Alert.alert(error.message)
-		}
-	}
 
 	const { data, loading, error } = usePublicVenueQuery({
 		skip: !params.profileid,
@@ -217,57 +191,18 @@ export default () => {
 
 	const venueData = data.publicVenue
 	const name = venueData.Venue?.name
-	const username = venueData.IdentifiableInformation?.username
 
 	return (
 		<FlashList
 			data={[]}
 			estimatedItemSize={200}
 			numColumns={2}
+			contentInset={contentInsets}
 			showsVerticalScrollIndicator={false}
 			ListHeaderComponent={
 				<VStack mb={'$5'}>
 					<VenueHeader key={uniqueId()} loading={loading} photos={data.publicVenue?.photos} />
-					<Box rounded={'$none'} key={uniqueId()} py={'$4'} borderBottomEndRadius={5} mb={'$2'}>
-						<HStack px={'$2'} justifyContent={'space-between'}>
-							<VStack space='xs'>
-								<Heading fontSize={'$2xl'} lineHeight={'$lg'} fontWeight={'$black'} numberOfLines={1}>
-									{name}
-								</Heading>
-								<Heading
-									fontSize={'$sm'}
-									sx={{
-										_light: {
-											color: '$light600',
-										},
-										_dark: {
-											color: '$light400',
-										},
-									}}
-									lineHeight={'$sm'}
-									numberOfLines={1}
-								>
-									@{username}
-								</Heading>
-							</VStack>
-							<Button
-								bg={'transparent'}
-								onPress={onShare}
-								alignSelf={'center'}
-								variant={'solid'}
-								size={'lg'}
-							>
-								<Ionicons
-									name={'share'}
-									size={23}
-									color={
-										rTheme.colorScheme === 'light'
-											? rTheme.theme?.gluestack.tokens.colors.light900
-											: rTheme.theme?.gluestack.tokens.colors.light100
-									}
-								/>
-							</Button>
-						</HStack>
+					<Box rounded={'$none'} key={uniqueId()} borderBottomEndRadius={5} py={'$3'} mb={'$2'}>
 						<VenueTotals />
 						<LeaveSection />
 					</Box>
@@ -280,9 +215,6 @@ export default () => {
 			ListFooterComponent={<Details />}
 			keyExtractor={(item, index) => index.toString()}
 			renderItem={item => <PersonalAtVenue item={item} />}
-			contentInset={{
-				bottom: bottom,
-			}}
 		/>
 	)
 }
