@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, HStack, Heading, VStack } from '@gluestack-ui/themed'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
+import { Box, Button, ButtonText, HStack, Heading, VStack } from '@gluestack-ui/themed'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import * as Haptics from 'expo-haptics'
 import { Stack, useRouter } from 'expo-router'
@@ -44,11 +44,13 @@ export default function _layout() {
 										variant='link'
 										onPress={async () => {
 											await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
-											router.push('/(app)/modal/DeviceManager')
+											router.push({
+												pathname: '/(app)/modal/devicemanager/DeviceManager',
+											})
 										}}
 									>
 										<HStack ml={'$2'} space={'md'} alignItems={'center'} justifyContent='flex-start' flex={1}>
-											<Button.Text
+											<ButtonText
 												fontSize={'$xl'}
 												sx={{
 													maxWidth: 195,
@@ -63,7 +65,7 @@ export default function _layout() {
 												ellipsizeMode={'tail'}
 											>
 												{rAuthorizationVar?.Profile?.IdentifiableInformation?.username}
-											</Button.Text>
+											</ButtonText>
 											<Ionicons
 												name={'chevron-down'}
 												size={26}

@@ -5,16 +5,18 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string;
-  String: string;
-  Boolean: boolean;
-  Int: number;
-  Float: number;
-  DateTime: any;
-  Json: any;
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
+  DateTime: { input: any; output: any; }
+  Json: { input: any; output: any; }
 };
 
 export type AdAvgOrderByAggregateInput = {
@@ -28,24 +30,24 @@ export type AdCountOrderByAggregateInput = {
 };
 
 export type AdCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type AdCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['Int']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type Address = {
   __typename?: 'Address';
   AddressComponents: Array<AddressComponent>;
-  createdAt: Scalars['DateTime'];
-  formattedAddress: Scalars['String'];
-  id: Scalars['ID'];
+  createdAt: Scalars['DateTime']['output'];
+  formattedAddress: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
   Location: Array<Location>;
-  updatedAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 
@@ -53,8 +55,8 @@ export type AddressAddressComponentsArgs = {
   cursor?: InputMaybe<AddressComponentWhereUniqueInput>;
   distinct?: InputMaybe<Array<AddressComponentScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<AddressComponentOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<AddressComponentWhereInput>;
 };
 
@@ -63,20 +65,20 @@ export type AddressLocationArgs = {
   cursor?: InputMaybe<LocationWhereUniqueInput>;
   distinct?: InputMaybe<Array<LocationScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<LocationOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<LocationWhereInput>;
 };
 
 export type AddressComponent = {
   __typename?: 'AddressComponent';
   Address?: Maybe<Address>;
-  addressId?: Maybe<Scalars['String']>;
-  h3Index15?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  long_name: Scalars['String'];
-  short_name: Scalars['String'];
-  types: Array<Scalars['String']>;
+  addressId?: Maybe<Scalars['String']['output']>;
+  h3Index15?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  long_name: Scalars['String']['output'];
+  short_name: Scalars['String']['output'];
+  types: Array<Scalars['String']['output']>;
 };
 
 export type AddressComponentAvgOrderByAggregateInput = {
@@ -94,32 +96,32 @@ export type AddressComponentCountOrderByAggregateInput = {
 
 export type AddressComponentCreateInput = {
   Address?: InputMaybe<AddressCreateNestedOneWithoutAddressComponentsInput>;
-  h3Index15?: InputMaybe<Scalars['String']>;
-  long_name: Scalars['String'];
-  short_name: Scalars['String'];
-  types?: InputMaybe<Array<Scalars['String']>>;
+  h3Index15?: InputMaybe<Scalars['String']['input']>;
+  long_name: Scalars['String']['input'];
+  short_name: Scalars['String']['input'];
+  types?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type AddressComponentCreateManyAddressInput = {
-  h3Index15?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['Int']>;
-  long_name: Scalars['String'];
-  short_name: Scalars['String'];
-  types?: InputMaybe<Array<Scalars['String']>>;
+  h3Index15?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  long_name: Scalars['String']['input'];
+  short_name: Scalars['String']['input'];
+  types?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type AddressComponentCreateManyAddressInputEnvelope = {
   data: Array<AddressComponentCreateManyAddressInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type AddressComponentCreateManyInput = {
-  addressId?: InputMaybe<Scalars['String']>;
-  h3Index15?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['Int']>;
-  long_name: Scalars['String'];
-  short_name: Scalars['String'];
-  types?: InputMaybe<Array<Scalars['String']>>;
+  addressId?: InputMaybe<Scalars['String']['input']>;
+  h3Index15?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  long_name: Scalars['String']['input'];
+  short_name: Scalars['String']['input'];
+  types?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type AddressComponentCreateNestedManyWithoutAddressInput = {
@@ -135,14 +137,14 @@ export type AddressComponentCreateOrConnectWithoutAddressInput = {
 };
 
 export type AddressComponentCreatetypesInput = {
-  set: Array<Scalars['String']>;
+  set: Array<Scalars['String']['input']>;
 };
 
 export type AddressComponentCreateWithoutAddressInput = {
-  h3Index15?: InputMaybe<Scalars['String']>;
-  long_name: Scalars['String'];
-  short_name: Scalars['String'];
-  types?: InputMaybe<Array<Scalars['String']>>;
+  h3Index15?: InputMaybe<Scalars['String']['input']>;
+  long_name: Scalars['String']['input'];
+  short_name: Scalars['String']['input'];
+  types?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type AddressComponentListRelationFilter = {
@@ -237,14 +239,14 @@ export type AddressComponentUpdateInput = {
   h3Index15?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   long_name?: InputMaybe<StringFieldUpdateOperationsInput>;
   short_name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  types?: InputMaybe<Array<Scalars['String']>>;
+  types?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type AddressComponentUpdateManyMutationInput = {
   h3Index15?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   long_name?: InputMaybe<StringFieldUpdateOperationsInput>;
   short_name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  types?: InputMaybe<Array<Scalars['String']>>;
+  types?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type AddressComponentUpdateManyWithoutAddressNestedInput = {
@@ -267,15 +269,15 @@ export type AddressComponentUpdateManyWithWhereWithoutAddressInput = {
 };
 
 export type AddressComponentUpdatetypesInput = {
-  push?: InputMaybe<Array<Scalars['String']>>;
-  set?: InputMaybe<Array<Scalars['String']>>;
+  push?: InputMaybe<Array<Scalars['String']['input']>>;
+  set?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type AddressComponentUpdateWithoutAddressInput = {
   h3Index15?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   long_name?: InputMaybe<StringFieldUpdateOperationsInput>;
   short_name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  types?: InputMaybe<Array<Scalars['String']>>;
+  types?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type AddressComponentUpdateWithWhereUniqueWithoutAddressInput = {
@@ -307,7 +309,7 @@ export type AddressComponentWhereUniqueInput = {
   addressId?: InputMaybe<StringNullableFilter>;
   AND?: InputMaybe<Array<AddressComponentWhereInput>>;
   h3Index15?: InputMaybe<StringNullableFilter>;
-  id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
   long_name?: InputMaybe<StringFilter>;
   NOT?: InputMaybe<Array<AddressComponentWhereInput>>;
   OR?: InputMaybe<Array<AddressComponentWhereInput>>;
@@ -324,18 +326,18 @@ export type AddressCountOrderByAggregateInput = {
 
 export type AddressCreateInput = {
   AddressComponents?: InputMaybe<AddressComponentCreateNestedManyWithoutAddressInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  formattedAddress: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  formattedAddress: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
   Location?: InputMaybe<LocationCreateNestedManyWithoutAddressInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type AddressCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  formattedAddress: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  formattedAddress: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type AddressCreateNestedOneWithoutAddressComponentsInput = {
@@ -361,19 +363,19 @@ export type AddressCreateOrConnectWithoutLocationInput = {
 };
 
 export type AddressCreateWithoutAddressComponentsInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  formattedAddress: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  formattedAddress: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
   Location?: InputMaybe<LocationCreateNestedManyWithoutAddressInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type AddressCreateWithoutLocationInput = {
   AddressComponents?: InputMaybe<AddressComponentCreateNestedManyWithoutAddressInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  formattedAddress: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  formattedAddress: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type AddressMaxOrderByAggregateInput = {
@@ -522,7 +524,7 @@ export type AddressWhereUniqueInput = {
   AND?: InputMaybe<Array<AddressWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   formattedAddress?: InputMaybe<StringFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Location?: InputMaybe<LocationListRelationFilter>;
   NOT?: InputMaybe<Array<AddressWhereInput>>;
   OR?: InputMaybe<Array<AddressWhereInput>>;
@@ -599,7 +601,7 @@ export type AdWhereInput = {
 export type AdWhereUniqueInput = {
   AND?: InputMaybe<Array<AdWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
   NOT?: InputMaybe<Array<AdWhereInput>>;
   OR?: InputMaybe<Array<AdWhereInput>>;
   updatedAt?: InputMaybe<DateTimeFilter>;
@@ -614,17 +616,17 @@ export enum AppType {
 export type Area = {
   __typename?: 'Area';
   City: City;
-  cityId: Scalars['String'];
+  cityId: Scalars['String']['output'];
   ComingArea?: Maybe<ComingArea>;
   Country: Country;
-  countryId: Scalars['String'];
+  countryId: Scalars['String']['output'];
   H3Index5VenueRecommendation?: Maybe<H3Index5VenueRecommendation>;
   H3Index6VenueRecommendation?: Maybe<H3Index6VenueRecommendation>;
-  id: Scalars['ID'];
+  id: Scalars['ID']['output'];
   Location?: Maybe<Location>;
   State: State;
-  stateId: Scalars['String'];
-  timesRequested?: Maybe<Scalars['Int']>;
+  stateId: Scalars['String']['output'];
+  timesRequested?: Maybe<Scalars['Int']['output']>;
 };
 
 export type AreaAvgOrderByAggregateInput = {
@@ -645,54 +647,54 @@ export type AreaCreateInput = {
   Country: CountryCreateNestedOneWithoutAreaInput;
   H3Index5VenueRecommendation?: InputMaybe<H3Index5VenueRecommendationCreateNestedOneWithoutAreaInput>;
   H3Index6VenueRecommendation?: InputMaybe<H3Index6VenueRecommendationCreateNestedOneWithoutAreaInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Location?: InputMaybe<LocationCreateNestedOneWithoutAreaInput>;
   State: StateCreateNestedOneWithoutAreaInput;
-  timesRequested?: InputMaybe<Scalars['Int']>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type AreaCreateManyCityInput = {
-  countryId: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  stateId: Scalars['String'];
-  timesRequested?: InputMaybe<Scalars['Int']>;
+  countryId: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  stateId: Scalars['String']['input'];
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type AreaCreateManyCityInputEnvelope = {
   data: Array<AreaCreateManyCityInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type AreaCreateManyCountryInput = {
-  cityId: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  stateId: Scalars['String'];
-  timesRequested?: InputMaybe<Scalars['Int']>;
+  cityId: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  stateId: Scalars['String']['input'];
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type AreaCreateManyCountryInputEnvelope = {
   data: Array<AreaCreateManyCountryInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type AreaCreateManyInput = {
-  cityId: Scalars['String'];
-  countryId: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  stateId: Scalars['String'];
-  timesRequested?: InputMaybe<Scalars['Int']>;
+  cityId: Scalars['String']['input'];
+  countryId: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  stateId: Scalars['String']['input'];
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type AreaCreateManyStateInput = {
-  cityId: Scalars['String'];
-  countryId: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  timesRequested?: InputMaybe<Scalars['Int']>;
+  cityId: Scalars['String']['input'];
+  countryId: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type AreaCreateManyStateInputEnvelope = {
   data: Array<AreaCreateManyStateInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type AreaCreateNestedManyWithoutCityInput = {
@@ -780,10 +782,10 @@ export type AreaCreateWithoutCityInput = {
   Country: CountryCreateNestedOneWithoutAreaInput;
   H3Index5VenueRecommendation?: InputMaybe<H3Index5VenueRecommendationCreateNestedOneWithoutAreaInput>;
   H3Index6VenueRecommendation?: InputMaybe<H3Index6VenueRecommendationCreateNestedOneWithoutAreaInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Location?: InputMaybe<LocationCreateNestedOneWithoutAreaInput>;
   State: StateCreateNestedOneWithoutAreaInput;
-  timesRequested?: InputMaybe<Scalars['Int']>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type AreaCreateWithoutComingAreaInput = {
@@ -791,10 +793,10 @@ export type AreaCreateWithoutComingAreaInput = {
   Country: CountryCreateNestedOneWithoutAreaInput;
   H3Index5VenueRecommendation?: InputMaybe<H3Index5VenueRecommendationCreateNestedOneWithoutAreaInput>;
   H3Index6VenueRecommendation?: InputMaybe<H3Index6VenueRecommendationCreateNestedOneWithoutAreaInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Location?: InputMaybe<LocationCreateNestedOneWithoutAreaInput>;
   State: StateCreateNestedOneWithoutAreaInput;
-  timesRequested?: InputMaybe<Scalars['Int']>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type AreaCreateWithoutCountryInput = {
@@ -802,10 +804,10 @@ export type AreaCreateWithoutCountryInput = {
   ComingArea?: InputMaybe<ComingAreaCreateNestedOneWithoutAreaInput>;
   H3Index5VenueRecommendation?: InputMaybe<H3Index5VenueRecommendationCreateNestedOneWithoutAreaInput>;
   H3Index6VenueRecommendation?: InputMaybe<H3Index6VenueRecommendationCreateNestedOneWithoutAreaInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Location?: InputMaybe<LocationCreateNestedOneWithoutAreaInput>;
   State: StateCreateNestedOneWithoutAreaInput;
-  timesRequested?: InputMaybe<Scalars['Int']>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type AreaCreateWithoutH3Index5VenueRecommendationInput = {
@@ -813,10 +815,10 @@ export type AreaCreateWithoutH3Index5VenueRecommendationInput = {
   ComingArea?: InputMaybe<ComingAreaCreateNestedOneWithoutAreaInput>;
   Country: CountryCreateNestedOneWithoutAreaInput;
   H3Index6VenueRecommendation?: InputMaybe<H3Index6VenueRecommendationCreateNestedOneWithoutAreaInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Location?: InputMaybe<LocationCreateNestedOneWithoutAreaInput>;
   State: StateCreateNestedOneWithoutAreaInput;
-  timesRequested?: InputMaybe<Scalars['Int']>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type AreaCreateWithoutH3Index6VenueRecommendationInput = {
@@ -824,10 +826,10 @@ export type AreaCreateWithoutH3Index6VenueRecommendationInput = {
   ComingArea?: InputMaybe<ComingAreaCreateNestedOneWithoutAreaInput>;
   Country: CountryCreateNestedOneWithoutAreaInput;
   H3Index5VenueRecommendation?: InputMaybe<H3Index5VenueRecommendationCreateNestedOneWithoutAreaInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Location?: InputMaybe<LocationCreateNestedOneWithoutAreaInput>;
   State: StateCreateNestedOneWithoutAreaInput;
-  timesRequested?: InputMaybe<Scalars['Int']>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type AreaCreateWithoutLocationInput = {
@@ -836,9 +838,9 @@ export type AreaCreateWithoutLocationInput = {
   Country: CountryCreateNestedOneWithoutAreaInput;
   H3Index5VenueRecommendation?: InputMaybe<H3Index5VenueRecommendationCreateNestedOneWithoutAreaInput>;
   H3Index6VenueRecommendation?: InputMaybe<H3Index6VenueRecommendationCreateNestedOneWithoutAreaInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   State: StateCreateNestedOneWithoutAreaInput;
-  timesRequested?: InputMaybe<Scalars['Int']>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type AreaCreateWithoutStateInput = {
@@ -847,9 +849,9 @@ export type AreaCreateWithoutStateInput = {
   Country: CountryCreateNestedOneWithoutAreaInput;
   H3Index5VenueRecommendation?: InputMaybe<H3Index5VenueRecommendationCreateNestedOneWithoutAreaInput>;
   H3Index6VenueRecommendation?: InputMaybe<H3Index6VenueRecommendationCreateNestedOneWithoutAreaInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Location?: InputMaybe<LocationCreateNestedOneWithoutAreaInput>;
-  timesRequested?: InputMaybe<Scalars['Int']>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type AreaListRelationFilter = {
@@ -1248,7 +1250,7 @@ export type AreaWhereUniqueInput = {
   countryId?: InputMaybe<StringFilter>;
   H3Index5VenueRecommendation?: InputMaybe<H3Index5VenueRecommendationWhereInput>;
   H3Index6VenueRecommendation?: InputMaybe<H3Index6VenueRecommendationWhereInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Location?: InputMaybe<LocationWhereInput>;
   NOT?: InputMaybe<Array<AreaWhereInput>>;
   OR?: InputMaybe<Array<AreaWhereInput>>;
@@ -1262,7 +1264,7 @@ export type AuthenticationProvider = {
   codepassword?: Maybe<Code>;
   Credentials?: Maybe<Credentials>;
   emails: Array<Email>;
-  id: Scalars['ID'];
+  id: Scalars['ID']['output'];
   Password?: Maybe<Password>;
   phones: Array<Phone>;
 };
@@ -1272,8 +1274,8 @@ export type AuthenticationProviderEmailsArgs = {
   cursor?: InputMaybe<EmailWhereUniqueInput>;
   distinct?: InputMaybe<Array<EmailScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<EmailOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<EmailWhereInput>;
 };
 
@@ -1282,8 +1284,8 @@ export type AuthenticationProviderPhonesArgs = {
   cursor?: InputMaybe<PhoneWhereUniqueInput>;
   distinct?: InputMaybe<Array<PhoneScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<PhoneOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<PhoneWhereInput>;
 };
 
@@ -1295,13 +1297,13 @@ export type AuthenticationProviderCreateInput = {
   codepassword?: InputMaybe<CodeCreateNestedOneWithoutAuthenticationProviderInput>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutAuthenticationProviderInput>;
   emails?: InputMaybe<EmailCreateNestedManyWithoutAuthenticationProviderInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Password?: InputMaybe<PasswordCreateNestedOneWithoutAuthenticationProviderInput>;
   phones?: InputMaybe<PhoneCreateNestedManyWithoutAuthenticationProviderInput>;
 };
 
 export type AuthenticationProviderCreateManyInput = {
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type AuthenticationProviderCreateNestedManyWithoutEmailsInput = {
@@ -1362,7 +1364,7 @@ export type AuthenticationProviderCreateOrConnectWithoutPhonesInput = {
 export type AuthenticationProviderCreateWithoutCodepasswordInput = {
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutAuthenticationProviderInput>;
   emails?: InputMaybe<EmailCreateNestedManyWithoutAuthenticationProviderInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Password?: InputMaybe<PasswordCreateNestedOneWithoutAuthenticationProviderInput>;
   phones?: InputMaybe<PhoneCreateNestedManyWithoutAuthenticationProviderInput>;
 };
@@ -1370,7 +1372,7 @@ export type AuthenticationProviderCreateWithoutCodepasswordInput = {
 export type AuthenticationProviderCreateWithoutCredentialsInput = {
   codepassword?: InputMaybe<CodeCreateNestedOneWithoutAuthenticationProviderInput>;
   emails?: InputMaybe<EmailCreateNestedManyWithoutAuthenticationProviderInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Password?: InputMaybe<PasswordCreateNestedOneWithoutAuthenticationProviderInput>;
   phones?: InputMaybe<PhoneCreateNestedManyWithoutAuthenticationProviderInput>;
 };
@@ -1378,7 +1380,7 @@ export type AuthenticationProviderCreateWithoutCredentialsInput = {
 export type AuthenticationProviderCreateWithoutEmailsInput = {
   codepassword?: InputMaybe<CodeCreateNestedOneWithoutAuthenticationProviderInput>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutAuthenticationProviderInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Password?: InputMaybe<PasswordCreateNestedOneWithoutAuthenticationProviderInput>;
   phones?: InputMaybe<PhoneCreateNestedManyWithoutAuthenticationProviderInput>;
 };
@@ -1387,7 +1389,7 @@ export type AuthenticationProviderCreateWithoutPasswordInput = {
   codepassword?: InputMaybe<CodeCreateNestedOneWithoutAuthenticationProviderInput>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutAuthenticationProviderInput>;
   emails?: InputMaybe<EmailCreateNestedManyWithoutAuthenticationProviderInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   phones?: InputMaybe<PhoneCreateNestedManyWithoutAuthenticationProviderInput>;
 };
 
@@ -1395,7 +1397,7 @@ export type AuthenticationProviderCreateWithoutPhonesInput = {
   codepassword?: InputMaybe<CodeCreateNestedOneWithoutAuthenticationProviderInput>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutAuthenticationProviderInput>;
   emails?: InputMaybe<EmailCreateNestedManyWithoutAuthenticationProviderInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Password?: InputMaybe<PasswordCreateNestedOneWithoutAuthenticationProviderInput>;
 };
 
@@ -1650,7 +1652,7 @@ export type AuthenticationProviderWhereUniqueInput = {
   codepassword?: InputMaybe<CodeWhereInput>;
   Credentials?: InputMaybe<CredentialsWhereInput>;
   emails?: InputMaybe<EmailListRelationFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<AuthenticationProviderWhereInput>>;
   OR?: InputMaybe<Array<AuthenticationProviderWhereInput>>;
   Password?: InputMaybe<PasswordWhereInput>;
@@ -1662,31 +1664,31 @@ export type AuthenticationResponseUnion = AuthorizationDeviceProfile | Error;
 export type Authenticators = {
   EmailInput?: InputMaybe<EmailInput>;
   PhoneInput?: InputMaybe<PhoneInput>;
-  username?: InputMaybe<Scalars['String']>;
+  username?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type AuthorizationDeviceManager = {
   __typename?: 'AuthorizationDeviceManager';
   Device?: Maybe<Device>;
   DeviceProfile?: Maybe<AuthorizationDeviceProfile>;
-  id: Scalars['String'];
+  id: Scalars['String']['output'];
 };
 
 export type AuthorizationDeviceProfile = {
   __typename?: 'AuthorizationDeviceProfile';
-  accesstoken?: Maybe<Scalars['String']>;
+  accesstoken?: Maybe<Scalars['String']['output']>;
   AppType: AppType;
-  createdAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime']['output'];
   DeviceManager: DeviceManager;
-  deviceManagerId: Scalars['String'];
-  id: Scalars['ID'];
-  isActive: Scalars['Boolean'];
+  deviceManagerId: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  isActive: Scalars['Boolean']['output'];
   Profile?: Maybe<Profile>;
-  profileId: Scalars['String'];
+  profileId: Scalars['String']['output'];
   ProfileType: ProfileType;
-  refreshtoken?: Maybe<Scalars['String']>;
+  refreshtoken?: Maybe<Scalars['String']['output']>;
   RefreshToken?: Maybe<RefreshToken>;
-  updatedAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type AuthorizedProfilesResponseUnion = Error | ProfilesResponse;
@@ -1699,20 +1701,20 @@ export type AuthorizedProfilesWhereInput = {
 export type BatchPayload = {
   __typename?: 'BatchPayload';
   /** Prisma Batch Payload */
-  count: Scalars['Int'];
+  count: Scalars['Int']['output'];
 };
 
 export type BoolFieldUpdateOperationsInput = {
-  set?: InputMaybe<Scalars['Boolean']>;
+  set?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type BoolFilter = {
-  equals?: InputMaybe<Scalars['Boolean']>;
+  equals?: InputMaybe<Scalars['Boolean']['input']>;
   not?: InputMaybe<NestedBoolFilter>;
 };
 
 export type BoolNullableFilter = {
-  equals?: InputMaybe<Scalars['Boolean']>;
+  equals?: InputMaybe<Scalars['Boolean']['input']>;
   not?: InputMaybe<NestedBoolNullableFilter>;
 };
 
@@ -1720,7 +1722,7 @@ export type BoolNullableWithAggregatesFilter = {
   _count?: InputMaybe<NestedIntNullableFilter>;
   _max?: InputMaybe<NestedBoolNullableFilter>;
   _min?: InputMaybe<NestedBoolNullableFilter>;
-  equals?: InputMaybe<Scalars['Boolean']>;
+  equals?: InputMaybe<Scalars['Boolean']['input']>;
   not?: InputMaybe<NestedBoolNullableWithAggregatesFilter>;
 };
 
@@ -1728,14 +1730,14 @@ export type BoolWithAggregatesFilter = {
   _count?: InputMaybe<NestedIntFilter>;
   _max?: InputMaybe<NestedBoolFilter>;
   _min?: InputMaybe<NestedBoolFilter>;
-  equals?: InputMaybe<Scalars['Boolean']>;
+  equals?: InputMaybe<Scalars['Boolean']['input']>;
   not?: InputMaybe<NestedBoolWithAggregatesFilter>;
 };
 
 export type Category = {
   __typename?: 'Category';
-  id: Scalars['ID'];
-  name: Scalars['String'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
   Tags: Array<Tag>;
 };
 
@@ -1744,8 +1746,8 @@ export type CategoryTagsArgs = {
   cursor?: InputMaybe<TagWhereUniqueInput>;
   distinct?: InputMaybe<Array<TagScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<TagOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<TagWhereInput>;
 };
 
@@ -1755,14 +1757,14 @@ export type CategoryCountOrderByAggregateInput = {
 };
 
 export type CategoryCreateInput = {
-  id?: InputMaybe<Scalars['String']>;
-  name: Scalars['String'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
   Tags?: InputMaybe<TagCreateNestedManyWithoutCategoryInput>;
 };
 
 export type CategoryCreateManyInput = {
-  id?: InputMaybe<Scalars['String']>;
-  name: Scalars['String'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
 };
 
 export type CategoryCreateNestedOneWithoutTagsInput = {
@@ -1777,8 +1779,8 @@ export type CategoryCreateOrConnectWithoutTagsInput = {
 };
 
 export type CategoryCreateWithoutTagsInput = {
-  id?: InputMaybe<Scalars['String']>;
-  name: Scalars['String'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
 };
 
 export type CategoryMaxOrderByAggregateInput = {
@@ -1871,7 +1873,7 @@ export type CategoryWhereInput = {
 
 export type CategoryWhereUniqueInput = {
   AND?: InputMaybe<Array<CategoryWhereInput>>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<StringFilter>;
   NOT?: InputMaybe<Array<CategoryWhereInput>>;
   OR?: InputMaybe<Array<CategoryWhereInput>>;
@@ -1882,9 +1884,9 @@ export type City = {
   __typename?: 'City';
   Area: Array<Area>;
   Geometry: Geometry;
-  geometryId: Scalars['Int'];
-  id: Scalars['ID'];
-  name: Scalars['String'];
+  geometryId: Scalars['Int']['output'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
 };
 
 
@@ -1892,8 +1894,8 @@ export type CityAreaArgs = {
   cursor?: InputMaybe<AreaWhereUniqueInput>;
   distinct?: InputMaybe<Array<AreaScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<AreaOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<AreaWhereInput>;
 };
 
@@ -1910,14 +1912,14 @@ export type CityCountOrderByAggregateInput = {
 export type CityCreateInput = {
   Area?: InputMaybe<AreaCreateNestedManyWithoutCityInput>;
   Geometry: GeometryCreateNestedOneWithoutCityInput;
-  id?: InputMaybe<Scalars['String']>;
-  name: Scalars['String'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
 };
 
 export type CityCreateManyInput = {
-  geometryId: Scalars['Int'];
-  id?: InputMaybe<Scalars['String']>;
-  name: Scalars['String'];
+  geometryId: Scalars['Int']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
 };
 
 export type CityCreateNestedOneWithoutAreaInput = {
@@ -1944,14 +1946,14 @@ export type CityCreateOrConnectWithoutGeometryInput = {
 
 export type CityCreateWithoutAreaInput = {
   Geometry: GeometryCreateNestedOneWithoutCityInput;
-  id?: InputMaybe<Scalars['String']>;
-  name: Scalars['String'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
 };
 
 export type CityCreateWithoutGeometryInput = {
   Area?: InputMaybe<AreaCreateNestedManyWithoutCityInput>;
-  id?: InputMaybe<Scalars['String']>;
-  name: Scalars['String'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
 };
 
 export type CityMaxOrderByAggregateInput = {
@@ -1997,12 +1999,12 @@ export type CityRelationFilter = {
 
 export type CityResponseObject = {
   __typename?: 'CityResponseObject';
-  countryCode: Scalars['String'];
-  latitude?: Maybe<Scalars['String']>;
-  longitude?: Maybe<Scalars['String']>;
-  name: Scalars['String'];
-  stateCode: Scalars['String'];
-  venuesInArea?: Maybe<Scalars['Int']>;
+  countryCode: Scalars['String']['output'];
+  latitude?: Maybe<Scalars['String']['output']>;
+  longitude?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
+  stateCode: Scalars['String']['output'];
+  venuesInArea?: Maybe<Scalars['Int']['output']>;
 };
 
 export enum CityScalarFieldEnum {
@@ -2103,17 +2105,17 @@ export type CityWhereUniqueInput = {
   AND?: InputMaybe<Array<CityWhereInput>>;
   Area?: InputMaybe<AreaListRelationFilter>;
   Geometry?: InputMaybe<GeometryWhereInput>;
-  geometryId?: InputMaybe<Scalars['Int']>;
-  id?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
+  geometryId?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<CityWhereInput>>;
   OR?: InputMaybe<Array<CityWhereInput>>;
 };
 
 export type Code = {
   __typename?: 'Code';
-  code: Scalars['String'];
-  id: Scalars['ID'];
+  code: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
 };
 
 export type CodeCountOrderByAggregateInput = {
@@ -2127,20 +2129,20 @@ export type CodeCountOrderByAggregateInput = {
 
 export type CodeCreateInput = {
   AuthenticationProvider?: InputMaybe<AuthenticationProviderCreateNestedOneWithoutCodepasswordInput>;
-  canUseAsRecovery?: InputMaybe<Scalars['Boolean']>;
-  code: Scalars['String'];
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  canUseAsRecovery?: InputMaybe<Scalars['Boolean']['input']>;
+  code: Scalars['String']['input'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type CodeCreateManyInput = {
-  authenitcationProviderId?: InputMaybe<Scalars['String']>;
-  canUseAsRecovery?: InputMaybe<Scalars['Boolean']>;
-  code: Scalars['String'];
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  authenitcationProviderId?: InputMaybe<Scalars['String']['input']>;
+  canUseAsRecovery?: InputMaybe<Scalars['Boolean']['input']>;
+  code: Scalars['String']['input'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type CodeCreateNestedOneWithoutAuthenticationProviderInput = {
@@ -2155,16 +2157,16 @@ export type CodeCreateOrConnectWithoutAuthenticationProviderInput = {
 };
 
 export type CodeCreateWithoutAuthenticationProviderInput = {
-  canUseAsRecovery?: InputMaybe<Scalars['Boolean']>;
-  code: Scalars['String'];
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  canUseAsRecovery?: InputMaybe<Scalars['Boolean']['input']>;
+  code: Scalars['String']['input'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type CodeDataInput = {
   /** Length is the total numbers that you want the code to be. */
-  length?: InputMaybe<Scalars['Int']>;
+  length?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type CodeMaxOrderByAggregateInput = {
@@ -2296,12 +2298,12 @@ export type CodeWhereInput = {
 
 export type CodeWhereUniqueInput = {
   AND?: InputMaybe<Array<CodeWhereInput>>;
-  authenitcationProviderId?: InputMaybe<Scalars['String']>;
+  authenitcationProviderId?: InputMaybe<Scalars['String']['input']>;
   AuthenticationProvider?: InputMaybe<AuthenticationProviderWhereInput>;
   canUseAsRecovery?: InputMaybe<BoolNullableFilter>;
   code?: InputMaybe<StringFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<CodeWhereInput>>;
   OR?: InputMaybe<Array<CodeWhereInput>>;
   updatedAt?: InputMaybe<DateTimeFilter>;
@@ -2310,15 +2312,15 @@ export type CodeWhereUniqueInput = {
 export type ComingArea = {
   __typename?: 'ComingArea';
   Area?: Maybe<Area>;
-  areaId?: Maybe<Scalars['String']>;
-  createdAt: Scalars['DateTime'];
-  h3Index5: Scalars['String'];
-  h3Index6: Scalars['String'];
-  id: Scalars['ID'];
-  keywordSuggestions: Array<Scalars['String']>;
-  timesRequested?: Maybe<Scalars['Int']>;
-  toBeNotifiedProfileIds: Array<Scalars['String']>;
-  updatedAt: Scalars['DateTime'];
+  areaId?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['DateTime']['output'];
+  h3Index5: Scalars['String']['output'];
+  h3Index6: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  keywordSuggestions: Array<Scalars['String']['output']>;
+  timesRequested?: Maybe<Scalars['Int']['output']>;
+  toBeNotifiedProfileIds: Array<Scalars['String']['output']>;
+  updatedAt: Scalars['DateTime']['output'];
   Vote: Array<Vote>;
 };
 
@@ -2327,8 +2329,8 @@ export type ComingAreaVoteArgs = {
   cursor?: InputMaybe<VoteWhereUniqueInput>;
   distinct?: InputMaybe<Array<VoteScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<VoteOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<VoteWhereInput>;
 };
 
@@ -2350,31 +2352,31 @@ export type ComingAreaCountOrderByAggregateInput = {
 
 export type ComingAreaCreateInput = {
   Area?: InputMaybe<AreaCreateNestedOneWithoutComingAreaInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index5: Scalars['String'];
-  h3Index6: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['String']>>;
-  timesRequested?: InputMaybe<Scalars['Int']>;
-  toBeNotifiedProfileIds?: InputMaybe<Array<Scalars['String']>>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index5: Scalars['String']['input'];
+  h3Index6: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['String']['input']>>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
+  toBeNotifiedProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Vote?: InputMaybe<VoteCreateNestedManyWithoutComingAreaInput>;
 };
 
 export type ComingAreaCreatekeywordSuggestionsInput = {
-  set: Array<Scalars['String']>;
+  set: Array<Scalars['String']['input']>;
 };
 
 export type ComingAreaCreateManyInput = {
-  areaId?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index5: Scalars['String'];
-  h3Index6: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['String']>>;
-  timesRequested?: InputMaybe<Scalars['Int']>;
-  toBeNotifiedProfileIds?: InputMaybe<Array<Scalars['String']>>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  areaId?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index5: Scalars['String']['input'];
+  h3Index6: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['String']['input']>>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
+  toBeNotifiedProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type ComingAreaCreateNestedOneWithoutAreaInput = {
@@ -2400,31 +2402,31 @@ export type ComingAreaCreateOrConnectWithoutVoteInput = {
 };
 
 export type ComingAreaCreatetoBeNotifiedProfileIdsInput = {
-  set: Array<Scalars['String']>;
+  set: Array<Scalars['String']['input']>;
 };
 
 export type ComingAreaCreateWithoutAreaInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index5: Scalars['String'];
-  h3Index6: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['String']>>;
-  timesRequested?: InputMaybe<Scalars['Int']>;
-  toBeNotifiedProfileIds?: InputMaybe<Array<Scalars['String']>>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index5: Scalars['String']['input'];
+  h3Index6: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['String']['input']>>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
+  toBeNotifiedProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Vote?: InputMaybe<VoteCreateNestedManyWithoutComingAreaInput>;
 };
 
 export type ComingAreaCreateWithoutVoteInput = {
   Area?: InputMaybe<AreaCreateNestedOneWithoutComingAreaInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index5: Scalars['String'];
-  h3Index6: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['String']>>;
-  timesRequested?: InputMaybe<Scalars['Int']>;
-  toBeNotifiedProfileIds?: InputMaybe<Array<Scalars['String']>>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index5: Scalars['String']['input'];
+  h3Index6: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['String']['input']>>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
+  toBeNotifiedProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type ComingAreaMaxOrderByAggregateInput = {
@@ -2527,16 +2529,16 @@ export type ComingAreaUpdateInput = {
   h3Index5?: InputMaybe<StringFieldUpdateOperationsInput>;
   h3Index6?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['String']>>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['String']['input']>>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  toBeNotifiedProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  toBeNotifiedProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   Vote?: InputMaybe<VoteUpdateManyWithoutComingAreaNestedInput>;
 };
 
 export type ComingAreaUpdatekeywordSuggestionsInput = {
-  push?: InputMaybe<Array<Scalars['String']>>;
-  set?: InputMaybe<Array<Scalars['String']>>;
+  push?: InputMaybe<Array<Scalars['String']['input']>>;
+  set?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type ComingAreaUpdateManyMutationInput = {
@@ -2544,9 +2546,9 @@ export type ComingAreaUpdateManyMutationInput = {
   h3Index5?: InputMaybe<StringFieldUpdateOperationsInput>;
   h3Index6?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['String']>>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['String']['input']>>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  toBeNotifiedProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  toBeNotifiedProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -2571,8 +2573,8 @@ export type ComingAreaUpdateOneWithoutVoteNestedInput = {
 };
 
 export type ComingAreaUpdatetoBeNotifiedProfileIdsInput = {
-  push?: InputMaybe<Array<Scalars['String']>>;
-  set?: InputMaybe<Array<Scalars['String']>>;
+  push?: InputMaybe<Array<Scalars['String']['input']>>;
+  set?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type ComingAreaUpdateToOneWithWhereWithoutAreaInput = {
@@ -2590,9 +2592,9 @@ export type ComingAreaUpdateWithoutAreaInput = {
   h3Index5?: InputMaybe<StringFieldUpdateOperationsInput>;
   h3Index6?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['String']>>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['String']['input']>>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  toBeNotifiedProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  toBeNotifiedProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   Vote?: InputMaybe<VoteUpdateManyWithoutComingAreaNestedInput>;
 };
@@ -2603,9 +2605,9 @@ export type ComingAreaUpdateWithoutVoteInput = {
   h3Index5?: InputMaybe<StringFieldUpdateOperationsInput>;
   h3Index6?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['String']>>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['String']['input']>>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  toBeNotifiedProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  toBeNotifiedProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -2641,11 +2643,11 @@ export type ComingAreaWhereInput = {
 export type ComingAreaWhereUniqueInput = {
   AND?: InputMaybe<Array<ComingAreaWhereInput>>;
   Area?: InputMaybe<AreaWhereInput>;
-  areaId?: InputMaybe<Scalars['String']>;
+  areaId?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<DateTimeFilter>;
   h3Index5?: InputMaybe<StringFilter>;
   h3Index6?: InputMaybe<StringFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   keywordSuggestions?: InputMaybe<StringNullableListFilter>;
   NOT?: InputMaybe<Array<ComingAreaWhereInput>>;
   OR?: InputMaybe<Array<ComingAreaWhereInput>>;
@@ -2656,17 +2658,17 @@ export type ComingAreaWhereUniqueInput = {
 };
 
 export type ContactInput = {
-  name?: InputMaybe<Scalars['String']>;
-  number?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  number?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Conversation = {
   __typename?: 'Conversation';
-  id: Scalars['ID'];
+  id: Scalars['ID']['output'];
   Members: Array<Profile>;
   MembersConversationNotificationSetting: Array<MemberConversationNotificationSetting>;
   Messages: Array<Message>;
-  name?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -2674,8 +2676,8 @@ export type ConversationMembersArgs = {
   cursor?: InputMaybe<ProfileWhereUniqueInput>;
   distinct?: InputMaybe<Array<ProfileScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<ProfileOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ProfileWhereInput>;
 };
 
@@ -2684,8 +2686,8 @@ export type ConversationMembersConversationNotificationSettingArgs = {
   cursor?: InputMaybe<MemberConversationNotificationSettingWhereUniqueInput>;
   distinct?: InputMaybe<Array<MemberConversationNotificationSettingScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<MemberConversationNotificationSettingOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<MemberConversationNotificationSettingWhereInput>;
 };
 
@@ -2694,8 +2696,8 @@ export type ConversationMessagesArgs = {
   cursor?: InputMaybe<MessageWhereUniqueInput>;
   distinct?: InputMaybe<Array<MessageScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<MessageOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<MessageWhereInput>;
 };
 
@@ -2705,16 +2707,16 @@ export type ConversationCountOrderByAggregateInput = {
 };
 
 export type ConversationCreateInput = {
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Members?: InputMaybe<ProfileCreateNestedManyWithoutConversationsInput>;
   MembersConversationNotificationSetting?: InputMaybe<MemberConversationNotificationSettingCreateNestedManyWithoutConversationInput>;
   Messages?: InputMaybe<MessageCreateNestedManyWithoutConversationInput>;
-  name?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ConversationCreateManyInput = {
-  id?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ConversationCreateNestedManyWithoutMembersInput = {
@@ -2751,24 +2753,24 @@ export type ConversationCreateOrConnectWithoutMessagesInput = {
 };
 
 export type ConversationCreateWithoutMembersConversationNotificationSettingInput = {
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Members?: InputMaybe<ProfileCreateNestedManyWithoutConversationsInput>;
   Messages?: InputMaybe<MessageCreateNestedManyWithoutConversationInput>;
-  name?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ConversationCreateWithoutMembersInput = {
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   MembersConversationNotificationSetting?: InputMaybe<MemberConversationNotificationSettingCreateNestedManyWithoutConversationInput>;
   Messages?: InputMaybe<MessageCreateNestedManyWithoutConversationInput>;
-  name?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ConversationCreateWithoutMessagesInput = {
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Members?: InputMaybe<ProfileCreateNestedManyWithoutConversationsInput>;
   MembersConversationNotificationSetting?: InputMaybe<MemberConversationNotificationSettingCreateNestedManyWithoutConversationInput>;
-  name?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ConversationListRelationFilter = {
@@ -2951,7 +2953,7 @@ export type ConversationWhereInput = {
 
 export type ConversationWhereUniqueInput = {
   AND?: InputMaybe<Array<ConversationWhereInput>>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Members?: InputMaybe<ProfileListRelationFilter>;
   MembersConversationNotificationSetting?: InputMaybe<MemberConversationNotificationSettingListRelationFilter>;
   Messages?: InputMaybe<MessageListRelationFilter>;
@@ -2962,22 +2964,22 @@ export type ConversationWhereUniqueInput = {
 
 export type Coords = {
   __typename?: 'Coords';
-  latitude?: Maybe<Scalars['Float']>;
-  longitude?: Maybe<Scalars['Float']>;
+  latitude?: Maybe<Scalars['Float']['output']>;
+  longitude?: Maybe<Scalars['Float']['output']>;
 };
 
 export type CoordsInput = {
-  latitude: Scalars['Float'];
-  longitude: Scalars['Float'];
+  latitude: Scalars['Float']['input'];
+  longitude: Scalars['Float']['input'];
 };
 
 export type Country = {
   __typename?: 'Country';
   Area: Array<Area>;
-  flag: Scalars['String'];
-  id: Scalars['ID'];
-  isoCode: Scalars['String'];
-  name: Scalars['String'];
+  flag: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  isoCode: Scalars['String']['output'];
+  name: Scalars['String']['output'];
 };
 
 
@@ -2985,8 +2987,8 @@ export type CountryAreaArgs = {
   cursor?: InputMaybe<AreaWhereUniqueInput>;
   distinct?: InputMaybe<Array<AreaScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<AreaOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<AreaWhereInput>;
 };
 
@@ -2999,17 +3001,17 @@ export type CountryCountOrderByAggregateInput = {
 
 export type CountryCreateInput = {
   Area?: InputMaybe<AreaCreateNestedManyWithoutCountryInput>;
-  flag: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  isoCode: Scalars['String'];
-  name: Scalars['String'];
+  flag: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  isoCode: Scalars['String']['input'];
+  name: Scalars['String']['input'];
 };
 
 export type CountryCreateManyInput = {
-  flag: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  isoCode: Scalars['String'];
-  name: Scalars['String'];
+  flag: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  isoCode: Scalars['String']['input'];
+  name: Scalars['String']['input'];
 };
 
 export type CountryCreateNestedOneWithoutAreaInput = {
@@ -3024,10 +3026,10 @@ export type CountryCreateOrConnectWithoutAreaInput = {
 };
 
 export type CountryCreateWithoutAreaInput = {
-  flag: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  isoCode: Scalars['String'];
-  name: Scalars['String'];
+  flag: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  isoCode: Scalars['String']['input'];
+  name: Scalars['String']['input'];
 };
 
 export type CountryMaxOrderByAggregateInput = {
@@ -3069,13 +3071,13 @@ export type CountryRelationFilter = {
 
 export type CountryResponseObject = {
   __typename?: 'CountryResponseObject';
-  currency: Scalars['String'];
-  flag: Scalars['String'];
-  isoCode: Scalars['String'];
-  latitude: Scalars['String'];
-  longitude: Scalars['String'];
-  name: Scalars['String'];
-  phonecode: Scalars['String'];
+  currency: Scalars['String']['output'];
+  flag: Scalars['String']['output'];
+  isoCode: Scalars['String']['output'];
+  latitude: Scalars['String']['output'];
+  longitude: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  phonecode: Scalars['String']['output'];
 };
 
 export enum CountryScalarFieldEnum {
@@ -3151,55 +3153,55 @@ export type CountryWhereUniqueInput = {
   AND?: InputMaybe<Array<CountryWhereInput>>;
   Area?: InputMaybe<AreaListRelationFilter>;
   flag?: InputMaybe<StringFilter>;
-  id?: InputMaybe<Scalars['String']>;
-  isoCode?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  isoCode?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<CountryWhereInput>>;
   OR?: InputMaybe<Array<CountryWhereInput>>;
 };
 
 export type CreatePersonalDataInput = {
-  address: Scalars['String'];
-  birthday: Scalars['DateTime'];
+  address: Scalars['String']['input'];
+  birthday: Scalars['DateTime']['input'];
   EmailInput?: InputMaybe<EmailInput>;
-  fullname?: InputMaybe<Scalars['String']>;
-  password: Scalars['String'];
+  fullname?: InputMaybe<Scalars['String']['input']>;
+  password: Scalars['String']['input'];
   PhoneInput?: InputMaybe<PhoneInput>;
-  PrivacyPolicyId?: InputMaybe<Scalars['ID']>;
-  ServicesId?: InputMaybe<Scalars['ID']>;
-  username: Scalars['String'];
+  PrivacyPolicyId?: InputMaybe<Scalars['ID']['input']>;
+  ServicesId?: InputMaybe<Scalars['ID']['input']>;
+  username: Scalars['String']['input'];
 };
 
 export type CreateVenueDataInput = {
-  address: Scalars['String'];
-  birthday?: InputMaybe<Scalars['DateTime']>;
-  capacity: Scalars['String'];
+  address: Scalars['String']['input'];
+  birthday?: InputMaybe<Scalars['DateTime']['input']>;
+  capacity: Scalars['String']['input'];
   contacts: Array<VenueContactInput>;
-  description?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']['input']>;
   EmailInput?: InputMaybe<EmailInput>;
-  established: Scalars['DateTime'];
-  ownername: Scalars['String'];
-  password: Scalars['String'];
+  established: Scalars['DateTime']['input'];
+  ownername: Scalars['String']['input'];
+  password: Scalars['String']['input'];
   PhoneInput?: InputMaybe<PhoneInput>;
   photos?: InputMaybe<PhotoCreateManyProfileInputEnvelope>;
-  PrivacyPolicyId?: InputMaybe<Scalars['ID']>;
-  ServicesId?: InputMaybe<Scalars['ID']>;
-  venuelocalname: Scalars['String'];
-  venuename: Scalars['String'];
-  venuetypes?: InputMaybe<Array<Scalars['String']>>;
-  venueusername: Scalars['String'];
+  PrivacyPolicyId?: InputMaybe<Scalars['ID']['input']>;
+  ServicesId?: InputMaybe<Scalars['ID']['input']>;
+  venuelocalname: Scalars['String']['input'];
+  venuename: Scalars['String']['input'];
+  venuetypes?: InputMaybe<Array<Scalars['String']['input']>>;
+  venueusername: Scalars['String']['input'];
 };
 
 export type Credentials = {
   __typename?: 'Credentials';
   AuthenticationProvider?: Maybe<AuthenticationProvider>;
-  authenticationProviderId?: Maybe<Scalars['String']>;
-  createdtAt: Scalars['DateTime'];
-  id: Scalars['ID'];
+  authenticationProviderId?: Maybe<Scalars['String']['output']>;
+  createdtAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
   LegalAgreement: Array<LegalAgreement>;
   Profile: Profile;
-  profileId: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
+  profileId: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 
@@ -3207,8 +3209,8 @@ export type CredentialsLegalAgreementArgs = {
   cursor?: InputMaybe<LegalAgreementWhereUniqueInput>;
   distinct?: InputMaybe<Array<LegalAgreementScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<LegalAgreementOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<LegalAgreementWhereInput>;
 };
 
@@ -3222,19 +3224,19 @@ export type CredentialsCountOrderByAggregateInput = {
 
 export type CredentialsCreateInput = {
   AuthenticationProvider?: InputMaybe<AuthenticationProviderCreateNestedOneWithoutCredentialsInput>;
-  createdtAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdtAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   LegalAgreement?: InputMaybe<LegalAgreementCreateNestedManyWithoutCredentialsInput>;
   Profile: ProfileCreateNestedOneWithoutCredentialsInput;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type CredentialsCreateManyInput = {
-  authenticationProviderId?: InputMaybe<Scalars['String']>;
-  createdtAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  profileId: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  authenticationProviderId?: InputMaybe<Scalars['String']['input']>;
+  createdtAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  profileId: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type CredentialsCreateNestedOneWithoutAuthenticationProviderInput = {
@@ -3271,27 +3273,27 @@ export type CredentialsCreateOrConnectWithoutProfileInput = {
 };
 
 export type CredentialsCreateWithoutAuthenticationProviderInput = {
-  createdtAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdtAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   LegalAgreement?: InputMaybe<LegalAgreementCreateNestedManyWithoutCredentialsInput>;
   Profile: ProfileCreateNestedOneWithoutCredentialsInput;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type CredentialsCreateWithoutLegalAgreementInput = {
   AuthenticationProvider?: InputMaybe<AuthenticationProviderCreateNestedOneWithoutCredentialsInput>;
-  createdtAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdtAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Profile: ProfileCreateNestedOneWithoutCredentialsInput;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type CredentialsCreateWithoutProfileInput = {
   AuthenticationProvider?: InputMaybe<AuthenticationProviderCreateNestedOneWithoutCredentialsInput>;
-  createdtAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdtAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   LegalAgreement?: InputMaybe<LegalAgreementCreateNestedManyWithoutCredentialsInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type CredentialsMaxOrderByAggregateInput = {
@@ -3475,14 +3477,14 @@ export type CredentialsWhereInput = {
 export type CredentialsWhereUniqueInput = {
   AND?: InputMaybe<Array<CredentialsWhereInput>>;
   AuthenticationProvider?: InputMaybe<AuthenticationProviderWhereInput>;
-  authenticationProviderId?: InputMaybe<Scalars['String']>;
+  authenticationProviderId?: InputMaybe<Scalars['String']['input']>;
   createdtAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   LegalAgreement?: InputMaybe<LegalAgreementListRelationFilter>;
   NOT?: InputMaybe<Array<CredentialsWhereInput>>;
   OR?: InputMaybe<Array<CredentialsWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
-  profileId?: InputMaybe<Scalars['String']>;
+  profileId?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
@@ -3491,73 +3493,73 @@ export type CustomCodeWhereInput = {
 };
 
 export type CustomProfileWhereInput = {
-  email?: InputMaybe<Scalars['String']>;
+  email?: InputMaybe<Scalars['String']['input']>;
   Phone?: InputMaybe<PhoneInput>;
-  username?: InputMaybe<Scalars['String']>;
+  username?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type DateTimeFieldUpdateOperationsInput = {
-  set?: InputMaybe<Scalars['DateTime']>;
+  set?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type DateTimeFilter = {
-  equals?: InputMaybe<Scalars['DateTime']>;
-  gt?: InputMaybe<Scalars['DateTime']>;
-  gte?: InputMaybe<Scalars['DateTime']>;
-  in?: InputMaybe<Array<Scalars['DateTime']>>;
-  lt?: InputMaybe<Scalars['DateTime']>;
-  lte?: InputMaybe<Scalars['DateTime']>;
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  gt?: InputMaybe<Scalars['DateTime']['input']>;
+  gte?: InputMaybe<Scalars['DateTime']['input']>;
+  in?: InputMaybe<Array<Scalars['DateTime']['input']>>;
+  lt?: InputMaybe<Scalars['DateTime']['input']>;
+  lte?: InputMaybe<Scalars['DateTime']['input']>;
   not?: InputMaybe<NestedDateTimeFilter>;
-  notIn?: InputMaybe<Array<Scalars['DateTime']>>;
+  notIn?: InputMaybe<Array<Scalars['DateTime']['input']>>;
 };
 
 export type DateTimeNullableFilter = {
-  equals?: InputMaybe<Scalars['DateTime']>;
-  gt?: InputMaybe<Scalars['DateTime']>;
-  gte?: InputMaybe<Scalars['DateTime']>;
-  in?: InputMaybe<Array<Scalars['DateTime']>>;
-  lt?: InputMaybe<Scalars['DateTime']>;
-  lte?: InputMaybe<Scalars['DateTime']>;
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  gt?: InputMaybe<Scalars['DateTime']['input']>;
+  gte?: InputMaybe<Scalars['DateTime']['input']>;
+  in?: InputMaybe<Array<Scalars['DateTime']['input']>>;
+  lt?: InputMaybe<Scalars['DateTime']['input']>;
+  lte?: InputMaybe<Scalars['DateTime']['input']>;
   not?: InputMaybe<NestedDateTimeNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['DateTime']>>;
+  notIn?: InputMaybe<Array<Scalars['DateTime']['input']>>;
 };
 
 export type DateTimeNullableWithAggregatesFilter = {
   _count?: InputMaybe<NestedIntNullableFilter>;
   _max?: InputMaybe<NestedDateTimeNullableFilter>;
   _min?: InputMaybe<NestedDateTimeNullableFilter>;
-  equals?: InputMaybe<Scalars['DateTime']>;
-  gt?: InputMaybe<Scalars['DateTime']>;
-  gte?: InputMaybe<Scalars['DateTime']>;
-  in?: InputMaybe<Array<Scalars['DateTime']>>;
-  lt?: InputMaybe<Scalars['DateTime']>;
-  lte?: InputMaybe<Scalars['DateTime']>;
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  gt?: InputMaybe<Scalars['DateTime']['input']>;
+  gte?: InputMaybe<Scalars['DateTime']['input']>;
+  in?: InputMaybe<Array<Scalars['DateTime']['input']>>;
+  lt?: InputMaybe<Scalars['DateTime']['input']>;
+  lte?: InputMaybe<Scalars['DateTime']['input']>;
   not?: InputMaybe<NestedDateTimeNullableWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['DateTime']>>;
+  notIn?: InputMaybe<Array<Scalars['DateTime']['input']>>;
 };
 
 export type DateTimeWithAggregatesFilter = {
   _count?: InputMaybe<NestedIntFilter>;
   _max?: InputMaybe<NestedDateTimeFilter>;
   _min?: InputMaybe<NestedDateTimeFilter>;
-  equals?: InputMaybe<Scalars['DateTime']>;
-  gt?: InputMaybe<Scalars['DateTime']>;
-  gte?: InputMaybe<Scalars['DateTime']>;
-  in?: InputMaybe<Array<Scalars['DateTime']>>;
-  lt?: InputMaybe<Scalars['DateTime']>;
-  lte?: InputMaybe<Scalars['DateTime']>;
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  gt?: InputMaybe<Scalars['DateTime']['input']>;
+  gte?: InputMaybe<Scalars['DateTime']['input']>;
+  in?: InputMaybe<Array<Scalars['DateTime']['input']>>;
+  lt?: InputMaybe<Scalars['DateTime']['input']>;
+  lte?: InputMaybe<Scalars['DateTime']['input']>;
   not?: InputMaybe<NestedDateTimeWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['DateTime']>>;
+  notIn?: InputMaybe<Array<Scalars['DateTime']['input']>>;
 };
 
 export type DetailInformation = {
   __typename?: 'DetailInformation';
-  capacity?: Maybe<Scalars['Int']>;
-  description?: Maybe<Scalars['String']>;
-  established?: Maybe<Scalars['DateTime']>;
-  id: Scalars['ID'];
+  capacity?: Maybe<Scalars['Int']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  established?: Maybe<Scalars['DateTime']['output']>;
+  id: Scalars['ID']['output'];
   Profile: Profile;
-  profileId: Scalars['String'];
+  profileId: Scalars['String']['output'];
   Tags: Array<Tag>;
 };
 
@@ -3566,8 +3568,8 @@ export type DetailInformationTagsArgs = {
   cursor?: InputMaybe<TagWhereUniqueInput>;
   distinct?: InputMaybe<Array<TagScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<TagOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<TagWhereInput>;
 };
 
@@ -3584,20 +3586,20 @@ export type DetailInformationCountOrderByAggregateInput = {
 };
 
 export type DetailInformationCreateInput = {
-  capacity?: InputMaybe<Scalars['Int']>;
-  description?: InputMaybe<Scalars['String']>;
-  established?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  capacity?: InputMaybe<Scalars['Int']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  established?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Profile: ProfileCreateNestedOneWithoutDetailInformationInput;
   Tags?: InputMaybe<TagCreateNestedManyWithoutDetailInformationInput>;
 };
 
 export type DetailInformationCreateManyInput = {
-  capacity?: InputMaybe<Scalars['Int']>;
-  description?: InputMaybe<Scalars['String']>;
-  established?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  profileId: Scalars['String'];
+  capacity?: InputMaybe<Scalars['Int']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  established?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  profileId: Scalars['String']['input'];
 };
 
 export type DetailInformationCreateNestedManyWithoutTagsInput = {
@@ -3623,18 +3625,18 @@ export type DetailInformationCreateOrConnectWithoutTagsInput = {
 };
 
 export type DetailInformationCreateWithoutProfileInput = {
-  capacity?: InputMaybe<Scalars['Int']>;
-  description?: InputMaybe<Scalars['String']>;
-  established?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  capacity?: InputMaybe<Scalars['Int']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  established?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Tags?: InputMaybe<TagCreateNestedManyWithoutDetailInformationInput>;
 };
 
 export type DetailInformationCreateWithoutTagsInput = {
-  capacity?: InputMaybe<Scalars['Int']>;
-  description?: InputMaybe<Scalars['String']>;
-  established?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  capacity?: InputMaybe<Scalars['Int']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  established?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Profile: ProfileCreateNestedOneWithoutDetailInformationInput;
 };
 
@@ -3826,24 +3828,24 @@ export type DetailInformationWhereUniqueInput = {
   capacity?: InputMaybe<IntNullableFilter>;
   description?: InputMaybe<StringNullableFilter>;
   established?: InputMaybe<DateTimeNullableFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<DetailInformationWhereInput>>;
   OR?: InputMaybe<Array<DetailInformationWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
-  profileId?: InputMaybe<Scalars['String']>;
+  profileId?: InputMaybe<Scalars['String']['input']>;
   Tags?: InputMaybe<TagListRelationFilter>;
 };
 
 export type Device = {
   __typename?: 'Device';
-  createdAt?: Maybe<Scalars['DateTime']>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
   DeviceManager: DeviceManager;
-  deviceManagerId: Scalars['String'];
-  deviceType: Scalars['String'];
-  id: Scalars['ID'];
+  deviceManagerId: Scalars['String']['output'];
+  deviceType: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
   PushToken?: Maybe<PushToken>;
-  pushTokenId?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
+  pushTokenId?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
 export type DeviceCountOrderByAggregateInput = {
@@ -3856,21 +3858,21 @@ export type DeviceCountOrderByAggregateInput = {
 };
 
 export type DeviceCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   DeviceManager: DeviceManagerCreateNestedOneWithoutDeviceInput;
-  deviceType: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
+  deviceType: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
   PushToken?: InputMaybe<PushTokenCreateNestedOneWithoutDeviceInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type DeviceCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  deviceManagerId: Scalars['String'];
-  deviceType: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  pushTokenId?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  deviceManagerId: Scalars['String']['input'];
+  deviceType: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  pushTokenId?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type DeviceCreateNestedOneWithoutDeviceManagerInput = {
@@ -3896,28 +3898,28 @@ export type DeviceCreateOrConnectWithoutPushTokenInput = {
 };
 
 export type DeviceCreateWithoutDeviceManagerInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  deviceType: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  deviceType: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
   PushToken?: InputMaybe<PushTokenCreateNestedOneWithoutDeviceInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type DeviceCreateWithoutPushTokenInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   DeviceManager: DeviceManagerCreateNestedOneWithoutDeviceInput;
-  deviceType: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  deviceType: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type DeviceManager = {
   __typename?: 'DeviceManager';
-  createdAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime']['output'];
   Device?: Maybe<Device>;
   DeviceProfiles: Array<AuthorizationDeviceProfile>;
-  id: Scalars['ID'];
-  updatedAt: Scalars['DateTime'];
+  id: Scalars['ID']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 
@@ -3925,8 +3927,8 @@ export type DeviceManagerDeviceProfilesArgs = {
   cursor?: InputMaybe<DeviceProfileWhereUniqueInput>;
   distinct?: InputMaybe<Array<DeviceProfileScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<DeviceProfileOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<DeviceProfileWhereInput>;
 };
 
@@ -3937,17 +3939,17 @@ export type DeviceManagerCountOrderByAggregateInput = {
 };
 
 export type DeviceManagerCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Device?: InputMaybe<DeviceCreateNestedOneWithoutDeviceManagerInput>;
   DeviceProfiles?: InputMaybe<DeviceProfileCreateNestedManyWithoutDeviceManagerInput>;
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type DeviceManagerCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type DeviceManagerCreateNestedOneWithoutDeviceInput = {
@@ -3973,17 +3975,17 @@ export type DeviceManagerCreateOrConnectWithoutDeviceProfilesInput = {
 };
 
 export type DeviceManagerCreateWithoutDeviceInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   DeviceProfiles?: InputMaybe<DeviceProfileCreateNestedManyWithoutDeviceManagerInput>;
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type DeviceManagerCreateWithoutDeviceProfilesInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Device?: InputMaybe<DeviceCreateNestedOneWithoutDeviceManagerInput>;
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type DeviceManagerDeviceProfiles = {
@@ -4124,7 +4126,7 @@ export type DeviceManagerWhereUniqueInput = {
   createdAt?: InputMaybe<DateTimeFilter>;
   Device?: InputMaybe<DeviceWhereInput>;
   DeviceProfiles?: InputMaybe<DeviceProfileListRelationFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<DeviceManagerWhereInput>>;
   OR?: InputMaybe<Array<DeviceManagerWhereInput>>;
   updatedAt?: InputMaybe<DateTimeFilter>;
@@ -4189,44 +4191,44 @@ export type DeviceProfileCountOrderByAggregateInput = {
 };
 
 export type DeviceProfileCreateInput = {
-  accesstoken?: InputMaybe<Scalars['String']>;
+  accesstoken?: InputMaybe<Scalars['String']['input']>;
   AppType: AppType;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   DeviceManager: DeviceManagerCreateNestedOneWithoutDeviceProfilesInput;
-  id?: InputMaybe<Scalars['String']>;
-  isActive: Scalars['Boolean'];
-  profileId: Scalars['String'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  isActive: Scalars['Boolean']['input'];
+  profileId: Scalars['String']['input'];
   ProfileType: ProfileType;
   RefreshToken?: InputMaybe<RefreshTokenCreateNestedOneWithoutDeviceProfileInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type DeviceProfileCreateManyDeviceManagerInput = {
-  accesstoken?: InputMaybe<Scalars['String']>;
+  accesstoken?: InputMaybe<Scalars['String']['input']>;
   AppType: AppType;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  isActive: Scalars['Boolean'];
-  profileId: Scalars['String'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  isActive: Scalars['Boolean']['input'];
+  profileId: Scalars['String']['input'];
   ProfileType: ProfileType;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type DeviceProfileCreateManyDeviceManagerInputEnvelope = {
   data: Array<DeviceProfileCreateManyDeviceManagerInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type DeviceProfileCreateManyInput = {
-  accesstoken?: InputMaybe<Scalars['String']>;
+  accesstoken?: InputMaybe<Scalars['String']['input']>;
   AppType: AppType;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  deviceManagerId: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  isActive: Scalars['Boolean'];
-  profileId: Scalars['String'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  deviceManagerId: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  isActive: Scalars['Boolean']['input'];
+  profileId: Scalars['String']['input'];
   ProfileType: ProfileType;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type DeviceProfileCreateNestedManyWithoutDeviceManagerInput = {
@@ -4253,27 +4255,27 @@ export type DeviceProfileCreateOrConnectWithoutRefreshTokenInput = {
 };
 
 export type DeviceProfileCreateWithoutDeviceManagerInput = {
-  accesstoken?: InputMaybe<Scalars['String']>;
+  accesstoken?: InputMaybe<Scalars['String']['input']>;
   AppType: AppType;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  isActive: Scalars['Boolean'];
-  profileId: Scalars['String'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  isActive: Scalars['Boolean']['input'];
+  profileId: Scalars['String']['input'];
   ProfileType: ProfileType;
   RefreshToken?: InputMaybe<RefreshTokenCreateNestedOneWithoutDeviceProfileInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type DeviceProfileCreateWithoutRefreshTokenInput = {
-  accesstoken?: InputMaybe<Scalars['String']>;
+  accesstoken?: InputMaybe<Scalars['String']['input']>;
   AppType: AppType;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   DeviceManager: DeviceManagerCreateNestedOneWithoutDeviceProfilesInput;
-  id?: InputMaybe<Scalars['String']>;
-  isActive: Scalars['Boolean'];
-  profileId: Scalars['String'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  isActive: Scalars['Boolean']['input'];
+  profileId: Scalars['String']['input'];
   ProfileType: ProfileType;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type DeviceProfileListRelationFilter = {
@@ -4509,7 +4511,7 @@ export type DeviceProfileWhereUniqueInput = {
   createdAt?: InputMaybe<DateTimeFilter>;
   DeviceManager?: InputMaybe<DeviceManagerWhereInput>;
   deviceManagerId?: InputMaybe<StringFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   isActive?: InputMaybe<BoolFilter>;
   NOT?: InputMaybe<Array<DeviceProfileWhereInput>>;
   OR?: InputMaybe<Array<DeviceProfileWhereInput>>;
@@ -4632,24 +4634,24 @@ export type DeviceWhereUniqueInput = {
   AND?: InputMaybe<Array<DeviceWhereInput>>;
   createdAt?: InputMaybe<DateTimeNullableFilter>;
   DeviceManager?: InputMaybe<DeviceManagerWhereInput>;
-  deviceManagerId?: InputMaybe<Scalars['String']>;
+  deviceManagerId?: InputMaybe<Scalars['String']['input']>;
   deviceType?: InputMaybe<StringFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<DeviceWhereInput>>;
   OR?: InputMaybe<Array<DeviceWhereInput>>;
   PushToken?: InputMaybe<PushTokenWhereInput>;
-  pushTokenId?: InputMaybe<Scalars['String']>;
+  pushTokenId?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<DateTimeNullableFilter>;
 };
 
 export type Document = {
   __typename?: 'Document';
-  content: Scalars['String'];
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
+  content: Scalars['String']['output'];
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
   LegalAgreement: Array<LegalAgreement>;
   TypeOfDocument: TypeOfDocument;
-  updatedAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type DocumentAvgOrderByAggregateInput = {
@@ -4665,19 +4667,19 @@ export type DocumentCountOrderByAggregateInput = {
 };
 
 export type DocumentCreateInput = {
-  content: Scalars['String'];
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  content: Scalars['String']['input'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   LegalAgreement?: InputMaybe<LegalAgreementCreateNestedManyWithoutDocumentInput>;
   TypeOfDocument: TypeOfDocument;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type DocumentCreateManyInput = {
-  content: Scalars['String'];
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['Int']>;
+  content: Scalars['String']['input'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
   TypeOfDocument: TypeOfDocument;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type DocumentCreateNestedOneWithoutLegalAgreementInput = {
@@ -4692,10 +4694,10 @@ export type DocumentCreateOrConnectWithoutLegalAgreementInput = {
 };
 
 export type DocumentCreateWithoutLegalAgreementInput = {
-  content: Scalars['String'];
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  content: Scalars['String']['input'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   TypeOfDocument: TypeOfDocument;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type DocumentMaxOrderByAggregateInput = {
@@ -4821,7 +4823,7 @@ export type DocumentWhereUniqueInput = {
   AND?: InputMaybe<Array<DocumentWhereInput>>;
   content?: InputMaybe<StringFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
   LegalAgreement?: InputMaybe<LegalAgreementListRelationFilter>;
   NOT?: InputMaybe<Array<DocumentWhereInput>>;
   OR?: InputMaybe<Array<DocumentWhereInput>>;
@@ -4832,11 +4834,11 @@ export type DocumentWhereUniqueInput = {
 export type Email = {
   __typename?: 'Email';
   AuthenticationProvider: Array<AuthenticationProvider>;
-  canUseAsRecovery?: Maybe<Scalars['Boolean']>;
-  createdAt: Scalars['DateTime'];
-  email: Scalars['String'];
-  id: Scalars['ID'];
-  updatedAt: Scalars['DateTime'];
+  canUseAsRecovery?: Maybe<Scalars['Boolean']['output']>;
+  createdAt: Scalars['DateTime']['output'];
+  email: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 
@@ -4844,8 +4846,8 @@ export type EmailAuthenticationProviderArgs = {
   cursor?: InputMaybe<AuthenticationProviderWhereUniqueInput>;
   distinct?: InputMaybe<Array<AuthenticationProviderScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<AuthenticationProviderOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<AuthenticationProviderWhereInput>;
 };
 
@@ -4863,18 +4865,18 @@ export type EmailCountOrderByAggregateInput = {
 
 export type EmailCreateInput = {
   AuthenticationProvider?: InputMaybe<AuthenticationProviderCreateNestedManyWithoutEmailsInput>;
-  canUseAsRecovery?: InputMaybe<Scalars['Boolean']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  email: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  canUseAsRecovery?: InputMaybe<Scalars['Boolean']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  email: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type EmailCreateManyInput = {
-  canUseAsRecovery?: InputMaybe<Scalars['Boolean']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  email: Scalars['String'];
-  id?: InputMaybe<Scalars['Int']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  canUseAsRecovery?: InputMaybe<Scalars['Boolean']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  email: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type EmailCreateNestedManyWithoutAuthenticationProviderInput = {
@@ -4889,14 +4891,14 @@ export type EmailCreateOrConnectWithoutAuthenticationProviderInput = {
 };
 
 export type EmailCreateWithoutAuthenticationProviderInput = {
-  canUseAsRecovery?: InputMaybe<Scalars['Boolean']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  email: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  canUseAsRecovery?: InputMaybe<Scalars['Boolean']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  email: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type EmailInput = {
-  email?: InputMaybe<Scalars['String']>;
+  email?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type EmailListRelationFilter = {
@@ -5050,7 +5052,7 @@ export type EmailWhereUniqueInput = {
   canUseAsRecovery?: InputMaybe<BoolNullableFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   email?: InputMaybe<StringFilter>;
-  id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
   NOT?: InputMaybe<Array<EmailWhereInput>>;
   OR?: InputMaybe<Array<EmailWhereInput>>;
   updatedAt?: InputMaybe<DateTimeFilter>;
@@ -5058,10 +5060,10 @@ export type EmailWhereUniqueInput = {
 
 export type Emojimood = {
   __typename?: 'Emojimood';
-  colors: Array<Scalars['String']>;
-  emoji?: Maybe<Scalars['String']>;
-  emojiname?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
+  colors: Array<Scalars['String']['output']>;
+  emoji?: Maybe<Scalars['String']['output']>;
+  emojiname?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
 };
 
 export type EmojimoodAvgOrderByAggregateInput = {
@@ -5076,21 +5078,21 @@ export type EmojimoodCountOrderByAggregateInput = {
 };
 
 export type EmojimoodCreatecolorsInput = {
-  set: Array<Scalars['String']>;
+  set: Array<Scalars['String']['input']>;
 };
 
 export type EmojimoodCreateInput = {
-  colors?: InputMaybe<Array<Scalars['String']>>;
-  emoji?: InputMaybe<Scalars['String']>;
-  emojiname?: InputMaybe<Scalars['String']>;
+  colors?: InputMaybe<Array<Scalars['String']['input']>>;
+  emoji?: InputMaybe<Scalars['String']['input']>;
+  emojiname?: InputMaybe<Scalars['String']['input']>;
   Story?: InputMaybe<StoryCreateNestedManyWithoutEmojimoodInput>;
 };
 
 export type EmojimoodCreateManyInput = {
-  colors?: InputMaybe<Array<Scalars['String']>>;
-  emoji?: InputMaybe<Scalars['String']>;
-  emojiname?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['Int']>;
+  colors?: InputMaybe<Array<Scalars['String']['input']>>;
+  emoji?: InputMaybe<Scalars['String']['input']>;
+  emojiname?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type EmojimoodCreateNestedOneWithoutStoryInput = {
@@ -5105,9 +5107,9 @@ export type EmojimoodCreateOrConnectWithoutStoryInput = {
 };
 
 export type EmojimoodCreateWithoutStoryInput = {
-  colors?: InputMaybe<Array<Scalars['String']>>;
-  emoji?: InputMaybe<Scalars['String']>;
-  emojiname?: InputMaybe<Scalars['String']>;
+  colors?: InputMaybe<Array<Scalars['String']['input']>>;
+  emoji?: InputMaybe<Scalars['String']['input']>;
+  emojiname?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type EmojimoodMaxOrderByAggregateInput = {
@@ -5169,19 +5171,19 @@ export type EmojimoodSumOrderByAggregateInput = {
 };
 
 export type EmojimoodUpdatecolorsInput = {
-  push?: InputMaybe<Array<Scalars['String']>>;
-  set?: InputMaybe<Array<Scalars['String']>>;
+  push?: InputMaybe<Array<Scalars['String']['input']>>;
+  set?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type EmojimoodUpdateInput = {
-  colors?: InputMaybe<Array<Scalars['String']>>;
+  colors?: InputMaybe<Array<Scalars['String']['input']>>;
   emoji?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   emojiname?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   Story?: InputMaybe<StoryUpdateManyWithoutEmojimoodNestedInput>;
 };
 
 export type EmojimoodUpdateManyMutationInput = {
-  colors?: InputMaybe<Array<Scalars['String']>>;
+  colors?: InputMaybe<Array<Scalars['String']['input']>>;
   emoji?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   emojiname?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
 };
@@ -5202,7 +5204,7 @@ export type EmojimoodUpdateToOneWithWhereWithoutStoryInput = {
 };
 
 export type EmojimoodUpdateWithoutStoryInput = {
-  colors?: InputMaybe<Array<Scalars['String']>>;
+  colors?: InputMaybe<Array<Scalars['String']['input']>>;
   emoji?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   emojiname?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
 };
@@ -5229,7 +5231,7 @@ export type EmojimoodWhereUniqueInput = {
   colors?: InputMaybe<StringNullableListFilter>;
   emoji?: InputMaybe<StringNullableFilter>;
   emojiname?: InputMaybe<StringNullableFilter>;
-  id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
   NOT?: InputMaybe<Array<EmojimoodWhereInput>>;
   OR?: InputMaybe<Array<EmojimoodWhereInput>>;
   Story?: InputMaybe<StoryListRelationFilter>;
@@ -5341,7 +5343,7 @@ export type EnumRelationshipStatusNullableListFilter = {
   has?: InputMaybe<RelationshipStatus>;
   hasEvery?: InputMaybe<Array<RelationshipStatus>>;
   hasSome?: InputMaybe<Array<RelationshipStatus>>;
-  isEmpty?: InputMaybe<Scalars['Boolean']>;
+  isEmpty?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type EnumSecureDataTypeFieldUpdateOperationsInput = {
@@ -5406,34 +5408,34 @@ export type EnumTypeOfDocumentWithAggregatesFilter = {
 /** Long necks, cool patterns, taller than you. */
 export type Error = {
   __typename?: 'Error';
-  errorCode: Scalars['String'];
-  message: Scalars['String'];
+  errorCode: Scalars['String']['output'];
+  message: Scalars['String']['output'];
 };
 
 export type ExploreResponse = {
   __typename?: 'ExploreResponse';
-  events?: Maybe<Array<Scalars['Json']>>;
+  events?: Maybe<Array<Scalars['Json']['output']>>;
   people: Array<Personal>;
   venues: Array<Venue>;
 };
 
 export type FloatFieldUpdateOperationsInput = {
-  decrement?: InputMaybe<Scalars['Float']>;
-  divide?: InputMaybe<Scalars['Float']>;
-  increment?: InputMaybe<Scalars['Float']>;
-  multiply?: InputMaybe<Scalars['Float']>;
-  set?: InputMaybe<Scalars['Float']>;
+  decrement?: InputMaybe<Scalars['Float']['input']>;
+  divide?: InputMaybe<Scalars['Float']['input']>;
+  increment?: InputMaybe<Scalars['Float']['input']>;
+  multiply?: InputMaybe<Scalars['Float']['input']>;
+  set?: InputMaybe<Scalars['Float']['input']>;
 };
 
 export type FloatFilter = {
-  equals?: InputMaybe<Scalars['Float']>;
-  gt?: InputMaybe<Scalars['Float']>;
-  gte?: InputMaybe<Scalars['Float']>;
-  in?: InputMaybe<Array<Scalars['Float']>>;
-  lt?: InputMaybe<Scalars['Float']>;
-  lte?: InputMaybe<Scalars['Float']>;
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  in?: InputMaybe<Array<Scalars['Float']['input']>>;
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
   not?: InputMaybe<NestedFloatFilter>;
-  notIn?: InputMaybe<Array<Scalars['Float']>>;
+  notIn?: InputMaybe<Array<Scalars['Float']['input']>>;
 };
 
 export type FloatWithAggregatesFilter = {
@@ -5442,24 +5444,24 @@ export type FloatWithAggregatesFilter = {
   _max?: InputMaybe<NestedFloatFilter>;
   _min?: InputMaybe<NestedFloatFilter>;
   _sum?: InputMaybe<NestedFloatFilter>;
-  equals?: InputMaybe<Scalars['Float']>;
-  gt?: InputMaybe<Scalars['Float']>;
-  gte?: InputMaybe<Scalars['Float']>;
-  in?: InputMaybe<Array<Scalars['Float']>>;
-  lt?: InputMaybe<Scalars['Float']>;
-  lte?: InputMaybe<Scalars['Float']>;
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  in?: InputMaybe<Array<Scalars['Float']['input']>>;
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
   not?: InputMaybe<NestedFloatWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['Float']>>;
+  notIn?: InputMaybe<Array<Scalars['Float']['input']>>;
 };
 
 export type Geometry = {
   __typename?: 'Geometry';
   City?: Maybe<City>;
-  h3Index15?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  latitude: Scalars['Float'];
+  h3Index15?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  latitude: Scalars['Float']['output'];
   Location?: Maybe<Location>;
-  longitude: Scalars['Float'];
+  longitude: Scalars['Float']['output'];
   State?: Maybe<State>;
 };
 
@@ -5478,18 +5480,18 @@ export type GeometryCountOrderByAggregateInput = {
 
 export type GeometryCreateInput = {
   City?: InputMaybe<CityCreateNestedOneWithoutGeometryInput>;
-  h3Index15?: InputMaybe<Scalars['String']>;
-  latitude: Scalars['Float'];
+  h3Index15?: InputMaybe<Scalars['String']['input']>;
+  latitude: Scalars['Float']['input'];
   Location?: InputMaybe<LocationCreateNestedOneWithoutGeometryInput>;
-  longitude: Scalars['Float'];
+  longitude: Scalars['Float']['input'];
   State?: InputMaybe<StateCreateNestedOneWithoutGeometryInput>;
 };
 
 export type GeometryCreateManyInput = {
-  h3Index15?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['Int']>;
-  latitude: Scalars['Float'];
-  longitude: Scalars['Float'];
+  h3Index15?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  latitude: Scalars['Float']['input'];
+  longitude: Scalars['Float']['input'];
 };
 
 export type GeometryCreateNestedOneWithoutCityInput = {
@@ -5526,27 +5528,27 @@ export type GeometryCreateOrConnectWithoutStateInput = {
 };
 
 export type GeometryCreateWithoutCityInput = {
-  h3Index15?: InputMaybe<Scalars['String']>;
-  latitude: Scalars['Float'];
+  h3Index15?: InputMaybe<Scalars['String']['input']>;
+  latitude: Scalars['Float']['input'];
   Location?: InputMaybe<LocationCreateNestedOneWithoutGeometryInput>;
-  longitude: Scalars['Float'];
+  longitude: Scalars['Float']['input'];
   State?: InputMaybe<StateCreateNestedOneWithoutGeometryInput>;
 };
 
 export type GeometryCreateWithoutLocationInput = {
   City?: InputMaybe<CityCreateNestedOneWithoutGeometryInput>;
-  h3Index15?: InputMaybe<Scalars['String']>;
-  latitude: Scalars['Float'];
-  longitude: Scalars['Float'];
+  h3Index15?: InputMaybe<Scalars['String']['input']>;
+  latitude: Scalars['Float']['input'];
+  longitude: Scalars['Float']['input'];
   State?: InputMaybe<StateCreateNestedOneWithoutGeometryInput>;
 };
 
 export type GeometryCreateWithoutStateInput = {
   City?: InputMaybe<CityCreateNestedOneWithoutGeometryInput>;
-  h3Index15?: InputMaybe<Scalars['String']>;
-  latitude: Scalars['Float'];
+  h3Index15?: InputMaybe<Scalars['String']['input']>;
+  latitude: Scalars['Float']['input'];
   Location?: InputMaybe<LocationCreateNestedOneWithoutGeometryInput>;
-  longitude: Scalars['Float'];
+  longitude: Scalars['Float']['input'];
 };
 
 export type GeometryMaxOrderByAggregateInput = {
@@ -5733,7 +5735,7 @@ export type GeometryWhereUniqueInput = {
   AND?: InputMaybe<Array<GeometryWhereInput>>;
   City?: InputMaybe<CityWhereInput>;
   h3Index15?: InputMaybe<StringNullableFilter>;
-  id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
   latitude?: InputMaybe<FloatFilter>;
   Location?: InputMaybe<LocationWhereInput>;
   longitude?: InputMaybe<FloatFilter>;
@@ -5744,12 +5746,12 @@ export type GeometryWhereUniqueInput = {
 
 export type Group = {
   __typename?: 'Group';
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
-  name: Scalars['String'];
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
   Photos: Array<Photo>;
   Profile: Array<Profile>;
-  updatedAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 
@@ -5757,8 +5759,8 @@ export type GroupPhotosArgs = {
   cursor?: InputMaybe<PhotoWhereUniqueInput>;
   distinct?: InputMaybe<Array<PhotoScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<PhotoOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<PhotoWhereInput>;
 };
 
@@ -5767,8 +5769,8 @@ export type GroupProfileArgs = {
   cursor?: InputMaybe<ProfileWhereUniqueInput>;
   distinct?: InputMaybe<Array<ProfileScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<ProfileOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ProfileWhereInput>;
 };
 
@@ -5780,19 +5782,19 @@ export type GroupCountOrderByAggregateInput = {
 };
 
 export type GroupCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  name: Scalars['String'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
   Photos?: InputMaybe<PhotoCreateNestedManyWithoutGroupInput>;
   Profile?: InputMaybe<ProfileCreateNestedManyWithoutGroupsInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type GroupCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  name: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type GroupCreateNestedManyWithoutProfileInput = {
@@ -5818,19 +5820,19 @@ export type GroupCreateOrConnectWithoutProfileInput = {
 };
 
 export type GroupCreateWithoutPhotosInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  name: Scalars['String'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
   Profile?: InputMaybe<ProfileCreateNestedManyWithoutGroupsInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type GroupCreateWithoutProfileInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  name: Scalars['String'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
   Photos?: InputMaybe<PhotoCreateNestedManyWithoutGroupInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type GroupListRelationFilter = {
@@ -6005,7 +6007,7 @@ export type GroupWhereInput = {
 export type GroupWhereUniqueInput = {
   AND?: InputMaybe<Array<GroupWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<StringFilter>;
   NOT?: InputMaybe<Array<GroupWhereInput>>;
   OR?: InputMaybe<Array<GroupWhereInput>>;
@@ -6017,15 +6019,15 @@ export type GroupWhereUniqueInput = {
 export type H3Index5VenueRecommendation = {
   __typename?: 'H3Index5VenueRecommendation';
   Area?: Maybe<Area>;
-  areaId?: Maybe<Scalars['String']>;
-  createdAt: Scalars['DateTime'];
-  h3Index5: Scalars['String'];
-  id: Scalars['ID'];
-  keywordSuggestions: Array<Scalars['Json']>;
+  areaId?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['DateTime']['output'];
+  h3Index5: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  keywordSuggestions: Array<Scalars['Json']['output']>;
   SearchAreaMetrics: Array<SearchAreaMetrics>;
-  timesRequested?: Maybe<Scalars['Int']>;
-  updatedAt: Scalars['DateTime'];
-  venuesProfileIds: Array<Scalars['String']>;
+  timesRequested?: Maybe<Scalars['Int']['output']>;
+  updatedAt: Scalars['DateTime']['output'];
+  venuesProfileIds: Array<Scalars['String']['output']>;
   Vote: Array<Vote>;
 };
 
@@ -6034,8 +6036,8 @@ export type H3Index5VenueRecommendationSearchAreaMetricsArgs = {
   cursor?: InputMaybe<SearchAreaMetricsWhereUniqueInput>;
   distinct?: InputMaybe<Array<SearchAreaMetricsScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<SearchAreaMetricsOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<SearchAreaMetricsWhereInput>;
 };
 
@@ -6044,8 +6046,8 @@ export type H3Index5VenueRecommendationVoteArgs = {
   cursor?: InputMaybe<VoteWhereUniqueInput>;
   distinct?: InputMaybe<Array<VoteScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<VoteOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<VoteWhereInput>;
 };
 
@@ -6066,30 +6068,30 @@ export type H3Index5VenueRecommendationCountOrderByAggregateInput = {
 
 export type H3Index5VenueRecommendationCreateInput = {
   Area?: InputMaybe<AreaCreateNestedOneWithoutH3Index5VenueRecommendationInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index5: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['Json']>>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index5: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsCreateNestedManyWithoutH3Index5VenueRecommendationInput>;
-  timesRequested?: InputMaybe<Scalars['Int']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venuesProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
   Vote?: InputMaybe<VoteCreateNestedManyWithoutH3Index5VenueRecommendationInput>;
 };
 
 export type H3Index5VenueRecommendationCreatekeywordSuggestionsInput = {
-  set: Array<Scalars['Json']>;
+  set: Array<Scalars['Json']['input']>;
 };
 
 export type H3Index5VenueRecommendationCreateManyInput = {
-  areaId?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index5: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['Json']>>;
-  timesRequested?: InputMaybe<Scalars['Int']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venuesProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  areaId?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index5: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index5VenueRecommendationCreateNestedOneWithoutAreaInput = {
@@ -6126,43 +6128,43 @@ export type H3Index5VenueRecommendationCreateOrConnectWithoutVoteInput = {
 };
 
 export type H3Index5VenueRecommendationCreatevenuesProfileIdsInput = {
-  set: Array<Scalars['String']>;
+  set: Array<Scalars['String']['input']>;
 };
 
 export type H3Index5VenueRecommendationCreateWithoutAreaInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index5: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['Json']>>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index5: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsCreateNestedManyWithoutH3Index5VenueRecommendationInput>;
-  timesRequested?: InputMaybe<Scalars['Int']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venuesProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
   Vote?: InputMaybe<VoteCreateNestedManyWithoutH3Index5VenueRecommendationInput>;
 };
 
 export type H3Index5VenueRecommendationCreateWithoutSearchAreaMetricsInput = {
   Area?: InputMaybe<AreaCreateNestedOneWithoutH3Index5VenueRecommendationInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index5: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['Json']>>;
-  timesRequested?: InputMaybe<Scalars['Int']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venuesProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index5: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
   Vote?: InputMaybe<VoteCreateNestedManyWithoutH3Index5VenueRecommendationInput>;
 };
 
 export type H3Index5VenueRecommendationCreateWithoutVoteInput = {
   Area?: InputMaybe<AreaCreateNestedOneWithoutH3Index5VenueRecommendationInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index5: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['Json']>>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index5: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsCreateNestedManyWithoutH3Index5VenueRecommendationInput>;
-  timesRequested?: InputMaybe<Scalars['Int']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venuesProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index5VenueRecommendationMaxOrderByAggregateInput = {
@@ -6252,27 +6254,27 @@ export type H3Index5VenueRecommendationUpdateInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   h3Index5?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['Json']>>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsUpdateManyWithoutH3Index5VenueRecommendationNestedInput>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  venuesProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
   Vote?: InputMaybe<VoteUpdateManyWithoutH3Index5VenueRecommendationNestedInput>;
 };
 
 export type H3Index5VenueRecommendationUpdatekeywordSuggestionsInput = {
-  push?: InputMaybe<Scalars['Json']>;
-  set?: InputMaybe<Array<Scalars['Json']>>;
+  push?: InputMaybe<Scalars['Json']['input']>;
+  set?: InputMaybe<Array<Scalars['Json']['input']>>;
 };
 
 export type H3Index5VenueRecommendationUpdateManyMutationInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   h3Index5?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['Json']>>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  venuesProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index5VenueRecommendationUpdateOneWithoutAreaNestedInput = {
@@ -6321,19 +6323,19 @@ export type H3Index5VenueRecommendationUpdateToOneWithWhereWithoutVoteInput = {
 };
 
 export type H3Index5VenueRecommendationUpdatevenuesProfileIdsInput = {
-  push?: InputMaybe<Array<Scalars['String']>>;
-  set?: InputMaybe<Array<Scalars['String']>>;
+  push?: InputMaybe<Array<Scalars['String']['input']>>;
+  set?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index5VenueRecommendationUpdateWithoutAreaInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   h3Index5?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['Json']>>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsUpdateManyWithoutH3Index5VenueRecommendationNestedInput>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  venuesProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
   Vote?: InputMaybe<VoteUpdateManyWithoutH3Index5VenueRecommendationNestedInput>;
 };
 
@@ -6342,10 +6344,10 @@ export type H3Index5VenueRecommendationUpdateWithoutSearchAreaMetricsInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   h3Index5?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['Json']>>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  venuesProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
   Vote?: InputMaybe<VoteUpdateManyWithoutH3Index5VenueRecommendationNestedInput>;
 };
 
@@ -6354,11 +6356,11 @@ export type H3Index5VenueRecommendationUpdateWithoutVoteInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   h3Index5?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['Json']>>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsUpdateManyWithoutH3Index5VenueRecommendationNestedInput>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  venuesProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index5VenueRecommendationUpsertWithoutAreaInput = {
@@ -6399,10 +6401,10 @@ export type H3Index5VenueRecommendationWhereInput = {
 export type H3Index5VenueRecommendationWhereUniqueInput = {
   AND?: InputMaybe<Array<H3Index5VenueRecommendationWhereInput>>;
   Area?: InputMaybe<AreaWhereInput>;
-  areaId?: InputMaybe<Scalars['String']>;
+  areaId?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  h3Index5?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
+  h3Index5?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   keywordSuggestions?: InputMaybe<JsonNullableListFilter>;
   NOT?: InputMaybe<Array<H3Index5VenueRecommendationWhereInput>>;
   OR?: InputMaybe<Array<H3Index5VenueRecommendationWhereInput>>;
@@ -6416,17 +6418,17 @@ export type H3Index5VenueRecommendationWhereUniqueInput = {
 export type H3Index6VenueRecommendation = {
   __typename?: 'H3Index6VenueRecommendation';
   Area?: Maybe<Area>;
-  areaId?: Maybe<Scalars['String']>;
-  createdAt: Scalars['DateTime'];
-  distanceInM?: Maybe<Scalars['Int']>;
-  h3Index6: Scalars['String'];
-  id: Scalars['ID'];
-  keywordSuggestions: Array<Scalars['Json']>;
+  areaId?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['DateTime']['output'];
+  distanceInM?: Maybe<Scalars['Int']['output']>;
+  h3Index6: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  keywordSuggestions: Array<Scalars['Json']['output']>;
   SearchAreaMetrics: Array<SearchAreaMetrics>;
-  timesRequested?: Maybe<Scalars['Int']>;
-  updatedAt: Scalars['DateTime'];
+  timesRequested?: Maybe<Scalars['Int']['output']>;
+  updatedAt: Scalars['DateTime']['output'];
   venues?: Maybe<Array<ProfileVenue>>;
-  venuesProfileIds: Array<Scalars['String']>;
+  venuesProfileIds: Array<Scalars['String']['output']>;
   Vote: Array<Vote>;
 };
 
@@ -6435,8 +6437,8 @@ export type H3Index6VenueRecommendationSearchAreaMetricsArgs = {
   cursor?: InputMaybe<SearchAreaMetricsWhereUniqueInput>;
   distinct?: InputMaybe<Array<SearchAreaMetricsScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<SearchAreaMetricsOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<SearchAreaMetricsWhereInput>;
 };
 
@@ -6445,8 +6447,8 @@ export type H3Index6VenueRecommendationVoteArgs = {
   cursor?: InputMaybe<VoteWhereUniqueInput>;
   distinct?: InputMaybe<Array<VoteScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<VoteOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<VoteWhereInput>;
 };
 
@@ -6467,30 +6469,30 @@ export type H3Index6VenueRecommendationCountOrderByAggregateInput = {
 
 export type H3Index6VenueRecommendationCreateInput = {
   Area?: InputMaybe<AreaCreateNestedOneWithoutH3Index6VenueRecommendationInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index6: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['Json']>>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index6: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsCreateNestedManyWithoutH3Index6VenueRecommendationInput>;
-  timesRequested?: InputMaybe<Scalars['Int']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venuesProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
   Vote?: InputMaybe<VoteCreateNestedManyWithoutH3Index6VenueRecommendationInput>;
 };
 
 export type H3Index6VenueRecommendationCreatekeywordSuggestionsInput = {
-  set: Array<Scalars['Json']>;
+  set: Array<Scalars['Json']['input']>;
 };
 
 export type H3Index6VenueRecommendationCreateManyInput = {
-  areaId?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index6: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['Json']>>;
-  timesRequested?: InputMaybe<Scalars['Int']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venuesProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  areaId?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index6: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index6VenueRecommendationCreateNestedOneWithoutAreaInput = {
@@ -6527,43 +6529,43 @@ export type H3Index6VenueRecommendationCreateOrConnectWithoutVoteInput = {
 };
 
 export type H3Index6VenueRecommendationCreatevenuesProfileIdsInput = {
-  set: Array<Scalars['String']>;
+  set: Array<Scalars['String']['input']>;
 };
 
 export type H3Index6VenueRecommendationCreateWithoutAreaInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index6: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['Json']>>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index6: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsCreateNestedManyWithoutH3Index6VenueRecommendationInput>;
-  timesRequested?: InputMaybe<Scalars['Int']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venuesProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
   Vote?: InputMaybe<VoteCreateNestedManyWithoutH3Index6VenueRecommendationInput>;
 };
 
 export type H3Index6VenueRecommendationCreateWithoutSearchAreaMetricsInput = {
   Area?: InputMaybe<AreaCreateNestedOneWithoutH3Index6VenueRecommendationInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index6: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['Json']>>;
-  timesRequested?: InputMaybe<Scalars['Int']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venuesProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index6: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
   Vote?: InputMaybe<VoteCreateNestedManyWithoutH3Index6VenueRecommendationInput>;
 };
 
 export type H3Index6VenueRecommendationCreateWithoutVoteInput = {
   Area?: InputMaybe<AreaCreateNestedOneWithoutH3Index6VenueRecommendationInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index6: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['Json']>>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index6: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsCreateNestedManyWithoutH3Index6VenueRecommendationInput>;
-  timesRequested?: InputMaybe<Scalars['Int']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venuesProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index6VenueRecommendationMaxOrderByAggregateInput = {
@@ -6653,27 +6655,27 @@ export type H3Index6VenueRecommendationUpdateInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   h3Index6?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['Json']>>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsUpdateManyWithoutH3Index6VenueRecommendationNestedInput>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  venuesProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
   Vote?: InputMaybe<VoteUpdateManyWithoutH3Index6VenueRecommendationNestedInput>;
 };
 
 export type H3Index6VenueRecommendationUpdatekeywordSuggestionsInput = {
-  push?: InputMaybe<Scalars['Json']>;
-  set?: InputMaybe<Array<Scalars['Json']>>;
+  push?: InputMaybe<Scalars['Json']['input']>;
+  set?: InputMaybe<Array<Scalars['Json']['input']>>;
 };
 
 export type H3Index6VenueRecommendationUpdateManyMutationInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   h3Index6?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['Json']>>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  venuesProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index6VenueRecommendationUpdateOneWithoutAreaNestedInput = {
@@ -6722,19 +6724,19 @@ export type H3Index6VenueRecommendationUpdateToOneWithWhereWithoutVoteInput = {
 };
 
 export type H3Index6VenueRecommendationUpdatevenuesProfileIdsInput = {
-  push?: InputMaybe<Array<Scalars['String']>>;
-  set?: InputMaybe<Array<Scalars['String']>>;
+  push?: InputMaybe<Array<Scalars['String']['input']>>;
+  set?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index6VenueRecommendationUpdateWithoutAreaInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   h3Index6?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['Json']>>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsUpdateManyWithoutH3Index6VenueRecommendationNestedInput>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  venuesProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
   Vote?: InputMaybe<VoteUpdateManyWithoutH3Index6VenueRecommendationNestedInput>;
 };
 
@@ -6743,10 +6745,10 @@ export type H3Index6VenueRecommendationUpdateWithoutSearchAreaMetricsInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   h3Index6?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['Json']>>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  venuesProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
   Vote?: InputMaybe<VoteUpdateManyWithoutH3Index6VenueRecommendationNestedInput>;
 };
 
@@ -6755,11 +6757,11 @@ export type H3Index6VenueRecommendationUpdateWithoutVoteInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   h3Index6?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Array<Scalars['Json']>>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsUpdateManyWithoutH3Index6VenueRecommendationNestedInput>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  venuesProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index6VenueRecommendationUpsertWithoutAreaInput = {
@@ -6800,10 +6802,10 @@ export type H3Index6VenueRecommendationWhereInput = {
 export type H3Index6VenueRecommendationWhereUniqueInput = {
   AND?: InputMaybe<Array<H3Index6VenueRecommendationWhereInput>>;
   Area?: InputMaybe<AreaWhereInput>;
-  areaId?: InputMaybe<Scalars['String']>;
+  areaId?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  h3Index6?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
+  h3Index6?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   keywordSuggestions?: InputMaybe<JsonNullableListFilter>;
   NOT?: InputMaybe<Array<H3Index6VenueRecommendationWhereInput>>;
   OR?: InputMaybe<Array<H3Index6VenueRecommendationWhereInput>>;
@@ -6826,23 +6828,23 @@ export type IBasePostEvent = {
 
 export type IdentifiableInformation = {
   __typename?: 'IdentifiableInformation';
-  birthday?: Maybe<Scalars['DateTime']>;
-  createdAt: Scalars['DateTime'];
-  currenttown?: Maybe<Scalars['String']>;
-  firstname?: Maybe<Scalars['String']>;
-  fullname?: Maybe<Scalars['String']>;
-  gender?: Maybe<Scalars['String']>;
-  hometown?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  lastname?: Maybe<Scalars['String']>;
-  lookfor?: Maybe<Scalars['String']>;
-  nickname?: Maybe<Scalars['String']>;
+  birthday?: Maybe<Scalars['DateTime']['output']>;
+  createdAt: Scalars['DateTime']['output'];
+  currenttown?: Maybe<Scalars['String']['output']>;
+  firstname?: Maybe<Scalars['String']['output']>;
+  fullname?: Maybe<Scalars['String']['output']>;
+  gender?: Maybe<Scalars['String']['output']>;
+  hometown?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  lastname?: Maybe<Scalars['String']['output']>;
+  lookfor?: Maybe<Scalars['String']['output']>;
+  nickname?: Maybe<Scalars['String']['output']>;
   Profile: Profile;
-  profileId: Scalars['String'];
-  storageId?: Maybe<Scalars['String']>;
-  surname?: Maybe<Scalars['String']>;
-  updatedAt: Scalars['DateTime'];
-  username: Scalars['String'];
+  profileId: Scalars['String']['output'];
+  storageId?: Maybe<Scalars['String']['output']>;
+  surname?: Maybe<Scalars['String']['output']>;
+  updatedAt: Scalars['DateTime']['output'];
+  username: Scalars['String']['output'];
 };
 
 export type IdentifiableInformationCountOrderByAggregateInput = {
@@ -6865,41 +6867,41 @@ export type IdentifiableInformationCountOrderByAggregateInput = {
 };
 
 export type IdentifiableInformationCreateInput = {
-  birthday?: InputMaybe<Scalars['DateTime']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  currenttown?: InputMaybe<Scalars['String']>;
-  firstname?: InputMaybe<Scalars['String']>;
-  fullname?: InputMaybe<Scalars['String']>;
-  gender?: InputMaybe<Scalars['String']>;
-  hometown?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
-  lastname?: InputMaybe<Scalars['String']>;
-  lookfor?: InputMaybe<Scalars['String']>;
-  nickname?: InputMaybe<Scalars['String']>;
+  birthday?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  currenttown?: InputMaybe<Scalars['String']['input']>;
+  firstname?: InputMaybe<Scalars['String']['input']>;
+  fullname?: InputMaybe<Scalars['String']['input']>;
+  gender?: InputMaybe<Scalars['String']['input']>;
+  hometown?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  lastname?: InputMaybe<Scalars['String']['input']>;
+  lookfor?: InputMaybe<Scalars['String']['input']>;
+  nickname?: InputMaybe<Scalars['String']['input']>;
   Profile: ProfileCreateNestedOneWithoutIdentifiableInformationInput;
-  storageId?: InputMaybe<Scalars['String']>;
-  surname?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  username: Scalars['String'];
+  storageId?: InputMaybe<Scalars['String']['input']>;
+  surname?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  username: Scalars['String']['input'];
 };
 
 export type IdentifiableInformationCreateManyInput = {
-  birthday?: InputMaybe<Scalars['DateTime']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  currenttown?: InputMaybe<Scalars['String']>;
-  firstname?: InputMaybe<Scalars['String']>;
-  fullname?: InputMaybe<Scalars['String']>;
-  gender?: InputMaybe<Scalars['String']>;
-  hometown?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
-  lastname?: InputMaybe<Scalars['String']>;
-  lookfor?: InputMaybe<Scalars['String']>;
-  nickname?: InputMaybe<Scalars['String']>;
-  profileId: Scalars['String'];
-  storageId?: InputMaybe<Scalars['String']>;
-  surname?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  username: Scalars['String'];
+  birthday?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  currenttown?: InputMaybe<Scalars['String']['input']>;
+  firstname?: InputMaybe<Scalars['String']['input']>;
+  fullname?: InputMaybe<Scalars['String']['input']>;
+  gender?: InputMaybe<Scalars['String']['input']>;
+  hometown?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  lastname?: InputMaybe<Scalars['String']['input']>;
+  lookfor?: InputMaybe<Scalars['String']['input']>;
+  nickname?: InputMaybe<Scalars['String']['input']>;
+  profileId: Scalars['String']['input'];
+  storageId?: InputMaybe<Scalars['String']['input']>;
+  surname?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  username: Scalars['String']['input'];
 };
 
 export type IdentifiableInformationCreateNestedOneWithoutProfileInput = {
@@ -6914,21 +6916,21 @@ export type IdentifiableInformationCreateOrConnectWithoutProfileInput = {
 };
 
 export type IdentifiableInformationCreateWithoutProfileInput = {
-  birthday?: InputMaybe<Scalars['DateTime']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  currenttown?: InputMaybe<Scalars['String']>;
-  firstname?: InputMaybe<Scalars['String']>;
-  fullname?: InputMaybe<Scalars['String']>;
-  gender?: InputMaybe<Scalars['String']>;
-  hometown?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
-  lastname?: InputMaybe<Scalars['String']>;
-  lookfor?: InputMaybe<Scalars['String']>;
-  nickname?: InputMaybe<Scalars['String']>;
-  storageId?: InputMaybe<Scalars['String']>;
-  surname?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  username: Scalars['String'];
+  birthday?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  currenttown?: InputMaybe<Scalars['String']['input']>;
+  firstname?: InputMaybe<Scalars['String']['input']>;
+  fullname?: InputMaybe<Scalars['String']['input']>;
+  gender?: InputMaybe<Scalars['String']['input']>;
+  hometown?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  lastname?: InputMaybe<Scalars['String']['input']>;
+  lookfor?: InputMaybe<Scalars['String']['input']>;
+  nickname?: InputMaybe<Scalars['String']['input']>;
+  storageId?: InputMaybe<Scalars['String']['input']>;
+  surname?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  username: Scalars['String']['input'];
 };
 
 export type IdentifiableInformationMaxOrderByAggregateInput = {
@@ -7165,48 +7167,48 @@ export type IdentifiableInformationWhereUniqueInput = {
   fullname?: InputMaybe<StringNullableFilter>;
   gender?: InputMaybe<StringNullableFilter>;
   hometown?: InputMaybe<StringNullableFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   lastname?: InputMaybe<StringNullableFilter>;
   lookfor?: InputMaybe<StringNullableFilter>;
   nickname?: InputMaybe<StringNullableFilter>;
   NOT?: InputMaybe<Array<IdentifiableInformationWhereInput>>;
   OR?: InputMaybe<Array<IdentifiableInformationWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
-  profileId?: InputMaybe<Scalars['String']>;
+  profileId?: InputMaybe<Scalars['String']['input']>;
   storageId?: InputMaybe<StringNullableFilter>;
   surname?: InputMaybe<StringNullableFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
-  username?: InputMaybe<Scalars['String']>;
+  username?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type IntFieldUpdateOperationsInput = {
-  decrement?: InputMaybe<Scalars['Int']>;
-  divide?: InputMaybe<Scalars['Int']>;
-  increment?: InputMaybe<Scalars['Int']>;
-  multiply?: InputMaybe<Scalars['Int']>;
-  set?: InputMaybe<Scalars['Int']>;
+  decrement?: InputMaybe<Scalars['Int']['input']>;
+  divide?: InputMaybe<Scalars['Int']['input']>;
+  increment?: InputMaybe<Scalars['Int']['input']>;
+  multiply?: InputMaybe<Scalars['Int']['input']>;
+  set?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type IntFilter = {
-  equals?: InputMaybe<Scalars['Int']>;
-  gt?: InputMaybe<Scalars['Int']>;
-  gte?: InputMaybe<Scalars['Int']>;
-  in?: InputMaybe<Array<Scalars['Int']>>;
-  lt?: InputMaybe<Scalars['Int']>;
-  lte?: InputMaybe<Scalars['Int']>;
+  equals?: InputMaybe<Scalars['Int']['input']>;
+  gt?: InputMaybe<Scalars['Int']['input']>;
+  gte?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  lt?: InputMaybe<Scalars['Int']['input']>;
+  lte?: InputMaybe<Scalars['Int']['input']>;
   not?: InputMaybe<NestedIntFilter>;
-  notIn?: InputMaybe<Array<Scalars['Int']>>;
+  notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
 export type IntNullableFilter = {
-  equals?: InputMaybe<Scalars['Int']>;
-  gt?: InputMaybe<Scalars['Int']>;
-  gte?: InputMaybe<Scalars['Int']>;
-  in?: InputMaybe<Array<Scalars['Int']>>;
-  lt?: InputMaybe<Scalars['Int']>;
-  lte?: InputMaybe<Scalars['Int']>;
+  equals?: InputMaybe<Scalars['Int']['input']>;
+  gt?: InputMaybe<Scalars['Int']['input']>;
+  gte?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  lt?: InputMaybe<Scalars['Int']['input']>;
+  lte?: InputMaybe<Scalars['Int']['input']>;
   not?: InputMaybe<NestedIntNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['Int']>>;
+  notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
 export type IntNullableWithAggregatesFilter = {
@@ -7215,14 +7217,14 @@ export type IntNullableWithAggregatesFilter = {
   _max?: InputMaybe<NestedIntNullableFilter>;
   _min?: InputMaybe<NestedIntNullableFilter>;
   _sum?: InputMaybe<NestedIntNullableFilter>;
-  equals?: InputMaybe<Scalars['Int']>;
-  gt?: InputMaybe<Scalars['Int']>;
-  gte?: InputMaybe<Scalars['Int']>;
-  in?: InputMaybe<Array<Scalars['Int']>>;
-  lt?: InputMaybe<Scalars['Int']>;
-  lte?: InputMaybe<Scalars['Int']>;
+  equals?: InputMaybe<Scalars['Int']['input']>;
+  gt?: InputMaybe<Scalars['Int']['input']>;
+  gte?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  lt?: InputMaybe<Scalars['Int']['input']>;
+  lte?: InputMaybe<Scalars['Int']['input']>;
   not?: InputMaybe<NestedIntNullableWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['Int']>>;
+  notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
 export type IntWithAggregatesFilter = {
@@ -7231,38 +7233,38 @@ export type IntWithAggregatesFilter = {
   _max?: InputMaybe<NestedIntFilter>;
   _min?: InputMaybe<NestedIntFilter>;
   _sum?: InputMaybe<NestedIntFilter>;
-  equals?: InputMaybe<Scalars['Int']>;
-  gt?: InputMaybe<Scalars['Int']>;
-  gte?: InputMaybe<Scalars['Int']>;
-  in?: InputMaybe<Array<Scalars['Int']>>;
-  lt?: InputMaybe<Scalars['Int']>;
-  lte?: InputMaybe<Scalars['Int']>;
+  equals?: InputMaybe<Scalars['Int']['input']>;
+  gt?: InputMaybe<Scalars['Int']['input']>;
+  gte?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  lt?: InputMaybe<Scalars['Int']['input']>;
+  lte?: InputMaybe<Scalars['Int']['input']>;
   not?: InputMaybe<NestedIntWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['Int']>>;
+  notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
 export type JsonFilter = {
-  array_contains?: InputMaybe<Scalars['Json']>;
-  array_ends_with?: InputMaybe<Scalars['Json']>;
-  array_starts_with?: InputMaybe<Scalars['Json']>;
-  equals?: InputMaybe<Scalars['Json']>;
-  gt?: InputMaybe<Scalars['Json']>;
-  gte?: InputMaybe<Scalars['Json']>;
-  lt?: InputMaybe<Scalars['Json']>;
-  lte?: InputMaybe<Scalars['Json']>;
-  not?: InputMaybe<Scalars['Json']>;
-  path?: InputMaybe<Array<Scalars['String']>>;
-  string_contains?: InputMaybe<Scalars['String']>;
-  string_ends_with?: InputMaybe<Scalars['String']>;
-  string_starts_with?: InputMaybe<Scalars['String']>;
+  array_contains?: InputMaybe<Scalars['Json']['input']>;
+  array_ends_with?: InputMaybe<Scalars['Json']['input']>;
+  array_starts_with?: InputMaybe<Scalars['Json']['input']>;
+  equals?: InputMaybe<Scalars['Json']['input']>;
+  gt?: InputMaybe<Scalars['Json']['input']>;
+  gte?: InputMaybe<Scalars['Json']['input']>;
+  lt?: InputMaybe<Scalars['Json']['input']>;
+  lte?: InputMaybe<Scalars['Json']['input']>;
+  not?: InputMaybe<Scalars['Json']['input']>;
+  path?: InputMaybe<Array<Scalars['String']['input']>>;
+  string_contains?: InputMaybe<Scalars['String']['input']>;
+  string_ends_with?: InputMaybe<Scalars['String']['input']>;
+  string_starts_with?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type JsonNullableListFilter = {
-  equals?: InputMaybe<Array<Scalars['Json']>>;
-  has?: InputMaybe<Scalars['Json']>;
-  hasEvery?: InputMaybe<Array<Scalars['Json']>>;
-  hasSome?: InputMaybe<Array<Scalars['Json']>>;
-  isEmpty?: InputMaybe<Scalars['Boolean']>;
+  equals?: InputMaybe<Array<Scalars['Json']['input']>>;
+  has?: InputMaybe<Scalars['Json']['input']>;
+  hasEvery?: InputMaybe<Array<Scalars['Json']['input']>>;
+  hasSome?: InputMaybe<Array<Scalars['Json']['input']>>;
+  isEmpty?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export enum JsonNullValueFilter {
@@ -7279,19 +7281,19 @@ export type JsonWithAggregatesFilter = {
   _count?: InputMaybe<NestedIntFilter>;
   _max?: InputMaybe<NestedJsonFilter>;
   _min?: InputMaybe<NestedJsonFilter>;
-  array_contains?: InputMaybe<Scalars['Json']>;
-  array_ends_with?: InputMaybe<Scalars['Json']>;
-  array_starts_with?: InputMaybe<Scalars['Json']>;
-  equals?: InputMaybe<Scalars['Json']>;
-  gt?: InputMaybe<Scalars['Json']>;
-  gte?: InputMaybe<Scalars['Json']>;
-  lt?: InputMaybe<Scalars['Json']>;
-  lte?: InputMaybe<Scalars['Json']>;
-  not?: InputMaybe<Scalars['Json']>;
-  path?: InputMaybe<Array<Scalars['String']>>;
-  string_contains?: InputMaybe<Scalars['String']>;
-  string_ends_with?: InputMaybe<Scalars['String']>;
-  string_starts_with?: InputMaybe<Scalars['String']>;
+  array_contains?: InputMaybe<Scalars['Json']['input']>;
+  array_ends_with?: InputMaybe<Scalars['Json']['input']>;
+  array_starts_with?: InputMaybe<Scalars['Json']['input']>;
+  equals?: InputMaybe<Scalars['Json']['input']>;
+  gt?: InputMaybe<Scalars['Json']['input']>;
+  gte?: InputMaybe<Scalars['Json']['input']>;
+  lt?: InputMaybe<Scalars['Json']['input']>;
+  lte?: InputMaybe<Scalars['Json']['input']>;
+  not?: InputMaybe<Scalars['Json']['input']>;
+  path?: InputMaybe<Array<Scalars['String']['input']>>;
+  string_contains?: InputMaybe<Scalars['String']['input']>;
+  string_ends_with?: InputMaybe<Scalars['String']['input']>;
+  string_starts_with?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Returns the Profile latest Privacy and Terms of Service documents to the client. */
@@ -7303,14 +7305,14 @@ export type LatestPrivacyAndTermsDocumentResponse = {
 
 export type LegalAgreement = {
   __typename?: 'LegalAgreement';
-  aggreed: Scalars['Boolean'];
-  createdAt: Scalars['DateTime'];
+  aggreed: Scalars['Boolean']['output'];
+  createdAt: Scalars['DateTime']['output'];
   Credentials?: Maybe<Credentials>;
-  credentialsId?: Maybe<Scalars['String']>;
+  credentialsId?: Maybe<Scalars['String']['output']>;
   Document: Document;
-  documentId: Scalars['Int'];
-  id: Scalars['ID'];
-  updatedAt: Scalars['DateTime'];
+  documentId: Scalars['Int']['output'];
+  id: Scalars['ID']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type LegalAgreementAvgOrderByAggregateInput = {
@@ -7327,47 +7329,47 @@ export type LegalAgreementCountOrderByAggregateInput = {
 };
 
 export type LegalAgreementCreateInput = {
-  aggreed?: InputMaybe<Scalars['Boolean']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  aggreed?: InputMaybe<Scalars['Boolean']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutLegalAgreementInput>;
   Document: DocumentCreateNestedOneWithoutLegalAgreementInput;
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type LegalAgreementCreateManyCredentialsInput = {
-  aggreed?: InputMaybe<Scalars['Boolean']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  documentId: Scalars['Int'];
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  aggreed?: InputMaybe<Scalars['Boolean']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  documentId: Scalars['Int']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type LegalAgreementCreateManyCredentialsInputEnvelope = {
   data: Array<LegalAgreementCreateManyCredentialsInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type LegalAgreementCreateManyDocumentInput = {
-  aggreed?: InputMaybe<Scalars['Boolean']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  credentialsId?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  aggreed?: InputMaybe<Scalars['Boolean']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  credentialsId?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type LegalAgreementCreateManyDocumentInputEnvelope = {
   data: Array<LegalAgreementCreateManyDocumentInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type LegalAgreementCreateManyInput = {
-  aggreed?: InputMaybe<Scalars['Boolean']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  credentialsId?: InputMaybe<Scalars['String']>;
-  documentId: Scalars['Int'];
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  aggreed?: InputMaybe<Scalars['Boolean']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  credentialsId?: InputMaybe<Scalars['String']['input']>;
+  documentId: Scalars['Int']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type LegalAgreementCreateNestedManyWithoutCredentialsInput = {
@@ -7395,19 +7397,19 @@ export type LegalAgreementCreateOrConnectWithoutDocumentInput = {
 };
 
 export type LegalAgreementCreateWithoutCredentialsInput = {
-  aggreed?: InputMaybe<Scalars['Boolean']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  aggreed?: InputMaybe<Scalars['Boolean']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Document: DocumentCreateNestedOneWithoutLegalAgreementInput;
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type LegalAgreementCreateWithoutDocumentInput = {
-  aggreed?: InputMaybe<Scalars['Boolean']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  aggreed?: InputMaybe<Scalars['Boolean']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutLegalAgreementInput>;
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type LegalAgreementListRelationFilter = {
@@ -7614,7 +7616,7 @@ export type LegalAgreementWhereUniqueInput = {
   credentialsId?: InputMaybe<StringNullableFilter>;
   Document?: InputMaybe<DocumentWhereInput>;
   documentId?: InputMaybe<IntFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<LegalAgreementWhereInput>>;
   OR?: InputMaybe<Array<LegalAgreementWhereInput>>;
   updatedAt?: InputMaybe<DateTimeFilter>;
@@ -7622,12 +7624,12 @@ export type LegalAgreementWhereUniqueInput = {
 
 export type LiveOutPersonal = {
   __typename?: 'LiveOutPersonal';
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
   Out: Array<Out>;
   Personal: Personal;
-  personalId: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
+  personalId: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 
@@ -7635,8 +7637,8 @@ export type LiveOutPersonalOutArgs = {
   cursor?: InputMaybe<OutWhereUniqueInput>;
   distinct?: InputMaybe<Array<OutScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<OutOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<OutWhereInput>;
 };
 
@@ -7648,18 +7650,18 @@ export type LiveOutPersonalCountOrderByAggregateInput = {
 };
 
 export type LiveOutPersonalCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Out?: InputMaybe<OutCreateNestedManyWithoutLiveOutPersonalInput>;
   Personal: PersonalCreateNestedOneWithoutLiveOutPersonalInput;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type LiveOutPersonalCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  personalId: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  personalId: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type LiveOutPersonalCreateNestedOneWithoutOutInput = {
@@ -7685,17 +7687,17 @@ export type LiveOutPersonalCreateOrConnectWithoutPersonalInput = {
 };
 
 export type LiveOutPersonalCreateWithoutOutInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Personal: PersonalCreateNestedOneWithoutLiveOutPersonalInput;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type LiveOutPersonalCreateWithoutPersonalInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Out?: InputMaybe<OutCreateNestedManyWithoutLiveOutPersonalInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type LiveOutPersonalMaxOrderByAggregateInput = {
@@ -7838,23 +7840,23 @@ export type LiveOutPersonalWhereInput = {
 export type LiveOutPersonalWhereUniqueInput = {
   AND?: InputMaybe<Array<LiveOutPersonalWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<LiveOutPersonalWhereInput>>;
   OR?: InputMaybe<Array<LiveOutPersonalWhereInput>>;
   Out?: InputMaybe<OutListRelationFilter>;
   Personal?: InputMaybe<PersonalWhereInput>;
-  personalId?: InputMaybe<Scalars['String']>;
+  personalId?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
 export type LiveOutVenue = {
   __typename?: 'LiveOutVenue';
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
   Out: Array<Out>;
-  updatedAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime']['output'];
   Venue: Venue;
-  venueId: Scalars['String'];
+  venueId: Scalars['String']['output'];
 };
 
 
@@ -7862,8 +7864,8 @@ export type LiveOutVenueOutArgs = {
   cursor?: InputMaybe<OutWhereUniqueInput>;
   distinct?: InputMaybe<Array<OutScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<OutOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<OutWhereInput>;
 };
 
@@ -7875,18 +7877,18 @@ export type LiveOutVenueCountOrderByAggregateInput = {
 };
 
 export type LiveOutVenueCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Out?: InputMaybe<OutCreateNestedManyWithoutLiveOutVenueInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue: VenueCreateNestedOneWithoutLiveOutVenueInput;
 };
 
 export type LiveOutVenueCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venueId: Scalars['String'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venueId: Scalars['String']['input'];
 };
 
 export type LiveOutVenueCreateNestedOneWithoutOutInput = {
@@ -7912,17 +7914,17 @@ export type LiveOutVenueCreateOrConnectWithoutVenueInput = {
 };
 
 export type LiveOutVenueCreateWithoutOutInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue: VenueCreateNestedOneWithoutLiveOutVenueInput;
 };
 
 export type LiveOutVenueCreateWithoutVenueInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Out?: InputMaybe<OutCreateNestedManyWithoutLiveOutVenueInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type LiveOutVenueMaxOrderByAggregateInput = {
@@ -8065,13 +8067,13 @@ export type LiveOutVenueWhereInput = {
 export type LiveOutVenueWhereUniqueInput = {
   AND?: InputMaybe<Array<LiveOutVenueWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<LiveOutVenueWhereInput>>;
   OR?: InputMaybe<Array<LiveOutVenueWhereInput>>;
   Out?: InputMaybe<OutListRelationFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
   Venue?: InputMaybe<VenueWhereInput>;
-  venueId?: InputMaybe<Scalars['String']>;
+  venueId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type LiveVenueTotals = {
@@ -8083,19 +8085,19 @@ export type LiveVenueTotals = {
 export type Location = {
   __typename?: 'Location';
   Address?: Maybe<Address>;
-  addressId?: Maybe<Scalars['String']>;
+  addressId?: Maybe<Scalars['String']['output']>;
   Area?: Maybe<Area>;
-  areaId?: Maybe<Scalars['String']>;
-  createdAt: Scalars['DateTime'];
+  areaId?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['DateTime']['output'];
   Geometry?: Maybe<Geometry>;
-  geometryId?: Maybe<Scalars['Int']>;
-  h3Index15: Scalars['String'];
-  id: Scalars['ID'];
+  geometryId?: Maybe<Scalars['Int']['output']>;
+  h3Index15: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
   plusCode?: Maybe<PluseCode>;
-  pluseCodeId?: Maybe<Scalars['String']>;
-  updatedAt: Scalars['DateTime'];
+  pluseCodeId?: Maybe<Scalars['String']['output']>;
+  updatedAt: Scalars['DateTime']['output'];
   Venue?: Maybe<Venue>;
-  venueId?: Maybe<Scalars['String']>;
+  venueId?: Maybe<Scalars['String']['output']>;
 };
 
 export type LocationAvgOrderByAggregateInput = {
@@ -8117,41 +8119,41 @@ export type LocationCountOrderByAggregateInput = {
 export type LocationCreateInput = {
   Address?: InputMaybe<AddressCreateNestedOneWithoutLocationInput>;
   Area?: InputMaybe<AreaCreateNestedOneWithoutLocationInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Geometry?: InputMaybe<GeometryCreateNestedOneWithoutLocationInput>;
-  h3Index15: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
+  h3Index15: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
   plusCode?: InputMaybe<PluseCodeCreateNestedOneWithoutLocationInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue?: InputMaybe<VenueCreateNestedOneWithoutLocationInput>;
 };
 
 export type LocationCreateManyAddressInput = {
-  areaId?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  geometryId?: InputMaybe<Scalars['Int']>;
-  h3Index15: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  pluseCodeId?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venueId?: InputMaybe<Scalars['String']>;
+  areaId?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  geometryId?: InputMaybe<Scalars['Int']['input']>;
+  h3Index15: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  pluseCodeId?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venueId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type LocationCreateManyAddressInputEnvelope = {
   data: Array<LocationCreateManyAddressInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type LocationCreateManyInput = {
-  addressId?: InputMaybe<Scalars['String']>;
-  areaId?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  geometryId?: InputMaybe<Scalars['Int']>;
-  h3Index15: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  pluseCodeId?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venueId?: InputMaybe<Scalars['String']>;
+  addressId?: InputMaybe<Scalars['String']['input']>;
+  areaId?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  geometryId?: InputMaybe<Scalars['Int']['input']>;
+  h3Index15: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  pluseCodeId?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venueId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type LocationCreateNestedManyWithoutAddressInput = {
@@ -8212,57 +8214,57 @@ export type LocationCreateOrConnectWithoutVenueInput = {
 
 export type LocationCreateWithoutAddressInput = {
   Area?: InputMaybe<AreaCreateNestedOneWithoutLocationInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Geometry?: InputMaybe<GeometryCreateNestedOneWithoutLocationInput>;
-  h3Index15: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
+  h3Index15: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
   plusCode?: InputMaybe<PluseCodeCreateNestedOneWithoutLocationInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue?: InputMaybe<VenueCreateNestedOneWithoutLocationInput>;
 };
 
 export type LocationCreateWithoutAreaInput = {
   Address?: InputMaybe<AddressCreateNestedOneWithoutLocationInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Geometry?: InputMaybe<GeometryCreateNestedOneWithoutLocationInput>;
-  h3Index15: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
+  h3Index15: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
   plusCode?: InputMaybe<PluseCodeCreateNestedOneWithoutLocationInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue?: InputMaybe<VenueCreateNestedOneWithoutLocationInput>;
 };
 
 export type LocationCreateWithoutGeometryInput = {
   Address?: InputMaybe<AddressCreateNestedOneWithoutLocationInput>;
   Area?: InputMaybe<AreaCreateNestedOneWithoutLocationInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index15: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index15: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
   plusCode?: InputMaybe<PluseCodeCreateNestedOneWithoutLocationInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue?: InputMaybe<VenueCreateNestedOneWithoutLocationInput>;
 };
 
 export type LocationCreateWithoutPlusCodeInput = {
   Address?: InputMaybe<AddressCreateNestedOneWithoutLocationInput>;
   Area?: InputMaybe<AreaCreateNestedOneWithoutLocationInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Geometry?: InputMaybe<GeometryCreateNestedOneWithoutLocationInput>;
-  h3Index15: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  h3Index15: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue?: InputMaybe<VenueCreateNestedOneWithoutLocationInput>;
 };
 
 export type LocationCreateWithoutVenueInput = {
   Address?: InputMaybe<AddressCreateNestedOneWithoutLocationInput>;
   Area?: InputMaybe<AreaCreateNestedOneWithoutLocationInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Geometry?: InputMaybe<GeometryCreateNestedOneWithoutLocationInput>;
-  h3Index15: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
+  h3Index15: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
   plusCode?: InputMaybe<PluseCodeCreateNestedOneWithoutLocationInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type LocationListRelationFilter = {
@@ -8597,24 +8599,24 @@ export type LocationWhereUniqueInput = {
   addressId?: InputMaybe<StringNullableFilter>;
   AND?: InputMaybe<Array<LocationWhereInput>>;
   Area?: InputMaybe<AreaWhereInput>;
-  areaId?: InputMaybe<Scalars['String']>;
+  areaId?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<DateTimeFilter>;
   Geometry?: InputMaybe<GeometryWhereInput>;
-  geometryId?: InputMaybe<Scalars['Int']>;
+  geometryId?: InputMaybe<Scalars['Int']['input']>;
   h3Index15?: InputMaybe<StringFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<LocationWhereInput>>;
   OR?: InputMaybe<Array<LocationWhereInput>>;
   plusCode?: InputMaybe<PluseCodeWhereInput>;
-  pluseCodeId?: InputMaybe<Scalars['String']>;
+  pluseCodeId?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<DateTimeFilter>;
   Venue?: InputMaybe<VenueWhereInput>;
-  venueId?: InputMaybe<Scalars['String']>;
+  venueId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type MemberConversationNotificationSetting = {
   __typename?: 'MemberConversationNotificationSetting';
-  id: Scalars['ID'];
+  id: Scalars['ID']['output'];
 };
 
 export type MemberConversationNotificationSettingCountOrderByAggregateInput = {
@@ -8625,25 +8627,25 @@ export type MemberConversationNotificationSettingCountOrderByAggregateInput = {
 
 export type MemberConversationNotificationSettingCreateInput = {
   Conversation?: InputMaybe<ConversationCreateNestedOneWithoutMembersConversationNotificationSettingInput>;
-  id?: InputMaybe<Scalars['String']>;
-  memberProfileId: Scalars['String'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  memberProfileId: Scalars['String']['input'];
   NotificationTypeSetting?: InputMaybe<NotificationTypeSettingCreateNestedManyWithoutMemberConversationNotificationSettingInput>;
 };
 
 export type MemberConversationNotificationSettingCreateManyConversationInput = {
-  id?: InputMaybe<Scalars['String']>;
-  memberProfileId: Scalars['String'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  memberProfileId: Scalars['String']['input'];
 };
 
 export type MemberConversationNotificationSettingCreateManyConversationInputEnvelope = {
   data: Array<MemberConversationNotificationSettingCreateManyConversationInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type MemberConversationNotificationSettingCreateManyInput = {
-  conversationId?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
-  memberProfileId: Scalars['String'];
+  conversationId?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  memberProfileId: Scalars['String']['input'];
 };
 
 export type MemberConversationNotificationSettingCreateNestedManyWithoutConversationInput = {
@@ -8670,15 +8672,15 @@ export type MemberConversationNotificationSettingCreateOrConnectWithoutNotificat
 };
 
 export type MemberConversationNotificationSettingCreateWithoutConversationInput = {
-  id?: InputMaybe<Scalars['String']>;
-  memberProfileId: Scalars['String'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  memberProfileId: Scalars['String']['input'];
   NotificationTypeSetting?: InputMaybe<NotificationTypeSettingCreateNestedManyWithoutMemberConversationNotificationSettingInput>;
 };
 
 export type MemberConversationNotificationSettingCreateWithoutNotificationTypeSettingInput = {
   Conversation?: InputMaybe<ConversationCreateNestedOneWithoutMembersConversationNotificationSettingInput>;
-  id?: InputMaybe<Scalars['String']>;
-  memberProfileId: Scalars['String'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  memberProfileId: Scalars['String']['input'];
 };
 
 export type MemberConversationNotificationSettingListRelationFilter = {
@@ -8839,7 +8841,7 @@ export type MemberConversationNotificationSettingWhereUniqueInput = {
   AND?: InputMaybe<Array<MemberConversationNotificationSettingWhereInput>>;
   Conversation?: InputMaybe<ConversationWhereInput>;
   conversationId?: InputMaybe<StringNullableFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   memberProfileId?: InputMaybe<StringFilter>;
   NOT?: InputMaybe<Array<MemberConversationNotificationSettingWhereInput>>;
   NotificationTypeSetting?: InputMaybe<NotificationTypeSettingListRelationFilter>;
@@ -8848,11 +8850,11 @@ export type MemberConversationNotificationSettingWhereUniqueInput = {
 
 export type Message = {
   __typename?: 'Message';
-  content: Scalars['Json'];
+  content: Scalars['Json']['output'];
   Conversation?: Maybe<Conversation>;
-  conversationId?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  messageId?: Maybe<Scalars['String']>;
+  conversationId?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  messageId?: Maybe<Scalars['String']['output']>;
   Replies: Array<Message>;
   Reply?: Maybe<Message>;
   Request?: Maybe<Request>;
@@ -8863,8 +8865,8 @@ export type MessageRepliesArgs = {
   cursor?: InputMaybe<MessageWhereUniqueInput>;
   distinct?: InputMaybe<Array<MessageScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<MessageOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<MessageWhereInput>;
 };
 
@@ -8876,41 +8878,41 @@ export type MessageCountOrderByAggregateInput = {
 };
 
 export type MessageCreateInput = {
-  content: Scalars['Json'];
+  content: Scalars['Json']['input'];
   Conversation?: InputMaybe<ConversationCreateNestedOneWithoutMessagesInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Replies?: InputMaybe<MessageCreateNestedManyWithoutReplyInput>;
   Reply?: InputMaybe<MessageCreateNestedOneWithoutRepliesInput>;
   Request?: InputMaybe<RequestCreateNestedOneWithoutMessageInput>;
 };
 
 export type MessageCreateManyConversationInput = {
-  content: Scalars['Json'];
-  id?: InputMaybe<Scalars['String']>;
-  messageId?: InputMaybe<Scalars['String']>;
+  content: Scalars['Json']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  messageId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type MessageCreateManyConversationInputEnvelope = {
   data: Array<MessageCreateManyConversationInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type MessageCreateManyInput = {
-  content: Scalars['Json'];
-  conversationId?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
-  messageId?: InputMaybe<Scalars['String']>;
+  content: Scalars['Json']['input'];
+  conversationId?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  messageId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type MessageCreateManyReplyInput = {
-  content: Scalars['Json'];
-  conversationId?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
+  content: Scalars['Json']['input'];
+  conversationId?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type MessageCreateManyReplyInputEnvelope = {
   data: Array<MessageCreateManyReplyInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type MessageCreateNestedManyWithoutConversationInput = {
@@ -8960,33 +8962,33 @@ export type MessageCreateOrConnectWithoutRequestInput = {
 };
 
 export type MessageCreateWithoutConversationInput = {
-  content: Scalars['Json'];
-  id?: InputMaybe<Scalars['String']>;
+  content: Scalars['Json']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
   Replies?: InputMaybe<MessageCreateNestedManyWithoutReplyInput>;
   Reply?: InputMaybe<MessageCreateNestedOneWithoutRepliesInput>;
   Request?: InputMaybe<RequestCreateNestedOneWithoutMessageInput>;
 };
 
 export type MessageCreateWithoutRepliesInput = {
-  content: Scalars['Json'];
+  content: Scalars['Json']['input'];
   Conversation?: InputMaybe<ConversationCreateNestedOneWithoutMessagesInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Reply?: InputMaybe<MessageCreateNestedOneWithoutRepliesInput>;
   Request?: InputMaybe<RequestCreateNestedOneWithoutMessageInput>;
 };
 
 export type MessageCreateWithoutReplyInput = {
-  content: Scalars['Json'];
+  content: Scalars['Json']['input'];
   Conversation?: InputMaybe<ConversationCreateNestedOneWithoutMessagesInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Replies?: InputMaybe<MessageCreateNestedManyWithoutReplyInput>;
   Request?: InputMaybe<RequestCreateNestedOneWithoutMessageInput>;
 };
 
 export type MessageCreateWithoutRequestInput = {
-  content: Scalars['Json'];
+  content: Scalars['Json']['input'];
   Conversation?: InputMaybe<ConversationCreateNestedOneWithoutMessagesInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Replies?: InputMaybe<MessageCreateNestedManyWithoutReplyInput>;
   Reply?: InputMaybe<MessageCreateNestedOneWithoutRepliesInput>;
 };
@@ -9071,7 +9073,7 @@ export type MessageScalarWhereWithAggregatesInput = {
 };
 
 export type MessageUpdateInput = {
-  content?: InputMaybe<Scalars['Json']>;
+  content?: InputMaybe<Scalars['Json']['input']>;
   Conversation?: InputMaybe<ConversationUpdateOneWithoutMessagesNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   Replies?: InputMaybe<MessageUpdateManyWithoutReplyNestedInput>;
@@ -9080,7 +9082,7 @@ export type MessageUpdateInput = {
 };
 
 export type MessageUpdateManyMutationInput = {
-  content?: InputMaybe<Scalars['Json']>;
+  content?: InputMaybe<Scalars['Json']['input']>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
 };
 
@@ -9153,7 +9155,7 @@ export type MessageUpdateToOneWithWhereWithoutRequestInput = {
 };
 
 export type MessageUpdateWithoutConversationInput = {
-  content?: InputMaybe<Scalars['Json']>;
+  content?: InputMaybe<Scalars['Json']['input']>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   Replies?: InputMaybe<MessageUpdateManyWithoutReplyNestedInput>;
   Reply?: InputMaybe<MessageUpdateOneWithoutRepliesNestedInput>;
@@ -9161,7 +9163,7 @@ export type MessageUpdateWithoutConversationInput = {
 };
 
 export type MessageUpdateWithoutRepliesInput = {
-  content?: InputMaybe<Scalars['Json']>;
+  content?: InputMaybe<Scalars['Json']['input']>;
   Conversation?: InputMaybe<ConversationUpdateOneWithoutMessagesNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   Reply?: InputMaybe<MessageUpdateOneWithoutRepliesNestedInput>;
@@ -9169,7 +9171,7 @@ export type MessageUpdateWithoutRepliesInput = {
 };
 
 export type MessageUpdateWithoutReplyInput = {
-  content?: InputMaybe<Scalars['Json']>;
+  content?: InputMaybe<Scalars['Json']['input']>;
   Conversation?: InputMaybe<ConversationUpdateOneWithoutMessagesNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   Replies?: InputMaybe<MessageUpdateManyWithoutReplyNestedInput>;
@@ -9177,7 +9179,7 @@ export type MessageUpdateWithoutReplyInput = {
 };
 
 export type MessageUpdateWithoutRequestInput = {
-  content?: InputMaybe<Scalars['Json']>;
+  content?: InputMaybe<Scalars['Json']['input']>;
   Conversation?: InputMaybe<ConversationUpdateOneWithoutMessagesNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   Replies?: InputMaybe<MessageUpdateManyWithoutReplyNestedInput>;
@@ -9237,7 +9239,7 @@ export type MessageWhereUniqueInput = {
   content?: InputMaybe<JsonFilter>;
   Conversation?: InputMaybe<ConversationWhereInput>;
   conversationId?: InputMaybe<StringNullableFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   messageId?: InputMaybe<StringNullableFilter>;
   NOT?: InputMaybe<Array<MessageWhereInput>>;
   OR?: InputMaybe<Array<MessageWhereInput>>;
@@ -9250,58 +9252,58 @@ export type Mutation = {
   __typename?: 'Mutation';
   acceptFriendRequest: Relationship;
   addPersonalJoinsVenue: Profile;
-  addPersonalTotalsVenue: Scalars['Boolean'];
+  addPersonalTotalsVenue: Scalars['Boolean']['output'];
   addStoryPhotos: Story;
-  createFriendRequest: Scalars['Boolean'];
+  createFriendRequest: Scalars['Boolean']['output'];
   createGuestProfile: AuthenticationResponseUnion;
   createMessage?: Maybe<Message>;
   createPersonalProfile: AuthenticationResponseUnion;
   createVenueProfile: AuthenticationResponseUnion;
-  declineFriendRequest: Scalars['Boolean'];
-  deleteFriendRequest: Scalars['Boolean'];
-  getAllFriends: Scalars['Boolean'];
+  declineFriendRequest: Scalars['Boolean']['output'];
+  deleteFriendRequest: Scalars['Boolean']['output'];
+  getAllFriends: Scalars['Boolean']['output'];
   qrAddFriend: Relationship;
   refreshDeviceManager: AuthenticationResponseUnion;
-  removeAllFromVenueDeveloper: Scalars['Boolean'];
-  removeDeviceProfileFromDeviceManager: Scalars['Boolean'];
-  removeFriend: Scalars['Boolean'];
+  removeAllFromVenueDeveloper: Scalars['Boolean']['output'];
+  removeDeviceProfileFromDeviceManager: Scalars['Boolean']['output'];
+  removeFriend: Scalars['Boolean']['output'];
   removePersonalJoinsVenue: Profile;
-  removePersonalTotalsVenue: Scalars['Boolean'];
+  removePersonalTotalsVenue: Scalars['Boolean']['output'];
   removeStoryPhotos: Story;
   sendAuthenticatorDeviceOwnerCode: CodeResponse;
   sendAuthenticatorForgotPasswordCode: CodeResponse;
   switchDeviceProfile: AuthenticationResponseUnion;
-  updateCityRequested: Scalars['Boolean'];
+  updateCityRequested: Scalars['Boolean']['output'];
   /** Update H6 coming area to be notified */
   updateH6ComingAreaToBeNotified: ComingArea;
   /** Update H6 coming area vote */
   updateH6ComingAreaVote: ComingArea;
   /** This function updates the upvote for a venue recommendation for a H3Index6. If the user has already upvoted, it will be set to false. If the user has not upvoted, it will be set to true. */
   updateH6VenueRemmendation: H3Index6VenueRecommendation;
-  updateManyMessageNotifications?: Maybe<Scalars['Boolean']>;
+  updateManyMessageNotifications?: Maybe<Scalars['Boolean']['output']>;
   updateOneProfile?: Maybe<Profile>;
   updateProfileIdentifiableInformation: AuthenticationResponseUnion;
-  updateProfilePrivacyTermsDocumentUpdate: Scalars['Boolean'];
+  updateProfilePrivacyTermsDocumentUpdate: Scalars['Boolean']['output'];
   updateStoryEmojimood: Story;
   updateThemeManagerSwitchTheme: ProfileTheme;
-  upsertDevicePushToken: Scalars['Boolean'];
+  upsertDevicePushToken: Scalars['Boolean']['output'];
 };
 
 
 export type MutationAcceptFriendRequestArgs = {
-  friendRequestId: Scalars['String'];
-  venueIdMetAt?: InputMaybe<Scalars['String']>;
+  friendRequestId: Scalars['String']['input'];
+  venueIdMetAt?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type MutationAddPersonalJoinsVenueArgs = {
-  profileIdVenue?: InputMaybe<Scalars['String']>;
+  profileIdVenue?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type MutationAddPersonalTotalsVenueArgs = {
-  profileIdPersonal?: InputMaybe<Scalars['String']>;
-  profileIdVenue?: InputMaybe<Scalars['String']>;
+  profileIdPersonal?: InputMaybe<Scalars['String']['input']>;
+  profileIdVenue?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -9311,15 +9313,15 @@ export type MutationAddStoryPhotosArgs = {
 
 
 export type MutationCreateFriendRequestArgs = {
-  receiversProfileId: Array<Scalars['String']>;
-  senderProfileId: Scalars['String'];
+  receiversProfileId: Array<Scalars['String']['input']>;
+  senderProfileId: Scalars['String']['input'];
 };
 
 
 export type MutationCreateMessageArgs = {
-  content: Scalars['Json'];
-  conversationId?: InputMaybe<Scalars['String']>;
-  members?: InputMaybe<Array<Scalars['String']>>;
+  content: Scalars['Json']['input'];
+  conversationId?: InputMaybe<Scalars['String']['input']>;
+  members?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 
@@ -9334,44 +9336,44 @@ export type MutationCreateVenueProfileArgs = {
 
 
 export type MutationDeclineFriendRequestArgs = {
-  friendRequestId: Scalars['String'];
+  friendRequestId: Scalars['String']['input'];
 };
 
 
 export type MutationDeleteFriendRequestArgs = {
-  friendRequestId: Scalars['String'];
+  friendRequestId: Scalars['String']['input'];
 };
 
 
 export type MutationQrAddFriendArgs = {
-  dataHash: Scalars['String'];
-  qrCodeProfileId: Scalars['String'];
+  dataHash: Scalars['String']['input'];
+  qrCodeProfileId: Scalars['String']['input'];
 };
 
 
 export type MutationRemoveAllFromVenueDeveloperArgs = {
-  profileIdVenue?: InputMaybe<Scalars['String']>;
+  profileIdVenue?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type MutationRemoveDeviceProfileFromDeviceManagerArgs = {
-  profileId: Scalars['String'];
+  profileId: Scalars['String']['input'];
   profileType?: InputMaybe<ProfileType>;
 };
 
 
 export type MutationRemoveFriendArgs = {
-  relationshipId: Scalars['String'];
+  relationshipId: Scalars['String']['input'];
 };
 
 
 export type MutationRemovePersonalTotalsVenueArgs = {
-  profileIdVenue?: InputMaybe<Scalars['String']>;
+  profileIdVenue?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type MutationRemoveStoryPhotosArgs = {
-  photoId: Scalars['String'];
+  photoId: Scalars['String']['input'];
 };
 
 
@@ -9388,32 +9390,32 @@ export type MutationSendAuthenticatorForgotPasswordCodeArgs = {
 
 
 export type MutationSwitchDeviceProfileArgs = {
-  profileId: Scalars['String'];
+  profileId: Scalars['String']['input'];
 };
 
 
 export type MutationUpdateCityRequestedArgs = {
-  cityName: Scalars['String'];
+  cityName: Scalars['String']['input'];
 };
 
 
 export type MutationUpdateH6ComingAreaToBeNotifiedArgs = {
-  comingAreaId: Scalars['String'];
+  comingAreaId: Scalars['String']['input'];
 };
 
 
 export type MutationUpdateH6ComingAreaVoteArgs = {
-  comingAreaId: Scalars['String'];
+  comingAreaId: Scalars['String']['input'];
 };
 
 
 export type MutationUpdateH6VenueRemmendationArgs = {
-  venueRecommendationId: Scalars['String'];
+  venueRecommendationId: Scalars['String']['input'];
 };
 
 
 export type MutationUpdateManyMessageNotificationsArgs = {
-  conversationId?: InputMaybe<Scalars['String']>;
+  conversationId?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -9429,30 +9431,30 @@ export type MutationUpdateProfileIdentifiableInformationArgs = {
 
 
 export type MutationUpdateStoryEmojimoodArgs = {
-  emojimoodId: Scalars['Int'];
-  storyId?: InputMaybe<Scalars['String']>;
+  emojimoodId: Scalars['Int']['input'];
+  storyId?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type MutationUpdateThemeManagerSwitchThemeArgs = {
-  id: Scalars['String'];
-  themeId: Scalars['String'];
+  id: Scalars['String']['input'];
+  themeId: Scalars['String']['input'];
 };
 
 
 export type MutationUpsertDevicePushTokenArgs = {
-  expoToken?: InputMaybe<Scalars['String']>;
-  token?: InputMaybe<Scalars['String']>;
+  expoToken?: InputMaybe<Scalars['String']['input']>;
+  token?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<TokenType>;
 };
 
 export type NestedBoolFilter = {
-  equals?: InputMaybe<Scalars['Boolean']>;
+  equals?: InputMaybe<Scalars['Boolean']['input']>;
   not?: InputMaybe<NestedBoolFilter>;
 };
 
 export type NestedBoolNullableFilter = {
-  equals?: InputMaybe<Scalars['Boolean']>;
+  equals?: InputMaybe<Scalars['Boolean']['input']>;
   not?: InputMaybe<NestedBoolNullableFilter>;
 };
 
@@ -9460,7 +9462,7 @@ export type NestedBoolNullableWithAggregatesFilter = {
   _count?: InputMaybe<NestedIntNullableFilter>;
   _max?: InputMaybe<NestedBoolNullableFilter>;
   _min?: InputMaybe<NestedBoolNullableFilter>;
-  equals?: InputMaybe<Scalars['Boolean']>;
+  equals?: InputMaybe<Scalars['Boolean']['input']>;
   not?: InputMaybe<NestedBoolNullableWithAggregatesFilter>;
 };
 
@@ -9468,58 +9470,58 @@ export type NestedBoolWithAggregatesFilter = {
   _count?: InputMaybe<NestedIntFilter>;
   _max?: InputMaybe<NestedBoolFilter>;
   _min?: InputMaybe<NestedBoolFilter>;
-  equals?: InputMaybe<Scalars['Boolean']>;
+  equals?: InputMaybe<Scalars['Boolean']['input']>;
   not?: InputMaybe<NestedBoolWithAggregatesFilter>;
 };
 
 export type NestedDateTimeFilter = {
-  equals?: InputMaybe<Scalars['DateTime']>;
-  gt?: InputMaybe<Scalars['DateTime']>;
-  gte?: InputMaybe<Scalars['DateTime']>;
-  in?: InputMaybe<Array<Scalars['DateTime']>>;
-  lt?: InputMaybe<Scalars['DateTime']>;
-  lte?: InputMaybe<Scalars['DateTime']>;
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  gt?: InputMaybe<Scalars['DateTime']['input']>;
+  gte?: InputMaybe<Scalars['DateTime']['input']>;
+  in?: InputMaybe<Array<Scalars['DateTime']['input']>>;
+  lt?: InputMaybe<Scalars['DateTime']['input']>;
+  lte?: InputMaybe<Scalars['DateTime']['input']>;
   not?: InputMaybe<NestedDateTimeFilter>;
-  notIn?: InputMaybe<Array<Scalars['DateTime']>>;
+  notIn?: InputMaybe<Array<Scalars['DateTime']['input']>>;
 };
 
 export type NestedDateTimeNullableFilter = {
-  equals?: InputMaybe<Scalars['DateTime']>;
-  gt?: InputMaybe<Scalars['DateTime']>;
-  gte?: InputMaybe<Scalars['DateTime']>;
-  in?: InputMaybe<Array<Scalars['DateTime']>>;
-  lt?: InputMaybe<Scalars['DateTime']>;
-  lte?: InputMaybe<Scalars['DateTime']>;
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  gt?: InputMaybe<Scalars['DateTime']['input']>;
+  gte?: InputMaybe<Scalars['DateTime']['input']>;
+  in?: InputMaybe<Array<Scalars['DateTime']['input']>>;
+  lt?: InputMaybe<Scalars['DateTime']['input']>;
+  lte?: InputMaybe<Scalars['DateTime']['input']>;
   not?: InputMaybe<NestedDateTimeNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['DateTime']>>;
+  notIn?: InputMaybe<Array<Scalars['DateTime']['input']>>;
 };
 
 export type NestedDateTimeNullableWithAggregatesFilter = {
   _count?: InputMaybe<NestedIntNullableFilter>;
   _max?: InputMaybe<NestedDateTimeNullableFilter>;
   _min?: InputMaybe<NestedDateTimeNullableFilter>;
-  equals?: InputMaybe<Scalars['DateTime']>;
-  gt?: InputMaybe<Scalars['DateTime']>;
-  gte?: InputMaybe<Scalars['DateTime']>;
-  in?: InputMaybe<Array<Scalars['DateTime']>>;
-  lt?: InputMaybe<Scalars['DateTime']>;
-  lte?: InputMaybe<Scalars['DateTime']>;
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  gt?: InputMaybe<Scalars['DateTime']['input']>;
+  gte?: InputMaybe<Scalars['DateTime']['input']>;
+  in?: InputMaybe<Array<Scalars['DateTime']['input']>>;
+  lt?: InputMaybe<Scalars['DateTime']['input']>;
+  lte?: InputMaybe<Scalars['DateTime']['input']>;
   not?: InputMaybe<NestedDateTimeNullableWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['DateTime']>>;
+  notIn?: InputMaybe<Array<Scalars['DateTime']['input']>>;
 };
 
 export type NestedDateTimeWithAggregatesFilter = {
   _count?: InputMaybe<NestedIntFilter>;
   _max?: InputMaybe<NestedDateTimeFilter>;
   _min?: InputMaybe<NestedDateTimeFilter>;
-  equals?: InputMaybe<Scalars['DateTime']>;
-  gt?: InputMaybe<Scalars['DateTime']>;
-  gte?: InputMaybe<Scalars['DateTime']>;
-  in?: InputMaybe<Array<Scalars['DateTime']>>;
-  lt?: InputMaybe<Scalars['DateTime']>;
-  lte?: InputMaybe<Scalars['DateTime']>;
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  gt?: InputMaybe<Scalars['DateTime']['input']>;
+  gte?: InputMaybe<Scalars['DateTime']['input']>;
+  in?: InputMaybe<Array<Scalars['DateTime']['input']>>;
+  lt?: InputMaybe<Scalars['DateTime']['input']>;
+  lte?: InputMaybe<Scalars['DateTime']['input']>;
   not?: InputMaybe<NestedDateTimeWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['DateTime']>>;
+  notIn?: InputMaybe<Array<Scalars['DateTime']['input']>>;
 };
 
 export type NestedEnumAppTypeFilter = {
@@ -9659,25 +9661,25 @@ export type NestedEnumTypeOfDocumentWithAggregatesFilter = {
 };
 
 export type NestedFloatFilter = {
-  equals?: InputMaybe<Scalars['Float']>;
-  gt?: InputMaybe<Scalars['Float']>;
-  gte?: InputMaybe<Scalars['Float']>;
-  in?: InputMaybe<Array<Scalars['Float']>>;
-  lt?: InputMaybe<Scalars['Float']>;
-  lte?: InputMaybe<Scalars['Float']>;
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  in?: InputMaybe<Array<Scalars['Float']['input']>>;
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
   not?: InputMaybe<NestedFloatFilter>;
-  notIn?: InputMaybe<Array<Scalars['Float']>>;
+  notIn?: InputMaybe<Array<Scalars['Float']['input']>>;
 };
 
 export type NestedFloatNullableFilter = {
-  equals?: InputMaybe<Scalars['Float']>;
-  gt?: InputMaybe<Scalars['Float']>;
-  gte?: InputMaybe<Scalars['Float']>;
-  in?: InputMaybe<Array<Scalars['Float']>>;
-  lt?: InputMaybe<Scalars['Float']>;
-  lte?: InputMaybe<Scalars['Float']>;
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  in?: InputMaybe<Array<Scalars['Float']['input']>>;
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
   not?: InputMaybe<NestedFloatNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['Float']>>;
+  notIn?: InputMaybe<Array<Scalars['Float']['input']>>;
 };
 
 export type NestedFloatWithAggregatesFilter = {
@@ -9686,36 +9688,36 @@ export type NestedFloatWithAggregatesFilter = {
   _max?: InputMaybe<NestedFloatFilter>;
   _min?: InputMaybe<NestedFloatFilter>;
   _sum?: InputMaybe<NestedFloatFilter>;
-  equals?: InputMaybe<Scalars['Float']>;
-  gt?: InputMaybe<Scalars['Float']>;
-  gte?: InputMaybe<Scalars['Float']>;
-  in?: InputMaybe<Array<Scalars['Float']>>;
-  lt?: InputMaybe<Scalars['Float']>;
-  lte?: InputMaybe<Scalars['Float']>;
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  in?: InputMaybe<Array<Scalars['Float']['input']>>;
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
   not?: InputMaybe<NestedFloatWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['Float']>>;
+  notIn?: InputMaybe<Array<Scalars['Float']['input']>>;
 };
 
 export type NestedIntFilter = {
-  equals?: InputMaybe<Scalars['Int']>;
-  gt?: InputMaybe<Scalars['Int']>;
-  gte?: InputMaybe<Scalars['Int']>;
-  in?: InputMaybe<Array<Scalars['Int']>>;
-  lt?: InputMaybe<Scalars['Int']>;
-  lte?: InputMaybe<Scalars['Int']>;
+  equals?: InputMaybe<Scalars['Int']['input']>;
+  gt?: InputMaybe<Scalars['Int']['input']>;
+  gte?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  lt?: InputMaybe<Scalars['Int']['input']>;
+  lte?: InputMaybe<Scalars['Int']['input']>;
   not?: InputMaybe<NestedIntFilter>;
-  notIn?: InputMaybe<Array<Scalars['Int']>>;
+  notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
 export type NestedIntNullableFilter = {
-  equals?: InputMaybe<Scalars['Int']>;
-  gt?: InputMaybe<Scalars['Int']>;
-  gte?: InputMaybe<Scalars['Int']>;
-  in?: InputMaybe<Array<Scalars['Int']>>;
-  lt?: InputMaybe<Scalars['Int']>;
-  lte?: InputMaybe<Scalars['Int']>;
+  equals?: InputMaybe<Scalars['Int']['input']>;
+  gt?: InputMaybe<Scalars['Int']['input']>;
+  gte?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  lt?: InputMaybe<Scalars['Int']['input']>;
+  lte?: InputMaybe<Scalars['Int']['input']>;
   not?: InputMaybe<NestedIntNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['Int']>>;
+  notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
 export type NestedIntNullableWithAggregatesFilter = {
@@ -9724,14 +9726,14 @@ export type NestedIntNullableWithAggregatesFilter = {
   _max?: InputMaybe<NestedIntNullableFilter>;
   _min?: InputMaybe<NestedIntNullableFilter>;
   _sum?: InputMaybe<NestedIntNullableFilter>;
-  equals?: InputMaybe<Scalars['Int']>;
-  gt?: InputMaybe<Scalars['Int']>;
-  gte?: InputMaybe<Scalars['Int']>;
-  in?: InputMaybe<Array<Scalars['Int']>>;
-  lt?: InputMaybe<Scalars['Int']>;
-  lte?: InputMaybe<Scalars['Int']>;
+  equals?: InputMaybe<Scalars['Int']['input']>;
+  gt?: InputMaybe<Scalars['Int']['input']>;
+  gte?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  lt?: InputMaybe<Scalars['Int']['input']>;
+  lte?: InputMaybe<Scalars['Int']['input']>;
   not?: InputMaybe<NestedIntNullableWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['Int']>>;
+  notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
 export type NestedIntWithAggregatesFilter = {
@@ -9740,102 +9742,102 @@ export type NestedIntWithAggregatesFilter = {
   _max?: InputMaybe<NestedIntFilter>;
   _min?: InputMaybe<NestedIntFilter>;
   _sum?: InputMaybe<NestedIntFilter>;
-  equals?: InputMaybe<Scalars['Int']>;
-  gt?: InputMaybe<Scalars['Int']>;
-  gte?: InputMaybe<Scalars['Int']>;
-  in?: InputMaybe<Array<Scalars['Int']>>;
-  lt?: InputMaybe<Scalars['Int']>;
-  lte?: InputMaybe<Scalars['Int']>;
+  equals?: InputMaybe<Scalars['Int']['input']>;
+  gt?: InputMaybe<Scalars['Int']['input']>;
+  gte?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  lt?: InputMaybe<Scalars['Int']['input']>;
+  lte?: InputMaybe<Scalars['Int']['input']>;
   not?: InputMaybe<NestedIntWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['Int']>>;
+  notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
 export type NestedJsonFilter = {
-  array_contains?: InputMaybe<Scalars['Json']>;
-  array_ends_with?: InputMaybe<Scalars['Json']>;
-  array_starts_with?: InputMaybe<Scalars['Json']>;
-  equals?: InputMaybe<Scalars['Json']>;
-  gt?: InputMaybe<Scalars['Json']>;
-  gte?: InputMaybe<Scalars['Json']>;
-  lt?: InputMaybe<Scalars['Json']>;
-  lte?: InputMaybe<Scalars['Json']>;
-  not?: InputMaybe<Scalars['Json']>;
-  path?: InputMaybe<Array<Scalars['String']>>;
-  string_contains?: InputMaybe<Scalars['String']>;
-  string_ends_with?: InputMaybe<Scalars['String']>;
-  string_starts_with?: InputMaybe<Scalars['String']>;
+  array_contains?: InputMaybe<Scalars['Json']['input']>;
+  array_ends_with?: InputMaybe<Scalars['Json']['input']>;
+  array_starts_with?: InputMaybe<Scalars['Json']['input']>;
+  equals?: InputMaybe<Scalars['Json']['input']>;
+  gt?: InputMaybe<Scalars['Json']['input']>;
+  gte?: InputMaybe<Scalars['Json']['input']>;
+  lt?: InputMaybe<Scalars['Json']['input']>;
+  lte?: InputMaybe<Scalars['Json']['input']>;
+  not?: InputMaybe<Scalars['Json']['input']>;
+  path?: InputMaybe<Array<Scalars['String']['input']>>;
+  string_contains?: InputMaybe<Scalars['String']['input']>;
+  string_ends_with?: InputMaybe<Scalars['String']['input']>;
+  string_starts_with?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type NestedStringFilter = {
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  endsWith?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<Scalars['String']['input']>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
   not?: InputMaybe<NestedStringFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type NestedStringNullableFilter = {
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  endsWith?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<Scalars['String']['input']>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
   not?: InputMaybe<NestedStringNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type NestedStringNullableWithAggregatesFilter = {
   _count?: InputMaybe<NestedIntNullableFilter>;
   _max?: InputMaybe<NestedStringNullableFilter>;
   _min?: InputMaybe<NestedStringNullableFilter>;
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  endsWith?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<Scalars['String']['input']>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
   not?: InputMaybe<NestedStringNullableWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type NestedStringWithAggregatesFilter = {
   _count?: InputMaybe<NestedIntFilter>;
   _max?: InputMaybe<NestedStringFilter>;
   _min?: InputMaybe<NestedStringFilter>;
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  endsWith?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<Scalars['String']['input']>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
   not?: InputMaybe<NestedStringWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** When a new post is created */
 export type NewMessageEvent = IBaseMessageEvent & {
   __typename?: 'NewMessageEvent';
-  content: Scalars['Json'];
+  content: Scalars['Json']['output'];
   /** Event type */
   eventType: MessageEventType;
   /** Post id */
-  id: Scalars['ID'];
+  id: Scalars['ID']['output'];
 };
 
 /** When a new post is created */
@@ -9844,9 +9846,9 @@ export type NewPostEvent = IBasePostEvent & {
   /** Event type */
   eventType: PostEventType;
   /** Post id */
-  id: Scalars['ID'];
+  id: Scalars['ID']['output'];
   /** Post title */
-  title: Scalars['String'];
+  title: Scalars['String']['output'];
 };
 
 export type NotificationFriendRequestStatusResponse = Error | RejectedFriendsResponse | Relationship | Request;
@@ -9859,10 +9861,10 @@ export type NotificationResponse = {
 export type Notifications = {
   __typename?: 'Notifications';
   FriendRequests: Array<Request>;
-  id: Scalars['ID'];
+  id: Scalars['ID']['output'];
   MessageRequests: Array<Request>;
   Profile: Profile;
-  profileId: Scalars['String'];
+  profileId: Scalars['String']['output'];
 };
 
 
@@ -9870,8 +9872,8 @@ export type NotificationsFriendRequestsArgs = {
   cursor?: InputMaybe<RequestWhereUniqueInput>;
   distinct?: InputMaybe<Array<RequestScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<RequestOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<RequestWhereInput>;
 };
 
@@ -9880,8 +9882,8 @@ export type NotificationsMessageRequestsArgs = {
   cursor?: InputMaybe<RequestWhereUniqueInput>;
   distinct?: InputMaybe<Array<RequestScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<RequestOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<RequestWhereInput>;
 };
 
@@ -9892,14 +9894,14 @@ export type NotificationsCountOrderByAggregateInput = {
 
 export type NotificationsCreateInput = {
   FriendRequests?: InputMaybe<RequestCreateNestedManyWithoutNotificationFriendRequestInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   MessageRequests?: InputMaybe<RequestCreateNestedManyWithoutNotificationMessageInput>;
   Profile: ProfileCreateNestedOneWithoutNotificationsInput;
 };
 
 export type NotificationsCreateManyInput = {
-  id?: InputMaybe<Scalars['String']>;
-  profileId: Scalars['String'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  profileId: Scalars['String']['input'];
 };
 
 export type NotificationsCreateNestedManyWithoutFriendRequestsInput = {
@@ -9936,20 +9938,20 @@ export type NotificationsCreateOrConnectWithoutProfileInput = {
 };
 
 export type NotificationsCreateWithoutFriendRequestsInput = {
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   MessageRequests?: InputMaybe<RequestCreateNestedManyWithoutNotificationMessageInput>;
   Profile: ProfileCreateNestedOneWithoutNotificationsInput;
 };
 
 export type NotificationsCreateWithoutMessageRequestsInput = {
   FriendRequests?: InputMaybe<RequestCreateNestedManyWithoutNotificationFriendRequestInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Profile: ProfileCreateNestedOneWithoutNotificationsInput;
 };
 
 export type NotificationsCreateWithoutProfileInput = {
   FriendRequests?: InputMaybe<RequestCreateNestedManyWithoutNotificationFriendRequestInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   MessageRequests?: InputMaybe<RequestCreateNestedManyWithoutNotificationMessageInput>;
 };
 
@@ -10017,14 +10019,14 @@ export type NotificationsScalarWhereWithAggregatesInput = {
 
 export type NotificationStatus = {
   __typename?: 'NotificationStatus';
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
-  isAccepted: Scalars['Boolean'];
-  isAnswered: Scalars['Boolean'];
-  isCanceled: Scalars['Boolean'];
-  isChecked: Scalars['Boolean'];
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
+  isAccepted: Scalars['Boolean']['output'];
+  isAnswered: Scalars['Boolean']['output'];
+  isCanceled: Scalars['Boolean']['output'];
+  isChecked: Scalars['Boolean']['output'];
   RequestReceiver?: Maybe<RequestReceiver>;
-  updatedAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type NotificationStatusCountOrderByAggregateInput = {
@@ -10038,24 +10040,24 @@ export type NotificationStatusCountOrderByAggregateInput = {
 };
 
 export type NotificationStatusCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  isAccepted?: InputMaybe<Scalars['Boolean']>;
-  isAnswered?: InputMaybe<Scalars['Boolean']>;
-  isCanceled?: InputMaybe<Scalars['Boolean']>;
-  isChecked?: InputMaybe<Scalars['Boolean']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  isAccepted?: InputMaybe<Scalars['Boolean']['input']>;
+  isAnswered?: InputMaybe<Scalars['Boolean']['input']>;
+  isCanceled?: InputMaybe<Scalars['Boolean']['input']>;
+  isChecked?: InputMaybe<Scalars['Boolean']['input']>;
   RequestReceiver?: InputMaybe<RequestReceiverCreateNestedOneWithoutNotificationStatusInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type NotificationStatusCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  isAccepted?: InputMaybe<Scalars['Boolean']>;
-  isAnswered?: InputMaybe<Scalars['Boolean']>;
-  isCanceled?: InputMaybe<Scalars['Boolean']>;
-  isChecked?: InputMaybe<Scalars['Boolean']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  isAccepted?: InputMaybe<Scalars['Boolean']['input']>;
+  isAnswered?: InputMaybe<Scalars['Boolean']['input']>;
+  isCanceled?: InputMaybe<Scalars['Boolean']['input']>;
+  isChecked?: InputMaybe<Scalars['Boolean']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type NotificationStatusCreateNestedOneWithoutRequestReceiverInput = {
@@ -10070,13 +10072,13 @@ export type NotificationStatusCreateOrConnectWithoutRequestReceiverInput = {
 };
 
 export type NotificationStatusCreateWithoutRequestReceiverInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  isAccepted?: InputMaybe<Scalars['Boolean']>;
-  isAnswered?: InputMaybe<Scalars['Boolean']>;
-  isCanceled?: InputMaybe<Scalars['Boolean']>;
-  isChecked?: InputMaybe<Scalars['Boolean']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  isAccepted?: InputMaybe<Scalars['Boolean']['input']>;
+  isAnswered?: InputMaybe<Scalars['Boolean']['input']>;
+  isCanceled?: InputMaybe<Scalars['Boolean']['input']>;
+  isChecked?: InputMaybe<Scalars['Boolean']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type NotificationStatusMaxOrderByAggregateInput = {
@@ -10218,7 +10220,7 @@ export type NotificationStatusWhereInput = {
 export type NotificationStatusWhereUniqueInput = {
   AND?: InputMaybe<Array<NotificationStatusWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   isAccepted?: InputMaybe<BoolFilter>;
   isAnswered?: InputMaybe<BoolFilter>;
   isCanceled?: InputMaybe<BoolFilter>;
@@ -10351,12 +10353,12 @@ export type NotificationsWhereInput = {
 export type NotificationsWhereUniqueInput = {
   AND?: InputMaybe<Array<NotificationsWhereInput>>;
   FriendRequests?: InputMaybe<RequestListRelationFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   MessageRequests?: InputMaybe<RequestListRelationFilter>;
   NOT?: InputMaybe<Array<NotificationsWhereInput>>;
   OR?: InputMaybe<Array<NotificationsWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
-  profileId?: InputMaybe<Scalars['String']>;
+  profileId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export enum NotificationType {
@@ -10377,28 +10379,28 @@ export type NotificationTypeSettingCountOrderByAggregateInput = {
 };
 
 export type NotificationTypeSettingCreateInput = {
-  allowed?: InputMaybe<Scalars['Boolean']>;
-  id?: InputMaybe<Scalars['String']>;
+  allowed?: InputMaybe<Scalars['Boolean']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   MemberConversationNotificationSetting?: InputMaybe<MemberConversationNotificationSettingCreateNestedOneWithoutNotificationTypeSettingInput>;
   NotificationType: NotificationType;
 };
 
 export type NotificationTypeSettingCreateManyInput = {
-  allowed?: InputMaybe<Scalars['Boolean']>;
-  id?: InputMaybe<Scalars['String']>;
-  memberConversationNotificationSettingId?: InputMaybe<Scalars['String']>;
+  allowed?: InputMaybe<Scalars['Boolean']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  memberConversationNotificationSettingId?: InputMaybe<Scalars['String']['input']>;
   NotificationType: NotificationType;
 };
 
 export type NotificationTypeSettingCreateManyMemberConversationNotificationSettingInput = {
-  allowed?: InputMaybe<Scalars['Boolean']>;
-  id?: InputMaybe<Scalars['String']>;
+  allowed?: InputMaybe<Scalars['Boolean']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NotificationType: NotificationType;
 };
 
 export type NotificationTypeSettingCreateManyMemberConversationNotificationSettingInputEnvelope = {
   data: Array<NotificationTypeSettingCreateManyMemberConversationNotificationSettingInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type NotificationTypeSettingCreateNestedManyWithoutMemberConversationNotificationSettingInput = {
@@ -10414,8 +10416,8 @@ export type NotificationTypeSettingCreateOrConnectWithoutMemberConversationNotif
 };
 
 export type NotificationTypeSettingCreateWithoutMemberConversationNotificationSettingInput = {
-  allowed?: InputMaybe<Scalars['Boolean']>;
-  id?: InputMaybe<Scalars['String']>;
+  allowed?: InputMaybe<Scalars['Boolean']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NotificationType: NotificationType;
 };
 
@@ -10551,7 +10553,7 @@ export type NotificationTypeSettingWhereInput = {
 export type NotificationTypeSettingWhereUniqueInput = {
   allowed?: InputMaybe<BoolFilter>;
   AND?: InputMaybe<Array<NotificationTypeSettingWhereInput>>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   MemberConversationNotificationSetting?: InputMaybe<MemberConversationNotificationSettingWhereInput>;
   memberConversationNotificationSettingId?: InputMaybe<StringNullableFilter>;
   NOT?: InputMaybe<Array<NotificationTypeSettingWhereInput>>;
@@ -10560,11 +10562,11 @@ export type NotificationTypeSettingWhereUniqueInput = {
 };
 
 export type NullableBoolFieldUpdateOperationsInput = {
-  set?: InputMaybe<Scalars['Boolean']>;
+  set?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: InputMaybe<Scalars['DateTime']>;
+  set?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type NullableEnumPhotoTypeFieldUpdateOperationsInput = {
@@ -10576,15 +10578,15 @@ export type NullableEnumTokenTypeFieldUpdateOperationsInput = {
 };
 
 export type NullableIntFieldUpdateOperationsInput = {
-  decrement?: InputMaybe<Scalars['Int']>;
-  divide?: InputMaybe<Scalars['Int']>;
-  increment?: InputMaybe<Scalars['Int']>;
-  multiply?: InputMaybe<Scalars['Int']>;
-  set?: InputMaybe<Scalars['Int']>;
+  decrement?: InputMaybe<Scalars['Int']['input']>;
+  divide?: InputMaybe<Scalars['Int']['input']>;
+  increment?: InputMaybe<Scalars['Int']['input']>;
+  multiply?: InputMaybe<Scalars['Int']['input']>;
+  set?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type NullableStringFieldUpdateOperationsInput = {
-  set?: InputMaybe<Scalars['String']>;
+  set?: InputMaybe<Scalars['String']['input']>;
 };
 
 export enum NullsOrder {
@@ -10600,21 +10602,21 @@ export type OrganizedCityResponseObject = {
 
 export type Out = {
   __typename?: 'Out';
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
-  leftAt?: Maybe<Scalars['DateTime']>;
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
+  leftAt?: Maybe<Scalars['DateTime']['output']>;
   LiveOutPersonal?: Maybe<LiveOutPersonal>;
-  liveOutPersonalId?: Maybe<Scalars['String']>;
+  liveOutPersonalId?: Maybe<Scalars['String']['output']>;
   LiveOutVenue?: Maybe<LiveOutVenue>;
-  liveOutVenueId?: Maybe<Scalars['String']>;
-  personalProfileId: Scalars['String'];
+  liveOutVenueId?: Maybe<Scalars['String']['output']>;
+  personalProfileId: Scalars['String']['output'];
   PersonalStats?: Maybe<PersonalStats>;
-  personalStatsId?: Maybe<Scalars['String']>;
+  personalStatsId?: Maybe<Scalars['String']['output']>;
   type: OutType;
-  updatedAt: Scalars['DateTime'];
-  venueProfileId: Scalars['String'];
+  updatedAt: Scalars['DateTime']['output'];
+  venueProfileId: Scalars['String']['output'];
   VenueStats?: Maybe<VenueStats>;
-  venueStatsId?: Maybe<Scalars['String']>;
+  venueStatsId?: Maybe<Scalars['String']['output']>;
 };
 
 export type OutCountOrderByAggregateInput = {
@@ -10632,103 +10634,103 @@ export type OutCountOrderByAggregateInput = {
 };
 
 export type OutCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  leftAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  leftAt?: InputMaybe<Scalars['DateTime']['input']>;
   LiveOutPersonal?: InputMaybe<LiveOutPersonalCreateNestedOneWithoutOutInput>;
   LiveOutVenue?: InputMaybe<LiveOutVenueCreateNestedOneWithoutOutInput>;
-  personalProfileId: Scalars['String'];
+  personalProfileId: Scalars['String']['input'];
   PersonalStats?: InputMaybe<PersonalStatsCreateNestedOneWithoutOutInput>;
   type: OutType;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venueProfileId: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venueProfileId: Scalars['String']['input'];
   VenueStats?: InputMaybe<VenueStatsCreateNestedOneWithoutOutInput>;
 };
 
 export type OutCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  leftAt?: InputMaybe<Scalars['DateTime']>;
-  liveOutPersonalId?: InputMaybe<Scalars['String']>;
-  liveOutVenueId?: InputMaybe<Scalars['String']>;
-  personalProfileId: Scalars['String'];
-  personalStatsId?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  leftAt?: InputMaybe<Scalars['DateTime']['input']>;
+  liveOutPersonalId?: InputMaybe<Scalars['String']['input']>;
+  liveOutVenueId?: InputMaybe<Scalars['String']['input']>;
+  personalProfileId: Scalars['String']['input'];
+  personalStatsId?: InputMaybe<Scalars['String']['input']>;
   type: OutType;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venueProfileId: Scalars['String'];
-  venueStatsId?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venueProfileId: Scalars['String']['input'];
+  venueStatsId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type OutCreateManyLiveOutPersonalInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  leftAt?: InputMaybe<Scalars['DateTime']>;
-  liveOutVenueId?: InputMaybe<Scalars['String']>;
-  personalProfileId: Scalars['String'];
-  personalStatsId?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  leftAt?: InputMaybe<Scalars['DateTime']['input']>;
+  liveOutVenueId?: InputMaybe<Scalars['String']['input']>;
+  personalProfileId: Scalars['String']['input'];
+  personalStatsId?: InputMaybe<Scalars['String']['input']>;
   type: OutType;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venueProfileId: Scalars['String'];
-  venueStatsId?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venueProfileId: Scalars['String']['input'];
+  venueStatsId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type OutCreateManyLiveOutPersonalInputEnvelope = {
   data: Array<OutCreateManyLiveOutPersonalInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type OutCreateManyLiveOutVenueInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  leftAt?: InputMaybe<Scalars['DateTime']>;
-  liveOutPersonalId?: InputMaybe<Scalars['String']>;
-  personalProfileId: Scalars['String'];
-  personalStatsId?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  leftAt?: InputMaybe<Scalars['DateTime']['input']>;
+  liveOutPersonalId?: InputMaybe<Scalars['String']['input']>;
+  personalProfileId: Scalars['String']['input'];
+  personalStatsId?: InputMaybe<Scalars['String']['input']>;
   type: OutType;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venueProfileId: Scalars['String'];
-  venueStatsId?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venueProfileId: Scalars['String']['input'];
+  venueStatsId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type OutCreateManyLiveOutVenueInputEnvelope = {
   data: Array<OutCreateManyLiveOutVenueInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type OutCreateManyPersonalStatsInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  leftAt?: InputMaybe<Scalars['DateTime']>;
-  liveOutPersonalId?: InputMaybe<Scalars['String']>;
-  liveOutVenueId?: InputMaybe<Scalars['String']>;
-  personalProfileId: Scalars['String'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  leftAt?: InputMaybe<Scalars['DateTime']['input']>;
+  liveOutPersonalId?: InputMaybe<Scalars['String']['input']>;
+  liveOutVenueId?: InputMaybe<Scalars['String']['input']>;
+  personalProfileId: Scalars['String']['input'];
   type: OutType;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venueProfileId: Scalars['String'];
-  venueStatsId?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venueProfileId: Scalars['String']['input'];
+  venueStatsId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type OutCreateManyPersonalStatsInputEnvelope = {
   data: Array<OutCreateManyPersonalStatsInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type OutCreateManyVenueStatsInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  leftAt?: InputMaybe<Scalars['DateTime']>;
-  liveOutPersonalId?: InputMaybe<Scalars['String']>;
-  liveOutVenueId?: InputMaybe<Scalars['String']>;
-  personalProfileId: Scalars['String'];
-  personalStatsId?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  leftAt?: InputMaybe<Scalars['DateTime']['input']>;
+  liveOutPersonalId?: InputMaybe<Scalars['String']['input']>;
+  liveOutVenueId?: InputMaybe<Scalars['String']['input']>;
+  personalProfileId: Scalars['String']['input'];
+  personalStatsId?: InputMaybe<Scalars['String']['input']>;
   type: OutType;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venueProfileId: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venueProfileId: Scalars['String']['input'];
 };
 
 export type OutCreateManyVenueStatsInputEnvelope = {
   data: Array<OutCreateManyVenueStatsInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type OutCreateNestedManyWithoutLiveOutPersonalInput = {
@@ -10780,55 +10782,55 @@ export type OutCreateOrConnectWithoutVenueStatsInput = {
 };
 
 export type OutCreateWithoutLiveOutPersonalInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  leftAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  leftAt?: InputMaybe<Scalars['DateTime']['input']>;
   LiveOutVenue?: InputMaybe<LiveOutVenueCreateNestedOneWithoutOutInput>;
-  personalProfileId: Scalars['String'];
+  personalProfileId: Scalars['String']['input'];
   PersonalStats?: InputMaybe<PersonalStatsCreateNestedOneWithoutOutInput>;
   type: OutType;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venueProfileId: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venueProfileId: Scalars['String']['input'];
   VenueStats?: InputMaybe<VenueStatsCreateNestedOneWithoutOutInput>;
 };
 
 export type OutCreateWithoutLiveOutVenueInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  leftAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  leftAt?: InputMaybe<Scalars['DateTime']['input']>;
   LiveOutPersonal?: InputMaybe<LiveOutPersonalCreateNestedOneWithoutOutInput>;
-  personalProfileId: Scalars['String'];
+  personalProfileId: Scalars['String']['input'];
   PersonalStats?: InputMaybe<PersonalStatsCreateNestedOneWithoutOutInput>;
   type: OutType;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venueProfileId: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venueProfileId: Scalars['String']['input'];
   VenueStats?: InputMaybe<VenueStatsCreateNestedOneWithoutOutInput>;
 };
 
 export type OutCreateWithoutPersonalStatsInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  leftAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  leftAt?: InputMaybe<Scalars['DateTime']['input']>;
   LiveOutPersonal?: InputMaybe<LiveOutPersonalCreateNestedOneWithoutOutInput>;
   LiveOutVenue?: InputMaybe<LiveOutVenueCreateNestedOneWithoutOutInput>;
-  personalProfileId: Scalars['String'];
+  personalProfileId: Scalars['String']['input'];
   type: OutType;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venueProfileId: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venueProfileId: Scalars['String']['input'];
   VenueStats?: InputMaybe<VenueStatsCreateNestedOneWithoutOutInput>;
 };
 
 export type OutCreateWithoutVenueStatsInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  leftAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  leftAt?: InputMaybe<Scalars['DateTime']['input']>;
   LiveOutPersonal?: InputMaybe<LiveOutPersonalCreateNestedOneWithoutOutInput>;
   LiveOutVenue?: InputMaybe<LiveOutVenueCreateNestedOneWithoutOutInput>;
-  personalProfileId: Scalars['String'];
+  personalProfileId: Scalars['String']['input'];
   PersonalStats?: InputMaybe<PersonalStatsCreateNestedOneWithoutOutInput>;
   type: OutType;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venueProfileId: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venueProfileId: Scalars['String']['input'];
 };
 
 export type OutListRelationFilter = {
@@ -11177,7 +11179,7 @@ export type OutWhereInput = {
 export type OutWhereUniqueInput = {
   AND?: InputMaybe<Array<OutWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   leftAt?: InputMaybe<DateTimeNullableFilter>;
   LiveOutPersonal?: InputMaybe<LiveOutPersonalWhereInput>;
   liveOutPersonalId?: InputMaybe<StringNullableFilter>;
@@ -11197,12 +11199,12 @@ export type OutWhereUniqueInput = {
 
 export type Password = {
   __typename?: 'Password';
-  authenitcationProviderId: Scalars['String'];
+  authenitcationProviderId: Scalars['String']['output'];
   AuthenticationProvider: AuthenticationProvider;
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
-  password: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
+  password: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type PasswordCountOrderByAggregateInput = {
@@ -11215,18 +11217,18 @@ export type PasswordCountOrderByAggregateInput = {
 
 export type PasswordCreateInput = {
   AuthenticationProvider: AuthenticationProviderCreateNestedOneWithoutPasswordInput;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  password: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  password: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PasswordCreateManyInput = {
-  authenitcationProviderId: Scalars['String'];
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  password: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  authenitcationProviderId: Scalars['String']['input'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  password: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PasswordCreateNestedOneWithoutAuthenticationProviderInput = {
@@ -11241,10 +11243,10 @@ export type PasswordCreateOrConnectWithoutAuthenticationProviderInput = {
 };
 
 export type PasswordCreateWithoutAuthenticationProviderInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  password: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  password: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PasswordMaxOrderByAggregateInput = {
@@ -11364,10 +11366,10 @@ export type PasswordWhereInput = {
 
 export type PasswordWhereUniqueInput = {
   AND?: InputMaybe<Array<PasswordWhereInput>>;
-  authenitcationProviderId?: InputMaybe<Scalars['String']>;
+  authenitcationProviderId?: InputMaybe<Scalars['String']['input']>;
   AuthenticationProvider?: InputMaybe<AuthenticationProviderWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<PasswordWhereInput>>;
   OR?: InputMaybe<Array<PasswordWhereInput>>;
   password?: InputMaybe<StringFilter>;
@@ -11388,31 +11390,31 @@ export type PathCountOrderByAggregateInput = {
 };
 
 export type PathCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  latitude: Scalars['Float'];
-  longitude: Scalars['Float'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  latitude: Scalars['Float']['input'];
+  longitude: Scalars['Float']['input'];
   TonightPath?: InputMaybe<TonightPathCreateNestedOneWithoutPathInput>;
 };
 
 export type PathCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  latitude: Scalars['Float'];
-  longitude: Scalars['Float'];
-  TonightPathId?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  latitude: Scalars['Float']['input'];
+  longitude: Scalars['Float']['input'];
+  TonightPathId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type PathCreateManyTonightPathInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  latitude: Scalars['Float'];
-  longitude: Scalars['Float'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  latitude: Scalars['Float']['input'];
+  longitude: Scalars['Float']['input'];
 };
 
 export type PathCreateManyTonightPathInputEnvelope = {
   data: Array<PathCreateManyTonightPathInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type PathCreateNestedManyWithoutTonightPathInput = {
@@ -11428,10 +11430,10 @@ export type PathCreateOrConnectWithoutTonightPathInput = {
 };
 
 export type PathCreateWithoutTonightPathInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  latitude: Scalars['Float'];
-  longitude: Scalars['Float'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  latitude: Scalars['Float']['input'];
+  longitude: Scalars['Float']['input'];
 };
 
 export type PathListRelationFilter = {
@@ -11584,7 +11586,7 @@ export type PathWhereInput = {
 export type PathWhereUniqueInput = {
   AND?: InputMaybe<Array<PathWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   latitude?: InputMaybe<FloatFilter>;
   longitude?: InputMaybe<FloatFilter>;
   NOT?: InputMaybe<Array<PathWhereInput>>;
@@ -11601,14 +11603,14 @@ export enum Permission {
 
 export type Personal = {
   __typename?: 'Personal';
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
   LiveOutPersonal?: Maybe<LiveOutPersonal>;
   PersonalStats?: Maybe<PersonalStats>;
-  personalStatsId?: Maybe<Scalars['String']>;
+  personalStatsId?: Maybe<Scalars['String']['output']>;
   Profile: Profile;
-  profileId: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
+  profileId: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type PersonalCountOrderByAggregateInput = {
@@ -11620,20 +11622,20 @@ export type PersonalCountOrderByAggregateInput = {
 };
 
 export type PersonalCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   LiveOutPersonal?: InputMaybe<LiveOutPersonalCreateNestedOneWithoutPersonalInput>;
   PersonalStats?: InputMaybe<PersonalStatsCreateNestedOneWithoutPersonalInput>;
   Profile: ProfileCreateNestedOneWithoutPersonalInput;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PersonalCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  personalStatsId?: InputMaybe<Scalars['String']>;
-  profileId: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  personalStatsId?: InputMaybe<Scalars['String']['input']>;
+  profileId: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PersonalCreateNestedOneWithoutLiveOutPersonalInput = {
@@ -11670,27 +11672,27 @@ export type PersonalCreateOrConnectWithoutProfileInput = {
 };
 
 export type PersonalCreateWithoutLiveOutPersonalInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   PersonalStats?: InputMaybe<PersonalStatsCreateNestedOneWithoutPersonalInput>;
   Profile: ProfileCreateNestedOneWithoutPersonalInput;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PersonalCreateWithoutPersonalStatsInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   LiveOutPersonal?: InputMaybe<LiveOutPersonalCreateNestedOneWithoutPersonalInput>;
   Profile: ProfileCreateNestedOneWithoutPersonalInput;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PersonalCreateWithoutProfileInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   LiveOutPersonal?: InputMaybe<LiveOutPersonalCreateNestedOneWithoutPersonalInput>;
   PersonalStats?: InputMaybe<PersonalStatsCreateNestedOneWithoutPersonalInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PersonalMaxOrderByAggregateInput = {
@@ -11762,11 +11764,11 @@ export type PersonalScalarWhereWithAggregatesInput = {
 
 export type PersonalStats = {
   __typename?: 'PersonalStats';
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
   Out: Array<Out>;
   Personal?: Maybe<Personal>;
-  updatedAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 
@@ -11774,8 +11776,8 @@ export type PersonalStatsOutArgs = {
   cursor?: InputMaybe<OutWhereUniqueInput>;
   distinct?: InputMaybe<Array<OutScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<OutOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<OutWhereInput>;
 };
 
@@ -11786,17 +11788,17 @@ export type PersonalStatsCountOrderByAggregateInput = {
 };
 
 export type PersonalStatsCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Out?: InputMaybe<OutCreateNestedManyWithoutPersonalStatsInput>;
   Personal?: InputMaybe<PersonalCreateNestedOneWithoutPersonalStatsInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PersonalStatsCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PersonalStatsCreateNestedOneWithoutOutInput = {
@@ -11822,17 +11824,17 @@ export type PersonalStatsCreateOrConnectWithoutPersonalInput = {
 };
 
 export type PersonalStatsCreateWithoutOutInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Personal?: InputMaybe<PersonalCreateNestedOneWithoutPersonalStatsInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PersonalStatsCreateWithoutPersonalInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Out?: InputMaybe<OutCreateNestedManyWithoutPersonalStatsInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PersonalStatsMaxOrderByAggregateInput = {
@@ -11968,7 +11970,7 @@ export type PersonalStatsWhereInput = {
 export type PersonalStatsWhereUniqueInput = {
   AND?: InputMaybe<Array<PersonalStatsWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<PersonalStatsWhereInput>>;
   OR?: InputMaybe<Array<PersonalStatsWhereInput>>;
   Out?: InputMaybe<OutListRelationFilter>;
@@ -12093,28 +12095,28 @@ export type PersonalWhereInput = {
 export type PersonalWhereUniqueInput = {
   AND?: InputMaybe<Array<PersonalWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   LiveOutPersonal?: InputMaybe<LiveOutPersonalWhereInput>;
   NOT?: InputMaybe<Array<PersonalWhereInput>>;
   OR?: InputMaybe<Array<PersonalWhereInput>>;
   PersonalStats?: InputMaybe<PersonalStatsWhereInput>;
-  personalStatsId?: InputMaybe<Scalars['String']>;
+  personalStatsId?: InputMaybe<Scalars['String']['input']>;
   Profile?: InputMaybe<ProfileWhereInput>;
-  profileId?: InputMaybe<Scalars['String']>;
+  profileId?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
 export type Phone = {
   __typename?: 'Phone';
   AuthenticationProvider: Array<AuthenticationProvider>;
-  canUseAsRecovery?: Maybe<Scalars['Boolean']>;
-  completeNumber?: Maybe<Scalars['String']>;
-  countryCallingCode?: Maybe<Scalars['String']>;
-  countryCode?: Maybe<Scalars['String']>;
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
-  number: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
+  canUseAsRecovery?: Maybe<Scalars['Boolean']['output']>;
+  completeNumber?: Maybe<Scalars['String']['output']>;
+  countryCallingCode?: Maybe<Scalars['String']['output']>;
+  countryCode?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
+  number: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 
@@ -12122,8 +12124,8 @@ export type PhoneAuthenticationProviderArgs = {
   cursor?: InputMaybe<AuthenticationProviderWhereUniqueInput>;
   distinct?: InputMaybe<Array<AuthenticationProviderScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<AuthenticationProviderOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<AuthenticationProviderWhereInput>;
 };
 
@@ -12144,24 +12146,24 @@ export type PhoneCountOrderByAggregateInput = {
 
 export type PhoneCreateInput = {
   AuthenticationProvider?: InputMaybe<AuthenticationProviderCreateNestedManyWithoutPhonesInput>;
-  canUseAsRecovery?: InputMaybe<Scalars['Boolean']>;
-  completeNumber?: InputMaybe<Scalars['String']>;
-  countryCallingCode?: InputMaybe<Scalars['String']>;
-  countryCode?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  number: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  canUseAsRecovery?: InputMaybe<Scalars['Boolean']['input']>;
+  completeNumber?: InputMaybe<Scalars['String']['input']>;
+  countryCallingCode?: InputMaybe<Scalars['String']['input']>;
+  countryCode?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  number: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PhoneCreateManyInput = {
-  canUseAsRecovery?: InputMaybe<Scalars['Boolean']>;
-  completeNumber?: InputMaybe<Scalars['String']>;
-  countryCallingCode?: InputMaybe<Scalars['String']>;
-  countryCode?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['Int']>;
-  number: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  canUseAsRecovery?: InputMaybe<Scalars['Boolean']['input']>;
+  completeNumber?: InputMaybe<Scalars['String']['input']>;
+  countryCallingCode?: InputMaybe<Scalars['String']['input']>;
+  countryCode?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  number: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PhoneCreateNestedManyWithoutAuthenticationProviderInput = {
@@ -12176,21 +12178,21 @@ export type PhoneCreateOrConnectWithoutAuthenticationProviderInput = {
 };
 
 export type PhoneCreateWithoutAuthenticationProviderInput = {
-  canUseAsRecovery?: InputMaybe<Scalars['Boolean']>;
-  completeNumber?: InputMaybe<Scalars['String']>;
-  countryCallingCode?: InputMaybe<Scalars['String']>;
-  countryCode?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  number: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  canUseAsRecovery?: InputMaybe<Scalars['Boolean']['input']>;
+  completeNumber?: InputMaybe<Scalars['String']['input']>;
+  countryCallingCode?: InputMaybe<Scalars['String']['input']>;
+  countryCode?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  number: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PhoneInput = {
-  completeNumber?: InputMaybe<Scalars['String']>;
-  countryCallingCode?: InputMaybe<Scalars['String']>;
-  countryCode?: InputMaybe<Scalars['String']>;
+  completeNumber?: InputMaybe<Scalars['String']['input']>;
+  countryCallingCode?: InputMaybe<Scalars['String']['input']>;
+  countryCode?: InputMaybe<Scalars['String']['input']>;
   /** Accepted phone formats: 5193334444 or +15193334444 */
-  number?: InputMaybe<Scalars['String']>;
+  number?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type PhoneListRelationFilter = {
@@ -12379,7 +12381,7 @@ export type PhoneWhereUniqueInput = {
   countryCallingCode?: InputMaybe<StringNullableFilter>;
   countryCode?: InputMaybe<StringNullableFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
   NOT?: InputMaybe<Array<PhoneWhereInput>>;
   number?: InputMaybe<StringFilter>;
   OR?: InputMaybe<Array<PhoneWhereInput>>;
@@ -12388,23 +12390,23 @@ export type PhoneWhereUniqueInput = {
 
 export type Photo = {
   __typename?: 'Photo';
-  active: Scalars['Boolean'];
-  blurhash?: Maybe<Scalars['String']>;
-  createdAt: Scalars['DateTime'];
+  active: Scalars['Boolean']['output'];
+  blurhash?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['DateTime']['output'];
   Group?: Maybe<Group>;
-  groupId?: Maybe<Scalars['String']>;
-  height?: Maybe<Scalars['Int']>;
-  id: Scalars['ID'];
-  position?: Maybe<Scalars['Int']>;
+  groupId?: Maybe<Scalars['String']['output']>;
+  height?: Maybe<Scalars['Int']['output']>;
+  id: Scalars['ID']['output'];
+  position?: Maybe<Scalars['Int']['output']>;
   Profile?: Maybe<Profile>;
-  profileId?: Maybe<Scalars['String']>;
-  ratio?: Maybe<Scalars['String']>;
+  profileId?: Maybe<Scalars['String']['output']>;
+  ratio?: Maybe<Scalars['String']['output']>;
   Story?: Maybe<Story>;
-  storyId?: Maybe<Scalars['String']>;
+  storyId?: Maybe<Scalars['String']['output']>;
   type?: Maybe<PhotoType>;
-  updatedAt: Scalars['DateTime'];
-  url: Scalars['String'];
-  width?: Maybe<Scalars['Int']>;
+  updatedAt: Scalars['DateTime']['output'];
+  url: Scalars['String']['output'];
+  width?: Maybe<Scalars['Int']['output']>;
 };
 
 export type PhotoAvgOrderByAggregateInput = {
@@ -12431,100 +12433,100 @@ export type PhotoCountOrderByAggregateInput = {
 };
 
 export type PhotoCreateInput = {
-  active?: InputMaybe<Scalars['Boolean']>;
-  blurhash?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  active?: InputMaybe<Scalars['Boolean']['input']>;
+  blurhash?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Group?: InputMaybe<GroupCreateNestedOneWithoutPhotosInput>;
-  height?: InputMaybe<Scalars['Int']>;
-  id?: InputMaybe<Scalars['String']>;
-  position?: InputMaybe<Scalars['Int']>;
+  height?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  position?: InputMaybe<Scalars['Int']['input']>;
   Profile?: InputMaybe<ProfileCreateNestedOneWithoutPhotosInput>;
-  ratio?: InputMaybe<Scalars['String']>;
+  ratio?: InputMaybe<Scalars['String']['input']>;
   Story?: InputMaybe<StoryCreateNestedOneWithoutPhotosInput>;
   type?: InputMaybe<PhotoType>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  url: Scalars['String'];
-  width?: InputMaybe<Scalars['Int']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  url: Scalars['String']['input'];
+  width?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type PhotoCreateManyGroupInput = {
-  active?: InputMaybe<Scalars['Boolean']>;
-  blurhash?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  height?: InputMaybe<Scalars['Int']>;
-  id?: InputMaybe<Scalars['String']>;
-  position?: InputMaybe<Scalars['Int']>;
-  profileId?: InputMaybe<Scalars['String']>;
-  ratio?: InputMaybe<Scalars['String']>;
-  storyId?: InputMaybe<Scalars['String']>;
+  active?: InputMaybe<Scalars['Boolean']['input']>;
+  blurhash?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  height?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  position?: InputMaybe<Scalars['Int']['input']>;
+  profileId?: InputMaybe<Scalars['String']['input']>;
+  ratio?: InputMaybe<Scalars['String']['input']>;
+  storyId?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<PhotoType>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  url: Scalars['String'];
-  width?: InputMaybe<Scalars['Int']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  url: Scalars['String']['input'];
+  width?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type PhotoCreateManyGroupInputEnvelope = {
   data: Array<PhotoCreateManyGroupInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type PhotoCreateManyInput = {
-  active?: InputMaybe<Scalars['Boolean']>;
-  blurhash?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  groupId?: InputMaybe<Scalars['String']>;
-  height?: InputMaybe<Scalars['Int']>;
-  id?: InputMaybe<Scalars['String']>;
-  position?: InputMaybe<Scalars['Int']>;
-  profileId?: InputMaybe<Scalars['String']>;
-  ratio?: InputMaybe<Scalars['String']>;
-  storyId?: InputMaybe<Scalars['String']>;
+  active?: InputMaybe<Scalars['Boolean']['input']>;
+  blurhash?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  groupId?: InputMaybe<Scalars['String']['input']>;
+  height?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  position?: InputMaybe<Scalars['Int']['input']>;
+  profileId?: InputMaybe<Scalars['String']['input']>;
+  ratio?: InputMaybe<Scalars['String']['input']>;
+  storyId?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<PhotoType>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  url: Scalars['String'];
-  width?: InputMaybe<Scalars['Int']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  url: Scalars['String']['input'];
+  width?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type PhotoCreateManyProfileInput = {
-  active?: InputMaybe<Scalars['Boolean']>;
-  blurhash?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  groupId?: InputMaybe<Scalars['String']>;
-  height?: InputMaybe<Scalars['Int']>;
-  id?: InputMaybe<Scalars['String']>;
-  position?: InputMaybe<Scalars['Int']>;
-  ratio?: InputMaybe<Scalars['String']>;
-  storyId?: InputMaybe<Scalars['String']>;
+  active?: InputMaybe<Scalars['Boolean']['input']>;
+  blurhash?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  groupId?: InputMaybe<Scalars['String']['input']>;
+  height?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  position?: InputMaybe<Scalars['Int']['input']>;
+  ratio?: InputMaybe<Scalars['String']['input']>;
+  storyId?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<PhotoType>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  url: Scalars['String'];
-  width?: InputMaybe<Scalars['Int']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  url: Scalars['String']['input'];
+  width?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type PhotoCreateManyProfileInputEnvelope = {
   data: Array<PhotoCreateManyProfileInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type PhotoCreateManyStoryInput = {
-  active?: InputMaybe<Scalars['Boolean']>;
-  blurhash?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  groupId?: InputMaybe<Scalars['String']>;
-  height?: InputMaybe<Scalars['Int']>;
-  id?: InputMaybe<Scalars['String']>;
-  position?: InputMaybe<Scalars['Int']>;
-  profileId?: InputMaybe<Scalars['String']>;
-  ratio?: InputMaybe<Scalars['String']>;
+  active?: InputMaybe<Scalars['Boolean']['input']>;
+  blurhash?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  groupId?: InputMaybe<Scalars['String']['input']>;
+  height?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  position?: InputMaybe<Scalars['Int']['input']>;
+  profileId?: InputMaybe<Scalars['String']['input']>;
+  ratio?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<PhotoType>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  url: Scalars['String'];
-  width?: InputMaybe<Scalars['Int']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  url: Scalars['String']['input'];
+  width?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type PhotoCreateManyStoryInputEnvelope = {
   data: Array<PhotoCreateManyStoryInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type PhotoCreateNestedManyWithoutGroupInput = {
@@ -12564,51 +12566,51 @@ export type PhotoCreateOrConnectWithoutStoryInput = {
 };
 
 export type PhotoCreateWithoutGroupInput = {
-  active?: InputMaybe<Scalars['Boolean']>;
-  blurhash?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  height?: InputMaybe<Scalars['Int']>;
-  id?: InputMaybe<Scalars['String']>;
-  position?: InputMaybe<Scalars['Int']>;
+  active?: InputMaybe<Scalars['Boolean']['input']>;
+  blurhash?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  height?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  position?: InputMaybe<Scalars['Int']['input']>;
   Profile?: InputMaybe<ProfileCreateNestedOneWithoutPhotosInput>;
-  ratio?: InputMaybe<Scalars['String']>;
+  ratio?: InputMaybe<Scalars['String']['input']>;
   Story?: InputMaybe<StoryCreateNestedOneWithoutPhotosInput>;
   type?: InputMaybe<PhotoType>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  url: Scalars['String'];
-  width?: InputMaybe<Scalars['Int']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  url: Scalars['String']['input'];
+  width?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type PhotoCreateWithoutProfileInput = {
-  active?: InputMaybe<Scalars['Boolean']>;
-  blurhash?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  active?: InputMaybe<Scalars['Boolean']['input']>;
+  blurhash?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Group?: InputMaybe<GroupCreateNestedOneWithoutPhotosInput>;
-  height?: InputMaybe<Scalars['Int']>;
-  id?: InputMaybe<Scalars['String']>;
-  position?: InputMaybe<Scalars['Int']>;
-  ratio?: InputMaybe<Scalars['String']>;
+  height?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  position?: InputMaybe<Scalars['Int']['input']>;
+  ratio?: InputMaybe<Scalars['String']['input']>;
   Story?: InputMaybe<StoryCreateNestedOneWithoutPhotosInput>;
   type?: InputMaybe<PhotoType>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  url: Scalars['String'];
-  width?: InputMaybe<Scalars['Int']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  url: Scalars['String']['input'];
+  width?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type PhotoCreateWithoutStoryInput = {
-  active?: InputMaybe<Scalars['Boolean']>;
-  blurhash?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  active?: InputMaybe<Scalars['Boolean']['input']>;
+  blurhash?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Group?: InputMaybe<GroupCreateNestedOneWithoutPhotosInput>;
-  height?: InputMaybe<Scalars['Int']>;
-  id?: InputMaybe<Scalars['String']>;
-  position?: InputMaybe<Scalars['Int']>;
+  height?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  position?: InputMaybe<Scalars['Int']['input']>;
   Profile?: InputMaybe<ProfileCreateNestedOneWithoutPhotosInput>;
-  ratio?: InputMaybe<Scalars['String']>;
+  ratio?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<PhotoType>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  url: Scalars['String'];
-  width?: InputMaybe<Scalars['Int']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  url: Scalars['String']['input'];
+  width?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type PhotoListRelationFilter = {
@@ -12965,7 +12967,7 @@ export type PhotoWhereUniqueInput = {
   Group?: InputMaybe<GroupWhereInput>;
   groupId?: InputMaybe<StringNullableFilter>;
   height?: InputMaybe<IntNullableFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<PhotoWhereInput>>;
   OR?: InputMaybe<Array<PhotoWhereInput>>;
   position?: InputMaybe<IntNullableFilter>;
@@ -12983,15 +12985,15 @@ export type PhotoWhereUniqueInput = {
 export type PlaceType = {
   __typename?: 'PlaceType';
   coords: Coords;
-  isoCode: Scalars['String'];
-  name: Scalars['String'];
+  isoCode: Scalars['String']['output'];
+  name: Scalars['String']['output'];
 };
 
 export type PluseCode = {
   __typename?: 'PluseCode';
-  compoundCode?: Maybe<Scalars['String']>;
-  globalCode: Scalars['String'];
-  id: Scalars['ID'];
+  compoundCode?: Maybe<Scalars['String']['output']>;
+  globalCode: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
   Location?: Maybe<Location>;
 };
 
@@ -13002,16 +13004,16 @@ export type PluseCodeCountOrderByAggregateInput = {
 };
 
 export type PluseCodeCreateInput = {
-  compoundCode?: InputMaybe<Scalars['String']>;
-  globalCode: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
+  compoundCode?: InputMaybe<Scalars['String']['input']>;
+  globalCode: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
   Location?: InputMaybe<LocationCreateNestedOneWithoutPlusCodeInput>;
 };
 
 export type PluseCodeCreateManyInput = {
-  compoundCode?: InputMaybe<Scalars['String']>;
-  globalCode: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
+  compoundCode?: InputMaybe<Scalars['String']['input']>;
+  globalCode: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type PluseCodeCreateNestedOneWithoutLocationInput = {
@@ -13026,9 +13028,9 @@ export type PluseCodeCreateOrConnectWithoutLocationInput = {
 };
 
 export type PluseCodeCreateWithoutLocationInput = {
-  compoundCode?: InputMaybe<Scalars['String']>;
-  globalCode: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
+  compoundCode?: InputMaybe<Scalars['String']['input']>;
+  globalCode: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type PluseCodeMaxOrderByAggregateInput = {
@@ -13133,7 +13135,7 @@ export type PluseCodeWhereUniqueInput = {
   AND?: InputMaybe<Array<PluseCodeWhereInput>>;
   compoundCode?: InputMaybe<StringNullableFilter>;
   globalCode?: InputMaybe<StringFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Location?: InputMaybe<LocationWhereInput>;
   NOT?: InputMaybe<Array<PluseCodeWhereInput>>;
   OR?: InputMaybe<Array<PluseCodeWhereInput>>;
@@ -13146,23 +13148,23 @@ export type PopularSearchServiceCountOrderByAggregateInput = {
 };
 
 export type PopularSearchServiceCreateInput = {
-  id?: InputMaybe<Scalars['String']>;
-  popularPersonals?: InputMaybe<Array<Scalars['Json']>>;
-  popularVenues?: InputMaybe<Array<Scalars['Json']>>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  popularPersonals?: InputMaybe<Array<Scalars['Json']['input']>>;
+  popularVenues?: InputMaybe<Array<Scalars['Json']['input']>>;
 };
 
 export type PopularSearchServiceCreateManyInput = {
-  id?: InputMaybe<Scalars['String']>;
-  popularPersonals?: InputMaybe<Array<Scalars['Json']>>;
-  popularVenues?: InputMaybe<Array<Scalars['Json']>>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  popularPersonals?: InputMaybe<Array<Scalars['Json']['input']>>;
+  popularVenues?: InputMaybe<Array<Scalars['Json']['input']>>;
 };
 
 export type PopularSearchServiceCreatepopularPersonalsInput = {
-  set: Array<Scalars['Json']>;
+  set: Array<Scalars['Json']['input']>;
 };
 
 export type PopularSearchServiceCreatepopularVenuesInput = {
-  set: Array<Scalars['Json']>;
+  set: Array<Scalars['Json']['input']>;
 };
 
 export type PopularSearchServiceMaxOrderByAggregateInput = {
@@ -13205,24 +13207,24 @@ export type PopularSearchServiceScalarWhereWithAggregatesInput = {
 
 export type PopularSearchServiceUpdateInput = {
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  popularPersonals?: InputMaybe<Array<Scalars['Json']>>;
-  popularVenues?: InputMaybe<Array<Scalars['Json']>>;
+  popularPersonals?: InputMaybe<Array<Scalars['Json']['input']>>;
+  popularVenues?: InputMaybe<Array<Scalars['Json']['input']>>;
 };
 
 export type PopularSearchServiceUpdateManyMutationInput = {
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  popularPersonals?: InputMaybe<Array<Scalars['Json']>>;
-  popularVenues?: InputMaybe<Array<Scalars['Json']>>;
+  popularPersonals?: InputMaybe<Array<Scalars['Json']['input']>>;
+  popularVenues?: InputMaybe<Array<Scalars['Json']['input']>>;
 };
 
 export type PopularSearchServiceUpdatepopularPersonalsInput = {
-  push?: InputMaybe<Scalars['Json']>;
-  set?: InputMaybe<Array<Scalars['Json']>>;
+  push?: InputMaybe<Scalars['Json']['input']>;
+  set?: InputMaybe<Array<Scalars['Json']['input']>>;
 };
 
 export type PopularSearchServiceUpdatepopularVenuesInput = {
-  push?: InputMaybe<Scalars['Json']>;
-  set?: InputMaybe<Array<Scalars['Json']>>;
+  push?: InputMaybe<Scalars['Json']['input']>;
+  set?: InputMaybe<Array<Scalars['Json']['input']>>;
 };
 
 export type PopularSearchServiceWhereInput = {
@@ -13236,7 +13238,7 @@ export type PopularSearchServiceWhereInput = {
 
 export type PopularSearchServiceWhereUniqueInput = {
   AND?: InputMaybe<Array<PopularSearchServiceWhereInput>>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<PopularSearchServiceWhereInput>>;
   OR?: InputMaybe<Array<PopularSearchServiceWhereInput>>;
   popularPersonals?: InputMaybe<JsonNullableListFilter>;
@@ -13251,11 +13253,11 @@ export type PrivacyTermsUpdateResponseUnion = Error | LatestPrivacyAndTermsDocum
 
 export type Profile = {
   __typename?: 'Profile';
-  bfsprofileid: Scalars['String'];
-  createdAt: Scalars['DateTime'];
+  bfsprofileid: Scalars['String']['output'];
+  createdAt: Scalars['DateTime']['output'];
   Credentials: Credentials;
   DetailInformation?: Maybe<DetailInformation>;
-  id: Scalars['String'];
+  id: Scalars['String']['output'];
   IdentifiableInformation?: Maybe<IdentifiableInformation>;
   Personal?: Maybe<Personal>;
   photos?: Maybe<Array<Photo>>;
@@ -13265,7 +13267,7 @@ export type Profile = {
   resentSearches?: Maybe<SearchesService>;
   ThemeManager?: Maybe<ThemeManager>;
   tonightStory?: Maybe<Story>;
-  updatedAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime']['output'];
   Venue?: Maybe<Venue>;
 };
 
@@ -13279,18 +13281,18 @@ export type ProfileCountOrderByAggregateInput = {
 };
 
 export type ProfileCreateDeviceManagerInput = {
-  set: Array<Scalars['String']>;
+  set: Array<Scalars['String']['input']>;
 };
 
 export type ProfileCreateInput = {
-  bfsprofileid?: InputMaybe<Scalars['String']>;
+  bfsprofileid?: InputMaybe<Scalars['String']['input']>;
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
   Personal?: InputMaybe<PersonalCreateNestedOneWithoutProfileInput>;
@@ -13302,18 +13304,18 @@ export type ProfileCreateInput = {
   Settings?: InputMaybe<SettingsCreateNestedOneWithoutProfileInput>;
   Storys?: InputMaybe<StoryCreateNestedManyWithoutProfileInput>;
   ThemeManager?: InputMaybe<ThemeManagerCreateNestedOneWithoutProfileInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue?: InputMaybe<VenueCreateNestedOneWithoutProfileInput>;
   Vote?: InputMaybe<VoteCreateNestedManyWithoutProfileInput>;
 };
 
 export type ProfileCreateManyInput = {
-  bfsprofileid?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
-  id?: InputMaybe<Scalars['String']>;
+  bfsprofileid?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
+  id?: InputMaybe<Scalars['String']['input']>;
   ProfileType?: InputMaybe<ProfileType>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type ProfileCreateNestedManyWithoutConversationsInput = {
@@ -13493,13 +13495,13 @@ export type ProfileCreateOrConnectWithoutVoteInput = {
 };
 
 export type ProfileCreateWithoutConversationsInput = {
-  bfsprofileid?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  bfsprofileid?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
   Personal?: InputMaybe<PersonalCreateNestedOneWithoutProfileInput>;
@@ -13511,19 +13513,19 @@ export type ProfileCreateWithoutConversationsInput = {
   Settings?: InputMaybe<SettingsCreateNestedOneWithoutProfileInput>;
   Storys?: InputMaybe<StoryCreateNestedManyWithoutProfileInput>;
   ThemeManager?: InputMaybe<ThemeManagerCreateNestedOneWithoutProfileInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue?: InputMaybe<VenueCreateNestedOneWithoutProfileInput>;
   Vote?: InputMaybe<VoteCreateNestedManyWithoutProfileInput>;
 };
 
 export type ProfileCreateWithoutCredentialsInput = {
-  bfsprofileid?: InputMaybe<Scalars['String']>;
+  bfsprofileid?: InputMaybe<Scalars['String']['input']>;
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
   Personal?: InputMaybe<PersonalCreateNestedOneWithoutProfileInput>;
@@ -13535,19 +13537,19 @@ export type ProfileCreateWithoutCredentialsInput = {
   Settings?: InputMaybe<SettingsCreateNestedOneWithoutProfileInput>;
   Storys?: InputMaybe<StoryCreateNestedManyWithoutProfileInput>;
   ThemeManager?: InputMaybe<ThemeManagerCreateNestedOneWithoutProfileInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue?: InputMaybe<VenueCreateNestedOneWithoutProfileInput>;
   Vote?: InputMaybe<VoteCreateNestedManyWithoutProfileInput>;
 };
 
 export type ProfileCreateWithoutDetailInformationInput = {
-  bfsprofileid?: InputMaybe<Scalars['String']>;
+  bfsprofileid?: InputMaybe<Scalars['String']['input']>;
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
   Personal?: InputMaybe<PersonalCreateNestedOneWithoutProfileInput>;
@@ -13559,19 +13561,19 @@ export type ProfileCreateWithoutDetailInformationInput = {
   Settings?: InputMaybe<SettingsCreateNestedOneWithoutProfileInput>;
   Storys?: InputMaybe<StoryCreateNestedManyWithoutProfileInput>;
   ThemeManager?: InputMaybe<ThemeManagerCreateNestedOneWithoutProfileInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue?: InputMaybe<VenueCreateNestedOneWithoutProfileInput>;
   Vote?: InputMaybe<VoteCreateNestedManyWithoutProfileInput>;
 };
 
 export type ProfileCreateWithoutGroupsInput = {
-  bfsprofileid?: InputMaybe<Scalars['String']>;
+  bfsprofileid?: InputMaybe<Scalars['String']['input']>;
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
-  id?: InputMaybe<Scalars['String']>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
+  id?: InputMaybe<Scalars['String']['input']>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
   Personal?: InputMaybe<PersonalCreateNestedOneWithoutProfileInput>;
@@ -13583,20 +13585,20 @@ export type ProfileCreateWithoutGroupsInput = {
   Settings?: InputMaybe<SettingsCreateNestedOneWithoutProfileInput>;
   Storys?: InputMaybe<StoryCreateNestedManyWithoutProfileInput>;
   ThemeManager?: InputMaybe<ThemeManagerCreateNestedOneWithoutProfileInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue?: InputMaybe<VenueCreateNestedOneWithoutProfileInput>;
   Vote?: InputMaybe<VoteCreateNestedManyWithoutProfileInput>;
 };
 
 export type ProfileCreateWithoutIdentifiableInformationInput = {
-  bfsprofileid?: InputMaybe<Scalars['String']>;
+  bfsprofileid?: InputMaybe<Scalars['String']['input']>;
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
   Personal?: InputMaybe<PersonalCreateNestedOneWithoutProfileInput>;
   Photos?: InputMaybe<PhotoCreateNestedManyWithoutProfileInput>;
@@ -13607,20 +13609,20 @@ export type ProfileCreateWithoutIdentifiableInformationInput = {
   Settings?: InputMaybe<SettingsCreateNestedOneWithoutProfileInput>;
   Storys?: InputMaybe<StoryCreateNestedManyWithoutProfileInput>;
   ThemeManager?: InputMaybe<ThemeManagerCreateNestedOneWithoutProfileInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue?: InputMaybe<VenueCreateNestedOneWithoutProfileInput>;
   Vote?: InputMaybe<VoteCreateNestedManyWithoutProfileInput>;
 };
 
 export type ProfileCreateWithoutNotificationsInput = {
-  bfsprofileid?: InputMaybe<Scalars['String']>;
+  bfsprofileid?: InputMaybe<Scalars['String']['input']>;
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Personal?: InputMaybe<PersonalCreateNestedOneWithoutProfileInput>;
   Photos?: InputMaybe<PhotoCreateNestedManyWithoutProfileInput>;
@@ -13631,20 +13633,20 @@ export type ProfileCreateWithoutNotificationsInput = {
   Settings?: InputMaybe<SettingsCreateNestedOneWithoutProfileInput>;
   Storys?: InputMaybe<StoryCreateNestedManyWithoutProfileInput>;
   ThemeManager?: InputMaybe<ThemeManagerCreateNestedOneWithoutProfileInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue?: InputMaybe<VenueCreateNestedOneWithoutProfileInput>;
   Vote?: InputMaybe<VoteCreateNestedManyWithoutProfileInput>;
 };
 
 export type ProfileCreateWithoutPersonalInput = {
-  bfsprofileid?: InputMaybe<Scalars['String']>;
+  bfsprofileid?: InputMaybe<Scalars['String']['input']>;
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
   Photos?: InputMaybe<PhotoCreateNestedManyWithoutProfileInput>;
@@ -13655,20 +13657,20 @@ export type ProfileCreateWithoutPersonalInput = {
   Settings?: InputMaybe<SettingsCreateNestedOneWithoutProfileInput>;
   Storys?: InputMaybe<StoryCreateNestedManyWithoutProfileInput>;
   ThemeManager?: InputMaybe<ThemeManagerCreateNestedOneWithoutProfileInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue?: InputMaybe<VenueCreateNestedOneWithoutProfileInput>;
   Vote?: InputMaybe<VoteCreateNestedManyWithoutProfileInput>;
 };
 
 export type ProfileCreateWithoutPhotosInput = {
-  bfsprofileid?: InputMaybe<Scalars['String']>;
+  bfsprofileid?: InputMaybe<Scalars['String']['input']>;
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
   Personal?: InputMaybe<PersonalCreateNestedOneWithoutProfileInput>;
@@ -13679,20 +13681,20 @@ export type ProfileCreateWithoutPhotosInput = {
   Settings?: InputMaybe<SettingsCreateNestedOneWithoutProfileInput>;
   Storys?: InputMaybe<StoryCreateNestedManyWithoutProfileInput>;
   ThemeManager?: InputMaybe<ThemeManagerCreateNestedOneWithoutProfileInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue?: InputMaybe<VenueCreateNestedOneWithoutProfileInput>;
   Vote?: InputMaybe<VoteCreateNestedManyWithoutProfileInput>;
 };
 
 export type ProfileCreateWithoutRelationshipsInput = {
-  bfsprofileid?: InputMaybe<Scalars['String']>;
+  bfsprofileid?: InputMaybe<Scalars['String']['input']>;
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
   Personal?: InputMaybe<PersonalCreateNestedOneWithoutProfileInput>;
@@ -13703,20 +13705,20 @@ export type ProfileCreateWithoutRelationshipsInput = {
   Settings?: InputMaybe<SettingsCreateNestedOneWithoutProfileInput>;
   Storys?: InputMaybe<StoryCreateNestedManyWithoutProfileInput>;
   ThemeManager?: InputMaybe<ThemeManagerCreateNestedOneWithoutProfileInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue?: InputMaybe<VenueCreateNestedOneWithoutProfileInput>;
   Vote?: InputMaybe<VoteCreateNestedManyWithoutProfileInput>;
 };
 
 export type ProfileCreateWithoutSearchesServiceInput = {
-  bfsprofileid?: InputMaybe<Scalars['String']>;
+  bfsprofileid?: InputMaybe<Scalars['String']['input']>;
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
   Personal?: InputMaybe<PersonalCreateNestedOneWithoutProfileInput>;
@@ -13727,20 +13729,20 @@ export type ProfileCreateWithoutSearchesServiceInput = {
   Settings?: InputMaybe<SettingsCreateNestedOneWithoutProfileInput>;
   Storys?: InputMaybe<StoryCreateNestedManyWithoutProfileInput>;
   ThemeManager?: InputMaybe<ThemeManagerCreateNestedOneWithoutProfileInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue?: InputMaybe<VenueCreateNestedOneWithoutProfileInput>;
   Vote?: InputMaybe<VoteCreateNestedManyWithoutProfileInput>;
 };
 
 export type ProfileCreateWithoutSecuredDataKeysInput = {
-  bfsprofileid?: InputMaybe<Scalars['String']>;
+  bfsprofileid?: InputMaybe<Scalars['String']['input']>;
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
   Personal?: InputMaybe<PersonalCreateNestedOneWithoutProfileInput>;
@@ -13751,20 +13753,20 @@ export type ProfileCreateWithoutSecuredDataKeysInput = {
   Settings?: InputMaybe<SettingsCreateNestedOneWithoutProfileInput>;
   Storys?: InputMaybe<StoryCreateNestedManyWithoutProfileInput>;
   ThemeManager?: InputMaybe<ThemeManagerCreateNestedOneWithoutProfileInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue?: InputMaybe<VenueCreateNestedOneWithoutProfileInput>;
   Vote?: InputMaybe<VoteCreateNestedManyWithoutProfileInput>;
 };
 
 export type ProfileCreateWithoutSettingsInput = {
-  bfsprofileid?: InputMaybe<Scalars['String']>;
+  bfsprofileid?: InputMaybe<Scalars['String']['input']>;
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
   Personal?: InputMaybe<PersonalCreateNestedOneWithoutProfileInput>;
@@ -13775,20 +13777,20 @@ export type ProfileCreateWithoutSettingsInput = {
   SecuredDataKeys?: InputMaybe<SecuredDataKeysCreateNestedManyWithoutProfileInput>;
   Storys?: InputMaybe<StoryCreateNestedManyWithoutProfileInput>;
   ThemeManager?: InputMaybe<ThemeManagerCreateNestedOneWithoutProfileInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue?: InputMaybe<VenueCreateNestedOneWithoutProfileInput>;
   Vote?: InputMaybe<VoteCreateNestedManyWithoutProfileInput>;
 };
 
 export type ProfileCreateWithoutStorysInput = {
-  bfsprofileid?: InputMaybe<Scalars['String']>;
+  bfsprofileid?: InputMaybe<Scalars['String']['input']>;
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
   Personal?: InputMaybe<PersonalCreateNestedOneWithoutProfileInput>;
@@ -13799,20 +13801,20 @@ export type ProfileCreateWithoutStorysInput = {
   SecuredDataKeys?: InputMaybe<SecuredDataKeysCreateNestedManyWithoutProfileInput>;
   Settings?: InputMaybe<SettingsCreateNestedOneWithoutProfileInput>;
   ThemeManager?: InputMaybe<ThemeManagerCreateNestedOneWithoutProfileInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue?: InputMaybe<VenueCreateNestedOneWithoutProfileInput>;
   Vote?: InputMaybe<VoteCreateNestedManyWithoutProfileInput>;
 };
 
 export type ProfileCreateWithoutThemeManagerInput = {
-  bfsprofileid?: InputMaybe<Scalars['String']>;
+  bfsprofileid?: InputMaybe<Scalars['String']['input']>;
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
   Personal?: InputMaybe<PersonalCreateNestedOneWithoutProfileInput>;
@@ -13823,20 +13825,20 @@ export type ProfileCreateWithoutThemeManagerInput = {
   SecuredDataKeys?: InputMaybe<SecuredDataKeysCreateNestedManyWithoutProfileInput>;
   Settings?: InputMaybe<SettingsCreateNestedOneWithoutProfileInput>;
   Storys?: InputMaybe<StoryCreateNestedManyWithoutProfileInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue?: InputMaybe<VenueCreateNestedOneWithoutProfileInput>;
   Vote?: InputMaybe<VoteCreateNestedManyWithoutProfileInput>;
 };
 
 export type ProfileCreateWithoutVenueInput = {
-  bfsprofileid?: InputMaybe<Scalars['String']>;
+  bfsprofileid?: InputMaybe<Scalars['String']['input']>;
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
   Personal?: InputMaybe<PersonalCreateNestedOneWithoutProfileInput>;
@@ -13848,19 +13850,19 @@ export type ProfileCreateWithoutVenueInput = {
   Settings?: InputMaybe<SettingsCreateNestedOneWithoutProfileInput>;
   Storys?: InputMaybe<StoryCreateNestedManyWithoutProfileInput>;
   ThemeManager?: InputMaybe<ThemeManagerCreateNestedOneWithoutProfileInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Vote?: InputMaybe<VoteCreateNestedManyWithoutProfileInput>;
 };
 
 export type ProfileCreateWithoutVoteInput = {
-  bfsprofileid?: InputMaybe<Scalars['String']>;
+  bfsprofileid?: InputMaybe<Scalars['String']['input']>;
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
   Personal?: InputMaybe<PersonalCreateNestedOneWithoutProfileInput>;
@@ -13872,7 +13874,7 @@ export type ProfileCreateWithoutVoteInput = {
   Settings?: InputMaybe<SettingsCreateNestedOneWithoutProfileInput>;
   Storys?: InputMaybe<StoryCreateNestedManyWithoutProfileInput>;
   ThemeManager?: InputMaybe<ThemeManagerCreateNestedOneWithoutProfileInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue?: InputMaybe<VenueCreateNestedOneWithoutProfileInput>;
 };
 
@@ -13946,11 +13948,11 @@ export type ProfileOrderByWithRelationInput = {
 
 export type ProfilePersonal = {
   __typename?: 'ProfilePersonal';
-  bfsprofileid: Scalars['String'];
-  createdAt: Scalars['DateTime'];
+  bfsprofileid: Scalars['String']['output'];
+  createdAt: Scalars['DateTime']['output'];
   Credentials: Credentials;
   DetailInformation?: Maybe<DetailInformation>;
-  id: Scalars['String'];
+  id: Scalars['String']['output'];
   IdentifiableInformation?: Maybe<IdentifiableInformation>;
   photos: Array<Photo>;
   profilePhoto?: Maybe<Photo>;
@@ -13959,7 +13961,7 @@ export type ProfilePersonal = {
   resentSearches?: Maybe<SearchesService>;
   ThemeManager?: Maybe<ThemeManager>;
   tonightStory?: Maybe<Story>;
-  updatedAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type ProfileRelationFilter = {
@@ -14009,14 +14011,14 @@ export type ProfilesResponse = {
 
 export type ProfileTheme = {
   __typename?: 'ProfileTheme';
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
-  isActive: Scalars['Boolean'];
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
+  isActive: Scalars['Boolean']['output'];
   Theme: Theme;
-  themeId: Scalars['String'];
+  themeId: Scalars['String']['output'];
   ThemeManager: ThemeManager;
-  themeManagerId?: Maybe<Scalars['String']>;
-  updatedAt: Scalars['DateTime'];
+  themeManagerId?: Maybe<Scalars['String']['output']>;
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type ProfileThemeCountOrderByAggregateInput = {
@@ -14029,47 +14031,47 @@ export type ProfileThemeCountOrderByAggregateInput = {
 };
 
 export type ProfileThemeCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  isActive: Scalars['Boolean'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  isActive: Scalars['Boolean']['input'];
   Theme: ThemeCreateNestedOneWithoutProfileThemeInput;
   ThemeManager?: InputMaybe<ThemeManagerCreateNestedOneWithoutProfileThemeInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type ProfileThemeCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  isActive: Scalars['Boolean'];
-  themeId: Scalars['String'];
-  themeManagerId?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  isActive: Scalars['Boolean']['input'];
+  themeId: Scalars['String']['input'];
+  themeManagerId?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type ProfileThemeCreateManyThemeInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  isActive: Scalars['Boolean'];
-  themeManagerId?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  isActive: Scalars['Boolean']['input'];
+  themeManagerId?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type ProfileThemeCreateManyThemeInputEnvelope = {
   data: Array<ProfileThemeCreateManyThemeInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type ProfileThemeCreateManyThemeManagerInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  isActive: Scalars['Boolean'];
-  themeId: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  isActive: Scalars['Boolean']['input'];
+  themeId: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type ProfileThemeCreateManyThemeManagerInputEnvelope = {
   data: Array<ProfileThemeCreateManyThemeManagerInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type ProfileThemeCreateNestedManyWithoutThemeInput = {
@@ -14097,19 +14099,19 @@ export type ProfileThemeCreateOrConnectWithoutThemeManagerInput = {
 };
 
 export type ProfileThemeCreateWithoutThemeInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  isActive: Scalars['Boolean'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  isActive: Scalars['Boolean']['input'];
   ThemeManager?: InputMaybe<ThemeManagerCreateNestedOneWithoutProfileThemeInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type ProfileThemeCreateWithoutThemeManagerInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  isActive: Scalars['Boolean'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  isActive: Scalars['Boolean']['input'];
   Theme: ThemeCreateNestedOneWithoutProfileThemeInput;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type ProfileThemeListRelationFilter = {
@@ -14305,7 +14307,7 @@ export type ProfileThemeWhereInput = {
 export type ProfileThemeWhereUniqueInput = {
   AND?: InputMaybe<Array<ProfileThemeWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   isActive?: InputMaybe<BoolFilter>;
   NOT?: InputMaybe<Array<ProfileThemeWhereInput>>;
   OR?: InputMaybe<Array<ProfileThemeWhereInput>>;
@@ -14323,8 +14325,8 @@ export enum ProfileType {
 }
 
 export type ProfileUpdateDeviceManagerInput = {
-  push?: InputMaybe<Array<Scalars['String']>>;
-  set?: InputMaybe<Array<Scalars['String']>>;
+  push?: InputMaybe<Array<Scalars['String']['input']>>;
+  set?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type ProfileUpdateInput = {
@@ -14333,7 +14335,7 @@ export type ProfileUpdateInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
@@ -14355,7 +14357,7 @@ export type ProfileUpdateInput = {
 export type ProfileUpdateManyMutationInput = {
   bfsprofileid?: InputMaybe<StringFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   ProfileType?: InputMaybe<EnumProfileTypeFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -14590,7 +14592,7 @@ export type ProfileUpdateWithoutConversationsInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
@@ -14614,7 +14616,7 @@ export type ProfileUpdateWithoutCredentialsInput = {
   Conversations?: InputMaybe<ConversationUpdateManyWithoutMembersNestedInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
@@ -14638,7 +14640,7 @@ export type ProfileUpdateWithoutDetailInformationInput = {
   Conversations?: InputMaybe<ConversationUpdateManyWithoutMembersNestedInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
@@ -14663,7 +14665,7 @@ export type ProfileUpdateWithoutGroupsInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
   Notifications?: InputMaybe<NotificationsUpdateOneWithoutProfileNestedInput>;
@@ -14687,7 +14689,7 @@ export type ProfileUpdateWithoutIdentifiableInformationInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   Notifications?: InputMaybe<NotificationsUpdateOneWithoutProfileNestedInput>;
@@ -14711,7 +14713,7 @@ export type ProfileUpdateWithoutNotificationsInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
@@ -14735,7 +14737,7 @@ export type ProfileUpdateWithoutPersonalInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
@@ -14759,7 +14761,7 @@ export type ProfileUpdateWithoutPhotosInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
@@ -14783,7 +14785,7 @@ export type ProfileUpdateWithoutRelationshipsInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
@@ -14807,7 +14809,7 @@ export type ProfileUpdateWithoutSearchesServiceInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
@@ -14831,7 +14833,7 @@ export type ProfileUpdateWithoutSecuredDataKeysInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
@@ -14855,7 +14857,7 @@ export type ProfileUpdateWithoutSettingsInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
@@ -14879,7 +14881,7 @@ export type ProfileUpdateWithoutStorysInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
@@ -14903,7 +14905,7 @@ export type ProfileUpdateWithoutThemeManagerInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
@@ -14927,7 +14929,7 @@ export type ProfileUpdateWithoutVenueInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
@@ -14951,7 +14953,7 @@ export type ProfileUpdateWithoutVoteInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Array<Scalars['String']>>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
@@ -15077,12 +15079,12 @@ export type ProfileUpsertWithWhereUniqueWithoutGroupsInput = {
 
 export type ProfileVenue = {
   __typename?: 'ProfileVenue';
-  bfsprofileid: Scalars['String'];
-  createdAt: Scalars['DateTime'];
+  bfsprofileid: Scalars['String']['output'];
+  createdAt: Scalars['DateTime']['output'];
   Credentials: Credentials;
   DetailInformation?: Maybe<DetailInformation>;
-  distanceInM?: Maybe<Scalars['Int']>;
-  id: Scalars['String'];
+  distanceInM?: Maybe<Scalars['Int']['output']>;
+  id: Scalars['String']['output'];
   IdentifiableInformation?: Maybe<IdentifiableInformation>;
   photos: Array<Photo>;
   profilePhoto?: Maybe<Photo>;
@@ -15090,7 +15092,7 @@ export type ProfileVenue = {
   Relationships: Array<Relationship>;
   ThemeManager?: Maybe<ThemeManager>;
   tonightStory?: Maybe<Story>;
-  updatedAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime']['output'];
   Venue?: Maybe<Venue>;
 };
 
@@ -15124,14 +15126,14 @@ export type ProfileWhereInput = {
 
 export type ProfileWhereUniqueInput = {
   AND?: InputMaybe<Array<ProfileWhereInput>>;
-  bfsprofileid?: InputMaybe<Scalars['String']>;
+  bfsprofileid?: InputMaybe<Scalars['String']['input']>;
   Conversations?: InputMaybe<ConversationListRelationFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   Credentials?: InputMaybe<CredentialsWhereInput>;
   DetailInformation?: InputMaybe<DetailInformationWhereInput>;
   DeviceManager?: InputMaybe<StringNullableListFilter>;
   Groups?: InputMaybe<GroupListRelationFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationWhereInput>;
   NOT?: InputMaybe<Array<ProfileWhereInput>>;
   Notifications?: InputMaybe<NotificationsWhereInput>;
@@ -15152,28 +15154,28 @@ export type ProfileWhereUniqueInput = {
 
 export type PublicProfilePersonal = {
   __typename?: 'PublicProfilePersonal';
-  createdAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime']['output'];
   DetailInformation?: Maybe<DetailInformation>;
-  friendStatus: Scalars['Boolean'];
-  id: Scalars['String'];
+  friendStatus: Scalars['Boolean']['output'];
+  id: Scalars['String']['output'];
   IdentifiableInformation?: Maybe<IdentifiableInformation>;
   profilePhoto?: Maybe<Photo>;
   ProfileType: ProfileType;
   tonightStory?: Maybe<Story>;
-  updatedAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type PushToken = {
   __typename?: 'PushToken';
-  createdAt?: Maybe<Scalars['DateTime']>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
   Device?: Maybe<Device>;
-  expoToken?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  isExpired: Scalars['Boolean'];
-  receipts: Array<Scalars['Json']>;
-  token?: Maybe<Scalars['String']>;
+  expoToken?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  isExpired: Scalars['Boolean']['output'];
+  receipts: Array<Scalars['Json']['output']>;
+  token?: Maybe<Scalars['String']['output']>;
   type?: Maybe<TokenType>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
 export type PushTokenCountOrderByAggregateInput = {
@@ -15188,26 +15190,26 @@ export type PushTokenCountOrderByAggregateInput = {
 };
 
 export type PushTokenCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   Device?: InputMaybe<DeviceCreateNestedOneWithoutPushTokenInput>;
-  expoToken?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
-  isExpired?: InputMaybe<Scalars['Boolean']>;
-  receipts?: InputMaybe<Array<Scalars['Json']>>;
-  token?: InputMaybe<Scalars['String']>;
+  expoToken?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  isExpired?: InputMaybe<Scalars['Boolean']['input']>;
+  receipts?: InputMaybe<Array<Scalars['Json']['input']>>;
+  token?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<TokenType>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PushTokenCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  expoToken?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
-  isExpired?: InputMaybe<Scalars['Boolean']>;
-  receipts?: InputMaybe<Array<Scalars['Json']>>;
-  token?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  expoToken?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  isExpired?: InputMaybe<Scalars['Boolean']['input']>;
+  receipts?: InputMaybe<Array<Scalars['Json']['input']>>;
+  token?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<TokenType>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PushTokenCreateNestedOneWithoutDeviceInput = {
@@ -15222,18 +15224,18 @@ export type PushTokenCreateOrConnectWithoutDeviceInput = {
 };
 
 export type PushTokenCreatereceiptsInput = {
-  set: Array<Scalars['Json']>;
+  set: Array<Scalars['Json']['input']>;
 };
 
 export type PushTokenCreateWithoutDeviceInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  expoToken?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
-  isExpired?: InputMaybe<Scalars['Boolean']>;
-  receipts?: InputMaybe<Array<Scalars['Json']>>;
-  token?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  expoToken?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  isExpired?: InputMaybe<Scalars['Boolean']['input']>;
+  receipts?: InputMaybe<Array<Scalars['Json']['input']>>;
+  token?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<TokenType>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PushTokenMaxOrderByAggregateInput = {
@@ -15318,7 +15320,7 @@ export type PushTokenUpdateInput = {
   expoToken?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   isExpired?: InputMaybe<BoolFieldUpdateOperationsInput>;
-  receipts?: InputMaybe<Array<Scalars['Json']>>;
+  receipts?: InputMaybe<Array<Scalars['Json']['input']>>;
   token?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   type?: InputMaybe<NullableEnumTokenTypeFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
@@ -15329,7 +15331,7 @@ export type PushTokenUpdateManyMutationInput = {
   expoToken?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   isExpired?: InputMaybe<BoolFieldUpdateOperationsInput>;
-  receipts?: InputMaybe<Array<Scalars['Json']>>;
+  receipts?: InputMaybe<Array<Scalars['Json']['input']>>;
   token?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   type?: InputMaybe<NullableEnumTokenTypeFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
@@ -15346,8 +15348,8 @@ export type PushTokenUpdateOneWithoutDeviceNestedInput = {
 };
 
 export type PushTokenUpdatereceiptsInput = {
-  push?: InputMaybe<Scalars['Json']>;
-  set?: InputMaybe<Array<Scalars['Json']>>;
+  push?: InputMaybe<Scalars['Json']['input']>;
+  set?: InputMaybe<Array<Scalars['Json']['input']>>;
 };
 
 export type PushTokenUpdateToOneWithWhereWithoutDeviceInput = {
@@ -15360,7 +15362,7 @@ export type PushTokenUpdateWithoutDeviceInput = {
   expoToken?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   isExpired?: InputMaybe<BoolFieldUpdateOperationsInput>;
-  receipts?: InputMaybe<Array<Scalars['Json']>>;
+  receipts?: InputMaybe<Array<Scalars['Json']['input']>>;
   token?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   type?: InputMaybe<NullableEnumTokenTypeFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
@@ -15392,7 +15394,7 @@ export type PushTokenWhereUniqueInput = {
   createdAt?: InputMaybe<DateTimeNullableFilter>;
   Device?: InputMaybe<DeviceWhereInput>;
   expoToken?: InputMaybe<StringNullableFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   isExpired?: InputMaybe<BoolFilter>;
   NOT?: InputMaybe<Array<PushTokenWhereInput>>;
   OR?: InputMaybe<Array<PushTokenWhereInput>>;
@@ -15406,12 +15408,12 @@ export type Query = {
   __typename?: 'Query';
   authorizedProfiles?: Maybe<AuthorizedProfilesResponseUnion>;
   checkPrivacyTermsDocumentUpdate: PrivacyTermsUpdateResponseUnion;
-  checkUsername: Scalars['Boolean'];
+  checkUsername: Scalars['Boolean']['output'];
   emojimood?: Maybe<Emojimood>;
   emojimoods: Array<Emojimood>;
   exploreSearch: ExploreResponse;
   findConversationByIdOrMembers?: Maybe<Conversation>;
-  friendsFromContacts: Scalars['String'];
+  friendsFromContacts: Scalars['String']['output'];
   getADeviceManager: DeviceManagerDeviceProfilesResponseUnion;
   getAllCitiesByState: OrganizedCityResponseObject;
   getAllCountries: Array<CountryResponseObject>;
@@ -15426,16 +15428,16 @@ export type Query = {
   getNotifications: NotificationResponse;
   getProfileThemeManager: ThemeManager;
   getRelationshipFriendRequestStatus: NotificationFriendRequestStatusResponse;
-  getSecureFriendQRCodeData: Scalars['String'];
-  H3IndexGrid: Array<Scalars['String']>;
-  H3IndexLatLng: Array<Scalars['Float']>;
-  loginPassword: Scalars['Boolean'];
+  getSecureFriendQRCodeData: Scalars['String']['output'];
+  H3IndexGrid: Array<Scalars['String']['output']>;
+  H3IndexLatLng: Array<Scalars['Float']['output']>;
+  loginPassword: Scalars['Boolean']['output'];
   privacyTermsDocuments: LatestPrivacyAndTermsDocumentResponse;
   profile?: Maybe<Profile>;
   profiles?: Maybe<Array<Profile>>;
   publicProfile?: Maybe<PublicProfilePersonal>;
   publicVenue?: Maybe<ProfileVenue>;
-  sendAuthenticatorDeviceOwnerCode: Scalars['Boolean'];
+  sendAuthenticatorDeviceOwnerCode: Scalars['Boolean']['output'];
   venue?: Maybe<Venue>;
   venues: Array<Venue>;
   venuesNearby: RecommendationResponseUnion;
@@ -15448,7 +15450,7 @@ export type QueryAuthorizedProfilesArgs = {
 
 
 export type QueryCheckUsernameArgs = {
-  username: Scalars['String'];
+  username: Scalars['String']['input'];
 };
 
 
@@ -15458,13 +15460,13 @@ export type QueryEmojimoodArgs = {
 
 
 export type QueryExploreSearchArgs = {
-  search: Scalars['String'];
+  search: Scalars['String']['input'];
 };
 
 
 export type QueryFindConversationByIdOrMembersArgs = {
-  conversationId?: InputMaybe<Scalars['String']>;
-  members?: InputMaybe<Array<Scalars['String']>>;
+  conversationId?: InputMaybe<Scalars['String']['input']>;
+  members?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 
@@ -15474,52 +15476,52 @@ export type QueryFriendsFromContactsArgs = {
 
 
 export type QueryGetAllCitiesByStateArgs = {
-  countryIsoCode: Scalars['String'];
-  stateIsoCode: Scalars['String'];
+  countryIsoCode: Scalars['String']['input'];
+  stateIsoCode: Scalars['String']['input'];
 };
 
 
 export type QueryGetAllStatesByCountryArgs = {
-  countryIsoCode: Scalars['String'];
+  countryIsoCode: Scalars['String']['input'];
 };
 
 
 export type QueryGetConversationsArgs = {
-  conversationId?: InputMaybe<Scalars['String']>;
-  members?: InputMaybe<Array<Scalars['String']>>;
+  conversationId?: InputMaybe<Scalars['String']['input']>;
+  members?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 
 export type QueryGetH3Index6VenueRecommendationByIdArgs = {
-  id: Scalars['String'];
-  venuesProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  id: Scalars['String']['input'];
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 
 export type QueryGetLiveVenueTotalsArgs = {
-  profileIdVenue?: InputMaybe<Scalars['String']>;
+  profileIdVenue?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type QueryGetRelationshipFriendRequestStatusArgs = {
-  profileId: Scalars['String'];
+  profileId: Scalars['String']['input'];
 };
 
 
 export type QueryH3IndexGridArgs = {
-  cell: Scalars['String'];
-  ringSize?: Scalars['Int'];
+  cell: Scalars['String']['input'];
+  ringSize?: Scalars['Int']['input'];
 };
 
 
 export type QueryH3IndexLatLngArgs = {
-  cell: Scalars['String'];
+  cell: Scalars['String']['input'];
 };
 
 
 export type QueryLoginPasswordArgs = {
-  password: Scalars['String'];
-  username: Scalars['String'];
+  password: Scalars['String']['input'];
+  username: Scalars['String']['input'];
 };
 
 
@@ -15527,8 +15529,8 @@ export type QueryProfileArgs = {
   cursor?: InputMaybe<ProfileWhereUniqueInput>;
   distinct?: InputMaybe<Array<ProfileScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<ProfileOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ProfileWhereInput>;
 };
 
@@ -15537,8 +15539,8 @@ export type QueryProfilesArgs = {
   cursor?: InputMaybe<ProfileWhereUniqueInput>;
   distinct?: InputMaybe<Array<ProfileScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<ProfileOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ProfileWhereInput>;
 };
 
@@ -15547,8 +15549,8 @@ export type QueryPublicProfileArgs = {
   cursor?: InputMaybe<ProfileWhereUniqueInput>;
   distinct?: InputMaybe<Array<ProfileScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<ProfileOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ProfileWhereInput>;
 };
 
@@ -15558,8 +15560,8 @@ export type QueryPublicVenueArgs = {
   cursor?: InputMaybe<ProfileWhereUniqueInput>;
   distinct?: InputMaybe<Array<ProfileScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<ProfileOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ProfileWhereInput>;
 };
 
@@ -15568,8 +15570,8 @@ export type QueryVenueArgs = {
   cursor?: InputMaybe<VenueWhereUniqueInput>;
   distinct?: InputMaybe<Array<VenueScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<VenueOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<VenueWhereInput>;
 };
 
@@ -15578,17 +15580,17 @@ export type QueryVenuesArgs = {
   cursor?: InputMaybe<VenueWhereUniqueInput>;
   distinct?: InputMaybe<Array<VenueScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<VenueOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<VenueWhereInput>;
 };
 
 
 export type QueryVenuesNearbyArgs = {
-  countryIsoCode: Scalars['String'];
-  kRing?: InputMaybe<Scalars['Int']>;
+  countryIsoCode: Scalars['String']['input'];
+  kRing?: InputMaybe<Scalars['Int']['input']>;
   searchAreaCoords: CoordsInput;
-  stateIsoCode: Scalars['String'];
+  stateIsoCode: Scalars['String']['input'];
 };
 
 export enum QueryMode {
@@ -15600,12 +15602,12 @@ export type RecommendationResponseUnion = ComingAreaResponse | Error | VenuesNea
 
 export type RefreshToken = {
   __typename?: 'RefreshToken';
-  createdAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime']['output'];
   DeviceProfile?: Maybe<AuthorizationDeviceProfile>;
-  DeviceProfileId?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  token: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
+  DeviceProfileId?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  token: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type RefreshTokenAvgOrderByAggregateInput = {
@@ -15621,18 +15623,18 @@ export type RefreshTokenCountOrderByAggregateInput = {
 };
 
 export type RefreshTokenCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   DeviceProfile?: InputMaybe<DeviceProfileCreateNestedOneWithoutRefreshTokenInput>;
-  token: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  token: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type RefreshTokenCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  DeviceProfileId?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['Int']>;
-  token: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  DeviceProfileId?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  token: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type RefreshTokenCreateNestedOneWithoutDeviceProfileInput = {
@@ -15647,9 +15649,9 @@ export type RefreshTokenCreateOrConnectWithoutDeviceProfileInput = {
 };
 
 export type RefreshTokenCreateWithoutDeviceProfileInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  token: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  token: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type RefreshTokenMaxOrderByAggregateInput = {
@@ -15774,30 +15776,30 @@ export type RefreshTokenWhereUniqueInput = {
   AND?: InputMaybe<Array<RefreshTokenWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   DeviceProfile?: InputMaybe<DeviceProfileWhereInput>;
-  DeviceProfileId?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['Int']>;
+  DeviceProfileId?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
   NOT?: InputMaybe<Array<RefreshTokenWhereInput>>;
   OR?: InputMaybe<Array<RefreshTokenWhereInput>>;
-  token?: InputMaybe<Scalars['String']>;
+  token?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
 export type RejectedFriendsResponse = {
   __typename?: 'RejectedFriendsResponse';
-  friends: Scalars['Boolean'];
+  friends: Scalars['Boolean']['output'];
 };
 
 export type Relationship = {
   __typename?: 'Relationship';
-  createdAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime']['output'];
   friendProfile?: Maybe<Profile>;
-  friendProfileId: Scalars['String'];
-  id: Scalars['ID'];
+  friendProfileId: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
   Profile?: Maybe<Profile>;
-  profileId?: Maybe<Scalars['String']>;
+  profileId?: Maybe<Scalars['String']['output']>;
   RelationshipStatus: Array<RelationshipStatus>;
-  updatedAt: Scalars['DateTime'];
-  venueMetAt?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['DateTime']['output'];
+  venueMetAt?: Maybe<Scalars['String']['output']>;
 };
 
 export type RelationshipCountOrderByAggregateInput = {
@@ -15811,37 +15813,37 @@ export type RelationshipCountOrderByAggregateInput = {
 };
 
 export type RelationshipCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  friendProfileId: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  friendProfileId: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
   Profile?: InputMaybe<ProfileCreateNestedOneWithoutRelationshipsInput>;
   RelationshipStatus?: InputMaybe<Array<RelationshipStatus>>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venueMetAt?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venueMetAt?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type RelationshipCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  friendProfileId: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  profileId?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  friendProfileId: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  profileId?: InputMaybe<Scalars['String']['input']>;
   RelationshipStatus?: InputMaybe<Array<RelationshipStatus>>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venueMetAt?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venueMetAt?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type RelationshipCreateManyProfileInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  friendProfileId: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  friendProfileId: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
   RelationshipStatus?: InputMaybe<Array<RelationshipStatus>>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venueMetAt?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venueMetAt?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type RelationshipCreateManyProfileInputEnvelope = {
   data: Array<RelationshipCreateManyProfileInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type RelationshipCreateNestedManyWithoutProfileInput = {
@@ -15861,12 +15863,12 @@ export type RelationshipCreateRelationshipStatusInput = {
 };
 
 export type RelationshipCreateWithoutProfileInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  friendProfileId: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  friendProfileId: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
   RelationshipStatus?: InputMaybe<Array<RelationshipStatus>>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venueMetAt?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venueMetAt?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type RelationshipListRelationFilter = {
@@ -16043,7 +16045,7 @@ export type RelationshipWhereUniqueInput = {
   AND?: InputMaybe<Array<RelationshipWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   friendProfileId?: InputMaybe<StringFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<RelationshipWhereInput>>;
   OR?: InputMaybe<Array<RelationshipWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
@@ -16055,14 +16057,14 @@ export type RelationshipWhereUniqueInput = {
 
 export type Request = {
   __typename?: 'Request';
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
   NotificationFriendRequest: Array<Notifications>;
   NotificationMessage: Array<Notifications>;
   receiverProfileId: Array<RequestReceiver>;
   senderProfile: Profile;
-  senderProfileId: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
+  senderProfileId: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type RequestCountOrderByAggregateInput = {
@@ -16075,24 +16077,24 @@ export type RequestCountOrderByAggregateInput = {
 };
 
 export type RequestCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Message?: InputMaybe<MessageCreateNestedOneWithoutRequestInput>;
   NotificationFriendRequest?: InputMaybe<NotificationsCreateNestedManyWithoutFriendRequestsInput>;
   NotificationMessage?: InputMaybe<NotificationsCreateNestedManyWithoutMessageRequestsInput>;
   NotificationType?: InputMaybe<NotificationType>;
   receivers?: InputMaybe<RequestReceiverCreateNestedManyWithoutRequestInput>;
-  senderProfileId: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  senderProfileId: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type RequestCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  messageId?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  messageId?: InputMaybe<Scalars['String']['input']>;
   NotificationType?: InputMaybe<NotificationType>;
-  senderProfileId: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  senderProfileId: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type RequestCreateNestedManyWithoutNotificationFriendRequestInput = {
@@ -16140,47 +16142,47 @@ export type RequestCreateOrConnectWithoutReceiversInput = {
 };
 
 export type RequestCreateWithoutMessageInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NotificationFriendRequest?: InputMaybe<NotificationsCreateNestedManyWithoutFriendRequestsInput>;
   NotificationMessage?: InputMaybe<NotificationsCreateNestedManyWithoutMessageRequestsInput>;
   NotificationType?: InputMaybe<NotificationType>;
   receivers?: InputMaybe<RequestReceiverCreateNestedManyWithoutRequestInput>;
-  senderProfileId: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  senderProfileId: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type RequestCreateWithoutNotificationFriendRequestInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Message?: InputMaybe<MessageCreateNestedOneWithoutRequestInput>;
   NotificationMessage?: InputMaybe<NotificationsCreateNestedManyWithoutMessageRequestsInput>;
   NotificationType?: InputMaybe<NotificationType>;
   receivers?: InputMaybe<RequestReceiverCreateNestedManyWithoutRequestInput>;
-  senderProfileId: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  senderProfileId: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type RequestCreateWithoutNotificationMessageInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Message?: InputMaybe<MessageCreateNestedOneWithoutRequestInput>;
   NotificationFriendRequest?: InputMaybe<NotificationsCreateNestedManyWithoutFriendRequestsInput>;
   NotificationType?: InputMaybe<NotificationType>;
   receivers?: InputMaybe<RequestReceiverCreateNestedManyWithoutRequestInput>;
-  senderProfileId: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  senderProfileId: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type RequestCreateWithoutReceiversInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Message?: InputMaybe<MessageCreateNestedOneWithoutRequestInput>;
   NotificationFriendRequest?: InputMaybe<NotificationsCreateNestedManyWithoutFriendRequestsInput>;
   NotificationMessage?: InputMaybe<NotificationsCreateNestedManyWithoutMessageRequestsInput>;
   NotificationType?: InputMaybe<NotificationType>;
-  senderProfileId: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  senderProfileId: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type RequestListRelationFilter = {
@@ -16243,9 +16245,9 @@ export type RequestOrderByWithRelationInput = {
 
 export type RequestReceiver = {
   __typename?: 'RequestReceiver';
-  id: Scalars['ID'];
+  id: Scalars['ID']['output'];
   NotificationStatus: NotificationStatus;
-  profileId: Scalars['String'];
+  profileId: Scalars['String']['output'];
   receiverProfile: Profile;
 };
 
@@ -16259,34 +16261,34 @@ export type RequestReceiverCountOrderByAggregateInput = {
 };
 
 export type RequestReceiverCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NotificationStatus: NotificationStatusCreateNestedOneWithoutRequestReceiverInput;
-  profileId: Scalars['String'];
+  profileId: Scalars['String']['input'];
   Request?: InputMaybe<RequestCreateNestedOneWithoutReceiversInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type RequestReceiverCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  notificationStatusId: Scalars['String'];
-  profileId: Scalars['String'];
-  requestId?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  notificationStatusId: Scalars['String']['input'];
+  profileId: Scalars['String']['input'];
+  requestId?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type RequestReceiverCreateManyRequestInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  notificationStatusId: Scalars['String'];
-  profileId: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  notificationStatusId: Scalars['String']['input'];
+  profileId: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type RequestReceiverCreateManyRequestInputEnvelope = {
   data: Array<RequestReceiverCreateManyRequestInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type RequestReceiverCreateNestedManyWithoutRequestInput = {
@@ -16313,19 +16315,19 @@ export type RequestReceiverCreateOrConnectWithoutRequestInput = {
 };
 
 export type RequestReceiverCreateWithoutNotificationStatusInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  profileId: Scalars['String'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  profileId: Scalars['String']['input'];
   Request?: InputMaybe<RequestCreateNestedOneWithoutReceiversInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type RequestReceiverCreateWithoutRequestInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NotificationStatus: NotificationStatusCreateNestedOneWithoutRequestReceiverInput;
-  profileId: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  profileId: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type RequestReceiverListRelationFilter = {
@@ -16517,10 +16519,10 @@ export type RequestReceiverWhereInput = {
 export type RequestReceiverWhereUniqueInput = {
   AND?: InputMaybe<Array<RequestReceiverWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<RequestReceiverWhereInput>>;
   NotificationStatus?: InputMaybe<NotificationStatusWhereInput>;
-  notificationStatusId?: InputMaybe<Scalars['String']>;
+  notificationStatusId?: InputMaybe<Scalars['String']['input']>;
   OR?: InputMaybe<Array<RequestReceiverWhereInput>>;
   profileId?: InputMaybe<StringFilter>;
   Request?: InputMaybe<RequestWhereInput>;
@@ -16744,9 +16746,9 @@ export type RequestWhereInput = {
 export type RequestWhereUniqueInput = {
   AND?: InputMaybe<Array<RequestWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Message?: InputMaybe<MessageWhereInput>;
-  messageId?: InputMaybe<Scalars['String']>;
+  messageId?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<RequestWhereInput>>;
   NotificationFriendRequest?: InputMaybe<NotificationsListRelationFilter>;
   NotificationMessage?: InputMaybe<NotificationsListRelationFilter>;
@@ -16759,17 +16761,17 @@ export type RequestWhereUniqueInput = {
 
 export type SearchAreaMetrics = {
   __typename?: 'SearchAreaMetrics';
-  createdAt: Scalars['DateTime'];
-  h3Index15?: Maybe<Scalars['String']>;
+  createdAt: Scalars['DateTime']['output'];
+  h3Index15?: Maybe<Scalars['String']['output']>;
   H3Index5VenueRecommendation?: Maybe<H3Index5VenueRecommendation>;
-  h3Index5VenueRecommendationId?: Maybe<Scalars['String']>;
+  h3Index5VenueRecommendationId?: Maybe<Scalars['String']['output']>;
   H3Index6VenueRecommendation?: Maybe<H3Index6VenueRecommendation>;
-  h3Index6VenueRecommendationId?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
+  h3Index6VenueRecommendationId?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
   SearchesService?: Maybe<SearchesService>;
-  searchesServiceId?: Maybe<Scalars['String']>;
-  timesRequested: Scalars['Int'];
-  updatedAt: Scalars['DateTime'];
+  searchesServiceId?: Maybe<Scalars['String']['output']>;
+  timesRequested: Scalars['Int']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type SearchAreaMetricsAvgOrderByAggregateInput = {
@@ -16789,69 +16791,69 @@ export type SearchAreaMetricsCountOrderByAggregateInput = {
 };
 
 export type SearchAreaMetricsCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index15?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index15?: InputMaybe<Scalars['String']['input']>;
   H3Index5VenueRecommendation?: InputMaybe<H3Index5VenueRecommendationCreateNestedOneWithoutSearchAreaMetricsInput>;
   H3Index6VenueRecommendation?: InputMaybe<H3Index6VenueRecommendationCreateNestedOneWithoutSearchAreaMetricsInput>;
   SearchesService?: InputMaybe<SearchesServiceCreateNestedOneWithoutSearchAreaMetricsInput>;
-  timesRequested?: InputMaybe<Scalars['Int']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type SearchAreaMetricsCreateManyH3Index5VenueRecommendationInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index15?: InputMaybe<Scalars['String']>;
-  h3Index6VenueRecommendationId?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['Int']>;
-  searchesServiceId?: InputMaybe<Scalars['String']>;
-  timesRequested?: InputMaybe<Scalars['Int']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index15?: InputMaybe<Scalars['String']['input']>;
+  h3Index6VenueRecommendationId?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  searchesServiceId?: InputMaybe<Scalars['String']['input']>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type SearchAreaMetricsCreateManyH3Index5VenueRecommendationInputEnvelope = {
   data: Array<SearchAreaMetricsCreateManyH3Index5VenueRecommendationInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type SearchAreaMetricsCreateManyH3Index6VenueRecommendationInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index15?: InputMaybe<Scalars['String']>;
-  h3Index5VenueRecommendationId?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['Int']>;
-  searchesServiceId?: InputMaybe<Scalars['String']>;
-  timesRequested?: InputMaybe<Scalars['Int']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index15?: InputMaybe<Scalars['String']['input']>;
+  h3Index5VenueRecommendationId?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  searchesServiceId?: InputMaybe<Scalars['String']['input']>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type SearchAreaMetricsCreateManyH3Index6VenueRecommendationInputEnvelope = {
   data: Array<SearchAreaMetricsCreateManyH3Index6VenueRecommendationInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type SearchAreaMetricsCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index15?: InputMaybe<Scalars['String']>;
-  h3Index5VenueRecommendationId?: InputMaybe<Scalars['String']>;
-  h3Index6VenueRecommendationId?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['Int']>;
-  searchesServiceId?: InputMaybe<Scalars['String']>;
-  timesRequested?: InputMaybe<Scalars['Int']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index15?: InputMaybe<Scalars['String']['input']>;
+  h3Index5VenueRecommendationId?: InputMaybe<Scalars['String']['input']>;
+  h3Index6VenueRecommendationId?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  searchesServiceId?: InputMaybe<Scalars['String']['input']>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type SearchAreaMetricsCreateManySearchesServiceInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index15?: InputMaybe<Scalars['String']>;
-  h3Index5VenueRecommendationId?: InputMaybe<Scalars['String']>;
-  h3Index6VenueRecommendationId?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['Int']>;
-  timesRequested?: InputMaybe<Scalars['Int']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index15?: InputMaybe<Scalars['String']['input']>;
+  h3Index5VenueRecommendationId?: InputMaybe<Scalars['String']['input']>;
+  h3Index6VenueRecommendationId?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type SearchAreaMetricsCreateManySearchesServiceInputEnvelope = {
   data: Array<SearchAreaMetricsCreateManySearchesServiceInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type SearchAreaMetricsCreateNestedManyWithoutH3Index5VenueRecommendationInput = {
@@ -16891,30 +16893,30 @@ export type SearchAreaMetricsCreateOrConnectWithoutSearchesServiceInput = {
 };
 
 export type SearchAreaMetricsCreateWithoutH3Index5VenueRecommendationInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index15?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index15?: InputMaybe<Scalars['String']['input']>;
   H3Index6VenueRecommendation?: InputMaybe<H3Index6VenueRecommendationCreateNestedOneWithoutSearchAreaMetricsInput>;
   SearchesService?: InputMaybe<SearchesServiceCreateNestedOneWithoutSearchAreaMetricsInput>;
-  timesRequested?: InputMaybe<Scalars['Int']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type SearchAreaMetricsCreateWithoutH3Index6VenueRecommendationInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index15?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index15?: InputMaybe<Scalars['String']['input']>;
   H3Index5VenueRecommendation?: InputMaybe<H3Index5VenueRecommendationCreateNestedOneWithoutSearchAreaMetricsInput>;
   SearchesService?: InputMaybe<SearchesServiceCreateNestedOneWithoutSearchAreaMetricsInput>;
-  timesRequested?: InputMaybe<Scalars['Int']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type SearchAreaMetricsCreateWithoutSearchesServiceInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index15?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index15?: InputMaybe<Scalars['String']['input']>;
   H3Index5VenueRecommendation?: InputMaybe<H3Index5VenueRecommendationCreateNestedOneWithoutSearchAreaMetricsInput>;
   H3Index6VenueRecommendation?: InputMaybe<H3Index6VenueRecommendationCreateNestedOneWithoutSearchAreaMetricsInput>;
-  timesRequested?: InputMaybe<Scalars['Int']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  timesRequested?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type SearchAreaMetricsListRelationFilter = {
@@ -17182,7 +17184,7 @@ export type SearchAreaMetricsWhereUniqueInput = {
   h3Index5VenueRecommendationId?: InputMaybe<StringNullableFilter>;
   H3Index6VenueRecommendation?: InputMaybe<H3Index6VenueRecommendationWhereInput>;
   h3Index6VenueRecommendationId?: InputMaybe<StringNullableFilter>;
-  id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
   NOT?: InputMaybe<Array<SearchAreaMetricsWhereInput>>;
   OR?: InputMaybe<Array<SearchAreaMetricsWhereInput>>;
   SearchesService?: InputMaybe<SearchesServiceWhereInput>;
@@ -17193,13 +17195,13 @@ export type SearchAreaMetricsWhereUniqueInput = {
 
 export type SearchesService = {
   __typename?: 'SearchesService';
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
   Profile: Profile;
-  profileId: Scalars['String'];
+  profileId: Scalars['String']['output'];
   SearchAreaMetrics: Array<SearchAreaMetrics>;
-  searches: Array<Scalars['Json']>;
-  updatedAt: Scalars['DateTime'];
+  searches: Array<Scalars['Json']['output']>;
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 
@@ -17207,8 +17209,8 @@ export type SearchesServiceSearchAreaMetricsArgs = {
   cursor?: InputMaybe<SearchAreaMetricsWhereUniqueInput>;
   distinct?: InputMaybe<Array<SearchAreaMetricsScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<SearchAreaMetricsOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<SearchAreaMetricsWhereInput>;
 };
 
@@ -17221,20 +17223,20 @@ export type SearchesServiceCountOrderByAggregateInput = {
 };
 
 export type SearchesServiceCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Profile: ProfileCreateNestedOneWithoutSearchesServiceInput;
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsCreateNestedManyWithoutSearchesServiceInput>;
-  searches?: InputMaybe<Array<Scalars['Json']>>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  searches?: InputMaybe<Array<Scalars['Json']['input']>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type SearchesServiceCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  profileId: Scalars['String'];
-  searches?: InputMaybe<Array<Scalars['Json']>>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  profileId: Scalars['String']['input'];
+  searches?: InputMaybe<Array<Scalars['Json']['input']>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type SearchesServiceCreateNestedOneWithoutProfileInput = {
@@ -17260,23 +17262,23 @@ export type SearchesServiceCreateOrConnectWithoutSearchAreaMetricsInput = {
 };
 
 export type SearchesServiceCreatesearchesInput = {
-  set: Array<Scalars['Json']>;
+  set: Array<Scalars['Json']['input']>;
 };
 
 export type SearchesServiceCreateWithoutProfileInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsCreateNestedManyWithoutSearchesServiceInput>;
-  searches?: InputMaybe<Array<Scalars['Json']>>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  searches?: InputMaybe<Array<Scalars['Json']['input']>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type SearchesServiceCreateWithoutSearchAreaMetricsInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Profile: ProfileCreateNestedOneWithoutSearchesServiceInput;
-  searches?: InputMaybe<Array<Scalars['Json']>>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  searches?: InputMaybe<Array<Scalars['Json']['input']>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type SearchesServiceMaxOrderByAggregateInput = {
@@ -17343,14 +17345,14 @@ export type SearchesServiceUpdateInput = {
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   Profile?: InputMaybe<ProfileUpdateOneRequiredWithoutSearchesServiceNestedInput>;
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsUpdateManyWithoutSearchesServiceNestedInput>;
-  searches?: InputMaybe<Array<Scalars['Json']>>;
+  searches?: InputMaybe<Array<Scalars['Json']['input']>>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type SearchesServiceUpdateManyMutationInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  searches?: InputMaybe<Array<Scalars['Json']>>;
+  searches?: InputMaybe<Array<Scalars['Json']['input']>>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -17375,8 +17377,8 @@ export type SearchesServiceUpdateOneWithoutSearchAreaMetricsNestedInput = {
 };
 
 export type SearchesServiceUpdatesearchesInput = {
-  push?: InputMaybe<Scalars['Json']>;
-  set?: InputMaybe<Array<Scalars['Json']>>;
+  push?: InputMaybe<Scalars['Json']['input']>;
+  set?: InputMaybe<Array<Scalars['Json']['input']>>;
 };
 
 export type SearchesServiceUpdateToOneWithWhereWithoutProfileInput = {
@@ -17393,7 +17395,7 @@ export type SearchesServiceUpdateWithoutProfileInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsUpdateManyWithoutSearchesServiceNestedInput>;
-  searches?: InputMaybe<Array<Scalars['Json']>>;
+  searches?: InputMaybe<Array<Scalars['Json']['input']>>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -17401,7 +17403,7 @@ export type SearchesServiceUpdateWithoutSearchAreaMetricsInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   Profile?: InputMaybe<ProfileUpdateOneRequiredWithoutSearchesServiceNestedInput>;
-  searches?: InputMaybe<Array<Scalars['Json']>>;
+  searches?: InputMaybe<Array<Scalars['Json']['input']>>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -17433,11 +17435,11 @@ export type SearchesServiceWhereInput = {
 export type SearchesServiceWhereUniqueInput = {
   AND?: InputMaybe<Array<SearchesServiceWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<SearchesServiceWhereInput>>;
   OR?: InputMaybe<Array<SearchesServiceWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
-  profileId?: InputMaybe<Scalars['String']>;
+  profileId?: InputMaybe<Scalars['String']['input']>;
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsListRelationFilter>;
   searches?: InputMaybe<JsonNullableListFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
@@ -17463,37 +17465,37 @@ export type SecuredDataKeysCountOrderByAggregateInput = {
 };
 
 export type SecuredDataKeysCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  key: Scalars['String'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  key: Scalars['String']['input'];
   Profile: ProfileCreateNestedOneWithoutSecuredDataKeysInput;
   SecureDataType: SecureDataType;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  used?: InputMaybe<Scalars['Int']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  used?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type SecuredDataKeysCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  key: Scalars['String'];
-  profileId: Scalars['String'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  key: Scalars['String']['input'];
+  profileId: Scalars['String']['input'];
   SecureDataType: SecureDataType;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  used?: InputMaybe<Scalars['Int']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  used?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type SecuredDataKeysCreateManyProfileInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  key: Scalars['String'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  key: Scalars['String']['input'];
   SecureDataType: SecureDataType;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  used?: InputMaybe<Scalars['Int']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  used?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type SecuredDataKeysCreateManyProfileInputEnvelope = {
   data: Array<SecuredDataKeysCreateManyProfileInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type SecuredDataKeysCreateNestedManyWithoutProfileInput = {
@@ -17509,12 +17511,12 @@ export type SecuredDataKeysCreateOrConnectWithoutProfileInput = {
 };
 
 export type SecuredDataKeysCreateWithoutProfileInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  key: Scalars['String'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  key: Scalars['String']['input'];
   SecureDataType: SecureDataType;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  used?: InputMaybe<Scalars['Int']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  used?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type SecuredDataKeysListRelationFilter = {
@@ -17688,8 +17690,8 @@ export type SecuredDataKeysWhereInput = {
 export type SecuredDataKeysWhereUniqueInput = {
   AND?: InputMaybe<Array<SecuredDataKeysWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<Scalars['String']>;
-  key?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  key?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<SecuredDataKeysWhereInput>>;
   OR?: InputMaybe<Array<SecuredDataKeysWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
@@ -17708,19 +17710,19 @@ export type SettingsCountOrderByAggregateInput = {
 };
 
 export type SettingsCreateInput = {
-  eventPushNotifications: Scalars['Boolean'];
-  id?: InputMaybe<Scalars['String']>;
-  messagePushNotifications: Scalars['Boolean'];
+  eventPushNotifications: Scalars['Boolean']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  messagePushNotifications: Scalars['Boolean']['input'];
   Profile: ProfileCreateNestedOneWithoutSettingsInput;
-  PushNotifications: Scalars['Boolean'];
+  PushNotifications: Scalars['Boolean']['input'];
 };
 
 export type SettingsCreateManyInput = {
-  eventPushNotifications: Scalars['Boolean'];
-  id?: InputMaybe<Scalars['String']>;
-  messagePushNotifications: Scalars['Boolean'];
-  profileId: Scalars['String'];
-  PushNotifications: Scalars['Boolean'];
+  eventPushNotifications: Scalars['Boolean']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  messagePushNotifications: Scalars['Boolean']['input'];
+  profileId: Scalars['String']['input'];
+  PushNotifications: Scalars['Boolean']['input'];
 };
 
 export type SettingsCreateNestedOneWithoutProfileInput = {
@@ -17735,10 +17737,10 @@ export type SettingsCreateOrConnectWithoutProfileInput = {
 };
 
 export type SettingsCreateWithoutProfileInput = {
-  eventPushNotifications: Scalars['Boolean'];
-  id?: InputMaybe<Scalars['String']>;
-  messagePushNotifications: Scalars['Boolean'];
-  PushNotifications: Scalars['Boolean'];
+  eventPushNotifications: Scalars['Boolean']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  messagePushNotifications: Scalars['Boolean']['input'];
+  PushNotifications: Scalars['Boolean']['input'];
 };
 
 export type SettingsMaxOrderByAggregateInput = {
@@ -17859,12 +17861,12 @@ export type SettingsWhereInput = {
 export type SettingsWhereUniqueInput = {
   AND?: InputMaybe<Array<SettingsWhereInput>>;
   eventPushNotifications?: InputMaybe<BoolFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   messagePushNotifications?: InputMaybe<BoolFilter>;
   NOT?: InputMaybe<Array<SettingsWhereInput>>;
   OR?: InputMaybe<Array<SettingsWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
-  profileId?: InputMaybe<Scalars['String']>;
+  profileId?: InputMaybe<Scalars['String']['input']>;
   PushNotifications?: InputMaybe<BoolFilter>;
 };
 
@@ -17877,10 +17879,10 @@ export type State = {
   __typename?: 'State';
   Area: Array<Area>;
   Geometry: Geometry;
-  geometryId: Scalars['Int'];
-  id: Scalars['ID'];
-  isoCode: Scalars['String'];
-  name: Scalars['String'];
+  geometryId: Scalars['Int']['output'];
+  id: Scalars['ID']['output'];
+  isoCode: Scalars['String']['output'];
+  name: Scalars['String']['output'];
 };
 
 
@@ -17888,8 +17890,8 @@ export type StateAreaArgs = {
   cursor?: InputMaybe<AreaWhereUniqueInput>;
   distinct?: InputMaybe<Array<AreaScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<AreaOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<AreaWhereInput>;
 };
 
@@ -17907,16 +17909,16 @@ export type StateCountOrderByAggregateInput = {
 export type StateCreateInput = {
   Area?: InputMaybe<AreaCreateNestedManyWithoutStateInput>;
   Geometry: GeometryCreateNestedOneWithoutStateInput;
-  id?: InputMaybe<Scalars['String']>;
-  isoCode: Scalars['String'];
-  name: Scalars['String'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  isoCode: Scalars['String']['input'];
+  name: Scalars['String']['input'];
 };
 
 export type StateCreateManyInput = {
-  geometryId: Scalars['Int'];
-  id?: InputMaybe<Scalars['String']>;
-  isoCode: Scalars['String'];
-  name: Scalars['String'];
+  geometryId: Scalars['Int']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  isoCode: Scalars['String']['input'];
+  name: Scalars['String']['input'];
 };
 
 export type StateCreateNestedOneWithoutAreaInput = {
@@ -17943,16 +17945,16 @@ export type StateCreateOrConnectWithoutGeometryInput = {
 
 export type StateCreateWithoutAreaInput = {
   Geometry: GeometryCreateNestedOneWithoutStateInput;
-  id?: InputMaybe<Scalars['String']>;
-  isoCode: Scalars['String'];
-  name: Scalars['String'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  isoCode: Scalars['String']['input'];
+  name: Scalars['String']['input'];
 };
 
 export type StateCreateWithoutGeometryInput = {
   Area?: InputMaybe<AreaCreateNestedManyWithoutStateInput>;
-  id?: InputMaybe<Scalars['String']>;
-  isoCode: Scalars['String'];
-  name: Scalars['String'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  isoCode: Scalars['String']['input'];
+  name: Scalars['String']['input'];
 };
 
 export type StateMaxOrderByAggregateInput = {
@@ -18002,11 +18004,11 @@ export type StateRelationFilter = {
 
 export type StateResponseObject = {
   __typename?: 'StateResponseObject';
-  countryCode: Scalars['String'];
-  isoCode: Scalars['String'];
-  latitude?: Maybe<Scalars['String']>;
-  longitude?: Maybe<Scalars['String']>;
-  name: Scalars['String'];
+  countryCode: Scalars['String']['output'];
+  isoCode: Scalars['String']['output'];
+  latitude?: Maybe<Scalars['String']['output']>;
+  longitude?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
 };
 
 export enum StateScalarFieldEnum {
@@ -18114,24 +18116,24 @@ export type StateWhereUniqueInput = {
   AND?: InputMaybe<Array<StateWhereInput>>;
   Area?: InputMaybe<AreaListRelationFilter>;
   Geometry?: InputMaybe<GeometryWhereInput>;
-  geometryId?: InputMaybe<Scalars['Int']>;
-  id?: InputMaybe<Scalars['String']>;
-  isoCode?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
+  geometryId?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  isoCode?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<StateWhereInput>>;
   OR?: InputMaybe<Array<StateWhereInput>>;
 };
 
 export type Story = {
   __typename?: 'Story';
-  createdAt: Scalars['DateTime'];
-  date: Scalars['DateTime'];
+  createdAt: Scalars['DateTime']['output'];
+  date: Scalars['DateTime']['output'];
   emojimood?: Maybe<Emojimood>;
-  id: Scalars['ID'];
+  id: Scalars['ID']['output'];
   photos: Array<Photo>;
   Profile: Profile;
-  startDate: Scalars['DateTime'];
-  updatedAt?: Maybe<Scalars['DateTime']>;
+  startDate: Scalars['DateTime']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
 export type StoryAvgOrderByAggregateInput = {
@@ -18148,48 +18150,48 @@ export type StoryCountOrderByAggregateInput = {
 };
 
 export type StoryCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  date: Scalars['DateTime'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  date: Scalars['DateTime']['input'];
   emojimood?: InputMaybe<EmojimoodCreateNestedOneWithoutStoryInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Photos?: InputMaybe<PhotoCreateNestedManyWithoutStoryInput>;
   Profile?: InputMaybe<ProfileCreateNestedOneWithoutStorysInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type StoryCreateManyEmojimoodInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  date: Scalars['DateTime'];
-  id?: InputMaybe<Scalars['String']>;
-  profileId?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  date: Scalars['DateTime']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  profileId?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type StoryCreateManyEmojimoodInputEnvelope = {
   data: Array<StoryCreateManyEmojimoodInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type StoryCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  date: Scalars['DateTime'];
-  emojimoodId?: InputMaybe<Scalars['Int']>;
-  id?: InputMaybe<Scalars['String']>;
-  profileId?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  date: Scalars['DateTime']['input'];
+  emojimoodId?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  profileId?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type StoryCreateManyProfileInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  date: Scalars['DateTime'];
-  emojimoodId?: InputMaybe<Scalars['Int']>;
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  date: Scalars['DateTime']['input'];
+  emojimoodId?: InputMaybe<Scalars['Int']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type StoryCreateManyProfileInputEnvelope = {
   data: Array<StoryCreateManyProfileInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type StoryCreateNestedManyWithoutEmojimoodInput = {
@@ -18228,30 +18230,30 @@ export type StoryCreateOrConnectWithoutProfileInput = {
 };
 
 export type StoryCreateWithoutEmojimoodInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  date: Scalars['DateTime'];
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  date: Scalars['DateTime']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
   Photos?: InputMaybe<PhotoCreateNestedManyWithoutStoryInput>;
   Profile?: InputMaybe<ProfileCreateNestedOneWithoutStorysInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type StoryCreateWithoutPhotosInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  date: Scalars['DateTime'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  date: Scalars['DateTime']['input'];
   emojimood?: InputMaybe<EmojimoodCreateNestedOneWithoutStoryInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Profile?: InputMaybe<ProfileCreateNestedOneWithoutStorysInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type StoryCreateWithoutProfileInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  date: Scalars['DateTime'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  date: Scalars['DateTime']['input'];
   emojimood?: InputMaybe<EmojimoodCreateNestedOneWithoutStoryInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Photos?: InputMaybe<PhotoCreateNestedManyWithoutStoryInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type StoryListRelationFilter = {
@@ -18496,7 +18498,7 @@ export type StoryWhereUniqueInput = {
   date?: InputMaybe<DateTimeFilter>;
   emojimood?: InputMaybe<EmojimoodWhereInput>;
   emojimoodId?: InputMaybe<IntNullableFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<StoryWhereInput>>;
   OR?: InputMaybe<Array<StoryWhereInput>>;
   Photos?: InputMaybe<PhotoListRelationFilter>;
@@ -18506,81 +18508,81 @@ export type StoryWhereUniqueInput = {
 };
 
 export type StringFieldUpdateOperationsInput = {
-  set?: InputMaybe<Scalars['String']>;
+  set?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type StringFilter = {
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  endsWith?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<Scalars['String']['input']>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
   mode?: InputMaybe<QueryMode>;
   not?: InputMaybe<NestedStringFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type StringNullableFilter = {
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  endsWith?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<Scalars['String']['input']>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
   mode?: InputMaybe<QueryMode>;
   not?: InputMaybe<NestedStringNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type StringNullableListFilter = {
-  equals?: InputMaybe<Array<Scalars['String']>>;
-  has?: InputMaybe<Scalars['String']>;
-  hasEvery?: InputMaybe<Array<Scalars['String']>>;
-  hasSome?: InputMaybe<Array<Scalars['String']>>;
-  isEmpty?: InputMaybe<Scalars['Boolean']>;
+  equals?: InputMaybe<Array<Scalars['String']['input']>>;
+  has?: InputMaybe<Scalars['String']['input']>;
+  hasEvery?: InputMaybe<Array<Scalars['String']['input']>>;
+  hasSome?: InputMaybe<Array<Scalars['String']['input']>>;
+  isEmpty?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type StringNullableWithAggregatesFilter = {
   _count?: InputMaybe<NestedIntNullableFilter>;
   _max?: InputMaybe<NestedStringNullableFilter>;
   _min?: InputMaybe<NestedStringNullableFilter>;
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  endsWith?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<Scalars['String']['input']>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
   mode?: InputMaybe<QueryMode>;
   not?: InputMaybe<NestedStringNullableWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type StringWithAggregatesFilter = {
   _count?: InputMaybe<NestedIntFilter>;
   _max?: InputMaybe<NestedStringFilter>;
   _min?: InputMaybe<NestedStringFilter>;
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  endsWith?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<Scalars['String']['input']>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
   mode?: InputMaybe<QueryMode>;
   not?: InputMaybe<NestedStringWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Subscription = {
@@ -18594,11 +18596,11 @@ export type Subscription = {
 export type Tag = {
   __typename?: 'Tag';
   Category?: Maybe<Category>;
-  categoryId?: Maybe<Scalars['String']>;
+  categoryId?: Maybe<Scalars['String']['output']>;
   DetailInformation: Array<DetailInformation>;
-  emoji?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  name: Scalars['String'];
+  emoji?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
 };
 
 
@@ -18606,8 +18608,8 @@ export type TagDetailInformationArgs = {
   cursor?: InputMaybe<DetailInformationWhereUniqueInput>;
   distinct?: InputMaybe<Array<DetailInformationScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<DetailInformationOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<DetailInformationWhereInput>;
 };
 
@@ -18625,26 +18627,26 @@ export type TagCountOrderByAggregateInput = {
 export type TagCreateInput = {
   Category?: InputMaybe<CategoryCreateNestedOneWithoutTagsInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedManyWithoutTagsInput>;
-  emoji?: InputMaybe<Scalars['String']>;
-  name: Scalars['String'];
+  emoji?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
 };
 
 export type TagCreateManyCategoryInput = {
-  emoji?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['Int']>;
-  name: Scalars['String'];
+  emoji?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  name: Scalars['String']['input'];
 };
 
 export type TagCreateManyCategoryInputEnvelope = {
   data: Array<TagCreateManyCategoryInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type TagCreateManyInput = {
-  categoryId?: InputMaybe<Scalars['String']>;
-  emoji?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['Int']>;
-  name: Scalars['String'];
+  categoryId?: InputMaybe<Scalars['String']['input']>;
+  emoji?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  name: Scalars['String']['input'];
 };
 
 export type TagCreateNestedManyWithoutCategoryInput = {
@@ -18672,14 +18674,14 @@ export type TagCreateOrConnectWithoutDetailInformationInput = {
 
 export type TagCreateWithoutCategoryInput = {
   DetailInformation?: InputMaybe<DetailInformationCreateNestedManyWithoutTagsInput>;
-  emoji?: InputMaybe<Scalars['String']>;
-  name: Scalars['String'];
+  emoji?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
 };
 
 export type TagCreateWithoutDetailInformationInput = {
   Category?: InputMaybe<CategoryCreateNestedOneWithoutTagsInput>;
-  emoji?: InputMaybe<Scalars['String']>;
-  name: Scalars['String'];
+  emoji?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
 };
 
 export type TagListRelationFilter = {
@@ -18859,7 +18861,7 @@ export type TagWhereUniqueInput = {
   categoryId?: InputMaybe<StringNullableFilter>;
   DetailInformation?: InputMaybe<DetailInformationListRelationFilter>;
   emoji?: InputMaybe<StringNullableFilter>;
-  id?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
   name?: InputMaybe<StringFilter>;
   NOT?: InputMaybe<Array<TagWhereInput>>;
   OR?: InputMaybe<Array<TagWhereInput>>;
@@ -18867,16 +18869,16 @@ export type TagWhereUniqueInput = {
 
 export type Theme = {
   __typename?: 'Theme';
-  createdAt: Scalars['DateTime'];
-  endDate?: Maybe<Scalars['DateTime']>;
-  id: Scalars['ID'];
-  mobileVersions: Array<Scalars['String']>;
-  name: Scalars['String'];
+  createdAt: Scalars['DateTime']['output'];
+  endDate?: Maybe<Scalars['DateTime']['output']>;
+  id: Scalars['ID']['output'];
+  mobileVersions: Array<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
   ProfileTheme: Array<ProfileTheme>;
-  startDate?: Maybe<Scalars['DateTime']>;
-  theme: Scalars['Json'];
-  updatedAt: Scalars['DateTime'];
-  webVersions: Array<Scalars['String']>;
+  startDate?: Maybe<Scalars['DateTime']['output']>;
+  theme: Scalars['Json']['output'];
+  updatedAt: Scalars['DateTime']['output'];
+  webVersions: Array<Scalars['String']['output']>;
 };
 
 export type ThemeCountOrderByAggregateInput = {
@@ -18892,32 +18894,32 @@ export type ThemeCountOrderByAggregateInput = {
 };
 
 export type ThemeCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  endDate?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  mobileVersions?: InputMaybe<Array<Scalars['String']>>;
-  name: Scalars['String'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  endDate?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  mobileVersions?: InputMaybe<Array<Scalars['String']['input']>>;
+  name: Scalars['String']['input'];
   ProfileTheme?: InputMaybe<ProfileThemeCreateNestedManyWithoutThemeInput>;
-  startDate?: InputMaybe<Scalars['DateTime']>;
-  theme: Scalars['Json'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  webVersions?: InputMaybe<Array<Scalars['String']>>;
+  startDate?: InputMaybe<Scalars['DateTime']['input']>;
+  theme: Scalars['Json']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  webVersions?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type ThemeCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  endDate?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  mobileVersions?: InputMaybe<Array<Scalars['String']>>;
-  name: Scalars['String'];
-  startDate?: InputMaybe<Scalars['DateTime']>;
-  theme: Scalars['Json'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  webVersions?: InputMaybe<Array<Scalars['String']>>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  endDate?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  mobileVersions?: InputMaybe<Array<Scalars['String']['input']>>;
+  name: Scalars['String']['input'];
+  startDate?: InputMaybe<Scalars['DateTime']['input']>;
+  theme: Scalars['Json']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  webVersions?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type ThemeCreatemobileVersionsInput = {
-  set: Array<Scalars['String']>;
+  set: Array<Scalars['String']['input']>;
 };
 
 export type ThemeCreateNestedOneWithoutProfileThemeInput = {
@@ -18932,29 +18934,29 @@ export type ThemeCreateOrConnectWithoutProfileThemeInput = {
 };
 
 export type ThemeCreatewebVersionsInput = {
-  set: Array<Scalars['String']>;
+  set: Array<Scalars['String']['input']>;
 };
 
 export type ThemeCreateWithoutProfileThemeInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  endDate?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  mobileVersions?: InputMaybe<Array<Scalars['String']>>;
-  name: Scalars['String'];
-  startDate?: InputMaybe<Scalars['DateTime']>;
-  theme: Scalars['Json'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  webVersions?: InputMaybe<Array<Scalars['String']>>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  endDate?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  mobileVersions?: InputMaybe<Array<Scalars['String']['input']>>;
+  name: Scalars['String']['input'];
+  startDate?: InputMaybe<Scalars['DateTime']['input']>;
+  theme: Scalars['Json']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  webVersions?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type ThemeManager = {
   __typename?: 'ThemeManager';
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
   Profile: Profile;
-  profileId: Scalars['String'];
+  profileId: Scalars['String']['output'];
   ProfileTheme: Array<ProfileTheme>;
-  updatedAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 
@@ -18962,8 +18964,8 @@ export type ThemeManagerProfileThemeArgs = {
   cursor?: InputMaybe<ProfileThemeWhereUniqueInput>;
   distinct?: InputMaybe<Array<ProfileThemeScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<ProfileThemeOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ProfileThemeWhereInput>;
 };
 
@@ -18975,18 +18977,18 @@ export type ThemeManagerCountOrderByAggregateInput = {
 };
 
 export type ThemeManagerCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Profile: ProfileCreateNestedOneWithoutThemeManagerInput;
   ProfileTheme?: InputMaybe<ProfileThemeCreateNestedManyWithoutThemeManagerInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type ThemeManagerCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  profileId: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  profileId: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type ThemeManagerCreateNestedOneWithoutProfileInput = {
@@ -19012,17 +19014,17 @@ export type ThemeManagerCreateOrConnectWithoutProfileThemeInput = {
 };
 
 export type ThemeManagerCreateWithoutProfileInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   ProfileTheme?: InputMaybe<ProfileThemeCreateNestedManyWithoutThemeManagerInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type ThemeManagerCreateWithoutProfileThemeInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Profile: ProfileCreateNestedOneWithoutThemeManagerInput;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type ThemeManagerMaxOrderByAggregateInput = {
@@ -19165,11 +19167,11 @@ export type ThemeManagerWhereInput = {
 export type ThemeManagerWhereUniqueInput = {
   AND?: InputMaybe<Array<ThemeManagerWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<ThemeManagerWhereInput>>;
   OR?: InputMaybe<Array<ThemeManagerWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
-  profileId?: InputMaybe<Scalars['String']>;
+  profileId?: InputMaybe<Scalars['String']['input']>;
   ProfileTheme?: InputMaybe<ProfileThemeListRelationFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
@@ -19256,30 +19258,30 @@ export type ThemeUpdateInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   endDate?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  mobileVersions?: InputMaybe<Array<Scalars['String']>>;
+  mobileVersions?: InputMaybe<Array<Scalars['String']['input']>>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   ProfileTheme?: InputMaybe<ProfileThemeUpdateManyWithoutThemeNestedInput>;
   startDate?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
-  theme?: InputMaybe<Scalars['Json']>;
+  theme?: InputMaybe<Scalars['Json']['input']>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  webVersions?: InputMaybe<Array<Scalars['String']>>;
+  webVersions?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type ThemeUpdateManyMutationInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   endDate?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  mobileVersions?: InputMaybe<Array<Scalars['String']>>;
+  mobileVersions?: InputMaybe<Array<Scalars['String']['input']>>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   startDate?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
-  theme?: InputMaybe<Scalars['Json']>;
+  theme?: InputMaybe<Scalars['Json']['input']>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  webVersions?: InputMaybe<Array<Scalars['String']>>;
+  webVersions?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type ThemeUpdatemobileVersionsInput = {
-  push?: InputMaybe<Array<Scalars['String']>>;
-  set?: InputMaybe<Array<Scalars['String']>>;
+  push?: InputMaybe<Array<Scalars['String']['input']>>;
+  set?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type ThemeUpdateOneRequiredWithoutProfileThemeNestedInput = {
@@ -19296,20 +19298,20 @@ export type ThemeUpdateToOneWithWhereWithoutProfileThemeInput = {
 };
 
 export type ThemeUpdatewebVersionsInput = {
-  push?: InputMaybe<Array<Scalars['String']>>;
-  set?: InputMaybe<Array<Scalars['String']>>;
+  push?: InputMaybe<Array<Scalars['String']['input']>>;
+  set?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type ThemeUpdateWithoutProfileThemeInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   endDate?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  mobileVersions?: InputMaybe<Array<Scalars['String']>>;
+  mobileVersions?: InputMaybe<Array<Scalars['String']['input']>>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   startDate?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
-  theme?: InputMaybe<Scalars['Json']>;
+  theme?: InputMaybe<Scalars['Json']['input']>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  webVersions?: InputMaybe<Array<Scalars['String']>>;
+  webVersions?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type ThemeUpsertWithoutProfileThemeInput = {
@@ -19338,7 +19340,7 @@ export type ThemeWhereUniqueInput = {
   AND?: InputMaybe<Array<ThemeWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   endDate?: InputMaybe<DateTimeNullableFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   mobileVersions?: InputMaybe<StringNullableListFilter>;
   name?: InputMaybe<StringFilter>;
   NOT?: InputMaybe<Array<ThemeWhereInput>>;
@@ -19363,18 +19365,18 @@ export type TonightPathCountOrderByAggregateInput = {
 };
 
 export type TonightPathCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Path?: InputMaybe<PathCreateNestedManyWithoutTonightPathInput>;
-  profileId: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  profileId: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type TonightPathCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  profileId: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  profileId: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type TonightPathCreateNestedOneWithoutPathInput = {
@@ -19389,10 +19391,10 @@ export type TonightPathCreateOrConnectWithoutPathInput = {
 };
 
 export type TonightPathCreateWithoutPathInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  profileId: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  profileId: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type TonightPathMaxOrderByAggregateInput = {
@@ -19506,7 +19508,7 @@ export type TonightPathWhereInput = {
 export type TonightPathWhereUniqueInput = {
   AND?: InputMaybe<Array<TonightPathWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<TonightPathWhereInput>>;
   OR?: InputMaybe<Array<TonightPathWhereInput>>;
   Path?: InputMaybe<PathListRelationFilter>;
@@ -19535,31 +19537,31 @@ export type UpdateManyNotificationStatusUnionResponse = Error | UpdateNotificati
 
 export type UpdateNotificationResponse = {
   __typename?: 'UpdateNotificationResponse';
-  count: Scalars['Int'];
+  count: Scalars['Int']['output'];
 };
 
 export type UpdateNotificationStatusInput = {
   /** A NotificationStatus ID */
-  id: Scalars['String'];
+  id: Scalars['String']['input'];
 };
 
 export type Venue = {
   __typename?: 'Venue';
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
   LiveOutVenue?: Maybe<LiveOutVenue>;
   Location?: Maybe<Location>;
-  name?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']['output']>;
   Profile: Profile;
-  profileId: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
+  profileId: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
   VenueStats: VenueStats;
-  venueStatsId: Scalars['String'];
+  venueStatsId: Scalars['String']['output'];
 };
 
 export type VenueContactInput = {
-  type?: InputMaybe<Scalars['String']>;
-  value: Scalars['String'];
+  type?: InputMaybe<Scalars['String']['input']>;
+  value: Scalars['String']['input'];
 };
 
 export type VenueCountOrderByAggregateInput = {
@@ -19572,23 +19574,23 @@ export type VenueCountOrderByAggregateInput = {
 };
 
 export type VenueCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   LiveOutVenue?: InputMaybe<LiveOutVenueCreateNestedOneWithoutVenueInput>;
   Location?: InputMaybe<LocationCreateNestedOneWithoutVenueInput>;
-  name?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']['input']>;
   Profile: ProfileCreateNestedOneWithoutVenueInput;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   VenueStats: VenueStatsCreateNestedOneWithoutVenueInput;
 };
 
 export type VenueCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
-  profileId: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  venueStatsId: Scalars['String'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  profileId: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  venueStatsId: Scalars['String']['input'];
 };
 
 export type VenueCreateNestedOneWithoutLiveOutVenueInput = {
@@ -19636,43 +19638,43 @@ export type VenueCreateOrConnectWithoutVenueStatsInput = {
 };
 
 export type VenueCreateWithoutLiveOutVenueInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Location?: InputMaybe<LocationCreateNestedOneWithoutVenueInput>;
-  name?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']['input']>;
   Profile: ProfileCreateNestedOneWithoutVenueInput;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   VenueStats: VenueStatsCreateNestedOneWithoutVenueInput;
 };
 
 export type VenueCreateWithoutLocationInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   LiveOutVenue?: InputMaybe<LiveOutVenueCreateNestedOneWithoutVenueInput>;
-  name?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']['input']>;
   Profile: ProfileCreateNestedOneWithoutVenueInput;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   VenueStats: VenueStatsCreateNestedOneWithoutVenueInput;
 };
 
 export type VenueCreateWithoutProfileInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   LiveOutVenue?: InputMaybe<LiveOutVenueCreateNestedOneWithoutVenueInput>;
   Location?: InputMaybe<LocationCreateNestedOneWithoutVenueInput>;
-  name?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   VenueStats: VenueStatsCreateNestedOneWithoutVenueInput;
 };
 
 export type VenueCreateWithoutVenueStatsInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   LiveOutVenue?: InputMaybe<LiveOutVenueCreateNestedOneWithoutVenueInput>;
   Location?: InputMaybe<LocationCreateNestedOneWithoutVenueInput>;
-  name?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']['input']>;
   Profile: ProfileCreateNestedOneWithoutVenueInput;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type VenueMaxOrderByAggregateInput = {
@@ -19758,10 +19760,10 @@ export type VenuesNearbyResponse = {
 
 export type VenueStats = {
   __typename?: 'VenueStats';
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
   Out: Array<Out>;
-  updatedAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime']['output'];
   Venue?: Maybe<Venue>;
 };
 
@@ -19770,8 +19772,8 @@ export type VenueStatsOutArgs = {
   cursor?: InputMaybe<OutWhereUniqueInput>;
   distinct?: InputMaybe<Array<OutScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<OutOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<OutWhereInput>;
 };
 
@@ -19782,17 +19784,17 @@ export type VenueStatsCountOrderByAggregateInput = {
 };
 
 export type VenueStatsCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Out?: InputMaybe<OutCreateNestedManyWithoutVenueStatsInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue?: InputMaybe<VenueCreateNestedOneWithoutVenueStatsInput>;
 };
 
 export type VenueStatsCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type VenueStatsCreateNestedOneWithoutOutInput = {
@@ -19818,17 +19820,17 @@ export type VenueStatsCreateOrConnectWithoutVenueInput = {
 };
 
 export type VenueStatsCreateWithoutOutInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   Venue?: InputMaybe<VenueCreateNestedOneWithoutVenueStatsInput>;
 };
 
 export type VenueStatsCreateWithoutVenueInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Out?: InputMaybe<OutCreateNestedManyWithoutVenueStatsInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type VenueStatsMaxOrderByAggregateInput = {
@@ -19967,7 +19969,7 @@ export type VenueStatsWhereInput = {
 export type VenueStatsWhereUniqueInput = {
   AND?: InputMaybe<Array<VenueStatsWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<VenueStatsWhereInput>>;
   OR?: InputMaybe<Array<VenueStatsWhereInput>>;
   Out?: InputMaybe<OutListRelationFilter>;
@@ -20134,33 +20136,33 @@ export type VenueWhereInput = {
 export type VenueWhereUniqueInput = {
   AND?: InputMaybe<Array<VenueWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   LiveOutVenue?: InputMaybe<LiveOutVenueWhereInput>;
   Location?: InputMaybe<LocationWhereInput>;
   name?: InputMaybe<StringNullableFilter>;
   NOT?: InputMaybe<Array<VenueWhereInput>>;
   OR?: InputMaybe<Array<VenueWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
-  profileId?: InputMaybe<Scalars['String']>;
+  profileId?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<DateTimeFilter>;
   VenueStats?: InputMaybe<VenueStatsWhereInput>;
-  venueStatsId?: InputMaybe<Scalars['String']>;
+  venueStatsId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Vote = {
   __typename?: 'Vote';
   ComingArea?: Maybe<ComingArea>;
-  comingAreaId?: Maybe<Scalars['String']>;
-  createdAt: Scalars['DateTime'];
+  comingAreaId?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['DateTime']['output'];
   H3Index5VenueRecommendation?: Maybe<H3Index5VenueRecommendation>;
-  h3Index5VenueRecommendationId?: Maybe<Scalars['String']>;
+  h3Index5VenueRecommendationId?: Maybe<Scalars['String']['output']>;
   H3Index6VenueRecommendation?: Maybe<H3Index6VenueRecommendation>;
-  h3Index6VenueRecommendationId?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
+  h3Index6VenueRecommendationId?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
   Profile: Profile;
-  profileId: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
-  upvote: Scalars['Boolean'];
+  profileId: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
+  upvote: Scalars['Boolean']['output'];
 };
 
 export type VoteCountOrderByAggregateInput = {
@@ -20176,84 +20178,84 @@ export type VoteCountOrderByAggregateInput = {
 
 export type VoteCreateInput = {
   ComingArea?: InputMaybe<ComingAreaCreateNestedOneWithoutVoteInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   H3Index5VenueRecommendation?: InputMaybe<H3Index5VenueRecommendationCreateNestedOneWithoutVoteInput>;
   H3Index6VenueRecommendation?: InputMaybe<H3Index6VenueRecommendationCreateNestedOneWithoutVoteInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Profile: ProfileCreateNestedOneWithoutVoteInput;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  upvote: Scalars['Boolean'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  upvote: Scalars['Boolean']['input'];
 };
 
 export type VoteCreateManyComingAreaInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index5VenueRecommendationId?: InputMaybe<Scalars['String']>;
-  h3Index6VenueRecommendationId?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
-  profileId: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  upvote: Scalars['Boolean'];
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index5VenueRecommendationId?: InputMaybe<Scalars['String']['input']>;
+  h3Index6VenueRecommendationId?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  profileId: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  upvote: Scalars['Boolean']['input'];
 };
 
 export type VoteCreateManyComingAreaInputEnvelope = {
   data: Array<VoteCreateManyComingAreaInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type VoteCreateManyH3Index5VenueRecommendationInput = {
-  comingAreaId?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index6VenueRecommendationId?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
-  profileId: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  upvote: Scalars['Boolean'];
+  comingAreaId?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index6VenueRecommendationId?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  profileId: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  upvote: Scalars['Boolean']['input'];
 };
 
 export type VoteCreateManyH3Index5VenueRecommendationInputEnvelope = {
   data: Array<VoteCreateManyH3Index5VenueRecommendationInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type VoteCreateManyH3Index6VenueRecommendationInput = {
-  comingAreaId?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index5VenueRecommendationId?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
-  profileId: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  upvote: Scalars['Boolean'];
+  comingAreaId?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index5VenueRecommendationId?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  profileId: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  upvote: Scalars['Boolean']['input'];
 };
 
 export type VoteCreateManyH3Index6VenueRecommendationInputEnvelope = {
   data: Array<VoteCreateManyH3Index6VenueRecommendationInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type VoteCreateManyInput = {
-  comingAreaId?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index5VenueRecommendationId?: InputMaybe<Scalars['String']>;
-  h3Index6VenueRecommendationId?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
-  profileId: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  upvote: Scalars['Boolean'];
+  comingAreaId?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index5VenueRecommendationId?: InputMaybe<Scalars['String']['input']>;
+  h3Index6VenueRecommendationId?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  profileId: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  upvote: Scalars['Boolean']['input'];
 };
 
 export type VoteCreateManyProfileInput = {
-  comingAreaId?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  h3Index5VenueRecommendationId?: InputMaybe<Scalars['String']>;
-  h3Index6VenueRecommendationId?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  upvote: Scalars['Boolean'];
+  comingAreaId?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  h3Index5VenueRecommendationId?: InputMaybe<Scalars['String']['input']>;
+  h3Index6VenueRecommendationId?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  upvote: Scalars['Boolean']['input'];
 };
 
 export type VoteCreateManyProfileInputEnvelope = {
   data: Array<VoteCreateManyProfileInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type VoteCreateNestedManyWithoutComingAreaInput = {
@@ -20305,43 +20307,43 @@ export type VoteCreateOrConnectWithoutProfileInput = {
 };
 
 export type VoteCreateWithoutComingAreaInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   H3Index5VenueRecommendation?: InputMaybe<H3Index5VenueRecommendationCreateNestedOneWithoutVoteInput>;
   H3Index6VenueRecommendation?: InputMaybe<H3Index6VenueRecommendationCreateNestedOneWithoutVoteInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Profile: ProfileCreateNestedOneWithoutVoteInput;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  upvote: Scalars['Boolean'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  upvote: Scalars['Boolean']['input'];
 };
 
 export type VoteCreateWithoutH3Index5VenueRecommendationInput = {
   ComingArea?: InputMaybe<ComingAreaCreateNestedOneWithoutVoteInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   H3Index6VenueRecommendation?: InputMaybe<H3Index6VenueRecommendationCreateNestedOneWithoutVoteInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Profile: ProfileCreateNestedOneWithoutVoteInput;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  upvote: Scalars['Boolean'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  upvote: Scalars['Boolean']['input'];
 };
 
 export type VoteCreateWithoutH3Index6VenueRecommendationInput = {
   ComingArea?: InputMaybe<ComingAreaCreateNestedOneWithoutVoteInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   H3Index5VenueRecommendation?: InputMaybe<H3Index5VenueRecommendationCreateNestedOneWithoutVoteInput>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   Profile: ProfileCreateNestedOneWithoutVoteInput;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  upvote: Scalars['Boolean'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  upvote: Scalars['Boolean']['input'];
 };
 
 export type VoteCreateWithoutProfileInput = {
   ComingArea?: InputMaybe<ComingAreaCreateNestedOneWithoutVoteInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   H3Index5VenueRecommendation?: InputMaybe<H3Index5VenueRecommendationCreateNestedOneWithoutVoteInput>;
   H3Index6VenueRecommendation?: InputMaybe<H3Index6VenueRecommendationCreateNestedOneWithoutVoteInput>;
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  upvote: Scalars['Boolean'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  upvote: Scalars['Boolean']['input'];
 };
 
 export type VoteListRelationFilter = {
@@ -20649,7 +20651,7 @@ export type VoteWhereUniqueInput = {
   h3Index5VenueRecommendationId?: InputMaybe<StringNullableFilter>;
   H3Index6VenueRecommendation?: InputMaybe<H3Index6VenueRecommendationWhereInput>;
   h3Index6VenueRecommendationId?: InputMaybe<StringNullableFilter>;
-  id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']['input']>;
   NOT?: InputMaybe<Array<VoteWhereInput>>;
   OR?: InputMaybe<Array<VoteWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
@@ -20688,7 +20690,7 @@ export type Personal_FragmentFragment = { __typename?: 'Personal', id: string, u
 
 export type Profile_FragmentFragment = { __typename: 'Profile', id: string, ProfileType: ProfileType, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: Array<any>, Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme: any, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> } | null, Relationships: Array<{ __typename?: 'Relationship', id: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }>, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: Array<{ __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }>, emails: Array<{ __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }> } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }>, Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null };
 
-export type Public_Personal_FragmentFragment = { __typename: 'PublicProfilePersonal', id: string, ProfileType: ProfileType, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, tonightStory?: { __typename?: 'Story', id: string, date: any, startDate: any, createdAt: any, updatedAt?: any | null, emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, Profile: { __typename?: 'Profile', id: string }, photos: Array<{ __typename?: 'Photo', id: string, url: string, active: boolean, blurhash?: string | null, ratio?: string | null, type?: PhotoType | null, position?: number | null, createdAt: any, updatedAt: any }> } | null };
+export type Public_Personal_FragmentFragment = { __typename: 'PublicProfilePersonal', id: string, ProfileType: ProfileType, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, tonightStory?: { __typename?: 'Story', id: string, date: any, startDate: any, createdAt: any, updatedAt?: any | null, emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, Profile: { __typename?: 'Profile', id: string }, photos: Array<{ __typename?: 'Photo', id: string, url: string, active: boolean, blurhash?: string | null, ratio?: string | null, type?: PhotoType | null, position?: number | null, createdAt: any, updatedAt: any }> } | null };
 
 export type Profile_Venue_FragmentFragment = { __typename: 'ProfileVenue', id: string, ProfileType: ProfileType, distanceInM?: number | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }>, Venue?: { __typename?: 'Venue', id: string, name?: string | null, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, venueProfileId: string, personalProfileId: string }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null };
 
@@ -20705,9 +20707,9 @@ export type Theme_Manager_FragmentFragment = { __typename?: 'ThemeManager', id: 
 export type Venue_FragmentFragment = { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename: 'Profile', id: string, ProfileType: ProfileType, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: Array<any>, Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme: any, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> } | null, Relationships: Array<{ __typename?: 'Relationship', id: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }>, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: Array<{ __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }>, emails: Array<{ __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }> } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }>, Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } };
 
 export type UpsertDevicePushTokenMutationVariables = Exact<{
-  token?: InputMaybe<Scalars['String']>;
+  token?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<TokenType>;
-  expoToken?: InputMaybe<Scalars['String']>;
+  expoToken?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
@@ -20719,14 +20721,14 @@ export type GetCurrentPushNotificationTokenQueryVariables = Exact<{ [key: string
 export type GetCurrentPushNotificationTokenQuery = { __typename?: 'Query', getCurrentPushNotificationToken?: { __typename?: 'PushToken', id: string, expoToken?: string | null, updatedAt?: any | null, createdAt?: any | null } | null };
 
 export type RemoveDeviceProfileFromDeviceManagerMutationVariables = Exact<{
-  profileId: Scalars['String'];
+  profileId: Scalars['String']['input'];
 }>;
 
 
 export type RemoveDeviceProfileFromDeviceManagerMutation = { __typename?: 'Mutation', removeDeviceProfileFromDeviceManager: boolean };
 
 export type SwitchDeviceProfileMutationVariables = Exact<{
-  profileId: Scalars['String'];
+  profileId: Scalars['String']['input'];
 }>;
 
 
@@ -20768,15 +20770,15 @@ export type PrivacyTermsDocumentsQueryVariables = Exact<{ [key: string]: never; 
 export type PrivacyTermsDocumentsQuery = { __typename?: 'Query', privacyTermsDocuments: { __typename?: 'LatestPrivacyAndTermsDocumentResponse', privacy: { __typename?: 'Document', id: string, TypeOfDocument: TypeOfDocument, createdAt: any, updatedAt: any, content: string, LegalAgreement: Array<{ __typename?: 'LegalAgreement', id: string }> }, termsofservice: { __typename?: 'Document', id: string, TypeOfDocument: TypeOfDocument, createdAt: any, updatedAt: any, content: string, LegalAgreement: Array<{ __typename?: 'LegalAgreement', id: string }> } } };
 
 export type LoginPasswordQueryVariables = Exact<{
-  username: Scalars['String'];
-  password: Scalars['String'];
+  username: Scalars['String']['input'];
+  password: Scalars['String']['input'];
 }>;
 
 
 export type LoginPasswordQuery = { __typename?: 'Query', loginPassword: boolean };
 
 export type CheckUsernameQueryVariables = Exact<{
-  username: Scalars['String'];
+  username: Scalars['String']['input'];
 }>;
 
 
@@ -20800,59 +20802,59 @@ export type EmojimoodQueryVariables = Exact<{
 export type EmojimoodQuery = { __typename?: 'Query', emojimood?: { __typename?: 'Emojimood', id: string, colors: Array<string>, emoji?: string | null, emojiname?: string | null } | null };
 
 export type ExploreSearchQueryVariables = Exact<{
-  search: Scalars['String'];
+  search: Scalars['String']['input'];
 }>;
 
 
 export type ExploreSearchQuery = { __typename?: 'Query', exploreSearch: { __typename?: 'ExploreResponse', events?: Array<any> | null, people: Array<{ __typename?: 'Personal', id: string, Profile: { __typename?: 'Profile', id: string, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, fullname?: string | null, firstname?: string | null, lastname?: string | null, username: string } | null, photos?: Array<{ __typename?: 'Photo', id: string, active: boolean, blurhash?: string | null, url: string }> | null } }>, venues: Array<{ __typename?: 'Venue', id: string, Profile: { __typename?: 'Profile', id: string, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, fullname?: string | null, firstname?: string | null, lastname?: string | null, username: string } | null, photos?: Array<{ __typename?: 'Photo', id: string, active: boolean, blurhash?: string | null, url: string }> | null } }> } };
 
 export type CreateFriendRequestMutationVariables = Exact<{
-  senderProfileId: Scalars['String'];
-  receiversProfileId: Array<Scalars['String']> | Scalars['String'];
+  senderProfileId: Scalars['String']['input'];
+  receiversProfileId: Array<Scalars['String']['input']> | Scalars['String']['input'];
 }>;
 
 
 export type CreateFriendRequestMutation = { __typename?: 'Mutation', createFriendRequest: boolean };
 
 export type DeleteFriendRequestMutationVariables = Exact<{
-  friendRequestId: Scalars['String'];
+  friendRequestId: Scalars['String']['input'];
 }>;
 
 
 export type DeleteFriendRequestMutation = { __typename?: 'Mutation', deleteFriendRequest: boolean };
 
 export type QrAddFriendMutationVariables = Exact<{
-  qrCodeProfileId: Scalars['String'];
-  dataHash: Scalars['String'];
+  qrCodeProfileId: Scalars['String']['input'];
+  dataHash: Scalars['String']['input'];
 }>;
 
 
 export type QrAddFriendMutation = { __typename?: 'Mutation', qrAddFriend: { __typename?: 'Relationship', id: string, venueMetAt?: string | null, RelationshipStatus: Array<RelationshipStatus>, createdAt: any, updatedAt: any, Profile?: { __typename?: 'Profile', id: string } | null } };
 
 export type AcceptFriendRequestMutationVariables = Exact<{
-  friendRequestId: Scalars['String'];
-  venueIdMetAt?: InputMaybe<Scalars['String']>;
+  friendRequestId: Scalars['String']['input'];
+  venueIdMetAt?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
 export type AcceptFriendRequestMutation = { __typename?: 'Mutation', acceptFriendRequest: { __typename?: 'Relationship', id: string, venueMetAt?: string | null, RelationshipStatus: Array<RelationshipStatus>, createdAt: any, updatedAt: any, Profile?: { __typename?: 'Profile', id: string } | null } };
 
 export type DeclineFriendRequestMutationVariables = Exact<{
-  friendRequestId: Scalars['String'];
+  friendRequestId: Scalars['String']['input'];
 }>;
 
 
 export type DeclineFriendRequestMutation = { __typename?: 'Mutation', declineFriendRequest: boolean };
 
 export type RemoveFriendMutationVariables = Exact<{
-  relationshipId: Scalars['String'];
+  relationshipId: Scalars['String']['input'];
 }>;
 
 
 export type RemoveFriendMutation = { __typename?: 'Mutation', removeFriend: boolean };
 
 export type GetRelationshipFriendRequestStatusQueryVariables = Exact<{
-  profileId: Scalars['String'];
+  profileId: Scalars['String']['input'];
 }>;
 
 
@@ -20879,21 +20881,21 @@ export type GetInterestsQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetInterestsQuery = { __typename?: 'Query', getInterests: Array<{ __typename?: 'Category', id: string, name: string, Tags: Array<{ __typename?: 'Tag', id: string, name: string, categoryId?: string | null, emoji?: string | null }> }> };
 
 export type AddPersonalTotalsVenueMutationVariables = Exact<{
-  profileIdVenue: Scalars['String'];
+  profileIdVenue: Scalars['String']['input'];
 }>;
 
 
 export type AddPersonalTotalsVenueMutation = { __typename?: 'Mutation', addPersonalTotalsVenue: boolean };
 
 export type RemovePersonalTotalsVenueMutationVariables = Exact<{
-  profileIdVenue: Scalars['String'];
+  profileIdVenue: Scalars['String']['input'];
 }>;
 
 
 export type RemovePersonalTotalsVenueMutation = { __typename?: 'Mutation', removePersonalTotalsVenue: boolean };
 
 export type AddPersonalJoinsVenueMutationVariables = Exact<{
-  profileIdVenue: Scalars['String'];
+  profileIdVenue: Scalars['String']['input'];
 }>;
 
 
@@ -20905,7 +20907,7 @@ export type RemovePersonalJoinsVenueMutationVariables = Exact<{ [key: string]: n
 export type RemovePersonalJoinsVenueMutation = { __typename?: 'Mutation', removePersonalJoinsVenue: { __typename?: 'Profile', id: string, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string }, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }>, Personal: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string } } } | null } | null } };
 
 export type GetLiveVenueTotalsQueryVariables = Exact<{
-  profileIdVenue: Scalars['String'];
+  profileIdVenue: Scalars['String']['input'];
 }>;
 
 
@@ -20947,8 +20949,8 @@ export type ProfileQuery = { __typename?: 'Query', profile?: { __typename: 'Prof
 
 export type ProfilesQueryVariables = Exact<{
   where?: InputMaybe<ProfileWhereInput>;
-  take?: InputMaybe<Scalars['Int']>;
-  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
   distinct?: InputMaybe<Array<ProfileScalarFieldEnum> | ProfileScalarFieldEnum>;
 }>;
 
@@ -20982,33 +20984,33 @@ export type PublicProfileQueryVariables = Exact<{
 }>;
 
 
-export type PublicProfileQuery = { __typename?: 'Query', publicProfile?: { __typename: 'PublicProfilePersonal', id: string, ProfileType: ProfileType, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, tonightStory?: { __typename?: 'Story', id: string, date: any, startDate: any, createdAt: any, updatedAt?: any | null, emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, Profile: { __typename?: 'Profile', id: string }, photos: Array<{ __typename?: 'Photo', id: string, url: string, active: boolean, blurhash?: string | null, ratio?: string | null, type?: PhotoType | null, position?: number | null, createdAt: any, updatedAt: any }> } | null } | null };
+export type PublicProfileQuery = { __typename?: 'Query', publicProfile?: { __typename: 'PublicProfilePersonal', id: string, ProfileType: ProfileType, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, tonightStory?: { __typename?: 'Story', id: string, date: any, startDate: any, createdAt: any, updatedAt?: any | null, emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, Profile: { __typename?: 'Profile', id: string }, photos: Array<{ __typename?: 'Photo', id: string, url: string, active: boolean, blurhash?: string | null, ratio?: string | null, type?: PhotoType | null, position?: number | null, createdAt: any, updatedAt: any }> } | null } | null };
 
 export type UpdateH6ComingAreaVoteMutationVariables = Exact<{
-  comingAreaId: Scalars['String'];
+  comingAreaId: Scalars['String']['input'];
 }>;
 
 
 export type UpdateH6ComingAreaVoteMutation = { __typename?: 'Mutation', updateH6ComingAreaVote: { __typename?: 'ComingArea', id: string, areaId?: string | null, h3Index5: string, h3Index6: string, keywordSuggestions: Array<string>, timesRequested?: number | null, toBeNotifiedProfileIds: Array<string>, Area?: { __typename?: 'Area', id: string } | null, Vote: Array<{ __typename?: 'Vote', id: string, upvote: boolean, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string } }> } };
 
 export type UpdateComingAreaToBeNotifiedMutationVariables = Exact<{
-  comingAreaId: Scalars['String'];
+  comingAreaId: Scalars['String']['input'];
 }>;
 
 
 export type UpdateComingAreaToBeNotifiedMutation = { __typename?: 'Mutation', updateH6ComingAreaToBeNotified: { __typename?: 'ComingArea', id: string, areaId?: string | null, h3Index5: string, h3Index6: string, keywordSuggestions: Array<string>, timesRequested?: number | null, toBeNotifiedProfileIds: Array<string>, Area?: { __typename?: 'Area', id: string } | null, Vote: Array<{ __typename?: 'Vote', id: string, upvote: boolean, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string } }> } };
 
 export type UpdateH6VenueRemmendationMutationVariables = Exact<{
-  venueRecommendationId: Scalars['String'];
+  venueRecommendationId: Scalars['String']['input'];
 }>;
 
 
 export type UpdateH6VenueRemmendationMutation = { __typename?: 'Mutation', updateH6VenueRemmendation: { __typename?: 'H3Index6VenueRecommendation', id: string } };
 
 export type VenuesNearbyQueryVariables = Exact<{
-  countryIsoCode: Scalars['String'];
-  stateIsoCode: Scalars['String'];
-  kRing?: InputMaybe<Scalars['Int']>;
+  countryIsoCode: Scalars['String']['input'];
+  stateIsoCode: Scalars['String']['input'];
+  kRing?: InputMaybe<Scalars['Int']['input']>;
   searchAreaCoords: CoordsInput;
 }>;
 
@@ -21021,23 +21023,23 @@ export type GetAllCountriesQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetAllCountriesQuery = { __typename?: 'Query', getAllCountries: Array<{ __typename?: 'CountryResponseObject', name: string, phonecode: string, isoCode: string, flag: string, currency: string, latitude: string, longitude: string }> };
 
 export type GetAllStatesByCountryQueryVariables = Exact<{
-  countryIsoCode: Scalars['String'];
+  countryIsoCode: Scalars['String']['input'];
 }>;
 
 
 export type GetAllStatesByCountryQuery = { __typename?: 'Query', getAllStatesByCountry: Array<{ __typename?: 'StateResponseObject', name: string, isoCode: string, countryCode: string, latitude?: string | null, longitude?: string | null }> };
 
 export type GetAllCitiesByStateQueryVariables = Exact<{
-  countryIsoCode: Scalars['String'];
-  stateIsoCode: Scalars['String'];
+  countryIsoCode: Scalars['String']['input'];
+  stateIsoCode: Scalars['String']['input'];
 }>;
 
 
 export type GetAllCitiesByStateQuery = { __typename?: 'Query', getAllCitiesByState: { __typename?: 'OrganizedCityResponseObject', popularCities?: Array<{ __typename?: 'CityResponseObject', name: string, stateCode: string, venuesInArea?: number | null, countryCode: string, latitude?: string | null, longitude?: string | null }> | null, allCities?: Array<{ __typename?: 'CityResponseObject', name: string, stateCode: string, venuesInArea?: number | null, countryCode: string, latitude?: string | null, longitude?: string | null }> | null } };
 
 export type GetH3Index6VenueRecommendationByIdQueryVariables = Exact<{
-  id: Scalars['String'];
-  venuesProfileIds?: InputMaybe<Array<Scalars['String']> | Scalars['String']>;
+  id: Scalars['String']['input'];
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']> | Scalars['String']['input']>;
 }>;
 
 
@@ -21051,22 +21053,22 @@ export type AddStoryPhotosMutationVariables = Exact<{
 export type AddStoryPhotosMutation = { __typename?: 'Mutation', addStoryPhotos: { __typename?: 'Story', id: string, date: any, startDate: any, createdAt: any, updatedAt?: any | null, emojimood?: { __typename?: 'Emojimood', colors: Array<string>, emoji?: string | null, emojiname?: string | null, id: string } | null, photos: Array<{ __typename?: 'Photo', active: boolean, blurhash?: string | null, createdAt: any, groupId?: string | null, height?: number | null, id: string, position?: number | null, profileId?: string | null, ratio?: string | null, storyId?: string | null, type?: PhotoType | null, updatedAt: any, url: string, width?: number | null, Group?: { __typename?: 'Group', id: string } | null, Profile?: { __typename?: 'Profile', id: string } | null, Story?: { __typename?: 'Story', id: string } | null }> } };
 
 export type RemoveStoryPhotosMutationVariables = Exact<{
-  photoId: Scalars['String'];
+  photoId: Scalars['String']['input'];
 }>;
 
 
 export type RemoveStoryPhotosMutation = { __typename?: 'Mutation', removeStoryPhotos: { __typename?: 'Story', id: string, date: any, startDate: any, createdAt: any, updatedAt?: any | null, emojimood?: { __typename?: 'Emojimood', colors: Array<string>, emoji?: string | null, emojiname?: string | null, id: string } | null, photos: Array<{ __typename?: 'Photo', active: boolean, blurhash?: string | null, createdAt: any, groupId?: string | null, height?: number | null, id: string, position?: number | null, profileId?: string | null, ratio?: string | null, storyId?: string | null, type?: PhotoType | null, updatedAt: any, url: string, width?: number | null, Group?: { __typename?: 'Group', id: string } | null, Profile?: { __typename?: 'Profile', id: string } | null, Story?: { __typename?: 'Story', id: string } | null }> } };
 
 export type UpdateStoryEmojimoodMutationVariables = Exact<{
-  emojimoodId: Scalars['Int'];
+  emojimoodId: Scalars['Int']['input'];
 }>;
 
 
 export type UpdateStoryEmojimoodMutation = { __typename?: 'Mutation', updateStoryEmojimood: { __typename?: 'Story', id: string, date: any, startDate: any, createdAt: any, updatedAt?: any | null, emojimood?: { __typename?: 'Emojimood', colors: Array<string>, emoji?: string | null, emojiname?: string | null, id: string } | null, photos: Array<{ __typename?: 'Photo', active: boolean, blurhash?: string | null, createdAt: any, groupId?: string | null, height?: number | null, id: string, position?: number | null, profileId?: string | null, ratio?: string | null, storyId?: string | null, type?: PhotoType | null, updatedAt: any, url: string, width?: number | null, Group?: { __typename?: 'Group', id: string } | null, Profile?: { __typename?: 'Profile', id: string } | null, Story?: { __typename?: 'Story', id: string } | null }> } };
 
 export type UpdateThemeManagerSwitchThemeMutationVariables = Exact<{
-  id: Scalars['String'];
-  themeId: Scalars['String'];
+  id: Scalars['String']['input'];
+  themeId: Scalars['String']['input'];
 }>;
 
 
@@ -21517,6 +21519,9 @@ export const Public_Personal_FragmentFragmentDoc = gql`
   __typename
   id
   ProfileType
+  IdentifiableInformation {
+    ...INDETIFIABLE_INFORMATION_FRAGMENT
+  }
   DetailInformation {
     ...DETAIL_INFORMATION_FRAGMENT
   }
@@ -21559,7 +21564,8 @@ export const Public_Personal_FragmentFragmentDoc = gql`
     updatedAt
   }
 }
-    ${Detail_Information_FragmentFragmentDoc}`;
+    ${Indetifiable_Information_FragmentFragmentDoc}
+${Detail_Information_FragmentFragmentDoc}`;
 export const Profile_Venue_FragmentFragmentDoc = gql`
     fragment PROFILE_VENUE_FRAGMENT on ProfileVenue {
   __typename

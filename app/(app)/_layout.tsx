@@ -1,8 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
-import SearchInputText from '@components/molecules/search/searchinput/SearchInputText'
-import { Button, ButtonText, Text, VStack } from '@gluestack-ui/themed'
+import { Button, ButtonText, Text } from '@gluestack-ui/themed'
 import { ThemeReactiveVar } from '@reactive'
-import { BlurView } from 'expo-blur'
 import { Stack, router } from 'expo-router'
 
 export default () => {

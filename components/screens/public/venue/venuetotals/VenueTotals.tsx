@@ -89,7 +89,7 @@ export default function VenueTotals() {
 								opacity: loading ? 50 : 100,
 							},
 							_dark: {
-								bg: item.name !== 'friends' ? '$light900' : '$primary500',
+								bg: item.name !== 'friends' ? '$light800' : '$primary500',
 								opacity: loading ? 50 : 100,
 							},
 							// height: 50,

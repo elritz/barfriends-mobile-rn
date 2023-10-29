@@ -149,7 +149,7 @@ const CurrentLocationFromVenueDistance = () => {
 			{canJoin ? (
 				<>{rAuthorizationVar?.Profile?.ProfileType !== 'GUEST' ? <JoinCard /> : <SignupCard />}</>
 			) : (
-				<Box height={'100%'} justifyContent={'center'} mb={'$5'}>
+				<Box height={'100%'} justifyContent={'center'} mb={'$5'} bg={'$transparent'}>
 					<Heading
 						textAlign={'center'}
 						textTransform={'uppercase'}
@@ -160,7 +160,7 @@ const CurrentLocationFromVenueDistance = () => {
 						{metric === 'km' ? `In your area` : `You're super close!`}
 					</Heading>
 
-					<Box pb={'$1'} alignSelf={'center'} alignItems={'center'} flexDirection={'row'}>
+					<Box pb={'$1'} alignSelf={'center'} alignItems={'center'} flexDirection={'row'} bg={'$transparent'}>
 						<MaterialIcons
 							color={rTheme.theme?.gluestack.tokens.colors.blue500}
 							name='location-pin'

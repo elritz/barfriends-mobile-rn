@@ -20,7 +20,7 @@ export default function _layout() {
 			screenOptions={{
 				tabBarBackground: () => (
 					<BlurView
-						tint={rTheme.deviceColorScheme === 'light' ? 'light' : 'dark'}
+						tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 						intensity={70}
 						style={[StyleSheet.absoluteFill]}
 					/>

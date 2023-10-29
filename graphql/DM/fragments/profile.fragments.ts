@@ -246,9 +246,9 @@ export const PUBLIC_PERSONAL_FRAGMENT = gql`
 		__typename
 		id
 		ProfileType
-		# IdentifiableInformation {
-		# 	...INDETIFIABLE_INFORMATION_FRAGMENT
-		# }
+		IdentifiableInformation {
+			...INDETIFIABLE_INFORMATION_FRAGMENT
+		}
 		DetailInformation {
 			...DETAIL_INFORMATION_FRAGMENT
 		}
@@ -266,49 +266,7 @@ export const PUBLIC_PERSONAL_FRAGMENT = gql`
 			createdAt
 			updatedAt
 		}
-		# photos {
-		# 	id
-		# 	url
-		# 	type
-		# 	position
-		# 	active
-		# 	ratio
-		# 	blurhash
-		# 	createdAt
-		# 	updatedAt
-		# }
-		# Personal {
-		# 	id
-		# 	Profile {
-		# 		id
-		# 		createdAt
-		# 		updatedAt
-		# 	}
-		# 	profileId
-		# 	PersonalStats {
-		# 		id
-		# 		Out {
-		# 			id
-		# 			type
-		# 			personalProfileId
-		# 			venueProfileId
-		# 			createdAt
-		# 			updatedAt
-		# 		}
-		# 	}
-		# 	LiveOutPersonal {
-		# 		id
-		# 		Out {
-		# 			id
-		# 			venueProfileId
-		# 			personalProfileId
-		# 		}
-		# 		createdAt
-		# 		updatedAt
-		# 	}
-		# 	createdAt
-		# 	updatedAt
-		# }
+
 		tonightStory {
 			id
 			date

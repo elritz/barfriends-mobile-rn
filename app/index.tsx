@@ -113,12 +113,15 @@ export default () => {
 
 	const venue_id = '0aa05a59-c4aa-47d0-9ba7-3b1d54a3cd21'
 	const personal_id = '4068040c-5929-4140-9e28-666904c20243'
+	const device_manager_profile_id = 'e90675d1-009f-4ca8-9d76-f163a885189f'
+
 	return <Redirect href={'/(app)/hometab/venuefeed'} />
 
 	// return <Redirect href={'/(app)/conversation'} />
 	// return <Redirect href={'/(credential)/personalcredentialstack/create'} />
 	// return <Redirect href={'/(credential)/personalcredentialstack/name'} />
 	// return <Redirect href={'/(app)/hometab/messagestack'} />
+	// return <Redirect href={`/(app)/modal/devicemanager/${device_manager_profile_id}`} />
 
 	// return <Redirect href={`/(app)/public/personal/${personal_id}`} />
 	// return <Redirect href={`/(app)/public/venue/${venue_id}`} />

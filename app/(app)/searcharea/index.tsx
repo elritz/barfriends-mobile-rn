@@ -103,10 +103,10 @@ export default () => {
 										variant={rSearchAreaVar?.kRing.value === item.kRing ? 'solid' : 'outline'}
 										sx={{
 											_light: {
-												bg: rSearchAreaVar?.kRing.value === item.kRing ? '$primary500' : '$white',
+												bg: rSearchAreaVar?.kRing.value === item.kRing ? '$primary500' : '$light100',
 											},
 											_dark: {
-												bg: rSearchAreaVar?.kRing.value === item.kRing ? '$primary500' : '$black',
+												bg: rSearchAreaVar?.kRing.value === item.kRing ? '$primary500' : '$light900',
 											},
 										}}
 										style={{
@@ -125,7 +125,7 @@ export default () => {
 												_light: {
 													color: rSearchAreaVar?.kRing.value === item.kRing ? 'white' : '$coolGray900',
 												},
-												fontWeight: rSearchAreaVar?.kRing.value === item.kRing ? '$medium' : '$medium',
+												fontWeight: rSearchAreaVar?.kRing.value === item.kRing ? '$bold' : '$bold',
 											}}
 										>
 											{item.distance}
@@ -212,7 +212,7 @@ export default () => {
 								<SearchAreaLocationPermissionItem />
 								<HStack justifyContent='flex-end'>
 									<Button
-									rounded={'$full'}
+										rounded={'$full'}
 										onPress={() => {
 											router.push({
 												pathname: '/(app)/searcharea/searchcountry',

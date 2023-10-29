@@ -1,39 +1,55 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box } from '@gluestack-ui/themed'
 import CardPleaseSignup from '@components/molecules/asks/signuplogin'
 import InviteCard from '@components/screens/public/venue/venueactions/actioncards/invitecard/InviteCard'
 import QuickBarfriendCard from '@components/screens/public/venue/venueactions/actioncards/quickbarfriendcard/QuickBarfriendCard'
 import AddEmoji from '@components/screens/tonight/activity/ask/AddEmoji/AddEmoji'
 import JoinVenue from '@components/screens/tonight/activity/ask/JoinVenue/JoinVenue'
 import Photos from '@components/screens/tonight/photos'
-import { AuthorizationReactiveVar } from '@reactive'
+import { Box } from '@gluestack-ui/themed'
+import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
 import useContentInsets from '@util/hooks/useContentInsets'
+import { BlurView } from 'expo-blur'
 import { LinearGradient } from 'expo-linear-gradient'
 import { ScrollView } from 'react-native'
 
 const Wrapper = ({ children }) => {
+	const rTheme = useReactiveVar(ThemeReactiveVar)
 	return (
-		<Box
-			sx={{
-				h: 200,
+		<BlurView
+			intensity={80}
+			tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+			style={{
+				flex: 1,
+				height: 200,
+				paddingHorizontal: 10,
+				paddingVertical: 2,
+				margin: 10,
+				borderRadius: 10,
+				justifyContent: 'center',
+				alignItems: 'center',
+				overflow: 'hidden',
 			}}
-			flex={1}
-			rounded='$lg'
-			justifyContent={'center'}
-			alignItems={'center'}
-			overflow='hidden'
-			px={'$5'}
-			py={'$1'}
-			m={'$2'}
+			// sx={{
+			// 	h: 200,
+			// }}
+			// flex={1}
+			// rounded='$lg'
+			// justifyContent={'center'}
+			// alignItems={'center'}
+			// overflow='hidden'
+			// px={'$5'}
+			// py={'$1'}
+			// m={'$2'}
 		>
 			{children}
-		</Box>
+		</BlurView>
 	)
 }
 
 export default () => {
 	const contentInsets = useContentInsets()
+	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 
 	if (rAuthorizationVar?.Profile?.ProfileType === 'GUEST') {
@@ -82,7 +98,12 @@ export default () => {
 					{
 						_typename: 'quickbarfriend',
 						item: (
-							<QuickBarfriendCard color={'#ff7000'} showIcon={false} logosize={40} qrcodesize={140} />
+							<QuickBarfriendCard
+								color={rTheme.colorScheme === 'light' ? 'black' : 'white'}
+								showIcon={false}
+								logosize={40}
+								qrcodesize={140}
+							/>
 						),
 					},
 					{

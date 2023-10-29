@@ -19,10 +19,10 @@ export default function Theme({ children }) {
 		const localStorageColorScheme = await AsyncStorage.getItem(
 			LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME,
 		)
+
 		const valueLocalStorageColorScheme: LocalStoragePreferenceThemeType = JSON.parse(
 			String(localStorageColorScheme),
 		)
-		console.log('here :>> ')
 
 		await toggleColorScheme({ colorScheme: valueLocalStorageColorScheme.colorScheme })
 	}
@@ -37,12 +37,10 @@ export default function Theme({ children }) {
 				const currentDeviceAppearance = Appearance.getColorScheme()
 				if (rThemeVar.localStorageColorScheme === 'system') {
 					if (currentDeviceAppearance !== rThemeVar.colorScheme) {
-						console.log('switch  111:>> ')
 						handleTheme()
 					}
 				} else {
 					if (currentDeviceAppearance !== rThemeVar.deviceColorScheme) {
-						console.log('switch  2222:>> ')
 						handleTheme()
 					}
 				}
@@ -57,6 +55,9 @@ export default function Theme({ children }) {
 		return () => {
 			subscription.remove()
 		}
+	}, [])
+	useEffect(() => {
+		handleTheme()
 	}, [])
 
 	return (

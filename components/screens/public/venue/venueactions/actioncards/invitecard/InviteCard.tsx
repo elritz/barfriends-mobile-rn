@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
-import { Button, Heading, VStack, Box, Text } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
+import { Button, Heading, VStack, Box, Text, ButtonText } from '@gluestack-ui/themed'
 import { PermissionContactsReactiveVar } from '@reactive'
 import { useRouter } from 'expo-router'
 
@@ -11,7 +11,7 @@ export default function InviteCard() {
 	return (
 		<VStack w={'$full'} justifyContent='space-between' flex={1} mb={'$2'}>
 			<VStack mt={'$4'} w={'$full'} alignItems={'flex-start'}>
-				<Box bg='$red400' h={'$10'} w={'$10'} alignItems='center' justifyContent='center'>
+				<Box bg='$red400' h={'$8'} w={'$8'} alignItems='center' justifyContent='center' rounded={'$md'}>
 					<Ionicons name='people' size={23} color={'black'} />
 				</Box>
 				<Heading
@@ -29,6 +29,7 @@ export default function InviteCard() {
 				mt={'$2'}
 				size={'lg'}
 				w={'$full'}
+				rounded={'$full'}
 				alignItems='center'
 				justifyContent='center'
 				onPress={() => {
@@ -40,10 +41,8 @@ export default function InviteCard() {
 								pathname: '/(app)/permission/contacts',
 						  })
 				}}
-				width={'$full'}
-				rounded={'$md'}
 			>
-				<Button.Text>Invite</Button.Text>
+				<ButtonText>Invite</ButtonText>
 			</Button>
 		</VStack>
 	)

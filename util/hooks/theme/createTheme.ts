@@ -20,15 +20,6 @@ const createTheme = ({ themeScheme, localStorageColorScheme }: Props) => {
 		return rn
 	}
 
-	console.log(
-		'theme.gluestack',
-		JSON.stringify(
-			AuthorizationReactiveVar()?.Profile?.ThemeManager?.ProfileTheme[0].Theme.name,
-			null,
-			2,
-		),
-	)
-
 	// console.log('theme.gluestack', JSON.stringify(theme, null, 2))
 
 	const config = createConfig({
@@ -54,9 +45,6 @@ const createTheme = ({ themeScheme, localStorageColorScheme }: Props) => {
 			},
 		},
 	})
-
-	
-
 
 	const _newtheme = {
 		reactnavigation: {

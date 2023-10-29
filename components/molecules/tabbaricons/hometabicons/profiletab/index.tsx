@@ -42,7 +42,7 @@ const ProfileTab = (props: TabProps) => {
 	const onLongPressProfileIcon = async () => {
 		await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
 		router.push({
-			pathname: '/(app)/modal/DeviceManager',
+			pathname: '/(app)/modal/devicemanager/DeviceManager',
 		})
 	}
 

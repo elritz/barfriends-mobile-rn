@@ -80,7 +80,7 @@ const SearchAreaLocationPermissionItem = () => {
 									: '$light300',
 							},
 							_dark: {
-								bg: isPressed ? '#00000040' : rSearchAreaVar?.useCurrentLocation ? '$blue500' : '$light700',
+								bg: isPressed ? '#00000040' : rSearchAreaVar?.useCurrentLocation ? '$blue500' : '$light800',
 							},
 						}}
 						p={'$3'}
@@ -92,7 +92,7 @@ const SearchAreaLocationPermissionItem = () => {
 							fontSize={'$lg'}
 							ellipsizeMode={'tail'}
 							alignSelf={'center'}
-							color={rSearchAreaVar?.useCurrentLocation ? '$white' : '$black'}
+							// color={rSearchAreaVar?.useCurrentLocation ? '$white' : '$black'}
 						>
 							{rSearchAreaVar?.useCurrentLocation ? 'Using current location' : 'Use current location'}
 						</ButtonText>
@@ -104,7 +104,7 @@ const SearchAreaLocationPermissionItem = () => {
 									bg: rSearchAreaVar?.useCurrentLocation ? '$light800' : '$light200',
 								},
 								_dark: {
-									bg: rSearchAreaVar?.useCurrentLocation ? '$light800' : '$light500',
+									bg: rSearchAreaVar?.useCurrentLocation ? '$light800' : '$light700',
 								},
 							}}
 							alignSelf={'center'}

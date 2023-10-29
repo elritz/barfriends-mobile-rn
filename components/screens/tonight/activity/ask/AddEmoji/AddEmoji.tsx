@@ -21,7 +21,7 @@ const AddEmoji = () => {
 				paddingVertical: 10,
 			}}
 		>
-			<Box bg='$amber400' h={'$16'} w={'$16'} alignItems='center' justifyContent='center'>
+			<Box bg='$amber400' h={'$16'} w={'$16'} alignItems='center' justifyContent='center' rounded={'$md'}>
 				<MaterialIcons
 					size={30}
 					name='emoji-emotions'

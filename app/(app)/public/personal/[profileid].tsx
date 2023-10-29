@@ -1,4 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
+import CurrentVenue from '@components/screens/public/personal/currentvenue/CurrentVenue'
 import Photos from '@components/screens/public/personal/photos'
 import { Feather, Ionicons } from '@expo/vector-icons'
 import {
@@ -22,17 +23,8 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { useLocalSearchParams } from 'expo-router'
 import { ScrollView } from 'react-native'
 
-const tags = [
-	{ name: 'Software developer', icon: '💻' },
-	{ name: 'Athletic', icon: '👟' },
-	{ name: 'Creative', icon: '🎨' },
-]
-
 export default () => {
 	const params = useLocalSearchParams()
-
-	console.log('🚀 ~ file: [profileid].tsx:49 ~ params:', params)
-
 	const contentInsets = useContentInsets()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 
@@ -69,6 +61,9 @@ export default () => {
 			},
 		},
 	})
+	console.log('🚀 ~ file: [profileid].tsx:69 ~ params.profileid:', params.profileid)
+
+	console.log('🚀 ~ file: [profileid].tsx:73 ~ data:', JSON.stringify(data, null, 4))
 
 	if (loading)
 		return (
@@ -76,6 +71,8 @@ export default () => {
 				Loading...
 			</Text>
 		)
+
+	const profile = data?.publicProfile
 
 	const IdentifiableInformation = () => {
 		return (
@@ -93,7 +90,7 @@ export default () => {
 									top: -20,
 								}}
 							>
-								@username 343
+								@{profile?.IdentifiableInformation?.username}
 							</Text>
 							<HStack>
 								<Text
@@ -104,7 +101,7 @@ export default () => {
 									fontWeight='$bold'
 									color={rTheme.colorScheme === 'light' ? '$light900' : '$light100'}
 								>
-									Christian Firmi
+									{profile?.IdentifiableInformation?.fullname}
 								</Text>
 							</HStack>
 						</HStack>
@@ -171,7 +168,7 @@ export default () => {
 
 	const RelationShip = () => {
 		return (
-			<HStack alignItems='center' justifyContent='space-between'>
+			<HStack mb={'$2'} alignItems='center' justifyContent='space-between'>
 				<HStack alignItems='center' space='sm'>
 					<Image
 						source={{
@@ -292,7 +289,7 @@ export default () => {
 	const Tags = () => {
 		return (
 			<HStack py={'$2'} space='xs' flexWrap='wrap'>
-				{tags.map(interest => {
+				{profile?.DetailInformation?.Tags.map(interest => {
 					return (
 						<Badge
 							size='lg'
@@ -311,7 +308,7 @@ export default () => {
 							}}
 						>
 							<Badge.Text fontSize={'$sm'} textTransform='capitalize' pr={'$0.5'}>
-								{interest.icon}
+								{interest.emoji}
 							</Badge.Text>
 							<Text
 								sx={{
@@ -340,27 +337,31 @@ export default () => {
 			<>
 				<SectionHeader title='About me' />
 				<HStack space='sm' flexWrap='wrap'>
-					<Text fontSize={'$lg'} fontWeight='$normal' lineHeight={'$xl'}>
-						Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos voluptate, earum quasi dolor
-						quod quis asperiores, fugiat ratione cumque exercitationem assumenda laudantium animi
-						reprehenderit tempo..
-					</Text>
+					{!profile?.DetailInformation?.description?.length ? (
+						<Text fontSize={'$lg'} fontWeight='$normal' lineHeight={'$xl'}>
+							{profile?.DetailInformation?.description}
+						</Text>
+					) : (
+						<Text fontSize={'$lg'} fontWeight='$normal' lineHeight={'$xl'} textAlign='center' w={'$full'}>
+							No details yet!
+						</Text>
+					)}
 				</HStack>
 			</>
 		)
 	}
-
+console.log('contentInsets :>> ', contentInsets);
 	return (
 		<LinearGradient
 			style={{
 				flex: 1,
 			}}
-			colors={['#339800', '#F446']}
+			colors={profile?.tonightStory?.emojimood?.colors ? profile?.tonightStory?.emojimood?.colors : []}
 			// colors={[]}
 		>
 			<ScrollView contentInset={contentInsets}>
 				<VStack mx={'$3'} space='md'>
-					<Photos />
+					<Photos photos={profile?.tonightStory?.photos} profilePhoto={profile?.profilePhoto} />
 					<FriendRequest status='friends' />
 					<SectionContainer>
 						<IdentifiableInformation />

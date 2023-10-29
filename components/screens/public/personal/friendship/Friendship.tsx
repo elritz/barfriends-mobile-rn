@@ -33,7 +33,7 @@ export default function Friendship() {
 
 	const Friends = (): ReactElement | null => {
 		switch (GRFRSData.getRelationshipFriendRequestStatus?.__typename) {
-			case 'FriendRequest':
+			case 'Request':
 				return null
 
 			case 'RejectedFriendsResponse':

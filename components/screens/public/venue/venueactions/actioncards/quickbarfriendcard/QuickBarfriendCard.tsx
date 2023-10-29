@@ -1,5 +1,14 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Heading, Icon, Pressable, SlashIcon, VStack } from '@gluestack-ui/themed'
+import {
+	Box,
+	Button,
+	ButtonText,
+	Heading,
+	Icon,
+	Pressable,
+	SlashIcon,
+	VStack,
+} from '@gluestack-ui/themed'
 import { useGetSecureFriendQrCodeDataLazyQuery } from '@graphql/generated'
 import { AuthorizationReactiveVar, PermissionCameraReactiveVar } from '@reactive'
 import { useDisclose } from '@util/hooks/useDisclose'
@@ -14,7 +23,7 @@ type Props = {
 	qrcodesize: number
 	logosize?: number
 	showIcon?: boolean
-	color?: string
+	color?: string | undefined
 }
 
 export default function QuickBarfriendCard({ qrcodesize, logosize, showIcon, color }: Props) {
@@ -53,7 +62,7 @@ export default function QuickBarfriendCard({ qrcodesize, logosize, showIcon, col
 					QR code not generated
 				</Heading>
 				<Button variant='link' onPress={() => getSecureFriendCodeQrData()} disabled={retryCount > 5}>
-					<Button.Text>Refresh</Button.Text>
+					<ButtonText>Refresh</ButtonText>
 				</Button>
 			</View>
 		)
@@ -102,7 +111,7 @@ export default function QuickBarfriendCard({ qrcodesize, logosize, showIcon, col
 										<QRCode
 											size={qrcodesize}
 											value={dataQR}
-											color={'#ff7000'}
+											color={color ? color : '#ff7000'}
 											backgroundColor={'transparent'}
 											logo={showIcon ? LOGO_COASTER : null}
 											logoSize={logosize}

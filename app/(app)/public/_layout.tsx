@@ -4,24 +4,17 @@ import SearchInput from '@components/molecules/search/searchinput/SearchInput'
 import { SEARCH_BAR_HEIGHT } from '@constants/ReactNavigationConstants'
 import { Ionicons, Entypo } from '@expo/vector-icons'
 import { Button, HStack, Text, VStack } from '@gluestack-ui/themed'
-import { usePublicVenueQuery } from '@graphql/generated'
-import { CurrentLocationReactiveVar, SearchAreaReactiveVar, ThemeReactiveVar } from '@reactive'
+import { ThemeReactiveVar } from '@reactive'
 import { BlurView } from 'expo-blur'
-import { Stack, router, useGlobalSearchParams, useLocalSearchParams, useRouter } from 'expo-router'
+import { Stack, router } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default () => {
+	const NAVIGATION_BUTTON_HEIGHT = 38
 	const rTheme = useReactiveVar(ThemeReactiveVar)
-	const rSearchAreaVar = useReactiveVar(SearchAreaReactiveVar)
-	const rCurrentLocationVar = useReactiveVar(CurrentLocationReactiveVar)
 	const insets = useSafeAreaInsets()
 	const HEADER_HEIGHT = SEARCH_BAR_HEIGHT + 15
 	const h = insets.top + HEADER_HEIGHT
-	const params = useLocalSearchParams()
-
-	console.log('🚀 ~ file: _layout.tsx:22 ~ params:', params)
-
-	const NAVIGATION_BUTTON_HEIGHT = 38
 
 	return (
 		<Stack>

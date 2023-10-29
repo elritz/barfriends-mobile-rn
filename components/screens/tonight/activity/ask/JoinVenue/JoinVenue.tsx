@@ -21,7 +21,7 @@ const JoinVenue = ({}) => {
 				justifyContent: 'center',
 			}}
 		>
-			<Box bg='$darkBlue400' h={'$16'} w={'$16'} alignItems='center' justifyContent='center'>
+			<Box bg='$darkBlue400' h={'$16'} w={'$16'} alignItems='center' justifyContent='center' rounded={'$md'}>
 				<FontAwesome5
 					name='map-marker-alt'
 					style={{

@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, HStack, Heading, Text } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
+import { Box, HStack, Heading, Text } from '@gluestack-ui/themed'
 import {
 	AuthorizationDeviceProfile,
 	ProfileType,
@@ -17,7 +17,11 @@ export default () => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 	const [profiles, setProfiles] = useState<Array<AuthorizationDeviceProfile>>([])
-	const [selectedProfileId, setSelectedProfileId] = useState('')
+
+	const iconcolor =
+		rTheme.colorScheme === 'light'
+			? rTheme.theme?.gluestack.tokens.colors.light900
+			: rTheme.theme?.gluestack.tokens.colors.light100
 
 	useGetADeviceManagerQuery({
 		fetchPolicy: 'network-only',
@@ -37,14 +41,13 @@ export default () => {
 				if (data?.switchDeviceProfile?.__typename === 'AuthorizationDeviceProfile') {
 					const deviceManager = data.switchDeviceProfile as AuthorizationDeviceProfile
 					AuthorizationReactiveVar(deviceManager)
-					setTimeout(() => router.replace('/(app)/hometab'), 1000)
+					setTimeout(() => router.replace('/(app)/hometab/venuefeed'), 1000)
 				}
 			},
 		})
 
 	const switchProfile = () => {
 		const guestProfile = profiles.filter(item => item?.Profile?.ProfileType === ProfileType.Guest)
-		setSelectedProfileId(String(guestProfile[0]?.Profile?.id))
 		switchDeviceProfileMutation({
 			variables: {
 				profileId: String(guestProfile[0]?.Profile?.id),
@@ -69,6 +72,82 @@ export default () => {
 		</Pressable>
 	)
 
+	const account = [
+		{
+			title: rAuthorizationVar?.Profile?.ProfileType === 'PERSONAL' ? 'Edit Profile' : 'Edit Venue',
+			onPress: () => {
+				rAuthorizationVar?.Profile?.ProfileType === 'PERSONAL'
+					? router.push({
+							pathname: '/(app)/settings/profilesettings/personal',
+					  })
+					: router.push({
+							pathname: '/(app)/settings/profilesettings/venue',
+					  })
+			},
+			icon: <Ionicons name='ios-person-circle-outline' size={25} color={iconcolor} />,
+		},
+		{
+			title: 'Notifications',
+			onPress: () => {
+				router.push({
+					pathname: '/(app)/settings/notificationssettingsscreen',
+				})
+			},
+			icon: <Ionicons size={25} color={iconcolor} name='notifications-circle-outline' />,
+		},
+		rAuthorizationVar?.Profile?.ProfileType !== 'GUEST' && {
+			title: 'QR code',
+			onPress: () => {
+				console.log('//TODO: QR Code ')
+			},
+			icon: (
+				<Ionicons
+					name='qr-code'
+					size={20}
+					style={{
+						marginLeft: 2,
+					}}
+					color={iconcolor}
+				/>
+			),
+		},
+		rAuthorizationVar?.Profile?.ProfileType !== 'GUEST' && {
+			title: 'Security',
+			onPress: () => {
+				router.push({
+					pathname: '/(app)/settings/notificationssettingsscreen',
+				})
+			},
+			icon: <Ionicons name='shield-checkmark-outline' size={23} color={iconcolor} />,
+		},
+		{
+			title: 'Appearance',
+			onPress: () => {
+				router.push({
+					pathname: '/(app)/settings/appearancesettingsscreen',
+				})
+			},
+			icon: <Ionicons name={'color-palette'} color={iconcolor} size={24} />,
+		},
+	]
+
+	const actions = [
+		{
+			title: `Add account`,
+			onPress: () => {
+				router.replace({
+					pathname: '/(credential)/logincredentialstack/authenticator',
+				})
+			},
+		},
+		rAuthorizationVar?.Profile?.ProfileType !== 'GUEST' && {
+			title: `Log Out ${rAuthorizationVar?.Profile?.IdentifiableInformation?.username}`,
+			onPress: () => {
+				switchProfile()
+			},
+		},
+	]
+
 	return (
 		<ScrollView
 			style={{
@@ -84,129 +163,19 @@ export default () => {
 				Account
 			</Heading>
 			{/* Edit Profile */}
-			<RoundedListItem
-				onPress={() => {
-					rAuthorizationVar?.Profile?.ProfileType === 'PERSONAL'
-						? router.push({
-								pathname: '/(app)/settings/profilesettings/personal',
-						  })
-						: router.push({
-								pathname: '/(app)/settings/profilesettings/venue',
-						  })
-				}}
-			>
-				<HStack alignItems={'center'} space={'md'}>
-					<Ionicons
-						name='ios-person-circle-outline'
-						size={30}
-						color={
-							rTheme.colorScheme === 'light'
-								? rTheme.theme?.gluestack.tokens.colors.light900
-								: rTheme.theme?.gluestack.tokens.colors.light100
-						}
-					/>
-					<Text fontWeight={'$bold'} fontSize={'$lg'}>
-						{rAuthorizationVar?.Profile?.ProfileType === 'PERSONAL'
-							? 'Edit Profile'
-							: 'Edit Venue'}
-					</Text>
-				</HStack>
-			</RoundedListItem>
-			{/* Notifications */}
-			<RoundedListItem
-				onPress={() => {
-					router.push({
-						pathname: '/(app)/settings/notificationssettingsscreen',
-					})
-				}}
-			>
-				<HStack alignItems={'center'} space={'md'}>
-					<Ionicons
-						size={30}
-						color={
-							rTheme.colorScheme === 'light'
-								? rTheme.theme?.gluestack.tokens.colors.light900
-								: rTheme.theme?.gluestack.tokens.colors.light100
-						}
-						name='notifications-circle-outline'
-					/>
-					<Text fontWeight={'$bold'} fontSize={'$lg'}>
-						Notifications
-					</Text>
-				</HStack>
-			</RoundedListItem>
-			{/* QRCode */}
-			{rAuthorizationVar?.Profile?.ProfileType !== 'GUEST' && (
-				<RoundedListItem>
-					<HStack alignItems={'center'} space={'md'}>
-						<Ionicons
-							name='qr-code'
-							size={25}
-							style={{
-								marginLeft: 2,
-							}}
-							color={
-								rTheme.colorScheme === 'light'
-									? rTheme.theme?.gluestack.tokens.colors.light900
-									: rTheme.theme?.gluestack.tokens.colors.light100
-							}
-						/>
-						{/* <MaterialCommunityIcons name="" size={24} color="black" /> */}
-						<Text fontWeight={'$bold'} fontSize={'$lg'}>
-							QR code
-						</Text>
-					</HStack>
-				</RoundedListItem>
-			)}
-			{/* Security */}
-			{rAuthorizationVar?.Profile?.ProfileType !== 'GUEST' && (
-				<RoundedListItem
-					onPress={() => {
-						router.push({
-							pathname: '/(app)/settings/securitysettingsscreen',
-						})
-					}}
-				>
-					<HStack alignItems={'center'} space={'md'}>
-						<Ionicons
-							name='shield-checkmark-outline'
-							size={30}
-							color={
-								rTheme.colorScheme === 'light'
-									? rTheme.theme?.gluestack.tokens.colors.light900
-									: rTheme.theme?.gluestack.tokens.colors.light100
-							}
-						/>
+			{account.map(item => {
+				return (
+					<RoundedListItem onPress={item.onPress}>
+						<HStack alignItems={'center'} space={'md'}>
+							{item.icon}
+							<Text fontWeight={'$bold'} fontSize={'$lg'}>
+								{item.title}
+							</Text>
+						</HStack>
+					</RoundedListItem>
+				)
+			})}
 
-						<Text fontWeight={'$bold'} fontSize={'$lg'}>
-							Security
-						</Text>
-					</HStack>
-				</RoundedListItem>
-			)}
-			{/* Appearance */}
-			<RoundedListItem
-				onPress={() => {
-					router.push({
-						pathname: '/(app)/settings/appearancesettingsscreen',
-					})
-				}}
-			>
-				<HStack alignItems={'center'} space={'md'}>
-					<Ionicons
-						name={'color-palette'}
-						color={
-							rTheme.colorScheme === 'light'
-								? rTheme.theme?.gluestack.tokens.colors.light900
-								: rTheme.theme?.gluestack.tokens.colors.light100
-						}
-						size={30}
-					/>
-					<Text fontWeight={'$bold'} fontSize={'$lg'}>
-						Appearance
-					</Text>
-				</HStack>
-			</RoundedListItem>
 			{/* Logins */}
 			<Heading
 				px={'$2'}
@@ -216,56 +185,24 @@ export default () => {
 			>
 				Logins
 			</Heading>
-			<RoundedListItem>
-				<Pressable
-					style={{
-						width: '100%',
-					}}
-					onPress={() =>
-						router.replace({
-							pathname: '/(credential)/logincredentialstack/authenticator',
-						})
-					}
-				>
-					{({ isHovered, isFocused, isPressed }) => {
-						return (
-							<HStack
-								alignItems={'center'}
-								px={'$2'}
-								sx={{
-									h: 55,
-								}}
-							>
-								<Text fontWeight={'$bold'} fontSize={'$lg'} color={isPressed ? '$gray400' : '$primary500'}>
-									Add Account
-								</Text>
-							</HStack>
-						)
-					}}
-				</Pressable>
-			</RoundedListItem>
-			{rAuthorizationVar?.Profile?.ProfileType !== 'GUEST' && (
-				<RoundedListItem>
-					<Pressable
-						onPress={() => switchProfile()}
-						style={{
-							width: '100%',
-						}}
-					>
+			{actions.map(item => {
+				return (
+					<RoundedListItem onPress={item.onPress}>
 						<HStack
 							alignItems={'center'}
 							px={'$2'}
+							w={'$full'}
 							sx={{
 								h: 55,
 							}}
 						>
 							<Text fontWeight={'$bold'} fontSize={'$lg'} color={'$primary500'}>
-								Log Out {rAuthorizationVar?.Profile?.IdentifiableInformation?.username}
+								{item.title}
 							</Text>
 						</HStack>
-					</Pressable>
-				</RoundedListItem>
-			)}
+					</RoundedListItem>
+				)
+			})}
 		</ScrollView>
 	)
 }

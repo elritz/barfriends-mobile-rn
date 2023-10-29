@@ -3,7 +3,6 @@ import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 import { Box, Center, HStack, Text, VStack } from '@gluestack-ui/themed'
 import { Profile } from '@graphql/generated'
 import { ThemeReactiveVar } from '@reactive'
-import { useRef, useState } from 'react'
 import { Image, View } from 'react-native'
 import { ActivityIndicator } from 'react-native'
 
@@ -15,9 +14,7 @@ type ProfileItemType = {
 
 const DeviceManagerProfileItemLarge = ({ item, isActive, loading }: ProfileItemType) => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
-	const [showModal, setShowModal] = useState(false)
-	console.log('==============>',showModal)
-	const ref = useRef(null)
+
 	return (
 		<Box
 			key={item?.id}
@@ -28,8 +25,32 @@ const DeviceManagerProfileItemLarge = ({ item, isActive, loading }: ProfileItemT
 			px={'$3'}
 			rounded={'$md'}
 			alignItems={'center'}
+			bg='$transparent'
 		>
 			<HStack alignItems={'center'} justifyContent='space-between'>
+				<View style={{ marginRight: 8 }}>
+					{!loading ? (
+						<View style={{ width: 30 }}>
+							{isActive ? (
+								<Ionicons
+									name='ios-checkmark-circle'
+									size={25}
+									color={rTheme.theme?.gluestack.tokens.colors.success600}
+								/>
+							) : (
+								<MaterialIcons
+									name='radio-button-unchecked'
+									size={25}
+									color={rTheme.theme?.gluestack.tokens.colors.green400}
+								/>
+							)}
+						</View>
+					) : (
+						<View style={{ width: 30 }}>
+							<ActivityIndicator />
+						</View>
+					)}
+				</View>
 				{item?.profilePhoto ? (
 					<Image
 						source={{ uri: item.profilePhoto.url }}
@@ -72,26 +93,6 @@ const DeviceManagerProfileItemLarge = ({ item, isActive, loading }: ProfileItemT
 						@{item?.IdentifiableInformation?.username}
 					</Text>
 				</VStack>
-
-				{!loading ? (
-					<View>
-						{isActive ? (
-							<Ionicons
-								name='ios-checkmark-circle'
-								size={30}
-								color={rTheme.theme?.gluestack.tokens.colors.success600}
-							/>
-						) : (
-							<MaterialIcons
-								name='radio-button-unchecked'
-								size={30}
-								color={rTheme.theme?.gluestack.tokens.colors.green400}
-							/>
-						)}
-					</View>
-				) : (
-					<ActivityIndicator />
-				)}
 			</HStack>
 		</Box>
 	)

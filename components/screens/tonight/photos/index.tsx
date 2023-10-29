@@ -1,15 +1,7 @@
+// TODO: Add a way to remove photos from tonights story
 import { useReactiveVar } from '@apollo/client'
-import {
-	AddIcon,
-	Box,
-	Button,
-	Center,
-	Heading,
-	Pressable,
-	RemoveIcon,
-	Text,
-} from '@gluestack-ui/themed'
 import { MaterialIcons } from '@expo/vector-icons'
+import { Box, Button, ButtonText, Center, Heading, Pressable, Text } from '@gluestack-ui/themed'
 import { PhotoCreateManyProfileInput, useAddStoryPhotosMutation } from '@graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import useCloudinaryImageUploading from '@util/uploading/useCloudinaryImageUploading'
@@ -233,9 +225,7 @@ export default function Photos() {
 													Upload another image
 												</Heading>
 												<Button onPress={pickImage} bg={'$tertiary400'} rounded={'$md'} zIndex={20}>
-													<Button.Icon>
-														<AddIcon />
-													</Button.Icon>
+													<ButtonText>Add</ButtonText>
 												</Button>
 											</Center>
 										</Box>
@@ -272,17 +262,17 @@ export default function Photos() {
 											/>
 											<Button
 												position={'absolute'}
-												bg='$danger600'
-												rounded={'$full'}
-												right={10}
+												bg='$red400'
+												right={0}
 												top={10}
+												hitSlop={10}
 												size='xs'
-												onPress={() => {
-													onPressScroll('right')
-												}}
 												zIndex={20}
+												onPress={() => {
+													console.log('Remove Image', index)
+												}}
 											>
-												<RemoveIcon />
+												<ButtonText>Remove</ButtonText>
 											</Button>
 											<Image
 												source={{
@@ -417,7 +407,7 @@ export default function Photos() {
 								Ready to go out? Add photos of your fit and pick your emojimood
 							</Text>
 							<Button onPress={pickImage} bg={'$tertiary400'} rounded={'$md'} mt={'$4'}>
-								<Button.Text>Upload{loading ? 'ing' : ''} images</Button.Text>
+								<ButtonText>Upload{loading ? 'ing' : ''} images</ButtonText>
 							</Button>
 						</Center>
 					</Box>
