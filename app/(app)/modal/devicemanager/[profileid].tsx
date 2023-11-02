@@ -31,7 +31,11 @@ export default () => {
 		})
 
 	const [removeDeviceProfileMutation, { data: RDPMData, loading: RDPMLoading, error: RDPMError }] =
-		useRemoveDeviceProfileFromDeviceManagerMutation()
+		useRemoveDeviceProfileFromDeviceManagerMutation({
+			onError: error => {
+				console.log('error', error)
+			},
+		})
 
 	const actions = [
 		{
@@ -89,13 +93,7 @@ export default () => {
 				<VStack space='md'>
 					{actions.map(item => {
 						return (
-							<RoundedListItem
-								onPress={() => {
-									router.push({
-										pathname: '/(app)/settings/profilesettings/personal/fullname',
-									})
-								}}
-							>
+							<RoundedListItem onPress={item.onPress}>
 								<Text fontWeight={'$bold'} fontSize={'$lg'} color={'$primary500'}>
 									{item.title}
 								</Text>

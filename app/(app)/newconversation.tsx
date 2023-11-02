@@ -196,6 +196,7 @@ export default function NewConversation() {
 				variant='underlined'
 				alignItems='flex-start'
 				px={'$4'}
+				mt={'$10'}
 				flexDirection='row'
 				borderWidth={'$0'}
 				sx={{

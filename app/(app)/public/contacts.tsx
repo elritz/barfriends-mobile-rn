@@ -8,7 +8,6 @@ import {
 } from '@constants/ReactNavigationConstants'
 import { ContactsReactiveVar, PermissionContactsReactiveVar, ThemeReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
-import { useDisclose } from '@util/hooks/useDisclose'
 import * as Contacts from 'expo-contacts'
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import { filter } from 'lodash'
@@ -27,7 +26,6 @@ export default () => {
 	const [isLoading, setIsLoading] = useState(true)
 	const [contact, setContact] = useState<Contacts.Contact | null>(null)
 	const [contacts, setContacts] = useState<Contacts.Contact[] | null>(null)
-	const { isOpen, onOpen, onClose } = useDisclose()
 
 	useEffect(() => {
 		async function getContacts() {

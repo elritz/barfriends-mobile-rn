@@ -1,47 +1,39 @@
 // TODO: FN(onPress(Resend Code)) - ln:162 -- when the user presses resend code need to resend and keep track of how many times
-import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
-import { Feather } from '@expo/vector-icons'
-import { useIsFocused } from '@react-navigation/native'
-import {
-	ConfirmationCodeReactiveVar,
-	CredentialPersonalProfileReactiveVar,
-	ThemeReactiveVar,
-} from '@reactive'
-import Countdown from '@util/hooks/useTimer'
-import { useRouter, useLocalSearchParams } from 'expo-router'
-import { useEffect, useState } from 'react'
-import { Controller, useForm, ValidateResult } from 'react-hook-form'
-import { InputAccessoryView, Platform, View } from 'react-native'
-import {
-	CodeField,
-	Cursor,
-	useBlurOnFulfill,
-	useClearByFocusCell,
-} from 'react-native-confirmation-code-field'
-import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller'
-import Reanimated, { useAnimatedStyle, useDerivedValue } from 'react-native-reanimated'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { useReactiveVar } from '@apollo/client';
+import { Feather } from '@expo/vector-icons';
+import { Box, Button, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed';
+import { useIsFocused } from '@react-navigation/native';
+import { ConfirmationCodeReactiveVar, CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '@reactive';
+import Countdown from '@util/hooks/useTimer';
+import { useRouter, useLocalSearchParams, useGlobalSearchParams } from 'expo-router';
+import { useEffect, useState } from 'react';
+import { Controller, useForm, ValidateResult } from 'react-hook-form';
+import { InputAccessoryView, Platform, View } from 'react-native';
+import { CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell } from 'react-native-confirmation-code-field';
+import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
+import Reanimated, { useAnimatedStyle, useDerivedValue } from 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 
 export default () => {
 	const router = useRouter()
 	const INPUT_ACCESSORY_VIEW_ID = 'cc-12981123123263'
 	const { bottom } = useSafeAreaInsets()
 	const isFocused = useIsFocused()
-	const params = useLocalSearchParams()
-
+	const INPUT_CONTAINER_HEIGHT = 90
+	const params = useGlobalSearchParams()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const confirmationCode = useReactiveVar(ConfirmationCodeReactiveVar)
 	const credentialPersonalProfileVar = useReactiveVar(CredentialPersonalProfileReactiveVar)
 
 	const CELL_COUNT = String(params?.code).length
-	const ref = useBlurOnFulfill({ value: confirmationCode.code, cellCount: CELL_COUNT })
+	console.log('🚀 ~ file: confirmationcode.tsx:40 ~ confirmationCode:', confirmationCode)
+	const ref = useBlurOnFulfill({ value: params?.code, cellCount: CELL_COUNT })
 
 	const { num, complete } = Countdown(5)
 	const [codeValue, setCodeValue] = useState('')
 
 	const { height: platform } = useReanimatedKeyboardAnimation()
-	const INPUT_CONTAINER_HEIGHT = 90
 
 	const height = useDerivedValue(() => platform.value, [isFocused])
 

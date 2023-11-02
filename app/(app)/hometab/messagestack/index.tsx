@@ -65,8 +65,10 @@ const Messages = () => {
 	}
 
 	return (
-		<Box flex={1} bg='$green700' mx={'$2'} pt={'$24'}>
-			<Heading textAlign='center'>Do the messaging thing headerShown</Heading>
+		<Box flex={1} bg='$green900' mx={'$2'} pt={'$24'}>
+			<Heading mt={'$10'} textAlign='center'>
+				Messages, New Messages✅, Notifications, Pubsub, Searching/Filtering✅, Editing
+			</Heading>
 			{/* <FlashList
 				data={data}
 				showsVerticalScrollIndicator={false}

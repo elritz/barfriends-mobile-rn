@@ -32,7 +32,7 @@ export default function Details() {
 		: null
 
 	const { data, loading, error } = usePublicVenueQuery({
-		skip: !params.profileId,
+		skip: !params.profileid,
 		fetchPolicy: 'cache-first',
 		variables: {
 			where: {
@@ -49,7 +49,21 @@ export default function Details() {
 	}
 
 	return (
-		<Box py={'$4'} px={'$2'} mx={'$2'} mt={'$5'} rounded={'$xl'}>
+		<Box
+			py={'$4'}
+			px={'$2'}
+			mx={'$2'}
+			mt={'$5'}
+			rounded={'$xl'}
+			sx={{
+				_dark: {
+					bg: '$light800',
+				},
+				_light: {
+					bg: '$light50',
+				},
+			}}
+		>
 			<VStack space={'lg'} flex={1}>
 				<Box bg='$transparent'>
 					<DetailTitle title={'Address'} />

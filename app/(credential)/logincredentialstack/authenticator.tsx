@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, HStack, Input, Pressable, VStack } from '@gluestack-ui/themed'
 import { Entypo, Feather, Ionicons } from '@expo/vector-icons'
+import { Box, Button, ButtonText, HStack, Input, Pressable, VStack } from '@gluestack-ui/themed'
 import {
 	useAuthorizedProfilesLazyQuery,
 	useSendAuthenticatorDeviceOwnerCodeMutation,
@@ -207,42 +207,6 @@ export default () => {
 		})
 	}
 
-	const RightIcon = () => {
-		switch (keyboardType) {
-			case 'number-pad':
-				return (
-					<Ionicons
-						onPress={() => setKeyboardType('email')}
-						name='text-sharp'
-						size={29}
-						color={
-							keyboardType === 'number-pad'
-								? rTheme.theme?.gluestack.tokens.colors.primary500
-								: rTheme.colorScheme === 'light'
-								? rTheme.theme?.gluestack.tokens.colors.light900
-								: rTheme.theme?.gluestack.tokens.colors.light100
-						}
-					/>
-				)
-			case 'email':
-				return (
-					<Entypo
-						onPress={() => setKeyboardType('number-pad')}
-						size={25}
-						name='phone'
-						style={{ marginRight: 4 }}
-						color={
-							keyboardType === 'email'
-								? rTheme.theme?.gluestack.tokens.colors.primary500
-								: rTheme.colorScheme === 'light'
-								? rTheme.theme?.gluestack.tokens.colors.light900
-								: rTheme.theme?.gluestack.tokens.colors.light100
-						}
-					/>
-				)
-		}
-	}
-
 	return (
 		<KeyboardAvoidingView
 			behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -315,9 +279,9 @@ export default () => {
 							my={'$3'}
 							rounded={'$md'}
 						>
-							<Button.Text textTransform='uppercase' fontWeight='$black' fontSize={'$lg'}>
+							<ButtonText textTransform='uppercase' fontWeight='$black' fontSize={'$lg'}>
 								Sign up
-							</Button.Text>
+							</ButtonText>
 						</Button>
 					) : null}
 				</VStack>
