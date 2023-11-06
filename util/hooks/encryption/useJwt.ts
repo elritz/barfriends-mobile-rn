@@ -1,8 +1,7 @@
 import JWT from 'expo-jwt'
 import { SupportedAlgorithms } from 'expo-jwt/dist/types/algorithms'
-
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const jwtDecode = require('jwt-decode')
+import { jwtDecode } from 'jwt-decode'
 
 interface GenerateToken {
 	values: Record<string, unknown>

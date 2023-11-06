@@ -51,6 +51,8 @@ web_modules/
 # Optional npm cache directory
 .npm
 
+.expo
+
 # Optional eslint cache
 .eslintcache
 

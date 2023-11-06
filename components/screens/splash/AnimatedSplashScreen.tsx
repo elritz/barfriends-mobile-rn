@@ -12,7 +12,6 @@ import { View, StyleSheet } from 'react-native'
 function AnimatedSplashScreen({ children }) {
 	const rThemeVar = useReactiveVar(ThemeReactiveVar)
 	const [isSplashAnimationComplete, setAnimationComplete] = useState(false)
-	const [isAppReady, setAppReady] = useState(false)
 
 	const [assets, Aerror] = useAssets([
 		require(`../../../assets/images/splash/splash.${ENVIRONMENT}.light.png`),
@@ -20,11 +19,12 @@ function AnimatedSplashScreen({ children }) {
 	])
 
 	useEffect(() => {
-		if (isAppReady) {
-			setTimeout(() => setAnimationComplete(true), 1)
-			SplashScreen.hideAsync()
-		}
-	}, [isAppReady])
+		console.log('download :>> ')
+		console.log('download :>> ')
+		console.log('download :>> ')
+		setTimeout(() => setAnimationComplete(true), 1)
+		SplashScreen.hideAsync()
+	}, [])
 
 	const onImageLoaded = useCallback(async () => {
 		try {
@@ -36,13 +36,15 @@ function AnimatedSplashScreen({ children }) {
 			console.warn(e)
 			// handle errors
 		} finally {
-			setAppReady(true)
+			setAnimationComplete(true)
 		}
 	}, [])
 
 	if (!assets) {
 		return null
 	}
+
+	console.log('download :>> ')
 
 	if (assets && !isSplashAnimationComplete) {
 		return (

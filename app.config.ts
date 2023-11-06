@@ -17,7 +17,6 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 					'expo-router',
 					'sentry-expo',
 					'expo-build-properties',
-					['@react-native-google-signin/google-signin'],
 					['expo-apple-authentication'],
 					[
 						'expo-screen-orientation',
@@ -150,7 +149,6 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 					'expo-router',
 					'sentry-expo',
 					['expo-build-properties'],
-					['@react-native-google-signin/google-signin'],
 					['expo-apple-authentication'],
 					[
 						'expo-screen-orientation',
@@ -287,7 +285,6 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 				plugins: [
 					'expo-router',
 					'sentry-expo',
-					['@react-native-google-signin/google-signin'],
 					['expo-apple-authentication'],
 					[
 						'expo-build-properties',

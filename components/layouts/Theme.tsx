@@ -32,6 +32,10 @@ export default function Theme({ children }) {
 	}, [rThemeVar.colorScheme])
 
 	useEffect(() => {
+		handleTheme()
+	}, [])
+
+	useEffect(() => {
 		const subscription = AppState.addEventListener('change', nextAppState => {
 			if (appState.current.match(/inactive|background/) && nextAppState === 'active') {
 				const currentDeviceAppearance = Appearance.getColorScheme()
@@ -55,9 +59,6 @@ export default function Theme({ children }) {
 		return () => {
 			subscription.remove()
 		}
-	}, [])
-	useEffect(() => {
-		handleTheme()
 	}, [])
 
 	return (

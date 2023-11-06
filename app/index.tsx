@@ -7,115 +7,121 @@ import { Redirect } from 'expo-router'
 import { uniqueId } from 'lodash'
 import { MotiView } from 'moti'
 import { useState } from 'react'
-import { Dimensions, StyleSheet, View } from 'react-native'
+import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import { Easing } from 'react-native-reanimated'
 
 const size = 500
 const windowHeight = Dimensions.get('window').height
 
 export default () => {
-	const rTheme = useReactiveVar(ThemeReactiveVar)
-	const [isLoading, setLoading] = useState(true)
+	// const rTheme = useReactiveVar(ThemeReactiveVar)
+	// const [isLoading, setLoading] = useState(true)
 
-	useRouterNotifications()
+	// useRouterNotifications()
 
-	const { data, loading, error } = useCheckPrivacyTermsDocumentUpdateQuery({
-		onCompleted: data => {
-			setTimeout(() => {
-				setLoading(false)
-			}, 500)
-			if (
-				data.checkPrivacyTermsDocumentUpdate.__typename === 'LatestPrivacyAndTermsDocumentResponse'
-			) {
-				TermsServiceReactiveVar({
-					update: true,
-				})
-			}
-			if (data.checkPrivacyTermsDocumentUpdate.__typename === 'Error') {
-				TermsServiceReactiveVar({
-					update: false,
-				})
-			}
-		},
-	})
+	// const { data, loading, error } = useCheckPrivacyTermsDocumentUpdateQuery({
+	// 	onCompleted: data => {
+	// 		setTimeout(() => {
+	// 			setLoading(false)
+	// 		}, 500)
+	// 		if (
+	// 			data.checkPrivacyTermsDocumentUpdate.__typename === 'LatestPrivacyAndTermsDocumentResponse'
+	// 		) {
+	// 			TermsServiceReactiveVar({
+	// 				update: true,
+	// 			})
+	// 		}
+	// 		if (data.checkPrivacyTermsDocumentUpdate.__typename === 'Error') {
+	// 			TermsServiceReactiveVar({
+	// 				update: false,
+	// 			})
+	// 		}
+	// 	},
+	// })
 
-	const styles = StyleSheet.create({
-		dot: {
-			height: size,
-			width: size,
-			borderRadius: size / 1.5,
-			backgroundColor:
-				rTheme.colorScheme === 'light'
-					? rTheme.theme?.gluestack.tokens.colors.light200
-					: rTheme.theme?.gluestack.tokens.colors.light800,
-		},
-	})
-	const LoadingAnimationLocation = () => {
-		return (
-			<View
-				// bg={'transparent'}
-				style={[
-					styles.dot,
-					{
-						marginTop: windowHeight - size / 2,
-						marginLeft: '50%',
-						transform: [{ translateX: -size / 2 }],
-						alignContent: 'center',
-						justifyContent: 'center',
-					},
-				]}
-			>
-				{[...Array(4).keys()].map((item, index) => {
-					return (
-						<MotiView
-							key={uniqueId()}
-							style={[styles.dot, StyleSheet.absoluteFillObject]}
-							from={{
-								opacity: 0.5,
-								scale: 1,
-							}}
-							animate={{
-								opacity: 0,
-								scale: 2.5,
-							}}
-							transition={{
-								type: 'timing',
-								duration: 2000,
-								easing: Easing.out(Easing.ease),
-								loop: true,
-								repeatReverse: true,
-								delay: index * 600,
-							}}
-						/>
-					)
-				})}
-			</View>
-		)
-	}
+	// const styles = StyleSheet.create({
+	// 	dot: {
+	// 		height: size,
+	// 		width: size,
+	// 		borderRadius: size / 1.5,
+	// 		backgroundColor:
+	// 			rTheme.colorScheme === 'light'
+	// 				? rTheme.theme?.gluestack.tokens.colors.light200
+	// 				: rTheme.theme?.gluestack.tokens.colors.light800,
+	// 	},
+	// })
+	// const LoadingAnimationLocation = () => {
+	// 	return (
+	// 		<View
+	// 			// bg={'transparent'}
+	// 			style={[
+	// 				styles.dot,
+	// 				{
+	// 					marginTop: windowHeight - size / 2,
+	// 					marginLeft: '50%',
+	// 					transform: [{ translateX: -size / 2 }],
+	// 					alignContent: 'center',
+	// 					justifyContent: 'center',
+	// 				},
+	// 			]}
+	// 		>
+	// 			{[...Array(4).keys()].map((item, index) => {
+	// 				return (
+	// 					<MotiView
+	// 						key={uniqueId()}
+	// 						style={[styles.dot, StyleSheet.absoluteFillObject]}
+	// 						from={{
+	// 							opacity: 0.5,
+	// 							scale: 1,
+	// 						}}
+	// 						animate={{
+	// 							opacity: 0,
+	// 							scale: 2.5,
+	// 						}}
+	// 						transition={{
+	// 							type: 'timing',
+	// 							duration: 2000,
+	// 							easing: Easing.out(Easing.ease),
+	// 							loop: true,
+	// 							repeatReverse: true,
+	// 							delay: index * 600,
+	// 						}}
+	// 					/>
+	// 				)
+	// 			})}
+	// 		</View>
+	// 	)
+	// }
 
-	if (!data || isLoading) {
-		return (
-			<View
-				style={{
-					flex: 1,
-					alignContent: 'center',
-					// marginTop: size * 1.5,
-					backgroundColor:
-						rTheme.colorScheme === 'light'
-							? rTheme.theme?.gluestack.tokens.colors.light100
-							: rTheme.theme?.gluestack.tokens.colors.light800,
-				}}
-			>
-				<LoadingAnimationLocation />
-			</View>
-		)
-	}
+	// if (!data || isLoading) {
+	// 	return (
+	// 		<View
+	// 			style={{
+	// 				flex: 1,
+	// 				alignContent: 'center',
+	// 				// marginTop: size * 1.5,
+	// 				backgroundColor:
+	// 					rTheme.colorScheme === 'light'
+	// 						? rTheme.theme?.gluestack.tokens.colors.light100
+	// 						: rTheme.theme?.gluestack.tokens.colors.light800,
+	// 			}}
+	// 		>
+	// 			<LoadingAnimationLocation />
+	// 		</View>
+	// 	)
+	// }
 
 	const venue_id = '0aa05a59-c4aa-47d0-9ba7-3b1d54a3cd21'
 	const personal_id = '4068040c-5929-4140-9e28-666904c20243'
 	const device_manager_profile_id = 'e90675d1-009f-4ca8-9d76-f163a885189f'
 
 	return <Redirect href={'/(app)/hometab/venuefeed'} />
+	
+	// return (
+	// 	<View style={{ flex: 1, backgroundColor: 'red' }}>
+	// 		<Text>HEllo Workd</Text>
+	// 	</View>
+	// )
 
 	// return <Redirect href={'/(app)/conversation'} />
 	// return <Redirect href={'/(credential)/personalcredentialstack/create'} />
