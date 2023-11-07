@@ -29,7 +29,7 @@ export default function InviteCard() {
 				mt={'$2'}
 				size={'lg'}
 				w={'$full'}
-				rounded={'$full'}
+				rounded={'$md'}
 				alignItems='center'
 				justifyContent='center'
 				onPress={() => {

@@ -12,7 +12,10 @@ type Props = {
 
 const createTheme = ({ themeScheme, localStorageColorScheme }: Props) => {
 	const deviceColorScheme = Appearance.getColorScheme()
-	console.log('AuthorizationReactiveVar()?.Profile?.ThemeManager?.ProfileTheme[0].Theme.theme :>> ', AuthorizationReactiveVar()?.Profile?.ThemeManager?.ProfileTheme[0].Theme.theme);
+	console.log(
+		'AuthorizationReactiveVar()?.Profile?.ThemeManager?.ProfileTheme[0].Theme.theme :>> ',
+		AuthorizationReactiveVar()?.Profile?.ThemeManager?.ProfileTheme[0].Theme.theme,
+	)
 	const theme =
 		AuthorizationReactiveVar()?.Profile?.ThemeManager?.ProfileTheme[0].Theme.theme || defaulttheme
 
@@ -48,14 +51,7 @@ const createTheme = ({ themeScheme, localStorageColorScheme }: Props) => {
 	})
 
 	const _newtheme = {
-		reactnavigation: {
-			...DefaultTheme,
-			dark: themeScheme === 'light' ? false : true,
-			colors: {
-				...DefaultTheme.colors,
-				...rnColors(),
-			},
-		},
+		reactnavigation: rnColors(),
 		gluestack: config,
 	}
 

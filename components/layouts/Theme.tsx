@@ -60,6 +60,10 @@ export default function Theme({ children }) {
 			subscription.remove()
 		}
 	}, [])
+	console.log(
+		'rThemeVar.theme.reactnavigation',
+		JSON.stringify(rThemeVar.theme.reactnavigation, null, 2),
+	)
 
 	return (
 		<AnimatedSplashScreen>
