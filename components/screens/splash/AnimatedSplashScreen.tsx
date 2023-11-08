@@ -19,9 +19,6 @@ function AnimatedSplashScreen({ children }) {
 	])
 
 	useEffect(() => {
-		console.log('download :>> ')
-		console.log('download :>> ')
-		console.log('download :>> ')
 		setTimeout(() => setAnimationComplete(true), 1)
 		SplashScreen.hideAsync()
 	}, [])
@@ -44,8 +41,6 @@ function AnimatedSplashScreen({ children }) {
 		return null
 	}
 
-	console.log('download :>> ')
-
 	if (assets && !isSplashAnimationComplete) {
 		return (
 			<View
@@ -60,14 +55,7 @@ function AnimatedSplashScreen({ children }) {
 				<Image
 					onLoad={onImageLoaded}
 					source={{
-						uri:
-							rThemeVar.localStorageColorScheme === 'system'
-								? rThemeVar.colorScheme === 'light'
-									? assets[0].uri
-									: assets[1].uri
-								: rThemeVar.colorScheme === 'light'
-								? assets[0].uri
-								: assets[1].uri,
+						uri: rThemeVar.colorScheme ? assets[0].uri : assets[1].uri,
 					}}
 					style={{
 						width: '100%',

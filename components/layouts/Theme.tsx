@@ -32,10 +32,6 @@ export default function Theme({ children }) {
 	}, [rThemeVar.colorScheme])
 
 	useEffect(() => {
-		handleTheme()
-	}, [])
-
-	useEffect(() => {
 		const subscription = AppState.addEventListener('change', nextAppState => {
 			if (appState.current.match(/inactive|background/) && nextAppState === 'active') {
 				const currentDeviceAppearance = Appearance.getColorScheme()
@@ -60,10 +56,9 @@ export default function Theme({ children }) {
 			subscription.remove()
 		}
 	}, [])
-	console.log(
-		'rThemeVar.theme.reactnavigation',
-		JSON.stringify(rThemeVar.theme.reactnavigation, null, 2),
-	)
+	useEffect(() => {
+		handleTheme()
+	}, [])
 
 	return (
 		<AnimatedSplashScreen>

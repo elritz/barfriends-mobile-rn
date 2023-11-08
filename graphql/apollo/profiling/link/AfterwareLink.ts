@@ -2,7 +2,10 @@
 import { ApolloLink } from '@apollo/client'
 import { asyncMap } from '@apollo/client/utilities'
 import { AUTHORIZATION } from '@constants/StorageConstants'
-import { secureStorageItemCreate } from '@util/hooks/local/useSecureStorage'
+import {
+	secureStorageItemCreate,
+	secureStorageItemDelete,
+} from '@util/hooks/local/useSecureStorage'
 
 const afterwareLink = new ApolloLink((operation, forward) =>
 	asyncMap(forward(operation), async response => {
@@ -11,7 +14,6 @@ const afterwareLink = new ApolloLink((operation, forward) =>
 		} = operation.getContext()
 		if (headers) {
 			const authorization = headers.get('authorization')
-
 			// await secureStorageItemDelete({
 			// 	key: AUTHORIZATION,
 			// })

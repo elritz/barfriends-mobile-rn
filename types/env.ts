@@ -9,6 +9,7 @@ declare module '@env' {
 	export const APP_TYPE: string
 	export const ENVIRONMENT: string
 	export const SERVER_ENDPOINT: string
+	export const SECURE_STORAGE_TOKEN: string
 
 	export const APOLLO_KEY: string
 	export const APOLLO_GRAPH_REF: string

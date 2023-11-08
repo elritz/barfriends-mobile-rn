@@ -8,9 +8,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default function _layout() {
 	const router = useRouter()
+	const insets = useSafeAreaInsets()
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 	const rTheme = useReactiveVar(ThemeReactiveVar)
-	const insets = useSafeAreaInsets()
 
 	return (
 		<Stack
@@ -45,7 +45,7 @@ export default function _layout() {
 										onPress={async () => {
 											await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
 											router.push({
-												pathname: '/(app)/modal/devicemanager/DeviceManager',
+												pathname: `/(app)/modal/devicemanager/DeviceManager`,
 											})
 										}}
 									>

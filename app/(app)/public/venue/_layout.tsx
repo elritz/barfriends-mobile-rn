@@ -20,8 +20,6 @@ export default () => {
 	const router = useRouter()
 	const params = useLocalSearchParams()
 
-	console.log('🚀 ~ file: _layout.tsx:33 ~ params.:', params)
-
 	const {
 		data: venueData,
 		loading,

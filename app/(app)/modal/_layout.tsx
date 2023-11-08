@@ -70,9 +70,9 @@ export default () => {
 				}}
 			>
 				<Stack.Screen
-					name={'DeviceManager'}
+					name={'devicemanager'}
 					options={{
-						headerShown: true,
+						headerShown: false,
 						headerTitle: () => <LogoTransparent height={30} width={192} />,
 						headerLeft: () => <ChevronBackArrow />,
 					}}
@@ -87,12 +87,7 @@ export default () => {
 						header: () => {
 							return (
 								<BlurView tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'} intensity={70}>
-									<HStack
-										justifyContent='space-between'
-										alignItems='center'
-										py={'$3'}
-										pr={'$2'}
-									>
+									<HStack justifyContent='space-between' alignItems='center' py={'$3'} pr={'$2'}>
 										<ChevronBackArrow />
 										{methods.watch('emojimood.id') ||
 										(rAuthorizationVar?.Profile?.tonightStory?.emojimood?.id &&

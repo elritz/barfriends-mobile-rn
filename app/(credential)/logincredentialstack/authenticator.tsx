@@ -126,12 +126,19 @@ export default () => {
 		onCompleted: data => {
 			const values = getValues()
 			if (data.sendAuthenticatorDeviceOwnerCode.__typename === 'Code') {
+				console.log(
+					'🚀 ~ file: authenticator.tsx:135 ~ data.sendAuthenticatorDeviceOwnerCode.code:',
+					data.sendAuthenticatorDeviceOwnerCode.code,
+				)
+				console.log('🚀 ~ file: authenticator.tsx:139 ~ values.authenticator:', values.authenticator)
+				console.log('gere ===========> ')
+
 				router.push({
+					pathname: '/(credential)/logincredentialstack/confirmationcode',
 					params: {
 						authenticator: values.authenticator,
 						code: data.sendAuthenticatorDeviceOwnerCode.code,
 					},
-					pathname: '/(credential)/logincredentialstack/confirmationcode',
 				})
 			}
 		},
@@ -147,11 +154,11 @@ export default () => {
 			if (data.authorizedProfiles?.__typename === 'ProfilesResponse') {
 				if (data.authorizedProfiles?.username.length) {
 					router.push({
+						pathname: '/(credential)/logincredentialstack/loginpassword',
 						params: {
 							profileid: data.authorizedProfiles.username[0].id,
-							username: data.authorizedProfiles.username[0].IdentifiableInformation?.username,
+							username: String(data.authorizedProfiles.username[0].IdentifiableInformation?.username),
 						},
-						pathname: '/(credential)/logincredentialstack/loginpassword',
 					})
 				}
 

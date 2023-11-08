@@ -33,19 +33,19 @@ export const useToggleTheme = () => {
 			case 'system':
 				const deviceColorScheme = Appearance.getColorScheme()
 				createTheme({
-					themeScheme: deviceColorScheme,
+					colorScheme: deviceColorScheme,
 					localStorageColorScheme: 'system',
 				})
 				break
 			case 'light':
-				createTheme({ themeScheme: 'light', localStorageColorScheme: 'light' })
+				createTheme({ colorScheme: 'light', localStorageColorScheme: 'light' })
 				break
 
 			case 'dark':
-				createTheme({ themeScheme: 'dark', localStorageColorScheme: 'dark' })
+				createTheme({ colorScheme: 'dark', localStorageColorScheme: 'dark' })
 				break
 			default:
-				createTheme({ themeScheme: 'dark', localStorageColorScheme: 'dark' })
+				createTheme({ colorScheme: 'dark', localStorageColorScheme: 'dark' })
 		}
 	}, [])
 
@@ -71,19 +71,19 @@ export const useToggleTheme = () => {
 			case 'system':
 				const deviceColorScheme = Appearance.getColorScheme()
 				createTheme({
-					themeScheme: deviceColorScheme,
+					colorScheme: deviceColorScheme,
 					localStorageColorScheme: 'system',
 				})
 				break
 			case 'light':
-				createTheme({ themeScheme: 'light', localStorageColorScheme: 'light' })
+				createTheme({ colorScheme: 'light', localStorageColorScheme: 'light' })
 				break
 
 			case 'dark':
-				createTheme({ themeScheme: 'dark', localStorageColorScheme: 'dark' })
+				createTheme({ colorScheme: 'dark', localStorageColorScheme: 'dark' })
 				break
 			default:
-				createTheme({ themeScheme: 'dark', localStorageColorScheme: 'dark' })
+				createTheme({ colorScheme: 'dark', localStorageColorScheme: 'dark' })
 		}
 	}, [])
 

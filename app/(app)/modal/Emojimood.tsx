@@ -85,7 +85,7 @@ export default () => {
 													borderRadius: 10,
 													marginTop: 5,
 													marginHorizontal: 10,
-													paddingVertical: 10,
+													paddingVertical: 14,
 													alignItems: 'center',
 													alignSelf: 'center',
 												}}

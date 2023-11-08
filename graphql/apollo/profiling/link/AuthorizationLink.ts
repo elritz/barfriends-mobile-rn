@@ -5,6 +5,7 @@ import { secureStorageItemRead } from '@util/hooks/local/useSecureStorage'
 
 const authLink = setContext(async (_, { headers }) => {
 	const authorization = await secureStorageItemRead({ key: AUTHORIZATION })
+
 	const { deviceType } = await useDeviceType()
 
 	return {

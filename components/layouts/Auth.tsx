@@ -16,6 +16,9 @@ export default function Auth({ children }) {
 			onCompleted: data => {
 				if (data.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile') {
 					const deviceProfile = data.refreshDeviceManager as AuthorizationDeviceProfile
+
+					console.log('🚀 ~ file: Auth.tsx:20 ~ Auth ~ deviceProfile:', deviceProfile)
+
 					AuthorizationReactiveVar(deviceProfile)
 					// setTimeout(() => {
 					// 	router.push('/(app)/hometab/venuefeed')
@@ -29,20 +32,22 @@ export default function Auth({ children }) {
 			},
 			onError: e => {
 				console.log('11111111111111111111111111e :>> ', e)
-				console.log('11111111111111111111111111e :>> ',)
+				console.log('11111111111111111111111111e :>> ')
 			},
 		})
-		
-		const [createGuestProfileMutation, { data, loading: CGLoading, error: CGPMError }] =
+
+	const [createGuestProfileMutation, { data, loading: CGLoading, error: CGPMError }] =
 		useCreateGuestProfileMutation({
 			onCompleted: async data => {
 				if (data?.createGuestProfile.__typename === 'AuthorizationDeviceProfile') {
 					const deviceProfile = data.createGuestProfile as AuthorizationDeviceProfile
 					if (deviceProfile) {
+						console.log('🚀 ~ file: Auth.tsx:47 ~ Auth ~ deviceProfile:', deviceProfile)
 						AuthorizationReactiveVar(deviceProfile)
+
 						// setTimeout(() => {
-							// 	router.replace({
-								// 		pathname: '/(app)/hometab/venuefeed',
+						// 	router.replace({
+						// 		pathname: '/(app)/hometab/venuefeed',
 						// 	})
 						// }, 1)
 					}
@@ -50,9 +55,7 @@ export default function Auth({ children }) {
 			},
 			onError: e => {
 				console.log('222222222222222222222222222222 :>> ', e)
-				console.log('22222222222222222222222222222222222222222222222222222 :>> ',)
 			},
-			
 		})
 
 	const applicationAuthorization = useCallback(async () => {
@@ -63,7 +66,7 @@ export default function Auth({ children }) {
 		// await secureStorageItemDelete({
 		// 	key: AUTHORIZATION,
 		// })
-		
+
 		const getAuthorization = (await secureStorageItemRead({
 			key: AUTHORIZATION,
 			decode: true,

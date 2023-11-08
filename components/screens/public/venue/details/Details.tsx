@@ -80,10 +80,10 @@ export default function Details() {
 									key={item.id}
 									size='lg'
 									my={'$1'}
-									p={'$1'}
-									px={'$3'}
+									p={'$2'}
+									px={'$2'}
 									variant='solid'
-									borderRadius='$full'
+									borderRadius='$md'
 									sx={{
 										_dark: {
 											bg: '$black',

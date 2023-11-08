@@ -1,5 +1,6 @@
 import * as SecureStore from 'expo-secure-store'
-import {jwtDecode} from 'jwt-decode'
+import jwtDecode from 'jwt-decode'
+
 
 interface ReadTokenProps {
 	key: string
