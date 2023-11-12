@@ -1,11 +1,11 @@
-import { createConfig, config as defaultConfig } from '@gluestack-ui/themed'
-
+import { createConfig } from '@gluestack-ui/themed'
+import { config as defaultConfig } from '@gluestack-ui/config'
 export const config = createConfig({
-	...defaultConfig.theme,
+	...defaultConfig,
 	tokens: {
-		...defaultConfig.theme.tokens,
+		...defaultConfig.tokens,
 		colors: {
-			...defaultConfig.theme.tokens.colors,
+			...defaultConfig.tokens.colors,
 			// Will keep following colors
 			primary0: '#ffefdb',
 			primary50: '#ffefdb',
@@ -59,8 +59,9 @@ export const config = createConfig({
 		},
 	},
 })
-
-export type Config = typeof config
-declare module '@gluestack-style/react' {
-	interface ICustomConfig extends Config {}
+type Config = typeof config
+// type Components = typeof components
+declare module '@gluestack-ui/themed' {
+	interface UIConfig extends Config {}
+	// interface UIConfig extends Components {}
 }

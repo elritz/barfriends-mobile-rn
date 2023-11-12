@@ -35,7 +35,7 @@
         "./app/*"
       ],
       "@preferences": [
-        "./types/preferences.d"
+        "./types/preferences"
       ],
       "@ctypes/*": [
         "./types/*"

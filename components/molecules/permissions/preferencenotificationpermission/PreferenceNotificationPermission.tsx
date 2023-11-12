@@ -1,12 +1,14 @@
 import { useReactiveVar } from '@apollo/client'
-import NotificationNextAskModal from '@components/molecules/modals/asks/notificationnextaskmodal'
-import { Box, Button, Divider, Heading, Text, VStack } from '@gluestack-ui/themed'
-import { useGetCurrentPushNotificationTokenQuery } from '@graphql/generated'
 import {
-	PermissionNotificationReactiveVar,
-	PreferencePermissionNotificationReactiveVar,
-} from '@reactive'
-import { useDisclose } from '@util/hooks/useDisclose'
+	NowPreferencePermissionInitialState,
+	TomorrowPreferencePermissionInitialState,
+} from '@constants/Preferences'
+import { LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION } from '@constants/StorageConstants'
+import { Box, Button, ButtonText, Divider, Heading, Text, VStack } from '@gluestack-ui/themed'
+import { useGetCurrentPushNotificationTokenQuery } from '@graphql/generated'
+import { LocalStoragePreferenceAskBackgroundLocationPermissionType } from '@preferences'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { PreferenceBackgroundLocationPermissionReactiveVar } from '@reactive'
 import { useRouter } from 'expo-router'
 import { uniqueId } from 'lodash'
 import { DateTime } from 'luxon'
@@ -15,28 +17,9 @@ import { View } from 'react-native'
 
 export default function PreferenceNotificationPermission() {
 	const router = useRouter()
-	const { isOpen, onOpen, onClose } = useDisclose()
-
-	const rPermissionNotificationVar = useReactiveVar(PermissionNotificationReactiveVar)
-
-	const rPreferenceNotificationPermission = useReactiveVar(
-		PreferencePermissionNotificationReactiveVar,
+	const rPreferenceBackgroundLocationPermissionVar = useReactiveVar(
+		PreferenceBackgroundLocationPermissionReactiveVar,
 	)
-
-	const _pressUpdateNotificationPreferencePermission = async () => {
-		// await AsyncStorage.setItem(
-		// 	LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS,
-		// 	JSON.stringify({
-		// 		...TomorrowPreferencePermissionInitialState,
-		// 		numberOfTimesDismissed: rPreferenceNotificationPermission?.numberOfTimesDismissed
-		// 			? rPreferenceNotificationPermission.numberOfTimesDismissed + 1
-		// 			: 1,
-		// 	} as DefaultPreferenceToPermissionType),
-		// )
-		// PreferencePermissionNotificationReactiveVar({
-		// 	...TomorrowPreferencePermissionInitialState,
-		// })
-	}
 
 	const {
 		data: GCPNTData,
@@ -50,10 +33,8 @@ export default function PreferenceNotificationPermission() {
 
 	return (
 		<View>
-			<NotificationNextAskModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
-
-			{rPreferenceNotificationPermission?.canShowAgain &&
-				DateTime.fromISO(rPreferenceNotificationPermission?.dateToShowAgain.toString()) <=
+			{rPreferenceBackgroundLocationPermissionVar?.canShowAgain &&
+				DateTime.fromISO(rPreferenceBackgroundLocationPermissionVar?.dateToShowAgain.toString()) <=
 					DateTime.now() && (
 					<Box bg={'transparent'} key={uniqueId()}>
 						<MotiView
@@ -88,17 +69,30 @@ export default function PreferenceNotificationPermission() {
 									}}
 									rounded={'$md'}
 								>
-									<Button.Text fontWeight='$bold' fontSize={'$lg'}>
+									<ButtonText fontWeight='$bold' fontSize={'$lg'}>
 										Continue
-									</Button.Text>
+									</ButtonText>
 								</Button>
 								<Button
 									sx={{
 										w: '90%',
 									}}
 									variant={'link'}
-									// onPress={async () => _pressUpdateNotificationPreferencePermission()}
-									onPress={onOpen}
+									onPress={async () => {
+										await AsyncStorage.setItem(
+											LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
+											JSON.stringify({
+												...TomorrowPreferencePermissionInitialState,
+												numberOfTimesDismissed:
+													rPreferenceBackgroundLocationPermissionVar?.numberOfTimesDismissed
+														? rPreferenceBackgroundLocationPermissionVar.numberOfTimesDismissed + 1
+														: 1,
+											} as LocalStoragePreferenceAskBackgroundLocationPermissionType),
+										)
+										PreferenceBackgroundLocationPermissionReactiveVar(
+											TomorrowPreferencePermissionInitialState,
+										)
+									}}
 								>
 									<Text fontSize={'$lg'} fontWeight={'$bold'} alignSelf='center'>
 										Not now
@@ -106,7 +100,7 @@ export default function PreferenceNotificationPermission() {
 								</Button>
 							</VStack>
 						</MotiView>
-						<Divider mt={'$1'} />
+						<Divider my={'$2'} />
 					</Box>
 				)}
 		</View>

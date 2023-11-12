@@ -17,22 +17,10 @@ export default function Auth({ children }) {
 				if (data.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile') {
 					const deviceProfile = data.refreshDeviceManager as AuthorizationDeviceProfile
 
-					console.log('🚀 ~ file: Auth.tsx:20 ~ Auth ~ deviceProfile:', deviceProfile)
-
 					AuthorizationReactiveVar(deviceProfile)
-					// setTimeout(() => {
-					// 	router.push('/(app)/hometab/venuefeed')
-					// }, 1)
 				}
 				if (data.refreshDeviceManager?.__typename === 'Error') {
-					// setTimeout(() => {
-					// 	router.push('/(app)/hometab/venuefeed')
-					// }, 1)
 				}
-			},
-			onError: e => {
-				console.log('11111111111111111111111111e :>> ', e)
-				console.log('11111111111111111111111111e :>> ')
 			},
 		})
 
@@ -42,14 +30,7 @@ export default function Auth({ children }) {
 				if (data?.createGuestProfile.__typename === 'AuthorizationDeviceProfile') {
 					const deviceProfile = data.createGuestProfile as AuthorizationDeviceProfile
 					if (deviceProfile) {
-						console.log('🚀 ~ file: Auth.tsx:47 ~ Auth ~ deviceProfile:', deviceProfile)
 						AuthorizationReactiveVar(deviceProfile)
-
-						// setTimeout(() => {
-						// 	router.replace({
-						// 		pathname: '/(app)/hometab/venuefeed',
-						// 	})
-						// }, 1)
 					}
 				}
 			},

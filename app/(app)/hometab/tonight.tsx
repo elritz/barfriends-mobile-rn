@@ -17,7 +17,7 @@ const Wrapper = ({ children }) => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	return (
 		<BlurView
-			intensity={80}
+			intensity={60}
 			tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 			style={{
 				flex: 1,

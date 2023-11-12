@@ -54,7 +54,7 @@ export default function UberButton({ params }) {
 			size={'lg'}
 			alignItems='center'
 			justifyContent='center'
-			rounded={'$md'}
+			rounded={'$xl'}
 			onPress={() => {
 				!params.profileid ||
 				(!PData?.publicVenue?.Venue?.Location?.Geometry?.latitude &&

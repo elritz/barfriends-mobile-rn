@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import BackgroundLocationNextAskModal from '@components/molecules/modals/asks/backgroundlocationnextaskmodal'
+import BackgroundLocationNextAsk from '@components/molecules/asks/permissions/backgroundlocationnextask'
 import { TomorrowPreferencePermissionInitialState } from '@constants/Preferences'
 import { LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION } from '@constants/StorageConstants'
 import { LocalStoragePreferenceAskBackgroundLocationPermissionType } from '@ctypes/preferences'
@@ -35,7 +35,7 @@ export default function PreferenceBackgroundLocationPermissionFullSection() {
 
 	return (
 		<>
-			<BackgroundLocationNextAskModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
+			<BackgroundLocationNextAsk />
 			{rPreferenceBackgroundLocationPermission?.canShowAgain &&
 				DateTime.fromISO(rPreferenceBackgroundLocationPermission?.dateToShowAgain.toString()) <=
 					DateTime.now() && (

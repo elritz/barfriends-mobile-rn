@@ -51,8 +51,6 @@ export default () => {
 		{ data: UVRData, loading: UVRLoading, error: UVRError },
 	] = useUpdateH6ComingAreaVoteMutation()
 
-	console.log('rAuthorizationVar :>> ', rAuthorizationVar?.ProfileType)
-
 	const [updateToBeNotifiedMutation, { data: UTBNData, loading: UTBNLoading, error: UTBNError }] =
 		useUpdateComingAreaToBeNotifiedMutation()
 

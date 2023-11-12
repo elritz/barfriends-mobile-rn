@@ -1,13 +1,13 @@
-import { Config, config } from '../../gluestack-ui.config'
 import { makeVar } from '@apollo/client'
 import { defaulttheme } from '@assets/theme/default'
+import { config } from '@gluestack-ui/config'
 import { ThemeColorSchemeOptionsType } from '@ctypes/preferences'
 import { Theme } from '@react-navigation/native'
 import { Appearance, ColorSchemeName } from 'react-native'
 
 export type IBFSTheme = {
 	reactnavigation: Theme
-	gluestack: Config
+	gluestack: typeof config
 	// restyle: BaseTheme
 }
 

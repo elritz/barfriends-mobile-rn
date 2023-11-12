@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import ForegroundLocationNextAskModal from '@components/molecules/modals/asks/foregroundlocationnextaskmodal'
+import ForegroundLocationNextAskModal from '@components/molecules/asks/permissions/foregroundlocationnextask'
 import { LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION } from '@constants/StorageConstants'
 import { LocalStoragePreferenceAskForegroundLocationPermissionType } from '@ctypes/preferences'
 import { EvilIcons } from '@expo/vector-icons'

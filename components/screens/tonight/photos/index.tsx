@@ -338,7 +338,7 @@ export default function Photos() {
 			) : (
 				<BlurView
 					tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-					intensity={40}
+					intensity={60}
 					style={{ borderRadius: 15, overflow: 'hidden', marginHorizontal: 7 }}
 				>
 					<Box
@@ -404,10 +404,10 @@ export default function Photos() {
 								Start tonights story
 							</Heading>
 							<Text fontSize={'$lg'} fontWeight={'$medium'}>
-								Ready to go out? Add photos of your fit and pick your emojimood
+								Add photos of your fit and pick your emojimood
 							</Text>
 							<Button onPress={pickImage} bg={'$tertiary400'} rounded={'$md'} mt={'$4'}>
-								<ButtonText>Upload{loading ? 'ing' : ''} images</ButtonText>
+								<ButtonText>Select{loading ? 'ing' : ''} images</ButtonText>
 							</Button>
 						</Center>
 					</Box>

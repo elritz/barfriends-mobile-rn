@@ -32,6 +32,12 @@ export default () => {
 
 	const [removeDeviceProfileMutation, { data: RDPMData, loading: RDPMLoading, error: RDPMError }] =
 		useRemoveDeviceProfileFromDeviceManagerMutation({
+			variables: {
+				profileId: String(params.profileid),
+			},
+			onCompleted: data => {
+				switchDeviceProfileMutation()
+			},
 			onError: error => {
 				console.log('error', error)
 			},
@@ -41,14 +47,13 @@ export default () => {
 		{
 			title: 'Remove from device',
 			onPress: () => {
-				removeDeviceProfileMutation({
-					variables: {
-						profileId: params.profileid,
-					},
-					onCompleted: data => {
-						switchDeviceProfileMutation()
-					},
-				})
+				removeDeviceProfileMutation()
+			},
+		},
+		{
+			title: 'Settings',
+			onPress: () => {
+				console.log('Navigate to the settings page')
 			},
 		},
 		{
@@ -77,20 +82,20 @@ export default () => {
 
 	return (
 		<SafeAreaView style={{ flex: 1, margin: 10 }}>
+			<Heading
+				px={'$2'}
+				sx={{
+					h: 30,
+				}}
+			>
+				Account
+			</Heading>
 			<ScrollView
 				style={{
 					marginVertical: 4,
 				}}
 			>
-				<Heading
-					px={'$2'}
-					sx={{
-						h: 30,
-					}}
-				>
-					Account
-				</Heading>
-				<VStack space='md'>
+				<VStack space='md' mt={'$4'}>
 					{actions.map(item => {
 						return (
 							<RoundedListItem onPress={item.onPress}>

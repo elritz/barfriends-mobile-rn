@@ -215,6 +215,15 @@ export default () => {
 		},
 		{
 			type: 'setting',
+			title: 'Ask modals',
+			icon: 'albums',
+			onPress: () =>
+				router.push({
+					pathname: '/(app)/hometab/developmentstack/asks',
+				}),
+		},
+		{
+			type: 'setting',
 			title: 'Permission modals',
 			icon: 'bookmarks',
 			onPress: () =>
@@ -432,7 +441,7 @@ export default () => {
 						<Divider />
 						<VStack>
 							<Heading fontSize={'$lg'}>{item.title}</Heading>
-							<HStack rounded={'$md'} alignItems={'center'} justifyContent={'space-between'} py={'$4'}>
+							<HStack rounded={'$lg'} alignItems={'center'} justifyContent={'space-between'} py={'$4'}>
 								<Text
 									fontSize={'$md'}
 									textTransform={'capitalize'}

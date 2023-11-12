@@ -1,7 +1,7 @@
 // TODO: UX(handleAppStateChange) check if location permission is enabled and go somewhere with it
 import { useReactiveVar } from '@apollo/client'
 import IllustrationDynamicLocation from '@assets/images/location/IllustrationDynamicLocation'
-import { Box, Button, Divider, Heading, Text, VStack } from '@gluestack-ui/themed'
+import { Box, Button, ButtonText, Divider, Heading, Text, VStack } from '@gluestack-ui/themed'
 import PermissionDetailItem from '@components/screens/permissions/PermissionDetailItem'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { useIsFocused } from '@react-navigation/native'
@@ -112,6 +112,7 @@ export default () => {
 	const handleRequestBackgroundLocationPermission = async () => {
 		const status = await Location.requestBackgroundPermissionsAsync()
 		if (status.granted) {
+
 		}
 	}
 
@@ -207,17 +208,17 @@ export default () => {
 							: createTwoButtonAlert()
 					}
 				>
-					<Button.Text>
+					<ButtonText>
 						{!rBackgroundLocationPermissionVar?.granted
 							? rBackgroundLocationPermissionVar?.canAskAgain && !rBackgroundLocationPermissionVar.granted
 								? 'Continue'
 								: 'Go to Phone Settings'
 							: 'Granted'}
-					</Button.Text>
+					</ButtonText>
 				</Button>
 				{!started ? (
 					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
-						<Button.Text fontWeight={'$medium'}>Close</Button.Text>
+						<ButtonText fontWeight={'$medium'}>Close</ButtonText>
 					</Button>
 				) : (
 					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
@@ -228,7 +229,7 @@ export default () => {
 									h: 24,
 								}}
 							>
-								{<Button.Text fontWeight={'$medium'}>Auto close in {seconds}</Button.Text>}
+								{<ButtonText fontWeight={'$medium'}>Auto close in {seconds}</ButtonText>}
 							</Box>
 						)}
 					</Button>

@@ -7,7 +7,6 @@ import {
 	Center,
 	CloseIcon,
 	Divider,
-	HStack,
 	Heading,
 	Icon,
 	Modal,

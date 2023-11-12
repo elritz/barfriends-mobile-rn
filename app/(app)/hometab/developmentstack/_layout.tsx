@@ -69,6 +69,15 @@ export default () => {
 				}}
 			/>
 			<Stack.Screen
+				name={'asks'}
+				options={{
+					headerBackground: () => <></>,
+					headerShown: true,
+					title: 'Asks',
+					headerLeft: () => <ChevronBackArrow />,
+				}}
+			/>
+			<Stack.Screen
 				name={'theme'}
 				options={{
 					headerBackground: () => <></>,

@@ -109,6 +109,7 @@ export default () => {
 												bg: rSearchAreaVar?.kRing.value === item.kRing ? '$primary500' : '$light900',
 											},
 										}}
+										borderRadius={'$xl'}
 										style={{
 											borderColor: rSearchAreaVar?.kRing.value === item.kRing ? '#ff700000' : '#ff7000',
 											borderWidth: 1,
@@ -193,7 +194,7 @@ export default () => {
 												}}
 												onPress={() => switchRouter(item.name)}
 												flex={1}
-												rounded={'$full'}
+												borderRadius={'$xl'}
 												height={40}
 											>
 												<ButtonText
@@ -212,7 +213,7 @@ export default () => {
 								<SearchAreaLocationPermissionItem />
 								<HStack justifyContent='flex-end'>
 									<Button
-										rounded={'$full'}
+										rounded={'$xl'}
 										onPress={() => {
 											router.push({
 												pathname: '/(app)/searcharea/searchcountry',
