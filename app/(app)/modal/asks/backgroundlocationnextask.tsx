@@ -154,6 +154,9 @@ export default () => {
 				<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
 					<ButtonText fontWeight={'$medium'}>Not Now</ButtonText>
 				</Button>
+				<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
+					<ButtonText fontWeight={'$medium'}>Don't ask again</ButtonText>
+				</Button>
 			</VStack>
 		</Box>
 	)

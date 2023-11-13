@@ -36,11 +36,17 @@ export const TomorrowPreferencePermissionInitialState: DefaultPreferenceToPermis
 
 export const DaysPreferencePermissionInitialState: DefaultPreferenceToPermissionType = {
 	dateLastShown: DateTime.now(),
-	dateToShowAgain: DateTime.now().plus({ days: 7 }),
+	dateToShowAgain: DateTime.now().plus({ days: 5 }),
 	numberOfTimesDismissed: 0,
 	canShowAgain: true,
 }
 
+export const HalfMonthPreferencePermissionInitialState: DefaultPreferenceToPermissionType = {
+	dateLastShown: DateTime.now(),
+	dateToShowAgain: DateTime.now().plus({ days: 15 }),
+	numberOfTimesDismissed: 0,
+	canShowAgain: true,
+}
 export const MonthsPreferencePermissionInitialState: DefaultPreferenceToPermissionType = {
 	dateLastShown: DateTime.now(),
 	dateToShowAgain: DateTime.now().plus({ months: 1 }),

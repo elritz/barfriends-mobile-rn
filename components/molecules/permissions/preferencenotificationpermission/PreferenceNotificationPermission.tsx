@@ -78,20 +78,10 @@ export default function PreferenceNotificationPermission() {
 										w: '90%',
 									}}
 									variant={'link'}
-									onPress={async () => {
-										await AsyncStorage.setItem(
-											LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
-											JSON.stringify({
-												...TomorrowPreferencePermissionInitialState,
-												numberOfTimesDismissed:
-													rPreferenceBackgroundLocationPermissionVar?.numberOfTimesDismissed
-														? rPreferenceBackgroundLocationPermissionVar.numberOfTimesDismissed + 1
-														: 1,
-											} as LocalStoragePreferenceAskBackgroundLocationPermissionType),
-										)
-										PreferenceBackgroundLocationPermissionReactiveVar(
-											TomorrowPreferencePermissionInitialState,
-										)
+									onPress={() => {
+										router.push({
+											pathname: '/(app)/modal/asks/notificationnextask',
+										})
 									}}
 								>
 									<Text fontSize={'$lg'} fontWeight={'$bold'} alignSelf='center'>

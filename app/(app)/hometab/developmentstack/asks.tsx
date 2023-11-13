@@ -118,8 +118,11 @@ export default function Preferences() {
 					title: 'Show',
 					color: '$green500',
 					onPress: async () => {
+						// router.push({
+						// 	pathname: '/(app)/permission/notifications',
+						// })
 						router.push({
-							pathname: '/(app)/permission/notifications',
+							pathname: '/(app)/modal/asks/notificationnextask',
 						})
 					},
 				},

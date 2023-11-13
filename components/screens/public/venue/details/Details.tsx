@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Badge, Box, Button, HStack, Text, VStack } from '@gluestack-ui/themed'
+import { Badge, BadgeText, Box, Button, HStack, Text, VStack } from '@gluestack-ui/themed'
 import { usePublicVenueQuery } from '@graphql/generated'
 import { SearchAreaReactiveVar } from '@reactive'
 import { useLocalSearchParams } from 'expo-router'
@@ -93,7 +93,7 @@ export default function Details() {
 										},
 									}}
 								>
-									<Badge.Text
+									<BadgeText
 										textTransform='capitalize'
 										fontSize={'$md'}
 										sx={{
@@ -106,7 +106,7 @@ export default function Details() {
 										}}
 									>
 										{`${item.emoji}`}&nbsp;{`${item.name}`}
-									</Badge.Text>
+									</BadgeText>
 								</Badge>
 							)
 						})}
