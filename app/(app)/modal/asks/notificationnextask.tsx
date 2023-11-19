@@ -3,13 +3,12 @@ import {
 	HalfMonthPreferencePermissionInitialState,
 	MonthsPreferencePermissionInitialState,
 } from '@constants/Preferences'
-import { LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION } from '@constants/StorageConstants'
+import { LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS } from '@constants/StorageConstants'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useReactiveVar } from '@apollo/client'
-import { LocalStoragePreferenceAskBackgroundLocationPermissionType } from '@ctypes/preferences'
+import { LocalStoragePreferenceAskNotificationPermissionType } from '@ctypes/preferences'
 import {
 	Badge,
-	BadgeText,
 	Box,
 	Button,
 	ButtonText,
@@ -18,7 +17,6 @@ import {
 	Heading,
 	Pressable,
 	ScrollView,
-	Text,
 	VStack,
 	View,
 } from '@gluestack-ui/themed'
@@ -29,14 +27,12 @@ import {
 } from '@reactive'
 import { useRouter } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import IllustrationDynamicLocation from '@assets/images/location/IllustrationDynamicLocation'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import PermissionDetailItem from '@components/screens/permissions/PermissionDetailItem'
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
-import { useState } from 'react'
-import { log } from 'console'
 import { Controller, useForm } from 'react-hook-form'
 import useTimer2 from '@util/hooks/useTimer2'
+import { DateTime } from 'luxon'
 
 export default () => {
 	const router = useRouter()
@@ -46,7 +42,6 @@ export default () => {
 		PreferenceBackgroundLocationPermissionReactiveVar,
 	)
 	const { start, seconds, started, finished } = useTimer2('0:4')
-	const [selectedLaterOptionValue, setSelectedLaterOptionValue] = useState(5)
 
 	const details = [
 		{
@@ -112,17 +107,29 @@ export default () => {
 			value: 0,
 		},
 		{
-			title: '5 Days',
-			value: 5,
+			title: '1 Day',
+			value: 1,
 		},
+		// {
+		// 	title: '5 Days',
+		// 	value: 5,
+		// },
 		{
-			title: '15 Days',
-			value: 15,
+			title: '10 Days',
+			value: 10,
 		},
+		// {
+		// 	title: '15 Days',
+		// 	value: 15,
+		// },
 		{
 			title: '1 Month',
 			value: 30,
 		},
+		// {
+		// 	title: '3 Months',
+		// 	value: 90,
+		// },
 	]
 
 	const {
@@ -131,23 +138,38 @@ export default () => {
 		formState: { errors, isSubmitting, isSubmitted },
 	} = useForm({
 		defaultValues: {
-			value: 5,
+			value: 10,
 		},
 	})
 
-	console.log('isSubmitting :>> ', isSubmitting)
 	const onSubmit = data => {
 		switch (data.value) {
 			case 0:
 				AsyncStorage.setItem(
-					LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
+					LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS,
 					JSON.stringify({
 						...DaysPreferencePermissionInitialState,
 						numberOfTimesDismissed: rPreferenceBackgroundLocationPermission?.numberOfTimesDismissed
 							? rPreferenceBackgroundLocationPermission.numberOfTimesDismissed + 1
 							: 1,
 						canShowAgain: false,
-					} as LocalStoragePreferenceAskBackgroundLocationPermissionType),
+					} as LocalStoragePreferenceAskNotificationPermissionType),
+				)
+				PreferencePermissionNotificationReactiveVar({
+					...DaysPreferencePermissionInitialState,
+					canShowAgain: false,
+				})
+			case 1:
+				AsyncStorage.setItem(
+					LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS,
+					JSON.stringify({
+						...DaysPreferencePermissionInitialState,
+						dateToShowAgain: DateTime.now().plus({ days: 2 }),
+						numberOfTimesDismissed: rPreferenceBackgroundLocationPermission?.numberOfTimesDismissed
+							? rPreferenceBackgroundLocationPermission.numberOfTimesDismissed + 1
+							: 1,
+						canShowAgain: false,
+					} as LocalStoragePreferenceAskNotificationPermissionType),
 				)
 				PreferencePermissionNotificationReactiveVar({
 					...DaysPreferencePermissionInitialState,
@@ -155,42 +177,57 @@ export default () => {
 				})
 			case 5:
 				AsyncStorage.setItem(
-					LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
+					LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS,
 					JSON.stringify({
 						...DaysPreferencePermissionInitialState,
 						numberOfTimesDismissed: rPreferenceBackgroundLocationPermission?.numberOfTimesDismissed
 							? rPreferenceBackgroundLocationPermission.numberOfTimesDismissed + 1
 							: 1,
 						canShowAgain: true,
-					} as LocalStoragePreferenceAskBackgroundLocationPermissionType),
+					} as LocalStoragePreferenceAskNotificationPermissionType),
 				)
 				PreferencePermissionNotificationReactiveVar({
 					...DaysPreferencePermissionInitialState,
 				})
 			case 15:
 				AsyncStorage.setItem(
-					LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
+					LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS,
 					JSON.stringify({
 						...HalfMonthPreferencePermissionInitialState,
 						numberOfTimesDismissed: rPreferenceBackgroundLocationPermission?.numberOfTimesDismissed
 							? rPreferenceBackgroundLocationPermission.numberOfTimesDismissed + 1
 							: 1,
 						canShowAgain: true,
-					} as LocalStoragePreferenceAskBackgroundLocationPermissionType),
+					} as LocalStoragePreferenceAskNotificationPermissionType),
 				)
 				PreferencePermissionNotificationReactiveVar({
 					...DaysPreferencePermissionInitialState,
 				})
 			case 30:
 				AsyncStorage.setItem(
-					LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
+					LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS,
 					JSON.stringify({
 						...MonthsPreferencePermissionInitialState,
 						numberOfTimesDismissed: rPreferenceBackgroundLocationPermission?.numberOfTimesDismissed
 							? rPreferenceBackgroundLocationPermission.numberOfTimesDismissed + 1
 							: 1,
 						canShowAgain: true,
-					} as LocalStoragePreferenceAskBackgroundLocationPermissionType),
+					} as LocalStoragePreferenceAskNotificationPermissionType),
+				)
+				PreferencePermissionNotificationReactiveVar({
+					...DaysPreferencePermissionInitialState,
+				})
+			case 90:
+				AsyncStorage.setItem(
+					LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS,
+					JSON.stringify({
+						...MonthsPreferencePermissionInitialState,
+						dateToShowAgain: DateTime.now().plus({ months: 3 }),
+						numberOfTimesDismissed: rPreferenceBackgroundLocationPermission?.numberOfTimesDismissed
+							? rPreferenceBackgroundLocationPermission.numberOfTimesDismissed + 1
+							: 1,
+						canShowAgain: true,
+					} as LocalStoragePreferenceAskNotificationPermissionType),
 				)
 				PreferencePermissionNotificationReactiveVar({
 					...DaysPreferencePermissionInitialState,
@@ -226,7 +263,7 @@ export default () => {
 					adjustsFontSizeToFit
 					numberOfLines={3}
 				>
-					Revel Enable Notifications Reminder
+					Revel Notifications Reminder
 				</Heading>
 				<Divider width={'$2'} style={{ width: 50, marginVertical: 10 }} />
 			</View>
@@ -241,7 +278,7 @@ export default () => {
 				>
 					{details.map((item, index) => {
 						return (
-							<View key={index}>
+							<View key={item.title}>
 								<PermissionDetailItem {...item} />
 							</View>
 						)
@@ -255,9 +292,20 @@ export default () => {
 				}}
 				mx={'$2'}
 			>
-				<Text fontSize={'$md'} textAlign={'center'} fontWeight={'$medium'}>
+				{/* <Text fontSize={'$md'} textAlign={'center'} fontWeight={'$medium'}>
 					Remind in
-				</Text>
+				</Text> */}
+				<Button
+					// variant={'link'}
+					size={'md'}
+					onPress={() =>
+						router.push({
+							pathname: '/(app)/permission/notifications',
+						})
+					}
+				>
+					<ButtonText>Enable Notifications</ButtonText>
+				</Button>
 				<Divider w={'95%'} alignSelf={'center'} />
 				<Controller
 					control={control}
@@ -341,15 +389,17 @@ export default () => {
 						)}
 					</>
 					<HStack space={'md'}>
-						<Button
-							isDisabled={isSubmitted}
-							bg={'$blue600'}
+						{/* <Button
+							variant={'link'}
 							size={'md'}
-							rounded={'$full'}
-							onPress={handleSubmit(onSubmit)}
+							onPress={() =>
+								router.push({
+									pathname: '/(app)/permission/notifications',
+								})
+							}
 						>
-							<ButtonText>{isSubmitted ? 'Updated' : isSubmitting ? 'Updating' : 'Continue'}</ButtonText>
-						</Button>
+							<Text>Enable</Text>
+						</Button> */}
 						<Button
 							isDisabled={isSubmitted}
 							bg={'$blue600'}

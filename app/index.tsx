@@ -116,7 +116,8 @@ export default () => {
 	const device_manager_profile_id = 'e90675d1-009f-4ca8-9d76-f163a885189f'
 
 	// return <Redirect href={'/(app)/hometab/developmentstack'} />
-	return <Redirect href={'/(app)/modal/asks/notificationnextask'} />
+	return <Redirect href={'/(app)/hometab/venuefeed'} />
+	// return <Redirect href={'/(app)/modal/asks/backgroundlocationnextask'} />
 
 	// return (
 	// 	<View style={{ flex: 1, backgroundColor: 'red' }}>

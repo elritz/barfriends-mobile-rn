@@ -73,16 +73,12 @@ export default () => {
 					name={'devicemanager'}
 					options={{
 						headerShown: false,
-						headerTitle: () => <LogoTransparent height={30} width={192} />,
-						headerLeft: () => <ChevronBackArrow />,
 					}}
 				/>
 				<Stack.Screen
 					name={'asks'}
 					options={{
 						headerShown: false,
-						headerTitle: () => <LogoTransparent height={30} width={192} />,
-						headerLeft: () => <ChevronBackArrow />,
 					}}
 				/>
 

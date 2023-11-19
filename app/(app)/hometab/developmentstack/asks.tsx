@@ -37,7 +37,7 @@ export default function Preferences() {
 					color: '$green500',
 					onPress: async () => {
 						router.push({
-							pathname: '/(app)/permission/foregroundlocation',
+							pathname: '/(app)/modal/asks/foregroundlocationnextask',
 						})
 					},
 				},
@@ -78,7 +78,7 @@ export default function Preferences() {
 					color: '$green500',
 					onPress: async () => {
 						router.push({
-							pathname: '/(app)/permission/backgroundlocation',
+							pathname: '/(app)/modal/asks/backgroundlocationnextask',
 						})
 					},
 				},
@@ -118,9 +118,6 @@ export default function Preferences() {
 					title: 'Show',
 					color: '$green500',
 					onPress: async () => {
-						// router.push({
-						// 	pathname: '/(app)/permission/notifications',
-						// })
 						router.push({
 							pathname: '/(app)/modal/asks/notificationnextask',
 						})
@@ -151,14 +148,20 @@ export default function Preferences() {
 		<ScrollView contentInset={{ top: 10 }}>
 			<VStack>
 				<VStack justifyContent={'space-between'} mx={'$2'} space={'lg'}>
-					{nextAskAction.map(item => {
+					{nextAskAction.map((item, index) => {
 						return (
-							<VStack>
+							<VStack key={index}>
 								<Heading>{item.title}</Heading>
 								<HStack justifyContent={'flex-start'} space={'sm'} mt={'$2'}>
-									{item.actions.map(action => {
+									{item.actions.map((action, index) => {
 										return (
-											<Button size='sm' rounded={'$full'} bg={action.color} onPress={action.onPress}>
+											<Button
+												key={index}
+												size='sm'
+												rounded={'$full'}
+												bg={action.color}
+												onPress={action.onPress}
+											>
 												<ButtonText
 													sx={{
 														color: '$white',

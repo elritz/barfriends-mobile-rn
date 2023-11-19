@@ -1,43 +1,55 @@
-import { useReactiveVar } from '@apollo/client'
-import IllustrationDynamicLocation from '@assets/images/location/IllustrationDynamicLocation'
-import PermissionDetailItem from '@components/screens/permissions/PermissionDetailItem'
-import { DaysPreferencePermissionInitialState } from '@constants/Preferences'
+import {
+	DaysPreferencePermissionInitialState,
+	HalfMonthPreferencePermissionInitialState,
+	MonthsPreferencePermissionInitialState,
+} from '@constants/Preferences'
 import { LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION } from '@constants/StorageConstants'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useReactiveVar } from '@apollo/client'
 import { LocalStoragePreferenceAskBackgroundLocationPermissionType } from '@ctypes/preferences'
 import {
+	Badge,
 	Box,
 	Button,
 	ButtonText,
-	Center,
 	Divider,
+	HStack,
 	Heading,
-	Modal,
+	Pressable,
 	ScrollView,
-	Text,
 	VStack,
 	View,
 } from '@gluestack-ui/themed'
-import { useIsFocused } from '@react-navigation/native'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
-	PermissionBackgroundLocationReactiveVar,
 	PreferenceBackgroundLocationPermissionReactiveVar,
+	PreferencePermissionNotificationReactiveVar,
 	ThemeReactiveVar,
 } from '@reactive'
 import { useRouter } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
+import PermissionDetailItem from '@components/screens/permissions/PermissionDetailItem'
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
+import { useState } from 'react'
+import { Controller, useForm } from 'react-hook-form'
+import useTimer2 from '@util/hooks/useTimer2'
+import { DateTime } from 'luxon'
 
 export default () => {
+	console.log("HERE BACKGROUND LOCATION NEXT ASK")
 	const router = useRouter()
 	const insets = useSafeAreaInsets()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
+	const rPreferenceBackgroundLocationPermission = useReactiveVar(
+		PreferenceBackgroundLocationPermissionReactiveVar,
+	)
+	const { start, seconds, started, finished } = useTimer2('0:4')
+	const [selectedLaterOptionValue, setSelectedLaterOptionValue] = useState(5)
 
 	const details = [
 		{
 			title: 'How you’ll use this',
-			detail: 'To find venues and event deals around you.',
+			detail: `You'll find venues and event deals around you.`,
 			icon: (
 				<Ionicons
 					name='ios-location-sharp'
@@ -55,7 +67,7 @@ export default () => {
 		},
 		{
 			title: 'How we’ll use this',
-			detail: 'To create your own content and share. ',
+			detail: `To notifiy you about event, friend and deal activities you'll be interested in.`,
 			icon: (
 				<MaterialCommunityIcons
 					name='android-messages'
@@ -72,9 +84,9 @@ export default () => {
 			),
 		},
 		{
-			title: 'How these settings work',
+			title: 'Update these settings work',
 			detail:
-				'You can change your choices at any time in your device settings. If you allow access now, you wont have to again.',
+				'You can change your choices at any time in your app settings. If you allow access now, you wont have to again.',
 			icon: (
 				<Ionicons
 					name='ios-settings-sharp'
@@ -92,11 +104,167 @@ export default () => {
 		},
 	]
 
+	const laterOptions = [
+		{
+			title: 'Never again',
+			value: 0,
+		},
+		{
+			title: '1 Day',
+			value: 1,
+		},
+		// {
+		// 	title: '5 Days',
+		// 	value: 5,
+		// },
+		{
+			title: '10 Days',
+			value: 10,
+		},
+		// {
+		// 	title: '1 Month',
+		// 	value: 30,
+		// },
+		{
+			title: '3 Months',
+			value: 90,
+		},
+	]
+
+	const {
+		control,
+		handleSubmit,
+		formState: { errors, isSubmitting, isSubmitted },
+	} = useForm({
+		defaultValues: {
+			value: 10,
+		},
+	})
+
+	const onSubmit = data => {
+		switch (data.value) {
+			case 0:
+				AsyncStorage.setItem(
+					LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
+					JSON.stringify({
+						...DaysPreferencePermissionInitialState,
+						numberOfTimesDismissed: rPreferenceBackgroundLocationPermission?.numberOfTimesDismissed
+							? rPreferenceBackgroundLocationPermission.numberOfTimesDismissed + 1
+							: 1,
+						canShowAgain: false,
+					} as LocalStoragePreferenceAskBackgroundLocationPermissionType),
+				)
+				PreferencePermissionNotificationReactiveVar({
+					...DaysPreferencePermissionInitialState,
+					canShowAgain: false,
+				})
+			case 1:
+				AsyncStorage.setItem(
+					LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
+					JSON.stringify({
+						...DaysPreferencePermissionInitialState,
+						dateToShowAgain: DateTime.now().plus({ days: 2 }),
+						numberOfTimesDismissed: rPreferenceBackgroundLocationPermission?.numberOfTimesDismissed
+							? rPreferenceBackgroundLocationPermission.numberOfTimesDismissed + 1
+							: 1,
+						canShowAgain: false,
+					} as LocalStoragePreferenceAskBackgroundLocationPermissionType),
+				)
+				PreferencePermissionNotificationReactiveVar({
+					...DaysPreferencePermissionInitialState,
+					canShowAgain: false,
+				})
+			case 5:
+				AsyncStorage.setItem(
+					LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
+					JSON.stringify({
+						...DaysPreferencePermissionInitialState,
+						numberOfTimesDismissed: rPreferenceBackgroundLocationPermission?.numberOfTimesDismissed
+							? rPreferenceBackgroundLocationPermission.numberOfTimesDismissed + 1
+							: 1,
+						canShowAgain: true,
+					} as LocalStoragePreferenceAskBackgroundLocationPermissionType),
+				)
+				PreferencePermissionNotificationReactiveVar({
+					...DaysPreferencePermissionInitialState,
+				})
+			case 10:
+				AsyncStorage.setItem(
+					LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
+					JSON.stringify({
+						...DaysPreferencePermissionInitialState,
+						numberOfTimesDismissed: rPreferenceBackgroundLocationPermission?.numberOfTimesDismissed
+							? rPreferenceBackgroundLocationPermission.numberOfTimesDismissed + 1
+							: 1,
+						canShowAgain: true,
+					} as LocalStoragePreferenceAskBackgroundLocationPermissionType),
+				)
+				PreferencePermissionNotificationReactiveVar({
+					...DaysPreferencePermissionInitialState,
+					dateToShowAgain: DateTime.now().plus({ days: 10 }),
+				})
+			case 15:
+				AsyncStorage.setItem(
+					LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
+					JSON.stringify({
+						...HalfMonthPreferencePermissionInitialState,
+						numberOfTimesDismissed: rPreferenceBackgroundLocationPermission?.numberOfTimesDismissed
+							? rPreferenceBackgroundLocationPermission.numberOfTimesDismissed + 1
+							: 1,
+						canShowAgain: true,
+					} as LocalStoragePreferenceAskBackgroundLocationPermissionType),
+				)
+				PreferencePermissionNotificationReactiveVar({
+					...DaysPreferencePermissionInitialState,
+					dateToShowAgain: DateTime.now().plus({ days: 15 }),
+				})
+			case 30:
+				AsyncStorage.setItem(
+					LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
+					JSON.stringify({
+						...MonthsPreferencePermissionInitialState,
+						dateToShowAgain: DateTime.now().plus({ months: 1 }),
+						numberOfTimesDismissed: rPreferenceBackgroundLocationPermission?.numberOfTimesDismissed
+							? rPreferenceBackgroundLocationPermission.numberOfTimesDismissed + 1
+							: 1,
+						canShowAgain: true,
+					} as LocalStoragePreferenceAskBackgroundLocationPermissionType),
+				)
+				PreferencePermissionNotificationReactiveVar({
+					...DaysPreferencePermissionInitialState,
+					dateToShowAgain: DateTime.now().plus({ months: 1 }),
+				})
+			case 90:
+				AsyncStorage.setItem(
+					LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
+					JSON.stringify({
+						...MonthsPreferencePermissionInitialState,
+						dateToShowAgain: DateTime.now().plus({ months: 3 }),
+						numberOfTimesDismissed: rPreferenceBackgroundLocationPermission?.numberOfTimesDismissed
+							? rPreferenceBackgroundLocationPermission.numberOfTimesDismissed + 1
+							: 1,
+						canShowAgain: true,
+					} as LocalStoragePreferenceAskBackgroundLocationPermissionType),
+				)
+				PreferencePermissionNotificationReactiveVar({
+					...DaysPreferencePermissionInitialState,
+				})
+		}
+
+		start()
+	}
+
+	finished(() => {
+		router.canGoBack()
+			? router.back()
+			: router.push({
+					pathname: '/(app)/hometab/venuefeed',
+			  })
+	})
+
 	return (
-		<Box bg={'$transparent'} style={{ flex: 1 }} mb={'$5'}>
-			<Box bg={'$transparent'} alignItems={'center'} justifyContent={'flex-start'} my={'$5'}>
-				<IllustrationDynamicLocation width={60} height={60} />
-				<Divider width={'$2'} style={{ width: 50, marginVertical: 10 }} />
+		<View flex={1}>
+			<View alignItems={'center'} justifyContent={'flex-start'} my={'$5'}>
 				<Heading
 					px={'$2'}
 					fontWeight={'$black'}
@@ -108,11 +276,12 @@ export default () => {
 					adjustsFontSizeToFit
 					numberOfLines={3}
 				>
-					By enabling background location, it helps you to go out, join bars and find events.
+					Revel Background Location Reminder
 				</Heading>
-			</Box>
+				<Divider width={'$2'} style={{ width: 50, marginVertical: 10 }} />
+			</View>
 			<ScrollView>
-				<Box
+				<View
 					bg={'$transparent'}
 					sx={{
 						w: wp(95),
@@ -122,42 +291,125 @@ export default () => {
 				>
 					{details.map((item, index) => {
 						return (
-							<View key={index}>
+							<View key={item.title}>
 								<PermissionDetailItem {...item} />
 							</View>
 						)
 					})}
-				</Box>
+				</View>
 			</ScrollView>
 			<VStack
 				space={'md'}
-				w={'$full'}
-				alignItems={'center'}
 				sx={{
-					mb: insets.bottom,
+					mb: insets.bottom + 10,
 				}}
+				mx={'$2'}
 			>
-				<Divider w={'95%'} />
 				<Button
-					size={'lg'}
-					sx={{
-						w: '95%',
-					}}
-					onPress={async () => {
+					size={'md'}
+					onPress={() =>
 						router.push({
 							pathname: '/(app)/permission/backgroundlocation',
 						})
-					}}
+					}
 				>
-					<ButtonText>Continue</ButtonText>
+					<ButtonText>Enable Background Location</ButtonText>
 				</Button>
-				<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
-					<ButtonText fontWeight={'$medium'}>Not Now</ButtonText>
-				</Button>
-				<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
-					<ButtonText fontWeight={'$medium'}>Don't ask again</ButtonText>
-				</Button>
+				<Divider w={'95%'} alignSelf={'center'} />
+				<Controller
+					control={control}
+					name='value'
+					rules={{
+						required: true,
+					}}
+					render={({ field: { onChange, onBlur, value } }) => {
+						return (
+							<HStack justifyContent={'space-around'} space={'md'}>
+								{laterOptions.map(item => {
+									return (
+										<Pressable key={item.value} onPress={() => onChange(item.value)}>
+											<Badge
+												size='lg'
+												p={'$2'}
+												px={'$3'}
+												variant='solid'
+												rounded='$lg'
+												sx={{
+													_dark: {
+														bg: value === item.value ? '$primary500' : '$black',
+													},
+													_light: {
+														bg: value === item.value ? '$primary500' : '$light200',
+													},
+												}}
+											>
+												<Badge.Text
+													fontWeight={'$medium'}
+													textTransform='capitalize'
+													fontSize={'$md'}
+													sx={{
+														_dark: {
+															color: value === item.value ? '$white' : '$white',
+														},
+														_light: {
+															color: value === item.value ? '$white' : '$black',
+														},
+													}}
+												>
+													{item.title}
+												</Badge.Text>
+											</Badge>
+										</Pressable>
+									)
+								})}
+							</HStack>
+						)
+					}}
+				/>
+				<HStack justifyContent={'space-between'} mx={'$2'} alignItems={'center'}>
+					<>
+						{!started ? (
+							<Button
+								size={'lg'}
+								onPress={() =>
+									router.canGoBack()
+										? router.back()
+										: router.push({
+												pathname: '/(app)/hometab/venuefeed',
+										  })
+								}
+								variant={'link'}
+							>
+								<ButtonText fontWeight={'$medium'}>Close</ButtonText>
+							</Button>
+						) : (
+							<Button size={'lg'} onPress={() => router.back()} variant={'link'}>
+								{started && (
+									<Box
+										bg={'$transparent'}
+										sx={{
+											h: 24,
+										}}
+									>
+										{<ButtonText fontWeight={'$medium'}>Auto close in {seconds}</ButtonText>}
+									</Box>
+								)}
+							</Button>
+						)}
+					</>
+					<HStack space={'md'}>
+						<Button
+							isDisabled={isSubmitted}
+							bg={'$blue600'}
+							size={'md'}
+							rounded={'$full'}
+							onPress={handleSubmit(onSubmit)}
+						>
+							<ButtonText>{isSubmitted ? 'Updated' : isSubmitting ? 'Updating' : 'Continue'}</ButtonText>
+						</Button>
+					</HStack>
+				</HStack>
 			</VStack>
-		</Box>
+		</View>
 	)
 }
