@@ -10,7 +10,7 @@ import {
 	DEVELOPMENT_FOREGROUND_LOCATION_TASK_NAME,
 	DEVELOPMENT_BACKGROUND_LOCATION_TASK_NAME,
 } from '@constants/TaskManagerConstants'
-import { ENVIRONMENT } from '@env'
+import { ENVIRONMENT, SERVER_ENDPOINT } from '@env'
 import { Feather, Ionicons } from '@expo/vector-icons'
 import {
 	Box,
@@ -311,6 +311,15 @@ export default () => {
 	]
 
 	const GeneralOptions = [
+		{
+			type: 'generalinformation',
+			title: 'IP Address',
+			value: SERVER_ENDPOINT,
+			icon: '',
+			onPress: async () => {
+				await Clipboard.setStringAsync(SERVER_ENDPOINT)
+			},
+		},
 		{
 			type: 'generalinformation',
 			title: 'Authorization Token',

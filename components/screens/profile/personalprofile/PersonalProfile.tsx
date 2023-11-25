@@ -6,14 +6,14 @@ import { FriendsList } from '@components/organisms/list/friendslist'
 import CondensedVerticalFriendsNotficationsList from '@components/organisms/list/notifications/friends/CondensedVerticalFriendsNotficationsList'
 import QuickBarfriendCard from '@components/screens/public/venue/venueactions/actioncards/quickbarfriendcard/QuickBarfriendCard'
 import AddRelationship from '@components/screens/tonight/activity/ask/AddRelationship/AddRelationship'
-import { Box, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
-import { GetNotificationsQuery, ProfileType } from '@graphql/generated'
+import { Box, HStack, Heading, VStack } from '@gluestack-ui/themed'
+import { ProfileType } from '@graphql/generated'
 import { AuthorizationReactiveVar } from '@reactive'
 import { DateTime } from 'luxon'
 import { View } from 'react-native'
 
 type Props = {
-	notifications: GetNotificationsQuery | undefined
+	notifications: undefined
 }
 
 const PersonalScreen = ({ notifications }: Props) => {
@@ -32,29 +32,34 @@ const PersonalScreen = ({ notifications }: Props) => {
 			<HStack style={{ alignItems: 'flex-start', marginVertical: 20 }} mx={'$3'} space={'md'}>
 				<ProfilePhoto photo={rAuthorizationVar?.Profile?.profilePhoto} />
 				<VStack space='sm'>
+					<VStack flex={1} space='sm'>
+						<View>
+							<Heading
+								fontSize={'$2xl'}
+								fontWeight='$bold'
+								numberOfLines={1}
+								lineHeight={'$xl'}
+								style={{ textTransform: 'capitalize' }}
+							>
+								{rAuthorizationVar?.Profile?.IdentifiableInformation?.fullname}
+							</Heading>
+							<Heading
+								fontSize={'$lg'}
+								fontWeight='$bold'
+								letterSpacing={1}
+								numberOfLines={1}
+								lineHeight={'$xl'}
+							>
+								@{rAuthorizationVar?.Profile?.IdentifiableInformation?.username}
+							</Heading>
+						</View>
+					</VStack>
 					<View>
 						<Heading fontSize={'$sm'} numberOfLines={1} lineHeight={'$sm'}>
-							NAME
-						</Heading>
-						<Text
-							fontSize={'$md'}
-							fontWeight='$bold'
-							numberOfLines={1}
-							lineHeight={'$md'}
-							style={{ textTransform: 'capitalize' }}
-						>
-							{rAuthorizationVar?.Profile?.IdentifiableInformation?.fullname}
-						</Text>
-					</View>
-					<View>
-						<Heading fontSize={'$sm'} numberOfLines={1} lineHeight={'$sm'}>
-							DATE OF BIRTH
-						</Heading>
-						<Text fontSize={'$md'} fontWeight='$bold'>
 							{DateTime.fromISO(rAuthorizationVar?.Profile?.IdentifiableInformation?.birthday).toFormat(
 								'yyyy LLL dd',
 							)}
-						</Text>
+						</Heading>
 					</View>
 				</VStack>
 			</HStack>

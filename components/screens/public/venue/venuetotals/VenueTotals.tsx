@@ -52,9 +52,9 @@ export default function VenueTotals() {
 	}
 
 	const { data, loading, error } = useGetLiveVenueTotalsQuery({
-		skip: !String(params.profileid),
+		skip: !String(params.username),
 		variables: {
-			profileIdVenue: String(params.profileid),
+			profileIdVenue: String(params.username),
 		},
 		onCompleted: async data => {
 			if (data.getLiveVenueTotals) {
@@ -89,12 +89,12 @@ export default function VenueTotals() {
 								opacity: loading ? 50 : 100,
 							},
 							_dark: {
-								bg: item.name !== 'friends' ? '$light800' : '$primary500',
+								bg: item.name !== 'friends' ? '$light900' : '$primary500',
 								opacity: loading ? 50 : 100,
 							},
 							// height: 50,
 							// width: (width - itemPadding) / 3.33,
-							flex: 1
+							flex: 1,
 						}}
 						p={'$1'}
 						rounded={'$xl'}

@@ -60,7 +60,7 @@ const DeviceManagerProfiles = () => {
 					{profiles?.map((item, index) => {
 						if (item.Profile?.ProfileType === ProfileType.Guest) return null
 						return (
-							<HStack h={80} alignItems='center'>
+							<HStack key={index} h={80} alignItems='center'>
 								<Pressable key={item.id} onPress={() => switchProfile(item)}>
 									<DeviceManagerProfileItemLarge
 										item={item.Profile}

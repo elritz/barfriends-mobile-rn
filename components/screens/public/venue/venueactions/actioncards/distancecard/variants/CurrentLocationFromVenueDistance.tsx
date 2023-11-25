@@ -45,8 +45,10 @@ const CurrentLocationFromVenueDistance = () => {
 		fetchPolicy: 'cache-first',
 		variables: {
 			where: {
-				id: {
-					equals: String(params.profileid),
+				IdentifiableInformation: {
+					username: {
+						equals: String(params.username),
+					},
 				},
 			},
 			currentLocationCoords: {
@@ -160,7 +162,13 @@ const CurrentLocationFromVenueDistance = () => {
 						{metric === 'km' ? `In your area` : `You're super close!`}
 					</Heading>
 
-					<Box pb={'$1'} alignSelf={'center'} alignItems={'center'} flexDirection={'row'} bg={'$transparent'}>
+					<Box
+						pb={'$1'}
+						alignSelf={'center'}
+						alignItems={'center'}
+						flexDirection={'row'}
+						bg={'$transparent'}
+					>
 						<MaterialIcons
 							color={rTheme.theme?.gluestack.tokens.colors.blue500}
 							name='location-pin'

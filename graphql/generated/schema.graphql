@@ -8970,7 +8970,6 @@ type Mutation {
   createVenueProfile(data: CreateVenueDataInput): AuthenticationResponseUnion!
   declineFriendRequest(friendRequestId: String!): Boolean!
   deleteFriendRequest(friendRequestId: String!): Boolean!
-  getAllFriends: Boolean!
   qrAddFriend(dataHash: String!, qrCodeProfileId: String!): Relationship!
   refreshDeviceManager: AuthenticationResponseUnion!
   removeAllFromVenueDeveloper(profileIdVenue: String): Boolean!
@@ -14658,7 +14657,7 @@ type PublicProfilePersonal {
   IdentifiableInformation: IdentifiableInformation
   ProfileType: ProfileType!
   createdAt: DateTime!
-  friendStatus: Boolean!
+  friendStatus: RelationshipStatusResponse!
   id: String!
   profilePhoto: Photo
   tonightStory: Story
@@ -14922,6 +14921,7 @@ type Query {
   getADeviceManager: DeviceManagerDeviceProfilesResponseUnion!
   getAllCitiesByState(countryIsoCode: String!, stateIsoCode: String!): OrganizedCityResponseObject!
   getAllCountries: [CountryResponseObject!]!
+  getAllFriends: [Profile!]!
   getAllStatesByCountry(countryIsoCode: String!): [StateResponseObject!]!
   getAllThemes: [Theme!]!
   getConversations(
@@ -15317,6 +15317,14 @@ input RelationshipScalarWhereWithAggregatesInput {
 enum RelationshipStatus {
   DATING
   FRIENDS
+}
+
+enum RelationshipStatusResponse {
+  BLOCKED
+  DATING
+  FRIENDS
+  NOTFRIENDS
+  REQUESTED
 }
 
 input RelationshipUpdateInput {

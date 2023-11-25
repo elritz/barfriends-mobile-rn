@@ -224,7 +224,7 @@ export default function Photos() {
 												<Heading pb={1} fontWeight={'$black'}>
 													Upload another image
 												</Heading>
-												<Button onPress={pickImage} bg={'$tertiary400'} rounded={'$md'} zIndex={20}>
+												<Button onPress={pickImage} bg={'$tertiary400'} rounded={'$lg'} zIndex={20}>
 													<ButtonText>Add</ButtonText>
 												</Button>
 											</Center>
@@ -263,7 +263,7 @@ export default function Photos() {
 											<Button
 												position={'absolute'}
 												bg='$red400'
-												right={0}
+												right={10}
 												top={10}
 												hitSlop={10}
 												size='xs'
@@ -296,7 +296,7 @@ export default function Photos() {
 					<View
 						style={{
 							position: 'absolute',
-							bottom: 10,
+							bottom: -20,
 							alignSelf: 'center',
 							flexDirection: 'row',
 						}}
@@ -326,6 +326,7 @@ export default function Photos() {
 											{
 												marginHorizontal: 3,
 												height: DOT_SIZE,
+												borderWidth: 0.5,
 												borderRadius: DOT_SIZE / 2,
 											},
 										]}

@@ -255,6 +255,7 @@ export const PUBLIC_PERSONAL_FRAGMENT = gql`
 		# Relationships {
 		# 	...RELATIONSHIP_FRAGMENT
 		# }
+		
 		profilePhoto {
 			id
 			url

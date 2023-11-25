@@ -126,13 +126,6 @@ export default () => {
 		onCompleted: data => {
 			const values = getValues()
 			if (data.sendAuthenticatorDeviceOwnerCode.__typename === 'Code') {
-				console.log(
-					'🚀 ~ file: authenticator.tsx:135 ~ data.sendAuthenticatorDeviceOwnerCode.code:',
-					data.sendAuthenticatorDeviceOwnerCode.code,
-				)
-				console.log('🚀 ~ file: authenticator.tsx:139 ~ values.authenticator:', values.authenticator)
-				console.log('gere ===========> ')
-
 				router.push({
 					pathname: '/(credential)/logincredentialstack/confirmationcode',
 					params: {

@@ -14,7 +14,7 @@ import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import { useRouter } from 'expo-router'
 import { Skeleton } from 'moti/skeleton'
 import { useRef, useState } from 'react'
-import { SafeAreaView, View, StyleSheet } from 'react-native'
+import { SafeAreaView, View } from 'react-native'
 
 export default function DeviceManager() {
 	const [profiles, setProfiles] = useState<Array<AuthorizationDeviceProfile>>([])
@@ -107,13 +107,9 @@ export default function DeviceManager() {
 									if (item.Profile?.ProfileType === ProfileType.Guest) return null
 
 									return (
-										<HStack h={80} alignItems='center' pr={'$3'}>
-											<Pressable key={item.id} onPress={() => switchProfile(item)}>
-												<DeviceManagerProfileItemLarge
-													item={item.Profile}
-													isActive={item.isActive}
-													loading={SWDPLoading}
-												/>
+										<HStack key={item.id} h={80} alignItems='center' pr={'$3'}>
+											<Pressable onPress={() => switchProfile(item)}>
+												<DeviceManagerProfileItemLarge item={item.Profile} loading={SWDPLoading} />
 											</Pressable>
 											<Button
 												variant='link'

@@ -21,7 +21,7 @@ export const CardFullImageNameEmoji = ({ item, cardWidth }: CardFullImageNameEmo
 		<Pressable
 			onPress={() => {
 				router.push({
-					pathname: `/(app)/public/profile/${item?.friendProfile?.id}`,
+					pathname: `/(app)/public/personal/${item?.friendProfile?.IdentifiableInformation?.username}`,
 				})
 			}}
 		>

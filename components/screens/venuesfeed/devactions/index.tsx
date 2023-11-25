@@ -1,4 +1,13 @@
-import { Box, HStack, Heading, Pressable, Text, VStack, Button } from '@gluestack-ui/themed'
+import {
+	Box,
+	HStack,
+	Heading,
+	Pressable,
+	Text,
+	VStack,
+	Button,
+	ButtonText,
+} from '@gluestack-ui/themed'
 import { useRemoveAllFromVenueDeveloperMutation } from '@graphql/generated'
 import { useState } from 'react'
 
@@ -36,9 +45,9 @@ export default function DevActions() {
 					<VStack>
 						<HStack space={'$md'} py={'$2'} mx={'$3'} justifyContent={'space-around'}>
 							<Button isDisabled={loading} onPress={() => removeAllFromVeneues()}>
-								<Button.Text fontWeight='$medium' fontSize='$sm'>
+								<ButtonText fontWeight='$medium' fontSize='$sm'>
 									{loading ? 'Removing patrons' : 'Remove everyone'}
-								</Button.Text>
+								</ButtonText>
 							</Button>
 						</HStack>
 					</VStack>
@@ -50,9 +59,9 @@ export default function DevActions() {
 							setShowDevMode(!showDevMode)
 						}}
 					>
-						<Button.Text fontSize={'$md'} mx={'$2'} textAlign={'center'}>
-							Show dev mode
-						</Button.Text>
+						<ButtonText fontSize={'$md'} mx={'$2'} textAlign={'center'}>
+							Dev Mode Actions
+						</ButtonText>
 					</Pressable>
 				</Box>
 			)}

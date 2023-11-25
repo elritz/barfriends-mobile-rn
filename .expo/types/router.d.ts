@@ -11,7 +11,7 @@ declare module "expo-router" {
   // prettier-ignore
   type DynamicRoutes<T extends string> = `/(app)/modal/devicemanager/${SingleRoutePart<T>}` | `/modal/devicemanager/${SingleRoutePart<T>}` | `/(app)/public/personal/${SingleRoutePart<T>}` | `/public/personal/${SingleRoutePart<T>}` | `/(app)/public/venue/${SingleRoutePart<T>}` | `/public/venue/${SingleRoutePart<T>}`;
   // prettier-ignore
-  type DynamicRouteTemplate = `/(app)/modal/devicemanager/[profileid]` | `/(app)/public/personal/[profileid]` | `/(app)/public/venue/[profileid]`;
+  type DynamicRouteTemplate = `/(app)/modal/devicemanager/[profileid]` | `/(app)/public/personal/[username]` | `/(app)/public/venue/[username]`;
 
   type RelativePathString = `./${string}` | `../${string}` | '..';
   type AbsoluteRoute = DynamicRouteTemplate | StaticRoutes;

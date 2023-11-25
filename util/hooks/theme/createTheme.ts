@@ -39,7 +39,7 @@ const createTheme = ({ colorScheme, localStorageColorScheme }: Props) => {
 				},
 			},
 		},
-	})
+	} as const)
 
 	const rnColors = () => {
 		const rn = colorScheme === 'dark' ? theme.reactnavigation.dark : theme.reactnavigation.light

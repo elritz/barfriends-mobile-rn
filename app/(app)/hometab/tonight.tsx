@@ -80,6 +80,9 @@ export default () => {
 				contentContainerStyle={{
 					paddingHorizontal: 5,
 				}}
+				ListHeaderComponentStyle={{
+					marginBottom: 20
+				}}
 				contentInset={{
 					...contentInsets,
 				}}

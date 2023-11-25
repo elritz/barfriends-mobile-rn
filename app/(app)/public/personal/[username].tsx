@@ -52,18 +52,17 @@ export default () => {
 	}
 
 	const { data, loading, error } = usePublicProfileQuery({
-		skip: !params.profileid,
+		skip: !params.username,
 		variables: {
 			where: {
-				id: {
-					equals: params.profileid,
+				IdentifiableInformation: {
+					username: {
+						equals: String(params.username),
+					},
 				},
 			},
 		},
 	})
-	console.log('🚀 ~ file: [profileid].tsx:69 ~ params.profileid:', params.profileid)
-
-	console.log('🚀 ~ file: [profileid].tsx:73 ~ data:', JSON.stringify(data, null, 4))
 
 	if (loading)
 		return (
@@ -111,6 +110,7 @@ export default () => {
 							console.log('//todo: Message icon to conversation with this person')
 						}}
 						size='xs'
+						bg={'$tertiary400'}
 						rounded={'$full'}
 					>
 						<ButtonText fontSize={'$sm'} mr={'$2'}>
@@ -166,7 +166,7 @@ export default () => {
 		)
 	}
 
-	const RelationShip = () => {
+	const Relationship = () => {
 		return (
 			<HStack mb={'$2'} alignItems='center' justifyContent='space-between'>
 				<HStack alignItems='center' space='sm'>
@@ -199,6 +199,7 @@ export default () => {
 	}
 
 	const FriendRequest = (props: FriendRequestProps) => {
+		console.log('🚀 ~ file: [username].tsx:204 ~ FriendRequest ~ props.status:', props.status)
 		switch (props.status) {
 			case 'friends':
 				return (
@@ -297,7 +298,7 @@ export default () => {
 							p={'$1'}
 							px={'$3'}
 							variant='solid'
-							borderRadius='$full'
+							borderRadius='$lg'
 							sx={{
 								_dark: {
 									bg: '$black',
@@ -350,7 +351,7 @@ export default () => {
 			</>
 		)
 	}
-console.log('contentInsets :>> ', contentInsets);
+
 	return (
 		<LinearGradient
 			style={{
@@ -362,12 +363,12 @@ console.log('contentInsets :>> ', contentInsets);
 			<ScrollView contentInset={contentInsets}>
 				<VStack mx={'$3'} space='md'>
 					<Photos photos={profile?.tonightStory?.photos} profilePhoto={profile?.profilePhoto} />
-					<FriendRequest status='friends' />
+					<FriendRequest status={'notfriends'} />
 					<SectionContainer>
 						<IdentifiableInformation />
 						<TonightVenue />
 						<SectionHeader title='My basics' />
-						<RelationShip />
+						<Relationship />
 						<Tags />
 						<Description />
 					</SectionContainer>

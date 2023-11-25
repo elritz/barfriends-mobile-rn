@@ -88,7 +88,7 @@ export default () => {
 					h: 30,
 				}}
 			>
-				Account
+				Account Actions
 			</Heading>
 			<ScrollView
 				style={{
@@ -96,9 +96,9 @@ export default () => {
 				}}
 			>
 				<VStack space='md' mt={'$4'}>
-					{actions.map(item => {
+					{actions.map((item, index) => {
 						return (
-							<RoundedListItem onPress={item.onPress}>
+							<RoundedListItem key={index} onPress={item.onPress}>
 								<Text fontWeight={'$bold'} fontSize={'$lg'} color={'$primary500'}>
 									{item.title}
 								</Text>

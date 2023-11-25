@@ -7,8 +7,7 @@ import LeaveSection from '@components/screens/public/venue/venueactions/actionca
 import VenueHeader from '@components/screens/public/venue/venueheader/VenueHeader'
 import VenueTotals from '@components/screens/public/venue/venuetotals/VenueTotals'
 import { PUBLIC_VENUE_HEADER_IMAGE_HEIGHT } from '@constants/Layout'
-import { Ionicons } from '@expo/vector-icons'
-import { Box, Button, HStack, Text, VStack } from '@gluestack-ui/themed'
+import { Box, HStack, Text, VStack } from '@gluestack-ui/themed'
 import { usePublicVenueQuery } from '@graphql/generated'
 import { CurrentLocationReactiveVar, SearchAreaReactiveVar, ThemeReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
@@ -16,7 +15,7 @@ import useContentInsets from '@util/hooks/useContentInsets'
 import { useLocalSearchParams } from 'expo-router'
 import { uniqueId } from 'lodash'
 import { Skeleton } from 'moti/skeleton'
-import { Alert, Platform, Share, useWindowDimensions } from 'react-native'
+import { useWindowDimensions } from 'react-native'
 
 const numColumns = 2
 
@@ -29,15 +28,17 @@ export default () => {
 	const rCurrentLocationVar = useReactiveVar(CurrentLocationReactiveVar)
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 
-	const link = `https://revel.com/app/public/venue?profileid=${params.profileid}`
+	const link = `https://revel.com/app/public/venue?username=${params.username}`
 
 	const { data, loading, error } = usePublicVenueQuery({
-		skip: !params.profileid,
+		skip: !params.username,
 		fetchPolicy: 'network-only',
 		variables: {
 			where: {
-				id: {
-					equals: String(params.profileid),
+				IdentifiableInformation: {
+					username: {
+						equals: String(params.username),
+					},
 				},
 			},
 			currentLocationCoords: {

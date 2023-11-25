@@ -29,8 +29,6 @@ export default () => {
 	const router = useRouter()
 	const params = useGlobalSearchParams()
 
-	console.log("🚀 ~ file: confirmationcode.tsx:32 ~ params:", params)
-
 	const isFocused = useIsFocused()
 	const { bottom } = useSafeAreaInsets()
 	const rTheme = useReactiveVar(ThemeReactiveVar)

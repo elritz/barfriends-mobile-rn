@@ -1,5 +1,6 @@
-import { createConfig } from '@gluestack-ui/themed'
 import { config as defaultConfig } from '@gluestack-ui/config'
+import { createConfig } from '@gluestack-ui/themed'
+
 export const config = createConfig({
 	...defaultConfig,
 	tokens: {
@@ -58,10 +59,35 @@ export const config = createConfig({
 			},
 		},
 	},
-})
-type Config = typeof config
-// type Components = typeof components
-declare module '@gluestack-ui/themed' {
-	interface UIConfig extends Config {}
-	// interface UIConfig extends Components {}
+} as const)
+
+type ConfigType = typeof config
+declare module '@gluestack-style/react' {
+	interface ICustomConfig extends ConfigType {}
 }
+
+// type Config = typeof config
+// // type Components = typeof components
+// declare module '@gluestack-style/react' {
+// 	interface UIConfig extends Config {}
+// 	// interface UIConfig extends Components {}
+// }
+
+// export type Config = typeof config
+// declare module '@gluestack-style/react' {
+// 	interface ICustomConfig extends Config {}
+// }
+
+// export type Config = typeof config.theme
+// declare module '@gluestack-style/react' {
+// 	interface ICustomConfig extends Config {}
+// }
+
+// type Components = typeof defaultConfig.components
+// // Extend the internal styled config
+// declare module '@gluestack-ui/themed' {
+// 	// interface UIConfig extends ConfigType {}
+
+// 	interface ICustomConfig extends ConfigType {}
+// 	interface ICustomComponents extends Components {}
+// }

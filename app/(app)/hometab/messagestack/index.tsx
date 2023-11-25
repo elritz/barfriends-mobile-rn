@@ -65,11 +65,11 @@ const Messages = () => {
 	}
 
 	return (
-		<Box flex={1} bg='$green900' mx={'$2'} pt={'$24'}>
-			<Heading mt={'$10'} textAlign='center'>
+		<Box flex={1} mx={'$2'} pt={'$24'}>
+			{/* <Heading mt={'$10'} textAlign='center'>
 				Messages, New Messages✅, Notifications, Pubsub, Searching/Filtering✅, Editing
-			</Heading>
-			{/* <FlashList
+			</Heading> */}
+			<FlashList
 				data={data}
 				showsVerticalScrollIndicator={false}
 				onRefresh={() => {
@@ -93,7 +93,7 @@ const Messages = () => {
 				keyExtractor={({ id }: { id: string }) => id.toString()}
 				renderItem={({ item }) => <HorizontalMessageNotification item={item} />}
 				snapToAlignment='center'
-			/> */}
+			/>
 		</Box>
 	)
 }

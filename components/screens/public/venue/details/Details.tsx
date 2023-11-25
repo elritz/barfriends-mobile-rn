@@ -32,12 +32,14 @@ export default function Details() {
 		: null
 
 	const { data, loading, error } = usePublicVenueQuery({
-		skip: !params.profileid,
+		skip: !params.username,
 		fetchPolicy: 'cache-first',
 		variables: {
 			where: {
-				id: {
-					equals: String(params.profileid),
+				IdentifiableInformation: {
+					username: {
+						equals: String(params.username),
+					},
 				},
 			},
 			...currentLocationCoords,

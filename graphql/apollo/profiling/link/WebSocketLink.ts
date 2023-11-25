@@ -4,7 +4,7 @@ import { createClient } from 'graphql-ws'
 
 const WSLink = new GraphQLWsLink(
 	createClient({
-		url: 'ws://192.168.86.40:4000/graphql',
+		url: 'ws://192.168.86.31:4000/graphql',
 	}),
 )
 export default WSLink

@@ -8,7 +8,7 @@ export default () => {
 				headerShown: false,
 			}}
 		>
-			<Stack.Screen name={'[profileid]'} />
+			<Stack.Screen name={'[username]'} />
 		</Stack>
 	)
 }

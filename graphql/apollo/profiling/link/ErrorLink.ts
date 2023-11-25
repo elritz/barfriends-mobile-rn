@@ -2,7 +2,6 @@
 import { onError } from '@apollo/client/link/error'
 
 const errorLink = onError(({ graphQLErrors, networkError, operation, forward }) => {
-	console.log("🚀 ~ file: ErrorLink.ts:7 ~ errorLink ~ graphQLErrors:", graphQLErrors)
 	if (graphQLErrors) {
 
 

@@ -41,7 +41,7 @@ export default () => {
 								size='md'
 								variant='link'
 							>
-								<ButtonText>Cancel</ButtonText>
+								<Text>Cancel</Text>
 							</Button>
 						)
 					},

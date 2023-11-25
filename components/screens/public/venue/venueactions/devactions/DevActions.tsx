@@ -48,7 +48,7 @@ export default function DevActions() {
 					}}
 				>
 					<Text fontSize={'$md'} mx={'$2'} textAlign={'center'}>
-						Show dev mode
+						Dev Mode Actions
 					</Text>
 				</Pressable>
 			)}

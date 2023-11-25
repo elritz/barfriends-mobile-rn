@@ -20,7 +20,11 @@ export default function UberCard() {
 		fetchPolicy: 'cache-only',
 		variables: {
 			where: {
-				id: { equals: String(params.profileid) },
+				IdentifiableInformation: {
+					username: {
+						equals: String(params.username),
+					},
+				},
 			},
 		},
 	})

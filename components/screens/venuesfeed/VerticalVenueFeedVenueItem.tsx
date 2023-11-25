@@ -175,7 +175,7 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 
 	const _press = () => {
 		router.push({
-			pathname: `/(app)/public/venue/${props.item.id}`,
+			pathname: `/(app)/public/venue/${props.item.IdentifiableInformation?.username}`,
 			params: {
 				distanceInM: Number(props.item.distanceInM),
 				latitude: Number(props.item.Venue?.Location?.Geometry?.latitude),

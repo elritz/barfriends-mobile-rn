@@ -9261,7 +9261,6 @@ export type Mutation = {
   createVenueProfile: AuthenticationResponseUnion;
   declineFriendRequest: Scalars['Boolean']['output'];
   deleteFriendRequest: Scalars['Boolean']['output'];
-  getAllFriends: Scalars['Boolean']['output'];
   qrAddFriend: Relationship;
   refreshDeviceManager: AuthenticationResponseUnion;
   removeAllFromVenueDeveloper: Scalars['Boolean']['output'];
@@ -15157,7 +15156,7 @@ export type PublicProfilePersonal = {
   IdentifiableInformation?: Maybe<IdentifiableInformation>;
   ProfileType: ProfileType;
   createdAt: Scalars['DateTime']['output'];
-  friendStatus: Scalars['Boolean']['output'];
+  friendStatus: RelationshipStatusResponse;
   id: Scalars['String']['output'];
   profilePhoto?: Maybe<Photo>;
   tonightStory?: Maybe<Story>;
@@ -15418,6 +15417,7 @@ export type Query = {
   getADeviceManager: DeviceManagerDeviceProfilesResponseUnion;
   getAllCitiesByState: OrganizedCityResponseObject;
   getAllCountries: Array<CountryResponseObject>;
+  getAllFriends: Array<Profile>;
   getAllStatesByCountry: Array<StateResponseObject>;
   getAllThemes: Array<Theme>;
   getConversations?: Maybe<Array<Conversation>>;
@@ -15961,6 +15961,14 @@ export type RelationshipScalarWhereWithAggregatesInput = {
 export enum RelationshipStatus {
   Dating = 'DATING',
   Friends = 'FRIENDS'
+}
+
+export enum RelationshipStatusResponse {
+  Blocked = 'BLOCKED',
+  Dating = 'DATING',
+  Friends = 'FRIENDS',
+  Notfriends = 'NOTFRIENDS',
+  Requested = 'REQUESTED'
 }
 
 export type RelationshipUpdateInput = {

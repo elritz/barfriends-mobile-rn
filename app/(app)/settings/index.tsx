@@ -95,7 +95,7 @@ export default () => {
 			},
 			icon: <Ionicons size={25} color={iconcolor} name='notifications-circle-outline' />,
 		},
-		rAuthorizationVar?.Profile?.ProfileType !== 'GUEST' && {
+		rAuthorizationVar?.Profile?.ProfileType === 'GUEST' && {
 			title: 'QR code',
 			onPress: () => {
 				console.log('//TODO: QR Code ')
@@ -111,7 +111,7 @@ export default () => {
 				/>
 			),
 		},
-		rAuthorizationVar?.Profile?.ProfileType !== 'GUEST' && {
+		rAuthorizationVar?.Profile?.ProfileType === 'GUEST' && {
 			title: 'Security',
 			onPress: () => {
 				router.push({
@@ -163,9 +163,9 @@ export default () => {
 				Account
 			</Heading>
 			{/* Edit Profile */}
-			{account.map(item => {
+			{account.map((item, index) => {
 				return (
-					<RoundedListItem onPress={item.onPress}>
+					<RoundedListItem key={index} onPress={item.onPress}>
 						<HStack alignItems={'center'} space={'md'}>
 							{item.icon}
 							<Text fontWeight={'$bold'} fontSize={'$lg'}>
@@ -185,9 +185,9 @@ export default () => {
 			>
 				Logins
 			</Heading>
-			{actions.map(item => {
+			{actions.map((item, index) => {
 				return (
-					<RoundedListItem onPress={item.onPress}>
+					<RoundedListItem key={index} onPress={item.onPress}>
 						<HStack
 							alignItems={'center'}
 							px={'$2'}

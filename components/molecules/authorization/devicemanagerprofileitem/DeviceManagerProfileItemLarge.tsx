@@ -2,18 +2,18 @@ import { useReactiveVar } from '@apollo/client'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 import { Box, Center, HStack, Text, VStack } from '@gluestack-ui/themed'
 import { Profile } from '@graphql/generated'
-import { ThemeReactiveVar } from '@reactive'
+import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import { Image, View } from 'react-native'
 import { ActivityIndicator } from 'react-native'
 
 type ProfileItemType = {
 	item: Profile | undefined
-	isActive: boolean | undefined
 	loading?: boolean
 }
 
-const DeviceManagerProfileItemLarge = ({ item, isActive, loading }: ProfileItemType) => {
+const DeviceManagerProfileItemLarge = ({ item, loading }: ProfileItemType) => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
+	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 
 	return (
 		<Box
@@ -31,7 +31,7 @@ const DeviceManagerProfileItemLarge = ({ item, isActive, loading }: ProfileItemT
 				<View style={{ marginRight: 8 }}>
 					{!loading ? (
 						<View style={{ width: 30 }}>
-							{isActive ? (
+							{rAuthorizationVar?.Profile?.id === item?.id ? (
 								<Ionicons
 									name='ios-checkmark-circle'
 									size={25}

@@ -25,13 +25,15 @@ export default () => {
 		loading,
 		error,
 	} = usePublicVenueQuery({
-		skip: !params.profileid,
+		skip: !params.username,
 
 		fetchPolicy: 'network-only',
 		variables: {
 			where: {
-				id: {
-					equals: String(params.profileid),
+				IdentifiableInformation: {
+					username: {
+						equals: String(params.username),
+					},
 				},
 			},
 			currentLocationCoords: {
@@ -48,7 +50,7 @@ export default () => {
 	return (
 		<Stack>
 			<Stack.Screen
-				name={'[profileid]'}
+				name={'[username]'}
 				options={{
 					headerShown: true,
 					headerTransparent: true,
@@ -92,7 +94,15 @@ export default () => {
 											/>
 										</Button>
 									</HStack>
-									{loading ? null : <Text fontSize={'$lg'} fontWeight='$medium' color={rTheme.colorScheme === 'light' ? '$light900' : '$light100'}>{venueData?.publicVenue?.Venue.name}</Text>}
+									{loading ? null : (
+										<Text
+											fontSize={'$lg'}
+											fontWeight='$medium'
+											color={rTheme.colorScheme === 'light' ? '$light900' : '$light100'}
+										>
+											{venueData?.publicVenue?.Venue.name}
+										</Text>
+									)}
 									<HStack flex={1} justifyContent={'flex-end'} space={'md'} alignItems={'center'}>
 										<Button
 											height={NAVIGATION_BUTTON_HEIGHT}
