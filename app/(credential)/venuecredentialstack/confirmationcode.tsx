@@ -1,6 +1,6 @@
 // TODO: FN(onPress(Resend Code)) - ln:162 -- when the user presses resend code need to resend and keep track of how many times
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
+import { Box, Button, Heading, Pressable, Text, VStack, ButtonText } from '@gluestack-ui/themed'
 import { Feather } from '@expo/vector-icons'
 import { useIsFocused } from '@react-navigation/native'
 import {
@@ -134,7 +134,7 @@ export default () => {
 					{complete ? (
 						<VStack space={'sm'} justifyContent={'space-around'}>
 							<Button variant={'link'} size={'md'} justifyContent={'flex-start'}>
-								<Button.Text>Resend code</Button.Text>
+								<ButtonText>Resend code</ButtonText>
 							</Button>
 							<Button
 								variant={'link'}
@@ -142,7 +142,7 @@ export default () => {
 								justifyContent={'flex-start'}
 								onPress={() => router.back()}
 							>
-								<Button.Text>Update information</Button.Text>
+								<ButtonText>Update information</ButtonText>
 							</Button>
 						</VStack>
 					) : (

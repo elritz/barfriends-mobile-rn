@@ -1,6 +1,6 @@
 import { Form } from './_layout'
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
+import { Box, Button, HStack, Heading, Text, VStack, ButtonText } from '@gluestack-ui/themed'
 import { LOCAL_STORAGE_SEARCH_AREA } from '@constants/StorageConstants'
 import { LocalStoragePreferenceSearchAreaType } from '@ctypes/preferences'
 import { CityResponseObject, useGetAllCitiesByStateQuery } from '@graphql/generated'
@@ -217,7 +217,7 @@ export default function SearchStateCities() {
 					) : null}
 					{watch('city.name') === item.name ? (
 						<Button onPress={() => _pressItem(item)} rounded={'$full'} bg='$blue500' size='xs'>
-							<Button.Text fontSize={'$xs'}>Continue</Button.Text>
+							<ButtonText fontSize={'$xs'}>Continue</ButtonText>
 						</Button>
 					) : null}
 				</HStack>

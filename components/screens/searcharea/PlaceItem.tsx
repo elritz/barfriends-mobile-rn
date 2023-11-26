@@ -1,11 +1,11 @@
 import { Form } from '@app/(app)/searcharea/_layout'
-import { Button } from '@gluestack-ui/themed'
+import { Button, ButtonText } from '@gluestack-ui/themed'
 import { useFormContext } from 'react-hook-form'
 
 export default function PlaceItem({ item, onPress, index, itemType }) {
 	const formContext = useFormContext<Form>()
 	const { watch } = formContext
-	
+
 	return (
 		<Button
 			key={index}
@@ -24,7 +24,7 @@ export default function PlaceItem({ item, onPress, index, itemType }) {
 			onPress={() => onPress()}
 			justifyContent='flex-start'
 		>
-			<Button.Text
+			<ButtonText
 				mt={'$0.5'}
 				ml={'$3'}
 				textAlign={'center'}
@@ -35,10 +35,10 @@ export default function PlaceItem({ item, onPress, index, itemType }) {
 			>
 				{item?.flag}
 				{` `}
-				<Button.Text fontWeight={'$medium'} fontSize={'$lg'} numberOfLines={1} ellipsizeMode={'tail'}>
+				<ButtonText fontWeight={'$medium'} fontSize={'$lg'} numberOfLines={1} ellipsizeMode={'tail'}>
 					{item.name}
-				</Button.Text>
-			</Button.Text>
+				</ButtonText>
+			</ButtonText>
 		</Button>
 	)
 }

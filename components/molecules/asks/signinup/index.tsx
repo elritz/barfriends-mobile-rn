@@ -22,7 +22,7 @@ export default () => {
 						w: '95%',
 					}}
 					mt={'$4'}
-					rounded={'$md'}
+					rounded={'$lg'}
 				>
 					<ButtonText textTransform='uppercase' fontWeight='$bold' fontSize={'$lg'}>
 						Sign up

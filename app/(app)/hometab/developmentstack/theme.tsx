@@ -3,7 +3,16 @@ import {
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
 } from '@constants/ReactNavigationConstants'
-import { Box, Button, Divider, HStack, Heading, Pressable, VStack } from '@gluestack-ui/themed'
+import {
+	Box,
+	Button,
+	ButtonText,
+	Divider,
+	HStack,
+	Heading,
+	Pressable,
+	VStack,
+} from '@gluestack-ui/themed'
 import {
 	AuthorizationDeviceProfile,
 	useGetAllThemesQuery,
@@ -233,7 +242,7 @@ export default function Preferences() {
 							borderColor={rTheme.localStorageColorScheme === 'light' ? '$primary300' : 'transparent'}
 							borderWidth={'$2'}
 						>
-							<Button.Text color={'$black'}>Light</Button.Text>
+							<ButtonyText color={'$black'}>Light</ButtonyText>
 						</Button>
 						<Button
 							flex={1}
@@ -244,7 +253,7 @@ export default function Preferences() {
 							borderColor={rTheme.localStorageColorScheme === 'dark' ? '$primary300' : 'transparent'}
 							borderWidth={'$2'}
 						>
-							<Button.Text color={'$white'}>Dark</Button.Text>
+							<ButtonText color={'$white'}>Dark</ButtonText>
 						</Button>
 						<Button
 							onPress={async () => {
@@ -255,9 +264,9 @@ export default function Preferences() {
 							borderColor={rTheme.localStorageColorScheme === 'system' ? '$primary300' : 'transparent'}
 							borderWidth={'$2'}
 						>
-							<Button.Text color={rTheme.colorScheme === 'light' ? '$black' : '$white'}>
+							<ButtonText color={rTheme.colorScheme === 'light' ? '$black' : '$white'}>
 								System
-							</Button.Text>
+							</ButtonText>
 						</Button>
 					</HStack>
 				)

@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Button } from '@gluestack-ui/themed'
+import { Button, ButtonText } from '@gluestack-ui/themed'
 import { PermissionForegroundLocationReactiveVar } from '@reactive'
 import useSetSearchAreaWithLocation from '@util/hooks/searcharea/useSetSearchAreaWithLocation'
 import { useRouter } from 'expo-router'
@@ -18,9 +18,9 @@ export default function PermissionButtonSearchAreaLocation() {
 
 	return (
 		<Button w={'95%'} onPress={async () => await _press()} mt={'$4'} rounded={'$md'}>
-			<Button.Text textTransform='uppercase' fontWeight='$bold' fontSize={'$lg'}>
+			<ButtonText textTransform='uppercase' fontWeight='$bold' fontSize={'$lg'}>
 				CONTINUE
-			</Button.Text>
+			</ButtonText>
 		</Button>
 	)
 }

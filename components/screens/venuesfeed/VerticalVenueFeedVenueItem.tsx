@@ -1,6 +1,6 @@
 // TODO: If user is joined to the venue remove join button show joined
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
+import { Box, Button, Heading, Pressable, Text, VStack, ButtonText } from '@gluestack-ui/themed'
 import { GET_LIVE_VENUE_TOTALS_QUERY } from '@graphql/DM/profiling/out/index.query'
 import {
 	AuthorizationDeviceProfile,
@@ -268,9 +268,9 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 									w={'auto'}
 								>
 									{JVLoading || RPJVLoading ? (
-										<Button.Text>{isJoined ? 'Leaving' : 'Joining'}</Button.Text>
+										<ButtonText>{isJoined ? 'Leaving' : 'Joining'}</ButtonText>
 									) : (
-										<Button.Text>{isJoined ? 'Leave' : 'Join'}</Button.Text>
+										<ButtonText>{isJoined ? 'Leave' : 'Join'}</ButtonText>
 									)}
 								</Button>
 							) : metric === 'm' && distance < 100 ? (
@@ -288,7 +288,7 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 									}}
 									rounded={'$md'}
 								>
-									<Button.Text>Refresh distance</Button.Text>
+									<ButtonText>Refresh distance</ButtonText>
 								</Button>
 							) : null}
 						</>

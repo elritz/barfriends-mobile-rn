@@ -8,6 +8,7 @@ import {
 	Pressable,
 	RemoveIcon,
 	Text,
+	ButtonText,
 } from '@gluestack-ui/themed'
 import { MaterialIcons } from '@expo/vector-icons'
 import { PhotoCreateManyProfileInput, useAddStoryPhotosMutation } from '@graphql/generated'
@@ -417,7 +418,7 @@ export default function Photos() {
 								Ready to go out? Add photos of your fit and pick your emojimood
 							</Text>
 							<Button onPress={pickImage} bg={'$tertiary400'} rounded={'$md'} mt={'$4'}>
-								<Button.Text>Upload{loading ? 'ing' : ''} images</Button.Text>
+								<ButtonText>Upload{loading ? 'ing' : ''} images</ButtonText>
 							</Button>
 						</Center>
 					</Box>

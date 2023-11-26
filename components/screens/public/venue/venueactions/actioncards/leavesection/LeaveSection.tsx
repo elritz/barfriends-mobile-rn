@@ -1,6 +1,6 @@
 // TODO: FN(Join a venue functionality) The join button has no ability to join a venue or track the data
 import { useReactiveVar } from '@apollo/client'
-import { Button, HStack, Heading } from '@gluestack-ui/themed'
+import { Button, HStack, Heading, ButtonText } from '@gluestack-ui/themed'
 import { GET_LIVE_VENUE_TOTALS_QUERY } from '@graphql/DM/profiling/out/index.query'
 import {
 	AuthorizationDeviceProfile,
@@ -80,7 +80,7 @@ export default function LeaveSection() {
 					size='sm'
 					variant='outline'
 				>
-					<Button.Text>{JVLoading ? 'Leaving' : 'Leave'}</Button.Text>
+					<ButtonText>{JVLoading ? 'Leaving' : 'Leave'}</ButtonText>
 				</Button>
 			</HStack>
 		)

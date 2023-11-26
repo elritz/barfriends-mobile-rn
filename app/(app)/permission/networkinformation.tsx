@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Divider, Heading, Text, VStack } from '@gluestack-ui/themed'
+import { Box, Button, Divider, Heading, ButtonText, VStack } from '@gluestack-ui/themed'
 import PermissionDetailItem from '@components/screens/permissions/PermissionDetailItem'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { useUpsertDevicePushTokenMutation } from '@graphql/generated'
@@ -294,17 +294,17 @@ export default () => {
 							: createTwoButtonAlert()
 					}
 				>
-					<Button.Text>
+					<ButtonText>
 						{!rNotificationsPermission?.granted
 							? rNotificationsPermission?.canAskAgain && !rNotificationsPermission.granted
 								? 'Continue'
 								: 'Go to Phone Settings'
 							: 'Granted'}
-					</Button.Text>
+					</ButtonText>
 				</Button>
 				{!started ? (
 					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
-						<Button.Text fontWeight={'$medium'}>Close</Button.Text>
+						<ButtonText fontWeight={'$medium'}>Close</ButtonText>
 					</Button>
 				) : (
 					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
@@ -315,7 +315,7 @@ export default () => {
 									h: 24,
 								}}
 							>
-								{<Button.Text fontWeight={'$medium'}>Auto close in {seconds}</Button.Text>}
+								{<ButtonText fontWeight={'$medium'}>Auto close in {seconds}</ButtonText>}
 							</Box>
 						)}
 					</Button>

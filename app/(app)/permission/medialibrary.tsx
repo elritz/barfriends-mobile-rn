@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
 import IllustrationDynamicMedia from '@assets/images/media/IllustrationDynamicMedia'
-import { Box, Button, Divider, Heading, Text, VStack } from '@gluestack-ui/themed'
+import { Box, Button, Divider, Heading, Text, VStack, ButtonText } from '@gluestack-ui/themed'
 import PermissionDetailItem from '@components/screens/permissions/PermissionDetailItem'
 import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 import { PermissionMediaReactiveVar, ThemeReactiveVar } from '@reactive'
@@ -170,17 +170,17 @@ export default () => {
 						rPermissionMedia?.canAskAgain ? askMediaLibraryPermissionAsync() : openPhoneSettings()
 					}
 				>
-					<Button.Text>
+					<ButtonText>
 						{!rPermissionMedia?.granted
 							? rPermissionMedia?.canAskAgain && !rPermissionMedia.granted
 								? 'Continue'
 								: 'Go to Phone Settings'
 							: 'Granted'}
-					</Button.Text>
+					</ButtonText>
 				</Button>
 				{!started ? (
 					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
-						<Button.Text fontWeight={'$medium'}>Close</Button.Text>
+						<ButtonText fontWeight={'$medium'}>Close</ButtonText>
 					</Button>
 				) : (
 					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>

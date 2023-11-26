@@ -1,6 +1,6 @@
 import { Form } from './_layout'
 import { useReactiveVar } from '@apollo/client'
-import { Button, Center, Text } from '@gluestack-ui/themed'
+import { Button, Center, Text, ButtonText } from '@gluestack-ui/themed'
 import { StateResponseObject, useGetAllStatesByCountryQuery } from '@graphql/generated'
 import { ThemeReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
@@ -174,7 +174,7 @@ export default function SearchCountryStates() {
 				</Text>
 				{watch('state.name') === item.isoCode ? (
 					<Button onPress={() => _pressItem(item)} rounded={'$full'} bg='$blue500' size='xs' mr={'$3'}>
-						<Button.Text fontSize={'$xs'}>Continue</Button.Text>
+						<ButtonText fontSize={'$xs'}>Continue</ButtonText>
 					</Button>
 				) : null}
 			</Button>

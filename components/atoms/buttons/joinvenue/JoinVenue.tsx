@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { Button } from '@gluestack-ui/themed'
+import { Button, ButtonText } from '@gluestack-ui/themed'
 import { GET_LIVE_VENUE_TOTALS_QUERY } from '@graphql/DM/profiling/out/index.query'
 import {
 	AuthorizationDeviceProfile,
@@ -86,7 +86,7 @@ export default function JoinVenue() {
 			isDisabled={isJoined}
 			rounded={'$md'}
 		>
-			<Button.Text>{JVLoading ? 'Joining' : 'Join'}</Button.Text>
+			<ButtonText>{JVLoading ? 'Joining' : 'Join'}</ButtonText>
 		</Button>
 	)
 }

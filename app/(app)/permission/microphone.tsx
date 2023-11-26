@@ -1,6 +1,6 @@
 // TODO: FN(Open camera app) ln:66
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Divider, Heading, Text, VStack } from '@gluestack-ui/themed'
+import { Box, Button, Divider, Heading, Text, VStack, ButtonText } from '@gluestack-ui/themed'
 import PermissionDetailItem from '@components/screens/permissions/PermissionDetailItem'
 import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { PermissionMicrophoneReactiveVar, ThemeReactiveVar } from '@reactive'
@@ -206,17 +206,17 @@ export default () => {
 							: createTwoButtonAlert()
 					}
 				>
-					<Button.Text>
+					<ButtonText>
 						{!rMicrophonePermission?.granted
 							? rMicrophonePermission?.canAskAgain && !rMicrophonePermission.granted
 								? 'Continue'
 								: 'Go to Phone Settings'
 							: 'Granted'}
-					</Button.Text>
+					</ButtonText>
 				</Button>
 				{!started ? (
 					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
-						<Button.Text fontWeight={'$medium'}>Close</Button.Text>
+						<ButtonText fontWeight={'$medium'}>Close</ButtonText>
 					</Button>
 				) : (
 					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>

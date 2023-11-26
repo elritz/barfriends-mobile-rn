@@ -15,6 +15,7 @@ import { ScrollView } from 'react-native'
 
 const Wrapper = ({ children }) => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
+	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 	return (
 		<BlurView
 			intensity={60}
@@ -29,6 +30,11 @@ const Wrapper = ({ children }) => {
 				justifyContent: 'center',
 				alignItems: 'center',
 				overflow: 'hidden',
+				backgroundColor: rAuthorizationVar?.Profile?.tonightStory?.emojimood
+					? 'transparent'
+					: rTheme.colorScheme === 'light'
+					? rTheme.theme.gluestack.tokens.colors.light100
+					: rTheme.theme.gluestack.tokens.colors.light800,
 			}}
 			// sx={{
 			// 	h: 200,
@@ -81,7 +87,7 @@ export default () => {
 					paddingHorizontal: 5,
 				}}
 				ListHeaderComponentStyle={{
-					marginBottom: 20
+					marginBottom: 20,
 				}}
 				contentInset={{
 					...contentInsets,

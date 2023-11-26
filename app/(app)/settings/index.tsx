@@ -72,6 +72,11 @@ export default () => {
 		</Pressable>
 	)
 
+	console.log(
+		'!!(rAuthorizationVar?.Profile?. ',
+		!(rAuthorizationVar?.Profile?.ProfileType === 'GUEST'),
+	)
+
 	const account = [
 		{
 			title: rAuthorizationVar?.Profile?.ProfileType === 'PERSONAL' ? 'Edit Profile' : 'Edit Venue',
@@ -95,7 +100,7 @@ export default () => {
 			},
 			icon: <Ionicons size={25} color={iconcolor} name='notifications-circle-outline' />,
 		},
-		rAuthorizationVar?.Profile?.ProfileType === 'GUEST' && {
+		{
 			title: 'QR code',
 			onPress: () => {
 				console.log('//TODO: QR Code ')
@@ -111,7 +116,7 @@ export default () => {
 				/>
 			),
 		},
-		rAuthorizationVar?.Profile?.ProfileType === 'GUEST' && {
+		{
 			title: 'Security',
 			onPress: () => {
 				router.push({

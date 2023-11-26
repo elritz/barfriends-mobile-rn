@@ -1,6 +1,15 @@
 // TODO: FN()
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Center, HStack, Pressable, Text, VStack } from '@gluestack-ui/themed'
+import {
+	Box,
+	Button,
+	Center,
+	HStack,
+	Pressable,
+	Text,
+	VStack,
+	ButtonText,
+} from '@gluestack-ui/themed'
 import { Feather, Ionicons, MaterialIcons } from '@expo/vector-icons'
 import {
 	CredentialPersonalProfileReactiveVar,
@@ -192,7 +201,7 @@ export default () => {
 									w: '85%',
 								}}
 							>
-								<Button.Text>Continue</Button.Text>
+								<ButtonText>Continue</ButtonText>
 							</Button>
 						</VStack>
 					</Box>
@@ -333,9 +342,9 @@ export default () => {
 					variant={'link'}
 					disabled={imageUploading}
 				>
-					<Button.Text color={'$primary500'} fontSize={'$xl'}>
+					<ButtonText color={'$primary500'} fontSize={'$xl'}>
 						{imageUploading ? 'Continue' : 'Uploading'}
-					</Button.Text>
+					</ButtonText>
 					<Feather
 						name='arrow-right'
 						size={29}

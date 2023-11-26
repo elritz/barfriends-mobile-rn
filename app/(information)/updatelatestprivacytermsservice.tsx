@@ -1,5 +1,5 @@
 // TODO: FN(What functionality was suppose to be here)
-import { Box, Button, HStack, Heading, Text } from '@gluestack-ui/themed'
+import { Box, Button, HStack, Heading, Text, ButtonText } from '@gluestack-ui/themed'
 import { useUpdateProfilePrivacyTermsDocumentUpdateMutation } from '@graphql/generated'
 import { Link, useRouter } from 'expo-router'
 
@@ -55,7 +55,7 @@ export default function TermsServices() {
 						alignSelf='center'
 						size='lg'
 					>
-						<Button.Text mr={'$2'}>Continue</Button.Text>
+						<ButtonText mr={'$2'}>Continue</ButtonText>
 						{loading && <Button.Spinner size={'small'} />}
 					</Button>
 				</HStack>

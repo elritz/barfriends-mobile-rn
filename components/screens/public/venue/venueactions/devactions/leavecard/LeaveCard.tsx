@@ -1,6 +1,6 @@
 // TODO: FN(Join a venue functionality) The join button has no ability to join a venue or track the data
 import { useReactiveVar } from '@apollo/client'
-import { Button, VStack } from '@gluestack-ui/themed'
+import { Button, VStack, ButtonText } from '@gluestack-ui/themed'
 import { GET_LIVE_VENUE_TOTALS_QUERY } from '@graphql/DM/profiling/out/index.query'
 import {
 	AuthorizationDeviceProfile,
@@ -19,10 +19,9 @@ export default function LeaveCard() {
 	const [outId, setOutId] = useState('')
 
 	useEffect(() => {
-		const joinedToVenue =
-			rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out.map(item => {
-				return item.venueProfileId
-			})
+		const joinedToVenue = rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out.map(item => {
+			return item.venueProfileId
+		})
 		const out = rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out.find(
 			item => item.venueProfileId === String(params.profileid),
 		)
@@ -84,7 +83,7 @@ export default function LeaveCard() {
 					w: 100,
 				}}
 			>
-				<Button.Text>{isLeaving ? 'Leaving' : 'Leave'}</Button.Text>
+				<ButtonText>{isLeaving ? 'Leaving' : 'Leave'}</ButtonText>
 			</Button>
 		</VStack>
 	)

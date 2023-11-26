@@ -1,5 +1,14 @@
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Divider, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
+import {
+	Box,
+	Button,
+	Divider,
+	HStack,
+	Heading,
+	Text,
+	VStack,
+	ButtonText,
+} from '@gluestack-ui/themed'
 import { APP_STORE_URL_LINK } from '@constants/App'
 import {
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
@@ -84,7 +93,7 @@ export default () => {
 						})
 					}
 				>
-					<Button.Text>Continue</Button.Text>
+					<ButtonText>Continue</ButtonText>
 				</Button>
 			</Box>
 		)

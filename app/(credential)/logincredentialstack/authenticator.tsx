@@ -277,7 +277,7 @@ export default () => {
 								})
 							}}
 							my={'$3'}
-							rounded={'$md'}
+							rounded={'$lg'}
 						>
 							<ButtonText textTransform='uppercase' fontWeight='$black' fontSize={'$lg'}>
 								Sign up

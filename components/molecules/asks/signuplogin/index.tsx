@@ -60,7 +60,7 @@ export default (props: Props) => {
 					sx={{
 						w: '95%',
 					}}
-					rounded={'$md'}
+					rounded={'$lg'}
 				>
 					<ButtonText
 						textTransform='uppercase'

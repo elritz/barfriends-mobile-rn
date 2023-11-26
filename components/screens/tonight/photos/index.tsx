@@ -340,7 +340,15 @@ export default function Photos() {
 				<BlurView
 					tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 					intensity={60}
-					style={{ borderRadius: 15, overflow: 'hidden', marginHorizontal: 7 }}
+					style={{
+						borderRadius: 15,
+						overflow: 'hidden',
+						backgroundColor: rAuthorizationVar?.Profile?.tonightStory?.emojimood
+							? 'transparent'
+							: rTheme.colorScheme === 'light'
+							? rTheme.theme.gluestack.tokens.colors.light100
+							: rTheme.theme.gluestack.tokens.colors.light800,
+					}}
 				>
 					<Box
 						bg={'$transparent'}
@@ -350,7 +358,7 @@ export default function Photos() {
 						}}
 						rounded={'$md'}
 					>
-						<Center flex={1} mx={'$5'}>
+						<Center flex={1}>
 							<Box
 								sx={{
 									w: '100%',
@@ -404,10 +412,10 @@ export default function Photos() {
 							<Heading pb={1} fontWeight={'$black'}>
 								Start tonights story
 							</Heading>
-							<Text fontSize={'$lg'} fontWeight={'$medium'}>
+							<Text fontSize={'$lg'} fontWeight={'$medium'} w={'$3/4'} textAlign='center'>
 								Add photos of your fit and pick your emojimood
 							</Text>
-							<Button onPress={pickImage} bg={'$tertiary400'} rounded={'$md'} mt={'$4'}>
+							<Button onPress={pickImage} bg={'$tertiary400'} rounded={'$lg'} mt={'$10'}>
 								<ButtonText>Select{loading ? 'ing' : ''} images</ButtonText>
 							</Button>
 						</Center>

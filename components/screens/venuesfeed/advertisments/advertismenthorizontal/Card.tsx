@@ -1,6 +1,6 @@
 // TODO: UX(Complete this card for venues etc....)
 import { Product } from './Model'
-import { Box, Button, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
+import { Box, Button, HStack, Heading, Text, VStack, ButtonText } from '@gluestack-ui/themed'
 import { Image } from 'react-native'
 import { Dimensions, View } from 'react-native'
 
@@ -67,14 +67,14 @@ const Card = ({ product }: CardProps) => {
 									bg: product.buttonColor,
 								}}
 							>
-								<Button.Text
+								<ButtonText
 									px={'$2'}
 									sx={{
 										color: product.buttonTextColor,
 									}}
 								>
 									{product.buttoncta}
-								</Button.Text>
+								</ButtonText>
 							</Button>
 						</HStack>
 					</VStack>
@@ -125,14 +125,14 @@ const Card = ({ product }: CardProps) => {
 								bg: product.buttonColor,
 							}}
 						>
-							<Button.Text
+							<ButtonText
 								px={'$2'}
 								sx={{
 									color: product.buttonTextColor,
 								}}
 							>
 								{product.buttoncta}
-							</Button.Text>
+							</ButtonText>
 						</Button>
 					</View>
 				</Box>
@@ -191,14 +191,14 @@ const Card = ({ product }: CardProps) => {
 									bg: product.buttonColor,
 								}}
 							>
-								<Button.Text
+								<ButtonText
 									px={'$2'}
 									sx={{
 										color: product.buttonTextColor,
 									}}
 								>
 									{product.buttoncta}
-								</Button.Text>
+								</ButtonText>
 							</Button>
 						</HStack>
 					</VStack>
@@ -244,14 +244,14 @@ const Card = ({ product }: CardProps) => {
 									bg: product.buttonColor,
 								}}
 							>
-								<Button.Text
+								<ButtonText
 									px={'$2'}
 									sx={{
 										color: product.buttonTextColor,
 									}}
 								>
 									{product.buttoncta}
-								</Button.Text>
+								</ButtonText>
 							</Button>
 						</HStack>
 					</VStack>
@@ -326,14 +326,14 @@ const Card = ({ product }: CardProps) => {
 									bg: product.buttonColor,
 								}}
 							>
-								<Button.Text
+								<ButtonText
 									px={'$2'}
 									sx={{
 										color: product.buttonTextColor,
 									}}
 								>
 									{product.buttoncta}
-								</Button.Text>
+								</ButtonText>
 							</Button>
 						</HStack>
 					</VStack>

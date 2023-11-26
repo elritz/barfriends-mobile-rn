@@ -6,9 +6,10 @@ import { FriendsList } from '@components/organisms/list/friendslist'
 import CondensedVerticalFriendsNotficationsList from '@components/organisms/list/notifications/friends/CondensedVerticalFriendsNotficationsList'
 import QuickBarfriendCard from '@components/screens/public/venue/venueactions/actioncards/quickbarfriendcard/QuickBarfriendCard'
 import AddRelationship from '@components/screens/tonight/activity/ask/AddRelationship/AddRelationship'
-import { Box, HStack, Heading, VStack } from '@gluestack-ui/themed'
+import { Box, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import { ProfileType } from '@graphql/generated'
 import { AuthorizationReactiveVar } from '@reactive'
+import { capitalizeFirstLetter } from '@util/helpers/capitalizeFirstLetter'
 import { DateTime } from 'luxon'
 import { View } from 'react-native'
 
@@ -34,33 +35,40 @@ const PersonalScreen = ({ notifications }: Props) => {
 				<VStack space='sm'>
 					<VStack flex={1} space='sm'>
 						<View>
-							<Heading
-								fontSize={'$2xl'}
-								fontWeight='$bold'
-								numberOfLines={1}
-								lineHeight={'$xl'}
-								style={{ textTransform: 'capitalize' }}
-							>
-								{rAuthorizationVar?.Profile?.IdentifiableInformation?.fullname}
-							</Heading>
-							<Heading
-								fontSize={'$lg'}
-								fontWeight='$bold'
-								letterSpacing={1}
-								numberOfLines={1}
-								lineHeight={'$xl'}
-							>
-								@{rAuthorizationVar?.Profile?.IdentifiableInformation?.username}
-							</Heading>
+							<VStack flex={1} position='relative' mt={'$3'} space='sm'>
+								<HStack justifyContent='space-between'>
+									<Text
+										fontSize={'$sm'}
+										fontWeight={'$medium'}
+										position='absolute'
+										numberOfLines={1}
+										sx={{
+											top: -20,
+										}}
+									>
+										@{rAuthorizationVar?.Profile?.IdentifiableInformation?.username}
+									</Text>
+									<HStack>
+										<Text
+											lineHeight={'$2xl'}
+											fontSize={'$3xl'}
+											letterSpacing={'$sm'}
+											numberOfLines={2}
+											fontWeight='$bold'
+										>
+											{rAuthorizationVar?.Profile?.IdentifiableInformation?.fullname}
+										</Text>
+									</HStack>
+								</HStack>
+								<Heading fontWeight='$light' fontSize={'$md'} numberOfLines={1} lineHeight={'$xs'}>
+									{DateTime.fromISO(rAuthorizationVar?.Profile?.IdentifiableInformation?.birthday).toFormat(
+										'yyyy LLLL dd',
+									)}
+								</Heading>
+							</VStack>
 						</View>
 					</VStack>
-					<View>
-						<Heading fontSize={'$sm'} numberOfLines={1} lineHeight={'$sm'}>
-							{DateTime.fromISO(rAuthorizationVar?.Profile?.IdentifiableInformation?.birthday).toFormat(
-								'yyyy LLL dd',
-							)}
-						</Heading>
-					</View>
+					<View></View>
 				</VStack>
 			</HStack>
 			<Box mx={'$2'}>

@@ -1,4 +1,4 @@
-import { Button, Heading, Text, VStack } from '@gluestack-ui/themed'
+import { Button, Heading, VStack, ButtonText } from '@gluestack-ui/themed'
 import { useRouter } from 'expo-router'
 
 export default function AskForegroundLocationPermission() {
@@ -30,7 +30,7 @@ export default function AskForegroundLocationPermission() {
 					})
 				}
 			>
-				<Button.Text>Continue</Button.Text>
+				<ButtonText>Continue</ButtonText>
 			</Button>
 		</VStack>
 	)

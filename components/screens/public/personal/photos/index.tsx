@@ -1,22 +1,35 @@
-import { useReactiveVar } from '@apollo/client';
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import { AddIcon, Box, Button, Center, Heading, Pressable, RemoveIcon } from '@gluestack-ui/themed';
-import { Photo, PhotoCreateManyProfileInput, useAddStoryPhotosMutation } from '@graphql/generated';
-import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive';
-import useCloudinaryImageUploading from '@util/uploading/useCloudinaryImageUploading';
-import { BlurView } from 'expo-blur';
-import * as ImagePicker from 'expo-image-picker';
-import { useCallback, useState } from 'react';
-import { Image } from 'react-native';
-import { ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
-import Animated, { interpolate, interpolateColor, useAnimatedRef, useAnimatedScrollHandler, useAnimatedStyle, useDerivedValue, useSharedValue } from 'react-native-reanimated';
-
+import { useReactiveVar } from '@apollo/client'
+import { Ionicons, MaterialIcons } from '@expo/vector-icons'
+import { AddIcon, Box, Button, Center, Heading, Pressable, RemoveIcon } from '@gluestack-ui/themed'
+import {
+	Emojimood,
+	Photo,
+	PhotoCreateManyProfileInput,
+	useAddStoryPhotosMutation,
+} from '@graphql/generated'
+import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
+import useCloudinaryImageUploading from '@util/uploading/useCloudinaryImageUploading'
+import { BlurView } from 'expo-blur'
+import * as ImagePicker from 'expo-image-picker'
+import { useCallback, useState } from 'react'
+import { Image } from 'react-native'
+import { ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native'
+import Animated, {
+	interpolate,
+	interpolateColor,
+	useAnimatedRef,
+	useAnimatedScrollHandler,
+	useAnimatedStyle,
+	useDerivedValue,
+	useSharedValue,
+} from 'react-native-reanimated'
 
 const size = 70
 
 type Props = {
 	photos: Photo[] | undefined
 	profilePhoto: Photo | null | undefined
+	emojimoodsColors: String[] | null | undefined
 }
 
 export default function Photos(props: Props) {
@@ -89,7 +102,6 @@ export default function Photos(props: Props) {
 		},
 	})
 
-
 	if (!props.photos?.length && !props.profilePhoto) {
 		return (
 			<BlurView
@@ -97,6 +109,11 @@ export default function Photos(props: Props) {
 					borderRadius: 13,
 					overflow: 'hidden',
 					height: containerHeight,
+					backgroundColor: props.emojimoodsColors?.length
+						? 'transparent'
+						: rTheme.colorScheme === 'light'
+						? rTheme.theme.gluestack.tokens.colors.light100
+						: rTheme.theme.gluestack.tokens.colors.light800,
 				}}
 				intensity={80}
 				tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
@@ -140,13 +157,18 @@ export default function Photos(props: Props) {
 	}
 
 	if (!props.photos?.length && props.profilePhoto) {
-		console.log('props.pro -----------------filePhoto :>> ', props.profilePhoto)
+		console.log('props.pro -----------------filePhoto :>> ', props.emojimoodsColors)
 		return (
 			<BlurView
 				style={{
 					borderRadius: 13,
 					overflow: 'hidden',
 					height: containerHeight,
+					backgroundColor: props.emojimoodsColors?.length
+						? 'transparent'
+						: rTheme.colorScheme === 'light'
+						? rTheme.theme.gluestack.tokens.colors.light100
+						: rTheme.theme.gluestack.tokens.colors.light800,
 				}}
 				intensity={80}
 				tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}

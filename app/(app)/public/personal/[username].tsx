@@ -39,9 +39,14 @@ export default () => {
 		return (
 			<BlurView
 				style={{
-					padding: 10,
+					padding: 20,
 					borderRadius: 13,
 					overflow: 'hidden',
+					backgroundColor: profile?.tonightStory?.emojimood?.colors
+						? 'transparent'
+						: rTheme.colorScheme === 'light'
+						? rTheme.theme.gluestack.tokens.colors.light100
+						: rTheme.theme.gluestack.tokens.colors.light800,
 				}}
 				intensity={80}
 				tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
@@ -356,13 +361,23 @@ export default () => {
 		<LinearGradient
 			style={{
 				flex: 1,
+				// backgroundColor:
+				// 	rTheme.colorScheme === 'light'
+				// 		? rTheme.theme.gluestack.tokens.colors.light100
+				// 		: rTheme.theme.gluestack.tokens.colors.light900,
 			}}
 			colors={profile?.tonightStory?.emojimood?.colors ? profile?.tonightStory?.emojimood?.colors : []}
 			// colors={[]}
 		>
 			<ScrollView contentInset={contentInsets}>
 				<VStack mx={'$3'} space='md'>
-					<Photos photos={profile?.tonightStory?.photos} profilePhoto={profile?.profilePhoto} />
+					<Photos
+						photos={profile?.tonightStory?.photos}
+						profilePhoto={profile?.profilePhoto}
+						emojimoodsColors={
+							profile?.tonightStory?.emojimood?.colors ? profile?.tonightStory?.emojimood?.colors : []
+						}
+					/>
 					<FriendRequest status={'notfriends'} />
 					<SectionContainer>
 						<IdentifiableInformation />

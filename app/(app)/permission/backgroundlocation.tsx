@@ -200,6 +200,7 @@ export default () => {
 					sx={{
 						w: '95%',
 					}}
+					rounded={'$lg'}
 					onPress={() =>
 						!rBackgroundLocationPermissionVar?.granted
 							? rBackgroundLocationPermissionVar?.canAskAgain && !rBackgroundLocationPermissionVar.granted

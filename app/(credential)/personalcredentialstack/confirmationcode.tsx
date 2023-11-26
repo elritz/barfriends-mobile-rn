@@ -135,7 +135,7 @@ export default () => {
 					{complete ? (
 						<VStack space={'sm'} justifyContent={'space-around'}>
 							<Button variant={'link'} size={'md'} justifyContent={'flex-start'}>
-								<Button.Text>Resend code</Button.Text>
+								<ButtonText>Resend code</ButtonText>
 							</Button>
 							<Button
 								variant={'link'}
@@ -143,7 +143,7 @@ export default () => {
 								justifyContent={'flex-start'}
 								onPress={() => router.back()}
 							>
-								<Button.Text>Update information</Button.Text>
+								<ButtonText>Update information</ButtonText>
 							</Button>
 						</VStack>
 					) : (
