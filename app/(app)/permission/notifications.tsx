@@ -4,7 +4,7 @@ import { Box, Button, Divider, Heading, Text, VStack, ButtonText } from '@gluest
 import PermissionDetailItem from '@components/screens/permissions/PermissionDetailItem'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import {
-	useGetCurrentPushNotificationTokenLazyQuery,
+	TokenType,
 	useGetCurrentPushNotificationTokenQuery,
 	useUpsertDevicePushTokenMutation,
 } from '@graphql/generated'
@@ -164,7 +164,7 @@ export default () => {
 						variables: {
 							token: devicetoken.data,
 							expoToken: expoToken.data,
-							type: devicetoken.type,
+							type: devicetoken.type === 'ios' ? TokenType.Ios : TokenType.Android,
 						},
 					})
 				} else {
@@ -177,7 +177,7 @@ export default () => {
 						variables: {
 							token: devicetoken.data,
 							expoToken: expoToken.data,
-							type: devicetoken.type,
+							type: devicetoken.type === 'ios' ? TokenType.Ios : TokenType.Android,
 						},
 					})
 				}

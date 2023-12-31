@@ -93,7 +93,7 @@ export const CardFullImageNameEmoji = ({ item, cardWidth }: CardFullImageNameEmo
 				</Box>
 				<Image
 					alt={'Profile image'}
-					source={{ uri: item.friendProfile?.photos?.url }}
+					source={{ uri: item.friendProfile?.photos[0].url }}
 					contentFit='cover'
 					style={{ height: 170, flexDirection: 'column-reverse', borderRadius: 10 }}
 				/>

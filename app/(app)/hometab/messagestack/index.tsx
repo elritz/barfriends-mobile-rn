@@ -58,8 +58,6 @@ const Messages = () => {
 
 	const { data, loading, error } = useGetConversationsQuery()
 
-	// console.log("🚀 ~ file: index.tsx:61 ~ Messages ~ data:", data)
-
 	if (loading) {
 		return <Text>Loading...</Text>
 	}
@@ -69,7 +67,7 @@ const Messages = () => {
 			{/* <Heading mt={'$10'} textAlign='center'>
 				Messages, New Messages✅, Notifications, Pubsub, Searching/Filtering✅, Editing
 			</Heading> */}
-			<FlashList
+			{/* <FlashList
 				data={data}
 				showsVerticalScrollIndicator={false}
 				onRefresh={() => {
@@ -93,7 +91,7 @@ const Messages = () => {
 				keyExtractor={({ id }: { id: string }) => id.toString()}
 				renderItem={({ item }) => <HorizontalMessageNotification item={item} />}
 				snapToAlignment='center'
-			/>
+			/> */}
 		</Box>
 	)
 }

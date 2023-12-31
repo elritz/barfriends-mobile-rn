@@ -9,7 +9,7 @@ export default function SkeletonVenuesHomeScreen() {
 
 	return (
 		<Center>
-			<VStack space={'$2'}>
+			<VStack space={'md'}>
 				{[...Array(6)].map((item, index) => {
 					return (
 						<HStack key={index} space={'md'} overflow='hidden'>

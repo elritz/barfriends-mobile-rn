@@ -45,7 +45,7 @@ const VenueActions = () => {
 				)}
 
 				{!isJoined && (
-					<HStack space={'$md'} mt={'$5'}>
+					<HStack space={'md'} mt={'$5'}>
 						<ActionCard h={190} key={uniqueId()} numColumns={numColumns}>
 							<UberCard />
 						</ActionCard>
@@ -56,7 +56,7 @@ const VenueActions = () => {
 				)}
 
 				{rAuthorizationVar?.Profile?.ProfileType !== 'GUEST' && (
-					<HStack space={'$md'} mt={'$5'}>
+					<HStack space={'md'} mt={'$5'}>
 						<ActionCard h={200} key={uniqueId()} numColumns={numColumns}>
 							<QuickBarfriend qrcodesize={itemPadding || 120} />
 						</ActionCard>

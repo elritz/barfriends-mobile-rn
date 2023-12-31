@@ -9,6 +9,7 @@ import {
 	RemoveIcon,
 	Text,
 	ButtonText,
+	ButtonIcon,
 } from '@gluestack-ui/themed'
 import { MaterialIcons } from '@expo/vector-icons'
 import { PhotoCreateManyProfileInput, useAddStoryPhotosMutation } from '@graphql/generated'
@@ -234,9 +235,9 @@ export default function Photos() {
 													Upload another image
 												</Heading>
 												<Button onPress={pickImage} bg={'$tertiary400'} rounded={'$md'} zIndex={20}>
-													<Button.Icon>
+													<ButtonIcon>
 														<AddIcon />
-													</Button.Icon>
+													</ButtonIcon>
 												</Button>
 											</Center>
 										</Box>

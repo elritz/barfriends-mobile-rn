@@ -3,14 +3,14 @@ import { useReactiveVar } from '@apollo/client'
 import { Box, Button, HStack, Text, VStack } from '@gluestack-ui/themed'
 import SignupModal from '@components/molecules/modals/signupaskmodal'
 import { Ionicons } from '@expo/vector-icons'
-import { Profile, useGetRelationshipFriendRequestStatusQuery } from '@graphql/generated'
+import { Profile } from '@graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import { useDisclose } from '@util/hooks/useDisclose'
 import { useRouter } from 'expo-router'
 import { useState } from 'react'
 
 type Props = {
-	profile: Profile
+	profile: Partial<Profile> | undefined | null
 }
 
 export default function Actions({ profile }: Props) {
@@ -26,19 +26,19 @@ export default function Actions({ profile }: Props) {
 
 	const isGuest = rAuthorizationVar?.Profile?.ProfileType === 'GUEST'
 
-	const {
-		data: GRFRSData,
-		loading: GRFRSLoading,
-		error: GRFRSError,
-	} = useGetRelationshipFriendRequestStatusQuery({
-		skip: !profile.id,
-		fetchPolicy: 'network-only',
-		variables: {
-			profileId: String(profile.id),
-		},
-	})
+	// const {
+	// 	data: GRFRSData,
+	// 	loading: GRFRSLoading,
+	// 	error: GRFRSError,
+	// } = useGetRelationshipFriendRequestStatusQuery({
+	// 	skip: !profile.id,
+	// 	fetchPolicy: 'network-only',
+	// 	variables: {
+	// 		profileId: String(profile.id),
+	// 	},
+	// })
 
-	if (GRFRSLoading || !GRFRSData) return null
+	// if (GRFRSLoading || !GRFRSData) return null
 
 	return (
 		<VStack rounded={'$xl'} flex={1} py={'$3'} px={'$2'} space={'md'}>
@@ -52,7 +52,7 @@ export default function Actions({ profile }: Props) {
 						isGuest
 							? onOpenSignupModal()
 							: router.push({
-									pathname: '/(app)/messages',
+									pathname: '/(app)/conversation',
 									params: {
 										roomid: '',
 									},

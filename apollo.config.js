@@ -1,3 +1,5 @@
+import { SERVER_ENDPOINT } from '@env'
+
 module.exports = {
 	client: {
 		includes: [`./graphql/DM/**/*.ts`],
@@ -9,7 +11,7 @@ module.exports = {
 		// service: 'revel',
 		service: {
 			name: 'revel',
-			url: 'http://192.168.86.41:4000/graphql',
+			url: `${SERVER_ENDPOINT}`,
 		},
 	},
 }

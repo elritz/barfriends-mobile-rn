@@ -100,7 +100,7 @@ export default () => {
 											fontWeight='$medium'
 											color={rTheme.colorScheme === 'light' ? '$light900' : '$light100'}
 										>
-											{venueData?.publicVenue?.Venue.name}
+											{venueData?.publicVenue?.Venue?.name}
 										</Text>
 									)}
 									<HStack flex={1} justifyContent={'flex-end'} space={'md'} alignItems={'center'}>

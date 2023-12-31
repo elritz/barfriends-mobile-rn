@@ -20,14 +20,14 @@ export function useRouterNotifications() {
 			const url = response?.notification.request.content.data.url
 
 			if (url) {
-				router.replace(processUrl(url))
+				router.replace(`http${processUrl(url)}`)
 			}
 		})
 
 		// Listen to expo push notifications
 		const subscription = Notifications.addNotificationResponseReceivedListener(response => {
 			const url = response.notification.request.content.data.url
-			router.replace(processUrl(url))
+			router.replace(`http${processUrl(url)}`)
 		})
 
 		return () => {

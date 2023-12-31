@@ -43,7 +43,7 @@ export default () => {
 	const [mediaLoading, setMediaLoading] = useState(false)
 	const [imageUploading, setImageUploading] = useState(false)
 	const [numberOfPhotos] = useState(100)
-	const [photoLibrary, setPhotoLibrary] = useState([])
+	const [photoLibrary, setPhotoLibrary] = useState<MediaLibrary.Asset[]>([])
 	const [lastPhotoID, setLastPhotoID] = useState<string>('')
 	const [hasNextPage, setHasNextPage] = useState<boolean>(true)
 
@@ -101,8 +101,8 @@ export default () => {
 				aspect: [4, 3],
 				quality: 1,
 			})
-			if (!result.cancelled) {
-				setValue('photo', { id: '', uri: result.uri, url: '' })
+			if (!result.canceled) {
+				setValue('photo', { id: '', uri: result.assets[0].uri, url: '' })
 			}
 		}
 	}
@@ -207,7 +207,7 @@ export default () => {
 					</Box>
 					{[...Array(6)].map((item, index) => {
 						return (
-							<HStack key={index} space={'none'} overflow='hidden'>
+							<HStack key={index} overflow='hidden'>
 								{[...Array(3)].map((item, index) => {
 									return (
 										<Skeleton

@@ -59,7 +59,7 @@ interface CardProps {
 const Card = ({ picture, caption }: CardProps) => (
 	<>
 		<View style={styles.container}>
-			<Image source={{ uri: picture }} style={styles.image} />
+			<Image source={{ uri: String(picture) }} style={styles.image} />
 		</View>
 		<View style={styles.caption}>
 			<Text style={styles.text}>{caption}</Text>

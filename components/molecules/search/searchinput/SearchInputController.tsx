@@ -15,7 +15,7 @@ export default class ModalController {
 	static showModal = (message?: string) => {
 		this.modalRef.current?.show(message)
 	}
-	static hideModal = () => {)
+	static hideModal = () => {
 		this.modalRef.current?.hide()
 	}
 }

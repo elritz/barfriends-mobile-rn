@@ -210,7 +210,11 @@ export default () => {
 									<Pressable onPress={handleShowPassword}>
 										<InputIcon pr='$3'>
 											{/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
-											<Icon as={showPassword ? EyeIcon : EyeOffIcon} size={'lg'} color='$primary500' />
+											{showPassword ? (
+												<Icon as={EyeIcon} size={'lg'} color='$primary500' />
+											) : (
+												<Icon as={EyeOffIcon} size={'lg'} color='$primary500' />
+											)}
 										</InputIcon>
 									</Pressable>
 									{LPLoading && <Spinner size='small' accessibilityLabel={'Loading...'} />}

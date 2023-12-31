@@ -13,7 +13,16 @@ module.exports = function (api) {
 		plugins: [
 			// ['transform-remove-console'],
 			'expo-router/babel',
-			'module:react-native-dotenv',
+				[
+				 'module:react-native-dotenv',
+					{
+						moduleName: '@env',
+						path: '.env',
+						safe: false,
+						allowUndefined: true,
+					},
+			 	],
+
 			[
 				'module-resolver',
 				{

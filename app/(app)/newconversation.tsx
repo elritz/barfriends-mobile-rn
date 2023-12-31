@@ -1,8 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
 import ContactItem from '@components/screens/conversations/ContactItem'
-import SearchResultContactItem from '@components/screens/conversations/SearchResultContactItem'
 import {
-	AddIcon,
 	Button,
 	Text,
 	Input,
@@ -10,7 +8,6 @@ import {
 	HStack,
 	VStack,
 	CloseIcon,
-	CloseCircleIcon,
 	ButtonText,
 } from '@gluestack-ui/themed'
 import { ThemeReactiveVar } from '@reactive'

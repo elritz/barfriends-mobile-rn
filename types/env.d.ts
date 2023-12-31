@@ -8,6 +8,7 @@ declare module '@env' {
 	export const VERSION: string
 	export const APP_TYPE: string
 	export const ENVIRONMENT: string
+	export const IP_ADDRESS: string
 	export const SERVER_ENDPOINT: string
 	export const SECURE_STORAGE_TOKEN: string
 

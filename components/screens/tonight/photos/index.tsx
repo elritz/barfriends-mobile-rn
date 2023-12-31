@@ -276,7 +276,7 @@ export default function Photos() {
 											</Button>
 											<Image
 												source={{
-													uri: item.url,
+													uri: String(item.url),
 												}}
 												resizeMode='cover'
 												style={{

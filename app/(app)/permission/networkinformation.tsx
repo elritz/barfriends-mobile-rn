@@ -2,7 +2,7 @@ import { useReactiveVar } from '@apollo/client'
 import { Box, Button, Divider, Heading, ButtonText, VStack } from '@gluestack-ui/themed'
 import PermissionDetailItem from '@components/screens/permissions/PermissionDetailItem'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
-import { useUpsertDevicePushTokenMutation } from '@graphql/generated'
+import { TokenType, useUpsertDevicePushTokenMutation } from '@graphql/generated'
 import { useIsFocused } from '@react-navigation/native'
 import { PermissionNotificationReactiveVar, ThemeReactiveVar } from '@reactive'
 import { capitalizeFirstLetter } from '@util/helpers/capitalizeFirstLetter'
@@ -154,7 +154,7 @@ export default () => {
 
 					upsertDevicePushTokenMutation({
 						variables: {
-							appleToken: devicetoken.data,
+							type: TokenType.Ios,
 							expoToken: expoToken.data,
 						},
 					})
@@ -166,7 +166,7 @@ export default () => {
 
 					upsertDevicePushTokenMutation({
 						variables: {
-							type: 'ANDROID',
+							type: TokenType.Android,
 							token: devicetoken.data,
 							expoToken: expoToken.data,
 						},

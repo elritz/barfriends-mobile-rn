@@ -12,17 +12,22 @@ export default ({}) => {
 	const [selectedPhoto, setSelectedPhoto] = useState([])
 	const [numberOfPhotos, setNumberOfPhotos] = useState(100)
 	const [lastPhotoID, setLastPhotoID] = useState('')
-	const [photos, setPhotos] = useState()
+	const [photos, setPhotos] = useState<MediaLibrary.Asset[]>([])
 	const [showPhotos, setShowPhotos] = useState(false)
 	const [status, requestPermission] = MediaLibrary.usePermissions()
 
 	if (!status) return null
 
 	const _getPhotosAsync = async () => {
-		const photos = await MediaLibrary.getAssetsAsync({ first: numberOfPhotos, hasNextPage: true })
+		const photos = await MediaLibrary.getAssetsAsync({
+			first: numberOfPhotos,
+			sortBy: ['creationTime'],
+		})
 		const { id } = photos.assets[photos.assets.length - 1]
 		setLastPhotoID(id)
-		setPhotos(photos.assets)
+		const [mPhotos, setPhotos] = useState<MediaLibrary.Asset[] | undefined>(undefined)
+		// ...
+		setPhotos(photos => photos)
 	}
 
 	const _pressedImageCameraRollItem = item => {
@@ -42,9 +47,9 @@ export default ({}) => {
 			hasNextPage: true,
 		})
 		const { id } = GetNewPhotos.assets[GetNewPhotos.assets.length - 1]
-		const newPhotos = [...photos, ...GetNewPhotos.assets]
+
 		setLastPhotoID(id)
-		setPhotos(newPhotos)
+		setPhotos(GetNewPhotos.assets)
 	}
 
 	return (

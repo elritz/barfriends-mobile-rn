@@ -140,7 +140,7 @@ export default function Preferences() {
 							>
 								<Ionicons
 									size={25}
-									name={item.icon}
+									name={item.icon as any}
 									color={
 										rTheme.colorScheme === 'light'
 											? rTheme.theme?.gluestack.tokens.colors.light900

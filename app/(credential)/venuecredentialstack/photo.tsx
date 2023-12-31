@@ -43,7 +43,7 @@ export default () => {
 	const [mediaLoading, setMediaLoading] = useState(false)
 	const [imageUploading, setImageUploading] = useState(false)
 	const [numberOfPhotos] = useState(100)
-	const [photoLibrary, setPhotoLibrary] = useState([])
+	const [photoLibrary, setPhotoLibrary] = useState<MediaLibrary.Asset[]>()
 	const [lastPhotoID, setLastPhotoID] = useState<string>('')
 	const [hasNextPage, setHasNextPage] = useState<boolean>(true)
 
@@ -85,7 +85,7 @@ export default () => {
 		const id = assets.endCursor
 		setLastPhotoID(id)
 		setHasNextPage(assets.hasNextPage)
-		setPhotoLibrary(assets.assets)
+		setPhotoLibrary(assets.assets as MediaLibrary.Asset[])
 		setMediaLoading(false)
 	}
 
@@ -101,8 +101,8 @@ export default () => {
 				aspect: [4, 3],
 				quality: 1,
 			})
-			if (!result.cancelled) {
-				setValue('photo', { id: '', uri: result.uri, url: '' })
+			if (!result?.canceled) {
+				setValue('photo', { id: '', uri: result.assets[0].uri, url: '' })
 			}
 		}
 	}
@@ -136,7 +136,7 @@ export default () => {
 
 		setLastPhotoID(id)
 		setHasNextPage(assets.hasNextPage)
-		setPhotoLibrary([...photoLibrary, ...assets.assets])
+		setPhotoLibrary([...photoLibrary, assets.assets.map(item => item)])
 		setMediaLoading(false)
 	}
 
@@ -160,7 +160,7 @@ export default () => {
 
 	useEffect(() => {
 		if (rPermissionMediaReactiveVar?.granted) {
-			if (!photoLibrary.length) {
+			if (!photoLibrary?.length) {
 				loadMediaAsync()
 			}
 		} else {
@@ -170,7 +170,7 @@ export default () => {
 		}
 	}, [rPermissionMediaReactiveVar, mediaLoading])
 
-	if (!photoLibrary.length) {
+	if (!photoLibrary?.length) {
 		return (
 			<Box bg='$transparent'>
 				<VStack alignItems={'center'}>
@@ -207,7 +207,7 @@ export default () => {
 					</Box>
 					{[...Array(6)].map((item, index) => {
 						return (
-							<HStack key={index} space={'none'} overflow='hidden'>
+							<HStack key={index} space={'sm'} overflow='hidden'>
 								{[...Array(3)].map((item, index) => {
 									return (
 										<Skeleton

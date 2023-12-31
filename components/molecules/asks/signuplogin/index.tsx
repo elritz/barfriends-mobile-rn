@@ -1,5 +1,5 @@
 import DeviceManagerProfiles from '@components/organisms/list/DeviceManagerProfiles'
-import { VStack, Text, Button, Pressable, Heading, Box, ButtonText } from '@gluestack-ui/themed'
+import { VStack, Text, Button, Pressable, Heading, ButtonText } from '@gluestack-ui/themed'
 import GetSignInUpText from '@util/helpers/data/SignupinText'
 import { useRouter } from 'expo-router'
 

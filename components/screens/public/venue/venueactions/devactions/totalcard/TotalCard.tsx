@@ -43,11 +43,12 @@ export default function TotalCard() {
 							...deviceprofile,
 							Profile: profile,
 						})
-						const totaledToVenue = data?.profile?.Personal?.LiveOutPersonal?.Out.map(item => {
-							return item.venueProfileId
-						})
+						const totaledToVenue: String[] | undefined =
+							data?.profile?.Personal?.LiveOutPersonal?.Out.map(item => {
+								return item.venueProfileId
+							})
 						if (totaledToVenue) {
-							setIsTotaled(totaledToVenue.includes(params.profileid))
+							setIsTotaled(totaledToVenue.includes(String(params.profileid)))
 						}
 					}
 				},
@@ -88,11 +89,13 @@ export default function TotalCard() {
 							...deviceprofile,
 							Profile: profile,
 						})
-						const totaledToVenue = data?.profile?.Personal?.LiveOutPersonal?.Out.map(item => {
-							return item.venueProfileId
-						})
-
-						setIsTotaled(totaledToVenue.includes(params.profileid))
+						const totaledToVenue: String[] | undefined =
+							data?.profile?.Personal?.LiveOutPersonal?.Out.map(item => {
+								return item.venueProfileId
+							})
+						if (totaledToVenue) {
+							setIsTotaled(totaledToVenue.includes(String(params.profileid)))
+						}
 					}
 				},
 			})
@@ -136,7 +139,7 @@ export default function TotalCard() {
 					w: 100,
 				}}
 			>
-				{isTotaled && <CheckCircleIcon size='5' mt='$1' color='$white' />}
+				{isTotaled && <CheckCircleIcon size={'md'} mt={'$1'} color='$white' />}
 				<Text>{!APTVLoading ? <Text>{isTotaled ? 'Totaled' : 'Total'}</Text> : 'Totaling'}</Text>
 			</Button>
 		</VStack>

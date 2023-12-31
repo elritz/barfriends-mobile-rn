@@ -2,29 +2,25 @@ import Actions from './actions/Actions'
 import { HStack, VStack } from '@gluestack-ui/themed'
 import CurrentVenue from '@components/screens/public/personal/currentvenue/CurrentVenue'
 import Relationships from '@components/screens/public/personal/relationship/Relationships'
-import { PersonalProfileStackParamList } from '@ctypes/app'
-import { useProfileQuery } from '@graphql/generated'
-import { RouteProp, useRoute } from '@react-navigation/native'
+import { Profile, useProfileQuery } from '@graphql/generated'
+import { useRoute } from '@react-navigation/native'
 import { ScrollView } from 'react-native'
 
-export type PublicPersonalRouteProp = RouteProp<
-	PersonalProfileStackParamList,
-	'PublicPersonalScreen'
->
-
 const PersonalScreen = (props: any) => {
-	const route = useRoute<PublicPersonalRouteProp>()
+	const route = useRoute()
 
 	const {
 		data: PQData,
 		loading: PQLoading,
 		error: PQError,
 	} = useProfileQuery({
-		skip: !route.params?.profileId,
+		skip: !(route.params as { username?: string })?.username,
 		variables: {
 			where: {
-				id: {
-					equals: route.params.profileId,
+				IdentifiableInformation: {
+					username: {
+						equals: String((route.params as { username?: string })?.username),
+					},
 				},
 			},
 		},
@@ -44,8 +40,8 @@ const PersonalScreen = (props: any) => {
 		>
 			{/* <Photos story={PQData?.profile?.tonightStory} photo={PQData?.profile?.photos[0]} /> */}
 			{/* <ProfilePhoto /> */}
-			<VStack space={'$3'}>
-				<Actions profile={PQData?.profile} />
+			<VStack space={'md'}>
+				<Actions profile={PQData?.profile as Profile} />
 				<HStack
 					space={'md'}
 					sx={{

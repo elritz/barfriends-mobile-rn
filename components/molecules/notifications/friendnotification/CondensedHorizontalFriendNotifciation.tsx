@@ -140,7 +140,6 @@ export const CondensedHorizontalFriendNotifciation = ({
 						onPress={() => {
 							isSender && onOpenCancelFriendNotification()
 						}}
-						isLoadingText={'Requested'}
 					>
 						<Text fontSize={'$md'} lineHeight={'$xs'} fontWeight='$black' textTransform='uppercase'>
 							Requested
@@ -190,6 +189,7 @@ export const CondensedHorizontalFriendNotifciation = ({
 							onPress={() =>
 								acceptFriendRequestMutation({
 									variables: {
+										notificationStatusId: '',
 										friendRequestId: String(item.id),
 										venueIdMetAt: '',
 									},

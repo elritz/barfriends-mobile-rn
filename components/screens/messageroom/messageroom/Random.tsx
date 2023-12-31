@@ -37,8 +37,8 @@ const KeyboardAware: React.FC<{}> = props => {
 		Keyboard.addListener(show, handleShow)
 		Keyboard.addListener(hide, () => shiftValue.setValue(0))
 		return () => {
-			Keyboard.removeSubscription(show)
-			Keyboard.(hide)
+			Keyboard.removeSubscription
+			Keyboard.dismiss()
 		}
 	}, [])
 

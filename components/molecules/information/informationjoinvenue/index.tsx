@@ -24,7 +24,7 @@ export default function InformationJoinVenue() {
 	return (
 		<Box>
 			{rInformationJoinVenue?.canShowAgain &&
-			DateTime.fromISO(rInformationJoinVenue?.dateToShowAgain) <= DateTime.now() ? (
+			DateTime.fromISO(String(rInformationJoinVenue?.dateToShowAgain)) <= DateTime.now() ? (
 				<AnimatePresence key={uniqueId()}>
 					<Box mt={'$4'} m={'$2'} p={'$3'}>
 						<VStack space='sm'>

@@ -9,7 +9,7 @@ export default function ComingAreaItem({ item }: Prop) {
 	return (
 		<HStack mx={'$2'}>
 			<HStack alignItems={'center'} flex={1} space={'md'}>
-				<CountryFlag isoCode={item.Area?.Country.isoCode} size={15} />
+				<CountryFlag isoCode={String(item.Area?.Country.isoCode)} size={15} />
 				<Text fontSize={'$md'}>
 					{item.Area?.Country.name}, {item.Area?.State.isoCode}, {item.Area?.City.name}
 				</Text>

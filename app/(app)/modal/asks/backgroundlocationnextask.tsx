@@ -36,7 +36,6 @@ import useTimer2 from '@util/hooks/useTimer2'
 import { DateTime } from 'luxon'
 
 export default () => {
-	console.log("HERE BACKGROUND LOCATION NEXT ASK")
 	const router = useRouter()
 	const insets = useSafeAreaInsets()
 	const rTheme = useReactiveVar(ThemeReactiveVar)

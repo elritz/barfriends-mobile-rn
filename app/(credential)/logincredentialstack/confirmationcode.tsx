@@ -3,12 +3,8 @@ import { useReactiveVar } from '@apollo/client'
 import { Feather } from '@expo/vector-icons'
 import { Box, Button, Heading, Pressable, Text, VStack, ButtonText } from '@gluestack-ui/themed'
 import { useIsFocused } from '@react-navigation/native'
-import {
-	ConfirmationCodeReactiveVar,
-	CredentialPersonalProfileReactiveVar,
-	ThemeReactiveVar,
-} from '@reactive'
-import Countdown from '@util/hooks/useTimer'
+import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '@reactive'
+import useTimer2 from '@util/hooks/useTimer2'
 import { useRouter, useLocalSearchParams, useGlobalSearchParams } from 'expo-router'
 import { useEffect, useState } from 'react'
 import { Controller, useForm, ValidateResult } from 'react-hook-form'
@@ -38,7 +34,7 @@ export default () => {
 
 	const ref = useBlurOnFulfill({ value: params?.code, cellCount: CELL_COUNT })
 
-	const { num, complete } = Countdown(5)
+	const { start, finished, seconds, isFinished } = useTimer2('5')
 	const [codeValue, setCodeValue] = useState('')
 
 	const { height: platform } = useReanimatedKeyboardAnimation()
@@ -110,6 +106,10 @@ export default () => {
 	}
 
 	useEffect(() => {
+		start()
+	}, [])
+
+	useEffect(() => {
 		if (watch('code').length === CELL_COUNT) {
 			onSubmit({
 				code: watch('code'),
@@ -137,8 +137,8 @@ export default () => {
 				}}
 			>
 				<Box bg={'$transparent'} justifyContent={'space-around'}>
-					{complete ? (
-						<VStack space={'1'} justifyContent={'space-around'}>
+					{isFinished ? (
+						<VStack space={'md'} justifyContent={'space-around'}>
 							<Button
 								variant='link'
 								size={'md'}
@@ -159,7 +159,7 @@ export default () => {
 					) : (
 						<Text>
 							Resend code in 0:0
-							{num}
+							{seconds}
 						</Text>
 					)}
 				</Box>

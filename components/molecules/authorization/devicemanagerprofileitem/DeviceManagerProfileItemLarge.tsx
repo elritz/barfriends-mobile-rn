@@ -1,13 +1,13 @@
 import { useReactiveVar } from '@apollo/client'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 import { Box, Center, HStack, Text, VStack } from '@gluestack-ui/themed'
-import { Profile } from '@graphql/generated'
+import { Maybe, Profile } from '@graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import { Image, View } from 'react-native'
 import { ActivityIndicator } from 'react-native'
 
 type ProfileItemType = {
-	item: Profile | undefined
+	item: Partial<Profile> | null | undefined
 	loading?: boolean
 }
 

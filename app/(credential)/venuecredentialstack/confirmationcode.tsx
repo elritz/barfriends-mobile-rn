@@ -8,7 +8,7 @@ import {
 	CredentialPersonalProfileReactiveVar,
 	ThemeReactiveVar,
 } from '@reactive'
-import Countdown from '@util/hooks/useTimer'
+import useTimer from '@util/hooks/useTimer2'
 import { useLocalSearchParams, useRouter } from 'expo-router'
 import { useEffect, useState } from 'react'
 import { Controller, useForm, ValidateResult } from 'react-hook-form'
@@ -33,9 +33,9 @@ export default () => {
 	const confirmationCode = useReactiveVar(ConfirmationCodeReactiveVar)
 	const credentialPersonalProfileVar = useReactiveVar(CredentialPersonalProfileReactiveVar)
 	const CELL_COUNT = String(params?.code).length
-	const ref = useBlurOnFulfill({ value: confirmationCode.code, cellCount: CELL_COUNT })
+	const ref = useBlurOnFulfill({ value: confirmationCode?.code, cellCount: CELL_COUNT })
 
-	const { num, complete } = Countdown(9)
+	const { isFinished, start, seconds } = useTimer('9')
 	const [codeValue, setCodeValue] = useState('')
 
 	const { height: platform } = useReanimatedKeyboardAnimation()
@@ -59,6 +59,10 @@ export default () => {
 		value: codeValue,
 		setValue: setCodeValue,
 	})
+
+	useEffect(() => {
+		start()
+	}, [])
 
 	const {
 		control,
@@ -131,7 +135,7 @@ export default () => {
 				px={'$2'}
 			>
 				<Box bg={'$transparent'} justifyContent={'space-around'}>
-					{complete ? (
+					{isFinished ? (
 						<VStack space={'sm'} justifyContent={'space-around'}>
 							<Button variant={'link'} size={'md'} justifyContent={'flex-start'}>
 								<ButtonText>Resend code</ButtonText>
@@ -148,7 +152,7 @@ export default () => {
 					) : (
 						<Text>
 							Resend code in 0:0
-							{num}
+							{seconds}
 						</Text>
 					)}
 				</Box>

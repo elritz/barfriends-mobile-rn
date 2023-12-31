@@ -57,7 +57,7 @@ const Profile = () => {
 				)
 			case ProfileType.Personal:
 				// return <PersonalScreen notifications={GNData} />
-				return <PersonalScreen notifications={[]} />
+				return <PersonalScreen notifications={null} />
 			case ProfileType.Venue:
 				return <VenueScreen />
 			default:
@@ -69,12 +69,12 @@ const Profile = () => {
 			contentInset={{ top: 0, left: 0, bottom: 150, right: 0 }}
 			showsVerticalScrollIndicator={false}
 			scrollEventThrottle={16}
-			refreshControl={<RefreshControl refreshing={GNLoading} onRefresh={onRefresh} />}
+			refreshControl={<RefreshControl refreshing={false} onRefresh={onRefresh} />}
 		>
 			{!rNotificationPermission?.granted && (
 				<>
 					{rPreferenceNotificationPermission?.canShowAgain &&
-					DateTime.fromISO(rPreferenceNotificationPermission?.dateToShowAgain) <= DateTime.now() ? (
+					DateTime.fromISO(String(rPreferenceNotificationPermission?.dateToShowAgain)) <= DateTime.now() ? (
 						<AnimatePresence key={uniqueId()}>
 							<PreferenceNotificationPermission />
 						</AnimatePresence>

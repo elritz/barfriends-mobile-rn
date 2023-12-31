@@ -90,7 +90,7 @@ export default () => {
 						IdentifiableInformation: {
 							update: {
 								fullname: {
-									set: data.fullname,
+									set:  data.fullname,
 								},
 								nickname: {
 									set: data.nickname,

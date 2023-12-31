@@ -1,7 +1,7 @@
 import { useReactiveVar } from '@apollo/client'
 import { Ionicons } from '@expo/vector-icons'
 import { AntDesign } from '@expo/vector-icons'
-import { HStack, Input, InputField, InputIcon, Pressable, Text } from '@gluestack-ui/themed'
+import { HStack, Input, InputField, Pressable, Text } from '@gluestack-ui/themed'
 import { useExploreSearchLazyQuery } from '@graphql/generated'
 import { ThemeReactiveVar } from '@reactive'
 import useDebounce from '@util/hooks/useDebounce'
@@ -17,10 +17,11 @@ type Props = {
 
 const SearchInputText = (props: Props) => {
 	const insets = useSafeAreaInsets()
-	const _inputRef = useRef<TextInput | undefined>()
+	const _inputRef = useRef<TextInput | null>(null)
+
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const router = useRouter()
-	const segments = useSegments()
+	const segments: string[] = useSegments()
 	const params = useGlobalSearchParams()
 
 	const { control, setValue, handleSubmit, watch } = useForm({

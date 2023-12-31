@@ -44,18 +44,20 @@ export default () => {
 		if (selectedDate) {
 			const { days, months, years } = calcDateDiffFromNow(selectedDate)
 			clearErrors('date')
-			if (years === 0) {
+			if (years && years === 0) {
 				setError('date', {
 					type: 'validate',
 					message: 'You must exsist to sign up.',
 				})
 				return false
-			} else if (years + 1 === legalAge && months >= 11 && days >= 27) {
-				await secureStorageItemCreate({
-					key: 'BIRTHDAY_TOKEN',
-					value: String(selectedDate),
-				})
-			} else if (years < legalAge) {
+			} else if (years && months && days) {
+				if (years + 1 === legalAge && months >= 11 && days >= 27) {
+					await secureStorageItemCreate({
+						key: 'BIRTHDAY_TOKEN',
+						value: String(selectedDate),
+					})
+				}
+			} else if (years && years < legalAge) {
 				setError('date', {
 					type: 'validate',
 					message: `Must be closer to ${legalAge} to join.`,

@@ -13,13 +13,14 @@ const LOGO_COASTER = require('../../../../assets/images/company/company_coaster.
 const CameraModal = ({ isOpen, onOpen, onClose }) => {
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 	const rPermissionCamera = useReactiveVar(PermissionCameraReactiveVar)
-	const [hasPermission, setHasPermission] = useState(null)
+	const [hasPermission, setHasPermission] = useState<boolean | null>(null)
 	const [scanned, setScanned] = useState(false)
 	const [dataQR, setDataQR] = useState('')
 
 	useEffect(() => {
 		const getBarCodeScannerPermissions = async () => {
 			const { status } = await BarCodeScanner.requestPermissionsAsync()
+
 			setHasPermission(status === 'granted')
 		}
 		// ;(async () => {

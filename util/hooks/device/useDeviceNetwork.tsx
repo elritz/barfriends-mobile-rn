@@ -1,7 +1,7 @@
-import NetInfo from '@react-native-community/netinfo'
 import { DeviceNetworkInfoReactiveVar } from '@reactive'
 import { useEffect, useRef, useState } from 'react'
 import { AppState } from 'react-native'
+import * as Network from 'expo-network'
 
 export default function useDeviceNetwork() {
 	const appState = useRef(AppState.currentState)
@@ -15,11 +15,10 @@ export default function useDeviceNetwork() {
 		}
 	}, [])
 
-	const _handleAppStateChange = nextAppState => {
+	const _handleAppStateChange = async nextAppState => {
 		if (appState.current.match(/inactive|background/) && nextAppState === 'active') {
-			NetInfo.fetch().then(state => {
-				DeviceNetworkInfoReactiveVar({ ...state })
-			})
+			const state = await Network.getNetworkStateAsync()
+			DeviceNetworkInfoReactiveVar({ ...state })
 		}
 
 		appState.current = nextAppState
@@ -28,9 +27,8 @@ export default function useDeviceNetwork() {
 
 	useEffect(() => {
 		async function getDeviceNetworkInfo() {
-			NetInfo.fetch().then(state => {
-				DeviceNetworkInfoReactiveVar({ ...state })
-			})
+			const state = await Network.getNetworkStateAsync()
+			DeviceNetworkInfoReactiveVar({ ...state })
 			try {
 			} catch (e) {
 				console.warn(e)

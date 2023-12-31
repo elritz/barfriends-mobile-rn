@@ -18,10 +18,10 @@ import { StyleSheet } from 'react-native'
 import { Blurhash } from 'react-native-blurhash'
 
 type Props = {
-	item: ProfileVenue
+	item: Partial<ProfileVenue | null | undefined>
 	columnIndex: number
-	showJoin: boolean
-	showDistance: boolean
+	showJoin?: boolean
+	showDistance?: boolean
 }
 
 const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
@@ -43,7 +43,7 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 	const [addPersonalJoinVenueMutation, { data: JVData, loading: JVLoading, error: JVError }] =
 		useAddPersonalJoinsVenueMutation({
 			variables: {
-				profileIdVenue: String(props.item.id),
+				profileIdVenue: String(props.item?.id),
 			},
 			onCompleted: async data => {
 				if (data.addPersonalJoinsVenue) {
@@ -74,7 +74,7 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 				{
 					query: GET_LIVE_VENUE_TOTALS_QUERY,
 					variables: {
-						profileIdVenue: props.item.id,
+						profileIdVenue: props.item?.id,
 					},
 				},
 			],
@@ -113,7 +113,7 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 			{
 				query: GET_LIVE_VENUE_TOTALS_QUERY,
 				variables: {
-					profileIdVenue: props.item.id,
+					profileIdVenue: props.item?.id,
 				},
 			},
 		],
@@ -144,16 +144,16 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 	)
 
 	useEffect(() => {
-		if (props.item.distanceInM) {
-			setDist({ distanceInM: props.item.distanceInM })
+		if (props.item?.distanceInM) {
+			setDist({ distanceInM: props.item?.distanceInM })
 		}
-	}, [props.item.distanceInM])
+	}, [props.item?.distanceInM])
 
 	useEffect(() => {
 		if (rAuthorizationVar?.Profile?.Personal) {
 			if (
 				rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out.some(
-					item => item.venueProfileId === props.item.id,
+					item => item.venueProfileId === props.item?.id,
 				)
 			) {
 				setIsJoined(true)
@@ -175,11 +175,11 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 
 	const _press = () => {
 		router.push({
-			pathname: `/(app)/public/venue/${props.item.IdentifiableInformation?.username}`,
+			pathname: `/(app)/public/venue/${props.item?.IdentifiableInformation?.username}`,
 			params: {
-				distanceInM: Number(props.item.distanceInM),
-				latitude: Number(props.item.Venue?.Location?.Geometry?.latitude),
-				longitude: Number(props.item.Venue?.Location?.Geometry?.longitude),
+				distanceInM: Number(props.item?.distanceInM),
+				latitude: Number(props.item?.Venue?.Location?.Geometry?.latitude),
+				longitude: Number(props.item?.Venue?.Location?.Geometry?.longitude),
 			},
 		})
 	}
@@ -208,7 +208,7 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 					}}
 				>
 					<Image
-						source={{ uri: props.item.photos[0]?.url }}
+						source={{ uri: props.item?.photos?.[0]?.url }}
 						resizeMode='cover'
 						onLoadEnd={() => setHideBlur(true)}
 						style={{
@@ -218,7 +218,7 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 					/>
 					{!hideBlur && (
 						<>
-							{props.item.photos[0]?.blurhash && (
+							{props.item?.photos?.[0]?.blurhash && (
 								<Blurhash
 									blurhash={String(props.item.photos[0].blurhash)}
 									style={{
@@ -280,8 +280,8 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 									onPress={async () => {
 										setLoadingDistance(true)
 										const { distanceInM } = await refreshLocation({
-											vlat: props.item.Venue?.Location?.Geometry?.latitude,
-											vlng: props.item.Venue?.Location?.Geometry?.longitude,
+											vlat: props.item?.Venue?.Location?.Geometry?.latitude,
+											vlng: props.item?.Venue?.Location?.Geometry?.longitude,
 										})
 										setLoadingDistance(false)
 										setDist({ distanceInM })

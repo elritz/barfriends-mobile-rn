@@ -18,15 +18,15 @@ function useTimer2(stringTime: string): IUseTimerResponse {
 	const [time, setTime] = useState(getInitialTime())
 	const [started, setStarted] = useState(false)
 
-	const hasFinished = +time.minutes === 0 && +time.seconds === 0
+	const isFinished = +time.minutes === 0 && +time.seconds === 0
 
 	const start = useCallback(() => {
 		clearInterval(timer.current)
 		setStarted(true)
 		timer.current = setInterval(() => {
 			setTime(time => ({
-				minutes: twoChars(+time.seconds === 0 ? time.minutes - 1 : +time.minutes),
-				seconds: twoChars(+time.seconds === 0 ? 59 : time.seconds - 1),
+				minutes: twoChars(+time.seconds === 0 ? +time.minutes - 1 : +time.minutes),
+				seconds: twoChars(+time.seconds === 0 ? 59 : +time.seconds - 1),
 			}))
 		}, 1000)
 	}, [twoChars])
@@ -37,11 +37,11 @@ function useTimer2(stringTime: string): IUseTimerResponse {
 
 	const finished = useCallback(
 		func => {
-			if (hasFinished) {
+			if (isFinished) {
 				return func && func()
 			}
 		},
-		[hasFinished],
+		[isFinished],
 	)
 
 	const reset = useCallback(() => {
@@ -61,16 +61,17 @@ function useTimer2(stringTime: string): IUseTimerResponse {
 	)
 
 	useEffect(() => {
-		if (hasFinished) {
+		if (isFinished) {
 			clearInterval(timer.current)
 		}
 
 		return () => clearInterval(timer.current)
-	}, [hasFinished])
+	}, [isFinished])
 
 	return {
 		...time,
 		started,
+		isFinished,
 		start,
 		pause,
 		finished,
@@ -85,6 +86,7 @@ interface IFinishedCallback {
 
 interface IUseTimerResponse {
 	started: boolean
+	isFinished: boolean
 	minutes: string
 	seconds: string
 	start: () => void

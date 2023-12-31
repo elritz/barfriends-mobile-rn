@@ -93,7 +93,7 @@ const TonightImages = () => {
 							onPress={handleSelectImage}
 							key={`${tile.id}-${index}`}
 							id={`${tile.id}-${index}`}
-							uri={tile.picture}
+							uri={String(tile.picture)}
 						/>
 					))}
 				</SortableList>

@@ -4,11 +4,14 @@ import { SEARCH_BAR_HEIGHT } from '@constants/ReactNavigationConstants'
 import { ENVIRONMENT } from '@env'
 import { Stack } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { useReactiveVar } from '@apollo/client'
+import { AuthorizationReactiveVar } from '@reactive'
 
 export default () => {
 	const insets = useSafeAreaInsets()
 	const HEADER_HEIGHT = SEARCH_BAR_HEIGHT + 15
 	const h = insets.top + HEADER_HEIGHT
+	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 
 	return (
 		<Stack
@@ -32,6 +35,17 @@ export default () => {
 								pb={'$2'}
 							>
 								<Box bg={'transparent'}>
+									<Text
+										adjustsFontSizeToFit
+										fontSize={'$xl'}
+										lineHeight={'$2xl'}
+										textAlign={'center'}
+										textTransform={'capitalize'}
+										fontWeight={'$black'}
+									>
+										{rAuthorizationVar?.ProfileType !== 'GUEST' &&
+											rAuthorizationVar?.Profile?.IdentifiableInformation?.username}
+									</Text>
 									<Text
 										adjustsFontSizeToFit
 										fontSize={'$3xl'}

@@ -39,9 +39,8 @@ const HorizontalVenueFeedVenueItem = (props: Props) => {
 			key={props.item.id}
 			onPress={() => {
 				router.push({
-					pathname: '/(app)/public/venue',
+					pathname: `/(app)/public/venue/${props.item.id}`,
 					params: {
-						profileid: String(props.item.id),
 						latitude: Number(props.item.Venue?.Location?.Geometry?.latitude),
 						longitude: Number(props.item.Venue?.Location?.Geometry?.longitude),
 					},
@@ -98,16 +97,16 @@ const HorizontalVenueFeedVenueItem = (props: Props) => {
 								height: undefined,
 								borderRadius: 10,
 							}}
-							source={{ uri: props.item.photos[0]?.url }}
+							source={{ uri: props.item.photos?.[0]?.url ?? '' }}
 							resizeMode='cover'
 							onLoadEnd={() => setHideBlur(true)}
 						/>
 					) : null}
 					{!hideBlur && (
 						<>
-							{props.item.photos[0]?.blurhash && (
+							{props.item.photos?.[0].blurhash && (
 								<Blurhash
-									blurhash={String(props.item.photos[0].blurhash)}
+									blurhash={String(props.item.photos?.[0].blurhash)}
 									style={{
 										flex: 1,
 									}}

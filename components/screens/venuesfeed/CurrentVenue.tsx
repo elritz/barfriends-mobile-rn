@@ -12,7 +12,7 @@ import {
 	Text,
 } from '@gluestack-ui/themed'
 import { usePublicVenueQuery } from '@graphql/generated'
-import { AuthorizationReactiveVar } from '@reactive'
+import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import { useDisclose } from '@util/hooks/useDisclose'
 import { useRouter } from 'expo-router'
 import { useState } from 'react'
@@ -25,6 +25,7 @@ export default function CurrentVenue() {
 	const [hideBlur, setHideBlur] = useState(false)
 	const { isOpen, onClose, onOpen, onToggle } = useDisclose()
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
+	const rThemeVar = useReactiveVar(ThemeReactiveVar)
 
 	const getTitleCase = str => {
 		const titleCase = str
@@ -69,9 +70,8 @@ export default function CurrentVenue() {
 			<Pressable
 				onPress={() => {
 					router.push({
-						pathname: '/(app)/public/venue',
+						pathname: `/(app)/public/venue/${data.publicVenue?.Venue?.id}`,
 						params: {
-							profileid: item?.friendProfile?.id,
 							latitude: Number(data.publicVenue?.Venue?.Location?.Geometry?.latitude),
 							longitude: Number(data.publicVenue?.Venue?.Location?.Geometry?.longitude),
 						},
@@ -133,7 +133,7 @@ export default function CurrentVenue() {
 							</Heading>
 						</Box>
 						<Box alignContent={'center'} justifyContent={'center'} px={2}>
-							<ButtonGroup rounded={'$md'} isAttached>
+							<ButtonGroup rounded={'$md'}>
 								<Button
 									sx={{
 										_light: {
@@ -147,12 +147,21 @@ export default function CurrentVenue() {
 									onPress={!isOpen ? () => onToggle() : () => leaveVenue()}
 								>
 									<Ionicons name={'ios-exit'} size={30} />
+
 									<Text color='$error500'>{isOpen ? `Leave` : ''}</Text>
 								</Button>
 								{isOpen && <Divider orientation='vertical' />}
 								{isOpen && (
 									<>
-										<Icon as={Ionicons} name={'close'} size={'xl'} />
+										<Ionicons
+											size={25}
+											name={'close'}
+											color={
+												rThemeVar.colorScheme === 'light'
+													? rThemeVar.theme?.gluestack.tokens.colors.light900
+													: rThemeVar.theme?.gluestack.tokens.colors.light100
+											}
+										/>
 										<Button
 											alignSelf={'center'}
 											sx={{

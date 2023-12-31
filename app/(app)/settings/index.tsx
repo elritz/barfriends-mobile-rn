@@ -191,6 +191,7 @@ export default () => {
 				Logins
 			</Heading>
 			{actions.map((item, index) => {
+				if (!item) return null
 				return (
 					<RoundedListItem key={index} onPress={item.onPress}>
 						<HStack

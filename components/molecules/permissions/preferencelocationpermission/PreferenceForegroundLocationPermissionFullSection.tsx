@@ -6,11 +6,11 @@ import { EvilIcons } from '@expo/vector-icons'
 import { Box, Button, Divider, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
-	DaysPreferencePermissionInitialState,
 	PermissionForegroundLocationReactiveVar,
 	PreferenceForegroundLocationPermissionReactiveVar,
-	TomorrowPreferencePermissionInitialState,
 } from '@reactive'
+import { TomorrowPreferencePermissionInitialState } from '@constants/Preferences'
+import { useDisclose } from '@util/hooks/useDisclose'
 import { useRouter } from 'expo-router'
 import { uniqueId } from 'lodash'
 import { DateTime } from 'luxon'
@@ -28,7 +28,7 @@ export default function ForegroundLocationPermissionFullSection() {
 		<>
 			<ForegroundLocationNextAskModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
 			{rPreferenceForegroundLocationPermission?.canShowAgain &&
-				DateTime.fromISO(rPreferenceForegroundLocationPermission?.dateToShowAgain) <=
+				DateTime.fromISO(String(rPreferenceForegroundLocationPermission?.dateToShowAgain)) <=
 					DateTime.now() && (
 					<Box key={uniqueId()}>
 						{!rPermissionLocationVar?.granted && (

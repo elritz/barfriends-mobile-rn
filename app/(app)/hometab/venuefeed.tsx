@@ -3,7 +3,6 @@ import CardPleaseSignup from '@components/molecules/asks/signuplogin'
 import SearchAreaHeader from '@components/screens/venuesfeed/SearchAreaHeader'
 import VenueFeedSearchAreaEmptyState from '@components/screens/venuesfeed/VenueFeedSearchAreaEmptyState'
 import MemoizedVerticalVenueFeedVenueItem from '@components/screens/venuesfeed/VerticalVenueFeedVenueItem'
-import AdvertismentHorizontal from '@components/screens/venuesfeed/advertisments/advertismenthorizontal'
 import { Ionicons } from '@expo/vector-icons'
 import {
 	Box,
@@ -19,6 +18,7 @@ import {
 } from '@gluestack-ui/themed'
 import {
 	ProfileType,
+	ProfileVenue,
 	useUpdateComingAreaToBeNotifiedMutation,
 	useUpdateH6ComingAreaVoteMutation,
 	useVenuesNearbyLazyQuery,
@@ -414,7 +414,11 @@ export default () => {
 				}}
 				data={data?.venuesNearby.venuesNearby}
 				renderItem={({ item, index, columnIndex }) => (
-					<MemoizedVerticalVenueFeedVenueItem index={index} item={item} columnIndex={columnIndex} />
+					<MemoizedVerticalVenueFeedVenueItem
+						key={columnIndex + item.id}
+						item={item as ProfileVenue}
+						columnIndex={columnIndex}
+					/>
 				)}
 				ItemSeparatorComponent={() => <Box bg={'transparent'} h={'$5'} />}
 				keyExtractor={item => item.id}

@@ -10,7 +10,7 @@ export const FriendsListEmptyState = () => {
 	const permissionContactsVar = useReactiveVar(PermissionContactsReactiveVar)
 	return (
 		<VStack
-			space={'$3'}
+			space={'md'}
 			my={'$5'}
 			p={'$5'}
 			justifyContent={'center'}

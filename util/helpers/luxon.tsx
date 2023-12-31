@@ -1,6 +1,6 @@
-import { DateTime } from 'luxon'
+import { DateTime, DurationObjectUnits } from 'luxon'
 
-export const calcDateDiffFromNow = (date: Date): unknown => {
+export const calcDateDiffFromNow = (date: Date): DurationObjectUnits => {
 	const i1 = DateTime.utc()
 	const i2 = DateTime.fromISO(date.toISOString())
 	i2.diff(i1).toObject()

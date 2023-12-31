@@ -35,7 +35,7 @@ import * as Notifications from 'expo-notifications'
 import { useRouter } from 'expo-router'
 import * as Updates from 'expo-updates'
 import { useEffect, useState } from 'react'
-import { SectionList } from 'react-native'
+import { Alert, SectionList } from 'react-native'
 import { Platform, Linking, AppState, View } from 'react-native'
 
 async function registerBackgroundFetchAsync() {
@@ -93,29 +93,29 @@ export default () => {
 	const [searchAreaDeleteLoading, setSearchAreaDeleteLoading] = useState(false)
 	const [authorizationDeleteLoading, setAuthorizationDeleteLoading] = useState(false)
 
-	const appStateHandleBackgroundLocation = async nextAppState => {
-		const hasStarted = await Location.hasStartedLocationUpdatesAsync(
-			DEVELOPMENT_BACKGROUND_LOCATION_TASK_NAME,
-		)
+	// const appStateHandleBackgroundLocation = async nextAppState => {
+	// 	const hasStarted = await Location.hasStartedLocationUpdatesAsync(
+	// 		DEVELOPMENT_BACKGROUND_LOCATION_TASK_NAME,
+	// 	)
 
-		if (isBackgroundLocationOn) {
-			if (!hasStarted && nextAppState === 'inactive') {
-				await registerBackgroundFetchAsync()
-			}
-			if (appState !== nextAppState) {
-				if (appState.match(/inactive|background/) && nextAppState === 'active') {
-					await unregisterBackgroundFetchAsync()
-				}
-			}
-		}
+	// 	if (isBackgroundLocationOn) {
+	// 		if (!hasStarted && nextAppState === 'inactive') {
+	// 			await registerBackgroundFetchAsync()
+	// 		}
+	// 		if (appState !== nextAppState) {
+	// 			if (appState.match(/inactive|background/) && nextAppState === 'active') {
+	// 				await unregisterBackgroundFetchAsync()
+	// 			}
+	// 		}
+	// 	}
 
-		if (!isBackgroundLocationOn && hasStarted) {
-			await unregisterBackgroundFetchAsync()
-		}
+	// 	if (!isBackgroundLocationOn && hasStarted) {
+	// 		await unregisterBackgroundFetchAsync()
+	// 	}
 
-		AppState.currentState = nextAppState
-		setAppState(AppState.currentState)
-	}
+	// 	AppState.currentState = nextAppState
+	// 	setAppState(AppState.currentState)
+	// }
 
 	async function getApplicationAuthorization() {
 		const getAuthorization = await secureStorageItemRead({
@@ -197,7 +197,7 @@ export default () => {
 
 	const onReloadPress = async () => {
 		if (Platform.OS === 'web') {
-			location.reload()
+			// location.reload()
 		} else {
 			await Updates.reloadAsync()
 		}
@@ -399,15 +399,15 @@ export default () => {
 			case 'token':
 				return (
 					<Pressable mx={'$3'} key={index} onPress={item.onPress}>
-						{({ isPressed }) => {
+						{({ pressed }) => {
 							return (
 								<Box
 									sx={{
 										_light: {
-											bg: isPressed ? '$light100' : 'transparent',
+											bg: pressed ? '$light100' : 'transparent',
 										},
 										_dark: {
-											bg: isPressed ? '$light800' : 'transparent',
+											bg: pressed ? '$light800' : 'transparent',
 										},
 									}}
 									height={ITEM_HEIGHT}
@@ -427,7 +427,7 @@ export default () => {
 											/>
 											<Heading fontSize={'$lg'}>{item.title}</Heading>
 										</HStack>
-										{loading ? (
+										{pressed ? (
 											<Spinner />
 										) : (
 											<Feather
@@ -447,26 +447,38 @@ export default () => {
 			case 'generalinformation':
 				return (
 					<Pressable mx={'$3'} onPress={item.onPress}>
-						<Divider />
-						<VStack>
-							<Heading fontSize={'$lg'}>{item.title}</Heading>
-							<HStack rounded={'$lg'} alignItems={'center'} justifyContent={'space-between'} py={'$4'}>
-								<Text
-									fontSize={'$md'}
-									textTransform={'capitalize'}
-									fontWeight={'$black'}
-									ellipsizeMode={'tail'}
-									flex={1}
-									numberOfLines={1}
-									maxWidth={'80%'}
-								>
-									{item.value}
-								</Text>
-								<View style={{ marginHorizontal: 2 }}>
-									<Feather color={rTheme.theme?.gluestack.tokens.colors.primary500} size={25} name='copy' />
-								</View>
-							</HStack>
-						</VStack>
+						{({ pressed }) => {
+							return (
+								<VStack>
+									<Divider />
+									<Heading fontSize={'$lg'}>{item.title}</Heading>
+									<HStack rounded={'$lg'} alignItems={'center'} justifyContent={'space-between'} py={'$4'}>
+										<Text
+											fontSize={'$md'}
+											textTransform={'capitalize'}
+											fontWeight={'$black'}
+											ellipsizeMode={'tail'}
+											flex={1}
+											numberOfLines={1}
+											maxWidth={'80%'}
+										>
+											{item.value}
+										</Text>
+										<View style={{ marginHorizontal: 2 }}>
+											{pressed ? (
+												<Spinner />
+											) : (
+												<Feather
+													color={rTheme.theme?.gluestack.tokens.colors.primary500}
+													size={25}
+													name='copy'
+												/>
+											)}
+										</View>
+									</HStack>
+								</VStack>
+							)
+						}}
 					</Pressable>
 				)
 		}
@@ -503,12 +515,12 @@ export default () => {
 				finalStatus = status
 			}
 			if (finalStatus !== 'granted') {
-				alert('Failed to get push token for push notification!')
+				Alert.alert('Failed to get push token for push notification!')
 				return
 			}
 			token = (await Notifications.getExpoPushTokenAsync()).data
 		} else {
-			alert('Must use physical device for Push Notifications')
+			Alert.alert('Must use physical device for Push Notifications')
 		}
 
 		return token
@@ -535,7 +547,9 @@ export default () => {
 						data: tokenOptions,
 					},
 				]}
-				renderItem={({ item, index }) => <Item index={index} item={item} />}
+				renderItem={({ item, index, section }) => {
+					return <Item loading={false} index={index} item={item} />
+				}}
 				renderSectionHeader={({ section: { title } }) => (
 					<Box p={'$3'} rounded={'$none'} justifyContent='center'>
 						<Heading mt={'$4'} fontSize={'$2xl'}>

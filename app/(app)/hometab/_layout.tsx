@@ -24,7 +24,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 export default () => {
 	const showDev = true
 
-	const segments = useSegments()
+	const segments: String[] = useSegments()
 	const insets = useSafeAreaInsets()
 	const router = useRouter()
 	const rTheme = useReactiveVar(ThemeReactiveVar)

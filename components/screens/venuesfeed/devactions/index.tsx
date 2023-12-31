@@ -17,7 +17,7 @@ export default function DevActions() {
 	const [removeAllFromVeneues, { data, loading, error }] = useRemoveAllFromVenueDeveloperMutation()
 
 	return (
-		<VStack space={'$4'} justifyContent={'space-between'}>
+		<VStack space={'lg'} justifyContent={'space-between'}>
 			{showDevMode ? (
 				<Box py={'$10'} my={'$5'}>
 					<Pressable
@@ -43,7 +43,7 @@ export default function DevActions() {
 						</Box>
 					</Pressable>
 					<VStack>
-						<HStack space={'$md'} py={'$2'} mx={'$3'} justifyContent={'space-around'}>
+						<HStack space={'md'} py={'$2'} mx={'$3'} justifyContent={'space-around'}>
 							<Button isDisabled={loading} onPress={() => removeAllFromVeneues()}>
 								<ButtonText fontWeight='$medium' fontSize='$sm'>
 									{loading ? 'Removing patrons' : 'Remove everyone'}

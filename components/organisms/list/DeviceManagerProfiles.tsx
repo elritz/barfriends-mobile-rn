@@ -16,15 +16,20 @@ import { useRef, useState } from 'react'
 const DeviceManagerProfiles = () => {
 	const ref = useRef(null)
 	const router = useRouter()
-	const [profiles, setProfiles] = useState<Array<AuthorizationDeviceProfile>>([])
+	const [profiles, setProfiles] = useState<Partial<AuthorizationDeviceProfile>[]>()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 
 	const { data, loading, error } = useGetADeviceManagerQuery({
 		fetchPolicy: 'network-only',
 		onCompleted: data => {
+			// DeviceManager
+			// ProfileType
+			// createdAt
+			// deviceManagerId
 			if (data.getADeviceManager?.__typename === 'DeviceManagerDeviceProfiles') {
-				const deviceProfiles = data?.getADeviceManager?.DeviceProfiles
-				setProfiles(deviceProfiles)
+				setProfiles(
+					(data?.getADeviceManager?.DeviceProfiles as Partial<AuthorizationDeviceProfile>[]) ?? [],
+				)
 			}
 		},
 	})
@@ -55,18 +60,14 @@ const DeviceManagerProfiles = () => {
 
 	return (
 		<Center>
-			{profiles.length ? (
+			{profiles?.length ? (
 				<>
 					{profiles?.map((item, index) => {
 						if (item.Profile?.ProfileType === ProfileType.Guest) return null
 						return (
 							<HStack key={index} h={80} alignItems='center'>
 								<Pressable key={item.id} onPress={() => switchProfile(item)}>
-									<DeviceManagerProfileItemLarge
-										item={item.Profile}
-										isActive={item.isActive}
-										loading={SWDPLoading}
-									/>
+									<DeviceManagerProfileItemLarge item={item.Profile} loading={SWDPLoading} />
 								</Pressable>
 								<Center h={300}>
 									<Button

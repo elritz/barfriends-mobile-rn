@@ -4,7 +4,7 @@ import { capitalizeFirstLetter } from '@util/helpers/capitalizeFirstLetter'
 import React, { useState } from 'react'
 
 type Props = {
-	profile: Profile
+	profile: Partial<Profile> | null | undefined
 }
 
 export default function Details({ profile: item }: Props) {

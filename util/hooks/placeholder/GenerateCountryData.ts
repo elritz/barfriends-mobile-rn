@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
 
 const GenerateCountryData = () => {
-	const list = []
+	const list: { id: string; country: string; countryCode: string; }[] = []
 
 	for (let i = 0; i < 50; i++) {
 		const country = faker.location.country()

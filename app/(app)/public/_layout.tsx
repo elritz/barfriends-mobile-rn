@@ -73,7 +73,14 @@ export default () => {
 											// bg={rTheme.colorScheme === 'light' ? '$light50' : '$light900'}
 											rounded={'$full'}
 											variant='link'
-											onPress={() => router.back()}
+											onPress={() =>
+												router.push({
+													pathname: '/(app)/public/personal/settings',
+													params: {
+														username: 'test',
+													},
+												})
+											}
 											size='xs'
 										>
 											<Entypo

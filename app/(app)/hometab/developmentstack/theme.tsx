@@ -101,7 +101,6 @@ export default function Preferences() {
 			return (
 				<Pressable
 					onPress={() => {
-						console.log('preessed :>> ')
 						updateSwitchTheme({
 							variables: {
 								id: item.id,
@@ -165,7 +164,7 @@ export default function Preferences() {
 						</VStack>
 
 						<Divider my={'$3'} />
-						<VStack flexDirection={'row'} flexWrap={'wrap'} justifyContent='space-around' space={'$md'}>
+						<VStack flexDirection={'row'} flexWrap={'wrap'} justifyContent='space-around' space={'md'}>
 							{rTheme.colorScheme === 'light' ? (
 								<>
 									{company.light.map((item, index) => {
@@ -270,9 +269,7 @@ export default function Preferences() {
 							borderColor={rTheme.localStorageColorScheme === 'system' ? '$primary300' : 'transparent'}
 							borderWidth={'$2'}
 						>
-							<ButtonText color={rTheme.colorScheme === 'light' ? '$black' : '$white'}>
-								System
-							</ButtonText>
+							<ButtonText color={rTheme.colorScheme === 'light' ? '$black' : '$white'}>System</ButtonText>
 						</Button>
 					</HStack>
 				)

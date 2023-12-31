@@ -129,7 +129,7 @@ export default () => {
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => (
 							<Input key={'name'} variant={'underlined'} py={'$1'} size={'lg'}>
-								<Input.Input
+								<Input
 									ref={_firstnameRef}
 									keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 									key={'name'}
@@ -167,7 +167,7 @@ export default () => {
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => (
 							<Input key={'lname'} variant={'underlined'} py={'$1'} size={'lg'}>
-								<Input.Input
+								<Input
 									ref={_lastnameRef}
 									keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 									key={'lastname'}

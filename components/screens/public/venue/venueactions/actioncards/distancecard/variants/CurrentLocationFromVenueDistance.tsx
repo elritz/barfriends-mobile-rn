@@ -25,6 +25,9 @@ const size = 50
 
 const CurrentLocationFromVenueDistance = () => {
 	const params = useLocalSearchParams()
+
+	console.log("🚀 ~ file: CurrentLocationFromVenueDistance.tsx:29 ~ CurrentLocationFromVenueDistance ~ params:", params)
+
 	const isFocused = useIsFocused()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
@@ -41,7 +44,7 @@ const CurrentLocationFromVenueDistance = () => {
 	} = useDisclose()
 
 	const { data, loading, error } = usePublicVenueQuery({
-		skip: !params.profileid,
+		skip: !params.username,
 		fetchPolicy: 'cache-first',
 		variables: {
 			where: {

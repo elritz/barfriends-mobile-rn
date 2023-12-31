@@ -2,11 +2,15 @@ import useGenerateUserData from './useGenerateUserData'
 import { faker } from '@faker-js/faker'
 import { Venue } from '@graphql/generated'
 
-const useGenerateVenuesData = (numOfVenues: number, numOfMessages: number): Venue[] => {
-	const list: Venue[] = []
+const useGenerateVenuesData = <T>(
+	numOfVenues: number,
+	numOfMessages: number,
+	generateItem: () => T,
+): T[] => {
+	const list: T[] = []
 
 	const GenerateGenresData = () => {
-		const genres = []
+		const genres: String[] = []
 		for (let i = 0; i < faker.datatype.number(5); i++) {
 			genres.push(faker.music.genre())
 		}
@@ -34,8 +38,9 @@ const useGenerateVenuesData = (numOfVenues: number, numOfMessages: number): Venu
 				capacity: faker.number.int(400),
 			},
 			distance: faker.number.int(1600),
-		})
+		} as T) // Cast the object as type T
 	}
+
 	return list
 }
 

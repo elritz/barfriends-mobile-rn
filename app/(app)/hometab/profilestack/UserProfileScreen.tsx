@@ -49,7 +49,7 @@ export default () => {
 					</Box>
 				)
 			case ProfileType.Personal:
-				return <PersonalScreen notifications={[]} />
+				return <PersonalScreen notifications={null} />
 			case ProfileType.Venue:
 				return <VenueScreen />
 			default:

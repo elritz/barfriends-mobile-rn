@@ -9,12 +9,11 @@ import AddRelationship from '@components/screens/tonight/activity/ask/AddRelatio
 import { Box, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import { ProfileType } from '@graphql/generated'
 import { AuthorizationReactiveVar } from '@reactive'
-import { capitalizeFirstLetter } from '@util/helpers/capitalizeFirstLetter'
 import { DateTime } from 'luxon'
 import { View } from 'react-native'
 
 type Props = {
-	notifications: undefined
+	notifications?: undefined | null
 }
 
 const PersonalScreen = ({ notifications }: Props) => {
@@ -72,11 +71,11 @@ const PersonalScreen = ({ notifications }: Props) => {
 				</VStack>
 			</HStack>
 			<Box mx={'$2'}>
-				<CondensedVerticalFriendsNotficationsList
+				{/* <CondensedVerticalFriendsNotficationsList
 					keyExtractor={item => String(item.id)}
 					renderItem={item => <CondensedHorizontalFriendNotifciation item={item} />}
 					data={notifications?.getNotifications?.friendRequestNotifications}
-				/>
+				/> */}
 			</Box>
 			<VStack m={'$3'} space={'md'} justifyContent={'space-around'}>
 				<HStack space={'md'} justifyContent={'space-around'}>

@@ -18,7 +18,7 @@ const SearchInputVenueFeedDisabled = (props: Props) => {
 	const _inputRef = useRef<TextInput | undefined>()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const router = useRouter()
-	const segments = useSegments()
+	const segments: String[] = useSegments()
 	const [showBack, setShowBack] = useState(false)
 
 	return (

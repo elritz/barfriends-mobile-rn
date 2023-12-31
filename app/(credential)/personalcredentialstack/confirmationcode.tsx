@@ -1,15 +1,11 @@
 // TODO: FN(onPress(Resend Code)) - ln:162 -- when the user presses resend code need to resend and keep track of how many times
 import { useReactiveVar } from '@apollo/client'
 import { Feather } from '@expo/vector-icons'
-import { Box, Button, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
+import { Box, Button, Heading, Pressable, Text, VStack, ButtonText } from '@gluestack-ui/themed'
 import { useIsFocused } from '@react-navigation/native'
-import {
-	ConfirmationCodeReactiveVar,
-	CredentialPersonalProfileReactiveVar,
-	ThemeReactiveVar,
-} from '@reactive'
+import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '@reactive'
 import useContentInsets from '@util/hooks/useContentInsets'
-import Countdown from '@util/hooks/useTimer'
+import useTimer from '@util/hooks/useTimer2'
 import { useLocalSearchParams, useRouter } from 'expo-router'
 import { useEffect, useState } from 'react'
 import { Controller, useForm, ValidateResult } from 'react-hook-form'
@@ -26,21 +22,20 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default () => {
 	const INPUT_ACCESSORY_VIEW_ID = 'cc-1298187263'
+	const INPUT_CONTAINER_HEIGHT = 90
 	const router = useRouter()
 	const params = useLocalSearchParams()
+	const { height: platform } = useReanimatedKeyboardAnimation()
 	const contentInsets = useContentInsets()
 	const { bottom } = useSafeAreaInsets()
 	const isFocused = useIsFocused()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const credentialPersonalProfileVar = useReactiveVar(CredentialPersonalProfileReactiveVar)
 	const CELL_COUNT = String(params?.code).length
-	const ref = useBlurOnFulfill({ value: params?.code, cellCount: CELL_COUNT })
-
-	const { num, complete } = Countdown(9)
+	const ref = useBlurOnFulfill({ value: String(params?.code), cellCount: CELL_COUNT })
 	const [codeValue, setCodeValue] = useState('')
 
-	const { height: platform } = useReanimatedKeyboardAnimation()
-	const INPUT_CONTAINER_HEIGHT = 90
+	const { start, isFinished, seconds } = useTimer('9')
 
 	const height = useDerivedValue(() => platform.value, [isFocused])
 
@@ -60,6 +55,10 @@ export default () => {
 		value: codeValue,
 		setValue: setCodeValue,
 	})
+
+	useEffect(() => {
+		start()
+	}, [])
 
 	const {
 		control,
@@ -132,7 +131,7 @@ export default () => {
 				px={'$2'}
 			>
 				<Box bg={'$transparent'} justifyContent={'space-around'}>
-					{complete ? (
+					{isFinished ? (
 						<VStack space={'sm'} justifyContent={'space-around'}>
 							<Button variant={'link'} size={'md'} justifyContent={'flex-start'}>
 								<ButtonText>Resend code</ButtonText>
@@ -149,7 +148,7 @@ export default () => {
 					) : (
 						<Text>
 							Resend code in 0:0
-							{num}
+							{seconds}
 						</Text>
 					)}
 				</Box>

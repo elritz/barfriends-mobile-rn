@@ -209,7 +209,7 @@ export default () => {
 			<FlashList
 				data={contacts}
 				numColumns={1}
-				keyExtractor={item => item.id}
+				keyExtractor={(item, index) => index.toString()}
 				showsVerticalScrollIndicator={false}
 				estimatedItemSize={60}
 				keyboardDismissMode='on-drag'
@@ -226,7 +226,7 @@ export default () => {
 					}
 					return (
 						<>
-							<HStack my={2} h={'50px'}>
+							<HStack my={2} h={50}>
 								<HStack flex={1} alignItems={'center'} justifyContent={'flex-start'}>
 									<Text fontSize={'$lg'} textTransform={'capitalize'}>
 										{item.firstName}&nbsp;{item.lastName}

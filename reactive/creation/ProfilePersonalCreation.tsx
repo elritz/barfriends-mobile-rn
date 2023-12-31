@@ -10,6 +10,9 @@ export const CredentialPersonalProfileReactiveVar = makeVar<CredentialPersoanlTy
 	lastname: '',
 	password: '',
 	username: '',
+	photo: {
+		uri: '',
+	},
 	phone: {
 		number: '',
 		completeNumber: '',

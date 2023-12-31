@@ -1,16 +1,14 @@
 import { Box } from '@gluestack-ui/themed'
 import { CondensedHorizontalFriendNotifciation } from '@components/molecules/notifications/friendnotification/CondensedHorizontalFriendNotifciation'
-import { FriendRequestNotification } from '@graphql/generated'
+import { Request } from '@graphql/generated'
 
 interface Props<T> {
 	data: T[] | undefined | null
-	renderItem: (item: FriendRequestNotification) => React.ReactNode
+	renderItem: (item: Request) => React.ReactNode
 	keyExtractor: (item: T) => string
 }
 
-const CondensedVerticalFriendsNotficationsList = <T extends FriendRequestNotification>({
-	data,
-}: Props<T>) => {
+const CondensedVerticalFriendsNotficationsList = <T extends Request>({ data }: Props<T>) => {
 	return (
 		<>
 			{data?.length ? (

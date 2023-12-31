@@ -77,13 +77,13 @@ export default () => {
 			return false
 		}
 		const { days, months, years } = calcDateDiffFromNow(selectedDate)
-		if (years + 1 === legalAge && months >= 11 && days >= 27) {
+		if (years && months && days && years + 1 === legalAge && months >= 11 && days >= 27) {
 			await secureStorageItemCreate({
 				key: 'BIRTHDAY',
 				value: String(selectedDate),
 			})
 			return true
-		} else if (years < legalAge) {
+		} else if (years && years < legalAge) {
 			return false
 		}
 		return true
@@ -98,8 +98,10 @@ export default () => {
 				data: {
 					IdentifiableInformation: {
 						update: {
-							birthday: {
-								set: data.date,
+							data: {
+								birthday: {
+									set: data.date,
+								},
 							},
 						},
 					},
@@ -151,7 +153,7 @@ export default () => {
 				/>
 			</>
 			<Text>{errors.date && errors?.date.message}</Text>
-			<Box justifyContent={'center'} sx={{}} py={'15px'} width={'100%'}>
+			<Box justifyContent={'center'} py={15} width={'100%'}>
 				{dirtyFields.date && (
 					<Button
 						disabled={UOPLoading}

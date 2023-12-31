@@ -16,7 +16,7 @@ export default function CurrentVenue() {
 			flex={1}
 			p={'$3'}
 		>
-			<VStack space={'md'} mb={'$md'}>
+			<VStack space={'md'} mb={'$4'}>
 				<Box
 					sx={{
 						h: 16,

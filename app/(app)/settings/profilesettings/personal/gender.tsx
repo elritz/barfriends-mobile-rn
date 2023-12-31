@@ -41,7 +41,7 @@ export default ({}: GenderScreenProps) => {
 				data &&
 				data.updateProfileIdentifiableInformation.__typename === 'AuthorizationDeviceProfile'
 			) {
-				const profile = data.updateProfileIdentifiableInformation as Profile
+				const profile = data.updateProfileIdentifiableInformation as unknown as Profile;
 				const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
 
 				AuthorizationReactiveVar({

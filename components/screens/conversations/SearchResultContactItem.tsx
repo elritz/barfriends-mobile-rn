@@ -10,7 +10,7 @@ type Props = {
 function SearchResultContactItem(props: Props): React.ReactNode {
 	return (
 		<Box py={'$2'} bg='transparent'>
-			<Image source={}>
+			{/* <Image source={}> */}
 			<Text>{props.item.value}</Text>
 		</Box>
 	)

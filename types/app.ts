@@ -21,6 +21,9 @@ export type CredentialPersoanlType = {
 	username?: string
 	firstname?: string
 	lastname?: string
+	photo?: {
+		uri?: string
+	},
 	phone?: {
 		number?: string
 		completeNumber?: string

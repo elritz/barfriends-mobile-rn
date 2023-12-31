@@ -130,7 +130,7 @@ export default function JoinCard() {
 					}}
 				>
 					<ButtonText>{!JVLoading ? (isJoined ? 'Joined' : 'Join') : 'Joining'}</ButtonText>
-					{isJoined && <CheckCircleIcon size='5' mt='0.5' color='white' />}
+					{isJoined && <CheckCircleIcon size={'sm'} mt={'$0.5'} color='white' />}
 				</Button>
 			</Box>
 		</VStack>
