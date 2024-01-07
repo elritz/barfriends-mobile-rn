@@ -2,7 +2,7 @@ import { useReactiveVar } from '@apollo/client'
 import ChevronBackArrow from '@components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
 import { Ionicons } from '@expo/vector-icons'
 import { AntDesign } from '@expo/vector-icons'
-import { HStack, Input, InputField, InputIcon, Pressable } from '@gluestack-ui/themed'
+import { HStack, Input, InputField, InputIcon, InputSlot, Pressable } from '@gluestack-ui/themed'
 import { ThemeReactiveVar } from '@reactive'
 import useDebounce from '@util/hooks/useDebounce'
 import { useRouter } from 'expo-router'
@@ -77,6 +77,7 @@ const SearchInputSearchArea = (props: Props) => {
 						variant='rounded'
 						alignItems='center'
 						mx={'$3'}
+						px={'$3'}
 						zIndex={0}
 						hitSlop={{ top: 12, bottom: 12, left: 0, right: 15 }}
 						bg={
@@ -85,16 +86,17 @@ const SearchInputSearchArea = (props: Props) => {
 								: rTheme.theme?.gluestack.tokens.colors.light900
 						}
 					>
+					<InputSlot style={{  alignSelf: 'center' }}>
 						<Ionicons
-							style={{ marginLeft: 10 }}
 							color={
 								rTheme.colorScheme === 'light'
-									? rTheme.theme?.gluestack.tokens.colors.light700
-									: rTheme.theme?.gluestack.tokens.colors.light100
+								? rTheme.theme?.gluestack.tokens.colors.light700
+								: rTheme.theme?.gluestack.tokens.colors.light100
 							}
 							name='ios-search'
-							size={20}
-						/>
+							size={23}
+							/>
+						</InputSlot>
 						<InputField
 							ref={_inputRef}
 							autoFocus
@@ -104,8 +106,11 @@ const SearchInputSearchArea = (props: Props) => {
 									: rTheme.theme?.gluestack.tokens.colors.light100
 							}
 							autoCapitalize={'none'}
+							type='text'
+							textAlignVertical='center'
 							autoCorrect={false}
 							autoComplete='off'
+							fontSize={'$xl'}
 							value={value}
 							onChangeText={onChange}
 							placeholder={props.placeholder || 'Search'}
@@ -114,9 +119,8 @@ const SearchInputSearchArea = (props: Props) => {
 							onSubmitEditing={handleSubmit(handleSearchSubmitEditting)}
 							keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 						/>
-
 						{watch('searchtext')?.length ? (
-							<Pressable mr={'$3'} onPress={() => clearSearchInput()}>
+							<Pressable onPress={() => clearSearchInput()} height={'100%'} justifyContent='center' px={'$2'}>
 								<AntDesign
 									name='closecircle'
 									size={20}

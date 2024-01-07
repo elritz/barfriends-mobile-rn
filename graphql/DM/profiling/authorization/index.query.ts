@@ -1,6 +1,5 @@
-import { gql } from '@apollo/client';
-import { ERROR_FRAGMENT, PROFILE_FRAGMENT } from '@graphql/DM/fragments/index.fragments';
-
+import { gql } from '@apollo/client'
+import { ERROR_FRAGMENT, PROFILE_FRAGMENT } from '@graphql/DM/fragments/index.fragments'
 
 export const AUTHORIZED_PROFILES_QUERY = gql`
 	${ERROR_FRAGMENT}
@@ -12,65 +11,13 @@ export const AUTHORIZED_PROFILES_QUERY = gql`
 			}
 			... on ProfilesResponse {
 				email {
-					id
-					ProfileType
-					profilePhoto {
-						id
-						blurhash
-						url
-					}
-					IdentifiableInformation {
-						id
-						username
-						fullname
-					}
-					
+					...PROFILE_FRAGMENT
 				}
 				phone {
-					id
-					ProfileType
-					profilePhoto {
-						id
-						blurhash
-						url
-					}
-					photos {
-						id
-						blurhash
-						url
-					}
-					IdentifiableInformation {
-						id
-						username
-						fullname
-					}
-					tonightStory {
-						id
-						emojimood {
-							colors
-							emoji
-							emojiname
-						}
-					}
+					...PROFILE_FRAGMENT
 				}
 				username {
-					id
-					ProfileType
-					profilePhoto {
-						id
-						blurhash
-						url
-					}
-					photos {
-						id
-						blurhash
-						url
-					}
-					IdentifiableInformation {
-						id
-						username
-						fullname
-					}
+					...PROFILE_FRAGMENT
 				}
 			}
 		}

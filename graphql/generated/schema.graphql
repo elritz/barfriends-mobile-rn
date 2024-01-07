@@ -8953,11 +8953,11 @@ input MessageWhereUniqueInput {
 }
 
 type Mutation {
-  acceptFriendRequest(friendRequestId: String!, venueIdMetAt: String): Relationship!
+  acceptFriendRequest(friendRequestId: String!, notificationStatusId: String!, venueIdMetAt: String): Relationship!
   addPersonalJoinsVenue(profileIdVenue: String): Profile!
   addPersonalTotalsVenue(profileIdPersonal: String, profileIdVenue: String): Boolean!
   addStoryPhotos(photos: PhotoCreateManyProfileInputEnvelope): Story!
-  createFriendRequest(receiversProfileId: [String!]!, senderProfileId: String!): Boolean!
+  createFriendRequest(receiversProfileId: [String!]!): Request!
   createGuestProfile: AuthenticationResponseUnion!
   createMessage(
     content: Json!
@@ -8968,7 +8968,7 @@ type Mutation {
   ): Message
   createPersonalProfile(data: CreatePersonalDataInput): AuthenticationResponseUnion!
   createVenueProfile(data: CreateVenueDataInput): AuthenticationResponseUnion!
-  declineFriendRequest(friendRequestId: String!): Boolean!
+  declineFriendRequest(friendRequestId: String!, notificationStatusId: String!): Boolean!
   deleteFriendRequest(friendRequestId: String!): Boolean!
   qrAddFriend(dataHash: String!, qrCodeProfileId: String!): Relationship!
   refreshDeviceManager: AuthenticationResponseUnion!
@@ -8981,6 +8981,7 @@ type Mutation {
   sendAuthenticatorDeviceOwnerCode(data: CodeDataInput, where: CustomCodeWhereInput): CodeResponse!
   sendAuthenticatorForgotPasswordCode(data: CodeDataInput, where: CustomCodeWhereInput): CodeResponse!
   switchDeviceProfile(profileId: String!): AuthenticationResponseUnion!
+  testNotification: Boolean!
   updateCityRequested(cityName: String!): Boolean!
 
   """Update H6 coming area to be notified"""
@@ -8995,6 +8996,7 @@ type Mutation {
   updateH6VenueRemmendation(venueRecommendationId: String!): H3Index6VenueRecommendation!
   updateManyMessageNotifications(conversationId: String): Boolean
   updateOneProfile(data: ProfileUpdateInput!, where: ProfileWhereUniqueInput!): Profile
+  updatePassword(newpassword: String!, oldpassword: String!): Boolean!
   updateProfileIdentifiableInformation(data: IdentifiableInformationUpdateInput!): AuthenticationResponseUnion!
   updateProfilePrivacyTermsDocumentUpdate: Boolean!
   updateStoryEmojimood(emojimoodId: Int!, storyId: String): Story!
@@ -9407,7 +9409,7 @@ type NewPostEvent implements IBasePostEvent {
   title: String!
 }
 
-union NotificationFriendRequestStatusResponse = Error | RejectedFriendsResponse | Relationship | Request
+union NotificationFriendRequestStatusResponse = Error | Relationship | Request
 
 type NotificationResponse {
   friendRequestNotifications: [Request!]
@@ -14660,6 +14662,7 @@ type PublicProfilePersonal {
   friendStatus: RelationshipStatusResponse!
   id: String!
   profilePhoto: Photo
+  relationship: NotificationFriendRequestStatusResponse
   tonightStory: Story
   updatedAt: DateTime!
 }
@@ -14937,7 +14940,6 @@ type Query {
   getLiveVenueTotals(profileIdVenue: String): LiveVenueTotals!
   getNotifications: NotificationResponse!
   getProfileThemeManager: ThemeManager!
-  getRelationshipFriendRequestStatus(profileId: String!): NotificationFriendRequestStatusResponse!
   getSecureFriendQRCodeData: String!
   loginPassword(password: String!, username: String!): Boolean!
   privacyTermsDocuments: LatestPrivacyAndTermsDocumentResponse!
@@ -15141,10 +15143,6 @@ input RefreshTokenWhereUniqueInput {
   updatedAt: DateTimeFilter
 }
 
-type RejectedFriendsResponse {
-  friends: Boolean!
-}
-
 type Relationship {
   Profile: Profile
   RelationshipStatus: [RelationshipStatus!]!
@@ -15324,7 +15322,8 @@ enum RelationshipStatusResponse {
   DATING
   FRIENDS
   NOTFRIENDS
-  REQUESTED
+  REQUEST_RECEIVED
+  REQUEST_SENT
 }
 
 input RelationshipUpdateInput {
@@ -15423,8 +15422,8 @@ type Request {
   NotificationMessage: [Notifications!]!
   createdAt: DateTime!
   id: ID!
-  receiverProfileId: [RequestReceiver!]!
-  senderProfile: Profile!
+  recievers: [RequestReceiver!]!
+  senderProfile: Profile
   senderProfileId: String!
   updatedAt: DateTime!
 }
@@ -15608,8 +15607,9 @@ input RequestOrderByWithRelationInput {
 type RequestReceiver {
   NotificationStatus: NotificationStatus!
   id: ID!
+  notificationStatusId: String!
   profileId: String!
-  receiverProfile: Profile!
+  requestId: String
 }
 
 input RequestReceiverCountOrderByAggregateInput {

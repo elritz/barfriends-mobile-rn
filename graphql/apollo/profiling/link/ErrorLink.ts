@@ -3,8 +3,6 @@ import { onError } from '@apollo/client/link/error'
 
 const errorLink = onError(({ graphQLErrors, networkError, operation, forward }) => {
 	if (graphQLErrors) {
-
-
 		for (let err of graphQLErrors) {
 			switch (err?.extensions?.code) {
 				case 'UNAUTHENTICATED':

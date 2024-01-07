@@ -10,12 +10,20 @@ export const GET_A_DEVICE_MANAGER_QUERY = gql`
 				DeviceProfiles {
 					id
 					AppType
+					ProfileType
 					isActive
 					accesstoken
 					refreshtoken
+					deviceManagerId
+					DeviceManager {
+						id
+					}
+					profileId
 					Profile {
 						...PROFILE_FRAGMENT
 					}
+					createdAt
+					updatedAt
 				}
 			}
 		}

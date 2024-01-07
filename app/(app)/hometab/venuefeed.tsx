@@ -221,6 +221,7 @@ export default () => {
 					return (
 						<VStack>
 							{data.venuesNearby.recommendedAreas?.map((item, index) => {
+								console.log('item.venuesProfileIds :>> ', item.venuesProfileIds);
 								return (
 									<Pressable
 										key={item.id + index}

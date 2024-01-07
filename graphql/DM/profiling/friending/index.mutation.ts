@@ -1,8 +1,12 @@
 import { gql } from '@apollo/client'
+import { REQUEST_FRAGMENT } from '@graphql/DM/fragments/request.fragments'
 
 export const CREATE_FRIEND_REQUEST_MUTATION = gql`
-	mutation createFriendRequest($senderProfileId: String!, $receiversProfileId: [String!]!) {
-		createFriendRequest(senderProfileId: $senderProfileId, receiversProfileId: $receiversProfileId)
+	${REQUEST_FRAGMENT}
+	mutation createFriendRequest($receiversProfileId: [String!]!) {
+		createFriendRequest(receiversProfileId: $receiversProfileId) {
+			...REQUEST_FRAGMENT
+		}
 	}
 `
 
@@ -28,8 +32,16 @@ export const QR_FRIEND_MUTATION = gql`
 `
 
 export const ACCEPT_FRIEND_REQUEST_MUTATION = gql`
-	mutation acceptFriendRequest($friendRequestId: String!, $venueIdMetAt: String) {
-		acceptFriendRequest(friendRequestId: $friendRequestId, venueIdMetAt: $venueIdMetAt) {
+	mutation acceptFriendRequest(
+		$friendRequestId: String!
+		$venueIdMetAt: String
+		$notificationStatusId: String!
+	) {
+		acceptFriendRequest(
+			friendRequestId: $friendRequestId
+			venueIdMetAt: $venueIdMetAt
+			notificationStatusId: $notificationStatusId
+		) {
 			id
 			venueMetAt
 			Profile {
@@ -42,8 +54,11 @@ export const ACCEPT_FRIEND_REQUEST_MUTATION = gql`
 	}
 `
 export const DECLINE_FRIEND_REQUEST_MUTATION = gql`
-	mutation declineFriendRequest($friendRequestId: String!) {
-		declineFriendRequest(friendRequestId: $friendRequestId)
+	mutation declineFriendRequest($friendRequestId: String!, $notificationStatusId: String!) {
+		declineFriendRequest(
+			friendRequestId: $friendRequestId
+			notificationStatusId: $notificationStatusId
+		)
 	}
 `
 

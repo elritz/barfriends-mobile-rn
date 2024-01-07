@@ -115,7 +115,7 @@ export default () => {
 	const device_manager_profile_id = 'e90675d1-009f-4ca8-9d76-f163a885189f'
 
 	//? Hometabs
-	// return <Redirect href={'/(app)/hometab/venuefeed'} />
+	return <Redirect href={'/(app)/hometab/venuefeed'} />
 	// return <Redirect href={'/(app)/hometab/messagestack'} />
 	// return <Redirect href={'/(app)/hometab/developmentstack'} />
 
@@ -130,7 +130,7 @@ export default () => {
 	// return <Redirect href={'/(credential)/personalcredentialstack/name'} />
 
 	//? Public
-	return <Redirect href={`/(app)/public/personal/${personal_id_misia}`} />
+	// return <Redirect href={`/(app)/public/personal/${personal_id_misia}`} />
 	// return <Redirect href={`/(app)/public/venue/${venue_id}`} />
 
 	//? Broken state

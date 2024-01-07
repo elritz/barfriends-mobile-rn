@@ -8,12 +8,13 @@ import { useLocalSearchParams } from 'expo-router'
 export default function SearchH3Recommendation() {
 	const params = useLocalSearchParams()
 	const contentInsets = useContentInsets()
+console.log('params.profileids :>> ', params.venueprofileids);
 
 	const { data, loading, error } = useGetH3Index6VenueRecommendationByIdQuery({
-		skip: !params.id || !params.profileids,
+		skip: !params.id || !params.venueprofileids,
 		variables: {
 			id: String(params.id),
-			venuesProfileIds: JSON.parse(String(params.profileids)),
+			venuesProfileIds: JSON.parse(String(params.venueprofileids)),
 		},
 	})
 

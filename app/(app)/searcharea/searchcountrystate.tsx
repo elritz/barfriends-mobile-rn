@@ -150,10 +150,10 @@ export default function SearchCountryStates() {
 					px: 2,
 					justifyContent: 'space-between',
 					_light: {
-						bg: watch('state.name') === item.isoCode ? '$primary500' : '$light50',
+						bg: watch('state.name') === item.name || watch('state.isoCode') === item.isoCode ? '$primary500' : '$light50',
 					},
 					_dark: {
-						bg: watch('state.name') === item.isoCode ? '$primary500' : '$light800',
+						bg: watch('state.name') === item.name || watch('state.isoCode') === item.isoCode ? '$primary500' : '$light800',
 					},
 				}}
 				rounded={'$md'}
@@ -172,7 +172,7 @@ export default function SearchCountryStates() {
 						{item.name}
 					</Text>
 				</Text>
-				{watch('state.name') === item.isoCode ? (
+				{watch('state.name') === item.name || watch('state.isoCode') === item.isoCode ? (
 					<Button onPress={() => _pressItem(item)} rounded={'$full'} bg='$blue500' size='xs' mr={'$3'}>
 						<ButtonText fontSize={'$xs'}>Continue</ButtonText>
 					</Button>

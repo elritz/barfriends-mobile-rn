@@ -47,7 +47,7 @@ export default () => {
 	}, [params.searchtext])
 
 	function getUniqueListBy(arr, key) {
-		return [...new Map(arr.map(item => [item[key], item])).values()]
+		return [...new Map(arr?.map(item => [item[key], item])).values()]
 	}
 
 	const filteredRecentSearches = getUniqueListBy(

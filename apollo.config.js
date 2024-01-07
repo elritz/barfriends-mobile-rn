@@ -9,7 +9,7 @@ module.exports = {
 		// service: 'revel',
 		service: {
 			name: 'revel',
-			url: 'http://192.168.86.40:4000/graphql',
+			url: 'http://192.168.86.41:4000/graphql',
 		},
 	},
 }

@@ -120,7 +120,7 @@ export default function SearchCountry() {
 					longitude: Number(item.longitude),
 				},
 			})
-			router.push({
+			router.replace({
 				pathname: '/(app)/searcharea/searchcountrystate',
 				params: {
 					countryIsoCode: item.isoCode,
@@ -162,7 +162,6 @@ export default function SearchCountry() {
 					ellipsizeMode={'tail'}
 				>
 					{item?.flag}
-					{` `}
 					<Text fontWeight={'$medium'} fontSize={'$lg'} numberOfLines={1} ellipsizeMode={'tail'}>
 						{item.name}
 					</Text>

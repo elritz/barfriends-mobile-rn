@@ -5,6 +5,7 @@ import { Box } from '@gluestack-ui/themed'
 import { ThemeReactiveVar } from '@reactive'
 
 const SearchTab = (props: TabProps) => {
+	
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	return (
 		<>

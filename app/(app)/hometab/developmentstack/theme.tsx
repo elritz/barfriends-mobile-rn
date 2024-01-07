@@ -38,7 +38,11 @@ export default function Preferences() {
 	const [updateSwitchTheme] = useUpdateThemeManagerSwitchThemeMutation({
 		onCompleted: data => {
 			refreshMutation()
+			console.log("🚀 ~ file: theme.tsx:43 ~ Preferences ~ data:", data)
 		},
+		onError: error => {
+			console.log('errorwwww :>> ', error);
+		}
 	})
 
 	const [refreshMutation, { data, loading }] = useRefreshDeviceManagerMutation({
@@ -57,6 +61,9 @@ export default function Preferences() {
 				// }, 1)
 			}
 		},
+		onError: error => {
+			console.log('error :>> ', error);
+		}
 	})
 
 	const setTheme = async ({ colorScheme }: { colorScheme: 'light' | 'dark' | 'system' }) => {
@@ -223,7 +230,6 @@ export default function Preferences() {
 				paddingHorizontal: 10,
 			}}
 			contentInset={{
-				top: contentInsets.top,
 				bottom:
 					insets.bottom !== 0
 						? HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS
@@ -242,7 +248,7 @@ export default function Preferences() {
 							borderColor={rTheme.localStorageColorScheme === 'light' ? '$primary300' : 'transparent'}
 							borderWidth={'$2'}
 						>
-							<ButtonyText color={'$black'}>Light</ButtonyText>
+							<ButtonText color={'$black'}>Light</ButtonText>
 						</Button>
 						<Button
 							flex={1}

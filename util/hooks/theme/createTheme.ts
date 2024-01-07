@@ -46,18 +46,14 @@ const createTheme = ({ colorScheme, localStorageColorScheme }: Props) => {
 		return rn
 	}
 
+
 	const _newtheme: IBFSTheme = {
 		reactnavigation: {
-			...DefaultTheme,
-			dark: colorScheme === 'light' ? false : true,
-			colors: {
-				...DefaultTheme.colors,
-				...rnColors(),
-			},
+			...rnColors()
 		},
 		gluestack: config,
 	}
-
+	
 	ThemeReactiveVar({
 		localStorageColorScheme: localStorageColorScheme,
 		deviceColorScheme: deviceColorScheme,

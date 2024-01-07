@@ -19,6 +19,9 @@ export const PROFILE_FRAGMENT = gql`
 		__typename
 		id
 		ProfileType
+		bfsprofileid
+		createdAt
+		updatedAt
 		IdentifiableInformation {
 			...INDETIFIABLE_INFORMATION_FRAGMENT
 		}
@@ -252,10 +255,44 @@ export const PUBLIC_PERSONAL_FRAGMENT = gql`
 		DetailInformation {
 			...DETAIL_INFORMATION_FRAGMENT
 		}
-		# Relationships {
-		# 	...RELATIONSHIP_FRAGMENT
-		# }
-		
+		relationship {
+			... on Error {
+				__typename
+				errorCode
+				message
+			}
+			... on Request {
+				__typename
+				id
+				senderProfileId
+				recievers {
+					id
+					requestId
+					NotificationStatus {
+						id
+						isAccepted
+						isAnswered
+						isCanceled
+						isChecked
+						updatedAt
+						createdAt
+					}
+				}
+
+				updatedAt
+				createdAt
+			}
+			... on Relationship {
+				__typename
+				id
+				profileId
+				friendProfileId
+				RelationshipStatus
+				venueMetAt
+				updatedAt
+				createdAt
+			}
+		}
 		profilePhoto {
 			id
 			url

@@ -168,9 +168,10 @@ export default function SearchStateCities() {
 				...newSearchAreaValue,
 			})
 			
-			router.replace({
-				pathname: '/(app)/searcharea',
+			router.setParams({
+				searchtext: '',
 			})
+			router.back()
 		}
 
 		return (
