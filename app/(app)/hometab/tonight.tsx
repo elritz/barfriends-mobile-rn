@@ -76,9 +76,9 @@ export default () => {
 		<LinearGradient
 			style={{ flex: 1 }}
 			colors={
-				rAuthorizationVar?.Profile?.tonightStory?.emojimood
-					? [...rAuthorizationVar?.Profile?.tonightStory?.emojimood.colors]
-					: []
+				rAuthorizationVar?.Profile?.tonightStory?.emojimood?.colors.length
+					? rAuthorizationVar?.Profile?.tonightStory?.emojimood.colors
+					: ['#0000000']
 			}
 		>
 			<FlashList

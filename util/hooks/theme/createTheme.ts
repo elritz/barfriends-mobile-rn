@@ -45,11 +45,9 @@ const createTheme = ({ colorScheme, localStorageColorScheme }: Props) => {
 		const rn = colorScheme === 'dark' ? theme.reactnavigation.dark : theme.reactnavigation.light
 		return rn
 	}
-
-
 	const _newtheme: IBFSTheme = {
 		reactnavigation: {
-			...rnColors()
+			...rnColors(),
 		},
 		gluestack: config,
 	}

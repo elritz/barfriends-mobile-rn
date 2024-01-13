@@ -646,7 +646,9 @@ export default () => {
 					flex: 1,
 				}}
 				colors={
-					profile?.tonightStory?.emojimood?.colors ? profile?.tonightStory?.emojimood?.colors : []
+					profile?.tonightStory?.emojimood?.colors
+						? profile?.tonightStory?.emojimood?.colors
+						: ['#0000000']
 				}
 			>
 				<RelationshipSettingsBottomSheet />
@@ -656,7 +658,9 @@ export default () => {
 							photos={profile?.tonightStory?.photos}
 							profilePhoto={profile?.profilePhoto}
 							emojimoodsColors={
-								profile?.tonightStory?.emojimood?.colors ? profile?.tonightStory?.emojimood?.colors : []
+								profile?.tonightStory?.emojimood?.colors
+									? profile?.tonightStory?.emojimood?.colors
+									: ['#0000000']
 							}
 						/>
 						<FriendRequest />

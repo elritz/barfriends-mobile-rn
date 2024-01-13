@@ -1,7 +1,10 @@
-import { gql } from '@apollo/client';
-import { PUBLIC_PERSONAL_FRAGMENT, VENUE_FRAGMENT, PROFILE_FRAGMENT } from '@graphql/DM/fragments/index.fragments';
-import { PROFILE_VENUE_FRAGMENT } from '@graphql/DM/fragments/profilevenue.fragments';
-
+import { gql } from '@apollo/client'
+import {
+	PUBLIC_PERSONAL_FRAGMENT,
+	VENUE_FRAGMENT,
+	PROFILE_FRAGMENT,
+} from '@graphql/DM/fragments/index.fragments'
+import { PROFILE_VENUE_FRAGMENT } from '@graphql/DM/fragments/profilevenue.fragments'
 
 export const PROFILE = gql`
 	${PROFILE_FRAGMENT}
@@ -57,21 +60,6 @@ export const PUBLIC_PERSONAL_QUERY = gql`
 	query publicProfile($where: ProfileWhereInput) {
 		publicProfile(where: $where) {
 			...PUBLIC_PERSONAL_FRAGMENT
-		}
-	}
-`
-
-export const GET_LIVE_VENUE_TOTALS_QUERY = gql`
-	query getLiveVenueTotals($profileIdVenue: String!) {
-		getLiveVenueTotals(profileIdVenue: $profileIdVenue) {
-			totaled {
-				id
-				personalProfileId
-			}
-			joined {
-				id
-				personalProfileId
-			}
 		}
 	}
 `

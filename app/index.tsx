@@ -132,8 +132,8 @@ export default () => {
 	// return <Redirect href={'/(credential)/personalcredentialstack/name'} />
 
 	//? Public
-	return <Redirect href={`/(app)/public/personal/${personal_username_misia}`} />
-	// return <Redirect href={`/(app)/public/personal/${personal_username_ritz}`} />
+	// return <Redirect href={`/(app)/public/personal/${personal_username_misia}`} />
+	return <Redirect href={`/(app)/public/personal/${personal_username_ritz}`} />
 	// return <Redirect href={`/(app)/public/venue/${venue_id}`} />
 
 	//? Broken state

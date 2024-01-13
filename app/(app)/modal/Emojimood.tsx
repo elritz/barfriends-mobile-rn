@@ -25,7 +25,7 @@ export default () => {
 	}
 
 	return (
-		<LinearGradient colors={watch('emojimood.colors') || ['']}>
+		<LinearGradient colors={watch('emojimood.colors') || ['#0000000']}>
 			<Box
 				bg='$transparent'
 				style={{
