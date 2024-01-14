@@ -20,12 +20,77 @@ import {
 	useUpdateThemeManagerSwitchThemeMutation,
 } from '@graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
-import { FlashList } from '@shopify/flash-list'
+import { FlashList, ListRenderItem } from '@shopify/flash-list'
 import { useToggleTheme } from '@util/hooks/theme/useToggleTheme'
 import useContentInsets from '@util/hooks/useContentInsets'
 import { router } from 'expo-router'
 import { useCallback } from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+
+type Gluestack = {
+	primary0: string
+	primary50: string
+	tertiary0: string
+	primary100: string
+	primary200: string
+	primary300: string
+	primary400: string
+	primary500: string
+	primary600: string
+	primary700: string
+	primary800: string
+	primary900: string
+	primary950: string
+	secondary0: string
+	tertiary50: string
+	secondary50: string
+	tertiary100: string
+	tertiary200: string
+	tertiary300: string
+	tertiary400: string
+	tertiary500: string
+	tertiary600: string
+	tertiary700: string
+	tertiary800: string
+	tertiary900: string
+	tertiary950: string
+	secondary100: string
+	secondary200: string
+	secondary300: string
+	secondary400: string
+	secondary500: string
+	secondary600: string
+	secondary700: string
+	secondary800: string
+	secondary900: string
+	secondary950: string
+}
+
+type Theme = {
+	card: string
+	text: string
+	border: string
+	primary: string
+	background: string
+	notification: string
+}
+
+type ReactNavigation = {
+	dark: Theme
+	light: Theme
+}
+
+type Item = {
+	index: number
+	item: {
+		id: string
+		name: string
+		theme: {
+			gluestack: Gluestack
+			reactnavigation: ReactNavigation
+		}
+	}
+}
 
 export default function Preferences() {
 	const insets = useSafeAreaInsets()
@@ -38,11 +103,11 @@ export default function Preferences() {
 	const [updateSwitchTheme] = useUpdateThemeManagerSwitchThemeMutation({
 		onCompleted: data => {
 			refreshMutation()
-			console.log("🚀 ~ file: theme.tsx:43 ~ Preferences ~ data:", data)
+			console.log('🚀 ~ file: theme.tsx:43 ~ Preferences ~ data:', data)
 		},
 		onError: error => {
-			console.log('errorwwww :>> ', error);
-		}
+			console.log('errorwwww :>> ', error)
+		},
 	})
 
 	const [refreshMutation, { data, loading }] = useRefreshDeviceManagerMutation({
@@ -62,55 +127,32 @@ export default function Preferences() {
 			}
 		},
 		onError: error => {
-			console.log('error :>> ', error);
-		}
+			console.log('error :>> ', error)
+		},
 	})
 
 	const setTheme = async ({ colorScheme }: { colorScheme: 'light' | 'dark' | 'system' }) => {
 		toggleColorScheme({ colorScheme })
 	}
 
-	const renderItem = useCallback(
-		({ item }) => {
-			const company = {
-				dark: [
-					item.theme.styled.dark.palette.company.primary,
-					item.theme.styled.dark.palette.company.secondary,
-					item.theme.styled.dark.palette.company.tertiary,
-				],
-				light: [
-					item.theme.styled.light.palette.company.primary,
-					item.theme.styled.light.palette.company.secondary,
-					item.theme.styled.light.palette.company.tertiary,
-				],
-			}
-
-			const revel = {
-				dark: [
-					item.theme.styled.dark.palette.revel.primary,
-					item.theme.styled.dark.palette.revel.secondary,
-					item.theme.styled.dark.palette.revel.tertiary,
-				],
-				light: [
-					item.theme.styled.light.palette.revel.primary,
-					item.theme.styled.light.palette.revel.secondary,
-					item.theme.styled.light.palette.revel.tertiary,
-				],
-			}
-
+	const renderItem: ListRenderItem<Item> = useCallback(
+		({ item, index }) => {
+			if (!item?.item) return null
+			const gluestack = item.item.theme.gluestack
+			const reactnavigation = item.item.theme.reactnavigation
 			return (
 				<Pressable
 					onPress={() => {
 						updateSwitchTheme({
 							variables: {
-								id: item.id,
-								themeId: item.id,
+								id: item.item.id,
+								themeId: item.item.id,
 							},
 						})
 					}}
 				>
 					<Box
-						key={item.id}
+						key={item.item.id}
 						m={'$3'}
 						style={{
 							flex: 1,
@@ -120,7 +162,7 @@ export default function Preferences() {
 						rounded={'$md'}
 						borderWidth={'$2'}
 						borderColor={
-							AuthorizationReactiveVar()?.Profile?.ThemeManager?.ProfileTheme[0]?.Theme.id === item.id
+							AuthorizationReactiveVar()?.Profile?.ThemeManager?.ProfileTheme[0]?.Theme.id === item.item.id
 								? '$primary400'
 								: 'transparent'
 						}
@@ -128,13 +170,17 @@ export default function Preferences() {
 						<VStack flexDirection={'row'} flexWrap={'wrap'} justifyContent='space-around' space={'md'}>
 							{rTheme.colorScheme === 'light' ? (
 								<>
-									{revel.light.map((item, index) => {
+									{Object.entries(gluestack).map((item, index) => {
+										console.log(`🚀 ---------------🚀`)
+										console.log(`🚀 ~ item:`, item)
+										console.log(`🚀 ---------------🚀`)
+
 										return (
 											<Box
 												key={index}
 												alignSelf={'center'}
 												style={{
-													backgroundColor: item,
+													backgroundColor: item[1],
 													width: 25,
 													height: 25,
 												}}
@@ -145,13 +191,13 @@ export default function Preferences() {
 								</>
 							) : (
 								<>
-									{revel.dark.map((item, index) => {
+									{Object.entries(gluestack).map((item, index) => {
 										return (
 											<Box
 												key={index}
 												alignSelf={'center'}
 												style={{
-													backgroundColor: item,
+													backgroundColor: item[1],
 													width: 40,
 													height: 40,
 												}}
@@ -164,43 +210,6 @@ export default function Preferences() {
 						</VStack>
 
 						<Divider my={'$3'} />
-						<VStack flexDirection={'row'} flexWrap={'wrap'} justifyContent='space-around' space={'md'}>
-							{rTheme.colorScheme === 'light' ? (
-								<>
-									{company.light.map((item, index) => {
-										return (
-											<Box
-												key={index}
-												alignSelf={'center'}
-												style={{
-													backgroundColor: item,
-													width: 40,
-													height: 40,
-												}}
-												m={'$2'}
-											/>
-										)
-									})}
-								</>
-							) : (
-								<>
-									{company.dark.map((item, index) => {
-										return (
-											<Box
-												key={index}
-												alignSelf={'center'}
-												style={{
-													backgroundColor: item,
-													width: 30,
-													height: 30,
-												}}
-												m={'$2'}
-											/>
-										)
-									})}
-								</>
-							)}
-						</VStack>
 						<Heading
 							mt={'$4'}
 							fontWeight={'$bold'}
@@ -208,7 +217,7 @@ export default function Preferences() {
 							textAlign={'center'}
 							fontSize={'$xl'}
 						>
-							{item.name}
+							{item.item.name}
 						</Heading>
 					</Box>
 				</Pressable>
@@ -222,9 +231,12 @@ export default function Preferences() {
 	return (
 		<FlashList
 			estimatedItemSize={30}
-			data={GATData.getAllThemes}
+			data={GATData.getAllThemes.map((theme, index) => ({
+				index,
+				item: theme,
+			}))}
 			keyExtractor={(item, index) => index.toString()}
-			numColumns={2}
+			numColumns={1}
 			contentContainerStyle={{
 				paddingHorizontal: 10,
 			}}

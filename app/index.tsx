@@ -119,7 +119,7 @@ export default () => {
 	//? Hometabs
 	return <Redirect href={'/(app)/hometab/venuefeed'} />
 	// return <Redirect href={'/(app)/hometab/messagestack'} />
-	// return <Redirect href={'/(app)/hometab/developmentstack'} />
+	// return <Redirect href={'/(app)/hometab/developmentstack/theme'} />
 
 	//? Modals
 	// return <Redirect href={'/(app)/modal/asks/backgroundlocationnextask'} />
@@ -133,7 +133,7 @@ export default () => {
 
 	//? Public
 	// return <Redirect href={`/(app)/public/personal/${personal_username_misia}`} />
-	return <Redirect href={`/(app)/public/personal/${personal_username_ritz}`} />
+	// return <Redirect href={`/(app)/public/personal/${personal_username_ritz}`} />
 	// return <Redirect href={`/(app)/public/venue/${venue_id}`} />
 
 	//? Broken state

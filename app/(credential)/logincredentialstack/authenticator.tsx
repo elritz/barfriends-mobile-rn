@@ -1,6 +1,15 @@
 import { useReactiveVar } from '@apollo/client'
 import { Entypo, Feather, Ionicons } from '@expo/vector-icons'
-import { Box, Button, ButtonText, HStack, Input, Pressable, VStack } from '@gluestack-ui/themed'
+import {
+	Box,
+	Button,
+	ButtonText,
+	HStack,
+	Input,
+	InputField,
+	Pressable,
+	VStack,
+} from '@gluestack-ui/themed'
 import {
 	useAuthorizedProfilesLazyQuery,
 	useSendAuthenticatorDeviceOwnerCodeMutation,
@@ -224,7 +233,7 @@ export default () => {
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => (
 							<Input variant={'underlined'} size='lg' alignItems='center'>
-								<Input.Input
+								<InputField
 									key={'authenticator'}
 									placeholder='Username, phone, email'
 									fontSize={'$2xl'}

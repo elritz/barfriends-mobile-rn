@@ -257,15 +257,6 @@ export default () => {
 	const tokenOptions = [
 		{
 			type: 'token',
-			title: 'Theme scheme',
-			icon: 'color-palette-sharp',
-			onPress: () =>
-				router.push({
-					pathname: '/(app)/hometab/developmentstack/theme',
-				}),
-		},
-		{
-			type: 'token',
 			title: 'Authorization',
 			icon: 'finger-print',
 			loading: authorizationDeleteLoading,

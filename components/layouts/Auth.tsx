@@ -52,6 +52,9 @@ export default function Auth({ children }) {
 			key: AUTHORIZATION,
 			decode: true,
 		})) as AuthorizationDecoded
+		console.log(`🚀 ---------------------------------------🚀`)
+		console.log(`🚀 ~ getAuthorization:`, getAuthorization)
+		console.log(`🚀 ---------------------------------------🚀`)
 
 		if (!getAuthorization) {
 			createGuestProfileMutation()
