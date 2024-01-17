@@ -23,13 +23,13 @@ export default function LeaveCard() {
 			return item.venueProfileId
 		})
 		const out = rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out.find(
-			item => item.venueProfileId === String(params.profileid),
+			item => item.venueProfileId === String(params.venueProfileId),
 		)
 		if (out) {
 			setOutId(out.id)
 		}
 		if (joinedToVenue) {
-			setIsJoined(joinedToVenue.includes(String(params.profileid)))
+			setIsJoined(joinedToVenue.includes(String(params.venueProfileId)))
 		}
 	}, [rAuthorizationVar, isJoined])
 
@@ -64,7 +64,7 @@ export default function LeaveCard() {
 				{
 					query: GET_LIVE_VENUE_TOTALS_QUERY,
 					variables: {
-						profileIdVenue: String(params.profileid),
+						profileIdVenue: String(params.venueProfileId),
 					},
 				},
 			],

@@ -21,12 +21,17 @@ const VenueActions = () => {
 	const itemPadding = width / numColumns - 70
 
 	const params = useLocalSearchParams()
+
+	console.log(`🚀 -------------------🚀`)
+	console.log(`🚀 ~ params:`, params)
+	console.log(`🚀 -------------------🚀`)
+
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 	const [isJoined, setIsJoined] = useState(false)
 
 	useEffect(() => {
 		const out = rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out.find(
-			item => item.venueProfileId === String(params.profileid),
+			item => item.venueProfileId === String(params.venueProfileId),
 		)
 		if (out) {
 			setIsJoined(true)

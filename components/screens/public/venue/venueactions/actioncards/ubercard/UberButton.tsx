@@ -14,7 +14,7 @@ export default function UberButton({ params }) {
 		loading: PLoading,
 		error: PError,
 	} = usePublicVenueQuery({
-		skip: !params.profileid || !rAuthorizationVar,
+		skip: !params.venueProfileId || !rAuthorizationVar,
 		fetchPolicy: 'cache-only',
 		variables: {
 			where: {
@@ -60,7 +60,7 @@ export default function UberButton({ params }) {
 			justifyContent='center'
 			rounded={'$xl'}
 			onPress={() => {
-				!params.profileid ||
+				!params.venueProfileId ||
 				(!PData?.publicVenue?.Venue?.Location?.Geometry?.latitude &&
 					!PData?.publicVenue?.Venue?.Location?.Geometry?.latitude)
 					? handleUberNoVenuePress()

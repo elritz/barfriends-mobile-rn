@@ -133,23 +133,6 @@ export default () => {
 		})
 	}
 
-	useEffect(() => {
-		setValue('countrySelector', { countryCode: 'CA', countryCallingCode: '+1' })
-	}, [])
-
-	useEffect(() => {
-		if (isFocused && _phonenumberRef.current) {
-			InteractionManager.runAfterInteractions(() => {
-				_phonenumberRef.current?.focus()
-			})
-		}
-		if (!isFocused) {
-			InteractionManager.runAfterInteractions(() => {
-				_phonenumberRef.current?.blur()
-			})
-		}
-	}, [isFocused])
-
 	const InnerContent = () => {
 		return (
 			<VStack
@@ -214,7 +197,7 @@ export default () => {
 				height: 'auto',
 				flexDirection: 'column',
 				marginHorizontal: '5%',
-				marginTop: contentInsets.top,
+				// marginTop: contentInsets.top,
 			}}
 		>
 			<Reanimated.View style={{ flex: 1 }}>
@@ -248,6 +231,16 @@ export default () => {
 								<InputField
 									keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 									value={value}
+									inputMode='tel'
+									textContentType='telephoneNumber'
+									autoComplete='tel'
+									keyboardType='phone-pad'
+									placeholderTextColor={
+										rTheme.colorScheme === 'light'
+											? rTheme.theme?.gluestack.tokens.colors.light700
+											: rTheme.theme?.gluestack.tokens.colors.light100
+									}
+									fontSize={'$2xl'}
 									type='text'
 									autoFocus
 									sx={{
@@ -255,15 +248,11 @@ export default () => {
 									}}
 									key={'mobileNumber.completeNumber'}
 									inputAccessoryViewID={INPUT_ACCESSORY_VIEW_ID}
-									textContentType='telephoneNumber'
-									autoComplete='tel'
-									keyboardType='phone-pad'
 									placeholder='Mobile Number'
 									returnKeyType={Platform.OS === 'ios' ? 'done' : 'none'}
 									numberOfLines={1}
 									blurOnSubmit={false}
 									enablesReturnKeyAutomatically={false}
-									// onSubmitEditing={handleSubmit(onSubmit)}
 									onBlur={onBlur}
 									onChangeText={value => {
 										onChange(value)

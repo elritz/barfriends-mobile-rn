@@ -86,15 +86,15 @@ const SearchInputSearchArea = (props: Props) => {
 								: rTheme.theme?.gluestack.tokens.colors.light900
 						}
 					>
-					<InputSlot style={{  alignSelf: 'center' }}>
-						<Ionicons
-							color={
-								rTheme.colorScheme === 'light'
-								? rTheme.theme?.gluestack.tokens.colors.light700
-								: rTheme.theme?.gluestack.tokens.colors.light100
-							}
-							name='ios-search'
-							size={23}
+						<InputSlot style={{ alignSelf: 'center' }}>
+							<Ionicons
+								color={
+									rTheme.colorScheme === 'light'
+										? rTheme.theme?.gluestack.tokens.colors.light700
+										: rTheme.theme?.gluestack.tokens.colors.light100
+								}
+								name='ios-search'
+								size={23}
 							/>
 						</InputSlot>
 						<InputField
@@ -120,7 +120,12 @@ const SearchInputSearchArea = (props: Props) => {
 							keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 						/>
 						{watch('searchtext')?.length ? (
-							<Pressable onPress={() => clearSearchInput()} height={'100%'} justifyContent='center' px={'$2'}>
+							<Pressable
+								onPress={() => clearSearchInput()}
+								height={'100%'}
+								justifyContent='center'
+								px={'$2'}
+							>
 								<AntDesign
 									name='closecircle'
 									size={20}

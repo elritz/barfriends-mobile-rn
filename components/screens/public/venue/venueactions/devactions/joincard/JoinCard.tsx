@@ -24,21 +24,23 @@ export default function JoinCard() {
 				return item.venueProfileId
 			})
 			const out = rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out.find(
-				item => item.venueProfileId === params.profileid,
+				item => item.venueProfileId === params.venueProfileId,
 			)
 			if (out) {
 				setOutId(out.id)
 			}
 			if (joinedToVenue) {
-				setIsJoined(joinedToVenue.includes(String(params.profileid)))
+				setIsJoined(joinedToVenue.includes(String(params.venueProfileId)))
 			}
 		}
 	}, [rAuthorizationVar, isJoined])
 
+	console.log(' params.venueProfileId :>> ',  params.venueProfileId);
+
 	const [addPersonalJoinVenueMutation, { data: JVData, loading: JVLoading, error: JVError }] =
 		useAddPersonalJoinsVenueMutation({
 			variables: {
-				profileIdVenue: String(params.profileid),
+				profileIdVenue: String(params.venueProfileId),
 			},
 			onCompleted: async data => {
 				if (data.addPersonalJoinsVenue) {
@@ -69,7 +71,7 @@ export default function JoinCard() {
 				{
 					query: GET_LIVE_VENUE_TOTALS_QUERY,
 					variables: {
-						profileIdVenue: params.profileid,
+						profileIdVenue: params.venueProfileId,
 					},
 				},
 			],
@@ -108,7 +110,7 @@ export default function JoinCard() {
 			{
 				query: GET_LIVE_VENUE_TOTALS_QUERY,
 				variables: {
-					profileIdVenue: params.profileid,
+					profileIdVenue: params.venueProfileId,
 				},
 			},
 		],

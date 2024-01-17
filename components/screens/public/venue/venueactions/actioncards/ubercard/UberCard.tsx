@@ -16,7 +16,7 @@ export default function UberCard() {
 		loading: PLoading,
 		error: PError,
 	} = usePublicVenueQuery({
-		skip: !params.profileid || !rAuthorizationVar,
+		skip: !params.venueProfileId || !rAuthorizationVar,
 		fetchPolicy: 'cache-only',
 		variables: {
 			where: {

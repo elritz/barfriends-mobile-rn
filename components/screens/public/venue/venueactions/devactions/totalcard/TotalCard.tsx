@@ -23,7 +23,7 @@ export default function TotalCard() {
 		{ data: APTVData, loading: APTVLoading, error: APTVError },
 	] = useAddPersonalTotalsVenueMutation({
 		variables: {
-			profileIdVenue: String(params.profileid),
+			profileIdVenue: String(params.venueProfileId),
 		},
 		onCompleted: async data => {
 			profileQuery({
@@ -48,7 +48,7 @@ export default function TotalCard() {
 								return item.venueProfileId
 							})
 						if (totaledToVenue) {
-							setIsTotaled(totaledToVenue.includes(String(params.profileid)))
+							setIsTotaled(totaledToVenue.includes(String(params.venueProfileId)))
 						}
 					}
 				},
@@ -58,7 +58,7 @@ export default function TotalCard() {
 			{
 				query: GET_LIVE_VENUE_TOTALS_QUERY,
 				variables: {
-					profileIdVenue: String(params.profileid),
+					profileIdVenue: String(params.venueProfileId),
 				},
 			},
 		],
@@ -69,7 +69,7 @@ export default function TotalCard() {
 		{ data: RPTVData, loading: RPTVLoading, error: RPTVError },
 	] = useRemovePersonalTotalsVenueMutation({
 		variables: {
-			profileIdVenue: String(params.profileid),
+			profileIdVenue: String(params.venueProfileId),
 		},
 		onCompleted: async data => {
 			profileQuery({
@@ -94,7 +94,7 @@ export default function TotalCard() {
 								return item.venueProfileId
 							})
 						if (totaledToVenue) {
-							setIsTotaled(totaledToVenue.includes(String(params.profileid)))
+							setIsTotaled(totaledToVenue.includes(String(params.venueProfileId)))
 						}
 					}
 				},
@@ -104,7 +104,7 @@ export default function TotalCard() {
 			{
 				query: GET_LIVE_VENUE_TOTALS_QUERY,
 				variables: {
-					profileIdVenue: String(params.profileid),
+					profileIdVenue: String(params.venueProfileId),
 				},
 			},
 		],
@@ -119,7 +119,7 @@ export default function TotalCard() {
 			})
 
 			if (totaledToVenue) {
-				setIsTotaled(totaledToVenue.includes(String(params.profileid)))
+				setIsTotaled(totaledToVenue.includes(String(params.venueProfileId)))
 			}
 		}
 	}, [])

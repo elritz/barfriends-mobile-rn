@@ -19,7 +19,7 @@ export default function JoinVenue() {
 	const [addPersonalJoinVenueMutation, { data: JVData, loading: JVLoading, error: JVError }] =
 		useAddPersonalJoinsVenueMutation({
 			variables: {
-				profileIdVenue: String(params.profileid),
+				profileIdVenue: String(params.venueProfileId),
 			},
 			onCompleted: async data => {
 				if (data.addPersonalJoinsVenue) {
@@ -51,7 +51,7 @@ export default function JoinVenue() {
 				{
 					query: GET_LIVE_VENUE_TOTALS_QUERY,
 					variables: {
-						profileIdVenue: String(params.profileid),
+						profileIdVenue: String(params.venueProfileId),
 					},
 				},
 			],
@@ -63,13 +63,13 @@ export default function JoinVenue() {
 				return item.venueProfileId
 			})
 			const out = rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out.find(
-				item => item.venueProfileId === params.profileid,
+				item => item.venueProfileId === params.venueProfileId,
 			)
 			if (out) {
 				setOutId(out.id)
 			}
 			if (joinedToVenue) {
-				setIsJoined(joinedToVenue.includes(String(params.profileid)))
+				setIsJoined(joinedToVenue.includes(String(params.venueProfileId)))
 			}
 		}
 	}, [rAuthorizationVar, isJoined])

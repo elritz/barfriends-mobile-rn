@@ -44,7 +44,7 @@ export default function LeaveSection() {
 				{
 					query: GET_LIVE_VENUE_TOTALS_QUERY,
 					variables: {
-						profileidVenue: params.profileid,
+						profileidVenue: params.venueProfileId,
 					},
 				},
 			],
@@ -52,7 +52,7 @@ export default function LeaveSection() {
 
 	if (
 		rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out.some(
-			item => item.venueProfileId === params.profileid,
+			item => item.venueProfileId === params.venueProfileId,
 		)
 	) {
 		return (

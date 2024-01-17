@@ -49,7 +49,7 @@ const SearchInputResults = (props: Props) => {
 					placeholderTextColor={
 						rTheme.colorScheme === 'light'
 							? rTheme.theme?.gluestack.tokens.colors.light700
-							: rTheme.theme?.gluestack.tokens.colors.light300
+							: rTheme.theme?.gluestack.tokens.colors.light100
 					}
 					color={
 						rTheme.colorScheme === 'light'

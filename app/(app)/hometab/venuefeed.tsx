@@ -221,7 +221,7 @@ export default () => {
 					return (
 						<VStack>
 							{data.venuesNearby.recommendedAreas?.map((item, index) => {
-								console.log('item.venuesProfileIds :>> ', item.venuesProfileIds);
+								console.log('item.venuesProfileIds :>> ', item.venuesProfileIds)
 								return (
 									<Pressable
 										key={item.id + index}
@@ -276,9 +276,9 @@ export default () => {
 		}
 
 		return (
-			<Box>
+			<Box m={'$2'}>
 				<VStack>
-					<VStack space='xs' p={'$2'} flex={1}>
+					<VStack space='xs' p={'$3'} flex={1}>
 						<Heading>Recommended Areas</Heading>
 						<Button variant='link' width={'50%'} size='md' onPress={_press} justifyContent='flex-start'>
 							<ButtonText>Filter by distance</ButtonText>

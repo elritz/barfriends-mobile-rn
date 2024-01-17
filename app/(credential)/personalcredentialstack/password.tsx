@@ -143,7 +143,7 @@ export default function () {
 	}
 
 	return (
-		<Box bg='$transparent' flex={1} mt={contentInsets.top}>
+		<Box bg='$transparent' flex={1}>
 			<Reanimated.View style={{ flex: 1, marginHorizontal: 15 }}>
 				<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$2xl'}>
 					Enter a password
@@ -160,6 +160,11 @@ export default function () {
 										<InputField
 											ref={_passwordRef}
 											value={value}
+											placeholderTextColor={
+												rTheme.colorScheme === 'light'
+													? rTheme.theme?.gluestack.tokens.colors.light700
+													: rTheme.theme?.gluestack.tokens.colors.light100
+											}
 											keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 											onChangeText={onChange}
 											onSubmitEditing={handleSubmit(onSubmit)}

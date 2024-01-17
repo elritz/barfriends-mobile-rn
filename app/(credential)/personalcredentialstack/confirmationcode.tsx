@@ -147,7 +147,7 @@ export default () => {
 						</VStack>
 					) : (
 						<Text>
-							Resend code in 0:0
+							Resend code in 0:
 							{seconds}
 						</Text>
 					)}
@@ -173,7 +173,7 @@ export default () => {
 	}
 
 	return (
-		<Box bg='$transparent' flex={1} mt={contentInsets.top}>
+		<Box bg='$transparent' flex={1}>
 			<Reanimated.View style={{ flex: 1, marginHorizontal: 15 }}>
 				<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$2xl'} sx={{ minHeight: 70 }}>
 					{`Enter the 4-diget code sent to you at ${

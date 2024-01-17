@@ -177,6 +177,7 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 		router.push({
 			pathname: `/(app)/public/venue/${props.item?.IdentifiableInformation?.username}`,
 			params: {
+				venueProfileId: String(props.item?.id),
 				distanceInM: Number(props.item?.distanceInM),
 				latitude: Number(props.item?.Venue?.Location?.Geometry?.latitude),
 				longitude: Number(props.item?.Venue?.Location?.Geometry?.longitude),

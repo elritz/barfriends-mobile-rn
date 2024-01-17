@@ -163,8 +163,8 @@ export default () => {
 	}
 
 	return (
-		<Box bg='$transparent' flex={1} mt={contentInsets.top}>
-			<Reanimated.View style={{ flex: 1, marginHorizontal: 15 }}>
+		<Box bg='$transparent' flex={1} mx={'5%'}>
+			<Reanimated.View style={{ flex: 1 }}>
 				<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$2xl'}>
 					Choose your username
 				</Heading>
@@ -181,6 +181,12 @@ export default () => {
 									value={value}
 									key='username'
 									placeholder='Username'
+									placeholderTextColor={
+										rTheme.colorScheme === 'light'
+											? rTheme.theme?.gluestack.tokens.colors.light700
+											: rTheme.theme?.gluestack.tokens.colors.light100
+									}
+									fontSize={'$2xl'}
 									keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 									onChangeText={onChange}
 									onSubmitEditing={handleSubmit(onSubmit)}

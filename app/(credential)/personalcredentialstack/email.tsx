@@ -109,18 +109,18 @@ export default () => {
 		})
 	}
 
-	useEffect(() => {
-		if (isFocused && _emailRef.current) {
-			InteractionManager.runAfterInteractions(() => {
-				_emailRef.current?.focus()
-			})
-		}
-		if (!isFocused) {
-			InteractionManager.runAfterInteractions(() => {
-				_emailRef.current?.blur()
-			})
-		}
-	}, [isFocused])
+	// useEffect(() => {
+	// 	if (isFocused && _emailRef.current) {
+	// 		InteractionManager.runAfterInteractions(() => {
+	// 			_emailRef.current?.focus()
+	// 		})
+	// 	}
+	// 	if (!isFocused) {
+	// 		InteractionManager.runAfterInteractions(() => {
+	// 			_emailRef.current?.blur()
+	// 		})
+	// 	}
+	// }, [isFocused])
 
 	const InnerContent = () => {
 		return (
@@ -178,7 +178,6 @@ export default () => {
 				height: 'auto',
 				flexDirection: 'column',
 				marginHorizontal: '5%',
-				marginTop: contentInsets.top,
 			}}
 		>
 			<Reanimated.View style={{ flex: 1 }}>
@@ -209,14 +208,21 @@ export default () => {
 							<Input variant={'underlined'} size='lg'>
 								<InputField
 									keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+									placeholderTextColor={
+										rTheme.colorScheme === 'light'
+											? rTheme.theme?.gluestack.tokens.colors.light700
+											: rTheme.theme?.gluestack.tokens.colors.light100
+									}
+									fontSize={'$2xl'}
+									inputMode='email'
 									type='text'
+									textContentType='emailAddress'
 									autoFocus
 									sx={{
 										h: 50,
 									}}
 									key={'email'}
 									inputAccessoryViewID={INPUT_ACCESSORY_VIEW_ID}
-									textContentType='emailAddress'
 									placeholder='Email'
 									returnKeyType={Platform.OS === 'ios' ? 'done' : 'none'}
 									numberOfLines={1}

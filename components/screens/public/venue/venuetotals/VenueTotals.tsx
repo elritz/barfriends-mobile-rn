@@ -23,7 +23,7 @@ export default function VenueTotals() {
 	const [friends, setFriends] = useState<Totals>({ name: 'friends', value: 0 })
 	const [joined, setJoined] = useState<Totals>({ name: 'joined', value: 0 })
 
-	const link = `https://revel.com/app/public/venue?profileid=${params.profileid}`
+	const link = `https://revel.com/app/public/venue?profileid=${params.venueProfileId}`
 
 	const onShare = async () => {
 		try {

@@ -264,23 +264,25 @@ export default () => {
 							<FontAwesome name='user' size={20} color={'white'} />
 						</Button>
 					)}
-					<Button
-						onPress={() => {
-							console.log('//todo: Message icon to conversation with this person')
-						}}
-						size='xs'
-						bg={'$tertiary400'}
-						rounded={'$full'}
-					>
-						<ButtonText fontSize={'$sm'} mr={'$2'}>
-							Message
-						</ButtonText>
-						<Ionicons
-							color={rThemeVar.theme?.gluestack?.tokens.colors.light100}
-							name='chatbubble-ellipses'
-							size={20}
-						/>
-					</Button>
+					{rAuthorizationVar?.Profile?.ProfileType !== 'GUEST' && (
+						<Button
+							onPress={() => {
+								console.log('//todo: Message icon to conversation with this person')
+							}}
+							size='xs'
+							bg={'$tertiary400'}
+							rounded={'$full'}
+						>
+							<ButtonText fontSize={'$sm'} mr={'$2'}>
+								Message
+							</ButtonText>
+							<Ionicons
+								color={rThemeVar.theme?.gluestack?.tokens.colors.light100}
+								name='chatbubble-ellipses'
+								size={20}
+							/>
+						</Button>
+					)}
 				</HStack>
 			</>
 		)
@@ -329,6 +331,7 @@ export default () => {
 		return (
 			<HStack mb={'$2'} alignItems='center' justifyContent='space-between'>
 				<HStack alignItems='center' space='sm'>
+					{profile?.DetailInformation?.description}
 					<Image
 						source={{
 							uri: 'https://images.unsplash.com/photo-1544450030-1fccab69a2f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80',
@@ -638,7 +641,7 @@ export default () => {
 			</BottomSheetModal>
 		)
 	}
-
+	console.log('rAuthorizationVar?.ProfileType :>> ')
 	return (
 		<BottomSheetModalProvider>
 			<LinearGradient
@@ -663,7 +666,7 @@ export default () => {
 									: ['#0000000']
 							}
 						/>
-						<FriendRequest />
+						{rAuthorizationVar?.Profile?.ProfileType !== 'GUEST' && <FriendRequest />}
 						<SectionContainer>
 							<IdentifiableInformation />
 							<TonightVenue />

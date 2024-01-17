@@ -147,7 +147,7 @@ const SearchInputVenueFeed = (props: Props) => {
 							// autoFocus={autoFucus}
 							placeholderTextColor={
 								rTheme.colorScheme === 'light'
-									? rTheme.theme?.gluestack.tokens.colors.light900
+									? rTheme.theme?.gluestack.tokens.colors.light700
 									: rTheme.theme?.gluestack.tokens.colors.light100
 							}
 							autoCapitalize={'none'}

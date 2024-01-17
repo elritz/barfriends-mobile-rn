@@ -236,6 +236,7 @@ export default () => {
 				contentInset={{
 					...contentInsets,
 				}}
+				
 				automaticallyAdjustKeyboardInsets
 				automaticallyAdjustContentInsets
 				refreshing={loading}
