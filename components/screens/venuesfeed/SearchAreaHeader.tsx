@@ -36,7 +36,7 @@ export default function SearchAreaHeader({ typename }) {
 				alignItems={'flex-end'}
 				justifyContent={'center'}
 			>
-				<VStack flex={1} space={'md'}>
+				<VStack flex={1}>
 					<HStack alignItems={'center'} justifyContent={'space-between'} space={'md'}>
 						<HStack alignItems={'center'} space={'md'}>
 							<Heading fontWeight={'$black'} fontSize={'$3xl'}>
@@ -50,17 +50,12 @@ export default function SearchAreaHeader({ typename }) {
 								/>
 							)}
 						</HStack>
-						<FontAwesome5
-							style={{ marginBottom: 2 }}
-							name='chevron-up'
-							color={rTheme.colorScheme === 'light' ? 'black' : 'white'}
-							size={25}
-						/>
 					</HStack>
+					<Text color={'$primary500'}>Change area </Text>
 					{typename === 'ComingAreaResponse' && (
 						<Text fontSize={'$lg'} textAlign={'center'}>
-							No venues, hamma the notification bell and we will let you know when it gets added. Upvoting
-							is huge, it lets us know where to go!
+							No venues, so hamma the notification bell and we will let you know when it gets added.
+							Upvoting is huge, it lets us know where to go!
 						</Text>
 					)}
 				</VStack>

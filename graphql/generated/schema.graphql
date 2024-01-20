@@ -9001,6 +9001,7 @@ type Mutation {
   updateProfilePrivacyTermsDocumentUpdate: Boolean!
   updateStoryEmojimood(emojimoodId: Int!, storyId: String): Story!
   updateThemeManagerSwitchTheme(id: String!, themeId: String!): ProfileTheme!
+  uploadProfilePhoto(photos: PhotoCreateManyProfileInputEnvelope): Photo
   upsertDevicePushToken(expoToken: String, token: String, type: TokenType): Boolean!
 }
 
@@ -14657,6 +14658,7 @@ type ProfilesResponse {
 type PublicProfilePersonal {
   DetailInformation: DetailInformation
   IdentifiableInformation: IdentifiableInformation
+  Personal: Personal!
   ProfileType: ProfileType!
   createdAt: DateTime!
   friendStatus: RelationshipStatusResponse!

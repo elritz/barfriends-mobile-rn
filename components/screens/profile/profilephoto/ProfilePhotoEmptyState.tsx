@@ -1,92 +1,66 @@
 import { useReactiveVar } from '@apollo/client'
 import { Box, Center, Pressable } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
-import { ThemeReactiveVar } from '@reactive'
+import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import * as ImagePicker from 'expo-image-picker'
+import useCloudinaryImageUploading from '@util/uploading/useCloudinaryImageUploading'
+import { useState } from 'react'
+import { PhotoCreateManyProfileInput, useUploadProfilePhotoMutation } from '@graphql/generated'
 
 export default function ProfilePhotoEmptyState() {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
-
-	const pickImage = async () => {
-		// No permissions request is necessary for launching the image library
-		let result = await ImagePicker.launchImageLibraryAsync({
-			mediaTypes: ImagePicker.MediaTypeOptions.All,
-			presentationStyle: ImagePicker.UIImagePickerPresentationStyle.FULL_SCREEN,
-			aspect: [4, 3],
-			quality: 1,
-		})
-
-		if (result.assets) {
-			result.assets.map(item => {})
-		}
-	}
+	const [isLoading, setLoading] = useState(false)
 
 	return (
-		<Pressable
-			onPress={pickImage}
-			p={'$2'}
+		<Box
 			sx={{
-				w: 120,
-				h: 130,
-				_light: {
-					bg: '$light300',
-				},
-				_dark: {
-					bg: '$light800',
-				},
+				h: '100%',
 			}}
-			rounded={'$lg'}
+			justifyContent={'center'}
 		>
+			<Center>
+				<Ionicons
+					size={40}
+					name={'ios-person'}
+					color={
+						rTheme.colorScheme === 'light'
+							? rTheme.theme?.gluestack.tokens.colors.light900
+							: rTheme.theme?.gluestack.tokens.colors.light100
+					}
+				/>
+			</Center>
 			<Box
 				sx={{
-					h: '100%',
+					_light: {
+						borderColor: '$light700',
+					},
+					_dark: {
+						borderColor: '$light400',
+					},
+					bottom: -15,
+					right: -15,
 				}}
+				borderWidth={'$2'}
+				rounded={'$full'}
+				alignItems={'center'}
 				justifyContent={'center'}
+				position={'absolute'}
 			>
-				<Center>
-					<Ionicons
-						size={40}
-						name={'ios-person'}
-						color={
-							rTheme.colorScheme === 'light'
-								? rTheme.theme?.gluestack.tokens.colors.light900
-								: rTheme.theme?.gluestack.tokens.colors.light100
-						}
-					/>
-				</Center>
-				<Box
-					sx={{
-						_light: {
-							borderColor: '$light700',
-						},
-						_dark: {
-							borderColor: '$light400',
-						},
-						bottom: -15,
-						right: -15,
+				<Ionicons
+					name='ios-arrow-up-circle'
+					color={
+						rTheme.colorScheme === 'light'
+							? rTheme.theme?.gluestack.tokens.colors.light900
+							: rTheme.theme?.gluestack.tokens.colors.light100
+					}
+					size={26}
+					style={{
+						marginLeft: 2,
+						borderRadius: 50,
+						zIndex: 10,
 					}}
-					borderWidth={'$2'}
-					rounded={'$full'}
-					alignItems={'center'}
-					justifyContent={'center'}
-					position={'absolute'}
-				>
-					<Ionicons
-						name='ios-arrow-up-circle'
-						color={
-							rTheme.colorScheme === 'light'
-								? rTheme.theme?.gluestack.tokens.colors.light900
-								: rTheme.theme?.gluestack.tokens.colors.light100
-						}
-						size={26}
-						style={{
-							marginLeft: 2,
-							borderRadius: 50,
-							zIndex: 10,
-						}}
-					/>
-				</Box>
+				/>
 			</Box>
-		</Pressable>
+		</Box>
 	)
 }

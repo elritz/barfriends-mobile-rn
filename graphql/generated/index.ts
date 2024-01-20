@@ -9287,6 +9287,7 @@ export type Mutation = {
   updateProfilePrivacyTermsDocumentUpdate: Scalars['Boolean']['output'];
   updateStoryEmojimood: Story;
   updateThemeManagerSwitchTheme: ProfileTheme;
+  uploadProfilePhoto?: Maybe<Photo>;
   upsertDevicePushToken: Scalars['Boolean']['output'];
 };
 
@@ -9446,6 +9447,11 @@ export type MutationUpdateStoryEmojimoodArgs = {
 export type MutationUpdateThemeManagerSwitchThemeArgs = {
   id: Scalars['String']['input'];
   themeId: Scalars['String']['input'];
+};
+
+
+export type MutationUploadProfilePhotoArgs = {
+  photos?: InputMaybe<PhotoCreateManyProfileInputEnvelope>;
 };
 
 
@@ -15163,6 +15169,7 @@ export type PublicProfilePersonal = {
   __typename?: 'PublicProfilePersonal';
   DetailInformation?: Maybe<DetailInformation>;
   IdentifiableInformation?: Maybe<IdentifiableInformation>;
+  Personal: Personal;
   ProfileType: ProfileType;
   createdAt: Scalars['DateTime']['output'];
   friendStatus: RelationshipStatusResponse;
@@ -20917,6 +20924,13 @@ export type GetLiveVenueTotalsQueryVariables = Exact<{
 
 export type GetLiveVenueTotalsQuery = { __typename?: 'Query', getLiveVenueTotals: { __typename?: 'LiveVenueTotals', totaled?: Array<{ __typename?: 'Out', id: string, personalProfileId: string }> | null, joined?: Array<{ __typename?: 'Out', id: string, personalProfileId: string }> | null } };
 
+export type UploadProfilePhotoMutationVariables = Exact<{
+  photos?: InputMaybe<PhotoCreateManyProfileInputEnvelope>;
+}>;
+
+
+export type UploadProfilePhotoMutation = { __typename?: 'Mutation', uploadProfilePhoto?: { __typename?: 'Photo', active: boolean, blurhash?: string | null, createdAt: any, groupId?: string | null, height?: number | null, id: string, position?: number | null, profileId?: string | null, ratio?: string | null, storyId?: string | null, type?: PhotoType | null, updatedAt: any, url: string, width?: number | null, Group?: { __typename?: 'Group', id: string } | null, Profile?: { __typename?: 'Profile', id: string } | null, Story?: { __typename?: 'Story', id: string } | null } | null };
+
 export type CreatePersonalProfileMutationVariables = Exact<{
   data?: InputMaybe<CreatePersonalDataInput>;
 }>;
@@ -23055,6 +23069,61 @@ export function useGetLiveVenueTotalsLazyQuery(baseOptions?: Apollo.LazyQueryHoo
 export type GetLiveVenueTotalsQueryHookResult = ReturnType<typeof useGetLiveVenueTotalsQuery>;
 export type GetLiveVenueTotalsLazyQueryHookResult = ReturnType<typeof useGetLiveVenueTotalsLazyQuery>;
 export type GetLiveVenueTotalsQueryResult = Apollo.QueryResult<GetLiveVenueTotalsQuery, GetLiveVenueTotalsQueryVariables>;
+export const UploadProfilePhotoDocument = gql`
+    mutation uploadProfilePhoto($photos: PhotoCreateManyProfileInputEnvelope) {
+  uploadProfilePhoto(photos: $photos) {
+    Group {
+      id
+    }
+    Profile {
+      id
+    }
+    Story {
+      id
+    }
+    active
+    blurhash
+    createdAt
+    groupId
+    height
+    id
+    position
+    profileId
+    ratio
+    storyId
+    type
+    updatedAt
+    url
+    width
+  }
+}
+    `;
+export type UploadProfilePhotoMutationFn = Apollo.MutationFunction<UploadProfilePhotoMutation, UploadProfilePhotoMutationVariables>;
+
+/**
+ * __useUploadProfilePhotoMutation__
+ *
+ * To run a mutation, you first call `useUploadProfilePhotoMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUploadProfilePhotoMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [uploadProfilePhotoMutation, { data, loading, error }] = useUploadProfilePhotoMutation({
+ *   variables: {
+ *      photos: // value for 'photos'
+ *   },
+ * });
+ */
+export function useUploadProfilePhotoMutation(baseOptions?: Apollo.MutationHookOptions<UploadProfilePhotoMutation, UploadProfilePhotoMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UploadProfilePhotoMutation, UploadProfilePhotoMutationVariables>(UploadProfilePhotoDocument, options);
+      }
+export type UploadProfilePhotoMutationHookResult = ReturnType<typeof useUploadProfilePhotoMutation>;
+export type UploadProfilePhotoMutationResult = Apollo.MutationResult<UploadProfilePhotoMutation>;
+export type UploadProfilePhotoMutationOptions = Apollo.BaseMutationOptions<UploadProfilePhotoMutation, UploadProfilePhotoMutationVariables>;
 export const CreatePersonalProfileDocument = gql`
     mutation createPersonalProfile($data: CreatePersonalDataInput) {
   createPersonalProfile(data: $data) {
