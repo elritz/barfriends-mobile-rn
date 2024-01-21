@@ -2,10 +2,9 @@ import { ConfigContext, ExpoConfig } from '@expo/config'
 import 'dotenv/config'
 
 module.exports = (context: ConfigContext): ExpoConfig | null => {
-	switch (process.env.ENVIRONMENT) {
+	switch (process.env.NODE_ENV) {
 		case 'production':
 			return {
-				...context.config,
 				name: 'Revel',
 				slug: 'revel',
 				owner: 'barfriends',
@@ -139,7 +138,6 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 			}
 		case 'staging':
 			return {
-				...context.config,
 				name: 'Revel (stg)',
 				slug: 'revel',
 				owner: 'barfriends',
@@ -272,7 +270,6 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 			}
 		case 'development':
 			return {
-				...context.config,
 				name: 'Revel (dev)',
 				slug: 'revel',
 				owner: 'barfriends',

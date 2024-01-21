@@ -11,7 +11,7 @@
 		},
 		"development-simulator": {
 			"env": {
-				"ENVIRONMENT": "development"
+				"NODE_ENV": "development"
 			},
 			"channel": "development",
 			"developmentClient": true,
@@ -22,7 +22,7 @@
 		},
 		"development": {
 			"env": {
-				"ENVIRONMENT": "development"
+				"NODE_ENV": "development"
 			},
 			"channel": "development",
 			"developmentClient": true,
@@ -32,25 +32,25 @@
 		"staging-ios": {
 			"channel": "staging-ios",
 			"env": {
-				"ENVIRONMENT": "staging"
+				"NODE_ENV": "staging"
 			}
 		},
 		"staging-android": {
 			"channel": "staging-android",
 			"env": {
-				"ENVIRONMENT": "staging"
+				"NODE_ENV": "staging"
 			}
 		},
 		"production-ios": {
 			"channel": "production-ios",
 			"env": {
-				"ENVIRONMENT": "production"
+				"NODE_ENV": "production"
 			}
 		},
 		"production-android": {
 			"channel": "production-android",
 			"env": {
-				"ENVIRONMENT": "production"
+				"NODE_ENV": "production"
 			}
 		}
 	},
