@@ -1,11 +1,7 @@
-import { useReactiveVar } from '@apollo/client'
-import { Button, ButtonText, Text } from '@gluestack-ui/themed'
-import { ThemeReactiveVar } from '@reactive'
+import { Button, Text } from '@gluestack-ui/themed'
 import { Stack, router } from 'expo-router'
 
 export default () => {
-	const rTheme = useReactiveVar(ThemeReactiveVar)
-
 	return (
 		<Stack
 			initialRouteName='hometab'
@@ -36,7 +32,9 @@ export default () => {
 						return (
 							<Button
 								onPress={() =>
-									router.canGoBack() ? router.back() : router.push({ pathname: '/(app)/hometab/venuefeed' })
+									router.canGoBack()
+										? router.back()
+										: router.navigate({ pathname: '/(app)/hometab/venuefeed' })
 								}
 								size='md'
 								variant='link'

@@ -10,7 +10,7 @@ const ChevronBackArrow = () => {
 	return (
 		<GoBack height={parseInt(wp(10).toFixed(0))} width={parseInt(wp(6).toFixed(0))}>
 			<Ionicons
-				name='md-chevron-back-outline'
+				name='chevron-back-outline'
 				size={35}
 				color={
 					rTheme.colorScheme === 'light'

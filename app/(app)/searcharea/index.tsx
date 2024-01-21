@@ -44,7 +44,7 @@ export default () => {
 		switch (value) {
 			case 'City':
 				if (rSearchAreaVar?.searchArea.country.isoCode && rSearchAreaVar?.searchArea.state.isoCode) {
-					router.push({
+					router.navigate({
 						pathname: '/(app)/searcharea/searchstatecities',
 						params: {
 							countryIsoCode: rSearchAreaVar.searchArea.country.isoCode,
@@ -55,7 +55,7 @@ export default () => {
 				break
 			case 'State':
 				if (rSearchAreaVar?.searchArea.country.isoCode && rSearchAreaVar?.searchArea.state.isoCode) {
-					router.push({
+					router.navigate({
 						pathname: '/(app)/searcharea/searchcountrystate',
 						params: {
 							countryIsoCode: rSearchAreaVar.searchArea.country.isoCode,
@@ -65,13 +65,13 @@ export default () => {
 				break
 			case 'Country':
 				if (rSearchAreaVar?.searchArea.country.isoCode && rSearchAreaVar?.searchArea.state.isoCode) {
-					router.push({
+					router.navigate({
 						pathname: '/(app)/searcharea/searchcountry',
 					})
 				}
 				break
 			default:
-				router.push({
+				router.navigate({
 					pathname: '/(app)/searcharea/searchcountry',
 				})
 		}
@@ -159,7 +159,7 @@ export default () => {
 								</Box>
 								<Button
 									onPress={() => {
-										router.push({
+										router.navigate({
 											pathname: '/(app)/searcharea/searchcountry',
 										})
 									}}
@@ -215,7 +215,7 @@ export default () => {
 									<Button
 										rounded={'$xl'}
 										onPress={() => {
-											router.push({
+											router.navigate({
 												pathname: '/(app)/searcharea/searchcountry',
 											})
 										}}
@@ -227,7 +227,7 @@ export default () => {
 													? rTheme.theme?.gluestack.tokens.colors.light100
 													: rTheme.theme?.gluestack.tokens.colors.light100
 											}
-											name='ios-arrow-forward'
+											name='arrow-forward'
 											size={27}
 											style={{
 												marginLeft: 8,

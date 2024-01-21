@@ -91,7 +91,7 @@ export default () => {
 				if (data.switchDeviceProfile.__typename == 'AuthorizationDeviceProfile') {
 					const deviceManager = data.switchDeviceProfile as AuthorizationDeviceProfile
 					AuthorizationReactiveVar(deviceManager)
-					router.push({
+					router.navigate({
 						pathname: '/(app)/hometab/venuefeed',
 					})
 				}

@@ -11,7 +11,7 @@ export default function SearchAreaLocationPermissionButton() {
 	const _press = async () => {
 		rPermissionNotificationVar?.granted
 			? await useSetSearchAreaWithLocation()
-			: router.push({
+			: router.navigate({
 					pathname: '/(app)/permission/notifications',
 			  })
 	}

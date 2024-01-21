@@ -39,7 +39,7 @@ export default () => {
 			detail: 'To receive messages, venue and event deals around you.',
 			icon: (
 				<Ionicons
-					name={'ios-location-sharp'}
+					name={'location-sharp'}
 					size={25}
 					style={{
 						marginHorizontal: 7,
@@ -76,7 +76,7 @@ export default () => {
 				'You can change your choices at any time in your device settings. If you allow access now, you wont have to again.',
 			icon: (
 				<Ionicons
-					name={'ios-settings-sharp'}
+					name={'settings-sharp'}
 					size={25}
 					style={{
 						marginHorizontal: 7,
@@ -256,7 +256,7 @@ export default () => {
 					bg={'#ff7000'}
 				>
 					<Ionicons
-						name='ios-notifications'
+						name='notifications'
 						size={30}
 						color={rTheme.theme?.gluestack.tokens.colors.secondary900 || 'black'}
 					/>

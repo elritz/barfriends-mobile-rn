@@ -34,10 +34,10 @@ export default function InviteCard() {
 				justifyContent='center'
 				onPress={() => {
 					rPermissionContactsVar?.granted
-						? router.push({
+						? router.navigate({
 								pathname: '/public/contacts',
 						  })
-						: router.push({
+						: router.navigate({
 								pathname: '/(app)/permission/contacts',
 						  })
 				}}

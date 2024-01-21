@@ -213,7 +213,7 @@ const SearchTextScreen = () => {
 								px={'$2'}
 							>
 								<Button rounded={'$md'} size='sm' variant='outline'>
-									<Ionicons name={'ios-search'} size={30} />
+									<Ionicons name={'search'} size={30} />
 								</Button>
 								<VStack>
 									<Text fontSize={'$md'} fontWeight={'$medium'}>

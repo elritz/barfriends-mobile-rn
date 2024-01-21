@@ -49,7 +49,7 @@ export default () => {
 			detail: `You'll find venues and event deals around you.`,
 			icon: (
 				<Ionicons
-					name='ios-location-sharp'
+					name='location-sharp'
 					size={25}
 					style={{
 						marginHorizontal: 7,
@@ -86,7 +86,7 @@ export default () => {
 				'You can change your choices at any time in your app settings. If you allow access now, you wont have to again.',
 			icon: (
 				<Ionicons
-					name='ios-settings-sharp'
+					name='settings-sharp'
 					size={25}
 					style={{
 						marginHorizontal: 7,
@@ -236,7 +236,7 @@ export default () => {
 
 		start()
 
-		// router.push({
+		// router.navigate({
 		// 	pathname: '/(app)/permission/notifications',
 		// })
 	}
@@ -244,7 +244,7 @@ export default () => {
 	finished(() => {
 		router.canGoBack()
 			? router.back()
-			: router.push({
+			: router.navigate({
 					pathname: '/(app)/hometab/venuefeed',
 			  })
 	})
@@ -299,7 +299,7 @@ export default () => {
 					// variant={'link'}
 					size={'md'}
 					onPress={() =>
-						router.push({
+						router.navigate({
 							pathname: '/(app)/permission/notifications',
 						})
 					}
@@ -365,7 +365,7 @@ export default () => {
 								onPress={() =>
 									router.canGoBack()
 										? router.back()
-										: router.push({
+										: router.navigate({
 												pathname: '/(app)/hometab/venuefeed',
 										  })
 								}
@@ -393,7 +393,7 @@ export default () => {
 							variant={'link'}
 							size={'md'}
 							onPress={() =>
-								router.push({
+								router.navigate({
 									pathname: '/(app)/permission/notifications',
 								})
 							}

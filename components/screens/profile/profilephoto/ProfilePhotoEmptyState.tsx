@@ -21,7 +21,7 @@ export default function ProfilePhotoEmptyState() {
 			<Center>
 				<Ionicons
 					size={40}
-					name={'ios-person'}
+					name={'person'}
 					color={
 						rTheme.colorScheme === 'light'
 							? rTheme.theme?.gluestack.tokens.colors.light900
@@ -47,7 +47,7 @@ export default function ProfilePhotoEmptyState() {
 				position={'absolute'}
 			>
 				<Ionicons
-					name='ios-arrow-up-circle'
+					name='arrow-up-circle'
 					color={
 						rTheme.colorScheme === 'light'
 							? rTheme.theme?.gluestack.tokens.colors.light900

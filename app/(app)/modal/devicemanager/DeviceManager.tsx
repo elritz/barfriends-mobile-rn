@@ -42,7 +42,7 @@ export default function DeviceManager() {
 					AuthorizationReactiveVar(deviceManager)
 					setTimeout(
 						() =>
-							router.push({
+							router.navigate({
 								pathname: '/(app)/hometab/venuefeed',
 							}),
 						1000,
@@ -115,7 +115,7 @@ export default function DeviceManager() {
 												variant='link'
 												// onPress={() => console.log('pressed')}
 												onPress={() => {
-													router.push({
+													router.navigate({
 														pathname: `/(app)/modal/devicemanager/${item.Profile?.id}`,
 													})
 												}}

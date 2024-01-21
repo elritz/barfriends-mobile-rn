@@ -24,7 +24,7 @@ const SearchInputResults = (props: Props) => {
 							? rTheme.theme?.gluestack.tokens.colors.light700
 							: rTheme.theme?.gluestack.tokens.colors.light100
 					}
-					name='ios-arrow-back'
+					name='arrow-back'
 					size={30}
 					style={{
 						marginLeft: 8,
@@ -65,7 +65,7 @@ const SearchInputResults = (props: Props) => {
 					lineHeight={'$xs'}
 					fontWeight={'$bold'}
 					onPressIn={() => {
-						router.push({
+						router.navigate({
 							pathname: '/(app)/explore/searchtext',
 						})
 					}}

@@ -11,7 +11,7 @@ const AddEmoji = () => {
 	return (
 		<Pressable
 			onPress={() =>
-				router.push({
+				router.navigate({
 					pathname: '/(app)/modal/Emojimood',
 				})
 			}

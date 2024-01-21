@@ -33,7 +33,7 @@ const DeviceManagerProfileItemLarge = ({ item, loading }: ProfileItemType) => {
 						<View style={{ width: 30 }}>
 							{rAuthorizationVar?.Profile?.id === item?.id ? (
 								<Ionicons
-									name='ios-checkmark-circle'
+									name='checkmark-circle'
 									size={25}
 									color={rTheme.theme?.gluestack.tokens.colors.success600}
 								/>
@@ -80,7 +80,7 @@ const DeviceManagerProfileItemLarge = ({ item, loading }: ProfileItemType) => {
 										: rTheme.theme?.gluestack.tokens.colors.light100
 								}
 								size={20}
-								name={'ios-person'}
+								name={'person'}
 							/>
 						</Center>
 					</Box>

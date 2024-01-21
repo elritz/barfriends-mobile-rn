@@ -174,7 +174,7 @@ export default () => {
 									<Pressable
 										key={item.id + index}
 										onPress={() => {
-											router.push({
+											router.navigate({
 												params: {
 													venueprofileids: JSON.stringify(item.venuesProfileIds),
 													id: item.id,
@@ -226,7 +226,7 @@ export default () => {
 									<Pressable
 										key={item.id + index}
 										onPress={() => {
-											router.push({
+											router.navigate({
 												params: {
 													venueprofileids: JSON.stringify(item.venuesProfileIds),
 													id: item.id,
@@ -270,7 +270,7 @@ export default () => {
 		const _press = async () => {
 			rPermissionLocationVar?.granted
 				? await useSetSearchAreaWithLocation()
-				: router.push({
+				: router.navigate({
 						pathname: '/(app)/permission/foregroundlocation',
 				  })
 		}
@@ -348,7 +348,7 @@ export default () => {
 											{lengthOfUpvote}
 										</Text>
 										<Ionicons
-											name='md-caret-up'
+											name='caret-up'
 											size={25}
 											color={
 												rTheme.colorScheme === 'light'
@@ -377,7 +377,7 @@ export default () => {
 										justifyContent={'center'}
 									>
 										<Ionicons
-											name='ios-notifications-sharp'
+											name='notifications-sharp'
 											size={23}
 											color={
 												rTheme.colorScheme === 'light'

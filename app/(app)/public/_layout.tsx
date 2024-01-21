@@ -56,7 +56,7 @@ export default () => {
 											}}
 										>
 											<Ionicons
-												name='md-chevron-back-outline'
+												name='chevron-back-outline'
 												size={30}
 												color={
 													rTheme.colorScheme === 'light'
@@ -74,7 +74,7 @@ export default () => {
 											rounded={'$full'}
 											variant='link'
 											onPress={() =>
-												router.push({
+												router.navigate({
 													pathname: '/(app)/public/personal/settings',
 													params: {
 														username: 'test',
@@ -122,7 +122,7 @@ export default () => {
 								mr={'$2'}
 								bg={rTheme.colorScheme === 'light' ? '$light50' : '$light900'}
 							>
-								<Ionicons name='md-chevron-back-outline' size={30} />
+								<Ionicons name='chevron-back-outline' size={30} />
 							</Button>
 						</HStack>
 					),

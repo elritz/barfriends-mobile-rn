@@ -18,7 +18,7 @@ const VenueFeedTab = (props: TabProps) => {
 							justifyContent: 'center',
 						}}
 						size={23}
-						name={!props.focused ? 'md-grid-outline' : 'md-grid'}
+						name={!props.focused ? 'grid-outline' : 'grid'}
 						color={!props.focused ? (rTheme.colorScheme === 'dark' ? 'white' : 'black') : props.color}
 					/>
 				}

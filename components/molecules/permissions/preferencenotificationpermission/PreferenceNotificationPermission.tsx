@@ -60,7 +60,7 @@ export default function PreferenceNotificationPermission() {
 								</Text>
 								<Button
 									onPress={() =>
-										router.push({
+										router.navigate({
 											pathname: '/(app)/permission/notifications',
 										})
 									}
@@ -79,7 +79,7 @@ export default function PreferenceNotificationPermission() {
 									}}
 									variant={'link'}
 									onPress={() => {
-										router.push({
+										router.navigate({
 											pathname: '/(app)/modal/asks/notificationnextask',
 										})
 									}}

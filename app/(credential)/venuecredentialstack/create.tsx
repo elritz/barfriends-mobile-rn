@@ -38,7 +38,7 @@ export default () => {
 			if (data.createPersonalProfile?.__typename === 'AuthorizationDeviceProfile') {
 				const deviceManager = data.createPersonalProfile as AuthorizationDeviceProfile
 				AuthorizationReactiveVar(deviceManager)
-				router.push({
+				router.navigate({
 					pathname: '/(app)/hometab/venuefeed',
 				})
 			}
@@ -52,7 +52,7 @@ export default () => {
 				if (data.switchDeviceProfile.__typename === 'AuthorizationDeviceProfile') {
 					const deviceManager = data.switchDeviceProfile as AuthorizationDeviceProfile
 					AuthorizationReactiveVar(deviceManager)
-					router.push({
+					router.navigate({
 						pathname: '/(app)/hometab/venuefeed',
 					})
 				}

@@ -94,7 +94,7 @@ export default () => {
 						}}
 					>
 						<Ionicons
-							name='ios-search'
+							name='search'
 							size={18}
 							color={
 								rTheme.colorScheme === 'light'

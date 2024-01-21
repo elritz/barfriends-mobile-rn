@@ -22,6 +22,9 @@ export default function Auth({ children }) {
 				if (data.refreshDeviceManager?.__typename === 'Error') {
 				}
 			},
+			onError: e => {
+				console.log('222222222222222222222222222222 :>> ', e)
+			},
 		})
 
 	const [createGuestProfileMutation, { data, loading: CGLoading, error: CGPMError }] =

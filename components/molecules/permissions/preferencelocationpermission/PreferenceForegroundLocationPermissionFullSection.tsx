@@ -70,7 +70,7 @@ export default function ForegroundLocationPermissionFullSection() {
 									</Text>
 									<Button
 										onPress={() =>
-											router.push({
+											router.navigate({
 												pathname: '/(app)/permission/foregroundlocation',
 											})
 										}

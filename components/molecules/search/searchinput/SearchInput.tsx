@@ -79,13 +79,13 @@ const SearchInput = (props: Props) => {
 
 	const handleSearchSubmitEditting = data => {
 		if (segments.includes('searchresults')) {
-			router.push({
+			router.navigate({
 				pathname: '/(app)/explore/searchresults',
 				params: { searchtext: data.searchtext },
 			})
 		}
 		if (segments.includes('searchtext')) {
-			router.push({
+			router.navigate({
 				pathname: '/(app)/explore/searchresults',
 				params: { searchtext: data.searchtext },
 			})
@@ -97,7 +97,7 @@ const SearchInput = (props: Props) => {
 			segments.includes('messagestack') ||
 			segments.includes('tonight')
 		) {
-			router.push({
+			router.navigate({
 				pathname: '/(app)/explore/searchtext',
 				params: { searchtext: data.searchtext },
 			})
@@ -144,7 +144,7 @@ const SearchInput = (props: Props) => {
 											? rTheme.theme?.gluestack.tokens.colors.light700
 											: rTheme.theme?.gluestack.tokens.colors.light100
 									}
-									name='ios-search'
+									name='search'
 									size={20}
 								/>
 							</InputIcon>
@@ -162,7 +162,7 @@ const SearchInput = (props: Props) => {
 								value={value}
 								onPressIn={() => {
 									if (segments.includes('hometab')) {
-										router.push({
+										router.navigate({
 											pathname: '/(app)/explore/searchtext',
 											params: {
 												searchtext: '',
@@ -181,7 +181,7 @@ const SearchInput = (props: Props) => {
 
 									if (segments.includes('searcharea')) {
 										if (segments.includes('searchexplore')) {
-											router.push({
+											router.navigate({
 												pathname: '/(app)/searcharea',
 												params: {
 													searchtext: '',
@@ -193,7 +193,7 @@ const SearchInput = (props: Props) => {
 												!segments.includes('searchcountrystates') ||
 												!segments.includes('searchstatecities')
 											) {
-												router.push({
+												router.navigate({
 													pathname: '/(app)/searcharea/searchcountry',
 													params: {
 														searchtext: '',

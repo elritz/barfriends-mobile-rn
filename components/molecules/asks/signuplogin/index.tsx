@@ -12,12 +12,12 @@ export default (props: Props) => {
 	const router = useRouter()
 
 	const _pressToLogin = () => {
-		router.push({
+		router.navigate({
 			pathname: '/(credential)/logincredentialstack/authenticator',
 		})
 	}
 	const _pressToSignup = () => {
-		router.push({
+		router.navigate({
 			pathname: '/(credential)/personalcredentialstack/getstarted',
 		})
 	}

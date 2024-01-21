@@ -9,7 +9,7 @@ export default function TermsServices() {
 		useUpdateProfilePrivacyTermsDocumentUpdateMutation({
 			onCompleted: data => {
 				if (data.updateProfilePrivacyTermsDocumentUpdate) {
-					router.push({
+					router.navigate({
 						pathname: '/(app)/hometab/venuefeed',
 					})
 				}

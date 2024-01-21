@@ -72,7 +72,7 @@ const DeviceManagerProfiles = () => {
 								<Center h={300}>
 									<Button
 										variant='link'
-										onPress={() => router.push(`/modal/devicemanager/${item.Profile?.id}`)}
+										onPress={() => router.navigate(`/modal/devicemanager/${item.Profile?.id}`)}
 										ref={ref}
 										size='xs'
 										hitSlop={10}

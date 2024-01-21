@@ -66,13 +66,13 @@ const SearchInputText = (props: Props) => {
 
 	const handleSearchSubmitEditting = data => {
 		if (segments.includes('searchresults')) {
-			router.push({
+			router.navigate({
 				pathname: '/(app)/explore/searchresults',
 				params: { searchtext: data.searchtext },
 			})
 		}
 		if (segments.includes('searchtext')) {
-			router.push({
+			router.navigate({
 				pathname: '/(app)/explore/searchresults',
 				params: { searchtext: data.searchtext },
 			})
@@ -84,7 +84,7 @@ const SearchInputText = (props: Props) => {
 			segments.includes('messagestack') ||
 			segments.includes('tonight')
 		) {
-			router.push({
+			router.navigate({
 				pathname: '/(app)/explore/searchtext',
 				params: { searchtext: data.searchtext },
 			})
@@ -129,7 +129,7 @@ const SearchInputText = (props: Props) => {
 									? rTheme.theme?.gluestack.tokens.colors.light700
 									: rTheme.theme?.gluestack.tokens.colors.light100
 							}
-							name='ios-search'
+							name='search'
 							size={20}
 						/>
 						<InputField
@@ -147,7 +147,7 @@ const SearchInputText = (props: Props) => {
 							lineHeight={'$sm'}
 							onFocus={() => {
 								if (segments.includes('hometab')) {
-									router.push({
+									router.navigate({
 										pathname: '/(app)/explore/searchtext',
 										params: {
 											searchtext: '',

@@ -122,7 +122,7 @@ export default function Preferences() {
 			}
 			if (data.refreshDeviceManager?.__typename === 'Error') {
 				// setTimeout(() => {
-				// 	router.push('/(app)/hometab/venuefeed')
+				// 	router.navigate('/(app)/hometab/venuefeed')
 				// }, 1)
 			}
 		},

@@ -176,7 +176,7 @@ export default function MessageRoom(props) {
 							placeholder=''
 						/>
 						<Ionicons
-							name={'md-send'}
+							name={'send'}
 							size={30}
 							color={
 								rTheme.colorScheme === 'light'

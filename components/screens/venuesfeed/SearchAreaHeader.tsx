@@ -10,7 +10,7 @@ export default function SearchAreaHeader({ typename }) {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 
 	const _press = () => {
-		router.push({
+		router.navigate({
 			pathname: '/(app)/searcharea',
 		})
 	}

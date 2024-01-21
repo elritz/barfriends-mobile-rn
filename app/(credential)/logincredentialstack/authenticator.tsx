@@ -135,7 +135,7 @@ export default () => {
 		onCompleted: data => {
 			const values = getValues()
 			if (data.sendAuthenticatorDeviceOwnerCode.__typename === 'Code') {
-				router.push({
+				router.navigate({
 					pathname: '/(credential)/logincredentialstack/confirmationcode',
 					params: {
 						authenticator: values.authenticator,
@@ -155,7 +155,7 @@ export default () => {
 
 			if (data.authorizedProfiles?.__typename === 'ProfilesResponse') {
 				if (data.authorizedProfiles?.username.length) {
-					router.push({
+					router.navigate({
 						pathname: '/(credential)/logincredentialstack/loginpassword',
 						params: {
 							profileid: data.authorizedProfiles.username[0].id,

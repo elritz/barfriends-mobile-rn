@@ -64,7 +64,7 @@ export default () => {
 				'You can change your choices at any time in your device settings. If you allow access now, you wont have to again.',
 			icon: (
 				<Ionicons
-					name={'ios-settings-sharp'}
+					name={'settings-sharp'}
 					style={{
 						marginHorizontal: 7,
 					}}

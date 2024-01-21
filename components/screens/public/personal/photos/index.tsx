@@ -147,7 +147,7 @@ export default function Photos(props: Props) {
 									? rTheme.theme?.gluestack.tokens.colors.light900
 									: rTheme.theme?.gluestack.tokens.colors.light100
 							}
-							name={'ios-person'}
+							name={'person'}
 						/>
 					</Box>
 				</Center>
@@ -202,7 +202,7 @@ export default function Photos(props: Props) {
 									? rTheme.theme?.gluestack.tokens.colors.light900
 									: rTheme.theme?.gluestack.tokens.colors.light100
 							}
-							name={'ios-person'}
+							name={'person'}
 						/>
 					</Box>
 				</Center>

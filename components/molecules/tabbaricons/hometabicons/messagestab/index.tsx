@@ -19,7 +19,7 @@ const MessageTab = (props: TabProps) => {
 							justifyContent: 'center',
 						}}
 						size={25}
-						name={!props.focused ? 'md-chatbubble-ellipses-outline' : 'md-chatbubble-ellipses-sharp'}
+						name={!props.focused ? 'chatbubble-ellipses-outline' : 'chatbubble-ellipses-sharp'}
 						color={
 								!props.focused ? (rTheme.colorScheme === 'dark' ? 'white' : 'black') : props.color
 						}

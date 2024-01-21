@@ -93,7 +93,7 @@ const SearchInputSearchArea = (props: Props) => {
 										? rTheme.theme?.gluestack.tokens.colors.light700
 										: rTheme.theme?.gluestack.tokens.colors.light100
 								}
-								name='ios-search'
+								name='search'
 								size={23}
 							/>
 						</InputSlot>

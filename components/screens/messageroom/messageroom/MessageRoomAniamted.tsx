@@ -87,7 +87,7 @@ const MessageRoomAniamted = () => {
 								color={_nbMode.colorMode === 'light' ? 'dark.100' : 'light.100'}
 								mx={2}
 								as={Ionicons}
-								name={'md-send'}
+								name={'send'}
 							/>
 						}
 					/> */}

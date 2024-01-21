@@ -24,7 +24,7 @@ export default function SignupAskModal({ isOpen, onClose }: Props) {
 						bg='$primary500'
 						onPress={() => {
 							onClose()
-							router.push({
+							router.navigate({
 								pathname: '/(credential)/personalcredentialstack/getstarted',
 							})
 						}}

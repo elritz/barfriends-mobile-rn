@@ -8,7 +8,6 @@ import { config } from '../../gluestack-ui.config'
 
 export type IBFSTheme = {
 	reactnavigation: Theme
-	// gluestack: typeof config
 	gluestack: typeof config
 	// restyle: BaseTheme
 }

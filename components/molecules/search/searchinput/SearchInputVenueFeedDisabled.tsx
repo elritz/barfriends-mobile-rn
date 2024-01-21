@@ -29,7 +29,7 @@ const SearchInputVenueFeedDisabled = (props: Props) => {
 				pb={'$2'}
 				onPressIn={() => {
 					if (segments.includes('hometab')) {
-						router.push({
+						router.navigate({
 							pathname: '/(app)/explore/searchtext',
 							params: {
 								searchtext: '',
@@ -58,7 +58,7 @@ const SearchInputVenueFeedDisabled = (props: Props) => {
 								? rTheme.theme?.gluestack.tokens.colors.light700
 								: rTheme.theme?.gluestack.tokens.colors.light100
 						}
-						name='ios-search'
+						name='search'
 						style={{
 							paddingRight: 5,
 						}}

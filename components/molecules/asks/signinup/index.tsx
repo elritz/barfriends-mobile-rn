@@ -14,7 +14,7 @@ export default () => {
 				</Text>
 				<Button
 					onPress={() =>
-						router.push({
+						router.navigate({
 							pathname: '/(credential)/personalcredentialstack/getstarted',
 						})
 					}
@@ -31,7 +31,7 @@ export default () => {
 				<Button
 					variant='link'
 					onPress={() =>
-						router.push({
+						router.navigate({
 							pathname: '/(credential)/logincredentialstack/authenticator',
 						})
 					}

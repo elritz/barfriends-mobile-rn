@@ -82,7 +82,7 @@ export default () => {
 			...credentialPersonalProfileVar,
 			username: data.username,
 		})
-		router.push({
+		router.navigate({
 			pathname: '/(credential)/personalcredentialstack/password',
 		})
 	}

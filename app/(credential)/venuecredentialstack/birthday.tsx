@@ -87,7 +87,7 @@ export default () => {
 				...credentialPersonalProfileVar,
 				birthday: String(birthday),
 			})
-			router.push({
+			router.navigate({
 				pathname: '/(credential)/personalcredentialstack/name',
 			})
 		} catch (e) {

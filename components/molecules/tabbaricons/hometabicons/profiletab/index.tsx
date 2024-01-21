@@ -42,7 +42,7 @@ const ProfileTab = (props: TabProps) => {
 	const onLongPressProfileIcon = async () => {
 		await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
 		console.log('pressed :>> ')
-		router.push({
+		router.navigate({
 			pathname: '/(app)/modal/devicemanager/DeviceManager',
 		})
 	}
@@ -51,7 +51,7 @@ const ProfileTab = (props: TabProps) => {
 		return (
 			<TabBarIcon
 				onPress={() => {
-					router.push({
+					router.navigate({
 						pathname: '/(app)/hometab/profilestack/UserProfileScreen',
 					})
 				}}
@@ -82,7 +82,7 @@ const ProfileTab = (props: TabProps) => {
 		<>
 			<TabBarIcon
 				onPress={() => {
-					router.push({
+					router.navigate({
 						pathname: '/(app)/hometab/profilestack/UserProfileScreen',
 					})
 				}}

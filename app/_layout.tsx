@@ -1,5 +1,5 @@
 //TODO: Add notfication listener
-
+import 'react-native-gesture-handler'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 import { ApolloProvider } from '@apollo/client'
@@ -53,11 +53,12 @@ import 'expo-dev-client'
 import { getForegroundPermissionsAsync, getBackgroundPermissionsAsync } from 'expo-location'
 import { getPermissionsAsync as getMediaPermissionAsync } from 'expo-media-library'
 import { getPermissionsAsync as getNotificiationPermissionAsync } from 'expo-notifications'
-import { SplashScreen, Stack } from 'expo-router'
+import { Stack } from 'expo-router'
+import * as SplashScreen from 'expo-splash-screen'
 import * as ScreenOrientation from 'expo-screen-orientation'
 import * as SQLite from 'expo-sqlite'
 import { useEffect } from 'react'
-import { Appearance } from 'react-native'
+import { Appearance, Text, View } from 'react-native'
 // import 'react-native-gesture-handler'
 import { KeyboardProvider } from 'react-native-keyboard-controller'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
@@ -335,49 +336,51 @@ export default function Root() {
 		setAsyncPreferencesLocalStorageData()
 		setPermissions()
 	}, [])
-
 	return (
-		<ApolloProvider client={profilingclient}>
-			<GestureHandlerRootView>
+		<>
+			<GestureHandlerRootView style={{ flex: 1 }}>
 				<SafeAreaProvider>
 					<KeyboardProvider statusBarTranslucent>
 						<BottomSheetModalProvider>
-							<Auth>
-								<Theme>
-									<Stack
-										initialRouteName='index'
-										screenOptions={{
-											headerShown: false,
-										}}
-									>
-										<Stack.Screen name='index' />
-										<Stack.Screen
-											name='(app)'
-											options={{
-												animation: 'fade',
+							<ApolloProvider client={profilingclient}>
+								<Auth>
+									<Theme>
+										<Stack
+											initialRouteName='index'
+											screenOptions={{
+												headerShown: false,
 											}}
-										/>
-										<Stack.Screen
-											name='(information)'
-											options={{
-												presentation: 'modal',
-												fullScreenGestureEnabled: false,
-												gestureEnabled: false,
-											}}
-										/>
-										<Stack.Screen
-											name='(credential)'
-											options={{
-												animation: 'fade',
-											}}
-										/>
-									</Stack>
-								</Theme>
-							</Auth>
+										>
+											<Stack.Screen name='brokenstate' />
+											<Stack.Screen name='index' />
+											<Stack.Screen
+												name='(app)'
+												options={{
+													animation: 'fade',
+												}}
+											/>
+											<Stack.Screen
+												name='(information)'
+												options={{
+													presentation: 'modal',
+													fullScreenGestureEnabled: false,
+													gestureEnabled: false,
+												}}
+											/>
+											<Stack.Screen
+												name='(credential)'
+												options={{
+													animation: 'fade',
+												}}
+											/>
+										</Stack>
+									</Theme>
+								</Auth>
+							</ApolloProvider>
 						</BottomSheetModalProvider>
 					</KeyboardProvider>
 				</SafeAreaProvider>
 			</GestureHandlerRootView>
-		</ApolloProvider>
+		</>
 	)
 }

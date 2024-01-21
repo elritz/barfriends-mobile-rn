@@ -20,7 +20,7 @@ const HorizontalMessageNotification = ({ item }) => {
 		>
 			<Pressable
 				onPress={() => {
-					// router.push({
+					// router.navigate({
 					// 	pathname: '/(app)/permission/medialibrary',
 					// })
 				}}

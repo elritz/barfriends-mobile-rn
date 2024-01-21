@@ -69,7 +69,7 @@ export default function CurrentVenue() {
 		>
 			<Pressable
 				onPress={() => {
-					router.push({
+					router.navigate({
 						pathname: `/(app)/public/venue/${data.publicVenue?.Venue?.id}`,
 						params: {
 							latitude: Number(data.publicVenue?.Venue?.Location?.Geometry?.latitude),
@@ -146,7 +146,7 @@ export default function CurrentVenue() {
 									rounded={'$lg'}
 									onPress={!isOpen ? () => onToggle() : () => leaveVenue()}
 								>
-									<Ionicons name={'ios-exit'} size={30} />
+									<Ionicons name={'exit'} size={30} />
 
 									<Text color='$error500'>{isOpen ? `Leave` : ''}</Text>
 								</Button>

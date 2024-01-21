@@ -84,7 +84,7 @@ export default () => {
 											}}
 										>
 											<Ionicons
-												name='md-chevron-back-outline'
+												name='chevron-back-outline'
 												size={30}
 												color={
 													rTheme.colorScheme === 'light'

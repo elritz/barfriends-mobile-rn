@@ -19,11 +19,11 @@ export default function SearchCard({ item }) {
 			onPress={() => {
 				switch (item.__typename) {
 					case 'Personal':
-						return router.push({
+						return router.navigate({
 							pathname: `/(app)/public/personal/${item.Profile.IdentifiableInformation?.username}`,
 						})
 					case 'Venue':
-						return router.push({
+						return router.navigate({
 							pathname: `/(app)/public/venue/${item.Profile.IdentifiableInformation?.username}`,
 						})
 				}
@@ -66,7 +66,7 @@ export default function SearchCard({ item }) {
 										? rTheme.theme?.gluestack.tokens.colors.light900
 										: rTheme.theme?.gluestack.tokens.colors.light100
 								}
-								name={'ios-person'}
+								name={'person'}
 							/>
 						</Box>
 					)}

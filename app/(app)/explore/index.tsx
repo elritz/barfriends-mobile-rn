@@ -50,7 +50,7 @@ export default () => {
 									flex={1}
 									alignSelf={'center'}
 									onPress={() => {
-										router.push({
+										router.navigate({
 											pathname: `/(app)/public/personal/${item.IdentifiableInformation?.username}`,
 										})
 									}}

@@ -32,7 +32,7 @@ const ProfileItemSmall = ({ item, loading, isActive, selectedProfileId }: Profil
 				<>
 					{isActive ? (
 						<Ionicons
-							name='ios-checkmark-circle'
+							name='checkmark-circle'
 							color={rTheme.theme?.gluestack.tokens.colors.primary500}
 							size={30}
 						/>

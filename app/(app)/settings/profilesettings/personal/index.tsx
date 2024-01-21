@@ -61,7 +61,7 @@ export default ({}: EditableOptionsScreenProps) => {
 		>
 			<RoundedListItem
 				onPress={() => {
-					router.push({
+					router.navigate({
 						pathname: '/(app)/settings/profilesettings/personal/fullname',
 					})
 				}}
@@ -79,7 +79,7 @@ export default ({}: EditableOptionsScreenProps) => {
 			</RoundedListItem>
 			<RoundedListItem
 				onPress={() =>
-					router.push({
+					router.navigate({
 						pathname: '/(app)/settings/profilesettings/personal/username',
 					})
 				}
@@ -99,7 +99,7 @@ export default ({}: EditableOptionsScreenProps) => {
 						{date}
 					</Text>
 					<Ionicons
-						name={'md-lock-closed'}
+						name={'lock-closed'}
 						color={
 							rTheme.colorScheme === 'light'
 								? rTheme.theme?.gluestack.tokens.colors.light400
@@ -111,7 +111,7 @@ export default ({}: EditableOptionsScreenProps) => {
 			</RoundedListItem>
 			<RoundedListItem
 				onPress={() =>
-					router.push({
+					router.navigate({
 						pathname: '/(app)/settings/profilesettings/personal/description',
 					})
 				}
@@ -125,7 +125,7 @@ export default ({}: EditableOptionsScreenProps) => {
 			</RoundedListItem>
 			<RoundedListItem
 				onPress={() =>
-					router.push({
+					router.navigate({
 						pathname: '/(app)/settings/profilesettings/personal/interests',
 					})
 				}
@@ -167,7 +167,7 @@ export default ({}: EditableOptionsScreenProps) => {
 			</Heading>
 			<RoundedListItem
 				onPress={() =>
-					router.push({
+					router.navigate({
 						pathname: '/(app)/settings/profilesettings/personal/gender',
 					})
 				}
@@ -180,7 +180,7 @@ export default ({}: EditableOptionsScreenProps) => {
 			</RoundedListItem>
 			<RoundedListItem
 				onPress={() =>
-					router.push({
+					router.navigate({
 						pathname: '/(app)/settings/profilesettings/personal/lookingfor',
 					})
 				}
@@ -193,7 +193,7 @@ export default ({}: EditableOptionsScreenProps) => {
 			</RoundedListItem>
 			<RoundedListItem
 				onPress={() =>
-					router.push({
+					router.navigate({
 						pathname: '/(app)/settings/profilesettings/personal/relationship',
 					})
 				}
@@ -203,7 +203,7 @@ export default ({}: EditableOptionsScreenProps) => {
 			</RoundedListItem>
 			<RoundedListItem
 				onPress={() =>
-					router.push({
+					router.navigate({
 						pathname: '/(app)/settings/profilesettings/personal/hometown',
 					})
 				}
@@ -213,7 +213,7 @@ export default ({}: EditableOptionsScreenProps) => {
 			</RoundedListItem>
 			<RoundedListItem
 				onPress={() =>
-					router.push({
+					router.navigate({
 						pathname: '/(app)/settings/profilesettings/personal/currenttown',
 					})
 				}

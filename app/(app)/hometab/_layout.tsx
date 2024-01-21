@@ -23,7 +23,6 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default () => {
 	const showDev = true
-
 	const segments: String[] = useSegments()
 	const insets = useSafeAreaInsets()
 	const router = useRouter()
@@ -32,7 +31,7 @@ export default () => {
 
 	useEffect(() => {
 		if (rTermsServiceVar.update) {
-			router.push({
+			router.navigate({
 				pathname: '/(information)/updatelatestprivacytermsservice',
 			})
 		}
@@ -130,7 +129,7 @@ export default () => {
 									<Pressable
 										hitSlop={25}
 										onPress={() => {
-											router.push({
+											router.navigate({
 												pathname: '/(app)/newconversation',
 											})
 										}}

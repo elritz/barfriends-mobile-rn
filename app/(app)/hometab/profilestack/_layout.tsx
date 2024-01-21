@@ -44,7 +44,7 @@ export default function _layout() {
 										variant='link'
 										onPress={async () => {
 											await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
-											router.push({
+											router.navigate({
 												pathname: `/(app)/modal/devicemanager/DeviceManager`,
 											})
 										}}
@@ -89,7 +89,7 @@ export default function _layout() {
 							<Button
 								variant='link'
 								onPress={() =>
-									router.push({
+									router.navigate({
 										pathname: '/(app)/settings',
 									})
 								}

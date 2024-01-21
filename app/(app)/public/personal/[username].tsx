@@ -566,7 +566,7 @@ export default () => {
 				<HStack alignItems={'center'}>
 					<Pressable onPress={handleCloseModalPress}>
 						<Ionicons
-							name='md-chevron-back-outline'
+							name='chevron-back-outline'
 							size={35}
 							color={
 								rThemeVar.colorScheme === 'light'

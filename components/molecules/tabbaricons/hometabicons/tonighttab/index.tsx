@@ -18,7 +18,7 @@ const TonightTab = (props: TabProps) => {
 							justifyContent: 'center',
 						}}
 						size={28}
-						name={!props.focused ? 'md-play-outline' : 'md-play'}
+						name={!props.focused ? 'play-outline' : 'play'}
 						color={!props.focused ? (rTheme.colorScheme === 'dark' ? 'white' : 'black') : props.color}
 					/>
 				}
