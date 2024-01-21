@@ -12,7 +12,6 @@ module.exports = function (api) {
 		],
 		plugins: [
 			// ['transform-remove-console'],
-			'expo-router/babel',
 				[
 				 'module:react-native-dotenv',
 					{
