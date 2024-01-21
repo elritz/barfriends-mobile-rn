@@ -410,7 +410,7 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 				},
 				extra: {
 					eas: {
-						projectId: '9d7483d5-438b-4455-975a-c30d8f156e82',
+						projectId: '1cca8791-971d-46f1-b65f-bf8b51f0dac0',
 					},
 				},
 			}
