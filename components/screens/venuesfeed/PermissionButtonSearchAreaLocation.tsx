@@ -10,7 +10,9 @@ export default function PermissionButtonSearchAreaLocation() {
 
 	const _press = async () => {
 		rPermissionLocationVar?.granted
-			? await useSetSearchAreaWithLocation()
+			? route.push({
+					pathname: '/(app)/searcharea/',
+			  })
 			: route.push({
 					pathname: '/(app)/permission/foregroundlocation',
 			  })

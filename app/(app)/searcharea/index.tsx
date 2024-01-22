@@ -3,7 +3,16 @@ import LocationPermissionItemEmptyState from '@components/organisms/list/searcha
 import SearchAreaLocationPermissionItem from '@components/organisms/list/searchareafiltering/SearchAreaLocationPermissionItem'
 import { LOCAL_STORAGE_SEARCH_AREA } from '@constants/StorageConstants'
 import { Ionicons } from '@expo/vector-icons'
-import { Box, Button, ButtonText, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
+import {
+	Box,
+	Button,
+	ButtonText,
+	Divider,
+	HStack,
+	Heading,
+	Text,
+	VStack,
+} from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { SearchAreaReactiveVar, ThemeReactiveVar } from '@reactive'
 import useContentInsets from '@util/hooks/useContentInsets'
@@ -95,7 +104,7 @@ export default () => {
 							</Text>
 						</Heading>
 
-						<HStack space={'md'} justifyContent={'space-around'}>
+						<HStack mt={'$3'} space={'md'} justifyContent={'space-around'}>
 							{searchAreaDistances.map((item, index) => {
 								return (
 									<Button
@@ -137,36 +146,33 @@ export default () => {
 						</HStack>
 					</VStack>
 				</Box>
+				<Divider my={'$3'} width={'$4/5'} alignSelf='center' />
 				<VStack space={'md'}>
 					<HStack space={'md'}>
 						{!rSearchAreaVar?.searchArea.country.name ||
 						!rSearchAreaVar?.searchArea.state.name ||
 						!rSearchAreaVar?.searchArea.city.name ? (
 							<Box p={'$5'}>
-								<Box
-									alignItems={'center'}
-									style={{
-										width: '100%',
-									}}
-									my={'$2'}
-								>
-									<Heading fontSize={'$lg'} lineHeight={'$sm'}>
-										Find Venues Near you{`\n`}
-										<Text fontSize={'$md'} lineHeight={'$sm'}>
+								<VStack space={'md'}>
+									<VStack space={'md'} mb={'$2'}>
+										<Heading fontSize={'$2xl'} lineHeight={'$md'}>
+											Search For Your Area
+										</Heading>
+										<Text fontSize={'$lg'} lineHeight={'$sm'}>
 											Find your area and we will show you what we have for venues.
 										</Text>
-									</Heading>
-								</Box>
-								<Button
-									onPress={() => {
-										router.navigate({
-											pathname: '/(app)/searcharea/searchcountry',
-										})
-									}}
-								>
-									<ButtonText fontSize={'$lg'}>Area</ButtonText>
-								</Button>
-								<LocationPermissionItemEmptyState />
+									</VStack>
+									<Button
+										onPress={() => {
+											router.navigate({
+												pathname: '/(app)/searcharea/searchcountry',
+											})
+										}}
+									>
+										<ButtonText fontSize={'$lg'}>Find Area</ButtonText>
+									</Button>
+									<LocationPermissionItemEmptyState />
+								</VStack>
 							</Box>
 						) : (
 							<VStack flex={1} space={'md'}>
@@ -179,12 +185,12 @@ export default () => {
 									</Text>
 								</Heading>
 
-								<HStack space={'md'}>
+								<HStack mt={'$3'} space={'md'}>
 									{searchAreaLocation.map((item, index) => {
 										return (
 											<Button
 												key={index}
-												bg={!rSearchAreaVar?.useCurrentLocation ? '$light800' : '$blue500'}
+												bg={!rSearchAreaVar?.useCurrentLocation ? '$light800' : '$blue600'}
 												variant={'solid'}
 												// isDisabled
 												sx={{
@@ -213,7 +219,7 @@ export default () => {
 								<SearchAreaLocationPermissionItem />
 								<HStack justifyContent='flex-end'>
 									<Button
-										rounded={'$xl'}
+										rounded={'$lg'}
 										onPress={() => {
 											router.navigate({
 												pathname: '/(app)/searcharea/searchcountry',

@@ -144,7 +144,7 @@ const useSetSearchAreaWithLocation = async () => {
 	const createTwoButtonAlert = () =>
 		Alert.alert(
 			'Location Permission Status',
-			`Currently you location permission is${rPermissionLocationVar?.status}. Go to settings to change this.`,
+			`Currently the location permission is ${rPermissionLocationVar?.status}. Go to settings to change this for Revel.`,
 			[
 				{
 					text: 'Cancel',

@@ -1,5 +1,4 @@
 import { useReactiveVar } from '@apollo/client'
-import SearchInputVenueFeed from '@components/molecules/search/searchinput/SearchInputVenueFeed'
 import SearchInputVenueFeedDisabled from '@components/molecules/search/searchinput/SearchInputVenueFeedDisabled'
 import DevelopmentTab from '@components/molecules/tabbaricons/hometabicons/developmenttab'
 import MessageTab from '@components/molecules/tabbaricons/hometabicons/messagestab'

@@ -1,9 +1,12 @@
+import { useReactiveVar } from '@apollo/client'
 import PermissionButtonSearchAreaLocation from './PermissionButtonSearchAreaLocation'
 import { Box, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
+import { PermissionForegroundLocationReactiveVar } from '@reactive'
 import { useRouter } from 'expo-router'
 
 export default function VenueFeedSearchAreaEmptyState() {
 	const router = useRouter()
+	const rForegroundLocationPermissionVar = useReactiveVar(PermissionForegroundLocationReactiveVar)
 
 	const _pressToSearchArea = () => {
 		router.navigate({

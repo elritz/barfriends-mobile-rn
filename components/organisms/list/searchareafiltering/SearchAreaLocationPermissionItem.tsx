@@ -76,11 +76,11 @@ const SearchAreaLocationPermissionItem = () => {
 								bg: isPressed
 									? '#ffffff100'
 									: rSearchAreaVar?.useCurrentLocation
-									? '$blue500'
+									? '$blue600'
 									: '$light300',
 							},
 							_dark: {
-								bg: isPressed ? '#00000040' : rSearchAreaVar?.useCurrentLocation ? '$blue500' : '$light800',
+								bg: isPressed ? '#00000040' : rSearchAreaVar?.useCurrentLocation ? '$blue600' : '$light800',
 							},
 						}}
 						p={'$3'}

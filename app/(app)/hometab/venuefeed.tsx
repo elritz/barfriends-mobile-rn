@@ -31,6 +31,7 @@ import {
 	ThemeReactiveVar,
 } from '@reactive'
 import { FlashList, MasonryFlashList } from '@shopify/flash-list'
+import { useSetLocation } from '@util/hooks/permissions/location/useSetLocation'
 import useSetSearchAreaWithLocation from '@util/hooks/searcharea/useSetSearchAreaWithLocation'
 import useContentInsets from '@util/hooks/useContentInsets'
 import { useRouter } from 'expo-router'
@@ -46,6 +47,9 @@ export default () => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const rSearchAreaVar = useReactiveVar(SearchAreaReactiveVar)
 	const rCurrentLocationVar = useReactiveVar(CurrentLocationReactiveVar)
+
+	const rForegroundLocationPermissionVar = useReactiveVar(PermissionForegroundLocationReactiveVar)
+
 	const [
 		updateH6VenueRecommendationVoteMutation,
 		{ data: UVRData, loading: UVRLoading, error: UVRError },
@@ -53,6 +57,13 @@ export default () => {
 
 	const [updateToBeNotifiedMutation, { data: UTBNData, loading: UTBNLoading, error: UTBNError }] =
 		useUpdateComingAreaToBeNotifiedMutation()
+
+	// console.log(
+	// 	'rForegroundLocationPermissionVar :>> ',
+	// 	JSON.stringify(rForegroundLocationPermissionVar, null, 2),
+	// )
+	// console.log('rSearchAreaVar :>> ', JSON.stringify(rSearchAreaVar, null, 2))
+	// console.log('rCurrentLocationVar :>> ', JSON.stringify(rCurrentLocationVar, null, 2))
 
 	const [venuesNearbyQuery, { data, loading, error }] = useVenuesNearbyLazyQuery({
 		variables: {
@@ -69,7 +80,32 @@ export default () => {
 		},
 	})
 
-	const getNearbyVenues = useCallback(() => {
+	const getNearbyVenues = useCallback(async () => {
+		console.log(
+			`🚀 -----------------------------------------------------------------------------------------🚀`,
+		)
+		console.log(
+			`🚀 ~ rForegroundLocationPermissionVar?.granted:`,
+			rForegroundLocationPermissionVar?.granted,
+		)
+		console.log(
+			`🚀 -----------------------------------------------------------------------------------------🚀`,
+		)
+		console.log(`🚀 -------------------------------------------------------------------------🚀`)
+		console.log(`🚀 ~ rSearchAreaVar.useCurrentLocation:`, rSearchAreaVar.useCurrentLocation)
+		console.log(`🚀 -------------------------------------------------------------------------🚀`)
+		console.log(`🚀 -------------------------------------------------------------------------🚀`)
+		console.log(
+			`🚀 ~ rCurrentLocationVarrCurrentLocationVarrCurrentLocationVarrCurrentLocationVar:`,
+			rCurrentLocationVar,
+		)
+		console.log(`🚀 -------------------------------------------------------------------------🚀`)
+		if (rForegroundLocationPermissionVar?.granted) {
+			if (rSearchAreaVar.useCurrentLocation) {
+				await useSetLocation()
+			}
+		}
+
 		venuesNearbyQuery()
 	}, [])
 
@@ -300,6 +336,10 @@ export default () => {
 			</ScrollView>
 		)
 	}
+
+	console.log(`🚀 ---------------🚀`)
+	console.log(`🚀 ~ data:`, data)
+	console.log(`🚀 ---------------🚀`)
 
 	if (data.venuesNearby.__typename === 'ComingAreaResponse') {
 		return (

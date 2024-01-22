@@ -78,7 +78,7 @@ SplashScreen.preventAutoHideAsync()
 const db = SQLite.openDatabase('../SQLite/database.db')
 
 export default function Root() {
-	async function changeScreenOrientation() {
+	async function setScreenOrientation() {
 		await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP)
 	}
 
@@ -109,7 +109,7 @@ export default function Root() {
 			// SEARCHAREA_PREFERENCE ~ START
 			const getLocalStorageSearchArea = await AsyncStorage.getItem(LOCAL_STORAGE_SEARCH_AREA)
 
-			if (getLocalStorageSearchArea !== null) {
+			if (getLocalStorageSearchArea !== null && PermissionForegroundLocationReactiveVar()?.granted) {
 				const values: LocalStoragePreferenceSearchAreaType = JSON.parse(getLocalStorageSearchArea)
 				if (values && values.useCurrentLocation) {
 					await useSetSearchAreaWithLocation()
@@ -214,6 +214,17 @@ export default function Root() {
 				LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION,
 			)
 
+			console.log(
+				`🚀 -----------------------------------------------------------------------------------------------------------------🚀`,
+			)
+			console.log(
+				`🚀 ~ getLocalStoragePreferenceForegroundLocationPreference:`,
+				getLocalStoragePreferenceForegroundLocationPreference,
+			)
+			console.log(
+				`🚀 -----------------------------------------------------------------------------------------------------------------🚀`,
+			)
+
 			if (!getLocalStoragePreferenceForegroundLocationPreference) {
 				await AsyncStorage.setItem(
 					LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION,
@@ -253,11 +264,12 @@ export default function Root() {
 		} catch (e) {}
 	}
 
-	const setPermissions = async () => {
+	const setAsyncPermissions = async () => {
 		const contactsPermission = await Contacts.getPermissionsAsync()
 		const cameraPermission = await Camera.getCameraPermissionsAsync()
 		const microphonePermission = await Camera.getMicrophonePermissionsAsync()
 		const foregroundLocationPermission = await getForegroundPermissionsAsync()
+
 		const backgroundLocationPermission = await getBackgroundPermissionsAsync()
 		const mediaLibraryPermission = await getMediaPermissionAsync()
 		const notificationPermission = await getNotificiationPermissionAsync()
@@ -272,69 +284,11 @@ export default function Root() {
 		PermissionNotificationReactiveVar(notificationPermission)
 	}
 
-	// const setSQLiteDatabaseStorageData = async () => {
-	// 	// 		const getInformationJoinVenue = await AsyncStorage.getItem(LOCAL_STORAGE_INFORMATION_JOIN_VENUE)
-	// 	// if (getInformationJoinVenue !== null) {
-	// 	// 	const values: LocalStorageInformationJoinVenueType = JSON.parse(getInformationJoinVenue)
-	// 	// 	InformationJoinVenueReactiveVar({
-	// 	// 		...values,
-	// 	// 	})
-	// 	// } else {
-	// 	// 	const newJoinVenueInformation = JSON.stringify({
-	// 	// 		...JoiningInformationPromptPreferencePermissionInitialState,
-	// 	// 	} as LocalStorageInformationJoinVenueType)
-
-	// 	// 	await AsyncStorage.setItem(LOCAL_STORAGE_INFORMATION_JOIN_VENUE, newJoinVenueInformation)
-	// 	// }
-	// 	// db.transaction(tx => {
-	// 	// 	tx.executeSql(
-	// 	// 		'SELECT * FROM Preferences WHERE name = "Information Join Venue"',
-	// 	// 		[],
-	// 	// 		(tx, results) => {
-	// 	// 			console.log('results😨 :>> ', JSON.stringify(results.rows, null, 4))
-	// 	// 		},
-	// 	// 	)
-	// 	// 	// tx.executeSql(
-	// 	// 	// 	`INSERT INTO Preferences (name, dateLastShown, dateToShowAgain, numberOfTimesDismissed, canShowAgain) VALUES (?,?,?,?,?)`,
-	// 	// 	// 	[
-	// 	// 	InitalStateStorage.information.joinvenue.
-	// 	// 	// 		JoiningInformationPromptPreferencePermissionInitialState.dateLastShown.toString(),
-	// 	// 	// 		JoiningInformationPromptPreferencePermissionInitialState.dateToShowAgain.toString(),
-	// 	// 	// 		JoiningInformationPromptPreferencePermissionInitialState.numberOfTimesDismissed,
-	// 	// 	// 		JoiningInformationPromptPreferencePermissionInitialState.canShowAgain,
-	// 	// 	// 	],
-	// 	// 	// )
-	// 	// })
-	// }
-
-	// const createPreferenceTable = () => {
-	// 	// db.transaction(tx => {
-	// 	// 	tx.executeSql('DROP TABLE IF EXISTS Preferences;'),
-	// 	// 		[],
-	// 	// 		(tx, results) => {
-	// 	// 			console.log('results :>> ', results)
-	// 	// 		}
-	// 	// })
-
-	// 	db.transaction(tx => {
-	// 		tx.executeSql(
-	// 			'CREATE TABLE IF NOT EXISTS ' +
-	// 				'Preferences' +
-	// 				'(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, dateLastShown NUMERIC, dateToShowAgain NUMERIC, numberOfTimesDismissed INT, canShowAgain BOOLEAN)',
-	// 		)
-	// 	})
-	// }
-
-	// const initializeDatabase = async () => {
-	// 	// createPreferenceTable()
-	// 	// await setSQLiteDatabaseStorageData()
-	// }
-
 	useEffect(() => {
 		// initializeDatabase()
-		changeScreenOrientation()
+		setScreenOrientation()
+		setAsyncPermissions()
 		setAsyncPreferencesLocalStorageData()
-		setPermissions()
 	}, [])
 	return (
 		<>
@@ -351,7 +305,6 @@ export default function Root() {
 												headerShown: false,
 											}}
 										>
-											<Stack.Screen name='brokenstate' />
 											<Stack.Screen name='index' />
 											<Stack.Screen
 												name='(app)'
@@ -384,3 +337,61 @@ export default function Root() {
 		</>
 	)
 }
+
+// const setSQLiteDatabaseStorageData = async () => {
+// 	// 		const getInformationJoinVenue = await AsyncStorage.getItem(LOCAL_STORAGE_INFORMATION_JOIN_VENUE)
+// 	// if (getInformationJoinVenue !== null) {
+// 	// 	const values: LocalStorageInformationJoinVenueType = JSON.parse(getInformationJoinVenue)
+// 	// 	InformationJoinVenueReactiveVar({
+// 	// 		...values,
+// 	// 	})
+// 	// } else {
+// 	// 	const newJoinVenueInformation = JSON.stringify({
+// 	// 		...JoiningInformationPromptPreferencePermissionInitialState,
+// 	// 	} as LocalStorageInformationJoinVenueType)
+
+// 	// 	await AsyncStorage.setItem(LOCAL_STORAGE_INFORMATION_JOIN_VENUE, newJoinVenueInformation)
+// 	// }
+// 	// db.transaction(tx => {
+// 	// 	tx.executeSql(
+// 	// 		'SELECT * FROM Preferences WHERE name = "Information Join Venue"',
+// 	// 		[],
+// 	// 		(tx, results) => {
+// 	// 			console.log('results😨 :>> ', JSON.stringify(results.rows, null, 4))
+// 	// 		},
+// 	// 	)
+// 	// 	// tx.executeSql(
+// 	// 	// 	`INSERT INTO Preferences (name, dateLastShown, dateToShowAgain, numberOfTimesDismissed, canShowAgain) VALUES (?,?,?,?,?)`,
+// 	// 	// 	[
+// 	// 	InitalStateStorage.information.joinvenue.
+// 	// 	// 		JoiningInformationPromptPreferencePermissionInitialState.dateLastShown.toString(),
+// 	// 	// 		JoiningInformationPromptPreferencePermissionInitialState.dateToShowAgain.toString(),
+// 	// 	// 		JoiningInformationPromptPreferencePermissionInitialState.numberOfTimesDismissed,
+// 	// 	// 		JoiningInformationPromptPreferencePermissionInitialState.canShowAgain,
+// 	// 	// 	],
+// 	// 	// )
+// 	// })
+// }
+
+// const createPreferenceTable = () => {
+// 	// db.transaction(tx => {
+// 	// 	tx.executeSql('DROP TABLE IF EXISTS Preferences;'),
+// 	// 		[],
+// 	// 		(tx, results) => {
+// 	// 			console.log('results :>> ', results)
+// 	// 		}
+// 	// })
+
+// 	db.transaction(tx => {
+// 		tx.executeSql(
+// 			'CREATE TABLE IF NOT EXISTS ' +
+// 				'Preferences' +
+// 				'(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, dateLastShown NUMERIC, dateToShowAgain NUMERIC, numberOfTimesDismissed INT, canShowAgain BOOLEAN)',
+// 		)
+// 	})
+// }
+
+// const initializeDatabase = async () => {
+// 	// createPreferenceTable()
+// 	// await setSQLiteDatabaseStorageData()
+// }

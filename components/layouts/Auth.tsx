@@ -1,4 +1,4 @@
-import { AUTHORIZATION } from '@constants/StorageConstants'
+import { AUTHORIZATION, LOCAL_STORAGE_SEARCH_AREA } from '@constants/StorageConstants'
 import {
 	AuthorizationDeviceProfile,
 	useCreateGuestProfileMutation,
