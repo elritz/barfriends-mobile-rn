@@ -14952,7 +14952,7 @@ type Query {
   sendAuthenticatorDeviceOwnerCode: Boolean!
   venue(cursor: VenueWhereUniqueInput, distinct: [VenueScalarFieldEnum!], orderBy: [VenueOrderByWithRelationInput!], skip: Int, take: Int, where: VenueWhereInput): Venue
   venues(cursor: VenueWhereUniqueInput, distinct: [VenueScalarFieldEnum!], orderBy: [VenueOrderByWithRelationInput!], skip: Int, take: Int, where: VenueWhereInput): [Venue!]!
-  venuesNearby(countryIsoCode: String!, kRing: Int = 1, searchAreaCoords: CoordsInput!, stateIsoCode: String!): RecommendationResponseUnion!
+  venuesNearby(cityName: String, countryIsoCode: String!, kRing: Int = 1, searchAreaCoords: CoordsInput!, stateIsoCode: String!): RecommendationResponseUnion!
 }
 
 enum QueryMode {

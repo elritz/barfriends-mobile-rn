@@ -1,7 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
 import { Button, ButtonText } from '@gluestack-ui/themed'
 import { PermissionForegroundLocationReactiveVar } from '@reactive'
-import useSetSearchAreaWithLocation from '@util/hooks/searcharea/useSetSearchAreaWithLocation'
 import { useRouter } from 'expo-router'
 
 export default function PermissionButtonSearchAreaLocation() {

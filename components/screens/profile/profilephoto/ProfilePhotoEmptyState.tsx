@@ -55,7 +55,6 @@ export default function ProfilePhotoEmptyState() {
 					}
 					size={26}
 					style={{
-						marginLeft: 2,
 						borderRadius: 50,
 						zIndex: 10,
 					}}

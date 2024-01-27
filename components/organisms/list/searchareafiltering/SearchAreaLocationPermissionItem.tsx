@@ -104,7 +104,7 @@ const SearchAreaLocationPermissionItem = () => {
 									bg: rSearchAreaVar?.useCurrentLocation ? '$light800' : '$light200',
 								},
 								_dark: {
-									bg: rSearchAreaVar?.useCurrentLocation ? '$light800' : '$light700',
+									bg: rSearchAreaVar?.useCurrentLocation ? '$light200' : '$light600',
 								},
 							}}
 							alignSelf={'center'}
@@ -117,9 +117,14 @@ const SearchAreaLocationPermissionItem = () => {
 								name={'location-arrow'}
 								style={{
 									borderRadius: 25,
-									color: rSearchAreaVar?.useCurrentLocation
-										? 'white'
-										: rTheme.theme?.gluestack.tokens.colors.blue500,
+									color:
+										rTheme.colorScheme === 'light'
+											? rSearchAreaVar?.useCurrentLocation
+												? 'white'
+												: rTheme.theme?.gluestack.tokens.colors.blue500
+											: rSearchAreaVar?.useCurrentLocation
+											? 'black'
+											: rTheme.theme?.gluestack.tokens.colors.blue500,
 								}}
 							/>
 						</Box>

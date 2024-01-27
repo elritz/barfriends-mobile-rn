@@ -1,6 +1,5 @@
-import { gql } from '@apollo/client';
-import { PROFILE_VENUE_FRAGMENT, AREA_FRAGMENT } from '@graphql/DM/fragments/index.fragments';
-
+import { gql } from '@apollo/client'
+import { PROFILE_VENUE_FRAGMENT, AREA_FRAGMENT } from '@graphql/DM/fragments/index.fragments'
 
 export const VENUES_NEARBY_QUERY = gql`
 	${PROFILE_VENUE_FRAGMENT}
@@ -8,12 +7,14 @@ export const VENUES_NEARBY_QUERY = gql`
 	query venuesNearby(
 		$countryIsoCode: String!
 		$stateIsoCode: String!
+		$cityName: String
 		$kRing: Int
 		$searchAreaCoords: CoordsInput!
 	) {
 		venuesNearby(
 			searchAreaCoords: $searchAreaCoords
 			countryIsoCode: $countryIsoCode
+			cityName: $cityName
 			stateIsoCode: $stateIsoCode
 			kRing: $kRing
 		) {

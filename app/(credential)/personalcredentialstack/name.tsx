@@ -46,6 +46,7 @@ export default () => {
 	const {
 		control,
 		handleSubmit,
+		getValues,
 		formState: { errors },
 		setError,
 	} = useForm({
@@ -62,7 +63,7 @@ export default () => {
 		shouldUnregister: true,
 	})
 
-	const onSubmit = (data: any) => {
+	const onSubmit = (data: { firstname: string; lastname: string }) => {
 		if (!data.firstname) {
 			setError('firstname', {
 				message: 'You need to enter a first name',
@@ -100,7 +101,7 @@ export default () => {
 				}}
 				px={'$2'}
 			>
-				<Pressable disabled={!!errors.firstname || !!errors.lastname} onPress={handleSubmit(onSubmit)}>
+				<Pressable onPress={handleSubmit(onSubmit)}>
 					<Box
 						alignItems='center'
 						justifyContent='center'
@@ -124,6 +125,8 @@ export default () => {
 
 	return (
 		<ScrollView
+			keyboardShouldPersistTaps
+			keyboardDismissMode='none'
 			style={{
 				flex: 1,
 				height: 'auto',
@@ -151,12 +154,12 @@ export default () => {
 												returnKeyType='next'
 												textContentType='givenName'
 												autoComplete={'name-given'}
+												inputAccessoryViewID={INPUT_ACCESSORY_VIEW_ID}
 												autoCapitalize={'none'}
 												keyboardType='default'
 												numberOfLines={1}
 												autoFocus
 												placeholder='First name'
-												inputAccessoryViewID={INPUT_ACCESSORY_VIEW_ID}
 												onSubmitEditing={() => _lastnameRef?.current?.focus()}
 												placeholderTextColor={
 													rTheme.colorScheme === 'light'

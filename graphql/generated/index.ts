@@ -15597,6 +15597,7 @@ export type QueryVenuesArgs = {
 
 
 export type QueryVenuesNearbyArgs = {
+  cityName?: InputMaybe<Scalars['String']['input']>;
   countryIsoCode: Scalars['String']['input'];
   kRing?: InputMaybe<Scalars['Int']['input']>;
   searchAreaCoords: CoordsInput;
@@ -21028,6 +21029,7 @@ export type UpdateH6VenueRemmendationMutation = { __typename?: 'Mutation', updat
 export type VenuesNearbyQueryVariables = Exact<{
   countryIsoCode: Scalars['String']['input'];
   stateIsoCode: Scalars['String']['input'];
+  cityName?: InputMaybe<Scalars['String']['input']>;
   kRing?: InputMaybe<Scalars['Int']['input']>;
   searchAreaCoords: CoordsInput;
 }>;
@@ -23626,10 +23628,11 @@ export type UpdateH6VenueRemmendationMutationHookResult = ReturnType<typeof useU
 export type UpdateH6VenueRemmendationMutationResult = Apollo.MutationResult<UpdateH6VenueRemmendationMutation>;
 export type UpdateH6VenueRemmendationMutationOptions = Apollo.BaseMutationOptions<UpdateH6VenueRemmendationMutation, UpdateH6VenueRemmendationMutationVariables>;
 export const VenuesNearbyDocument = gql`
-    query venuesNearby($countryIsoCode: String!, $stateIsoCode: String!, $kRing: Int, $searchAreaCoords: CoordsInput!) {
+    query venuesNearby($countryIsoCode: String!, $stateIsoCode: String!, $cityName: String, $kRing: Int, $searchAreaCoords: CoordsInput!) {
   venuesNearby(
     searchAreaCoords: $searchAreaCoords
     countryIsoCode: $countryIsoCode
+    cityName: $cityName
     stateIsoCode: $stateIsoCode
     kRing: $kRing
   ) {
@@ -23738,6 +23741,7 @@ ${Profile_Venue_FragmentFragmentDoc}`;
  *   variables: {
  *      countryIsoCode: // value for 'countryIsoCode'
  *      stateIsoCode: // value for 'stateIsoCode'
+ *      cityName: // value for 'cityName'
  *      kRing: // value for 'kRing'
  *      searchAreaCoords: // value for 'searchAreaCoords'
  *   },

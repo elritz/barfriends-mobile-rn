@@ -13,9 +13,20 @@ type Props = {
 
 const createTheme = ({ colorScheme, localStorageColorScheme }: Props) => {
 	const deviceColorScheme = Appearance.getColorScheme()
-	const theme: ThemeObject =
-		AuthorizationReactiveVar()?.Profile?.ThemeManager?.ProfileTheme[0].Theme.theme || defaulttheme
+	// const theme: ThemeObject =
+	// 	AuthorizationReactiveVar()?.Profile?.ThemeManager?.ProfileTheme[0].Theme.theme || defaulttheme
+	const theme: ThemeObject = defaulttheme
 
+	console.log(
+		`🚀 ------------------444444444444-------------------------------------------------------------------------------------------------------------------------------------------------🚀`,
+	)
+	console.log(
+		`🚀 ~ AuthorizationReactiveVar()?.Profile?.ThemeManager?.ProfileTheme[0].Theme.theme:`,
+		theme.reactnavigation.dark,
+	)
+	console.log(
+		`🚀 -----------------------555555555555--------------------------------------------------------------------------------------------------------------------------------------------🚀`,
+	)
 	const config = createConfig({
 		...defaultConfig,
 		tokens: {
@@ -41,14 +52,14 @@ const createTheme = ({ colorScheme, localStorageColorScheme }: Props) => {
 		},
 	} as const)
 
+	
 	const _newtheme: IBFSTheme = {
+		gluestack: config,
 		reactnavigation: {
 			dark: colorScheme === 'light' ? false : true,
 			colors: colorScheme === 'dark' ? theme.reactnavigation.dark : theme.reactnavigation.light,
 		},
-		gluestack: config,
 	}
-
 	ThemeReactiveVar({
 		localStorageColorScheme: localStorageColorScheme,
 		deviceColorScheme: deviceColorScheme,

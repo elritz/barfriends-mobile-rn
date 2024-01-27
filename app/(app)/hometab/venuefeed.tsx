@@ -31,7 +31,6 @@ import {
 	ThemeReactiveVar,
 } from '@reactive'
 import { FlashList, MasonryFlashList } from '@shopify/flash-list'
-import { useSetLocation } from '@util/hooks/permissions/location/useSetLocation'
 import useSetSearchAreaWithLocation from '@util/hooks/searcharea/useSetSearchAreaWithLocation'
 import useContentInsets from '@util/hooks/useContentInsets'
 import { useRouter } from 'expo-router'
@@ -63,10 +62,22 @@ export default () => {
 	// 	JSON.stringify(rForegroundLocationPermissionVar, null, 2),
 	// )
 	// console.log('rSearchAreaVar :>> ', JSON.stringify(rSearchAreaVar, null, 2))
-	// console.log('rCurrentLocationVar :>> ', JSON.stringify(rCurrentLocationVar, null, 2))
+	// console.log('rCurrentLocationVar :>> ', JSON.stringify(rSearchAreaVar, null, 2))
+	// console.log(
+	// 	'rCurrentLocationVar :>> ',
+	// 	JSON.stringify(
+	// 		Number(rCurrentLocationVar?.current?.coords.latitude),
+	// 		Number(rSearchAreaVar?.searchArea.coords.latitude),
+	// 		null,
+	// 		2,
+	// 	),
+	// )
 
 	const [venuesNearbyQuery, { data, loading, error }] = useVenuesNearbyLazyQuery({
 		variables: {
+			cityName: rSearchAreaVar.useCurrentLocation
+				? String(rCurrentLocationVar.reverseGeocoded?.city)
+				: String(rSearchAreaVar.searchArea.city.name),
 			searchAreaCoords: {
 				latitude: rSearchAreaVar.useCurrentLocation
 					? Number(rCurrentLocationVar?.current?.coords.latitude)
@@ -81,32 +92,18 @@ export default () => {
 	})
 
 	const getNearbyVenues = useCallback(async () => {
-		console.log(
-			`🚀 -----------------------------------------------------------------------------------------🚀`,
-		)
-		console.log(
-			`🚀 ~ rForegroundLocationPermissionVar?.granted:`,
-			rForegroundLocationPermissionVar?.granted,
-		)
-		console.log(
-			`🚀 -----------------------------------------------------------------------------------------🚀`,
-		)
-		console.log(`🚀 -------------------------------------------------------------------------🚀`)
-		console.log(`🚀 ~ rSearchAreaVar.useCurrentLocation:`, rSearchAreaVar.useCurrentLocation)
-		console.log(`🚀 -------------------------------------------------------------------------🚀`)
-		console.log(`🚀 -------------------------------------------------------------------------🚀`)
-		console.log(
-			`🚀 ~ rCurrentLocationVarrCurrentLocationVarrCurrentLocationVarrCurrentLocationVar:`,
-			rCurrentLocationVar,
-		)
-		console.log(`🚀 -------------------------------------------------------------------------🚀`)
 		if (rForegroundLocationPermissionVar?.granted) {
 			if (rSearchAreaVar.useCurrentLocation) {
-				await useSetLocation()
+				await useSetSearchAreaWithLocation()
 			}
 		}
 
-		venuesNearbyQuery()
+		if (
+			rSearchAreaVar?.searchArea.coords.latitude !== 0 &&
+			rSearchAreaVar?.searchArea.coords.longitude !== 0
+		) {
+			venuesNearbyQuery()
+		}
 	}, [])
 
 	useEffect(() => {
@@ -177,6 +174,7 @@ export default () => {
 
 	const ListFooterComponent = () => {
 		const rPermissionLocationVar = useReactiveVar(PermissionForegroundLocationReactiveVar)
+
 		const RecommendedAreaList = () => {
 			switch (data.venuesNearby.__typename) {
 				case 'VenuesNearbyResponse':
@@ -257,7 +255,6 @@ export default () => {
 					return (
 						<VStack>
 							{data.venuesNearby.recommendedAreas?.map((item, index) => {
-								console.log('item.venuesProfileIds :>> ', item.venuesProfileIds)
 								return (
 									<Pressable
 										key={item.id + index}
@@ -311,20 +308,29 @@ export default () => {
 				  })
 		}
 
-		return (
-			<Box m={'$2'}>
-				<VStack>
-					<VStack space='xs' p={'$3'} flex={1}>
-						<Heading>Recommended Areas</Heading>
-						<Button variant='link' width={'50%'} size='md' onPress={_press} justifyContent='flex-start'>
-							<ButtonText>Filter by distance</ButtonText>
-							<ButtonIcon as={ArrowRightIcon} ml='$1' />
-						</Button>
+		const RecommendedAreaComponent = () => {
+			return (
+				<Box m={'$2'}>
+					<VStack>
+						<VStack space='xs' p={'$3'} flex={1}>
+							<Heading>Recommended Areas</Heading>
+							<Button variant='link' width={'50%'} size='md' onPress={_press} justifyContent='flex-start'>
+								<ButtonText>Filter by distance</ButtonText>
+								<ButtonIcon as={ArrowRightIcon} ml='$1' />
+							</Button>
+						</VStack>
+						<RecommendedAreaList />
 					</VStack>
-					<RecommendedAreaList />
-				</VStack>
-			</Box>
-		)
+				</Box>
+			)
+		}
+
+		switch (data.venuesNearby.__typename) {
+			case 'VenuesNearbyResponse':
+				return <RecommendedAreaComponent />
+			case 'ComingAreaResponse':
+				return <RecommendedAreaComponent />
+		}
 	}
 
 	const MemoizeFooterComponent = memo(ListFooterComponent)
@@ -336,10 +342,6 @@ export default () => {
 			</ScrollView>
 		)
 	}
-
-	console.log(`🚀 ---------------🚀`)
-	console.log(`🚀 ~ data:`, data)
-	console.log(`🚀 ---------------🚀`)
 
 	if (data.venuesNearby.__typename === 'ComingAreaResponse') {
 		return (
@@ -354,11 +356,11 @@ export default () => {
 				refreshing={loading}
 				estimatedItemSize={30}
 				ListHeaderComponent={<MemoizedListHeaderComponent typename={data.venuesNearby.__typename} />}
-				ListFooterComponent={<MemoizeFooterComponent />}
 				renderItem={({ item }) => {
 					const lengthOfUpvote = item.Vote.filter(item => {
 						return item.upvote
 					}).length
+
 					return (
 						<Box key={item.id} py={'$1'} m={'$2'} rounded={'$xl'}>
 							<HStack flex={1} justifyContent={'space-between'}>
@@ -392,10 +394,14 @@ export default () => {
 											size={25}
 											color={
 												rTheme.colorScheme === 'light'
-													? item.toBeNotifiedProfileIds.some(item => item === rAuthorizationVar?.Profile?.id)
+													? item.Vote.some(
+															item => item.upvote && item.profileId === rAuthorizationVar?.Profile?.id,
+													  )
 														? rTheme.theme?.gluestack.tokens.colors.blue500
 														: rTheme.theme?.gluestack.tokens.colors.light700
-													: item.toBeNotifiedProfileIds.some(item => item === rAuthorizationVar?.Profile?.id)
+													: item.Vote.some(
+															item => item.upvote && item.profileId === rAuthorizationVar?.Profile?.id,
+													  )
 													? rTheme.theme?.gluestack.tokens.colors.blue500
 													: rTheme.theme?.gluestack.tokens.colors.light300
 											}
@@ -463,7 +469,6 @@ export default () => {
 				ItemSeparatorComponent={() => <Box bg={'transparent'} h={'$5'} />}
 				keyExtractor={item => item.id}
 				ListHeaderComponent={<MemoizedListHeaderComponent typename={data.venuesNearby.__typename} />}
-				// ListFooterComponent={MemoizeFooterComponent}
 				ListFooterComponent={<MemoizeFooterComponent />}
 				automaticallyAdjustContentInsets
 			/>

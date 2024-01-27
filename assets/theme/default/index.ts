@@ -58,7 +58,7 @@ type CustomGluestack = {
 	secondary950: string
 }
 
-type Theme = {
+export type CustomReactNavigationThemeColors = {
 	card: string
 	text: string
 	border: string
@@ -68,8 +68,8 @@ type Theme = {
 }
 
 type CustomReactNavigation = {
-	dark: Theme
-	light: Theme
+	dark: CustomReactNavigationThemeColors
+	light: CustomReactNavigationThemeColors
 }
 
 export type ThemeObject = {

@@ -51,13 +51,7 @@ export default function SearchAreaHeader({ typename }) {
 							)}
 						</HStack>
 					</HStack>
-					<Text color={'$primary500'}>Change area </Text>
-					{typename === 'ComingAreaResponse' && (
-						<Text fontSize={'$lg'} textAlign={'center'}>
-							No venues, so hamma the notification bell and we will let you know when it gets added.
-							Upvoting is huge, it lets us know where to go!
-						</Text>
-					)}
+					<Text color={'$primary500'}>Change area</Text>
 				</VStack>
 			</HStack>
 		</Pressable>

@@ -2,7 +2,7 @@
 import 'react-native-gesture-handler'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
-import { ApolloProvider } from '@apollo/client'
+import { ApolloProvider, useReactiveVar } from '@apollo/client'
 import Auth from '@components/layouts/Auth'
 import Theme from '@components/layouts/Theme'
 import {
@@ -109,8 +109,11 @@ export default function Root() {
 			// SEARCHAREA_PREFERENCE ~ START
 			const getLocalStorageSearchArea = await AsyncStorage.getItem(LOCAL_STORAGE_SEARCH_AREA)
 
-			if (getLocalStorageSearchArea !== null && PermissionForegroundLocationReactiveVar()?.granted) {
+			const foregroundLocationPermission = await getForegroundPermissionsAsync()
+
+			if (getLocalStorageSearchArea !== null && foregroundLocationPermission.granted) {
 				const values: LocalStoragePreferenceSearchAreaType = JSON.parse(getLocalStorageSearchArea)
+
 				if (values && values.useCurrentLocation) {
 					await useSetSearchAreaWithLocation()
 				} else {
@@ -212,17 +215,6 @@ export default function Root() {
 			// FOREGROUNDLOCATION_PREFERENCE ~ START
 			const getLocalStoragePreferenceForegroundLocationPreference = await AsyncStorage.getItem(
 				LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION,
-			)
-
-			console.log(
-				`🚀 -----------------------------------------------------------------------------------------------------------------🚀`,
-			)
-			console.log(
-				`🚀 ~ getLocalStoragePreferenceForegroundLocationPreference:`,
-				getLocalStoragePreferenceForegroundLocationPreference,
-			)
-			console.log(
-				`🚀 -----------------------------------------------------------------------------------------------------------------🚀`,
 			)
 
 			if (!getLocalStoragePreferenceForegroundLocationPreference) {

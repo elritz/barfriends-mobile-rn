@@ -66,7 +66,7 @@ export default () => {
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
 			<VStack justifyContent={'space-between'} flex={1} alignItems='center' mx={'$4'}>
-				<Box bg='$transparent' />
+				<Box bg='$transparent' maxHeight={'20%'} />
 				<VStack space={'md'} alignItems={'center'} justifyContent={'center'}>
 					<CompanyCoasterLogoDynamic backgroundColor='black' />
 					<Heading fontWeight={'$black'} lineHeight={'$3xl'} fontSize={'$4xl'}>

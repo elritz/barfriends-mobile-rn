@@ -75,7 +75,7 @@ export default function ProfilePhoto({ photo }: Props) {
 		}
 	}
 
-	if (!isLoading) {
+	if (isLoading) {
 		return (
 			<Pressable
 				p={'$2'}

@@ -127,6 +127,7 @@ const useSetSearchAreaWithLocation = async () => {
 			}
 
 			const newSearchArea = JSON.stringify(valueSearchArea)
+
 			CurrentLocationReactiveVar({
 				current: {
 					...currentLocation,
@@ -136,7 +137,9 @@ const useSetSearchAreaWithLocation = async () => {
 			SearchAreaReactiveVar({
 				...valueSearchArea,
 			})
+
 			await AsyncStorage.setItem(LOCAL_STORAGE_SEARCH_AREA, newSearchArea)
+
 			return true
 		}
 	}
