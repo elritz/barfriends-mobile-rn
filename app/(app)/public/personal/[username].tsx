@@ -19,6 +19,7 @@ import {
 	useCreateFriendRequestMutation,
 	useDeclineFriendRequestMutation,
 	useDeleteFriendRequestMutation,
+	useGetNotificationsQuery,
 	usePublicProfileQuery,
 	useRemoveFriendMutation,
 } from '@graphql/generated'
@@ -98,7 +99,12 @@ export default () => {
 		)
 	}
 
-	const { data, loading, error, updateQuery } = usePublicProfileQuery({
+	const {
+		data,
+		loading,
+		error,
+		updateQuery: pPUpdateQuery,
+	} = usePublicProfileQuery({
 		skip: !params.username,
 		variables: {
 			where: {
@@ -111,6 +117,8 @@ export default () => {
 		},
 	})
 
+	const { updateQuery: GNUpdateQuery } = useGetNotificationsQuery()
+
 	const [createFriendRequestMutation, { data: cFRData, loading: cFRLoading, error: cFRError }] =
 		useCreateFriendRequestMutation({
 			variables: {
@@ -119,7 +127,8 @@ export default () => {
 			onCompleted: data => {
 				if (data.createFriendRequest) {
 					console.log('Friend request sent ==>')
-					updateQuery(prevData => {
+
+					pPUpdateQuery(prevData => {
 						return {
 							...prevData,
 							publicProfile: {
@@ -128,7 +137,19 @@ export default () => {
 							},
 						}
 					})
-				} else {
+
+					GNUpdateQuery(prevData => {
+						return {
+							...prevData,
+							getNotifications: {
+								...prevData?.getNotifications,
+								friendRequestNotifications: [
+									...prevData?.getNotifications?.friendRequestNotifications,
+									data.createFriendRequest,
+								],
+							},
+						}
+					})
 				}
 			},
 		})
@@ -138,7 +159,7 @@ export default () => {
 			onCompleted: data => {
 				if (data.deleteFriendRequest) {
 					console.log('Friend request sent ==>')
-					updateQuery(prevData => {
+					pPUpdateQuery(prevData => {
 						return {
 							...prevData,
 							publicProfile: {
@@ -156,7 +177,7 @@ export default () => {
 		useAcceptFriendRequestMutation({
 			onCompleted: data => {
 				data.acceptFriendRequest.__typename === 'Relationship' &&
-					updateQuery(prevData => {
+					pPUpdateQuery(prevData => {
 						return {
 							...prevData,
 							publicProfile: {
@@ -171,7 +192,7 @@ export default () => {
 	const [declineFriendRequestMutation, { data: dFRMData, loading: dFRMLoading, error: dFRMError }] =
 		useDeclineFriendRequestMutation({
 			onCompleted: data => {
-				updateQuery(prevData => {
+				pPUpdateQuery(prevData => {
 					return {
 						...prevData,
 						publicProfile: {
@@ -186,7 +207,7 @@ export default () => {
 	const [removeFriendMutation, { data: rFData, loading: rfLoading, error: rfError }] =
 		useRemoveFriendMutation({
 			onCompleted: data => {
-				updateQuery(prevData => {
+				pPUpdateQuery(prevData => {
 					return {
 						...prevData,
 						publicProfile: {

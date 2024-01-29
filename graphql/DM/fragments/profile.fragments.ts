@@ -135,6 +135,83 @@ export const PROFILE_FRAGMENT = gql`
 	}
 `
 
+export const PROFILE_PUBLIC_FRAGMENT = gql`
+	${CREDENTIALS_FRAGMENT}
+	${INDETIFIABLE_INFORMATION_FRAGMENT}
+	${DETAIL_INFORMATION_FRAGMENT}
+	${LOCATION_FRAGMENT}
+	${THEME_MANAGER_FRAGMENT}
+	${RELATIONSHIP_FRAGMENT}
+	${OUT_FRAGMENT}
+	fragment PROFILE_PUBLIC_FRAGMENT on Profile {
+		__typename
+		id
+		ProfileType
+		bfsprofileid
+		createdAt
+		updatedAt
+		IdentifiableInformation {
+			...INDETIFIABLE_INFORMATION_FRAGMENT
+		}
+		DetailInformation {
+			...DETAIL_INFORMATION_FRAGMENT
+		}
+		profilePhoto {
+			id
+			url
+			type
+			position
+			active
+			ratio
+			blurhash
+			createdAt
+			updatedAt
+		}
+		photos {
+			id
+			url
+			type
+			position
+			active
+			ratio
+			blurhash
+			createdAt
+			updatedAt
+		}
+		Personal {
+			id
+			profileId
+			createdAt
+			updatedAt
+		}
+		Venue {
+			id
+			Profile {
+				id
+				createdAt
+				updatedAt
+			}
+			createdAt
+			updatedAt
+		}
+		tonightStory {
+			id
+			photos {
+				id
+				position
+				url
+			}
+			emojimood {
+				__typename
+				id
+				colors
+				emojiname
+				emoji
+			}
+		}
+	}
+`
+
 // export const PUBLIC_PERSONAL_FRAGMENT = gql`
 // 	${CREDENTIALS_FRAGMENT}
 // 	${INDETIFIABLE_INFORMATION_FRAGMENT}
@@ -240,6 +317,7 @@ export const PROFILE_FRAGMENT = gql`
 // `
 
 export const PUBLIC_PERSONAL_FRAGMENT = gql`
+	${PROFILE_PUBLIC_FRAGMENT}
 	${CREDENTIALS_FRAGMENT}
 	${INDETIFIABLE_INFORMATION_FRAGMENT}
 	${DETAIL_INFORMATION_FRAGMENT}
@@ -265,6 +343,9 @@ export const PUBLIC_PERSONAL_FRAGMENT = gql`
 				__typename
 				id
 				senderProfileId
+				senderProfile {
+					...PROFILE_PUBLIC_FRAGMENT
+				}
 				recievers {
 					id
 					requestId

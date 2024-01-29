@@ -4,7 +4,7 @@ import CardPleaseSignup from '@components/molecules/asks/signuplogin'
 import PreferenceNotificationPermission from '@components/molecules/permissions/preferencenotificationpermission/PreferenceNotificationPermission'
 import PersonalScreen from '@components/screens/profile/personalprofile/PersonalProfile'
 import VenueScreen from '@components/screens/profile/venueprofile/VenueProfile'
-import { ProfileType } from '@graphql/generated'
+import { ProfileType, useGetNotificationsLazyQuery } from '@graphql/generated'
 import {
 	AuthorizationReactiveVar,
 	PermissionNotificationReactiveVar,
@@ -24,21 +24,25 @@ const Profile = () => {
 	)
 	const rNotificationPermission = useReactiveVar(PermissionNotificationReactiveVar)
 
-	// const [getNotificationQuery, { data: GNData, loading: GNLoading, error }] =
-	// 	useGetNotificationsLazyQuery({
-	// 		fetchPolicy: 'network-only',
-	// 		onCompleted: data => {
-	// 			if (data.getNotifications) {
-	// 				setRefreshing(false)
-	// 			}
-	// 		},
-	// 	})
+	const [getNotificationQuery, { data: GNData, loading: GNLoading, error }] =
+		useGetNotificationsLazyQuery({
+			fetchPolicy: 'network-only',
+			onCompleted: data => {
+				if (data.getNotifications) {
+					setRefreshing(false)
+				}
+			},
+		})
 
-	// useEffect(() => {
-	// 	getNotificationQuery()
-	// }, [])
+	useEffect(() => {
+		getNotificationQuery()
+	}, [])
 
-	const onRefresh = useCallback(() => {
+	console.log(`🚀 -----------------------------------------------🚀`)
+	console.log(`🚀 ~ getNotificationQuery:`, getNotificationQuery)
+	console.log(`🚀 -----------------------------------------------🚀`)
+
+	const _onRefresh = useCallback(() => {
 		setRefreshing(true)
 	}, [])
 
@@ -69,12 +73,13 @@ const Profile = () => {
 			contentInset={{ top: 0, left: 0, bottom: 150, right: 0 }}
 			showsVerticalScrollIndicator={false}
 			scrollEventThrottle={16}
-			refreshControl={<RefreshControl refreshing={false} onRefresh={onRefresh} />}
+			refreshControl={<RefreshControl refreshing={false} onRefresh={_onRefresh} />}
 		>
 			{!rNotificationPermission?.granted && (
 				<>
 					{rPreferenceNotificationPermission?.canShowAgain &&
-					DateTime.fromISO(String(rPreferenceNotificationPermission?.dateToShowAgain)) <= DateTime.now() ? (
+					DateTime.fromISO(String(rPreferenceNotificationPermission?.dateToShowAgain)) <=
+						DateTime.now() ? (
 						<AnimatePresence key={uniqueId()}>
 							<PreferenceNotificationPermission />
 						</AnimatePresence>

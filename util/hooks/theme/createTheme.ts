@@ -17,16 +17,6 @@ const createTheme = ({ colorScheme, localStorageColorScheme }: Props) => {
 	// 	AuthorizationReactiveVar()?.Profile?.ThemeManager?.ProfileTheme[0].Theme.theme || defaulttheme
 	const theme: ThemeObject = defaulttheme
 
-	console.log(
-		`🚀 ------------------444444444444-------------------------------------------------------------------------------------------------------------------------------------------------🚀`,
-	)
-	console.log(
-		`🚀 ~ AuthorizationReactiveVar()?.Profile?.ThemeManager?.ProfileTheme[0].Theme.theme:`,
-		theme.reactnavigation.dark,
-	)
-	console.log(
-		`🚀 -----------------------555555555555--------------------------------------------------------------------------------------------------------------------------------------------🚀`,
-	)
 	const config = createConfig({
 		...defaultConfig,
 		tokens: {
@@ -52,7 +42,6 @@ const createTheme = ({ colorScheme, localStorageColorScheme }: Props) => {
 		},
 	} as const)
 
-	
 	const _newtheme: IBFSTheme = {
 		gluestack: config,
 		reactnavigation: {

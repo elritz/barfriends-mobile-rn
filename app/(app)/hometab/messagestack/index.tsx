@@ -58,6 +58,10 @@ const Messages = () => {
 
 	const { data, loading, error } = useGetConversationsQuery()
 
+	console.log(`🚀 ---------------🚀`)
+	console.log(`🚀 ~ data:`, data)
+	console.log(`🚀 ---------------🚀`)
+
 	if (loading) {
 		return <Text>Loading...</Text>
 	}

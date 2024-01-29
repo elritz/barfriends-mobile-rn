@@ -1,22 +1,16 @@
 import ProfilePhoto from '../profilephoto'
 import { useReactiveVar } from '@apollo/client'
 import CardPleaseSignup from '@components/molecules/asks/signuplogin'
-import { CondensedHorizontalFriendNotifciation } from '@components/molecules/notifications/friendnotification/CondensedHorizontalFriendNotifciation'
 import { FriendsList } from '@components/organisms/list/friendslist'
 import CondensedVerticalFriendsNotficationsList from '@components/organisms/list/notifications/friends/CondensedVerticalFriendsNotficationsList'
 import QuickBarfriendCard from '@components/screens/public/venue/venueactions/actioncards/quickbarfriendcard/QuickBarfriendCard'
 import AddRelationship from '@components/screens/tonight/activity/ask/AddRelationship/AddRelationship'
-import { Box, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
+import { View, Box, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import { ProfileType } from '@graphql/generated'
 import { AuthorizationReactiveVar } from '@reactive'
 import { DateTime } from 'luxon'
-import { View } from 'react-native'
 
-type Props = {
-	notifications?: undefined | null
-}
-
-const PersonalScreen = ({ notifications }: Props) => {
+const PersonalScreen = () => {
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 
 	if (rAuthorizationVar?.Profile?.ProfileType === ProfileType.Guest) {
@@ -70,13 +64,8 @@ const PersonalScreen = ({ notifications }: Props) => {
 					<View></View>
 				</VStack>
 			</HStack>
-			<Box mx={'$2'}>
-				{/* <CondensedVerticalFriendsNotficationsList
-					keyExtractor={item => String(item.id)}
-					renderItem={item => <CondensedHorizontalFriendNotifciation item={item} />}
-					data={notifications?.getNotifications?.friendRequestNotifications}
-				/> */}
-			</Box>
+			<View mx={'$2'}></View>
+			<CondensedVerticalFriendsNotficationsList />
 			<VStack m={'$3'} space={'md'} justifyContent={'space-around'}>
 				<HStack space={'md'} justifyContent={'space-around'}>
 					<Box

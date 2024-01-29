@@ -1,7 +1,19 @@
-import { Button, Modal, Text } from '@gluestack-ui/themed'
+import {
+	Heading,
+	ModalBackdrop,
+	ModalBody,
+	ModalCloseButton,
+	ModalContent,
+	ModalFooter,
+	ModalHeader,
+} from '@gluestack-ui/themed'
+import { CloseIcon } from '@gluestack-ui/themed'
+import { Icon } from '@gluestack-ui/themed'
+import { Button, ButtonText, Center, Modal, Text } from '@gluestack-ui/themed'
 // import { GET_RELATIONSHIP_FRIENDREQUESTSTATUS_QUERY } from '@graphql/DM/profiling/friending/index.query'
 // import { NOTIFICATIONS_QUERY } from '@graphql/DM/profiling/notifications/index.query'
 import { useDeleteFriendRequestMutation } from '@graphql/generated'
+import React, { useState } from 'react'
 
 type Props = {
 	isOpen: boolean
@@ -16,6 +28,9 @@ export default function CancelFriendNotificationModal({
 	friendRequestId,
 	profileId,
 }: Props) {
+	const [showModal, setShowModal] = useState(false)
+	console.log(showModal)
+	const ref = React.useRef(null)
 	const [deleteFriendRequestMutation, { data, loading, error }] = useDeleteFriendRequestMutation({
 		variables: {
 			friendRequestId,
@@ -34,7 +49,6 @@ export default function CancelFriendNotificationModal({
 				// 			return true
 				// 		},
 				// 	)
-
 				// 	cache.writeQuery({
 				// 		query: NOTIFICATIONS_QUERY,
 				// 		data: {
@@ -42,7 +56,6 @@ export default function CancelFriendNotificationModal({
 				// 		},
 				// 	})
 				// }
-
 				// cache.writeQuery({
 				// 	query: GET_RELATIONSHIP_FRIENDREQUESTSTATUS_QUERY,
 				// 	variables: {
@@ -55,6 +68,7 @@ export default function CancelFriendNotificationModal({
 				// 		},
 				// 	},
 				// })
+				setShowModal(false)
 			}
 		},
 		onCompleted: data => {
@@ -64,29 +78,79 @@ export default function CancelFriendNotificationModal({
 	})
 
 	return (
-		<Modal isOpen={isOpen} onClose={onClose}>
-			<Modal.Content w={'95%'}>
-				<Modal.CloseButton />
-				<Modal.Header >
-					Cancel Friend Notification
-				</Modal.Header>
-				<Modal.Body>
-					You can always request to be friends again. Continuing will cancel this friend request
-				</Modal.Body>
-				<Modal.Footer>
-					<Button variant='link' mr='$1' onPress={onClose}>
-						<Text>Back</Text>
-					</Button>
-					<Button
-						onPress={() => {
-							deleteFriendRequestMutation()
-						}}
-						disabled={loading}
-					>
-						<Text>Cancel</Text>
-					</Button>
-				</Modal.Footer>
-			</Modal.Content>
-		</Modal>
+		<Center h={300}>
+			<Button onPress={() => setShowModal(true)} ref={ref}>
+				<ButtonText>Show Modal</ButtonText>
+			</Button>
+			<Modal
+				isOpen={showModal}
+				onClose={() => {
+					setShowModal(false)
+				}}
+				finalFocusRef={ref}
+			>
+				<ModalBackdrop />
+				<ModalContent>
+					<ModalHeader>
+						<Heading size='lg'>Cancel Friend Notification</Heading>
+						<ModalCloseButton>
+							<Icon as={CloseIcon} />
+						</ModalCloseButton>
+					</ModalHeader>
+					<ModalBody>
+						<Text>
+							You can always request to be friends again. Continuing will cancel this friend request
+						</Text>
+					</ModalBody>
+					<ModalFooter>
+						<Button
+							variant='outline'
+							size='sm'
+							action='secondary'
+							mr='$3'
+							onPress={() => {
+								setShowModal(false)
+							}}
+						>
+							<ButtonText>Cancel</ButtonText>
+						</Button>
+						<Button
+							size='sm'
+							action='positive'
+							borderWidth='$0'
+							onPress={() => {
+								deleteFriendRequestMutation()
+							}}
+						>
+							<ButtonText>Explore</ButtonText>
+						</Button>
+					</ModalFooter>
+				</ModalContent>
+			</Modal>
+		</Center>
 	)
 }
+
+// return (
+// 	<Modal isOpen={isOpen} onClose={onClose}>
+// 		<Modal.Content w={'95%'}>
+// 			<Modal.CloseButton />
+// 			<Modal.Header>Cancel Friend Notification</Modal.Header>
+// 			<Modal.Body>
+// 				You can always request to be friends again. Continuing will cancel this friend request
+// 			</Modal.Body>
+// 			<Modal.Footer>
+// 				<Button variant='link' mr='$1' onPress={onClose}>
+// 					<Text>Back</Text>
+// 				</Button>
+// 				<Button
+// 					onPress={() => {
+// 						deleteFriendRequestMutation()
+// 					}}
+// 					disabled={loading}
+// 				>
+// 					<Text>Cancel</Text>
+// 				</Button>
+// 			</Modal.Footer>
+// 		</Modal.Content>
+// 	</Modal>

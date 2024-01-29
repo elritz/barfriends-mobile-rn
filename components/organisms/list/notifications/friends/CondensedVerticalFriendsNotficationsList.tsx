@@ -1,32 +1,29 @@
-import { Box } from '@gluestack-ui/themed'
-import { CondensedHorizontalFriendNotifciation } from '@components/molecules/notifications/friendnotification/CondensedHorizontalFriendNotifciation'
-import { Request } from '@graphql/generated'
+import { CondensedHorizontalFriendNotifciation } from '@components/molecules'
+import { Box, VStack } from '@gluestack-ui/themed'
+import { useGetNotificationsQuery } from '@graphql/generated'
 
-interface Props<T> {
-	data: T[] | undefined | null
-	renderItem: (item: Request) => React.ReactNode
-	keyExtractor: (item: T) => string
-}
+const CondensedVerticalFriendsNotficationsList = () => {
+	const { data, loading, error } = useGetNotificationsQuery({
+		nextFetchPolicy: 'cache-first',
+	})
 
-const CondensedVerticalFriendsNotficationsList = <T extends Request>({ data }: Props<T>) => {
+	if (loading || !data?.getNotifications.friendRequestNotifications?.length) return null
+
 	return (
-		<>
-			{data?.length ? (
-				<Box
-					flex={1}
-					sx={{
-						h: '100%',
-					}}
-					flexDirection={'column'}
-					rounded={'$md'}
-					overflow={'hidden'}
-				>
-					{data.map((item, index) => (
-						<CondensedHorizontalFriendNotifciation key={index} item={item} />
-					))}
-				</Box>
-			) : null}
-		</>
+		<Box>
+			<VStack
+				flex={1}
+				sx={{
+					py: '$3',
+				}}
+				flexDirection={'column'}
+				rounded={'$md'}
+			>
+				{data?.getNotifications.friendRequestNotifications.map((item, index) => {
+					return <CondensedHorizontalFriendNotifciation item={item} key={index} />
+				})}
+			</VStack>
+		</Box>
 	)
 }
 

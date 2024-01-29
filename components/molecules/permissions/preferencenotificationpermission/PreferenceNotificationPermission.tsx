@@ -1,13 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import {
-	NowPreferencePermissionInitialState,
-	TomorrowPreferencePermissionInitialState,
-} from '@constants/Preferences'
-import { LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION } from '@constants/StorageConstants'
 import { Box, Button, ButtonText, Divider, Heading, Text, VStack } from '@gluestack-ui/themed'
-import { useGetCurrentPushNotificationTokenQuery } from '@graphql/generated'
-import { LocalStoragePreferenceAskBackgroundLocationPermissionType } from '@preferences'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import { PreferenceBackgroundLocationPermissionReactiveVar } from '@reactive'
 import { useRouter } from 'expo-router'
 import { uniqueId } from 'lodash'
@@ -20,16 +12,6 @@ export default function PreferenceNotificationPermission() {
 	const rPreferenceBackgroundLocationPermissionVar = useReactiveVar(
 		PreferenceBackgroundLocationPermissionReactiveVar,
 	)
-
-	const {
-		data: GCPNTData,
-		loading: GCPNTLoading,
-		error: GCPNTError,
-	} = useGetCurrentPushNotificationTokenQuery()
-
-	if (GCPNTLoading) {
-		return null
-	}
 
 	return (
 		<View>
@@ -45,6 +27,10 @@ export default function PreferenceNotificationPermission() {
 							animate={{
 								opacity: 1,
 								scale: 1,
+							}}
+							exitTransition={{
+								type: 'timing',
+								duration: 3500,
 							}}
 							exit={{
 								opacity: 0,

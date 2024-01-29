@@ -13,6 +13,7 @@ export const FriendsList = ({}) => {
 	const cardWidth = (width * 0.9) / numColumns
 
 	const friendslist = rAuthorizationVar?.Profile?.Relationships
+
 	if (!friendslist) return null
 
 	return (

@@ -5,7 +5,8 @@ import PreferenceNotificationPermission from '@components/molecules/permissions/
 import PersonalScreen from '@components/screens/profile/personalprofile/PersonalProfile'
 import VenueScreen from '@components/screens/profile/venueprofile/VenueProfile'
 import {
-	ProfileType, // useGetNotificationsLazyQuery
+	ProfileType,
+	useGetNotificationsLazyQuery, // useGetNotificationsLazyQuery
 } from '@graphql/generated'
 import { AuthorizationReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
@@ -20,22 +21,23 @@ export default () => {
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 	const insets = useContentInsets()
 
-	// const [getNotificationQuery, { data: GNData, loading: GNLoading, error }] =
-	// 	useGetNotificationsLazyQuery({
-	// 		fetchPolicy: 'network-only',
-	// 		onCompleted: data => {
-	// 			if (data.getNotifications) {
-	// 				setRefreshing(false)
-	// 			}
-	// 		},
-	// 	})
+	const [getNotificationQuery, { data: GNData, loading: GNLoading, error }] =
+		useGetNotificationsLazyQuery({
+			fetchPolicy: 'network-only',
+			onCompleted: data => {
+				if (data.getNotifications) {
+					setRefreshing(false)
+				}
+			},
+		})
 
-	// useEffect(() => {
-	// 	getNotificationQuery()
-	// }, [])
+	useEffect(() => {
+		getNotificationQuery()
+	}, [])
 
 	const onRefresh = useCallback(() => {
 		setRefreshing(true)
+		getNotificationQuery()
 	}, [])
 
 	// if (GNLoading) return null
@@ -49,7 +51,7 @@ export default () => {
 					</Box>
 				)
 			case ProfileType.Personal:
-				return <PersonalScreen notifications={null} />
+				return <PersonalScreen />
 			case ProfileType.Venue:
 				return <VenueScreen />
 			default:

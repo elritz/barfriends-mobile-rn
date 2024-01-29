@@ -58,32 +58,15 @@ export const CardFullImageNameEmoji = ({ item, cardWidth }: CardFullImageNameEmo
 										color: 'white',
 									},
 								}}
-								style={{
-									shadowOffset: {
-										width: 0,
-										height: 3,
-									},
-									shadowOpacity: 0.27,
-									shadowRadius: 4.65,
-									elevation: 6,
-								}}
 							>
-								{capitalizeFirstLetter(item.friendProfile?.IdentifiableInformation?.firstname)}
+								{/* {capitalizeFirstLetter(item.friendProfile?.IdentifiableInformation?.firstname)} */}
+								{item.friendProfile?.IdentifiableInformation?.firstname}
 							</Text>
 							<Text
 								textAlign={'center'}
 								fontWeight={'bold'}
 								sx={{
 									color: 'white',
-								}}
-								style={{
-									shadowOffset: {
-										width: 0,
-										height: 3,
-									},
-									shadowOpacity: 0.27,
-									shadowRadius: 4.65,
-									elevation: 6,
 								}}
 							>
 								@{item.friendProfile?.IdentifiableInformation?.username}
@@ -93,7 +76,7 @@ export const CardFullImageNameEmoji = ({ item, cardWidth }: CardFullImageNameEmo
 				</Box>
 				<Image
 					alt={'Profile image'}
-					source={{ uri: item.friendProfile?.photos[0].url }}
+					source={{ uri: item.friendProfile?.profilePhoto?.url }}
 					contentFit='cover'
 					style={{ height: 170, flexDirection: 'column-reverse', borderRadius: 10 }}
 				/>
