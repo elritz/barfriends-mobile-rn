@@ -5,23 +5,13 @@ import PreferenceNotificationPermission from '@components/molecules/permissions/
 import PersonalScreen from '@components/screens/profile/personalprofile/PersonalProfile'
 import VenueScreen from '@components/screens/profile/venueprofile/VenueProfile'
 import { ProfileType, useGetNotificationsLazyQuery } from '@graphql/generated'
-import {
-	AuthorizationReactiveVar,
-	PermissionNotificationReactiveVar,
-	PreferencePermissionNotificationReactiveVar,
-} from '@reactive'
-import { uniqueId } from 'lodash'
-import { DateTime } from 'luxon'
-import { AnimatePresence } from 'moti'
+import { AuthorizationReactiveVar, PermissionNotificationReactiveVar } from '@reactive'
 import { useCallback, useEffect, useState } from 'react'
 import { RefreshControl, ScrollView, View } from 'react-native'
 
 const Profile = () => {
 	const [refreshing, setRefreshing] = useState(false)
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
-	const rPreferenceNotificationPermission = useReactiveVar(
-		PreferencePermissionNotificationReactiveVar,
-	)
 	const rNotificationPermission = useReactiveVar(PermissionNotificationReactiveVar)
 
 	const [getNotificationQuery, { data: GNData, loading: GNLoading, error }] =
@@ -37,10 +27,6 @@ const Profile = () => {
 	useEffect(() => {
 		getNotificationQuery()
 	}, [])
-
-	console.log(`🚀 -----------------------------------------------🚀`)
-	console.log(`🚀 ~ getNotificationQuery:`, getNotificationQuery)
-	console.log(`🚀 -----------------------------------------------🚀`)
 
 	const _onRefresh = useCallback(() => {
 		setRefreshing(true)
@@ -75,17 +61,7 @@ const Profile = () => {
 			scrollEventThrottle={16}
 			refreshControl={<RefreshControl refreshing={false} onRefresh={_onRefresh} />}
 		>
-			{!rNotificationPermission?.granted && (
-				<>
-					{rPreferenceNotificationPermission?.canShowAgain &&
-					DateTime.fromISO(String(rPreferenceNotificationPermission?.dateToShowAgain)) <=
-						DateTime.now() ? (
-						<AnimatePresence key={uniqueId()}>
-							<PreferenceNotificationPermission />
-						</AnimatePresence>
-					) : null}
-				</>
-			)}
+			{!rNotificationPermission?.granted && <PreferenceNotificationPermission />}
 			{renderProfile(rAuthorizationVar?.Profile?.ProfileType as ProfileType)}
 		</ScrollView>
 	)

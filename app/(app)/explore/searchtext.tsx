@@ -140,6 +140,7 @@ export default () => {
 					}}
 					automaticallyAdjustsScrollIndicatorInsets
 					keyboardDismissMode='on-drag'
+					keyboardShouldPersistTaps='handled'
 					ItemSeparatorComponent={() => <View style={{ height: 5 }} />}
 				/>
 			</Box>

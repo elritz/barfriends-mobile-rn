@@ -1,22 +1,26 @@
 import { useReactiveVar } from '@apollo/client'
 import { Box, Button, ButtonText, Divider, Heading, Text, VStack } from '@gluestack-ui/themed'
-import { PreferenceBackgroundLocationPermissionReactiveVar } from '@reactive'
+import {
+	PermissionNotificationReactiveVar,
+	PreferencePermissionNotificationReactiveVar,
+} from '@reactive'
 import { useRouter } from 'expo-router'
 import { uniqueId } from 'lodash'
 import { DateTime } from 'luxon'
-import { MotiView } from 'moti'
-import { View } from 'react-native'
+import { AnimatePresence, MotiView } from 'moti'
 
 export default function PreferenceNotificationPermission() {
 	const router = useRouter()
-	const rPreferenceBackgroundLocationPermissionVar = useReactiveVar(
-		PreferenceBackgroundLocationPermissionReactiveVar,
+	const rPreferencePermissionNotificationVar = useReactiveVar(
+		PreferencePermissionNotificationReactiveVar,
 	)
+	const rPermissionNotificationVar = useReactiveVar(PermissionNotificationReactiveVar)
 
 	return (
-		<View>
-			{rPreferenceBackgroundLocationPermissionVar?.canShowAgain &&
-				DateTime.fromISO(rPreferenceBackgroundLocationPermissionVar?.dateToShowAgain.toString()) <=
+		<AnimatePresence key={uniqueId()}>
+			{!rPermissionNotificationVar?.granted &&
+				rPreferencePermissionNotificationVar?.canShowAgain &&
+				DateTime.fromISO(rPreferencePermissionNotificationVar?.dateToShowAgain.toString()) <=
 					DateTime.now() && (
 					<Box bg={'transparent'} key={uniqueId()}>
 						<MotiView
@@ -79,6 +83,6 @@ export default function PreferenceNotificationPermission() {
 						<Divider my={'$2'} />
 					</Box>
 				)}
-		</View>
+		</AnimatePresence>
 	)
 }

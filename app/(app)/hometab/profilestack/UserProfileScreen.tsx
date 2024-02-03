@@ -8,7 +8,7 @@ import {
 	ProfileType,
 	useGetNotificationsLazyQuery, // useGetNotificationsLazyQuery
 } from '@graphql/generated'
-import { AuthorizationReactiveVar } from '@reactive'
+import { AuthorizationReactiveVar, PreferencePermissionNotificationReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
 import useContentInsets from '@util/hooks/useContentInsets'
 import { uniqueId } from 'lodash'
@@ -21,6 +21,13 @@ export default () => {
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 	const insets = useContentInsets()
 
+	const rPreferenceNotificationPermission = useReactiveVar(
+		PreferencePermissionNotificationReactiveVar,
+	)
+	console.log('HERE :>> ')
+	console.log(`🚀 -------------------------------------------------------------------------🚀`)
+	console.log(`🚀 ~ rPreferenceNotificationPermission:`, rPreferenceNotificationPermission)
+	console.log(`🚀 -------------------------------------------------------------------------🚀`)
 	const [getNotificationQuery, { data: GNData, loading: GNLoading, error }] =
 		useGetNotificationsLazyQuery({
 			fetchPolicy: 'network-only',
@@ -72,9 +79,7 @@ export default () => {
 			ListHeaderComponent={() => {
 				return (
 					<>
-						<AnimatePresence key={uniqueId()}>
-							<PreferenceNotificationPermission />
-						</AnimatePresence>
+						<PreferenceNotificationPermission />
 						{renderProfile(rAuthorizationVar?.Profile?.ProfileType as ProfileType)}
 					</>
 				)

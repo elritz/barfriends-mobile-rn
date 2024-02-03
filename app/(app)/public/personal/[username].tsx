@@ -126,8 +126,6 @@ export default () => {
 			},
 			onCompleted: data => {
 				if (data.createFriendRequest) {
-					console.log('Friend request sent ==>')
-
 					pPUpdateQuery(prevData => {
 						return {
 							...prevData,
@@ -137,7 +135,6 @@ export default () => {
 							},
 						}
 					})
-
 					GNUpdateQuery(prevData => {
 						return {
 							...prevData,

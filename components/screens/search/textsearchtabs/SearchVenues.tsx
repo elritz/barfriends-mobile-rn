@@ -33,6 +33,8 @@ export default function SearchVenues() {
 				numColumns={1}
 				estimatedItemSize={65}
 				data={[...Array(15)]}
+				keyboardShouldPersistTaps='handled'
+				keyboardDismissMode='on-drag'
 				showsVerticalScrollIndicator={false}
 				keyExtractor={(item, index) => index.toString()}
 				renderItem={({ item }) => {

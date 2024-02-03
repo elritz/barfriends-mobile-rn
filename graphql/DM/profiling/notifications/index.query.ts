@@ -22,6 +22,7 @@ export const GET_NOTIFICATIONS_QUERY = gql`
 						...PROFILE_PUBLIC_FRAGMENT
 					}
 					requestId
+					notificationStatusId
 					NotificationStatus {
 						id
 						isAccepted

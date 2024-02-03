@@ -66,18 +66,6 @@ export const CondensedHorizontalFriendNotifciation = <T,>({
 
 	const currentUserIsSender = item?.senderProfile?.id === rAuthorizationVar?.Profile?.id
 
-	console.log(`🚀 -------------------------------------------------------------------🚀`)
-	console.log(`🚀 ~ rAuthorizationVar?.Profile?.id:`, rAuthorizationVar?.Profile?.id)
-	console.log(`🚀 -------------------------------------------------------------------🚀`)
-
-	console.log(`🚀 -----------------------------------------------------🚀`)
-	console.log(`🚀 ~ item?.senderProfile?.id:`, item?.senderProfile?.id)
-	console.log(`🚀 -----------------------------------------------------🚀`)
-
-	console.log(`🚀 ---------------------------------------------🚀`)
-	console.log(`🚀 ~ currentUserIsSender:`, currentUserIsSender)
-	console.log(`🚀 ---------------------------------------------🚀`)
-
 	const receiver = item?.recievers[0]
 
 	// console.log('item ----------------------- :>> ', JSON.stringify(item, null, 2))
@@ -103,9 +91,6 @@ export const CondensedHorizontalFriendNotifciation = <T,>({
 				<SectionContainer>
 					<HStack alignItems='center' justifyContent='space-between' space='md' flex={1} h={'100%'}>
 						<VStack space='xs' flex={1}>
-							<Text flex={1} fontSize={'$sm'} fontWeight='$medium'>
-								Barfriend request sent to
-							</Text>
 							<Text
 								flex={1}
 								flexWrap='wrap'
@@ -114,6 +99,9 @@ export const CondensedHorizontalFriendNotifciation = <T,>({
 								textTransform='capitalize'
 							>
 								{receiver?.Profile?.IdentifiableInformation?.fullname}
+							</Text>
+							<Text flex={1} fontSize={'$sm'} fontWeight='$medium'>
+								You want to be Barfriends
 							</Text>
 						</VStack>
 						<Button

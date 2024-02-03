@@ -64,8 +64,9 @@ const PersonalScreen = () => {
 					<View></View>
 				</VStack>
 			</HStack>
-			<View mx={'$2'}></View>
-			<CondensedVerticalFriendsNotficationsList />
+			<View mx={'$3'}>
+				<CondensedVerticalFriendsNotficationsList />
+			</View>
 			<VStack m={'$3'} space={'md'} justifyContent={'space-around'}>
 				<HStack space={'md'} justifyContent={'space-around'}>
 					<Box
