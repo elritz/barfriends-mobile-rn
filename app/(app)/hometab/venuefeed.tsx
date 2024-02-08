@@ -92,6 +92,8 @@ export default () => {
 	})
 
 	const getNearbyVenues = useCallback(async () => {
+		console.log('rSearchAreaVar?.searchArea.coords.latitude :>> ', rSearchAreaVar?.searchArea.coords.latitude);
+		console.log('rSearchAreaVar?.searchArea.coords.longitude :>> ', rSearchAreaVar?.searchArea.coords.longitude);
 		if (rForegroundLocationPermissionVar?.granted) {
 			if (rSearchAreaVar.useCurrentLocation) {
 				await useSetSearchAreaWithLocation()
@@ -155,13 +157,13 @@ export default () => {
 								colors={
 									rTheme.colorScheme === 'light'
 										? [
-												String(rTheme.theme?.gluestack.tokens.colors.light100),
-												String(rTheme.theme?.gluestack.tokens.colors.light300),
-										  ]
+											String(rTheme.theme?.gluestack.tokens.colors.light100),
+											String(rTheme.theme?.gluestack.tokens.colors.light300),
+										]
 										: [
-												String(rTheme.theme?.gluestack.tokens.colors.light800),
-												String(rTheme.theme?.gluestack.tokens.colors.light600),
-										  ]
+											String(rTheme.theme?.gluestack.tokens.colors.light800),
+											String(rTheme.theme?.gluestack.tokens.colors.light600),
+										]
 								}
 							/>
 						</View>
@@ -304,8 +306,8 @@ export default () => {
 			rPermissionLocationVar?.granted
 				? await useSetSearchAreaWithLocation()
 				: router.navigate({
-						pathname: '/(app)/permission/foregroundlocation',
-				  })
+					pathname: '/(app)/permission/foregroundlocation',
+				})
 		}
 
 		const RecommendedAreaComponent = () => {
@@ -335,143 +337,143 @@ export default () => {
 
 	const MemoizeFooterComponent = memo(ListFooterComponent)
 
-	if (data.venuesNearby.__typename === 'Error') {
-		return (
-			<ScrollView>
-				<Text>{data.venuesNearby.message}</Text>
-			</ScrollView>
-		)
-	}
+	// if (data.venuesNearby.__typename === 'Error') {
+	// 	return (
+	// 		<ScrollView>
+	// 			<Text>{data.venuesNearby.message}</Text>
+	// 		</ScrollView>
+	// 	)
+	// }
 
-	if (data.venuesNearby.__typename === 'ComingAreaResponse') {
-		return (
-			<FlashList
-				data={data.venuesNearby.comingAreas}
-				overScrollMode='always'
-				keyExtractor={(item, index) => index.toString()}
-				onRefresh={getNearbyVenues}
-				contentInset={{
-					...contentInsets,
-				}}
-				refreshing={loading}
-				estimatedItemSize={30}
-				ListHeaderComponent={<MemoizedListHeaderComponent typename={data.venuesNearby.__typename} />}
-				renderItem={({ item }) => {
-					const lengthOfUpvote = item.Vote.filter(item => {
-						return item.upvote
-					}).length
+	// if (data.venuesNearby.__typename === 'ComingAreaResponse') {
+	// 	return (
+	// 		<FlashList
+	// 			data={data.venuesNearby.comingAreas}
+	// 			overScrollMode='always'
+	// 			keyExtractor={(item, index) => index.toString()}
+	// 			onRefresh={getNearbyVenues}
+	// 			contentInset={{
+	// 				...contentInsets,
+	// 			}}
+	// 			refreshing={loading}
+	// 			estimatedItemSize={30}
+	// 			ListHeaderComponent={<MemoizedListHeaderComponent typename={data.venuesNearby.__typename} />}
+	// 			renderItem={({ item }) => {
+	// 				const lengthOfUpvote = item.Vote.filter(item => {
+	// 					return item.upvote
+	// 				}).length
 
-					return (
-						<Box key={item.id} py={'$1'} m={'$2'} rounded={'$xl'}>
-							<HStack flex={1} justifyContent={'space-between'}>
-								<HStack px={'$3'} space={'md'} alignItems={'center'}>
-									<CountryFlag size={12} isoCode={String(item.Area?.Country.isoCode)} />
-									<Text fontSize={'$xl'}>{item.Area?.City.name}</Text>
-								</HStack>
-								<HStack
-									sx={{
-										h: 50,
-									}}
-									space={'md'}
-									justifyContent={'flex-end'}
-								>
-									<Pressable
-										onPress={() => {
-											updateH6VenueRecommendationVoteMutation({
-												variables: {
-													comingAreaId: item.id,
-												},
-											})
-										}}
-										flexDirection={'row'}
-										alignItems={'center'}
-									>
-										<Text fontWeight={'$medium'} fontSize={'$xl'} mx={'$2'} textAlign={'right'}>
-											{lengthOfUpvote}
-										</Text>
-										<Ionicons
-											name='caret-up'
-											size={25}
-											color={
-												rTheme.colorScheme === 'light'
-													? item.Vote.some(
-															item => item.upvote && item.profileId === rAuthorizationVar?.Profile?.id,
-													  )
-														? rTheme.theme?.gluestack.tokens.colors.blue500
-														: rTheme.theme?.gluestack.tokens.colors.light700
-													: item.Vote.some(
-															item => item.upvote && item.profileId === rAuthorizationVar?.Profile?.id,
-													  )
-													? rTheme.theme?.gluestack.tokens.colors.blue500
-													: rTheme.theme?.gluestack.tokens.colors.light300
-											}
-										/>
-									</Pressable>
-									<Pressable
-										px={'$2'}
-										sx={{
-											w: 50,
-										}}
-										onPress={() => {
-											updateToBeNotifiedMutation({
-												variables: {
-													comingAreaId: item.id,
-												},
-											})
-										}}
-										alignItems={'center'}
-										justifyContent={'center'}
-									>
-										<Ionicons
-											name='notifications-sharp'
-											size={23}
-											color={
-												rTheme.colorScheme === 'light'
-													? item.toBeNotifiedProfileIds.some(item => item === rAuthorizationVar?.Profile?.id)
-														? rTheme.theme?.gluestack.tokens.colors.primary500
-														: rTheme.theme?.gluestack.tokens.colors.light700
-													: item.toBeNotifiedProfileIds.some(item => item === rAuthorizationVar?.Profile?.id)
-													? rTheme.theme?.gluestack.tokens.colors.primary500
-													: rTheme.theme?.gluestack.tokens.colors.light300
-											}
-										/>
-									</Pressable>
-								</HStack>
-							</HStack>
-						</Box>
-					)
-				}}
-			/>
-		)
-	}
+	// 				return (
+	// 					<Box key={item.id} py={'$1'} m={'$2'} rounded={'$xl'}>
+	// 						<HStack flex={1} justifyContent={'space-between'}>
+	// 							<HStack px={'$3'} space={'md'} alignItems={'center'}>
+	// 								<CountryFlag size={12} isoCode={String(item.Area?.Country.isoCode)} />
+	// 								<Text fontSize={'$xl'}>{item.Area?.City.name}</Text>
+	// 							</HStack>
+	// 							<HStack
+	// 								sx={{
+	// 									h: 50,
+	// 								}}
+	// 								space={'md'}
+	// 								justifyContent={'flex-end'}
+	// 							>
+	// 								<Pressable
+	// 									onPress={() => {
+	// 										updateH6VenueRecommendationVoteMutation({
+	// 											variables: {
+	// 												comingAreaId: item.id,
+	// 											},
+	// 										})
+	// 									}}
+	// 									flexDirection={'row'}
+	// 									alignItems={'center'}
+	// 								>
+	// 									<Text fontWeight={'$medium'} fontSize={'$xl'} mx={'$2'} textAlign={'right'}>
+	// 										{lengthOfUpvote}
+	// 									</Text>
+	// 									<Ionicons
+	// 										name='caret-up'
+	// 										size={25}
+	// 										color={
+	// 											rTheme.colorScheme === 'light'
+	// 												? item.Vote.some(
+	// 														item => item.upvote && item.profileId === rAuthorizationVar?.Profile?.id,
+	// 												  )
+	// 													? rTheme.theme?.gluestack.tokens.colors.blue500
+	// 													: rTheme.theme?.gluestack.tokens.colors.light700
+	// 												: item.Vote.some(
+	// 														item => item.upvote && item.profileId === rAuthorizationVar?.Profile?.id,
+	// 												  )
+	// 												? rTheme.theme?.gluestack.tokens.colors.blue500
+	// 												: rTheme.theme?.gluestack.tokens.colors.light300
+	// 										}
+	// 									/>
+	// 								</Pressable>
+	// 								<Pressable
+	// 									px={'$2'}
+	// 									sx={{
+	// 										w: 50,
+	// 									}}
+	// 									onPress={() => {
+	// 										updateToBeNotifiedMutation({
+	// 											variables: {
+	// 												comingAreaId: item.id,
+	// 											},
+	// 										})
+	// 									}}
+	// 									alignItems={'center'}
+	// 									justifyContent={'center'}
+	// 								>
+	// 									<Ionicons
+	// 										name='notifications-sharp'
+	// 										size={23}
+	// 										color={
+	// 											rTheme.colorScheme === 'light'
+	// 												? item.toBeNotifiedProfileIds.some(item => item === rAuthorizationVar?.Profile?.id)
+	// 													? rTheme.theme?.gluestack.tokens.colors.primary500
+	// 													: rTheme.theme?.gluestack.tokens.colors.light700
+	// 												: item.toBeNotifiedProfileIds.some(item => item === rAuthorizationVar?.Profile?.id)
+	// 												? rTheme.theme?.gluestack.tokens.colors.primary500
+	// 												: rTheme.theme?.gluestack.tokens.colors.light300
+	// 										}
+	// 									/>
+	// 								</Pressable>
+	// 							</HStack>
+	// 						</HStack>
+	// 					</Box>
+	// 				)
+	// 			}}
+	// 		/>
+	// 	)
+	// }
 
-	if (data.venuesNearby.__typename === 'VenuesNearbyResponse') {
-		return (
-			<MasonryFlashList
-				overScrollMode='always'
-				onRefresh={getNearbyVenues}
-				refreshing={loading}
-				showsVerticalScrollIndicator={false}
-				numColumns={2}
-				estimatedItemSize={100}
-				scrollEnabled
-				contentInset={{
-					...contentInsets,
-				}}
-				data={data?.venuesNearby.venuesNearby}
-				renderItem={({ item, index, columnIndex }) => (
-					<MemoizedVerticalVenueFeedVenueItem
-						key={columnIndex + item.id}
-						item={item as ProfileVenue}
-						columnIndex={columnIndex}
-					/>
-				)}
-				ItemSeparatorComponent={() => <Box bg={'transparent'} h={'$5'} />}
-				keyExtractor={item => item.id}
-				ListHeaderComponent={<MemoizedListHeaderComponent typename={data.venuesNearby.__typename} />}
-				ListFooterComponent={<MemoizeFooterComponent />}
-				automaticallyAdjustContentInsets
-			/>
-		)
-	}
+	// if (data.venuesNearby.__typename === 'VenuesNearbyResponse') {
+	// 	return (
+	// 		<MasonryFlashList
+	// 			overScrollMode='always'
+	// 			onRefresh={getNearbyVenues}
+	// 			refreshing={loading}
+	// 			showsVerticalScrollIndicator={false}
+	// 			numColumns={2}
+	// 			estimatedItemSize={100}
+	// 			scrollEnabled
+	// 			contentInset={{
+	// 				...contentInsets,
+	// 			}}
+	// 			data={data?.venuesNearby.venuesNearby}
+	// 			renderItem={({ item, index, columnIndex }) => (
+	// 				<MemoizedVerticalVenueFeedVenueItem
+	// 					key={columnIndex + item.id}
+	// 					item={item as ProfileVenue}
+	// 					columnIndex={columnIndex}
+	// 				/>
+	// 			)}
+	// 			ItemSeparatorComponent={() => <Box bg={'transparent'} h={'$5'} />}
+	// 			keyExtractor={item => item.id}
+	// 			ListHeaderComponent={<MemoizedListHeaderComponent typename={data.venuesNearby.__typename} />}
+	// 			ListFooterComponent={<MemoizeFooterComponent />}
+	// 			automaticallyAdjustContentInsets
+	// 		/>
+	// 	)
+	// }
 }

@@ -19,15 +19,13 @@ import { RefreshControl, ScrollView } from 'react-native'
 export default () => {
 	const [refreshing, setRefreshing] = useState(false)
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
+	console.log("🚀 ~ rAuthorizationVar:", rAuthorizationVar)
 	const insets = useContentInsets()
 
 	const rPreferenceNotificationPermission = useReactiveVar(
 		PreferencePermissionNotificationReactiveVar,
 	)
-	console.log('HERE :>> ')
-	console.log(`🚀 -------------------------------------------------------------------------🚀`)
-	console.log(`🚀 ~ rPreferenceNotificationPermission:`, rPreferenceNotificationPermission)
-	console.log(`🚀 -------------------------------------------------------------------------🚀`)
+	
 	const [getNotificationQuery, { data: GNData, loading: GNLoading, error }] =
 		useGetNotificationsLazyQuery({
 			fetchPolicy: 'network-only',

@@ -17055,26 +17055,29 @@ input SecuredDataKeysWhereUniqueInput {
 }
 
 input SettingsCountOrderByAggregateInput {
-  PushNotifications: SortOrder
-  eventPushNotifications: SortOrder
+  allEventPushNotifications: SortOrder
+  allFriendPushNotifications: SortOrder
+  allMessagePushNotifications: SortOrder
+  allPushNotifications: SortOrder
   id: SortOrder
-  messagePushNotifications: SortOrder
   profileId: SortOrder
 }
 
 input SettingsCreateInput {
   Profile: ProfileCreateNestedOneWithoutSettingsInput!
-  PushNotifications: Boolean!
-  eventPushNotifications: Boolean!
+  allEventPushNotifications: Boolean
+  allFriendPushNotifications: Boolean
+  allMessagePushNotifications: Boolean
+  allPushNotifications: Boolean
   id: String
-  messagePushNotifications: Boolean!
 }
 
 input SettingsCreateManyInput {
-  PushNotifications: Boolean!
-  eventPushNotifications: Boolean!
+  allEventPushNotifications: Boolean
+  allFriendPushNotifications: Boolean
+  allMessagePushNotifications: Boolean
+  allPushNotifications: Boolean
   id: String
-  messagePushNotifications: Boolean!
   profileId: String!
 }
 
@@ -17090,25 +17093,28 @@ input SettingsCreateOrConnectWithoutProfileInput {
 }
 
 input SettingsCreateWithoutProfileInput {
-  PushNotifications: Boolean!
-  eventPushNotifications: Boolean!
+  allEventPushNotifications: Boolean
+  allFriendPushNotifications: Boolean
+  allMessagePushNotifications: Boolean
+  allPushNotifications: Boolean
   id: String
-  messagePushNotifications: Boolean!
 }
 
 input SettingsMaxOrderByAggregateInput {
-  PushNotifications: SortOrder
-  eventPushNotifications: SortOrder
+  allEventPushNotifications: SortOrder
+  allFriendPushNotifications: SortOrder
+  allMessagePushNotifications: SortOrder
+  allPushNotifications: SortOrder
   id: SortOrder
-  messagePushNotifications: SortOrder
   profileId: SortOrder
 }
 
 input SettingsMinOrderByAggregateInput {
-  PushNotifications: SortOrder
-  eventPushNotifications: SortOrder
+  allEventPushNotifications: SortOrder
+  allFriendPushNotifications: SortOrder
+  allMessagePushNotifications: SortOrder
+  allPushNotifications: SortOrder
   id: SortOrder
-  messagePushNotifications: SortOrder
   profileId: SortOrder
 }
 
@@ -17118,30 +17124,33 @@ input SettingsNullableRelationFilter {
 }
 
 input SettingsOrderByWithAggregationInput {
-  PushNotifications: SortOrder
   _count: SettingsCountOrderByAggregateInput
   _max: SettingsMaxOrderByAggregateInput
   _min: SettingsMinOrderByAggregateInput
-  eventPushNotifications: SortOrder
+  allEventPushNotifications: SortOrder
+  allFriendPushNotifications: SortOrder
+  allMessagePushNotifications: SortOrder
+  allPushNotifications: SortOrder
   id: SortOrder
-  messagePushNotifications: SortOrder
   profileId: SortOrder
 }
 
 input SettingsOrderByWithRelationInput {
   Profile: ProfileOrderByWithRelationInput
-  PushNotifications: SortOrder
-  eventPushNotifications: SortOrder
+  allEventPushNotifications: SortOrder
+  allFriendPushNotifications: SortOrder
+  allMessagePushNotifications: SortOrder
+  allPushNotifications: SortOrder
   id: SortOrder
-  messagePushNotifications: SortOrder
   profileId: SortOrder
 }
 
 enum SettingsScalarFieldEnum {
-  PushNotifications
-  eventPushNotifications
+  allEventPushNotifications
+  allFriendPushNotifications
+  allMessagePushNotifications
+  allPushNotifications
   id
-  messagePushNotifications
   profileId
 }
 
@@ -17149,26 +17158,29 @@ input SettingsScalarWhereWithAggregatesInput {
   AND: [SettingsScalarWhereWithAggregatesInput!]
   NOT: [SettingsScalarWhereWithAggregatesInput!]
   OR: [SettingsScalarWhereWithAggregatesInput!]
-  PushNotifications: BoolWithAggregatesFilter
-  eventPushNotifications: BoolWithAggregatesFilter
+  allEventPushNotifications: BoolWithAggregatesFilter
+  allFriendPushNotifications: BoolWithAggregatesFilter
+  allMessagePushNotifications: BoolWithAggregatesFilter
+  allPushNotifications: BoolWithAggregatesFilter
   id: StringWithAggregatesFilter
-  messagePushNotifications: BoolWithAggregatesFilter
   profileId: StringWithAggregatesFilter
 }
 
 input SettingsUpdateInput {
   Profile: ProfileUpdateOneRequiredWithoutSettingsNestedInput
-  PushNotifications: BoolFieldUpdateOperationsInput
-  eventPushNotifications: BoolFieldUpdateOperationsInput
+  allEventPushNotifications: BoolFieldUpdateOperationsInput
+  allFriendPushNotifications: BoolFieldUpdateOperationsInput
+  allMessagePushNotifications: BoolFieldUpdateOperationsInput
+  allPushNotifications: BoolFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
-  messagePushNotifications: BoolFieldUpdateOperationsInput
 }
 
 input SettingsUpdateManyMutationInput {
-  PushNotifications: BoolFieldUpdateOperationsInput
-  eventPushNotifications: BoolFieldUpdateOperationsInput
+  allEventPushNotifications: BoolFieldUpdateOperationsInput
+  allFriendPushNotifications: BoolFieldUpdateOperationsInput
+  allMessagePushNotifications: BoolFieldUpdateOperationsInput
+  allPushNotifications: BoolFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
-  messagePushNotifications: BoolFieldUpdateOperationsInput
 }
 
 input SettingsUpdateOneWithoutProfileNestedInput {
@@ -17187,10 +17199,11 @@ input SettingsUpdateToOneWithWhereWithoutProfileInput {
 }
 
 input SettingsUpdateWithoutProfileInput {
-  PushNotifications: BoolFieldUpdateOperationsInput
-  eventPushNotifications: BoolFieldUpdateOperationsInput
+  allEventPushNotifications: BoolFieldUpdateOperationsInput
+  allFriendPushNotifications: BoolFieldUpdateOperationsInput
+  allMessagePushNotifications: BoolFieldUpdateOperationsInput
+  allPushNotifications: BoolFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
-  messagePushNotifications: BoolFieldUpdateOperationsInput
 }
 
 input SettingsUpsertWithoutProfileInput {
@@ -17204,10 +17217,11 @@ input SettingsWhereInput {
   NOT: [SettingsWhereInput!]
   OR: [SettingsWhereInput!]
   Profile: ProfileWhereInput
-  PushNotifications: BoolFilter
-  eventPushNotifications: BoolFilter
+  allEventPushNotifications: BoolFilter
+  allFriendPushNotifications: BoolFilter
+  allMessagePushNotifications: BoolFilter
+  allPushNotifications: BoolFilter
   id: StringFilter
-  messagePushNotifications: BoolFilter
   profileId: StringFilter
 }
 
@@ -17216,10 +17230,11 @@ input SettingsWhereUniqueInput {
   NOT: [SettingsWhereInput!]
   OR: [SettingsWhereInput!]
   Profile: ProfileWhereInput
-  PushNotifications: BoolFilter
-  eventPushNotifications: BoolFilter
+  allEventPushNotifications: BoolFilter
+  allFriendPushNotifications: BoolFilter
+  allMessagePushNotifications: BoolFilter
+  allPushNotifications: BoolFilter
   id: String
-  messagePushNotifications: BoolFilter
   profileId: String
 }
 

@@ -17720,26 +17720,29 @@ export type SecuredDataKeysWhereUniqueInput = {
 };
 
 export type SettingsCountOrderByAggregateInput = {
-  PushNotifications?: InputMaybe<SortOrder>;
-  eventPushNotifications?: InputMaybe<SortOrder>;
+  allEventPushNotifications?: InputMaybe<SortOrder>;
+  allFriendPushNotifications?: InputMaybe<SortOrder>;
+  allMessagePushNotifications?: InputMaybe<SortOrder>;
+  allPushNotifications?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
-  messagePushNotifications?: InputMaybe<SortOrder>;
   profileId?: InputMaybe<SortOrder>;
 };
 
 export type SettingsCreateInput = {
   Profile: ProfileCreateNestedOneWithoutSettingsInput;
-  PushNotifications: Scalars['Boolean']['input'];
-  eventPushNotifications: Scalars['Boolean']['input'];
+  allEventPushNotifications?: InputMaybe<Scalars['Boolean']['input']>;
+  allFriendPushNotifications?: InputMaybe<Scalars['Boolean']['input']>;
+  allMessagePushNotifications?: InputMaybe<Scalars['Boolean']['input']>;
+  allPushNotifications?: InputMaybe<Scalars['Boolean']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
-  messagePushNotifications: Scalars['Boolean']['input'];
 };
 
 export type SettingsCreateManyInput = {
-  PushNotifications: Scalars['Boolean']['input'];
-  eventPushNotifications: Scalars['Boolean']['input'];
+  allEventPushNotifications?: InputMaybe<Scalars['Boolean']['input']>;
+  allFriendPushNotifications?: InputMaybe<Scalars['Boolean']['input']>;
+  allMessagePushNotifications?: InputMaybe<Scalars['Boolean']['input']>;
+  allPushNotifications?: InputMaybe<Scalars['Boolean']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
-  messagePushNotifications: Scalars['Boolean']['input'];
   profileId: Scalars['String']['input'];
 };
 
@@ -17755,25 +17758,28 @@ export type SettingsCreateOrConnectWithoutProfileInput = {
 };
 
 export type SettingsCreateWithoutProfileInput = {
-  PushNotifications: Scalars['Boolean']['input'];
-  eventPushNotifications: Scalars['Boolean']['input'];
+  allEventPushNotifications?: InputMaybe<Scalars['Boolean']['input']>;
+  allFriendPushNotifications?: InputMaybe<Scalars['Boolean']['input']>;
+  allMessagePushNotifications?: InputMaybe<Scalars['Boolean']['input']>;
+  allPushNotifications?: InputMaybe<Scalars['Boolean']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
-  messagePushNotifications: Scalars['Boolean']['input'];
 };
 
 export type SettingsMaxOrderByAggregateInput = {
-  PushNotifications?: InputMaybe<SortOrder>;
-  eventPushNotifications?: InputMaybe<SortOrder>;
+  allEventPushNotifications?: InputMaybe<SortOrder>;
+  allFriendPushNotifications?: InputMaybe<SortOrder>;
+  allMessagePushNotifications?: InputMaybe<SortOrder>;
+  allPushNotifications?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
-  messagePushNotifications?: InputMaybe<SortOrder>;
   profileId?: InputMaybe<SortOrder>;
 };
 
 export type SettingsMinOrderByAggregateInput = {
-  PushNotifications?: InputMaybe<SortOrder>;
-  eventPushNotifications?: InputMaybe<SortOrder>;
+  allEventPushNotifications?: InputMaybe<SortOrder>;
+  allFriendPushNotifications?: InputMaybe<SortOrder>;
+  allMessagePushNotifications?: InputMaybe<SortOrder>;
+  allPushNotifications?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
-  messagePushNotifications?: InputMaybe<SortOrder>;
   profileId?: InputMaybe<SortOrder>;
 };
 
@@ -17783,30 +17789,33 @@ export type SettingsNullableRelationFilter = {
 };
 
 export type SettingsOrderByWithAggregationInput = {
-  PushNotifications?: InputMaybe<SortOrder>;
   _count?: InputMaybe<SettingsCountOrderByAggregateInput>;
   _max?: InputMaybe<SettingsMaxOrderByAggregateInput>;
   _min?: InputMaybe<SettingsMinOrderByAggregateInput>;
-  eventPushNotifications?: InputMaybe<SortOrder>;
+  allEventPushNotifications?: InputMaybe<SortOrder>;
+  allFriendPushNotifications?: InputMaybe<SortOrder>;
+  allMessagePushNotifications?: InputMaybe<SortOrder>;
+  allPushNotifications?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
-  messagePushNotifications?: InputMaybe<SortOrder>;
   profileId?: InputMaybe<SortOrder>;
 };
 
 export type SettingsOrderByWithRelationInput = {
   Profile?: InputMaybe<ProfileOrderByWithRelationInput>;
-  PushNotifications?: InputMaybe<SortOrder>;
-  eventPushNotifications?: InputMaybe<SortOrder>;
+  allEventPushNotifications?: InputMaybe<SortOrder>;
+  allFriendPushNotifications?: InputMaybe<SortOrder>;
+  allMessagePushNotifications?: InputMaybe<SortOrder>;
+  allPushNotifications?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
-  messagePushNotifications?: InputMaybe<SortOrder>;
   profileId?: InputMaybe<SortOrder>;
 };
 
 export enum SettingsScalarFieldEnum {
-  PushNotifications = 'PushNotifications',
-  EventPushNotifications = 'eventPushNotifications',
+  AllEventPushNotifications = 'allEventPushNotifications',
+  AllFriendPushNotifications = 'allFriendPushNotifications',
+  AllMessagePushNotifications = 'allMessagePushNotifications',
+  AllPushNotifications = 'allPushNotifications',
   Id = 'id',
-  MessagePushNotifications = 'messagePushNotifications',
   ProfileId = 'profileId'
 }
 
@@ -17814,26 +17823,29 @@ export type SettingsScalarWhereWithAggregatesInput = {
   AND?: InputMaybe<Array<SettingsScalarWhereWithAggregatesInput>>;
   NOT?: InputMaybe<Array<SettingsScalarWhereWithAggregatesInput>>;
   OR?: InputMaybe<Array<SettingsScalarWhereWithAggregatesInput>>;
-  PushNotifications?: InputMaybe<BoolWithAggregatesFilter>;
-  eventPushNotifications?: InputMaybe<BoolWithAggregatesFilter>;
+  allEventPushNotifications?: InputMaybe<BoolWithAggregatesFilter>;
+  allFriendPushNotifications?: InputMaybe<BoolWithAggregatesFilter>;
+  allMessagePushNotifications?: InputMaybe<BoolWithAggregatesFilter>;
+  allPushNotifications?: InputMaybe<BoolWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
-  messagePushNotifications?: InputMaybe<BoolWithAggregatesFilter>;
   profileId?: InputMaybe<StringWithAggregatesFilter>;
 };
 
 export type SettingsUpdateInput = {
   Profile?: InputMaybe<ProfileUpdateOneRequiredWithoutSettingsNestedInput>;
-  PushNotifications?: InputMaybe<BoolFieldUpdateOperationsInput>;
-  eventPushNotifications?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  allEventPushNotifications?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  allFriendPushNotifications?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  allMessagePushNotifications?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  allPushNotifications?: InputMaybe<BoolFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  messagePushNotifications?: InputMaybe<BoolFieldUpdateOperationsInput>;
 };
 
 export type SettingsUpdateManyMutationInput = {
-  PushNotifications?: InputMaybe<BoolFieldUpdateOperationsInput>;
-  eventPushNotifications?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  allEventPushNotifications?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  allFriendPushNotifications?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  allMessagePushNotifications?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  allPushNotifications?: InputMaybe<BoolFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  messagePushNotifications?: InputMaybe<BoolFieldUpdateOperationsInput>;
 };
 
 export type SettingsUpdateOneWithoutProfileNestedInput = {
@@ -17852,10 +17864,11 @@ export type SettingsUpdateToOneWithWhereWithoutProfileInput = {
 };
 
 export type SettingsUpdateWithoutProfileInput = {
-  PushNotifications?: InputMaybe<BoolFieldUpdateOperationsInput>;
-  eventPushNotifications?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  allEventPushNotifications?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  allFriendPushNotifications?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  allMessagePushNotifications?: InputMaybe<BoolFieldUpdateOperationsInput>;
+  allPushNotifications?: InputMaybe<BoolFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  messagePushNotifications?: InputMaybe<BoolFieldUpdateOperationsInput>;
 };
 
 export type SettingsUpsertWithoutProfileInput = {
@@ -17869,10 +17882,11 @@ export type SettingsWhereInput = {
   NOT?: InputMaybe<Array<SettingsWhereInput>>;
   OR?: InputMaybe<Array<SettingsWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
-  PushNotifications?: InputMaybe<BoolFilter>;
-  eventPushNotifications?: InputMaybe<BoolFilter>;
+  allEventPushNotifications?: InputMaybe<BoolFilter>;
+  allFriendPushNotifications?: InputMaybe<BoolFilter>;
+  allMessagePushNotifications?: InputMaybe<BoolFilter>;
+  allPushNotifications?: InputMaybe<BoolFilter>;
   id?: InputMaybe<StringFilter>;
-  messagePushNotifications?: InputMaybe<BoolFilter>;
   profileId?: InputMaybe<StringFilter>;
 };
 
@@ -17881,10 +17895,11 @@ export type SettingsWhereUniqueInput = {
   NOT?: InputMaybe<Array<SettingsWhereInput>>;
   OR?: InputMaybe<Array<SettingsWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
-  PushNotifications?: InputMaybe<BoolFilter>;
-  eventPushNotifications?: InputMaybe<BoolFilter>;
+  allEventPushNotifications?: InputMaybe<BoolFilter>;
+  allFriendPushNotifications?: InputMaybe<BoolFilter>;
+  allMessagePushNotifications?: InputMaybe<BoolFilter>;
+  allPushNotifications?: InputMaybe<BoolFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
-  messagePushNotifications?: InputMaybe<BoolFilter>;
   profileId?: InputMaybe<Scalars['String']['input']>;
 };
 
