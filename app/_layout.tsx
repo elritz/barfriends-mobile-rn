@@ -62,6 +62,8 @@ import { Appearance, Text, View } from 'react-native'
 // import 'react-native-gesture-handler'
 import { KeyboardProvider } from 'react-native-keyboard-controller'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
+import * as Sentry from '@sentry/react-native';
+import { NODE_ENV } from '@env'
 
 export {
 	// Catch any errors thrown by the Layout component.
@@ -74,10 +76,26 @@ export {
 // }
 
 SplashScreen.preventAutoHideAsync()
+// Construct a new instrumentation instance. This is needed to communicate between the integration and React
+const routingInstrumentation = new Sentry.ReactNavigationInstrumentation();
+
+Sentry.init({
+	dsn: 'https://1c7981806da9fa394d3a549719cd777d@o4506712454660096.ingest.sentry.io/4506712456757248',
+	// debug: NODE_ENV === 'development' ? true : false,
+	debug: true,
+	// enableNative: true,
+	integrations: [
+		new Sentry.ReactNativeTracing({
+			// Pass instrumentation to be used as `routingInstrumentation`
+			routingInstrumentation,
+			// ...
+		}),
+	],
+});
 
 const db = SQLite.openDatabase('../SQLite/database.db')
 
-export default function Root() {
+function Root() {
 	async function setScreenOrientation() {
 		await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP)
 	}
@@ -253,7 +271,7 @@ export default function Root() {
 				})
 			}
 			// BACKGROUNDLOCATION_PREFERENCE ~ START ~ END
-		} catch (e) {}
+		} catch (e) { }
 	}
 
 	const setAsyncPermissions = async () => {
@@ -329,6 +347,8 @@ export default function Root() {
 		</>
 	)
 }
+
+export default Sentry.wrap(Root);
 
 // const setSQLiteDatabaseStorageData = async () => {
 // 	// 		const getInformationJoinVenue = await AsyncStorage.getItem(LOCAL_STORAGE_INFORMATION_JOIN_VENUE)

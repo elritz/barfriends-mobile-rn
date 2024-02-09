@@ -64,6 +64,7 @@
     "@react-native-community/hooks": "3.0.0",
     "@react-native-community/netinfo": "11.1.0",
     "@react-native-masked-view/masked-view": "0.3.0",
+    "@sentry/react-native": "5.17.0",
     "@shopify/flash-list": "1.6.3",
     "@stripe/stripe-react-native": "0.35.0",
     "@types/node": "^20.11.0",

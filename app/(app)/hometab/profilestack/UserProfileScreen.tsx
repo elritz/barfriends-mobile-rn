@@ -14,7 +14,7 @@ import useContentInsets from '@util/hooks/useContentInsets'
 import { uniqueId } from 'lodash'
 import { AnimatePresence } from 'moti'
 import { useCallback, useEffect, useState } from 'react'
-import { RefreshControl, ScrollView } from 'react-native'
+import { RefreshControl, Button } from 'react-native'
 
 export default () => {
 	const [refreshing, setRefreshing] = useState(false)
@@ -25,7 +25,7 @@ export default () => {
 	const rPreferenceNotificationPermission = useReactiveVar(
 		PreferencePermissionNotificationReactiveVar,
 	)
-	
+
 	const [getNotificationQuery, { data: GNData, loading: GNLoading, error }] =
 		useGetNotificationsLazyQuery({
 			fetchPolicy: 'network-only',
@@ -77,6 +77,9 @@ export default () => {
 			ListHeaderComponent={() => {
 				return (
 					<>
+
+
+						<Button title="Press me" onPress={() => { throw new Error('Hello, Sentry!') }} />
 						<PreferenceNotificationPermission />
 						{renderProfile(rAuthorizationVar?.Profile?.ProfileType as ProfileType)}
 					</>

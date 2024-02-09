@@ -264,7 +264,7 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 				},
 				extra: {
 					eas: {
-						projectId: '7ba3f00e-9b58-45fa-8a6e-5ba14d4855e4',
+						projectId: '1cca8791-971d-46f1-b65f-bf8b51f0dac0',
 					},
 				},
 			}
@@ -281,7 +281,13 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 				},
 				plugins: [
 					'expo-router',
-					'sentry-expo',
+					[
+						"@sentry/react-native/expo",
+						{
+						  "organization": "barfriends-inc-6w",
+						  "project": "revel-dev"
+						}
+					],
 					['expo-apple-authentication'],
 					[
 						'expo-build-properties',
