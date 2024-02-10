@@ -203,7 +203,7 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 				},
 				ios: {
 					associatedDomains: ['applinks:revel.com'],
-					bundleIdentifier: 'com.revel.barfriends',
+					bundleIdentifier: 'com.revel.stg',
 					supportsTablet: false,
 					icon: `./assets/images/icon/icon.png`,
 					config: {
