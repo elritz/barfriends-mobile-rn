@@ -29,13 +29,14 @@
 			"distribution": "internal",
 			"extends": "fast"
 		},
-		"staging-ios": {
+		"test-ios": {
 			"channel": "staging-ios",
+			"distribution": "internal",
 			"env": {
 				"NODE_ENV": "staging"
 			}
 		},
-		"staging-android": {
+		"test-android": {
 			"channel": "staging-android",
 			"env": {
 				"NODE_ENV": "staging"

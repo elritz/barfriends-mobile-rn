@@ -1,4 +1,5 @@
 // const { getDefaultConfig } = require('expo/metro-config')
+/** @type {import('@sentry/react-native/metro').MetroConfig} */
 const { getSentryExpoConfig } = require('@sentry/react-native/metro')
 
 // const config = getDefaultConfig(__dirname)

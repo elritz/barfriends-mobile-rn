@@ -53,7 +53,7 @@ import 'expo-dev-client'
 import { getForegroundPermissionsAsync, getBackgroundPermissionsAsync } from 'expo-location'
 import { getPermissionsAsync as getMediaPermissionAsync } from 'expo-media-library'
 import { getPermissionsAsync as getNotificiationPermissionAsync } from 'expo-notifications'
-import { Stack } from 'expo-router'
+import { Stack, useNavigationContainerRef } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import * as ScreenOrientation from 'expo-screen-orientation'
 import * as SQLite from 'expo-sqlite'
@@ -96,6 +96,7 @@ Sentry.init({
 const db = SQLite.openDatabase('../SQLite/database.db')
 
 function Root() {
+	const ref = useNavigationContainerRef();
 	async function setScreenOrientation() {
 		await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP)
 	}
@@ -293,6 +294,11 @@ function Root() {
 		PermissionMediaReactiveVar(mediaLibraryPermission)
 		PermissionNotificationReactiveVar(notificationPermission)
 	}
+	useEffect(() => {
+		if (ref) {
+			routingInstrumentation.registerNavigationContainer(ref);
+		}
+	}, [ref]);
 
 	useEffect(() => {
 		// initializeDatabase()
@@ -300,6 +306,9 @@ function Root() {
 		setAsyncPermissions()
 		setAsyncPreferencesLocalStorageData()
 	}, [])
+
+
+
 	return (
 		<>
 			<GestureHandlerRootView style={{ flex: 1 }}>

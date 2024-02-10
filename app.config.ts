@@ -146,6 +146,14 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 				plugins: [
 					'expo-router',
 					'sentry-expo',
+					[
+						"@sentry/react-native/expo",
+						{
+							"url": "https://sentry.io/",
+							"organization": "barfriends-inc-6w",
+							"project": "revel-dev"
+						}
+					],
 					['expo-build-properties'],
 					['expo-apple-authentication'],
 					[
@@ -195,7 +203,7 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 				},
 				ios: {
 					associatedDomains: ['applinks:revel.com'],
-					bundleIdentifier: 'com.revel.staging',
+					bundleIdentifier: 'com.revel.barfriends',
 					supportsTablet: false,
 					icon: `./assets/images/icon/icon.png`,
 					config: {
@@ -263,6 +271,7 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 					sourceExts: ['cjs'],
 				},
 				extra: {
+					
 					eas: {
 						projectId: '1cca8791-971d-46f1-b65f-bf8b51f0dac0',
 					},
