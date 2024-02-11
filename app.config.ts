@@ -153,12 +153,6 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 						  "project": "revel-dev"
 						}
 					],
-					[
-						"expo-updates",
-						{
-							"username": "ritzz"
-						}
-					],
 					['expo-apple-authentication'],
 					[
 						'expo-build-properties',

@@ -20,7 +20,6 @@ import {
 	LOCAL_STORAGE_PREFERENCE_SYSTEM_OF_UNITS,
 	LOCAL_STORAGE_INFORMATION_JOIN_VENUE,
 } from '@constants/StorageConstants'
-import * as Updates from 'expo-updates'
 import {
 	LocalStoragePreferenceSearchAreaType,
 	LocalStoragePreferenceThemeType,
@@ -63,8 +62,7 @@ import { Appearance, Text, View } from 'react-native'
 // import 'react-native-gesture-handler'
 import { KeyboardProvider } from 'react-native-keyboard-controller'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import * as Sentry from '@sentry/react-native';
-import { NODE_ENV } from '@env'
+import * as Sentry from "@sentry/react-native";
 
 export {
 	// Catch any errors thrown by the Layout component.
@@ -96,7 +94,7 @@ Sentry.init({
 
 const db = SQLite.openDatabase('../SQLite/database.db')
 
-function Root() {
+function RootLayout() {
 	const ref = useNavigationContainerRef();
 	async function setScreenOrientation() {
 		await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP)
@@ -277,16 +275,16 @@ function Root() {
 	}
 
 
-	const eventListener = (event) => {
-		if (event.type === Updates.UpdateEventType.ERROR) {
-			// Handle error
-		} else if (event.type === Updates.UpdateEventType.NO_UPDATE_AVAILABLE) {
-			// Handle no update available
-		} else if (event.type === Updates.UpdateEventType.UPDATE_AVAILABLE) {
-			// Handle update available
-		}
-	};
-	Updates.useUpdateEvents(eventListener);
+	// const eventListener = (event) => {
+	// 	if (event.type === Updates.UpdateEventType.ERROR) {
+	// 		// Handle error
+	// 	} else if (event.type === Updates.UpdateEventType.NO_UPDATE_AVAILABLE) {
+	// 		// Handle no update available
+	// 	} else if (event.type === Updates.UpdateEventType.UPDATE_AVAILABLE) {
+	// 		// Handle update available
+	// 	}
+	// };
+	// Updates.useUpdateEvents(eventListener);
 
 	const setAsyncPermissions = async () => {
 		const contactsPermission = await Contacts.getPermissionsAsync()
@@ -319,8 +317,6 @@ function Root() {
 		setAsyncPermissions()
 		setAsyncPreferencesLocalStorageData()
 	}, [])
-
-
 
 	return (
 		<>
@@ -370,7 +366,7 @@ function Root() {
 	)
 }
 
-export default Sentry.wrap(Root);
+export default Sentry.wrap(RootLayout);
 
 // const setSQLiteDatabaseStorageData = async () => {
 // 	// 		const getInformationJoinVenue = await AsyncStorage.getItem(LOCAL_STORAGE_INFORMATION_JOIN_VENUE)
