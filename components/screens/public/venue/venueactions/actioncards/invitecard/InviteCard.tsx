@@ -23,7 +23,7 @@ export default function InviteCard() {
 				>
 					Share
 				</Heading>
-				<Text>Invite to revel and to this venue</Text>
+				<Text>Invite to barfriends and to this venue</Text>
 			</VStack>
 			<Button
 				mt={'$2'}

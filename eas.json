@@ -1,12 +1,12 @@
 {
 	"cli": {
-		"version": ">=7.1.3",
+		"version": "3.7.2",
 		"appVersionSource": "remote"
 	},
 	"build": {
 		"fast": {
 			"ios": {
-				"resourceClass": "m-medium"
+				"resourceClass": "m1-medium"
 			}
 		},
 		"development-simulator": {

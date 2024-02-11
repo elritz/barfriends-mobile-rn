@@ -1,5 +1,5 @@
 // @authentication
-export const REVEL = 'REVEL'
+export const BARFRIENDS = 'BARFRIENDS'
 export const AUTHORIZATION = 'authorization'
 
 // @preferences

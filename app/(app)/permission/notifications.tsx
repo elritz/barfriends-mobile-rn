@@ -102,7 +102,7 @@ export default () => {
 
 	const createTwoButtonAlert = () =>
 		Alert.alert(
-			'Revel Notification Permission',
+			'Barfriends Notification Permission',
 			`Notifications are currently ${capitalizeFirstLetter(
 				capitalizeFirstLetter(rNotificationsPermission?.status),
 			)}. If you wish to adjust go to your device settings.`,
@@ -274,7 +274,7 @@ export default () => {
 					adjustsFontSizeToFit
 					numberOfLines={3}
 				>
-					Allow Revel to send notifications
+					Allow Barfriends to send notifications
 				</Heading>
 			</Box>
 			<ScrollView>

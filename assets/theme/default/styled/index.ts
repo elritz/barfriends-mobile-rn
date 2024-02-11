@@ -5,7 +5,7 @@ import { revelCompanyColors } from '@assets/theme/default/revel'
 export const LightStyledTheme = {
 	theme: 'light',
 	palette: {
-		revel: {
+		barfriends: {
 			...revelCompanyColors,
 		},
 		company: {
@@ -32,7 +32,7 @@ export const LightStyledTheme = {
 export const DarkStyledTheme = {
 	theme: 'dark',
 	palette: {
-		revel: {
+		barfriends: {
 			...revelCompanyColors,
 		},
 		company: {

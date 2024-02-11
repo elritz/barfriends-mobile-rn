@@ -29,7 +29,7 @@ export default function Preferences() {
 		<ScrollView style={{ maxWidth: '100%' }}>
 			<VStack mx={'$3'} my={'$5'}>
 				<Text textAlign='center' fontSize={'$lg'}>
-					These items are for reseting/updating delete the tokens that are saved during Revel app initial
+					These items are for reseting/updating delete the tokens that are saved during Barfriends app initial
 					render. These preferences are also set when a user interacts with components that ask them to
 					set the persisted state or dismiss the prompt.
 				</Text>

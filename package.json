@@ -1,6 +1,6 @@
 {
-	"name": "revel",
-	"version": "1.0.0",
+	"name": "barfriends",
+	"version": "2.0.2",
 	"main": "expo-router/entry",
 	"scripts": {
 		"rc-start": "bun pm cache rm",
@@ -33,7 +33,8 @@
 		"expo:login": "eas login -u $EXPO_USERNAME -p $EXPO_PASSWORD",
 		"eas:device:create": "eas device:create",
 		"eas:simulator:ios": "NODE_ENV=development eas build --profile development-simulator --platform ios",
-		"eas:build:ios:local": "NODE_ENV=development eas build --local -p ios --profile development",
+		"eas:build:ios:local:dev": "NODE_ENV=development eas build --local -p ios --profile development",
+		"eas:build:ios:local:test": "NODE_ENV=development eas build --local -p ios --profile test-ios",
 		"eas:build:ios:dev": "NODE_ENV=development eas build -p ios --profile development --no-wait",
 		"eas:build:ios:test": "NODE_ENV=test eas build -p ios --profile test-ios --no-wait ",
 		"eas:build:ios:production": "NODE_ENV=production eas build -p ios --no-wait --auto-submit",

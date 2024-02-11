@@ -86,7 +86,7 @@ export default () => {
 
 	const createTwoButtonAlert = () =>
 		Alert.alert(
-			'Revel Backgrounds Location Permission',
+			'Barfriends Backgrounds Location Permission',
 			`Location access is currently active ${capitalizeFirstLetter(
 				rBackgroundLocationPermissionVar?.status,
 			)}. If you wish to adjust go to your device settings.
@@ -165,7 +165,7 @@ export default () => {
 					adjustsFontSizeToFit
 					numberOfLines={3}
 				>
-					Allow Revel to access Background location
+					Allow Barfriends to access Background location
 				</Heading>
 			</Box>
 			<ScrollView>

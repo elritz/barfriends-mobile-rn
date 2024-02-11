@@ -7,7 +7,7 @@ import {
 // import restyle from '@assets/theme/default/restyle'
 
 export const defaulttheme = {
-	revel: {
+	barfriends: {
 		light: lightCompanyColors,
 		dark: darkCompanyColors,
 	},

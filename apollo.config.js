@@ -8,9 +8,9 @@ module.exports = {
 			`./graphql/generated/schema.graphql`,
 			`./graphql/generated/schema.graphql.json`,
 		],
-		// service: 'revel',
+		// service: 'barfriends',
 		service: {
-			name: 'revel',
+			name: 'barfriends',
 			url: `${SERVER_ENDPOINT}`,
 		},
 	},

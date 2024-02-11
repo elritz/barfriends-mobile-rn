@@ -19,7 +19,7 @@ export const FriendsListEmptyState = () => {
 		>
 			<Box bg='$transparent' alignItems={'center'}>
 				<Heading lineHeight={'$xl'} px={'$2'} textAlign='center' fontSize={'$2xl'}>
-					{`No revel\n Find your friends below`}
+					{`No barfriends\n Find your friends below`}
 				</Heading>
 			</Box>
 			<VStack space={'md'} w={'$full'} alignItems={'center'} mt={'$4'}>

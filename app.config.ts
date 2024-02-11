@@ -5,10 +5,10 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 	switch (process.env.NODE_ENV) {
 		case 'production':
 			return {
-				name: 'Revel',
-				slug: 'revel',
+				name: 'Barfriends',
+				slug: 'barfriends',
 				owner: 'barfriends',
-				scheme: 'revel',
+				scheme: 'barfriends',
 				orientation: 'portrait',
 				userInterfaceStyle: 'automatic',
 				primaryColor: '#FF7000',
@@ -65,7 +65,7 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 					},
 				},
 				ios: {
-					bundleIdentifier: 'com.revel.production',
+					bundleIdentifier: 'com.barfriends.production',
 					supportsTablet: false,
 					icon: `./assets/images/icon/icon.png`,
 					config: {
@@ -73,22 +73,22 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 					},
 					infoPlist: {
 						NSLocationAlwaysUsageDescription:
-							'Revel app uses location to provide list of available activities at bars clubs and pubs and events near a users in addition to checking them in.',
+							'Barfriends app uses location to provide list of available activities at bars clubs and pubs and events near a users in addition to checking them in.',
 						NSLocationAlwaysAndWhenInUseUsageDescription:
-							'Revel app uses location to provide list of available activities at bars clubs and pubs and events near a users in addition to checking them in.',
+							'Barfriends app uses location to provide list of available activities at bars clubs and pubs and events near a users in addition to checking them in.',
 						NSLocationWhenInUseUsageDescription:
-							'Revel app uses location to provide list of available activities at bars clubs and pubs and events near a users in addition to checking them in.',
-						NSCameraUsageDescription: 'Revel app uses the camera to provide a photo for their profile.',
+							'Barfriends app uses location to provide list of available activities at bars clubs and pubs and events near a users in addition to checking them in.',
+						NSCameraUsageDescription: 'Barfriends app uses the camera to provide a photo for their profile.',
 						NSPhotoLibraryUsageDescription:
-							"Revel app uses photo library to upload user's profile picture.",
+							"Barfriends app uses photo library to upload user's profile picture.",
 						UIBackgroundModes: ['remote-notification', 'location', 'fetch'],
 						NSPhotoLibraryAddUsageDescription:
-							'Revel would like access to your photos so you can add a cover image to your profile.',
+							'Barfriends would like access to your photos so you can add a cover image to your profile.',
 					},
 				},
 				android: {
 					versionCode: 2,
-					package: 'com.revel.production',
+					package: 'com.barfriends.production',
 					backgroundColor: '#0D0D0D',
 					adaptiveIcon: {
 						foregroundImage: './assets/images/adaptive-icon.png',
@@ -138,10 +138,10 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 			}
 		case 'test':
 			return {
-				name: 'Revel (stg)',
-				slug: 'revel',
+				name: 'Barfriends (stg)',
+				slug: 'barfriends',
 				owner: 'barfriends',
-				scheme: 'revel-staging',
+				scheme: 'barfriends-staging',
 				orientation: 'portrait',
 				userInterfaceStyle: 'automatic',
 				plugins: [
@@ -184,8 +184,8 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 					[
 						'expo-media-library',
 						{
-							photosPermission: 'Allow Revel to access your photos.',
-							savePhotosPermission: 'Allow Revel to save photos.',
+							photosPermission: 'Allow Barfriends to access your photos.',
+							savePhotosPermission: 'Allow Barfriends to save photos.',
 							isAccessMediaLocationEnabled: true,
 						},
 					],
@@ -214,8 +214,8 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 					favicon: './assets/images/favicon.png',
 				},
 				ios: {
-					associatedDomains: ['applinks:revel.com'],
-					bundleIdentifier: 'com.revel.stg',
+					associatedDomains: ['applinks:barfriends.com'],
+					bundleIdentifier: 'com.barfriends.stg',
 					supportsTablet: false,
 					icon: `./assets/images/icon/icon.png`,
 					config: {
@@ -224,21 +224,21 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 					infoPlist: {
 						LSApplicationQueriesSchemes: ['uber'],
 						NSLocationAlwaysUsageDescription:
-							'Revel app uses location to provide list of available activities at bars clubs and pubs and events near a users in addition to checking them in.',
+							'Barfriends app uses location to provide list of available activities at bars clubs and pubs and events near a users in addition to checking them in.',
 						NSLocationAlwaysAndWhenInUseUsageDescription:
-							'Revel app uses location to provide list of available activities at bars clubs and pubs and events near a users in addition to checking them in.',
+							'Barfriends app uses location to provide list of available activities at bars clubs and pubs and events near a users in addition to checking them in.',
 						NSLocationWhenInUseUsageDescription:
-							'Revel app uses location to provide list of available activities at bars clubs and pubs and events near a users in addition to checking them in.',
-						NSCameraUsageDescription: 'Revel app uses the camera to provide a photo for their profile.',
-						NSPhotoLibraryUsageDescription: 'Revel app uses photo library to upload photos and videos.',
+							'Barfriends app uses location to provide list of available activities at bars clubs and pubs and events near a users in addition to checking them in.',
+						NSCameraUsageDescription: 'Barfriends app uses the camera to provide a photo for their profile.',
+						NSPhotoLibraryUsageDescription: 'Barfriends app uses photo library to upload photos and videos.',
 						UIBackgroundModes: ['remote-notification', 'location', 'fetch'],
 						NSPhotoLibraryAddUsageDescription:
-							'Revel would access your meida library, so you can add photos for your profile and other social purposes.',
+							'Barfriends would access your meida library, so you can add photos for your profile and other social purposes.',
 					},
 				},
 				android: {
 					versionCode: 2,
-					package: 'com.revel.christian',
+					package: 'com.barfriends.christian',
 					backgroundColor: '#0D0D0D',
 					adaptiveIcon: {
 						foregroundImage: './assets/images/adaptive-icon.png',
@@ -285,16 +285,16 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 				extra: {
 					
 					eas: {
-						projectId: '1cca8791-971d-46f1-b65f-bf8b51f0dac0',
+						projectId: '7ba3f00e-9b58-45fa-8a6e-5ba14d4855e4',
 					},
 				},
 			}
 		case 'development':
 			return {
-				name: 'Revel (dev)',
-				slug: 'revel',
+				name: 'Barfriends (dev)',
+				slug: 'barfriends',
 				owner: 'barfriends',
-				scheme: 'revel-development',
+				scheme: 'barfriends-development',
 				orientation: 'portrait',
 				userInterfaceStyle: 'automatic',
 				experiments: {
@@ -334,8 +334,8 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 					[
 						'expo-media-library',
 						{
-							photosPermission: 'Allow Revel to access your photos.',
-							savePhotosPermission: 'Allow Revel to save photos.',
+							photosPermission: 'Allow Barfriends to access your photos.',
+							savePhotosPermission: 'Allow Barfriends to save photos.',
 							isAccessMediaLocationEnabled: true,
 						},
 					],
@@ -364,8 +364,8 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 					favicon: './assets/images/favicon.png',
 				},
 				ios: {
-					associatedDomains: ['applinks:revel.com'],
-					bundleIdentifier: 'com.revel.dev',
+					associatedDomains: ['applinks:barfriends.com'],
+					bundleIdentifier: 'com.barfriends.dev',
 					supportsTablet: false,
 					icon: `./assets/images/icon/icon.png`,
 					config: {
@@ -374,21 +374,21 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 					infoPlist: {
 						LSApplicationQueriesSchemes: ['uber'],
 						NSLocationAlwaysUsageDescription:
-							'Revel app uses location to provide list of available activities at bars clubs and pubs and events near a users in addition to checking them in.',
+							'Barfriends app uses location to provide list of available activities at bars clubs and pubs and events near a users in addition to checking them in.',
 						NSLocationAlwaysAndWhenInUseUsageDescription:
-							'Revel app uses location to provide list of available activities at bars clubs and pubs and events near a users in addition to checking them in.',
+							'Barfriends app uses location to provide list of available activities at bars clubs and pubs and events near a users in addition to checking them in.',
 						NSLocationWhenInUseUsageDescription:
-							'Revel app uses location to provide list of available activities at bars clubs and pubs and events near a users in addition to checking them in.',
-						NSCameraUsageDescription: 'Revel app uses the camera to provide a photo for their profile.',
-						NSPhotoLibraryUsageDescription: 'Revel app uses photo library to upload photos and videos.',
+							'Barfriends app uses location to provide list of available activities at bars clubs and pubs and events near a users in addition to checking them in.',
+						NSCameraUsageDescription: 'Barfriends app uses the camera to provide a photo for their profile.',
+						NSPhotoLibraryUsageDescription: 'Barfriends app uses photo library to upload photos and videos.',
 						UIBackgroundModes: ['remote-notification', 'location', 'fetch'],
 						NSPhotoLibraryAddUsageDescription:
-							'Revel would access your meida library, so you can add photos for your profile and other social purposes.',
+							'Barfriends would access your meida library, so you can add photos for your profile and other social purposes.',
 					},
 				},
 				android: {
 					versionCode: 2,
-					package: 'com.revel.christian',
+					package: 'com.barfriends.christian',
 					backgroundColor: '#0D0D0D',
 					adaptiveIcon: {
 						foregroundImage: './assets/images/adaptive-icon.png',
@@ -434,7 +434,7 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 				},
 				extra: {
 					eas: {
-						projectId: '1cca8791-971d-46f1-b65f-bf8b51f0dac0',
+						projectId: '7ba3f00e-9b58-45fa-8a6e-5ba14d4855e4',
 					},
 				},
 			}

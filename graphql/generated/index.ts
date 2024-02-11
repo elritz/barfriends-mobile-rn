@@ -610,7 +610,7 @@ export type AddressWhereUniqueInput = {
 export enum AppType {
   Barfriends = 'BARFRIENDS',
   Petfriends = 'PETFRIENDS',
-  Revel = 'REVEL'
+  Barfriends = 'BARFRIENDS'
 }
 
 export type Area = {

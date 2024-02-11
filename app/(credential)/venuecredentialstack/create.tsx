@@ -70,7 +70,7 @@ export default () => {
 				<VStack space={'md'} alignItems={'center'} justifyContent={'center'}>
 					<CompanyCoasterLogoDynamic backgroundColor='black' />
 					<Heading fontWeight={'$black'} lineHeight={'$3xl'} fontSize={'$4xl'}>
-						Time to Revel
+						Time to Barfriends
 					</Heading>
 					<Box bg='$transparent'>
 						<Text textAlign='center' fontSize={'$lg'}>

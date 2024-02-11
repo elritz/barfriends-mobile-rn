@@ -1,5 +1,5 @@
 import { setContext } from '@apollo/client/link/context'
-import { REVEL, AUTHORIZATION } from '@constants/StorageConstants'
+import { BARFRIENDS, AUTHORIZATION } from '@constants/StorageConstants'
 import { useDeviceType } from '@util/hooks/device/useDeviceType'
 import { secureStorageItemRead } from '@util/hooks/local/useSecureStorage'
 
@@ -13,7 +13,7 @@ const authLink = setContext(async (_, { headers }) => {
 			...headers,
 			authorization: authorization,
 			deviceType,
-			appType: REVEL,
+			appType: BARFRIENDS,
 		},
 	}
 })

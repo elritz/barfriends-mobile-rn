@@ -22,7 +22,7 @@ const LocationPermissionItemEmptyState = () => {
 
 	const createTwoButtonAlert = () =>
 		Alert.alert(
-			'Revel Location Permission',
+			'Barfriends Location Permission',
 			capitalizeFirstLetter(rPermissionForegroundLocationVar?.status),
 			[
 				{

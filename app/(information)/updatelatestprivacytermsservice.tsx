@@ -19,7 +19,7 @@ export default function TermsServices() {
 	return (
 		<Box flex={1} p={'$5'}>
 			<Box mt={'45%'} bg='transparent' flex={1}>
-				<Text fontSize={'$lg'}>Welcome to Revel</Text>
+				<Text fontSize={'$lg'}>Welcome to Barfriends</Text>
 				<Heading fontSize={'$4xl'} lineHeight={'$3xl'}>
 					Review the Terms &
 				</Heading>

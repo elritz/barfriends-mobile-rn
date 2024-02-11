@@ -275,7 +275,7 @@ export default () => {
 					adjustsFontSizeToFit
 					numberOfLines={3}
 				>
-					Revel Background Location Reminder
+					Barfriends Background Location Reminder
 				</Heading>
 				<Divider width={'$2'} style={{ width: 50, marginVertical: 10 }} />
 			</View>

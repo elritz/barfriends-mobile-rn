@@ -263,7 +263,7 @@ export default () => {
 					adjustsFontSizeToFit
 					numberOfLines={3}
 				>
-					Revel Notifications Reminder
+					Barfriends Notifications Reminder
 				</Heading>
 				<Divider width={'$2'} style={{ width: 50, marginVertical: 10 }} />
 			</View>

@@ -37,7 +37,7 @@ export default function _layout() {
 							<Box bg='$transparent' justifyContent='center' flex={1}>
 								{rAuthorizationVar?.Profile?.ProfileType === 'GUEST' ? (
 									<Heading fontSize={'$xl'} fontWeight='$black'>
-										Revel
+										Barfriends
 									</Heading>
 								) : (
 									<Button

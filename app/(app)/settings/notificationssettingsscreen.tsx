@@ -9,7 +9,7 @@ export default () => {
 			<Text>Pause All</Text>
 			<Text>Venues, Invite</Text>
 			<Text>Direct Messages</Text>
-			<Text>From Revel</Text>
+			<Text>From Barfriends</Text>
 			<Text>Other Notification Types</Text>
 			<Text>Email and SMS</Text>
 		</View>

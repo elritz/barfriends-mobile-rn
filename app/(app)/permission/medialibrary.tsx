@@ -138,7 +138,7 @@ export default () => {
 					adjustsFontSizeToFit
 					numberOfLines={3}
 				>
-					Allow Revel to access your photos and videos
+					Allow Barfriends to access your photos and videos
 				</Heading>
 			</Box>
 			<ScrollView>

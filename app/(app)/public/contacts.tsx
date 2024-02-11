@@ -84,7 +84,7 @@ export default () => {
 			<Box flex={1} mx={'$2'}>
 				<VStack space={'md'} mb={'$6'} alignItems={'center'}>
 					<Heading>All Contacts</Heading>
-					<Text fontSize={'$lg'}>Please allow Revel to access your contacts.</Text>
+					<Text fontSize={'$lg'}>Please allow Barfriends to access your contacts.</Text>
 				</VStack>
 				<Button
 					onPress={() =>
@@ -159,12 +159,12 @@ export default () => {
 		try {
 			const result = await Share.share(
 				{
-					message: 'Revel | The nightlife app',
+					message: 'Barfriends | The nightlife app',
 					url: Platform.OS === 'ios' ? APP_STORE_URL_LINK : '',
 				},
 				{
-					dialogTitle: 'Join me on Revel',
-					subject: 'Invite to Revel',
+					dialogTitle: 'Join me on Barfriends',
+					subject: 'Invite to Barfriends',
 				},
 			)
 			if (result.action === Share.sharedAction) {

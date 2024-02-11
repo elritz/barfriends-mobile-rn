@@ -567,7 +567,7 @@ input AddressWhereUniqueInput {
 enum AppType {
   BARFRIENDS
   PETFRIENDS
-  REVEL
+  BARFRIENDS
 }
 
 type Area {

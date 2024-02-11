@@ -28,7 +28,7 @@ export default () => {
 	const rCurrentLocationVar = useReactiveVar(CurrentLocationReactiveVar)
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 
-	const link = `https://revel.com/app/public/venue?username=${params.username}`
+	const link = `https://barfriends.com/app/public/venue?username=${params.username}`
 
 	const { data, loading, error } = usePublicVenueQuery({
 		skip: !params.username,

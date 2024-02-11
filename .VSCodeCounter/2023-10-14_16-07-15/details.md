@@ -2,7 +2,7 @@
 
 Date : 2023-10-14 16:07:15
 
-Directory /Users/christianfirmi/Desktop/4/Github/bfs/revel
+Directory /Users/christianfirmi/Desktop/4/Github/bfs/barfriends
 
 Total : 541 files,  73801 codes, 3440 comments, 7688 blanks, all 84929 lines
 
@@ -236,7 +236,7 @@ Total : 541 files,  73801 codes, 3440 comments, 7688 blanks, all 84929 lines
 | [assets/theme/default/palettecolors.ts](/assets/theme/default/palettecolors.ts) | TypeScript | 435 | 1 | 3 | 439 |
 | [assets/theme/default/reactnavigation/index.ts](/assets/theme/default/reactnavigation/index.ts) | TypeScript | 25 | 0 | 3 | 28 |
 | [assets/theme/default/restyle/index.ts](/assets/theme/default/restyle/index.ts) | TypeScript | 23 | 0 | 3 | 26 |
-| [assets/theme/default/revel/index.ts](/assets/theme/default/revel/index.ts) | TypeScript | 11 | 0 | 1 | 12 |
+| [assets/theme/default/barfriends/index.ts](/assets/theme/default/barfriends/index.ts) | TypeScript | 11 | 0 | 1 | 12 |
 | [assets/theme/default/styled/index.ts](/assets/theme/default/styled/index.ts) | TypeScript | 55 | 0 | 3 | 58 |
 | [babel.config.js](/babel.config.js) | JavaScript | 39 | 1 | 1 | 41 |
 | [codegen-graphql-sub.yml](/codegen-graphql-sub.yml) | YAML | 18 | 0 | 1 | 19 |

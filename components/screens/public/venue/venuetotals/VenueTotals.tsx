@@ -23,18 +23,18 @@ export default function VenueTotals() {
 	const [friends, setFriends] = useState<Totals>({ name: 'friends', value: 0 })
 	const [joined, setJoined] = useState<Totals>({ name: 'joined', value: 0 })
 
-	const link = `https://revel.com/app/public/venue?profileid=${params.venueProfileId}`
+	const link = `https://barfriends.com/app/public/venue?profileid=${params.venueProfileId}`
 
 	const onShare = async () => {
 		try {
 			const result = await Share.share(
 				{
-					message: 'Revel | The nightlife app',
+					message: 'Barfriends | The nightlife app',
 					url: Platform.OS === 'ios' ? link : '',
 				},
 				{
-					dialogTitle: 'Join me on Revel',
-					subject: 'Invite to Revel',
+					dialogTitle: 'Join me on Barfriends',
+					subject: 'Invite to Barfriends',
 				},
 			)
 			if (result.action === Share.sharedAction) {

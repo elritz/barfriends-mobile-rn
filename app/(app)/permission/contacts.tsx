@@ -85,7 +85,7 @@ export default () => {
 
 	const createTwoButtonAlert = () =>
 		Alert.alert(
-			'Revel Contacts Permission',
+			'Barfriends Contacts Permission',
 			`Contacts are currently ${capitalizeFirstLetter(
 				capitalizeFirstLetter(rContactPermission?.status),
 			)}. If you wish to adjust go to your device settings.`,
@@ -197,7 +197,7 @@ export default () => {
 					adjustsFontSizeToFit
 					numberOfLines={3}
 				>
-					Allow Revel access to your contacts
+					Allow Barfriends access to your contacts
 				</Heading>
 			</Box>
 			<ScrollView>

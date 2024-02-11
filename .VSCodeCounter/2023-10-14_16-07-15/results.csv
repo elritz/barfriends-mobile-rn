@@ -1,543 +1,543 @@
 "filename", "language", "TypeScript", "JavaScript", "JSON", "JSON with Comments", "XML", "TypeScript JSX", "YAML", "Ignore", "Markdown", "GraphQL", "comment", "blank", "total"
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.eslintrc.json", "JSON with Comments", 0, 0, 0, 76, 0, 0, 0, 0, 0, 0, 0, 1, 77
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/README.md", "Markdown", 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 1, 9
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/devices.json", "JSON", 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 1, 17
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/assert/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/async_hooks/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/buffer/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/child_process/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/cluster/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/console/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/constants/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/crypto/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/dgram/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/diagnostics_channel/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/dns/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/domain/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/events/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/fs/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/fs/promises/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/http/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/http2/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/https/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/inspector/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/module/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/net/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/os/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/path/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/perf_hooks/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/process/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/punycode/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/querystring/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/readline/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/repl/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/stream/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/string_decoder/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/timers/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/tls/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/trace_events/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/tty/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/url/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/util/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/v8/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/vm/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/worker_threads/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/externals/zlib/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/polyfill.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/metro/polyfill.native.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.expo/types/router.d.ts", "TypeScript", 88, 0, 0, 0, 0, 0, 0, 0, 0, 0, 81, 25, 194
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.github/workflows/update.yaml", "YAML", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 39, 9, 48
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.prettierignore", "Ignore", 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.prettierrc", "JSON", 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 1, 11
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/.stylelintrc.json", "JSON", 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/__tests__/screens/credentials/birthday/Birthday.test.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 3, 10
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/__tests__/screens/credentials/getstarted/GetStarted.test.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 3, 11
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/__tests__/util/hooks/useCounter.test.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 2, 9
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/apollo.config.js", "JavaScript", 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 16
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/apollo.config.sub.js", "JavaScript", 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 18
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app.config.ts", "TypeScript", 203, 0, 0, 0, 0, 0, 0, 0, 0, 0, 221, 1, 425
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 89, 0, 0, 0, 0, 0, 3, 92
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/conversation.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 1, 10
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/explore/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 75, 0, 0, 0, 0, 1, 3, 79
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/explore/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 81, 0, 0, 0, 0, 4, 4, 89
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/explore/searchresults.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 52, 0, 0, 0, 0, 1, 6, 59
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/explore/searchtext.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 268, 0, 0, 0, 0, 5, 11, 284
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/friendslist.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 57, 0, 0, 0, 0, 2, 2, 61
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/hometab/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 170, 0, 0, 0, 0, 3, 5, 178
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/hometab/developmentstack/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 80, 0, 0, 0, 0, 0, 3, 83
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/hometab/developmentstack/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 467, 0, 0, 0, 0, 30, 35, 532
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/hometab/developmentstack/permissionmodals.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 91, 0, 0, 0, 0, 0, 2, 93
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/hometab/developmentstack/preferences.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 171, 0, 0, 0, 0, 0, 3, 174
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/hometab/developmentstack/theme.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 253, 0, 0, 0, 0, 3, 12, 268
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/hometab/messagestack/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 1, 2, 15
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/hometab/messagestack/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 27, 0, 0, 0, 0, 64, 9, 100
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/hometab/profilestack/UserProfileScreen.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 62, 0, 0, 0, 0, 19, 9, 90
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/hometab/profilestack/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 104, 0, 0, 0, 0, 6, 4, 114
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/hometab/tonight.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 97, 0, 0, 0, 0, 0, 5, 102
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/hometab/venuefeed.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 410, 0, 0, 0, 0, 2, 16, 428
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/modal/CameraQR.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 73, 0, 0, 0, 0, 0, 8, 81
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/modal/DeviceManager.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 123, 0, 0, 0, 0, 1, 7, 131
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/modal/Emojimood.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 127, 0, 0, 0, 0, 12, 5, 144
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/modal/MediaLibrary.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 73, 0, 0, 0, 0, 0, 8, 81
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/modal/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 129, 0, 0, 0, 0, 0, 7, 136
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/newconversation.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 339, 0, 0, 0, 0, 12, 24, 375
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/permission/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 23, 0, 0, 0, 0, 0, 2, 25
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/permission/backgroundlocation.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 229, 0, 0, 0, 0, 1, 10, 240
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/permission/camera.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 228, 0, 0, 0, 0, 3, 10, 241
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/permission/contacts.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 253, 0, 0, 0, 0, 1, 12, 266
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/permission/foregroundlocation.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 230, 0, 0, 0, 0, 1, 11, 242
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/permission/medialibrary.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 193, 0, 0, 0, 0, 0, 10, 203
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/permission/microphone.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 228, 0, 0, 0, 0, 1, 10, 239
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/permission/networkinformation.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 306, 0, 0, 0, 0, 1, 20, 327
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/permission/notifications.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 368, 0, 0, 0, 0, 1, 20, 389
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/public/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 203, 0, 0, 0, 0, 2, 3, 208
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/public/contacts.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 203, 0, 0, 0, 0, 45, 13, 261
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/public/personal/[profileid].tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 254, 0, 0, 0, 0, 2, 15, 271
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/public/personal/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 1, 2, 15
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/public/venue/[profileid].tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 275, 0, 0, 0, 0, 3, 11, 289
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/public/venue/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 1, 2, 20
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/searcharea/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 137, 0, 0, 0, 0, 1, 8, 146
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/searcharea/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 232, 0, 0, 0, 0, 1, 10, 243
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/searcharea/searchcountry.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 194, 0, 0, 0, 0, 0, 14, 208
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/searcharea/searchcountrystate.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 198, 0, 0, 0, 0, 0, 15, 213
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/searcharea/searchh3recommendation.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 60, 0, 0, 0, 0, 1, 6, 67
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/searcharea/searchstatecities.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 300, 0, 0, 0, 0, 1, 17, 318
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/settings/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 28, 0, 0, 0, 0, 0, 3, 31
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/settings/appearancesettingsscreen.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 81, 0, 0, 0, 0, 0, 4, 85
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/settings/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 257, 0, 0, 0, 0, 7, 8, 272
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/settings/notificationssettingsscreen.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 3, 18
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/settings/profilesettings/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 19, 0, 0, 0, 0, 0, 2, 21
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/settings/profilesettings/personal/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 2, 24
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/settings/profilesettings/personal/birthday.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 168, 0, 0, 0, 0, 1, 9, 178
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/settings/profilesettings/personal/currenttown.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 41, 0, 0, 0, 0, 0, 4, 45
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/settings/profilesettings/personal/description.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 163, 0, 0, 0, 0, 3, 9, 175
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/settings/profilesettings/personal/fullname.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 287, 0, 0, 0, 0, 0, 9, 296
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/settings/profilesettings/personal/gender.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 211, 0, 0, 0, 0, 1, 9, 221
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/settings/profilesettings/personal/hometown.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 61, 0, 0, 0, 0, 0, 5, 66
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/settings/profilesettings/personal/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 220, 0, 0, 0, 0, 0, 7, 227
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/settings/profilesettings/personal/interests.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 166, 0, 0, 0, 0, 4, 6, 176
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/settings/profilesettings/personal/lookingfor.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 181, 0, 0, 0, 0, 0, 8, 189
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/settings/profilesettings/personal/relationship.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 31, 0, 0, 0, 0, 1, 4, 36
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/settings/profilesettings/personal/username.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 188, 0, 0, 0, 0, 0, 12, 200
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/settings/profilesettings/venue/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 2, 10
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/settings/profilesettings/venue/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 2, 10
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(app)/settings/securitysettingsscreen.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 2, 10
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 1, 2, 7
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/logincredentialstack/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 2, 24
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/logincredentialstack/authenticator.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 330, 0, 0, 0, 0, 0, 14, 344
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/logincredentialstack/confirmationcode.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 257, 0, 0, 0, 0, 1, 16, 274
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/logincredentialstack/devicemanager.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 112, 0, 0, 0, 0, 0, 10, 122
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/logincredentialstack/loginpassword.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 231, 0, 0, 0, 0, 47, 14, 292
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/personalcredentialstack/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 80, 0, 0, 0, 0, 1, 2, 83
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/personalcredentialstack/birthday.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 190, 0, 0, 0, 0, 0, 7, 197
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/personalcredentialstack/confirmationcode.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 252, 0, 0, 0, 0, 2, 14, 268
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/personalcredentialstack/create.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 7, 107
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/personalcredentialstack/email.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 257, 0, 0, 0, 0, 1, 9, 267
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/personalcredentialstack/getstarted.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 77, 0, 0, 0, 0, 2, 6, 85
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/personalcredentialstack/name.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 220, 0, 0, 0, 0, 0, 10, 230
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/personalcredentialstack/password.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 218, 0, 0, 0, 0, 0, 11, 229
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/personalcredentialstack/phone.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 292, 0, 0, 0, 0, 1, 14, 307
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/personalcredentialstack/photo.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 328, 0, 0, 0, 0, 1, 20, 349
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/personalcredentialstack/username.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 229, 0, 0, 0, 0, 0, 12, 241
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/venuecredentialstack/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 79, 0, 0, 0, 0, 1, 2, 82
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/venuecredentialstack/birthday.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 188, 0, 0, 0, 0, 0, 7, 195
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/venuecredentialstack/confirmationcode.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 251, 0, 0, 0, 0, 2, 14, 267
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/venuecredentialstack/create.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 7, 107
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/venuecredentialstack/email.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 1, 9, 265
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/venuecredentialstack/getstarted.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 80, 0, 0, 0, 0, 0, 5, 85
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/venuecredentialstack/name.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 210, 0, 0, 0, 0, 0, 10, 220
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/venuecredentialstack/password.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 239, 0, 0, 0, 0, 1, 16, 256
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/venuecredentialstack/phone.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 290, 0, 0, 0, 0, 1, 14, 305
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/venuecredentialstack/photo.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 328, 0, 0, 0, 0, 1, 20, 349
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(credential)/venuecredentialstack/username.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 230, 0, 0, 0, 0, 0, 12, 242
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(information)/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 42, 0, 0, 0, 0, 1, 3, 46
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(information)/latestprivacyservicetoptab.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 47, 0, 0, 0, 0, 0, 6, 53
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(information)/latestprivacytermsservicetabstack/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 65, 0, 0, 0, 0, 1, 3, 69
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(information)/latestprivacytermsservicetabstack/privacy.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 58, 0, 0, 0, 0, 0, 6, 64
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(information)/latestprivacytermsservicetabstack/services.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 57, 0, 0, 0, 0, 0, 6, 63
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/(information)/updatelatestprivacytermsservice.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 62, 0, 0, 0, 0, 1, 3, 66
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 261, 0, 0, 0, 0, 81, 37, 379
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/app/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 106, 0, 0, 0, 0, 7, 7, 120
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/images/company/CompanyCoasterLogoDynamic.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 52, 0, 0, 0, 0, 0, 6, 58
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/images/company/CompanyCoasterLogoDynamicInverse.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 41, 0, 0, 0, 0, 0, 6, 47
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/images/company/CompanyCoasterLogoDynamicOutline.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 51, 0, 0, 0, 0, 0, 6, 57
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/images/company/LogoTransparent.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 3, 23
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/images/company/static-company-coaster-inverse.svg", "XML", 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 1, 4
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/images/company/static-company-coaster-outline.svg", "XML", 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/images/company/static-company-coaster.svg", "XML", 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 1, 21
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/images/imagetypes.ts", "TypeScript", 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 8
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/images/location/IllustrationDynamicLocation.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 42, 0, 0, 0, 0, 0, 5, 47
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/images/location/illustrationStaticLocation.svg", "XML", 0, 0, 0, 0, 45, 0, 0, 0, 0, 0, 0, 1, 46
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/images/media/IllustrationDynamicMedia.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 39, 0, 0, 0, 0, 0, 5, 44
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/images/media/IllustrationStaticMedia.svg", "XML", 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 1, 6
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/images/network/IllustrationDynamicNetwork.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 84, 0, 0, 0, 0, 0, 5, 89
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/images/network/IllustrationStaticNetwork.svg", "XML", 0, 0, 0, 0, 31, 0, 0, 0, 0, 0, 0, 1, 32
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/images/notifications/IllustrationDynamicDynamic.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 42, 0, 0, 0, 0, 0, 4, 46
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/images/notifications/illustrationStaticLocation.svg", "XML", 0, 0, 0, 0, 45, 0, 0, 0, 0, 0, 0, 1, 46
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/amber.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/amber.js", "JavaScript", 0, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 19
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/blue.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/blue.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/blueGrey.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/blueGrey.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/brown.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/brown.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/colors.ts", "TypeScript", 256, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 276
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/common.d.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 3, 19
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/common.js", "JavaScript", 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 12
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/cyan.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/cyan.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/deepOrange.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/deepOrange.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/deepPurple.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/deepPurple.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/green.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 4, 67
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/green.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/grey.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/grey.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/index.d.ts", "TypeScript", 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 21
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/index.js", "JavaScript", 0, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 22
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/indigo.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/indigo.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/lightBlue.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/lightBlue.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/lightGreen.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/lightGreen.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/lime.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/lime.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/orange.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/orange.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/package.json", "JSON", 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 1, 6
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/pink.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/pink.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/purple.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/purple.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/red.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/red.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/teal.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/teal.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/yellow.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/colors/yellow.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/default/companycolors.ts", "TypeScript", 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 24
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/default/gluestack/index.ts", "TypeScript", 39, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 42
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/default/index.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 21
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/default/palettecolors.ts", "TypeScript", 435, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 439
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/default/reactnavigation/index.ts", "TypeScript", 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 28
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/default/restyle/index.ts", "TypeScript", 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 26
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/default/revel/index.ts", "TypeScript", 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 12
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/assets/theme/default/styled/index.ts", "TypeScript", 55, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 58
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/babel.config.js", "JavaScript", 0, 39, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 41
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/codegen-graphql-sub.yml", "YAML", 0, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 1, 19
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/codegen-graphql.yml", "YAML", 0, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 1, 19
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/atoms/Total.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 24, 0, 0, 0, 0, 0, 4, 28
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 4, 26
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/atoms/buttons/goback/GoBack.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 41, 0, 0, 0, 0, 3, 8, 52
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/atoms/buttons/joinvenue/JoinVenue.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 87, 0, 0, 0, 0, 0, 6, 93
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/atoms/icons/navigationdragicon/NavigationDragIcon.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 0, 2, 19
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/atoms/icons/tabbaricon/TabBarIcon.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 48, 0, 0, 0, 0, 1, 7, 56
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/atoms/inputs/DatePicker.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 40, 0, 0, 0, 0, 13, 6, 59
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/index.ts", "TypeScript", 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/layouts/Auth.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 61, 0, 0, 0, 0, 17, 11, 89
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/layouts/Theme.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 61, 0, 0, 0, 0, 2, 10, 73
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/asks/signinup/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 45, 0, 0, 0, 0, 0, 3, 48
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/asks/signuplogin/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 77, 0, 0, 0, 0, 2, 5, 84
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/authorization/devicemanagerprofileitem/DeviceManagerProfileItemLarge.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 98, 0, 0, 0, 0, 0, 5, 103
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/authorization/devicemanagerprofileitem/DeviceManagerProfileItemSmall.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 51, 0, 0, 0, 0, 0, 4, 55
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/index.ts", "TypeScript", 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/information/informationjoinvenue/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 99, 0, 0, 0, 0, 0, 3, 102
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/modals/asks/backgroundlocationnextaskmodal/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 4, 68
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/modals/asks/foregroundlocationnextaskmodal/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 74, 0, 0, 0, 0, 0, 4, 78
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/modals/asks/notificationnextaskmodal/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 7, 107
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/modals/cameramodal/CameraModal.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 62, 0, 0, 0, 0, 49, 13, 124
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/modals/cancelfriendnotioficationmodal/CancelFriendNotificationModal.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 87, 0, 0, 0, 0, 0, 6, 93
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/modals/relationshipmodal/RelationshipModal.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 127, 0, 0, 0, 0, 0, 9, 136
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/modals/signupaskmodal/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 36, 0, 0, 0, 0, 0, 3, 39
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/notifications/friendnotification/CondensedHorizontalFriendNotifciation.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 212, 0, 0, 0, 0, 8, 9, 229
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/notifications/message/HorizontalMessageNotification.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 62, 0, 0, 0, 0, 15, 3, 80
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/permissions/preferencelocationpermission/PreferenceBackgroundLocationPermissionFullSection.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 126, 0, 0, 0, 0, 0, 3, 129
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/permissions/preferencelocationpermission/PreferenceForegroundLocationPermissionFullSection.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 119, 0, 0, 0, 0, 0, 2, 121
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/permissions/preferencemediapermission/MediaPermissionFullSection.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 67, 0, 0, 0, 0, 0, 3, 70
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/permissions/preferencenotificationpermission/PreferenceNotificationPermission.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 93, 0, 0, 0, 0, 13, 9, 115
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/personal/CardFullImageNameEmoji.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 101, 0, 0, 0, 0, 0, 3, 104
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/search/searchinput/SearchInput.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 216, 0, 0, 0, 0, 1, 16, 233
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/search/searchinput/SearchInputController.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 0, 4, 21
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/search/searchinput/SearchInputResults.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 78, 0, 0, 0, 0, 0, 5, 83
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/search/searchinput/SearchInputSearchArea.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 124, 0, 0, 0, 0, 0, 11, 135
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/search/searchinput/SearchInputText.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 169, 0, 0, 0, 0, 1, 14, 184
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/search/searchinput/SearchInputVenueFeed.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 177, 0, 0, 0, 0, 1, 12, 190
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/search/searchinput/SearchInputVenueFeedDisabled.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 72, 0, 0, 0, 0, 0, 5, 77
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/tabbaricons/hometabicons/developmenttab/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 3, 28
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/tabbaricons/hometabicons/hometab/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 39, 0, 0, 0, 0, 0, 3, 42
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/tabbaricons/hometabicons/maptab/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 26, 0, 0, 0, 0, 0, 3, 29
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/tabbaricons/hometabicons/messagestab/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 39, 0, 0, 0, 0, 0, 3, 42
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/tabbaricons/hometabicons/notificationtab/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 23, 0, 0, 0, 0, 0, 3, 26
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/tabbaricons/hometabicons/profiletab/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 109, 0, 0, 0, 0, 22, 8, 139
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/tabbaricons/hometabicons/searchtab/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 34, 0, 0, 0, 0, 0, 3, 37
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/tabbaricons/hometabicons/tonighttab/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 4, 39
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/molecules/tabbaricons/hometabicons/venuefeedtab/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 4, 39
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/organisms/ProfileActivityAndStatusCards/ProfileActivityAndStatusCards.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 0, 3, 20
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/organisms/ShowCaseScroll/Card.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 45, 0, 0, 0, 0, 1, 5, 51
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/organisms/ShowCaseScroll/Model.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 49, 0, 0, 0, 0, 10, 3, 62
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/organisms/ShowCaseScroll/PhilzCoffee.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 51, 0, 0, 0, 0, 9, 7, 67
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/organisms/ShowCaseScroll/Products.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 42, 0, 0, 0, 0, 1, 5, 48
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/organisms/ShowCaseScroll/components/Button.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 31, 0, 0, 0, 0, 0, 6, 37
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/organisms/ShowCaseScroll/components/CardHeader.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 29, 0, 0, 0, 0, 0, 4, 33
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/organisms/ShowCaseScroll/components/Cards.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 72, 0, 0, 0, 0, 1, 6, 79
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/organisms/ShowCaseScroll/index.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 9
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/organisms/index.ts", "TypeScript", 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/organisms/list/DeviceManagerProfiles.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 81, 0, 0, 0, 0, 0, 11, 92
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/organisms/list/friendslist/FriendsListEmptyState.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 68, 0, 0, 0, 0, 0, 2, 70
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/organisms/list/friendslist/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 37, 0, 0, 0, 0, 0, 5, 42
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/organisms/list/notifications/friends/CondensedVerticalFriendsNotficationsList.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 32, 0, 0, 0, 0, 0, 4, 36
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/organisms/list/searchareafiltering/HorizontalCityItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 45, 0, 0, 0, 0, 0, 4, 49
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/organisms/list/searchareafiltering/HorizontalCountryItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 41, 0, 0, 0, 0, 0, 4, 45
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/organisms/list/searchareafiltering/HorizontalStateItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 45, 0, 0, 0, 0, 0, 4, 49
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/organisms/list/searchareafiltering/LocationPermissionItemEmptyState.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 78, 0, 0, 0, 0, 1, 8, 87
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/organisms/list/searchareafiltering/SearchAreaLocationPermissionItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 126, 0, 0, 0, 0, 1, 7, 134
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/organisms/photos/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 410, 0, 0, 0, 0, 2, 17, 429
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/NotFound.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 3, 13
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/conversations/ContactItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 30, 0, 0, 0, 0, 0, 4, 34
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/conversations/SearchResultContactItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 4, 20
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/information/privacyserviceterms/Privacy.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 53, 0, 0, 0, 0, 0, 5, 58
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/information/privacyserviceterms/Service.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 46, 0, 0, 0, 0, 0, 4, 50
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/messageroom/messageroom/Message.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 30, 0, 0, 0, 0, 0, 1, 31
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/messageroom/messageroom/MessageRoom.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 153, 0, 0, 0, 0, 46, 12, 211
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/messageroom/messageroom/MessageRoomAniamted.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 68, 0, 0, 0, 0, 28, 5, 101
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/messageroom/messageroom/Random.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 42, 0, 0, 0, 0, 0, 9, 51
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/messageroom/messageroom/animation.json", "JSON", 0, 0, 1616, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1617
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/messageroom/messageroom/data.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 31, 0, 0, 0, 0, 0, 5, 36
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/messageroom/messageroom/hooks.ts", "TypeScript", 28, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 5, 40
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/messageroom/messageroom/styles.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 19
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/messageroomgiftedchat/AccessoryBar.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 39, 0, 0, 0, 0, 0, 5, 44
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/messageroomgiftedchat/CustomView.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 79, 0, 0, 0, 0, 0, 8, 87
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/messageroomgiftedchat/MessageContainer.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 84, 0, 0, 0, 0, 4, 7, 95
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/messageroomgiftedchat/data/earlierMessages.ts", "TypeScript", 129, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 130
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/messageroomgiftedchat/data/messages.ts", "TypeScript", 113, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 114
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/messageroomgiftedchat/mediautils.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 59, 0, 0, 0, 0, 0, 8, 67
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/permissions/PermissionDetailItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 21, 0, 0, 0, 0, 0, 2, 23
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/profile/Profile.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 68, 0, 0, 0, 0, 14, 8, 90
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/profile/personalprofile/PersonalProfile.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 87, 0, 0, 0, 0, 0, 6, 93
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/profile/profilephoto/ProfilePhotoEmptyState.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 87, 0, 0, 0, 0, 1, 5, 93
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/profile/profilephoto/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 33, 0, 0, 0, 0, 0, 4, 37
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/profile/venueprofile/VenueProfile.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 4, 16
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/personal/FlatListCustom.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/personal/Personal.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 55, 0, 0, 0, 0, 2, 7, 64
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/personal/actions/Actions.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 95, 0, 0, 0, 0, 1, 9, 105
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/personal/currentvenue/CurrentVenue.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 42, 0, 0, 0, 0, 0, 2, 44
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/personal/details/Details.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 19, 0, 0, 0, 0, 0, 3, 22
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/personal/friendship/Friendship.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 71, 0, 0, 0, 0, 0, 8, 79
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/personal/photos/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 365, 0, 0, 0, 0, 2, 17, 384
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/personal/profilephoto/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 32, 0, 0, 0, 0, 0, 4, 36
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/personal/relationship/Relationships.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 55, 0, 0, 0, 0, 0, 7, 62
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/venue/details/Details.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 121, 0, 0, 0, 0, 0, 8, 129
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/venue/peopleatvenue/PersonalAtVenue.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 36, 0, 0, 0, 0, 15, 4, 55
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/venue/venueactions/ActionCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 39, 0, 0, 0, 0, 0, 4, 43
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/venue/venueactions/VenueActions.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 2, 8, 74
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/venue/venueactions/actioncards/distancecard/DistanceCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 0, 3, 20
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/venue/venueactions/actioncards/distancecard/variants/AskLocationPermission.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 3, 38
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/venue/venueactions/actioncards/distancecard/variants/CurrentLocationFromVenueDistance.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 196, 0, 0, 0, 0, 3, 12, 211
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/venue/venueactions/actioncards/invitecard/InviteCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 48, 0, 0, 0, 0, 0, 3, 51
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/venue/venueactions/actioncards/joincard/JoinCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 24, 0, 0, 0, 0, 1, 2, 27
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/venue/venueactions/actioncards/leavesection/LeaveSection.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 86, 0, 0, 0, 0, 1, 4, 91
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/venue/venueactions/actioncards/quickbarfriendcard/QuickBarfriendCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 113, 0, 0, 0, 0, 0, 8, 121
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/venue/venueactions/actioncards/signupcard/SignupCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 2, 37
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/venue/venueactions/actioncards/ubercard/UberButton.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 62, 0, 0, 0, 0, 0, 8, 70
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/venue/venueactions/actioncards/ubercard/UberCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 63, 0, 0, 0, 0, 0, 8, 71
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/venue/venueactions/devactions/DevActions.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 55, 0, 0, 0, 0, 0, 3, 58
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/venue/venueactions/devactions/joincard/JoinCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 132, 0, 0, 0, 0, 1, 6, 139
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/venue/venueactions/devactions/leavecard/LeaveCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 86, 0, 0, 0, 0, 1, 5, 92
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/venue/venueactions/devactions/totalcard/TotalCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 133, 0, 0, 0, 0, 1, 11, 145
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/venue/venueheader/VenueHeader.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 45, 0, 0, 0, 0, 0, 6, 51
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/public/venue/venuetotals/VenueTotals.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 95, 0, 0, 0, 0, 0, 6, 101
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/search/components/SearchCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 81, 0, 0, 0, 0, 1, 4, 86
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/search/searchtext/SearchTextScreen.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 271, 0, 0, 0, 0, 6, 11, 288
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/search/textsearchtabs/SearchAccounts.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 131, 0, 0, 0, 0, 1, 6, 138
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/search/textsearchtabs/SearchTop.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 1, 2, 11
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/search/textsearchtabs/SearchVenues.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 131, 0, 0, 0, 0, 1, 5, 137
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/searcharea/PlaceItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 42, 0, 0, 0, 0, 0, 3, 45
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/settings/TermsLoadingState.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 50, 0, 0, 0, 0, 0, 3, 53
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/splash/AnimatedAppLoader.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 6, 26
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/splash/AnimatedSplashScreen.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 81, 0, 0, 0, 0, 1, 10, 92
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/tonight/Tonight.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 26, 0, 0, 0, 0, 1, 3, 30
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/tonight/activity/ask/AddEmoji/AddEmoji.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 46, 0, 0, 0, 0, 0, 4, 50
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/tonight/activity/ask/AddRelationship/AddRelationship.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 53, 0, 0, 0, 0, 0, 4, 57
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/tonight/activity/ask/JoinVenue/JoinVenue.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 52, 0, 0, 0, 0, 0, 4, 56
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/tonight/images/Config.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 29, 0, 0, 0, 0, 0, 8, 37
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/tonight/images/GestureItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 128, 0, 0, 0, 0, 7, 12, 147
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/tonight/images/Item.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 66, 0, 0, 0, 0, 0, 6, 72
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/tonight/images/SortableList.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 48, 0, 0, 0, 0, 7, 5, 60
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/tonight/images/TonightImages.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 95, 0, 0, 0, 0, 4, 7, 106
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/tonight/images/index.ts", "TypeScript", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/tonight/photos/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 410, 0, 0, 0, 0, 2, 17, 429
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/venuesfeed/CurrentVenue.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 169, 0, 0, 0, 0, 1, 9, 179
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/venuesfeed/HorizontalVenueFeedVenueItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 114, 0, 0, 0, 0, 1, 10, 125
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/venuesfeed/PermissionButtonNotification.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 21, 0, 0, 0, 0, 0, 4, 25
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/venuesfeed/PermissionButtonSearchAreaLocation.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 23, 0, 0, 0, 0, 0, 4, 27
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/venuesfeed/SearchAreaHeader.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 67, 0, 0, 0, 0, 0, 4, 71
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/venuesfeed/SkeletonVenuesHomeScreen.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 4, 26
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/venuesfeed/VenueFeedSearchAreaEmptyState.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 41, 0, 0, 0, 0, 0, 4, 45
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/venuesfeed/VerticalVenueFeedVenueItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 285, 0, 0, 0, 0, 3, 15, 303
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/venuesfeed/advertisments/advertismenthorizontal/AdvertismentHorizontal.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 51, 0, 0, 0, 0, 9, 7, 67
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/venuesfeed/advertisments/advertismenthorizontal/Card.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 334, 0, 0, 0, 0, 7, 5, 346
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/venuesfeed/advertisments/advertismenthorizontal/Model.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 109, 0, 0, 0, 0, 43, 6, 158
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/venuesfeed/advertisments/advertismenthorizontal/Products.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 54, 0, 0, 0, 0, 1, 5, 60
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/venuesfeed/advertisments/advertismenthorizontal/components/Button.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 31, 0, 0, 0, 0, 0, 6, 37
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/venuesfeed/advertisments/advertismenthorizontal/components/CardHeader.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 29, 0, 0, 0, 0, 0, 4, 33
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/venuesfeed/advertisments/advertismenthorizontal/components/Cards.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 72, 0, 0, 0, 0, 1, 6, 79
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/venuesfeed/advertisments/advertismenthorizontal/index.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 9
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/venuesfeed/comingarea/ComingAreaItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 19, 0, 0, 0, 0, 0, 2, 21
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/venuesfeed/comingarea/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 2, 10
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/components/screens/venuesfeed/devactions/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 58, 0, 0, 0, 0, 0, 4, 62
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/constants/App.ts", "TypeScript", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/constants/Layout.ts", "TypeScript", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/constants/Preferences.ts", "TypeScript", 217, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 22, 239
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/constants/ReactNavigationConstants.ts", "TypeScript", 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 10
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/constants/StorageConstants.ts", "TypeScript", 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 18
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/constants/TaskManagerConstants.ts", "TypeScript", 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 11
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/eas.json", "JSON with Comments", 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 1, 61
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/gluestack-ui.config.ts", "TypeScript", 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 67
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/google-services.json", "JSON", 0, 0, 39, 0, 0, 0, 0, 0, 0, 0, 0, 0, 39
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/fragments/area.fragments.ts", "TypeScript", 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 65
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/fragments/clientdevicemanager.fragments.ts", "TypeScript", 41, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 43
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/fragments/credentials.fragments.ts", "TypeScript", 26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 28
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/fragments/detail_information.fragments.ts", "TypeScript", 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 17
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/fragments/generic.fragments.ts", "TypeScript", 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 9
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/fragments/identifiable_information.fragments.ts", "TypeScript", 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 18
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/fragments/index.fragments.ts", "TypeScript", 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 21
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/fragments/location.fragments.ts", "TypeScript", 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 33
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/fragments/out.fragments.ts", "TypeScript", 28, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 30
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/fragments/personal.fragments.ts", "TypeScript", 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 15
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/fragments/profile.fragments.ts", "TypeScript", 234, 0, 0, 0, 0, 0, 0, 0, 0, 0, 102, 6, 342
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/fragments/profilevenue.fragments.ts", "TypeScript", 56, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 58
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/fragments/relationship.fragments.ts", "TypeScript", 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 42
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/fragments/story.fragments.ts", "TypeScript", 41, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 43
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/fragments/theme.fragments.ts", "TypeScript", 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 44
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/fragments/venue.fragments.ts", "TypeScript", 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 15
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/managing/device/index.mutation.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 8
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/managing/device/index.query.ts", "TypeScript", 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 15
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/managing/devicemanager/index.mutation.ts", "TypeScript", 52, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 55
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/managing/devicemanager/index.query.ts", "TypeScript", 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 23
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/messaging/index.query.ts", "TypeScript", 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 33
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/profiling/authorization/index.mutation.ts", "TypeScript", 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 18
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/profiling/authorization/index.query.ts", "TypeScript", 111, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 117
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/profiling/developer/index.mutation.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 8
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/profiling/developer/index.query.ts", "TypeScript", 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 36, 4, 42
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/profiling/emojimood/index.query.ts", "TypeScript", 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 24
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/profiling/explore/index.mutation.ts", "TypeScript", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/profiling/explore/index.query.ts", "TypeScript", 46, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 47
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/profiling/friending/index.mutation.ts", "TypeScript", 49, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 55
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/profiling/friending/index.query.ts", "TypeScript", 27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 29
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/profiling/information/index.mutation.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 8
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/profiling/information/index.query.ts", "TypeScript", 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 21
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/profiling/interests/index.query.ts", "TypeScript", 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 17
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/profiling/notifications/index.mutation.ts", "TypeScript", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 2, 21
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/profiling/notifications/index.query.ts", "TypeScript", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 2, 9
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/profiling/profile/index.mutation.ts", "TypeScript", 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 63
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/profiling/profile/index.query.ts", "TypeScript", 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 77
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/profiling/recommendation/index.mutation.ts", "TypeScript", 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 64
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/profiling/recommendation/index.query.ts", "TypeScript", 203, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 209
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/profiling/story/index.mutation.ts", "TypeScript", 26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 29
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/profiling/story/index.query.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/profiling/theme/index.mutation.ts", "TypeScript", 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 12
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/DM/profiling/theme/index.query.ts", "TypeScript", 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19, 3, 40
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/apollo/messaging/cache/index.ts", "TypeScript", 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 6
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/apollo/messaging/link/AfterwareLink.ts", "TypeScript", 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4, 27
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/apollo/messaging/link/AuthorizationLink.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 22
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/apollo/messaging/link/ErrorLink.ts", "TypeScript", 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19, 5, 56
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/apollo/messaging/link/HttpLink.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 8
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/apollo/messaging/link/RetryLink.ts", "TypeScript", 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 16
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/apollo/messaging/link/WebSocketLink.ts", "TypeScript", 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 33, 7, 49
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/apollo/messaging/link/index.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 4, 27
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/apollo/messaging/messaging-apollo-server.ts", "TypeScript", 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 12
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/apollo/profiling/cache/index.ts", "TypeScript", 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 6
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/apollo/profiling/link/AfterwareLink.ts", "TypeScript", 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 5, 31
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/apollo/profiling/link/AuthorizationLink.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 21
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/apollo/profiling/link/ErrorLink.ts", "TypeScript", 34, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19, 7, 60
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/apollo/profiling/link/HttpLink.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 10
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/apollo/profiling/link/RetryLink.ts", "TypeScript", 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 17
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/apollo/profiling/link/WebSocketLink.ts", "TypeScript", 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 33, 7, 49
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/apollo/profiling/link/index.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 4, 27
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/apollo/profiling/profiling-apollo-server.ts", "TypeScript", 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 12
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/generated/index.ts", "TypeScript", 20329, 0, 0, 0, 0, 0, 0, 0, 0, 0, 932, 2778, 24039
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/generated/schema.graphql", "GraphQL", 0, 0, 0, 0, 0, 0, 0, 0, 0, 17527, 31, 2381, 19939
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/generated/schema.graphql.json", "JSON", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/graphql/subscriptions/index.subscription.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 8
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/jest-setup.js", "JavaScript", 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 7
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/jest.config.js", "JavaScript", 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 6
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/metro.config.js", "JavaScript", 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 1, 5, 13
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/package.json", "JSON", 0, 0, 267, 0, 0, 0, 0, 0, 0, 0, 10, 0, 277
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/react-native.config.js", "JavaScript", 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 8
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/application/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 19, 0, 0, 0, 0, 0, 3, 22
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/auth/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 2, 5
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/creation/ProfilePersonalCreation.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 2, 20
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/credential/ConfirmationCode.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 2, 5
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/credential/TermsServices.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 2, 6
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/credential/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 3
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/currentlocation/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 2, 6
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 1, 12
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/information/InformationJoinVenue.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 2, 8
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/information/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 2
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/network/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 3, 9
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/permissions/camera/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 2, 8
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/permissions/contacts/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 3, 10
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/permissions/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 1, 8
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/permissions/location/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 3, 15
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/permissions/media/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 2, 8
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/permissions/microphone/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 2, 8
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/permissions/notifications/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 2, 8
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/preferences/PreferenceBackgroundLocationPermission.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 2, 9
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/preferences/PreferenceForegroundLocationPermission.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 2, 9
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/preferences/PreferenceNotificationPermission.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 2, 9
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/preferences/PreferenceSystemsOfUnits.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 2, 9
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/preferences/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 1, 5
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/recommendation/SearchArea.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 2, 8
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/recommendation/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 2
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/reactive/theme/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 29, 0, 0, 0, 0, 1, 5, 35
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/tsconfig.json", "JSON with Comments", 0, 0, 0, 23, 0, 0, 0, 0, 0, 0, 86, 1, 110
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/types/app.ts", "TypeScript", 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 35
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/types/env.ts", "TypeScript", 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 18
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/types/preferences.ts", "TypeScript", 61, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17, 78
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/database/openDatabase.ts", "TypeScript", 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 18
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/helpers/VectorFonts.ts", "TypeScript", 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 17
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/helpers/VectorFonts.web.ts", "TypeScript", 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/helpers/capitalizeFirstLetter.ts", "TypeScript", 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/helpers/data/SignupinText.ts", "TypeScript", 41, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 44
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/helpers/deeplinks/index.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/helpers/generateBlurhash.ts", "TypeScript", 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 12
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/helpers/luxon.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 2, 10
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/app/useApplication.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 4, 16
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/app/useConstant.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 4, 9
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/auth/useCheckLocalStorageForAuthorizationToken.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 31, 0, 0, 0, 0, 0, 7, 38
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/device/useDeviceNetwork.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 39, 0, 0, 0, 0, 0, 7, 46
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/device/useDeviceType.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 5, 25
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/device/usePermission.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 43, 0, 0, 0, 0, 1, 4, 48
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/encryption/useJwt.ts", "TypeScript", 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 7, 22
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/local/useCacheImages.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 9, 4, 28
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/local/useSecureStorage.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 37, 0, 0, 0, 0, 0, 7, 44
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/permissions/location/useSetLocation.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 33, 0, 0, 0, 0, 0, 5, 38
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/permissions/location/useSetLocationToCurrentWithPermission.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 21, 0, 0, 0, 0, 0, 4, 25
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/permissions/medialibrary/useSetMediaLibraryPermission.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 1, 4, 16
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/placeholder/GenerateCountryData.ts", "TypeScript", 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 19
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/placeholder/useGenerateConversations.ts", "TypeScript", 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 39
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/placeholder/useGenerateMessagesData.ts", "TypeScript", 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 30
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/placeholder/useGenerateUserData.ts", "TypeScript", 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 36
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/placeholder/useGenerateVenuesData.ts", "TypeScript", 36, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 6, 43
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/searcharea/useSetSearchAreaWithLocation.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 160, 0, 0, 0, 0, 4, 16, 180
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/theme/createTheme.ts", "TypeScript", 74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 11, 86
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/theme/useToggleTheme.ts", "TypeScript", 76, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 14, 92
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/useContentInsets.ts", "TypeScript", 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 20
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/useConvertDistance.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 60, 0, 0, 0, 0, 0, 9, 69
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/useCounter.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 8
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/useDebounce.ts", "TypeScript", 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 20
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/useDisclose.ts", "TypeScript", 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 21
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/useDistance.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 110, 0, 0, 0, 0, 0, 9, 119
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/useRandomNumber.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 2, 8
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/useRouterNotifications.ts", "TypeScript", 29, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 7, 39
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/useTimer.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 0, 6, 23
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/hooks/useTimer2.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 80, 0, 0, 0, 0, 0, 18, 98
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/uploading/cloudinaryImageUploadingXmlHttpRequest.ts", "TypeScript", 27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 5, 34
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/uploading/useCloudinaryImageUploading.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 27, 0, 0, 0, 0, 0, 7, 34
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/uploading/useCloudinaryImagesUploading.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 28, 0, 0, 0, 0, 0, 7, 35
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/util/uploading/useCloudinaryURLGenerator.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 1, 4, 22
-"/Users/christianfirmi/Desktop/4/Github/bfs/revel/webpack.config.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 9
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.eslintrc.json", "JSON with Comments", 0, 0, 0, 76, 0, 0, 0, 0, 0, 0, 0, 1, 77
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/README.md", "Markdown", 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 1, 9
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/devices.json", "JSON", 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 1, 17
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/assert/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/async_hooks/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/buffer/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/child_process/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/cluster/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/console/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/constants/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/crypto/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/dgram/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/diagnostics_channel/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/dns/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/domain/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/events/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/fs/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/fs/promises/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/http/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/http2/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/https/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/inspector/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/module/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/net/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/os/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/path/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/perf_hooks/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/process/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/punycode/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/querystring/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/readline/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/repl/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/stream/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/string_decoder/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/timers/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/tls/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/trace_events/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/tty/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/url/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/util/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/v8/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/vm/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/worker_threads/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/externals/zlib/index.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/polyfill.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/metro/polyfill.native.js", "JavaScript", 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.expo/types/router.d.ts", "TypeScript", 88, 0, 0, 0, 0, 0, 0, 0, 0, 0, 81, 25, 194
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.github/workflows/update.yaml", "YAML", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 39, 9, 48
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.prettierignore", "Ignore", 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.prettierrc", "JSON", 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 1, 11
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/.stylelintrc.json", "JSON", 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/__tests__/screens/credentials/birthday/Birthday.test.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 3, 10
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/__tests__/screens/credentials/getstarted/GetStarted.test.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 3, 11
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/__tests__/util/hooks/useCounter.test.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 2, 9
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/apollo.config.js", "JavaScript", 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 16
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/apollo.config.sub.js", "JavaScript", 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 18
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app.config.ts", "TypeScript", 203, 0, 0, 0, 0, 0, 0, 0, 0, 0, 221, 1, 425
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 89, 0, 0, 0, 0, 0, 3, 92
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/conversation.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 1, 10
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/explore/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 75, 0, 0, 0, 0, 1, 3, 79
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/explore/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 81, 0, 0, 0, 0, 4, 4, 89
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/explore/searchresults.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 52, 0, 0, 0, 0, 1, 6, 59
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/explore/searchtext.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 268, 0, 0, 0, 0, 5, 11, 284
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/friendslist.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 57, 0, 0, 0, 0, 2, 2, 61
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/hometab/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 170, 0, 0, 0, 0, 3, 5, 178
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/hometab/developmentstack/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 80, 0, 0, 0, 0, 0, 3, 83
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/hometab/developmentstack/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 467, 0, 0, 0, 0, 30, 35, 532
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/hometab/developmentstack/permissionmodals.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 91, 0, 0, 0, 0, 0, 2, 93
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/hometab/developmentstack/preferences.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 171, 0, 0, 0, 0, 0, 3, 174
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/hometab/developmentstack/theme.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 253, 0, 0, 0, 0, 3, 12, 268
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/hometab/messagestack/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 1, 2, 15
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/hometab/messagestack/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 27, 0, 0, 0, 0, 64, 9, 100
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/hometab/profilestack/UserProfileScreen.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 62, 0, 0, 0, 0, 19, 9, 90
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/hometab/profilestack/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 104, 0, 0, 0, 0, 6, 4, 114
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/hometab/tonight.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 97, 0, 0, 0, 0, 0, 5, 102
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/hometab/venuefeed.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 410, 0, 0, 0, 0, 2, 16, 428
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/modal/CameraQR.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 73, 0, 0, 0, 0, 0, 8, 81
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/modal/DeviceManager.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 123, 0, 0, 0, 0, 1, 7, 131
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/modal/Emojimood.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 127, 0, 0, 0, 0, 12, 5, 144
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/modal/MediaLibrary.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 73, 0, 0, 0, 0, 0, 8, 81
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/modal/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 129, 0, 0, 0, 0, 0, 7, 136
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/newconversation.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 339, 0, 0, 0, 0, 12, 24, 375
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/permission/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 23, 0, 0, 0, 0, 0, 2, 25
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/permission/backgroundlocation.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 229, 0, 0, 0, 0, 1, 10, 240
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/permission/camera.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 228, 0, 0, 0, 0, 3, 10, 241
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/permission/contacts.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 253, 0, 0, 0, 0, 1, 12, 266
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/permission/foregroundlocation.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 230, 0, 0, 0, 0, 1, 11, 242
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/permission/medialibrary.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 193, 0, 0, 0, 0, 0, 10, 203
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/permission/microphone.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 228, 0, 0, 0, 0, 1, 10, 239
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/permission/networkinformation.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 306, 0, 0, 0, 0, 1, 20, 327
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/permission/notifications.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 368, 0, 0, 0, 0, 1, 20, 389
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/public/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 203, 0, 0, 0, 0, 2, 3, 208
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/public/contacts.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 203, 0, 0, 0, 0, 45, 13, 261
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/public/personal/[profileid].tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 254, 0, 0, 0, 0, 2, 15, 271
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/public/personal/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 1, 2, 15
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/public/venue/[profileid].tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 275, 0, 0, 0, 0, 3, 11, 289
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/public/venue/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 1, 2, 20
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/searcharea/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 137, 0, 0, 0, 0, 1, 8, 146
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/searcharea/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 232, 0, 0, 0, 0, 1, 10, 243
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/searcharea/searchcountry.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 194, 0, 0, 0, 0, 0, 14, 208
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/searcharea/searchcountrystate.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 198, 0, 0, 0, 0, 0, 15, 213
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/searcharea/searchh3recommendation.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 60, 0, 0, 0, 0, 1, 6, 67
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/searcharea/searchstatecities.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 300, 0, 0, 0, 0, 1, 17, 318
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/settings/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 28, 0, 0, 0, 0, 0, 3, 31
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/settings/appearancesettingsscreen.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 81, 0, 0, 0, 0, 0, 4, 85
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/settings/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 257, 0, 0, 0, 0, 7, 8, 272
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/settings/notificationssettingsscreen.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 3, 18
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/settings/profilesettings/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 19, 0, 0, 0, 0, 0, 2, 21
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/settings/profilesettings/personal/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 2, 24
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/settings/profilesettings/personal/birthday.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 168, 0, 0, 0, 0, 1, 9, 178
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/settings/profilesettings/personal/currenttown.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 41, 0, 0, 0, 0, 0, 4, 45
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/settings/profilesettings/personal/description.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 163, 0, 0, 0, 0, 3, 9, 175
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/settings/profilesettings/personal/fullname.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 287, 0, 0, 0, 0, 0, 9, 296
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/settings/profilesettings/personal/gender.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 211, 0, 0, 0, 0, 1, 9, 221
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/settings/profilesettings/personal/hometown.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 61, 0, 0, 0, 0, 0, 5, 66
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/settings/profilesettings/personal/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 220, 0, 0, 0, 0, 0, 7, 227
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/settings/profilesettings/personal/interests.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 166, 0, 0, 0, 0, 4, 6, 176
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/settings/profilesettings/personal/lookingfor.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 181, 0, 0, 0, 0, 0, 8, 189
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/settings/profilesettings/personal/relationship.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 31, 0, 0, 0, 0, 1, 4, 36
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/settings/profilesettings/personal/username.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 188, 0, 0, 0, 0, 0, 12, 200
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/settings/profilesettings/venue/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 2, 10
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/settings/profilesettings/venue/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 2, 10
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(app)/settings/securitysettingsscreen.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 2, 10
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 1, 2, 7
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/logincredentialstack/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 2, 24
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/logincredentialstack/authenticator.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 330, 0, 0, 0, 0, 0, 14, 344
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/logincredentialstack/confirmationcode.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 257, 0, 0, 0, 0, 1, 16, 274
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/logincredentialstack/devicemanager.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 112, 0, 0, 0, 0, 0, 10, 122
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/logincredentialstack/loginpassword.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 231, 0, 0, 0, 0, 47, 14, 292
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/personalcredentialstack/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 80, 0, 0, 0, 0, 1, 2, 83
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/personalcredentialstack/birthday.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 190, 0, 0, 0, 0, 0, 7, 197
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/personalcredentialstack/confirmationcode.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 252, 0, 0, 0, 0, 2, 14, 268
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/personalcredentialstack/create.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 7, 107
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/personalcredentialstack/email.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 257, 0, 0, 0, 0, 1, 9, 267
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/personalcredentialstack/getstarted.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 77, 0, 0, 0, 0, 2, 6, 85
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/personalcredentialstack/name.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 220, 0, 0, 0, 0, 0, 10, 230
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/personalcredentialstack/password.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 218, 0, 0, 0, 0, 0, 11, 229
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/personalcredentialstack/phone.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 292, 0, 0, 0, 0, 1, 14, 307
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/personalcredentialstack/photo.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 328, 0, 0, 0, 0, 1, 20, 349
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/personalcredentialstack/username.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 229, 0, 0, 0, 0, 0, 12, 241
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/venuecredentialstack/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 79, 0, 0, 0, 0, 1, 2, 82
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/venuecredentialstack/birthday.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 188, 0, 0, 0, 0, 0, 7, 195
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/venuecredentialstack/confirmationcode.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 251, 0, 0, 0, 0, 2, 14, 267
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/venuecredentialstack/create.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 7, 107
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/venuecredentialstack/email.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 255, 0, 0, 0, 0, 1, 9, 265
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/venuecredentialstack/getstarted.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 80, 0, 0, 0, 0, 0, 5, 85
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/venuecredentialstack/name.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 210, 0, 0, 0, 0, 0, 10, 220
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/venuecredentialstack/password.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 239, 0, 0, 0, 0, 1, 16, 256
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/venuecredentialstack/phone.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 290, 0, 0, 0, 0, 1, 14, 305
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/venuecredentialstack/photo.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 328, 0, 0, 0, 0, 1, 20, 349
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(credential)/venuecredentialstack/username.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 230, 0, 0, 0, 0, 0, 12, 242
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(information)/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 42, 0, 0, 0, 0, 1, 3, 46
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(information)/latestprivacyservicetoptab.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 47, 0, 0, 0, 0, 0, 6, 53
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(information)/latestprivacytermsservicetabstack/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 65, 0, 0, 0, 0, 1, 3, 69
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(information)/latestprivacytermsservicetabstack/privacy.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 58, 0, 0, 0, 0, 0, 6, 64
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(information)/latestprivacytermsservicetabstack/services.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 57, 0, 0, 0, 0, 0, 6, 63
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/(information)/updatelatestprivacytermsservice.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 62, 0, 0, 0, 0, 1, 3, 66
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/_layout.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 261, 0, 0, 0, 0, 81, 37, 379
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/app/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 106, 0, 0, 0, 0, 7, 7, 120
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/images/company/CompanyCoasterLogoDynamic.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 52, 0, 0, 0, 0, 0, 6, 58
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/images/company/CompanyCoasterLogoDynamicInverse.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 41, 0, 0, 0, 0, 0, 6, 47
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/images/company/CompanyCoasterLogoDynamicOutline.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 51, 0, 0, 0, 0, 0, 6, 57
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/images/company/LogoTransparent.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 3, 23
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/images/company/static-company-coaster-inverse.svg", "XML", 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 1, 4
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/images/company/static-company-coaster-outline.svg", "XML", 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 1, 7
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/images/company/static-company-coaster.svg", "XML", 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 1, 21
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/images/imagetypes.ts", "TypeScript", 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 8
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/images/location/IllustrationDynamicLocation.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 42, 0, 0, 0, 0, 0, 5, 47
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/images/location/illustrationStaticLocation.svg", "XML", 0, 0, 0, 0, 45, 0, 0, 0, 0, 0, 0, 1, 46
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/images/media/IllustrationDynamicMedia.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 39, 0, 0, 0, 0, 0, 5, 44
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/images/media/IllustrationStaticMedia.svg", "XML", 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 1, 6
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/images/network/IllustrationDynamicNetwork.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 84, 0, 0, 0, 0, 0, 5, 89
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/images/network/IllustrationStaticNetwork.svg", "XML", 0, 0, 0, 0, 31, 0, 0, 0, 0, 0, 0, 1, 32
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/images/notifications/IllustrationDynamicDynamic.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 42, 0, 0, 0, 0, 0, 4, 46
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/images/notifications/illustrationStaticLocation.svg", "XML", 0, 0, 0, 0, 45, 0, 0, 0, 0, 0, 0, 1, 46
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/amber.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/amber.js", "JavaScript", 0, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 19
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/blue.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/blue.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/blueGrey.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/blueGrey.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/brown.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/brown.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/colors.ts", "TypeScript", 256, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 276
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/common.d.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 3, 19
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/common.js", "JavaScript", 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 12
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/cyan.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/cyan.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/deepOrange.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/deepOrange.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/deepPurple.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/deepPurple.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/green.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 4, 67
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/green.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/grey.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/grey.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/index.d.ts", "TypeScript", 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 21
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/index.js", "JavaScript", 0, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 22
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/indigo.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/indigo.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/lightBlue.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/lightBlue.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/lightGreen.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/lightGreen.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/lime.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/lime.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/orange.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/orange.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/package.json", "JSON", 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 1, 6
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/pink.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/pink.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/purple.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/purple.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/red.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/red.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/teal.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/teal.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/yellow.d.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 2, 65
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/colors/yellow.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 23
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/default/companycolors.ts", "TypeScript", 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 24
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/default/gluestack/index.ts", "TypeScript", 39, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 42
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/default/index.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 21
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/default/palettecolors.ts", "TypeScript", 435, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 439
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/default/reactnavigation/index.ts", "TypeScript", 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 28
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/default/restyle/index.ts", "TypeScript", 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 26
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/default/barfriends/index.ts", "TypeScript", 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 12
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/assets/theme/default/styled/index.ts", "TypeScript", 55, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 58
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/babel.config.js", "JavaScript", 0, 39, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 41
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/codegen-graphql-sub.yml", "YAML", 0, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 1, 19
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/codegen-graphql.yml", "YAML", 0, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 1, 19
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/atoms/Total.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 24, 0, 0, 0, 0, 0, 4, 28
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 4, 26
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/atoms/buttons/goback/GoBack.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 41, 0, 0, 0, 0, 3, 8, 52
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/atoms/buttons/joinvenue/JoinVenue.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 87, 0, 0, 0, 0, 0, 6, 93
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/atoms/icons/navigationdragicon/NavigationDragIcon.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 0, 2, 19
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/atoms/icons/tabbaricon/TabBarIcon.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 48, 0, 0, 0, 0, 1, 7, 56
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/atoms/inputs/DatePicker.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 40, 0, 0, 0, 0, 13, 6, 59
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/index.ts", "TypeScript", 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/layouts/Auth.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 61, 0, 0, 0, 0, 17, 11, 89
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/layouts/Theme.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 61, 0, 0, 0, 0, 2, 10, 73
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/asks/signinup/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 45, 0, 0, 0, 0, 0, 3, 48
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/asks/signuplogin/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 77, 0, 0, 0, 0, 2, 5, 84
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/authorization/devicemanagerprofileitem/DeviceManagerProfileItemLarge.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 98, 0, 0, 0, 0, 0, 5, 103
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/authorization/devicemanagerprofileitem/DeviceManagerProfileItemSmall.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 51, 0, 0, 0, 0, 0, 4, 55
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/index.ts", "TypeScript", 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/information/informationjoinvenue/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 99, 0, 0, 0, 0, 0, 3, 102
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/modals/asks/backgroundlocationnextaskmodal/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 4, 68
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/modals/asks/foregroundlocationnextaskmodal/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 74, 0, 0, 0, 0, 0, 4, 78
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/modals/asks/notificationnextaskmodal/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 7, 107
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/modals/cameramodal/CameraModal.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 62, 0, 0, 0, 0, 49, 13, 124
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/modals/cancelfriendnotioficationmodal/CancelFriendNotificationModal.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 87, 0, 0, 0, 0, 0, 6, 93
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/modals/relationshipmodal/RelationshipModal.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 127, 0, 0, 0, 0, 0, 9, 136
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/modals/signupaskmodal/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 36, 0, 0, 0, 0, 0, 3, 39
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/notifications/friendnotification/CondensedHorizontalFriendNotifciation.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 212, 0, 0, 0, 0, 8, 9, 229
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/notifications/message/HorizontalMessageNotification.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 62, 0, 0, 0, 0, 15, 3, 80
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/permissions/preferencelocationpermission/PreferenceBackgroundLocationPermissionFullSection.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 126, 0, 0, 0, 0, 0, 3, 129
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/permissions/preferencelocationpermission/PreferenceForegroundLocationPermissionFullSection.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 119, 0, 0, 0, 0, 0, 2, 121
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/permissions/preferencemediapermission/MediaPermissionFullSection.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 67, 0, 0, 0, 0, 0, 3, 70
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/permissions/preferencenotificationpermission/PreferenceNotificationPermission.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 93, 0, 0, 0, 0, 13, 9, 115
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/personal/CardFullImageNameEmoji.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 101, 0, 0, 0, 0, 0, 3, 104
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/search/searchinput/SearchInput.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 216, 0, 0, 0, 0, 1, 16, 233
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/search/searchinput/SearchInputController.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 0, 4, 21
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/search/searchinput/SearchInputResults.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 78, 0, 0, 0, 0, 0, 5, 83
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/search/searchinput/SearchInputSearchArea.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 124, 0, 0, 0, 0, 0, 11, 135
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/search/searchinput/SearchInputText.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 169, 0, 0, 0, 0, 1, 14, 184
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/search/searchinput/SearchInputVenueFeed.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 177, 0, 0, 0, 0, 1, 12, 190
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/search/searchinput/SearchInputVenueFeedDisabled.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 72, 0, 0, 0, 0, 0, 5, 77
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/tabbaricons/hometabicons/developmenttab/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 3, 28
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/tabbaricons/hometabicons/hometab/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 39, 0, 0, 0, 0, 0, 3, 42
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/tabbaricons/hometabicons/maptab/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 26, 0, 0, 0, 0, 0, 3, 29
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/tabbaricons/hometabicons/messagestab/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 39, 0, 0, 0, 0, 0, 3, 42
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/tabbaricons/hometabicons/notificationtab/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 23, 0, 0, 0, 0, 0, 3, 26
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/tabbaricons/hometabicons/profiletab/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 109, 0, 0, 0, 0, 22, 8, 139
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/tabbaricons/hometabicons/searchtab/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 34, 0, 0, 0, 0, 0, 3, 37
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/tabbaricons/hometabicons/tonighttab/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 4, 39
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/molecules/tabbaricons/hometabicons/venuefeedtab/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 4, 39
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/organisms/ProfileActivityAndStatusCards/ProfileActivityAndStatusCards.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 0, 3, 20
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/organisms/ShowCaseScroll/Card.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 45, 0, 0, 0, 0, 1, 5, 51
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/organisms/ShowCaseScroll/Model.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 49, 0, 0, 0, 0, 10, 3, 62
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/organisms/ShowCaseScroll/PhilzCoffee.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 51, 0, 0, 0, 0, 9, 7, 67
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/organisms/ShowCaseScroll/Products.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 42, 0, 0, 0, 0, 1, 5, 48
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/organisms/ShowCaseScroll/components/Button.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 31, 0, 0, 0, 0, 0, 6, 37
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/organisms/ShowCaseScroll/components/CardHeader.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 29, 0, 0, 0, 0, 0, 4, 33
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/organisms/ShowCaseScroll/components/Cards.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 72, 0, 0, 0, 0, 1, 6, 79
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/organisms/ShowCaseScroll/index.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 9
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/organisms/index.ts", "TypeScript", 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/organisms/list/DeviceManagerProfiles.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 81, 0, 0, 0, 0, 0, 11, 92
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/organisms/list/friendslist/FriendsListEmptyState.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 68, 0, 0, 0, 0, 0, 2, 70
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/organisms/list/friendslist/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 37, 0, 0, 0, 0, 0, 5, 42
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/organisms/list/notifications/friends/CondensedVerticalFriendsNotficationsList.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 32, 0, 0, 0, 0, 0, 4, 36
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/organisms/list/searchareafiltering/HorizontalCityItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 45, 0, 0, 0, 0, 0, 4, 49
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/organisms/list/searchareafiltering/HorizontalCountryItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 41, 0, 0, 0, 0, 0, 4, 45
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/organisms/list/searchareafiltering/HorizontalStateItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 45, 0, 0, 0, 0, 0, 4, 49
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/organisms/list/searchareafiltering/LocationPermissionItemEmptyState.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 78, 0, 0, 0, 0, 1, 8, 87
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/organisms/list/searchareafiltering/SearchAreaLocationPermissionItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 126, 0, 0, 0, 0, 1, 7, 134
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/organisms/photos/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 410, 0, 0, 0, 0, 2, 17, 429
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/NotFound.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 3, 13
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/conversations/ContactItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 30, 0, 0, 0, 0, 0, 4, 34
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/conversations/SearchResultContactItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 4, 20
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/information/privacyserviceterms/Privacy.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 53, 0, 0, 0, 0, 0, 5, 58
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/information/privacyserviceterms/Service.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 46, 0, 0, 0, 0, 0, 4, 50
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/messageroom/messageroom/Message.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 30, 0, 0, 0, 0, 0, 1, 31
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/messageroom/messageroom/MessageRoom.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 153, 0, 0, 0, 0, 46, 12, 211
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/messageroom/messageroom/MessageRoomAniamted.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 68, 0, 0, 0, 0, 28, 5, 101
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/messageroom/messageroom/Random.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 42, 0, 0, 0, 0, 0, 9, 51
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/messageroom/messageroom/animation.json", "JSON", 0, 0, 1616, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1617
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/messageroom/messageroom/data.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 31, 0, 0, 0, 0, 0, 5, 36
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/messageroom/messageroom/hooks.ts", "TypeScript", 28, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 5, 40
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/messageroom/messageroom/styles.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 19
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/messageroomgiftedchat/AccessoryBar.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 39, 0, 0, 0, 0, 0, 5, 44
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/messageroomgiftedchat/CustomView.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 79, 0, 0, 0, 0, 0, 8, 87
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/messageroomgiftedchat/MessageContainer.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 84, 0, 0, 0, 0, 4, 7, 95
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/messageroomgiftedchat/data/earlierMessages.ts", "TypeScript", 129, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 130
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/messageroomgiftedchat/data/messages.ts", "TypeScript", 113, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 114
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/messageroomgiftedchat/mediautils.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 59, 0, 0, 0, 0, 0, 8, 67
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/permissions/PermissionDetailItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 21, 0, 0, 0, 0, 0, 2, 23
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/profile/Profile.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 68, 0, 0, 0, 0, 14, 8, 90
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/profile/personalprofile/PersonalProfile.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 87, 0, 0, 0, 0, 0, 6, 93
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/profile/profilephoto/ProfilePhotoEmptyState.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 87, 0, 0, 0, 0, 1, 5, 93
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/profile/profilephoto/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 33, 0, 0, 0, 0, 0, 4, 37
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/profile/venueprofile/VenueProfile.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 4, 16
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/personal/FlatListCustom.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/personal/Personal.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 55, 0, 0, 0, 0, 2, 7, 64
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/personal/actions/Actions.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 95, 0, 0, 0, 0, 1, 9, 105
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/personal/currentvenue/CurrentVenue.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 42, 0, 0, 0, 0, 0, 2, 44
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/personal/details/Details.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 19, 0, 0, 0, 0, 0, 3, 22
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/personal/friendship/Friendship.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 71, 0, 0, 0, 0, 0, 8, 79
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/personal/photos/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 365, 0, 0, 0, 0, 2, 17, 384
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/personal/profilephoto/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 32, 0, 0, 0, 0, 0, 4, 36
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/personal/relationship/Relationships.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 55, 0, 0, 0, 0, 0, 7, 62
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/venue/details/Details.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 121, 0, 0, 0, 0, 0, 8, 129
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/venue/peopleatvenue/PersonalAtVenue.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 36, 0, 0, 0, 0, 15, 4, 55
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/venue/venueactions/ActionCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 39, 0, 0, 0, 0, 0, 4, 43
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/venue/venueactions/VenueActions.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 2, 8, 74
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/venue/venueactions/actioncards/distancecard/DistanceCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 0, 3, 20
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/venue/venueactions/actioncards/distancecard/variants/AskLocationPermission.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 3, 38
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/venue/venueactions/actioncards/distancecard/variants/CurrentLocationFromVenueDistance.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 196, 0, 0, 0, 0, 3, 12, 211
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/venue/venueactions/actioncards/invitecard/InviteCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 48, 0, 0, 0, 0, 0, 3, 51
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/venue/venueactions/actioncards/joincard/JoinCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 24, 0, 0, 0, 0, 1, 2, 27
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/venue/venueactions/actioncards/leavesection/LeaveSection.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 86, 0, 0, 0, 0, 1, 4, 91
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/venue/venueactions/actioncards/quickbarfriendcard/QuickBarfriendCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 113, 0, 0, 0, 0, 0, 8, 121
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/venue/venueactions/actioncards/signupcard/SignupCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 0, 2, 37
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/venue/venueactions/actioncards/ubercard/UberButton.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 62, 0, 0, 0, 0, 0, 8, 70
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/venue/venueactions/actioncards/ubercard/UberCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 63, 0, 0, 0, 0, 0, 8, 71
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/venue/venueactions/devactions/DevActions.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 55, 0, 0, 0, 0, 0, 3, 58
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/venue/venueactions/devactions/joincard/JoinCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 132, 0, 0, 0, 0, 1, 6, 139
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/venue/venueactions/devactions/leavecard/LeaveCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 86, 0, 0, 0, 0, 1, 5, 92
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/venue/venueactions/devactions/totalcard/TotalCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 133, 0, 0, 0, 0, 1, 11, 145
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/venue/venueheader/VenueHeader.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 45, 0, 0, 0, 0, 0, 6, 51
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/public/venue/venuetotals/VenueTotals.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 95, 0, 0, 0, 0, 0, 6, 101
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/search/components/SearchCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 81, 0, 0, 0, 0, 1, 4, 86
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/search/searchtext/SearchTextScreen.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 271, 0, 0, 0, 0, 6, 11, 288
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/search/textsearchtabs/SearchAccounts.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 131, 0, 0, 0, 0, 1, 6, 138
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/search/textsearchtabs/SearchTop.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 1, 2, 11
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/search/textsearchtabs/SearchVenues.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 131, 0, 0, 0, 0, 1, 5, 137
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/searcharea/PlaceItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 42, 0, 0, 0, 0, 0, 3, 45
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/settings/TermsLoadingState.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 50, 0, 0, 0, 0, 0, 3, 53
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/splash/AnimatedAppLoader.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 6, 26
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/splash/AnimatedSplashScreen.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 81, 0, 0, 0, 0, 1, 10, 92
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/tonight/Tonight.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 26, 0, 0, 0, 0, 1, 3, 30
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/tonight/activity/ask/AddEmoji/AddEmoji.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 46, 0, 0, 0, 0, 0, 4, 50
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/tonight/activity/ask/AddRelationship/AddRelationship.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 53, 0, 0, 0, 0, 0, 4, 57
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/tonight/activity/ask/JoinVenue/JoinVenue.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 52, 0, 0, 0, 0, 0, 4, 56
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/tonight/images/Config.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 29, 0, 0, 0, 0, 0, 8, 37
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/tonight/images/GestureItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 128, 0, 0, 0, 0, 7, 12, 147
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/tonight/images/Item.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 66, 0, 0, 0, 0, 0, 6, 72
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/tonight/images/SortableList.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 48, 0, 0, 0, 0, 7, 5, 60
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/tonight/images/TonightImages.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 95, 0, 0, 0, 0, 4, 7, 106
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/tonight/images/index.ts", "TypeScript", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/tonight/photos/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 410, 0, 0, 0, 0, 2, 17, 429
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/venuesfeed/CurrentVenue.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 169, 0, 0, 0, 0, 1, 9, 179
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/venuesfeed/HorizontalVenueFeedVenueItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 114, 0, 0, 0, 0, 1, 10, 125
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/venuesfeed/PermissionButtonNotification.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 21, 0, 0, 0, 0, 0, 4, 25
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/venuesfeed/PermissionButtonSearchAreaLocation.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 23, 0, 0, 0, 0, 0, 4, 27
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/venuesfeed/SearchAreaHeader.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 67, 0, 0, 0, 0, 0, 4, 71
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/venuesfeed/SkeletonVenuesHomeScreen.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 4, 26
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/venuesfeed/VenueFeedSearchAreaEmptyState.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 41, 0, 0, 0, 0, 0, 4, 45
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/venuesfeed/VerticalVenueFeedVenueItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 285, 0, 0, 0, 0, 3, 15, 303
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/venuesfeed/advertisments/advertismenthorizontal/AdvertismentHorizontal.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 51, 0, 0, 0, 0, 9, 7, 67
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/venuesfeed/advertisments/advertismenthorizontal/Card.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 334, 0, 0, 0, 0, 7, 5, 346
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/venuesfeed/advertisments/advertismenthorizontal/Model.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 109, 0, 0, 0, 0, 43, 6, 158
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/venuesfeed/advertisments/advertismenthorizontal/Products.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 54, 0, 0, 0, 0, 1, 5, 60
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/venuesfeed/advertisments/advertismenthorizontal/components/Button.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 31, 0, 0, 0, 0, 0, 6, 37
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/venuesfeed/advertisments/advertismenthorizontal/components/CardHeader.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 29, 0, 0, 0, 0, 0, 4, 33
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/venuesfeed/advertisments/advertismenthorizontal/components/Cards.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 72, 0, 0, 0, 0, 1, 6, 79
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/venuesfeed/advertisments/advertismenthorizontal/index.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 9
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/venuesfeed/comingarea/ComingAreaItem.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 19, 0, 0, 0, 0, 0, 2, 21
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/venuesfeed/comingarea/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 2, 10
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/components/screens/venuesfeed/devactions/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 58, 0, 0, 0, 0, 0, 4, 62
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/constants/App.ts", "TypeScript", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/constants/Layout.ts", "TypeScript", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/constants/Preferences.ts", "TypeScript", 217, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 22, 239
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/constants/ReactNavigationConstants.ts", "TypeScript", 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 10
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/constants/StorageConstants.ts", "TypeScript", 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 18
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/constants/TaskManagerConstants.ts", "TypeScript", 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 11
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/eas.json", "JSON with Comments", 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 1, 61
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/gluestack-ui.config.ts", "TypeScript", 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 67
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/google-services.json", "JSON", 0, 0, 39, 0, 0, 0, 0, 0, 0, 0, 0, 0, 39
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/fragments/area.fragments.ts", "TypeScript", 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 65
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/fragments/clientdevicemanager.fragments.ts", "TypeScript", 41, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 43
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/fragments/credentials.fragments.ts", "TypeScript", 26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 28
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/fragments/detail_information.fragments.ts", "TypeScript", 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 17
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/fragments/generic.fragments.ts", "TypeScript", 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 9
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/fragments/identifiable_information.fragments.ts", "TypeScript", 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 18
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/fragments/index.fragments.ts", "TypeScript", 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 21
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/fragments/location.fragments.ts", "TypeScript", 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 33
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/fragments/out.fragments.ts", "TypeScript", 28, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 30
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/fragments/personal.fragments.ts", "TypeScript", 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 15
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/fragments/profile.fragments.ts", "TypeScript", 234, 0, 0, 0, 0, 0, 0, 0, 0, 0, 102, 6, 342
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/fragments/profilevenue.fragments.ts", "TypeScript", 56, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 58
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/fragments/relationship.fragments.ts", "TypeScript", 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 42
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/fragments/story.fragments.ts", "TypeScript", 41, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 43
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/fragments/theme.fragments.ts", "TypeScript", 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 44
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/fragments/venue.fragments.ts", "TypeScript", 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 15
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/managing/device/index.mutation.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 8
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/managing/device/index.query.ts", "TypeScript", 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 15
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/managing/devicemanager/index.mutation.ts", "TypeScript", 52, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 55
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/managing/devicemanager/index.query.ts", "TypeScript", 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 23
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/messaging/index.query.ts", "TypeScript", 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 33
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/profiling/authorization/index.mutation.ts", "TypeScript", 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 18
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/profiling/authorization/index.query.ts", "TypeScript", 111, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 117
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/profiling/developer/index.mutation.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 8
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/profiling/developer/index.query.ts", "TypeScript", 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 36, 4, 42
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/profiling/emojimood/index.query.ts", "TypeScript", 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 24
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/profiling/explore/index.mutation.ts", "TypeScript", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/profiling/explore/index.query.ts", "TypeScript", 46, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 47
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/profiling/friending/index.mutation.ts", "TypeScript", 49, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 55
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/profiling/friending/index.query.ts", "TypeScript", 27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 29
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/profiling/information/index.mutation.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 8
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/profiling/information/index.query.ts", "TypeScript", 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 21
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/profiling/interests/index.query.ts", "TypeScript", 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 17
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/profiling/notifications/index.mutation.ts", "TypeScript", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 2, 21
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/profiling/notifications/index.query.ts", "TypeScript", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 2, 9
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/profiling/profile/index.mutation.ts", "TypeScript", 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 63
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/profiling/profile/index.query.ts", "TypeScript", 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 77
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/profiling/recommendation/index.mutation.ts", "TypeScript", 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 64
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/profiling/recommendation/index.query.ts", "TypeScript", 203, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 209
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/profiling/story/index.mutation.ts", "TypeScript", 26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 29
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/profiling/story/index.query.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/profiling/theme/index.mutation.ts", "TypeScript", 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 12
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/DM/profiling/theme/index.query.ts", "TypeScript", 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19, 3, 40
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/apollo/messaging/cache/index.ts", "TypeScript", 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 6
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/apollo/messaging/link/AfterwareLink.ts", "TypeScript", 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4, 27
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/apollo/messaging/link/AuthorizationLink.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 22
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/apollo/messaging/link/ErrorLink.ts", "TypeScript", 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19, 5, 56
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/apollo/messaging/link/HttpLink.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 8
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/apollo/messaging/link/RetryLink.ts", "TypeScript", 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 16
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/apollo/messaging/link/WebSocketLink.ts", "TypeScript", 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 33, 7, 49
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/apollo/messaging/link/index.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 4, 27
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/apollo/messaging/messaging-apollo-server.ts", "TypeScript", 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 12
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/apollo/profiling/cache/index.ts", "TypeScript", 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 6
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/apollo/profiling/link/AfterwareLink.ts", "TypeScript", 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 5, 31
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/apollo/profiling/link/AuthorizationLink.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 21
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/apollo/profiling/link/ErrorLink.ts", "TypeScript", 34, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19, 7, 60
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/apollo/profiling/link/HttpLink.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 10
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/apollo/profiling/link/RetryLink.ts", "TypeScript", 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 17
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/apollo/profiling/link/WebSocketLink.ts", "TypeScript", 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 33, 7, 49
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/apollo/profiling/link/index.ts", "TypeScript", 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 4, 27
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/apollo/profiling/profiling-apollo-server.ts", "TypeScript", 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 12
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/generated/index.ts", "TypeScript", 20329, 0, 0, 0, 0, 0, 0, 0, 0, 0, 932, 2778, 24039
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/generated/schema.graphql", "GraphQL", 0, 0, 0, 0, 0, 0, 0, 0, 0, 17527, 31, 2381, 19939
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/generated/schema.graphql.json", "JSON", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/graphql/subscriptions/index.subscription.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 8
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/jest-setup.js", "JavaScript", 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 7
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/jest.config.js", "JavaScript", 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 6
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/metro.config.js", "JavaScript", 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 1, 5, 13
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/package.json", "JSON", 0, 0, 267, 0, 0, 0, 0, 0, 0, 0, 10, 0, 277
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/react-native.config.js", "JavaScript", 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 8
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/application/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 19, 0, 0, 0, 0, 0, 3, 22
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/auth/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 2, 5
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/creation/ProfilePersonalCreation.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 2, 20
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/credential/ConfirmationCode.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 2, 5
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/credential/TermsServices.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 2, 6
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/credential/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 3
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/currentlocation/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 2, 6
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 1, 12
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/information/InformationJoinVenue.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 2, 8
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/information/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 2
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/network/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 3, 9
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/permissions/camera/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 2, 8
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/permissions/contacts/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 3, 10
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/permissions/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 1, 8
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/permissions/location/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 3, 15
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/permissions/media/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 2, 8
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/permissions/microphone/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 2, 8
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/permissions/notifications/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 2, 8
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/preferences/PreferenceBackgroundLocationPermission.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 2, 9
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/preferences/PreferenceForegroundLocationPermission.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 2, 9
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/preferences/PreferenceNotificationPermission.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 2, 9
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/preferences/PreferenceSystemsOfUnits.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 2, 9
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/preferences/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 1, 5
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/recommendation/SearchArea.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 2, 8
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/recommendation/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 2
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/reactive/theme/index.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 29, 0, 0, 0, 0, 1, 5, 35
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/tsconfig.json", "JSON with Comments", 0, 0, 0, 23, 0, 0, 0, 0, 0, 0, 86, 1, 110
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/types/app.ts", "TypeScript", 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 35
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/types/env.ts", "TypeScript", 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 18
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/types/preferences.ts", "TypeScript", 61, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17, 78
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/database/openDatabase.ts", "TypeScript", 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 18
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/helpers/VectorFonts.ts", "TypeScript", 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 17
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/helpers/VectorFonts.web.ts", "TypeScript", 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/helpers/capitalizeFirstLetter.ts", "TypeScript", 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 4
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/helpers/data/SignupinText.ts", "TypeScript", 41, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 44
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/helpers/deeplinks/index.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/helpers/generateBlurhash.ts", "TypeScript", 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 12
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/helpers/luxon.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 2, 10
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/app/useApplication.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 4, 16
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/app/useConstant.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 4, 9
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/auth/useCheckLocalStorageForAuthorizationToken.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 31, 0, 0, 0, 0, 0, 7, 38
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/device/useDeviceNetwork.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 39, 0, 0, 0, 0, 0, 7, 46
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/device/useDeviceType.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 5, 25
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/device/usePermission.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 43, 0, 0, 0, 0, 1, 4, 48
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/encryption/useJwt.ts", "TypeScript", 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 7, 22
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/local/useCacheImages.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 9, 4, 28
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/local/useSecureStorage.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 37, 0, 0, 0, 0, 0, 7, 44
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/permissions/location/useSetLocation.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 33, 0, 0, 0, 0, 0, 5, 38
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/permissions/location/useSetLocationToCurrentWithPermission.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 21, 0, 0, 0, 0, 0, 4, 25
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/permissions/medialibrary/useSetMediaLibraryPermission.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 1, 4, 16
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/placeholder/GenerateCountryData.ts", "TypeScript", 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 19
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/placeholder/useGenerateConversations.ts", "TypeScript", 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 39
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/placeholder/useGenerateMessagesData.ts", "TypeScript", 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 30
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/placeholder/useGenerateUserData.ts", "TypeScript", 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 36
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/placeholder/useGenerateVenuesData.ts", "TypeScript", 36, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 6, 43
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/searcharea/useSetSearchAreaWithLocation.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 160, 0, 0, 0, 0, 4, 16, 180
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/theme/createTheme.ts", "TypeScript", 74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 11, 86
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/theme/useToggleTheme.ts", "TypeScript", 76, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 14, 92
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/useContentInsets.ts", "TypeScript", 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 20
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/useConvertDistance.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 60, 0, 0, 0, 0, 0, 9, 69
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/useCounter.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 8
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/useDebounce.ts", "TypeScript", 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 20
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/useDisclose.ts", "TypeScript", 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 21
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/useDistance.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 110, 0, 0, 0, 0, 0, 9, 119
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/useRandomNumber.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 2, 8
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/useRouterNotifications.ts", "TypeScript", 29, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 7, 39
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/useTimer.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 0, 6, 23
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/hooks/useTimer2.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 80, 0, 0, 0, 0, 0, 18, 98
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/uploading/cloudinaryImageUploadingXmlHttpRequest.ts", "TypeScript", 27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 5, 34
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/uploading/useCloudinaryImageUploading.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 27, 0, 0, 0, 0, 0, 7, 34
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/uploading/useCloudinaryImagesUploading.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 28, 0, 0, 0, 0, 0, 7, 35
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/util/uploading/useCloudinaryURLGenerator.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 1, 4, 22
+"/Users/christianfirmi/Desktop/4/Github/bfs/barfriends/webpack.config.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 9
 "Total", "-", 24944, 575, 1976, 159, 155, 28420, 36, 1, 8, 17527, 3440, 7688, 84929

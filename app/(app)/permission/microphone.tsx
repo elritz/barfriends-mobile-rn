@@ -91,7 +91,7 @@ export default () => {
 	}
 	const createTwoButtonAlert = () =>
 		Alert.alert(
-			'Revel Camera Permissions',
+			'Barfriends Camera Permissions',
 			`Camera permissions are currently ${capitalizeFirstLetter(
 				capitalizeFirstLetter(rMicrophonePermission?.status),
 			)}. If you wish to adjust go to your device settings.`,
@@ -170,7 +170,7 @@ export default () => {
 					adjustsFontSizeToFit
 					numberOfLines={3}
 				>
-					Allow Revel to access your microphone
+					Allow Barfriends to access your microphone
 				</Heading>
 			</Box>
 			<ScrollView>

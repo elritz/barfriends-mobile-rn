@@ -88,7 +88,7 @@ export default () => {
 
 	const createTwoButtonAlert = () =>
 		Alert.alert(
-			'Revel Foreground Location Permission',
+			'Barfriends Foreground Location Permission',
 			`Location is currently ${capitalizeFirstLetter(
 				rPermissionLocationVar?.status,
 			)} and in use. If you wish to adjust go to your device settings.`,
@@ -173,7 +173,7 @@ export default () => {
 					adjustsFontSizeToFit
 					numberOfLines={3}
 				>
-					Allow Revel to Use Foreground Location
+					Allow Barfriends to Use Foreground Location
 				</Heading>
 			</Box>
 			<ScrollView>

@@ -22,7 +22,7 @@ const CompanyCoasterLogoDynamicOutline: React.FC<Props> = ({
 		width: 100,
 		height: 100,
 		backgroundColor: rTheme.colorScheme === 'light' ? 'white' : 'black',
-		iconColor: defaulttheme.revel.dark.primary,
+		iconColor: defaulttheme.barfriends.dark.primary,
 	}
 
 	return (

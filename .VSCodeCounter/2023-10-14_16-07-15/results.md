@@ -2,7 +2,7 @@
 
 Date : 2023-10-14 16:07:15
 
-Directory /Users/christianfirmi/Desktop/4/Github/bfs/revel
+Directory /Users/christianfirmi/Desktop/4/Github/bfs/barfriends
 
 Total : 541 files,  73801 codes, 3440 comments, 7688 blanks, all 84929 lines
 
@@ -130,7 +130,7 @@ Summary / [Details](details.md) / [Diff Summary](diff.md) / [Diff Details](diff-
 | assets/theme/default/gluestack | 1 | 39 | 0 | 3 | 42 |
 | assets/theme/default/reactnavigation | 1 | 25 | 0 | 3 | 28 |
 | assets/theme/default/restyle | 1 | 23 | 0 | 3 | 26 |
-| assets/theme/default/revel | 1 | 11 | 0 | 1 | 12 |
+| assets/theme/default/barfriends | 1 | 11 | 0 | 1 | 12 |
 | assets/theme/default/styled | 1 | 55 | 0 | 3 | 58 |
 | components | 159 | 13,089 | 402 | 882 | 14,373 |
 | components (Files) | 1 | 2 | 0 | 1 | 3 |
