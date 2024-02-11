@@ -117,6 +117,21 @@ export default () => {
 	// 	setAppState(AppState.currentState)
 	// }
 
+
+	async function onFetchUpdateAsync() {
+		try {
+			const update = await Updates.checkForUpdateAsync();
+
+			if (update.isAvailable) {
+				await Updates.fetchUpdateAsync();
+				await Updates.reloadAsync();
+			}
+		} catch (error) {
+			// You can also add an alert() to see the error message in case of an error when fetching updates.
+			Alert.alert(`Error fetching latest Expo update: ${error}`);
+		}
+	}
+
 	async function getApplicationAuthorization() {
 		const getAuthorization = await secureStorageItemRead({
 			key: AUTHORIZATION,
@@ -302,6 +317,13 @@ export default () => {
 	]
 
 	const GeneralOptions = [
+		{
+			type: 'generalinformation',
+			title: 'Check for updates',
+			value: SERVER_ENDPOINT,
+			icon: '',
+			onPress: onFetchUpdateAsync,
+		},
 		{
 			type: 'generalinformation',
 			title: 'IP Address',

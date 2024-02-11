@@ -34,5 +34,6 @@
 	},
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"dotenv.enableAutocloaking": false,
-	"peacock.color": "#ff3d00"
+	"peacock.color": "#ff3d00",
+	"git.ignoreLimitWarning": true
 }

@@ -136,26 +136,38 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 					sourceExts: ['cjs'],
 				},
 			}
-		case 'staging':
+		case 'test':
 			return {
 				name: 'Revel (stg)',
 				slug: 'revel',
 				owner: 'barfriends',
 				scheme: 'revel-staging',
 				orientation: 'portrait',
+				userInterfaceStyle: 'automatic',
 				plugins: [
 					'expo-router',
-					'sentry-expo',
 					[
 						"@sentry/react-native/expo",
 						{
-							"url": "https://sentry.io/",
-							"organization": "barfriends-inc-6w",
-							"project": "revel-dev"
+						  "organization": "barfriends-inc-6w",
+						  "project": "revel-dev"
 						}
 					],
-					['expo-build-properties'],
+					[
+						"expo-updates",
+						{
+							"username": "ritzz"
+						}
+					],
 					['expo-apple-authentication'],
+					[
+						'expo-build-properties',
+						{
+							ios: {
+								flipper: true,
+							},
+						},
+					],
 					[
 						'expo-screen-orientation',
 						{

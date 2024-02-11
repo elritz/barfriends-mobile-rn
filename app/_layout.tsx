@@ -20,6 +20,7 @@ import {
 	LOCAL_STORAGE_PREFERENCE_SYSTEM_OF_UNITS,
 	LOCAL_STORAGE_INFORMATION_JOIN_VENUE,
 } from '@constants/StorageConstants'
+import * as Updates from 'expo-updates'
 import {
 	LocalStoragePreferenceSearchAreaType,
 	LocalStoragePreferenceThemeType,
@@ -274,6 +275,18 @@ function Root() {
 			// BACKGROUNDLOCATION_PREFERENCE ~ START ~ END
 		} catch (e) { }
 	}
+
+
+	const eventListener = (event) => {
+		if (event.type === Updates.UpdateEventType.ERROR) {
+			// Handle error
+		} else if (event.type === Updates.UpdateEventType.NO_UPDATE_AVAILABLE) {
+			// Handle no update available
+		} else if (event.type === Updates.UpdateEventType.UPDATE_AVAILABLE) {
+			// Handle update available
+		}
+	};
+	Updates.useUpdateEvents(eventListener);
 
 	const setAsyncPermissions = async () => {
 		const contactsPermission = await Contacts.getPermissionsAsync()
