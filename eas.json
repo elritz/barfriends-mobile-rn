@@ -1,17 +1,16 @@
 {
 	"cli": {
-		"version": "3.7.2",
 		"appVersionSource": "remote"
 	},
 	"build": {
 		"fast": {
 			"ios": {
-				"resourceClass": "m1-medium"
+				"resourceClass": "m-medium"
 			}
 		},
 		"development-simulator": {
 			"env": {
-				"NODE_ENV": "development"
+				"APP_ENV": "development"
 			},
 			"channel": "development",
 			"developmentClient": true,
@@ -22,41 +21,25 @@
 		},
 		"development": {
 			"env": {
-				"NODE_ENV": "development"
+				"APP_ENV": "development"
 			},
 			"channel": "development",
 			"developmentClient": true,
 			"distribution": "internal",
 			"extends": "fast"
 		},
-		"test-ios": {
-			"channel": "staging-ios",
+		"preview": {
+			"channel": "preview",
 			"distribution": "internal",
 			"env": {
-				"NODE_ENV": "test"
+				"APP_ENV": "production"
 			},
 			"extends": "fast"
-		},
-		"test-android": {
-			"channel": "staging-android",
-			"env": {
-				"NODE_ENV": "test"
-			}
-		},
-		"production-ios": {
-			"channel": "production-ios",
-			"env": {
-				"NODE_ENV": "production"
-			}
-		},
-		"production-android": {
-			"channel": "production-android",
-			"env": {
-				"NODE_ENV": "production"
-			}
 		}
 	},
 	"submit": {
-		"production": {}
+		"production": {
+			"ios": {}
+		}
 	}
 }

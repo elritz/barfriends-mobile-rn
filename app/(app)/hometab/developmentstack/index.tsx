@@ -10,7 +10,7 @@ import {
 	DEVELOPMENT_FOREGROUND_LOCATION_TASK_NAME,
 	DEVELOPMENT_BACKGROUND_LOCATION_TASK_NAME,
 } from '@constants/TaskManagerConstants'
-import { ENVIRONMENT, SERVER_ENDPOINT } from '@env'
+import { APP_ENV, SERVER_ENDPOINT } from '@env'
 import { Feather, Ionicons } from '@expo/vector-icons'
 import {
 	Box,
@@ -44,8 +44,8 @@ async function registerBackgroundFetchAsync() {
 		deferredUpdatesDistance: 15,
 		timeInterval: 5000,
 		showsBackgroundLocationIndicator: true,
-		deferredUpdatesInterval: ENVIRONMENT === 'development' ? 1000 : 5000,
-		distanceInterval: ENVIRONMENT === 'development' ? 0 : 20,
+		deferredUpdatesInterval: APP_ENV === 'development' ? 1000 : 5000,
+		distanceInterval: APP_ENV === 'development' ? 0 : 20,
 		foregroundService: {
 			notificationTitle: 'Location',
 			notificationBody: 'Location tracking in background',
@@ -60,8 +60,8 @@ async function registerForegroundFetchAsync() {
 		deferredUpdatesDistance: 25,
 		timeInterval: 5000,
 		showsBackgroundLocationIndicator: true,
-		deferredUpdatesInterval: ENVIRONMENT === 'development' ? 1000 : 5000,
-		distanceInterval: ENVIRONMENT === 'development' ? 0 : 20,
+		deferredUpdatesInterval: APP_ENV === 'development' ? 1000 : 5000,
+		distanceInterval: APP_ENV === 'development' ? 0 : 20,
 		foregroundService: {
 			notificationTitle: 'Location',
 			notificationBody: 'Location tracking in background',
@@ -92,6 +92,7 @@ export default () => {
 	const [pushNotificationToken, setPushNotificationToken] = useState('')
 	const [searchAreaDeleteLoading, setSearchAreaDeleteLoading] = useState(false)
 	const [authorizationDeleteLoading, setAuthorizationDeleteLoading] = useState(false)
+
 
 	// const appStateHandleBackgroundLocation = async nextAppState => {
 	// 	const hasStarted = await Location.hasStartedLocationUpdatesAsync(
@@ -261,12 +262,12 @@ export default () => {
 			icon: 'settings',
 			onPress: handleOpenPhoneSettings,
 		},
-		{
-			type: 'setting',
-			title: 'Refresh',
-			icon: 'refresh',
-			onPress: onReloadPress,
-		},
+		// {
+		// 	type: 'setting',
+		// 	title: 'Refresh',
+		// 	icon: 'refresh',
+		// 	onPress: onReloadPress,
+		// },
 	]
 
 	const tokenOptions = [
@@ -317,13 +318,13 @@ export default () => {
 	]
 
 	const GeneralOptions = [
-		{
-			type: 'generalinformation',
-			title: 'Check for updates',
-			value: SERVER_ENDPOINT,
-			icon: '',
-			onPress: onFetchUpdateAsync,
-		},
+		// {
+		// 	type: 'generalinformation',
+		// 	title: 'Check for updates',
+		// 	value: SERVER_ENDPOINT,
+		// 	icon: '',
+		// 	onPress: onFetchUpdateAsync,
+		// },
 		{
 			type: 'generalinformation',
 			title: 'IP Address',

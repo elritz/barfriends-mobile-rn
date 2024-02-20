@@ -63,6 +63,7 @@ import { Appearance, Text, View } from 'react-native'
 import { KeyboardProvider } from 'react-native-keyboard-controller'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import * as Sentry from "@sentry/react-native";
+import { APP_ENV } from '@env'
 
 export {
 	// Catch any errors thrown by the Layout component.
@@ -80,8 +81,8 @@ const routingInstrumentation = new Sentry.ReactNavigationInstrumentation();
 
 Sentry.init({
 	dsn: 'https://1c7981806da9fa394d3a549719cd777d@o4506712454660096.ingest.sentry.io/4506712456757248',
-	// debug: NODE_ENV === 'development' ? true : false,
-	debug: true,
+	debug: APP_ENV === 'development' ? true : false,
+	// debug: true,
 	// enableNative: true,
 	integrations: [
 		new Sentry.ReactNativeTracing({

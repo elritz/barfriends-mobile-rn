@@ -194,7 +194,7 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 			<VStack
 				space={'md'}
 				// width={width}
-				w={'100%'}
+				w={'95%'}
 				p={'$1.5'}
 				flex={1}
 				style={{
@@ -241,7 +241,7 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 						numberOfLines={2}
 						lineHeight={'$xs'}
 						ellipsizeMode='tail'
-						// underline={isPressed}
+					// underline={isPressed}
 					>
 						{getTitleCase(props?.item?.IdentifiableInformation?.fullname)}
 					</Heading>

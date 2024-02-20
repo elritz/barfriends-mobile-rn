@@ -8,7 +8,7 @@ import UberCard from './actioncards/ubercard/UberCard'
 import DevActions from './devactions/DevActions'
 import { useReactiveVar } from '@apollo/client'
 import { Box, HStack, VStack } from '@gluestack-ui/themed'
-import { ENVIRONMENT } from '@env'
+import { APP_ENV } from '@env'
 import { AuthorizationReactiveVar } from '@reactive'
 import { useLocalSearchParams } from 'expo-router'
 import { uniqueId } from 'lodash'
@@ -41,7 +41,7 @@ const VenueActions = () => {
 	return (
 		<VStack m={'$2'} mt={'$1'}>
 			<HStack style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around' }}>
-				{ENVIRONMENT === 'development' && (
+				{APP_ENV === 'development' && (
 					<Box bg='$transparent' mt={'$4'}>
 						<ActionCard key={uniqueId()} numColumns={1}>
 							<DevActions />

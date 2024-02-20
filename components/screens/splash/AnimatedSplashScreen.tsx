@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import { ENVIRONMENT } from '@env'
+import { APP_ENV } from '@env'
 import { ThemeReactiveVar } from '@reactive'
 import VectorFonts from '@util/helpers/VectorFonts'
 import { cacheFonts, cacheImages } from '@util/hooks/local/useCacheImages'
@@ -14,8 +14,8 @@ function AnimatedSplashScreen({ children }) {
 	const [isSplashAnimationComplete, setAnimationComplete] = useState(false)
 
 	const [assets, Aerror] = useAssets([
-		require(`../../../assets/images/splash/splash.${ENVIRONMENT}.light.png`),
-		require(`../../../assets/images/splash/splash.${ENVIRONMENT}.dark.png`),
+		require(`../../../assets/images/splash/splash.${APP_ENV}.light.png`),
+		require(`../../../assets/images/splash/splash.${APP_ENV}.dark.png`),
 	])
 
 	useEffect(() => {

@@ -10,7 +10,7 @@ import {
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
 } from '@constants/ReactNavigationConstants'
 import { ITabColor } from '@ctypes/app'
-import { ENVIRONMENT } from '@env'
+import { APP_ENV } from '@env'
 import { MaterialIcons } from '@expo/vector-icons'
 import { Button, ButtonText, HStack, Heading, Pressable, VStack } from '@gluestack-ui/themed'
 import { TermsServiceReactiveVar, ThemeReactiveVar } from '@reactive'
@@ -161,7 +161,7 @@ export default () => {
 			<Tabs.Screen
 				name='developmentstack'
 				options={{
-					href: showDev && ENVIRONMENT === 'development' ? '/(app)/hometab/developmentstack' : null,
+					href: showDev && APP_ENV === 'development' ? '/(app)/hometab/developmentstack' : null,
 					headerShown: false,
 					tabBarLabel: 'development',
 					tabBarShowLabel: false,
