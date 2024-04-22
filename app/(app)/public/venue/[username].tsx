@@ -64,13 +64,13 @@ export default () => {
 					colors={
 						rTheme.colorScheme === 'light'
 							? [
-									String(rTheme.theme?.gluestack.tokens.colors.light100),
-									String(rTheme.theme?.gluestack.tokens.colors.light300),
-							  ]
+								String(rTheme.theme?.gluestack.tokens.colors.light100),
+								String(rTheme.theme?.gluestack.tokens.colors.light300),
+							]
 							: [
-									String(rTheme.theme?.gluestack.tokens.colors.light900),
-									String(rTheme.theme?.gluestack.tokens.colors.light700),
-							  ]
+								String(rTheme.theme?.gluestack.tokens.colors.light900),
+								String(rTheme.theme?.gluestack.tokens.colors.light700),
+							]
 					}
 				/>
 				<VStack rounded={'$md'} px={'$2'} space={'md'}>
@@ -83,13 +83,13 @@ export default () => {
 						colors={
 							rTheme.colorScheme === 'light'
 								? [
-										String(rTheme.theme?.gluestack.tokens.colors.light100),
-										String(rTheme.theme?.gluestack.tokens.colors.light300),
-								  ]
+									String(rTheme.theme?.gluestack.tokens.colors.light100),
+									String(rTheme.theme?.gluestack.tokens.colors.light300),
+								]
 								: [
-										String(rTheme.theme?.gluestack.tokens.colors.light900),
-										String(rTheme.theme?.gluestack.tokens.colors.light700),
-								  ]
+									String(rTheme.theme?.gluestack.tokens.colors.light900),
+									String(rTheme.theme?.gluestack.tokens.colors.light700),
+								]
 						}
 					/>
 					<Skeleton
@@ -101,13 +101,13 @@ export default () => {
 						colors={
 							rTheme.colorScheme === 'light'
 								? [
-										String(rTheme.theme?.gluestack.tokens.colors.light100),
-										String(rTheme.theme?.gluestack.tokens.colors.light300),
-								  ]
+									String(rTheme.theme?.gluestack.tokens.colors.light100),
+									String(rTheme.theme?.gluestack.tokens.colors.light300),
+								]
 								: [
-										String(rTheme.theme?.gluestack.tokens.colors.light900),
-										String(rTheme.theme?.gluestack.tokens.colors.light700),
-								  ]
+									String(rTheme.theme?.gluestack.tokens.colors.light900),
+									String(rTheme.theme?.gluestack.tokens.colors.light700),
+								]
 						}
 					/>
 				</VStack>
@@ -123,13 +123,13 @@ export default () => {
 								colors={
 									rTheme.colorScheme === 'light'
 										? [
-												String(rTheme.theme?.gluestack.tokens.colors.light100),
-												String(rTheme.theme?.gluestack.tokens.colors.light300),
-										  ]
+											String(rTheme.theme?.gluestack.tokens.colors.light100),
+											String(rTheme.theme?.gluestack.tokens.colors.light300),
+										]
 										: [
-												String(rTheme.theme?.gluestack.tokens.colors.light900),
-												String(rTheme.theme?.gluestack.tokens.colors.light700),
-										  ]
+											String(rTheme.theme?.gluestack.tokens.colors.light900),
+											String(rTheme.theme?.gluestack.tokens.colors.light700),
+										]
 								}
 							/>
 						)
@@ -147,13 +147,13 @@ export default () => {
 								colors={
 									rTheme.colorScheme === 'light'
 										? [
-												String(rTheme.theme?.gluestack.tokens.colors.light100),
-												String(rTheme.theme?.gluestack.tokens.colors.light300),
-										  ]
+											String(rTheme.theme?.gluestack.tokens.colors.light100),
+											String(rTheme.theme?.gluestack.tokens.colors.light300),
+										]
 										: [
-												String(rTheme.theme?.gluestack.tokens.colors.light900),
-												String(rTheme.theme?.gluestack.tokens.colors.light700),
-										  ]
+											String(rTheme.theme?.gluestack.tokens.colors.light900),
+											String(rTheme.theme?.gluestack.tokens.colors.light700),
+										]
 								}
 							/>
 						)
@@ -168,13 +168,13 @@ export default () => {
 					colors={
 						rTheme.colorScheme === 'light'
 							? [
-									String(rTheme.theme?.gluestack.tokens.colors.light100),
-									String(rTheme.theme?.gluestack.tokens.colors.light300),
-							  ]
+								String(rTheme.theme?.gluestack.tokens.colors.light100),
+								String(rTheme.theme?.gluestack.tokens.colors.light300),
+							]
 							: [
-									String(rTheme.theme?.gluestack.tokens.colors.light900),
-									String(rTheme.theme?.gluestack.tokens.colors.light700),
-							  ]
+								String(rTheme.theme?.gluestack.tokens.colors.light900),
+								String(rTheme.theme?.gluestack.tokens.colors.light700),
+							]
 					}
 				/>
 			</VStack>
@@ -201,7 +201,7 @@ export default () => {
 			contentInset={contentInsets}
 			showsVerticalScrollIndicator={false}
 			ListHeaderComponent={
-				<VStack mb={'$5'}>
+				<VStack mb={'$5'} >
 					<VenueHeader key={uniqueId()} loading={loading} photos={data.publicVenue?.photos} />
 					<Box rounded={'$none'} key={uniqueId()} borderBottomEndRadius={5} py={'$3'} mb={'$2'}>
 						<VenueTotals />
@@ -212,8 +212,12 @@ export default () => {
 					<VenueActions key={uniqueId()} />
 				</VStack>
 			}
-			ListEmptyComponent={!loading && <HandleEmptyUsers />}
-			ListFooterComponent={<Details />}
+			// ListEmptyComponent={!loading && <HandleEmptyUsers />}
+			ListFooterComponent={
+				<>
+					<Details />
+				</>
+			}
 			keyExtractor={(item, index) => index.toString()}
 			renderItem={item => <PersonalAtVenue item={item} />}
 		/>

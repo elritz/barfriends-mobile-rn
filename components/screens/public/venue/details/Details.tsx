@@ -56,7 +56,7 @@ export default function Details() {
 			px={'$2'}
 			mx={'$2'}
 			mt={'$5'}
-			rounded={'$xl'}
+			rounded={'$md'}
 			sx={{
 				_dark: {
 					bg: '$light800',

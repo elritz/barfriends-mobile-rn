@@ -36,7 +36,7 @@ export default function Preferences() {
 					title: 'Show',
 					color: '$green500',
 					onPress: async () => {
-						router.navigate({
+						router.push({
 							pathname: '/(app)/modal/asks/foregroundlocationnextask',
 						})
 					},
@@ -77,7 +77,7 @@ export default function Preferences() {
 					title: 'Show',
 					color: '$green500',
 					onPress: async () => {
-						router.navigate({
+						router.push({
 							pathname: '/(app)/modal/asks/backgroundlocationnextask',
 						})
 					},
@@ -118,7 +118,7 @@ export default function Preferences() {
 					title: 'Show',
 					color: '$green500',
 					onPress: async () => {
-						router.navigate({
+						router.push({
 							pathname: '/(app)/modal/asks/notificationnextask',
 						})
 					},

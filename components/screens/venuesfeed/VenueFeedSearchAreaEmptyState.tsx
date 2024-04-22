@@ -9,7 +9,7 @@ export default function VenueFeedSearchAreaEmptyState() {
 	const rForegroundLocationPermissionVar = useReactiveVar(PermissionForegroundLocationReactiveVar)
 
 	const _pressToSearchArea = () => {
-		router.navigate({
+		router.push({
 			pathname: '/(app)/searcharea/',
 		})
 	}

@@ -92,8 +92,6 @@ export default () => {
 	})
 
 	const getNearbyVenues = useCallback(async () => {
-		console.log('rSearchAreaVar?.searchArea.coords.latitude :>> ', rSearchAreaVar?.searchArea.coords.latitude);
-		console.log('rSearchAreaVar?.searchArea.coords.longitude :>> ', rSearchAreaVar?.searchArea.coords.longitude);
 		if (rForegroundLocationPermissionVar?.granted) {
 			if (rSearchAreaVar.useCurrentLocation) {
 				await useSetSearchAreaWithLocation()
@@ -132,8 +130,7 @@ export default () => {
 		)
 	}
 	const MemoizedListHeaderComponent = memo(ListheaderComponent)
-console.log('data?.venuesNearby :>> ', data?.venuesNearby);
-console.log('dataloading ', loading);
+
 	if (!data?.venuesNearby || loading) {
 		return (
 			<MasonryFlashList
@@ -211,7 +208,7 @@ console.log('dataloading ', loading);
 									<Pressable
 										key={item.id + index}
 										onPress={() => {
-											router.navigate({
+											router.push({
 												params: {
 													venueprofileids: JSON.stringify(item.venuesProfileIds),
 													id: item.id,
@@ -262,7 +259,7 @@ console.log('dataloading ', loading);
 									<Pressable
 										key={item.id + index}
 										onPress={() => {
-											router.navigate({
+											router.push({
 												params: {
 													venueprofileids: JSON.stringify(item.venuesProfileIds),
 													id: item.id,
@@ -306,7 +303,7 @@ console.log('dataloading ', loading);
 		const _press = async () => {
 			rPermissionLocationVar?.granted
 				? await useSetSearchAreaWithLocation()
-				: router.navigate({
+				: router.push({
 					pathname: '/(app)/permission/foregroundlocation',
 				})
 		}
@@ -398,15 +395,15 @@ console.log('dataloading ', loading);
 											color={
 												rTheme.colorScheme === 'light'
 													? item.Vote.some(
-															item => item.upvote && item.profileId === rAuthorizationVar?.Profile?.id,
-													  )
+														item => item.upvote && item.profileId === rAuthorizationVar?.Profile?.id,
+													)
 														? rTheme.theme?.gluestack.tokens.colors.blue500
 														: rTheme.theme?.gluestack.tokens.colors.light700
 													: item.Vote.some(
-															item => item.upvote && item.profileId === rAuthorizationVar?.Profile?.id,
-													  )
-													? rTheme.theme?.gluestack.tokens.colors.blue500
-													: rTheme.theme?.gluestack.tokens.colors.light300
+														item => item.upvote && item.profileId === rAuthorizationVar?.Profile?.id,
+													)
+														? rTheme.theme?.gluestack.tokens.colors.blue500
+														: rTheme.theme?.gluestack.tokens.colors.light300
 											}
 										/>
 									</Pressable>
@@ -434,8 +431,8 @@ console.log('dataloading ', loading);
 														? rTheme.theme?.gluestack.tokens.colors.primary500
 														: rTheme.theme?.gluestack.tokens.colors.light700
 													: item.toBeNotifiedProfileIds.some(item => item === rAuthorizationVar?.Profile?.id)
-													? rTheme.theme?.gluestack.tokens.colors.primary500
-													: rTheme.theme?.gluestack.tokens.colors.light300
+														? rTheme.theme?.gluestack.tokens.colors.primary500
+														: rTheme.theme?.gluestack.tokens.colors.light300
 											}
 										/>
 									</Pressable>

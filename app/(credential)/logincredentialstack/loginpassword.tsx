@@ -91,7 +91,7 @@ export default () => {
 				if (data.switchDeviceProfile.__typename == 'AuthorizationDeviceProfile') {
 					const deviceManager = data.switchDeviceProfile as AuthorizationDeviceProfile
 					AuthorizationReactiveVar(deviceManager)
-					router.navigate({
+					router.push({
 						pathname: '/(app)/hometab/venuefeed',
 					})
 				}
@@ -101,6 +101,7 @@ export default () => {
 	const [loginPasswordQuery, { data: LPData, loading: LPLoading, error: LPError }] =
 		useLoginPasswordLazyQuery({
 			onCompleted: data => {
+				console.log("🚀 ~ data:", data)
 				if (!data.loginPassword) {
 					setError('password', { type: 'validate', message: 'Incorrect password' })
 				} else {

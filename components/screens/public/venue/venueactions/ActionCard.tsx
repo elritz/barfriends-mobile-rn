@@ -10,28 +10,23 @@ type Props = {
 }
 
 export default function ActionCard({ children, numColumns, bg, h }: Props) {
-	const { width } = useWindowDimensions()
-	const itemPadding = (width / 33.33) * numColumns
 
 	return (
 		<Box
 			key={uniqueId()}
-			width={width}
-			flexDirection={'column'}
 			p={'$2'}
-			m={'$1'}
 			justifyContent={'center'}
 			sx={{
 				_dark: {
-					bg: bg || '$light800',
+					bg: '$light800',
 				},
 				_light: {
-					bg: bg || '$light50',
+					bg: '$light50',
 				},
-				h: h,
+				h: h || 'auto',
 			}}
+			flex={1}
 			style={{
-				width: (width - itemPadding) / numColumns,
 				alignItems: 'center',
 			}}
 			rounded={'$lg'}

@@ -79,7 +79,7 @@ const BackgroundLocationNextAsk = () => {
 					// 	},
 					// }}
 					onPress={async () => {
-						router.navigate({
+						router.push({
 							pathname: '/(app)/permission/backgroundlocation',
 						})
 					}}

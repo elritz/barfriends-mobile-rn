@@ -199,6 +199,9 @@ function configIOS({APP_ENV, APP_NAME}: {APP_ENV: string, APP_NAME: string}): IO
 					scheme: 'barfriends',
 					orientation: 'portrait',
 					userInterfaceStyle: 'automatic',
+					experiments: {
+						typedRoutes: true,
+					},
 					primaryColor: '#FF7000',
 					plugins: configExpoPlugins({ APP_NAME: toCamelCase(context.config.name)}),
 					splash: configSplash({APP_ENV: String(process.env.APP_ENV)}),

@@ -82,10 +82,10 @@ export default () => {
 			title: rAuthorizationVar?.Profile?.ProfileType === 'PERSONAL' ? 'Edit Profile' : 'Edit Venue',
 			onPress: () => {
 				rAuthorizationVar?.Profile?.ProfileType === 'PERSONAL'
-					? router.navigate({
+					? router.push({
 							pathname: '/(app)/settings/profilesettings/personal',
 					  })
-					: router.navigate({
+					: router.push({
 							pathname: '/(app)/settings/profilesettings/venue',
 					  })
 			},
@@ -94,7 +94,7 @@ export default () => {
 		{
 			title: 'Notifications',
 			onPress: () => {
-				router.navigate({
+				router.push({
 					pathname: '/(app)/settings/notificationssettingsscreen',
 				})
 			},
@@ -119,7 +119,7 @@ export default () => {
 		{
 			title: 'Security',
 			onPress: () => {
-				router.navigate({
+				router.push({
 					pathname: '/(app)/settings/notificationssettingsscreen',
 				})
 			},
@@ -128,7 +128,7 @@ export default () => {
 		{
 			title: 'Appearance',
 			onPress: () => {
-				router.navigate({
+				router.push({
 					pathname: '/(app)/settings/appearancesettingsscreen',
 				})
 			},

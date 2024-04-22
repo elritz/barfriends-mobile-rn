@@ -38,7 +38,7 @@ const HorizontalVenueFeedVenueItem = (props: Props) => {
 		<Pressable
 			key={props.item.id}
 			onPress={() => {
-				router.navigate({
+				router.push({
 					pathname: `/(app)/public/venue/${props.item.id}`,
 					params: {
 						latitude: Number(props.item.Venue?.Location?.Geometry?.latitude),

@@ -82,7 +82,7 @@ export default function PreferenceBackgroundLocationPermissionFullSection() {
 									</Text>
 									<Button
 										onPress={() =>
-											router.navigate({
+											router.push({
 												pathname: '/(app)/permission/backgroundlocation',
 											})
 										}

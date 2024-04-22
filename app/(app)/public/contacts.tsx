@@ -88,7 +88,7 @@ export default () => {
 				</VStack>
 				<Button
 					onPress={() =>
-						router.navigate({
+						router.push({
 							pathname: '/(app)/permission/contacts',
 						})
 					}
@@ -128,13 +128,13 @@ export default () => {
 									colors={
 										rTheme.colorScheme === 'light'
 											? [
-													String(rTheme.theme?.gluestack.tokens.colors.light100),
-													String(rTheme.theme?.gluestack.tokens.colors.light300),
-											  ]
+												String(rTheme.theme?.gluestack.tokens.colors.light100),
+												String(rTheme.theme?.gluestack.tokens.colors.light300),
+											]
 											: [
-													String(rTheme.theme?.gluestack.tokens.colors.light900),
-													String(rTheme.theme?.gluestack.tokens.colors.light700),
-											  ]
+												String(rTheme.theme?.gluestack.tokens.colors.light900),
+												String(rTheme.theme?.gluestack.tokens.colors.light700),
+											]
 									}
 								/>
 

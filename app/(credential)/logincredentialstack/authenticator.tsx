@@ -39,6 +39,7 @@ export default () => {
 	const INPUT_CONTAINER_HEIGHT = 90
 
 	const height = useDerivedValue(() => platform.value, [isFocused])
+
 	const textInputContainerStyle = useAnimatedStyle(
 		() => ({
 			width: '100%',
@@ -85,13 +86,13 @@ export default () => {
 							keyboardType === 'email'
 								? rTheme.theme?.gluestack.tokens.colors.primary500
 								: rTheme.colorScheme === 'light'
-								? rTheme.theme?.gluestack.tokens.colors.light900
-								: rTheme.theme?.gluestack.tokens.colors.light100
+									? rTheme.theme?.gluestack.tokens.colors.light900
+									: rTheme.theme?.gluestack.tokens.colors.light100
 						}
 					/>
 				</Pressable>
 				<HStack justifyContent='space-around' flexDirection='row'>
-					<Pressable onPress={handleSubmit(onSubmit)}>
+					<Pressable disabled={sendCodeLoading} onPress={handleSubmit(onSubmit)}>
 						<Box
 							alignItems='center'
 							justifyContent='center'
@@ -131,89 +132,116 @@ export default () => {
 		shouldUnregister: true,
 	})
 
-	const [sendAuthenticatorDeviceOwnerCodeMutation] = useSendAuthenticatorDeviceOwnerCodeMutation({
-		onCompleted: data => {
-			const values = getValues()
-			if (data.sendAuthenticatorDeviceOwnerCode.__typename === 'Code') {
-				router.navigate({
-					pathname: '/(credential)/logincredentialstack/confirmationcode',
-					params: {
-						authenticator: values.authenticator,
-						code: data.sendAuthenticatorDeviceOwnerCode.code,
-					},
-				})
-			}
-		},
+	const [sendCode, { data: sendCodeData, loading: sendCodeLoading, error: sendCodeError }] = useSendAuthenticatorDeviceOwnerCodeMutation({
 	})
 
 	const [authorizedProfilesV2Query, { data, loading, error }] = useAuthorizedProfilesLazyQuery({
 		fetchPolicy: 'network-only',
-		onError: error => {},
-		onCompleted: data => {
-			const formValues = getValues()
-			const replaced = formValues.authenticator.replace(/\D/g, '')
-
-			if (data.authorizedProfiles?.__typename === 'ProfilesResponse') {
-				if (data.authorizedProfiles?.username.length) {
-					router.navigate({
-						pathname: '/(credential)/logincredentialstack/loginpassword',
-						params: {
-							profileid: data.authorizedProfiles.username[0].id,
-							username: String(data.authorizedProfiles.username[0].IdentifiableInformation?.username),
-						},
-					})
-				}
-
-				if (data.authorizedProfiles?.phone.length) {
-					sendAuthenticatorDeviceOwnerCodeMutation({
-						variables: {
-							where: {
-								Authenticators: {
-									PhoneInput: {
-										number: replaced,
-									},
-								},
-							},
-						},
-					})
-					if (data.authorizedProfiles.email.length) {
-						sendAuthenticatorDeviceOwnerCodeMutation({
-							variables: {
-								where: {
-									Authenticators: {
-										EmailInput: {
-											email: formValues.authenticator,
-										},
-									},
-								},
-							},
-						})
-					}
-				}
-			}
-			if (data.authorizedProfiles?.__typename === 'Error') {
-				setError('authenticator', { message: data.authorizedProfiles.message })
-			}
-		},
 	})
 
 	const onSubmit = data => {
-		const username = data.authenticator.replace(/[^a-zA-Z0-9]/g, '')
-		const numberOnly = data.authenticator.replace(/\D/g, '')
+		const authenticatorClean = data.authenticator.replace(/[^a-zA-Z0-9]/g, '')
+		const authenticatorNumberOnly = data.authenticator.replace(/\D/g, '')
 
 		authorizedProfilesV2Query({
 			variables: {
 				where: {
 					profiles: {
-						username: username,
+						username: authenticatorClean,
 						email: data.authenticator,
 						Phone: {
-							number: numberOnly,
+							number: authenticatorNumberOnly,
 						},
 					},
 				},
 			},
+			onCompleted(data) {
+				switch (data.authorizedProfiles?.__typename) {
+					case 'ProfilesResponse':
+						if (data.authorizedProfiles?.username.length) {
+							return router.push({
+								pathname: '/(credential)/logincredentialstack/loginpassword',
+								params: {
+									profileid: data.authorizedProfiles.username[0].id,
+									username: String(data.authorizedProfiles.username[0].IdentifiableInformation?.username),
+								},
+							})
+						}
+						if (data.authorizedProfiles?.phone.length) {
+							sendCode({
+								variables: {
+									where: {
+										Authenticators: {
+											PhoneInput: {
+												number: authenticatorNumberOnly,
+											},
+										},
+									},
+								},
+								onCompleted: data => {
+									switch (data.sendAuthenticatorDeviceOwnerCode?.__typename) {
+										case 'Error':
+											setError('authenticator', {
+												type: 'validate',
+												message: 'Unable to send phone number',
+											})
+											break
+										case 'Code':
+											router.push({
+												pathname: '/(credential)/logincredentialstack/confirmationcode',
+												params: {
+													authenticator: authenticatorNumberOnly,
+													code: data.sendAuthenticatorDeviceOwnerCode.code,
+												},
+											})
+											break
+									}
+
+								}
+							})
+							if (data.authorizedProfiles.email.length) {
+								sendCode({
+									variables: {
+										where: {
+											Authenticators: {
+												EmailInput: {
+													email: authenticatorClean,
+												},
+											},
+										},
+									},
+									onCompleted: data => {
+										switch (data.sendAuthenticatorDeviceOwnerCode?.__typename) {
+											case 'Error':
+												setError('authenticator', {
+													type: 'validate',
+													message: 'Unable to send phone number',
+												})
+												break
+											case 'Code':
+												router.push({
+													pathname: '/(credential)/logincredentialstack/confirmationcode',
+													params: {
+														authenticator: authenticatorClean,
+														code: data.sendAuthenticatorDeviceOwnerCode.code,
+													},
+												})
+												break
+										}
+
+									}
+								})
+							}
+						}
+						break
+					case 'Error':
+						setError('authenticator', { message: data.authorizedProfiles.message })
+						break
+				}
+			},
 		})
+
+
 	}
 
 	return (
@@ -227,7 +255,7 @@ export default () => {
 			}}
 		>
 			<Reanimated.View style={{ flex: 1 }}>
-				<VStack sx={{ h: 110 }} mt={'$12'}>
+				<VStack mt={'$12'} >
 					<Controller
 						name='authenticator'
 						control={control}

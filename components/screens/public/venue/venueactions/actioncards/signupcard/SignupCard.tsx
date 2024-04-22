@@ -28,7 +28,7 @@ export default function SignupCard() {
 					justifyContent='center'
 					rounded={'$full'}
 					onPress={() => {
-						router.navigate({ pathname: '/(credential)/personalcredentialstack/getstarted' })
+						router.push({ pathname: '/(credential)/personalcredentialstack/getstarted' })
 					}}
 				>
 					<ButtonText>Continue</ButtonText>

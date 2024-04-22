@@ -68,7 +68,7 @@ export default function QuickBarfriendCard({ qrcodesize, logosize, showIcon, col
 		)
 	}
 	return (
-		<View style={{ flex: 1 }}>
+		<View style={{ flex: 1, width: '100%' }}>
 			<Heading fontWeight={'$black'} fontSize={'$lg'}>
 				Add Friend
 			</Heading>
@@ -76,9 +76,9 @@ export default function QuickBarfriendCard({ qrcodesize, logosize, showIcon, col
 				onPress={() =>
 					rPermissionCamera?.granted
 						? onOpen()
-						: router.navigate({
-								pathname: '/(app)/permission/camera',
-						  })
+						: router.push({
+							pathname: '/(app)/permission/camera',
+						})
 				}
 			>
 				<VStack

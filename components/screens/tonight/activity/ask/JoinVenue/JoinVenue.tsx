@@ -12,7 +12,7 @@ const JoinVenue = ({}) => {
 	return (
 		<Pressable
 			onPress={() => {
-				router.navigate({
+				router.push({
 					pathname: '/(app)/hometab/venuefeed',
 				})
 			}}

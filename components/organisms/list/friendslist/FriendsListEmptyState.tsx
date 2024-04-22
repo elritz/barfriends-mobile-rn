@@ -27,7 +27,7 @@ export const FriendsListEmptyState = () => {
 					w={'100%'}
 					size={'lg'}
 					onPress={() =>
-						router.navigate({
+						router.push({
 							pathname: '/(app)/permission/contacts',
 						})
 					}
@@ -42,7 +42,7 @@ export const FriendsListEmptyState = () => {
 					flexDirection='row'
 					justifyContent='center'
 					onPress={() => {
-						router.navigate({
+						router.push({
 							pathname: '/(app)/explore/searchtext',
 							params: {
 								searchtext: '',

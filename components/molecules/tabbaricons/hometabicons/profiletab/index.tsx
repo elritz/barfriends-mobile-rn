@@ -7,7 +7,7 @@ import { Box } from '@gluestack-ui/themed'
 // import { useGetNotificationsQuery } from '@graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
 import * as Haptics from 'expo-haptics'
-import { useRouter } from 'expo-router'
+import { Link, useRouter } from 'expo-router'
 import { useState } from 'react'
 import { Image } from 'react-native'
 
@@ -42,39 +42,42 @@ const ProfileTab = (props: TabProps) => {
 	const onLongPressProfileIcon = async () => {
 		await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
 		console.log('pressed :>> ')
-		router.navigate({
-			pathname: '/(app)/modal/devicemanager/DeviceManager',
+		router.push({
+			pathname: '/(app)/modal/devicemanager/devicemanager',
 		})
 	}
 
 	if (!rAuthorizationVar || rAuthorizationVar?.Profile?.ProfileType === 'GUEST') {
 		return (
-			<TabBarIcon
-				onPress={() => {
-					router.navigate({
-						pathname: '/(app)/hometab/profilestack/UserProfileScreen',
-					})
-				}}
-				onLongPress={() => onLongPressProfileIcon()}
-				icon={
-					props.focused ? (
-						<CompanyCoasterLogoDynamic
-							width={HEIGHT}
-							height={HEIGHT}
-							iconColor={rTheme.colorScheme === 'dark' ? 'black' : 'white'}
-							backgroundColor={props.color}
-						/>
-					) : (
-						<CompanyCoasterLogoDynamicOutline
-							width={HEIGHT}
-							height={HEIGHT}
-							backgroundColor={
-								!props.focused ? (rTheme.colorScheme === 'dark' ? 'white' : 'black') : props.color
-							}
-						/>
-					)
-				}
-			/>
+			<Link href={'/(app)/hometab/profilestack/userprofile'}>
+
+				<TabBarIcon
+					// onPress={() => {
+					// 	router.navigate({
+					// 		pathname: '/(app)/hometab/profilestack/userprofile',
+					// 	})
+					// }}
+					onLongPress={() => onLongPressProfileIcon()}
+					icon={
+						props.focused ? (
+							<CompanyCoasterLogoDynamic
+								width={HEIGHT}
+								height={HEIGHT}
+								iconColor={rTheme.colorScheme === 'dark' ? 'black' : 'white'}
+								backgroundColor={props.color}
+							/>
+						) : (
+							<CompanyCoasterLogoDynamicOutline
+								width={HEIGHT}
+								height={HEIGHT}
+								backgroundColor={
+									!props.focused ? (rTheme.colorScheme === 'dark' ? 'white' : 'black') : props.color
+								}
+							/>
+						)
+					}
+				/>
+			</Link>
 		)
 	}
 
@@ -83,7 +86,7 @@ const ProfileTab = (props: TabProps) => {
 			<TabBarIcon
 				onPress={() => {
 					router.navigate({
-						pathname: '/(app)/hometab/profilestack/UserProfileScreen',
+						pathname: '/(app)/hometab/profilestack/userprofile',
 					})
 				}}
 				onLongPress={() => onLongPressProfileIcon()}

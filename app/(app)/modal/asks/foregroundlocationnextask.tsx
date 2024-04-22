@@ -254,7 +254,7 @@ export default () => {
 	finished(() => {
 		router.canGoBack()
 			? router.back()
-			: router.navigate({
+			: router.push({
 					pathname: '/(app)/hometab/venuefeed',
 			  })
 	})
@@ -305,7 +305,7 @@ export default () => {
 				<Button
 					size={'md'}
 					onPress={() =>
-						router.navigate({
+						router.push({
 							pathname: '/(app)/permission/foregroundlocation',
 						})
 					}
@@ -371,7 +371,7 @@ export default () => {
 								onPress={() =>
 									router.canGoBack()
 										? router.back()
-										: router.navigate({
+										: router.push({
 												pathname: '/(app)/hometab/venuefeed',
 										  })
 								}

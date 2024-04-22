@@ -91,7 +91,7 @@ export default () => {
 
 	const _pickMediaPicker = async () => {
 		if (!rPermissionMediaReactiveVar?.granted) {
-			router.navigate({
+			router.push({
 				pathname: '/(app)/permission/medialibrary',
 			})
 		} else {
@@ -164,7 +164,7 @@ export default () => {
 				loadMediaAsync()
 			}
 		} else {
-			router.navigate({
+			router.push({
 				pathname: '/(app)/permission/medialibrary',
 			})
 		}
@@ -192,7 +192,7 @@ export default () => {
 							<Button
 								variant='solid'
 								onPress={async () =>
-									router.navigate({
+									router.push({
 										pathname: '/(app)/permission/medialibrary',
 									})
 								}

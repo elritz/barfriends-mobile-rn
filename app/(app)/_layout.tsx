@@ -14,7 +14,7 @@ export default () => {
 			<Stack.Screen
 				name={'hometab'}
 				options={{
-					animation: 'fade',
+					animation: 'default',
 				}}
 			/>
 			<Stack.Screen
@@ -34,7 +34,7 @@ export default () => {
 								onPress={() =>
 									router.canGoBack()
 										? router.back()
-										: router.navigate({ pathname: '/(app)/hometab/venuefeed' })
+										: router.push({ pathname: '/(app)/hometab/venuefeed' })
 								}
 								size='md'
 								variant='link'

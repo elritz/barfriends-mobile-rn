@@ -1,7 +1,7 @@
 import DeviceManagerProfiles from '@components/organisms/list/DeviceManagerProfiles'
-import { VStack, Text, Button, Pressable, Heading, ButtonText } from '@gluestack-ui/themed'
+import { VStack, Text, Button, Pressable, Heading, ButtonText, Divider } from '@gluestack-ui/themed'
 import GetSignInUpText from '@util/helpers/data/SignupinText'
-import { useRouter } from 'expo-router'
+import { router, useRouter } from 'expo-router'
 
 const text = GetSignInUpText()
 
@@ -9,15 +9,14 @@ type Props = {
 	signupTextId?: number
 }
 export default (props: Props) => {
-	const router = useRouter()
 
 	const _pressToLogin = () => {
-		router.navigate({
+		router.push({
 			pathname: '/(credential)/logincredentialstack/authenticator',
 		})
 	}
 	const _pressToSignup = () => {
-		router.navigate({
+		router.push({
 			pathname: '/(credential)/personalcredentialstack/getstarted',
 		})
 	}
@@ -54,28 +53,37 @@ export default (props: Props) => {
 					2 min
 				</Text>
 			</VStack>
-			<VStack w={'$full'} alignItems={'center'} space={'md'}>
+			<VStack space={'md'} alignItems='center'>
 				<Button
-					onPress={_pressToSignup}
+					onPress={() =>
+						router.replace({
+							pathname: '/(credential)/personalcredentialstack/getstarted',
+						})
+					}
 					sx={{
-						w: '95%',
+						w: '85%',
 					}}
-					rounded={'$lg'}
+					rounded={'$md'}
 				>
-					<ButtonText
-						textTransform='uppercase'
-						fontWeight='$bold'
-						fontSize={'$lg'}
-						// _text={{ textTransform: 'uppercase', fontWeight: '700', fontSize: 'lg' }}
-					>
+					<ButtonText fontWeight='$bold' fontSize={'$lg'}>
 						Sign up
 					</ButtonText>
 				</Button>
-				<Pressable onPress={_pressToLogin}>
-					<Text textTransform='uppercase' fontSize={'$lg'} fontWeight={'$bold'} alignSelf='center'>
+				<Button
+					sx={{
+						w: '90%',
+					}}
+					variant={'link'}
+					onPress={() =>
+						router.push({
+							pathname: '/(credential)/logincredentialstack/authenticator',
+						})
+					}
+				>
+					<Text fontSize={'$lg'} fontWeight={'$bold'} alignSelf='center'>
 						Log in
 					</Text>
-				</Pressable>
+				</Button>
 			</VStack>
 			<DeviceManagerProfiles />
 		</VStack>

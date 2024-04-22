@@ -186,7 +186,7 @@ export const CondensedHorizontalFriendNotifciation = <T,>({
 				<HStack justifyContent={'space-between'} alignItems={'center'}>
 					<Pressable
 					// onPress={() => {
-					// 	router.navigate({
+					// 	router.push({
 					// 		pathname: `/(app)/public/personal/${item. ?.IdentifiableInformation?.username}`,
 					// 	})
 					// }}
@@ -239,7 +239,7 @@ export const CondensedHorizontalFriendNotifciation = <T,>({
 				<HStack justifyContent={'space-between'}>
 					<Pressable
 						onPress={() => {
-							router.navigate({
+							router.push({
 								pathname: `/(app)/public/personal/${receiver?.Profile?.IdentifiableInformation?.username}`,
 							})
 						}}

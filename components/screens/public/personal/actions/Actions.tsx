@@ -51,7 +51,7 @@ export default function Actions({ profile }: Props) {
 					onPress={() => {
 						isGuest
 							? onOpenSignupModal()
-							: router.navigate({
+							: router.push({
 									pathname: '/(app)/conversation',
 									params: {
 										roomid: '',

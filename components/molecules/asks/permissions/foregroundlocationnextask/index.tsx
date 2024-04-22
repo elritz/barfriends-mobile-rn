@@ -57,7 +57,7 @@ const ForegroundLocationNextAskModal = ({ isOpen, onOpen, onClose }) => {
 							<Divider mt={'$1'} />
 							<Button
 								onPress={() =>
-									router.navigate({
+									router.push({
 										pathname: '/(app)/permission/foregroundlocation',
 									})
 								}

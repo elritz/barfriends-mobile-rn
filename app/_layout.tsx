@@ -81,7 +81,8 @@ const routingInstrumentation = new Sentry.ReactNavigationInstrumentation();
 
 Sentry.init({
 	dsn: 'https://1c7981806da9fa394d3a549719cd777d@o4506712454660096.ingest.sentry.io/4506712456757248',
-	debug: APP_ENV === 'development' ? true : false,
+	// debug: APP_ENV === 'development' ? true : false,
+	debug: false,
 	// debug: true,
 	// enableNative: true,
 	integrations: [

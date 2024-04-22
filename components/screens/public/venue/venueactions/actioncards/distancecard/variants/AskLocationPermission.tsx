@@ -25,7 +25,7 @@ export default function AskForegroundLocationPermission() {
 			<Button
 				size={'lg'}
 				onPress={() =>
-					router.navigate({
+					router.push({
 						pathname: '/(app)/permission/foregroundlocation',
 					})
 				}

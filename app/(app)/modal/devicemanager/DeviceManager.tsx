@@ -24,7 +24,7 @@ export default function DeviceManager() {
 
 	const { loading } = useGetADeviceManagerQuery({
 		fetchPolicy: 'network-only',
-		onError: error => {},
+		onError: error => { },
 		onCompleted: data => {
 			if (data.getADeviceManager?.__typename === 'DeviceManagerDeviceProfiles') {
 				const deviceProfiles = data?.getADeviceManager
@@ -42,7 +42,7 @@ export default function DeviceManager() {
 					AuthorizationReactiveVar(deviceManager)
 					setTimeout(
 						() =>
-							router.navigate({
+							router.push({
 								pathname: '/(app)/hometab/venuefeed',
 							}),
 						1000,
@@ -87,13 +87,13 @@ export default function DeviceManager() {
 									colors={
 										rTheme.colorScheme === 'light'
 											? [
-													String(rTheme.theme?.gluestack.tokens.colors.light100),
-													String(rTheme.theme?.gluestack.tokens.colors.light300),
-											  ]
+												String(rTheme.theme?.gluestack.tokens.colors.light100),
+												String(rTheme.theme?.gluestack.tokens.colors.light300),
+											]
 											: [
-													String(rTheme.theme?.gluestack.tokens.colors.light900),
-													String(rTheme.theme?.gluestack.tokens.colors.light700),
-											  ]
+												String(rTheme.theme?.gluestack.tokens.colors.light900),
+												String(rTheme.theme?.gluestack.tokens.colors.light700),
+											]
 									}
 								/>
 							)
@@ -113,9 +113,8 @@ export default function DeviceManager() {
 											</Pressable>
 											<Button
 												variant='link'
-												// onPress={() => console.log('pressed')}
 												onPress={() => {
-													router.navigate({
+													router.push({
 														pathname: `/(app)/modal/devicemanager/${item.Profile?.id}`,
 													})
 												}}

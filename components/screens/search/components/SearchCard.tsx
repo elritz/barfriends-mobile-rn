@@ -19,11 +19,11 @@ export default function SearchCard({ item }) {
 			onPress={() => {
 				switch (item.__typename) {
 					case 'Personal':
-						return router.navigate({
+						return router.push({
 							pathname: `/(app)/public/personal/${item.Profile.IdentifiableInformation?.username}`,
 						})
 					case 'Venue':
-						return router.navigate({
+						return router.push({
 							pathname: `/(app)/public/venue/${item.Profile.IdentifiableInformation?.username}`,
 						})
 				}

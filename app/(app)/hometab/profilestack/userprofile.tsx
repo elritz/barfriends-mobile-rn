@@ -11,15 +11,13 @@ import {
 import { AuthorizationReactiveVar, PreferencePermissionNotificationReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
 import useContentInsets from '@util/hooks/useContentInsets'
-import { uniqueId } from 'lodash'
-import { AnimatePresence } from 'moti'
 import { useCallback, useEffect, useState } from 'react'
 import { RefreshControl, Button } from 'react-native'
 
 export default () => {
 	const [refreshing, setRefreshing] = useState(false)
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
-	console.log("🚀 ~ rAuthorizationVar:", rAuthorizationVar)
+	// console.log("🚀 ~ rAuthorizationVar:", rAuthorizationVar)
 	const insets = useContentInsets()
 
 	const rPreferenceNotificationPermission = useReactiveVar(

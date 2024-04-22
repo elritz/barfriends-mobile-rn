@@ -5,7 +5,7 @@ import { Box, Button, Heading, Pressable, Text, VStack, ButtonText } from '@glue
 import { useIsFocused } from '@react-navigation/native'
 import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '@reactive'
 import useTimer2 from '@util/hooks/useTimer2'
-import { useRouter, useLocalSearchParams, useGlobalSearchParams } from 'expo-router'
+import { useGlobalSearchParams, useLocalSearchParams, useRouter } from 'expo-router'
 import { useEffect, useState } from 'react'
 import { Controller, useForm, ValidateResult } from 'react-hook-form'
 import { InputAccessoryView, Platform, View } from 'react-native'
@@ -23,23 +23,20 @@ export default () => {
 	const INPUT_ACCESSORY_VIEW_ID = 'cc-12981123123263'
 	const INPUT_CONTAINER_HEIGHT = 90
 	const router = useRouter()
-	const params = useGlobalSearchParams()
+	const params = useLocalSearchParams()
 
-	const isFocused = useIsFocused()
 	const { bottom } = useSafeAreaInsets()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
+	const isFocused = useIsFocused()
 	const credentialPersonalProfileVar = useReactiveVar(CredentialPersonalProfileReactiveVar)
-
-	const CELL_COUNT = String(params?.code).length
-
-	const ref = useBlurOnFulfill({ value: params?.code, cellCount: CELL_COUNT })
-
 	const { start, finished, seconds, isFinished } = useTimer2('5')
 	const [codeValue, setCodeValue] = useState('')
-
 	const { height: platform } = useReanimatedKeyboardAnimation()
 
+	const CELL_COUNT = String(params?.code).length
+	const ref = useBlurOnFulfill({ value: params?.code, cellCount: CELL_COUNT })
 	const height = useDerivedValue(() => platform.value, [isFocused])
+
 
 	const textInputContainerStyle = useAnimatedStyle(
 		() => ({
@@ -187,11 +184,10 @@ export default () => {
 		<Box rounded={'$none'} bg='$transparent' flex={1}>
 			<Reanimated.View style={{ flex: 1, marginHorizontal: 15 }}>
 				<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$2xl'}>
-					{`Enter the 4-diget code sent to you at ${
-						credentialPersonalProfileVar.email
-							? credentialPersonalProfileVar.email
-							: credentialPersonalProfileVar?.phone?.completeNumber
-					}`}
+					{`Enter the 4-diget code sent to you at ${credentialPersonalProfileVar.email
+						? credentialPersonalProfileVar.email
+						: credentialPersonalProfileVar?.phone?.completeNumber
+						}`}
 				</Heading>
 				<View style={{ alignSelf: 'center', width: '80%' }}>
 					<Controller

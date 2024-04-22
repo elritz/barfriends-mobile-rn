@@ -53,7 +53,7 @@ export default () => {
 		switch (value) {
 			case 'City':
 				if (rSearchAreaVar?.searchArea.country.isoCode && rSearchAreaVar?.searchArea.state.isoCode) {
-					router.navigate({
+					router.push({
 						pathname: '/(app)/searcharea/searchstatecities',
 						params: {
 							countryIsoCode: rSearchAreaVar.searchArea.country.isoCode,
@@ -64,7 +64,7 @@ export default () => {
 				break
 			case 'State':
 				if (rSearchAreaVar?.searchArea.country.isoCode && rSearchAreaVar?.searchArea.state.isoCode) {
-					router.navigate({
+					router.push({
 						pathname: '/(app)/searcharea/searchcountrystate',
 						params: {
 							countryIsoCode: rSearchAreaVar.searchArea.country.isoCode,
@@ -74,13 +74,13 @@ export default () => {
 				break
 			case 'Country':
 				if (rSearchAreaVar?.searchArea.country.isoCode && rSearchAreaVar?.searchArea.state.isoCode) {
-					router.navigate({
+					router.push({
 						pathname: '/(app)/searcharea/searchcountry',
 					})
 				}
 				break
 			default:
-				router.navigate({
+				router.push({
 					pathname: '/(app)/searcharea/searchcountry',
 				})
 		}
@@ -164,7 +164,7 @@ export default () => {
 									</VStack>
 									<Button
 										onPress={() => {
-											router.navigate({
+											router.push({
 												pathname: '/(app)/searcharea/searchcountry',
 											})
 										}}
@@ -221,7 +221,7 @@ export default () => {
 									<Button
 										rounded={'$lg'}
 										onPress={() => {
-											router.navigate({
+											router.push({
 												pathname: '/(app)/searcharea/searchcountry',
 											})
 										}}

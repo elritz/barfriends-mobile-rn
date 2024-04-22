@@ -225,7 +225,7 @@ export default () => {
 			title: 'Preference modals',
 			icon: 'albums',
 			onPress: () =>
-				router.navigate({
+				router.push({
 					pathname: '/(app)/hometab/developmentstack/preferences',
 				}),
 		},
@@ -234,7 +234,7 @@ export default () => {
 			title: 'Ask modals',
 			icon: 'albums',
 			onPress: () =>
-				router.navigate({
+				router.push({
 					pathname: '/(app)/hometab/developmentstack/asks',
 				}),
 		},
@@ -243,7 +243,7 @@ export default () => {
 			title: 'Permission modals',
 			icon: 'bookmarks',
 			onPress: () =>
-				router.navigate({
+				router.push({
 					pathname: '/(app)/hometab/developmentstack/permissionmodals',
 				}),
 		},
@@ -252,7 +252,7 @@ export default () => {
 			title: 'Change theme',
 			icon: 'color-palette-sharp',
 			onPress: () =>
-				router.navigate({
+				router.push({
 					pathname: '/(app)/hometab/developmentstack/theme',
 				}),
 		},

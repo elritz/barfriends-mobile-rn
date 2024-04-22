@@ -19,14 +19,14 @@ export default () => {
 			ServiceId: PTSData?.privacyTermsDocuments.termsofservice.id,
 			PrivacyId: PTSData?.privacyTermsDocuments.privacy.id,
 		})
-		router.navigate({
+		router.push({
 			pathname: '/(credential)/personalcredentialstack/phone',
 		})
 	}
 	const _pressTermsServices = tab => {
 		switch (tab) {
 			case 'terms':
-				router.navigate({
+				router.push({
 					pathname: '/(information)/latestprivacyservicetoptab',
 				})
 		}

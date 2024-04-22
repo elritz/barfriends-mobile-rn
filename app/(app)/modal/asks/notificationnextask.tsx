@@ -236,7 +236,7 @@ export default () => {
 
 		start()
 
-		// router.navigate({
+		// router.push({
 		// 	pathname: '/(app)/permission/notifications',
 		// })
 	}
@@ -244,7 +244,7 @@ export default () => {
 	finished(() => {
 		router.canGoBack()
 			? router.back()
-			: router.navigate({
+			: router.push({
 					pathname: '/(app)/hometab/venuefeed',
 			  })
 	})
@@ -299,7 +299,7 @@ export default () => {
 					// variant={'link'}
 					size={'md'}
 					onPress={() =>
-						router.navigate({
+						router.push({
 							pathname: '/(app)/permission/notifications',
 						})
 					}
@@ -365,7 +365,7 @@ export default () => {
 								onPress={() =>
 									router.canGoBack()
 										? router.back()
-										: router.navigate({
+										: router.push({
 												pathname: '/(app)/hometab/venuefeed',
 										  })
 								}
@@ -393,7 +393,7 @@ export default () => {
 							variant={'link'}
 							size={'md'}
 							onPress={() =>
-								router.navigate({
+								router.push({
 									pathname: '/(app)/permission/notifications',
 								})
 							}

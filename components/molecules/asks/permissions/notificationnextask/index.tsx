@@ -85,7 +85,7 @@ const NotificationNextAskModal = ({ isOpen, onOpen, onClose }) => {
 							<Divider />
 							<Button
 								onPress={() =>
-									router.navigate({
+									router.push({
 										pathname: '/(app)/permission/notifications',
 									})
 								}

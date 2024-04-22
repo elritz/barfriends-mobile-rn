@@ -15,7 +15,7 @@ export default function _layout() {
 	return (
 		<Stack
 			screenOptions={{
-				gestureEnabled: false,
+				// gestureEnabled: false,
 				headerTransparent: false,
 				headerShown: true,
 				headerStyle: {
@@ -44,8 +44,8 @@ export default function _layout() {
 										variant='link'
 										onPress={async () => {
 											await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
-											router.navigate({
-												pathname: `/(app)/modal/devicemanager/DeviceManager`,
+											router.push({
+												pathname: `/(app)/modal/devicemanager/devicemanager`,
 											})
 										}}
 									>
@@ -89,7 +89,7 @@ export default function _layout() {
 							<Button
 								variant='link'
 								onPress={() =>
-									router.navigate({
+									router.push({
 										pathname: '/(app)/settings',
 									})
 								}
@@ -109,7 +109,7 @@ export default function _layout() {
 				),
 			}}
 		>
-			<Stack.Screen name={'UserProfileScreen'} />
+			<Stack.Screen name={'userprofile'} />
 		</Stack>
 	)
 }

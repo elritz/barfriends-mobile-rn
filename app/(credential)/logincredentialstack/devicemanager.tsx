@@ -46,7 +46,7 @@ export default () => {
 						AuthorizationReactiveVar(deviceManager)
 						setTimeout(() => router.replace('/(app)/hometab/venuefeed'), 1000)
 					} else if (data.switchDeviceProfile.__typename === 'Error') {
-						router.navigate({
+						router.push({
 							pathname: '/(credential)/logincredentialstack/loginpassword',
 							params: {
 								username: item.IdentifiableInformation?.username,

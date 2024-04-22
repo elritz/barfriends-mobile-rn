@@ -174,7 +174,7 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 	}
 
 	const _press = () => {
-		router.navigate({
+		router.push({
 			pathname: `/(app)/public/venue/${props.item?.IdentifiableInformation?.username}`,
 			params: {
 				venueProfileId: String(props.item?.id),

@@ -18,14 +18,9 @@ import { useWindowDimensions } from 'react-native'
 const VenueActions = () => {
 	const numColumns = 2
 	const { width } = useWindowDimensions()
-	const itemPadding = width / numColumns - 70
+	const itemPadding = width / numColumns - 65
 
 	const params = useLocalSearchParams()
-
-	console.log(`🚀 -------------------🚀`)
-	console.log(`🚀 ~ params:`, params)
-	console.log(`🚀 -------------------🚀`)
-
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 	const [isJoined, setIsJoined] = useState(false)
 
@@ -39,10 +34,10 @@ const VenueActions = () => {
 	}, [rAuthorizationVar])
 
 	return (
-		<VStack m={'$2'} mt={'$1'}>
+		<VStack flex={1} mt={'$1'}>
 			<HStack style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around' }}>
 				{APP_ENV === 'development' && (
-					<Box bg='$transparent' mt={'$4'}>
+					<Box w={'100%'} bg='$transparent' mt={'$4'}>
 						<ActionCard key={uniqueId()} numColumns={1}>
 							<DevActions />
 						</ActionCard>
@@ -50,7 +45,7 @@ const VenueActions = () => {
 				)}
 
 				{!isJoined && (
-					<HStack space={'md'} mt={'$5'}>
+					<HStack px={'$2'} w={'100%'} space={'md'} mt={'$5'} >
 						<ActionCard h={190} key={uniqueId()} numColumns={numColumns}>
 							<UberCard />
 						</ActionCard>
@@ -61,9 +56,9 @@ const VenueActions = () => {
 				)}
 
 				{rAuthorizationVar?.Profile?.ProfileType !== 'GUEST' && (
-					<HStack space={'md'} mt={'$5'}>
+					<HStack px={'$2'} w={'100%'} space={'md'} mt={'$5'}>
 						<ActionCard h={200} key={uniqueId()} numColumns={numColumns}>
-							<QuickBarfriend qrcodesize={itemPadding || 120} />
+							<QuickBarfriend qrcodesize={itemPadding || 100} />
 						</ActionCard>
 						<ActionCard h={200} key={uniqueId()} numColumns={numColumns}>
 							<InviteCard />

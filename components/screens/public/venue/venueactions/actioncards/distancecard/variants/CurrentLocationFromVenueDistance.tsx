@@ -157,9 +157,9 @@ const CurrentLocationFromVenueDistance = () => {
 				<Box height={'100%'} justifyContent={'center'} mb={'$5'} bg={'$transparent'}>
 					<Heading
 						textAlign={'center'}
-						textTransform={'uppercase'}
+						// textTransform={'uppercase'}
 						fontWeight={'800'}
-						fontSize={'$lg'}
+						fontSize={'$sm'}
 						lineHeight={'$xs'}
 					>
 						{metric === 'km' ? `In your area` : `You're super close!`}

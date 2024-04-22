@@ -21,7 +21,7 @@ export default () => {
 					AuthorizationReactiveVar(deviceManager)
 					setTimeout(
 						() =>
-							router.navigate({
+							router.push({
 								pathname: '/(app)/hometab/venuefeed',
 							}),
 						1000,

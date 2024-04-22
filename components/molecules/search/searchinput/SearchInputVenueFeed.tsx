@@ -79,13 +79,13 @@ const SearchInputVenueFeed = (props: Props) => {
 
 	const handleSearchSubmitEditting = data => {
 		if (segments.includes('searchresults')) {
-			router.navigate({
+			router.push({
 				pathname: '/(app)/explore/searchresults',
 				params: { searchtext: data.searchtext },
 			})
 		}
 		if (segments.includes('searchtext')) {
-			router.navigate({
+			router.push({
 				pathname: '/(app)/explore/searchresults',
 				params: { searchtext: data.searchtext },
 			})
@@ -96,7 +96,7 @@ const SearchInputVenueFeed = (props: Props) => {
 			segments.includes('messagestack') ||
 			segments.includes('tonight')
 		) {
-			router.navigate({
+			router.push({
 				pathname: '/(app)/explore/searchtext',
 				params: { searchtext: data.searchtext },
 			})
@@ -156,7 +156,7 @@ const SearchInputVenueFeed = (props: Props) => {
 							value={value}
 							onPressIn={() => {
 								if (segments.includes('hometab')) {
-									router.navigate({
+									router.push({
 										pathname: '/(app)/explore/searchtext',
 										params: {
 											searchtext: '',

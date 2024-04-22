@@ -20,7 +20,7 @@ const PersonalAtVenue = ({ item }: PersonalAtVenueProps) => {
 			mx={'$1'}
 			alignSelf={'center'}
 			onPress={() => {
-				router.navigate({
+				router.push({
 					pathname: `/(app)/public/venue/philz`,
 				})
 			}}

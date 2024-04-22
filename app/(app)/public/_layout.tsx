@@ -74,7 +74,7 @@ export default () => {
 											rounded={'$full'}
 											variant='link'
 											onPress={() =>
-												router.navigate({
+												router.push({
 													pathname: '/(app)/public/personal/settings',
 													params: {
 														username: 'test',

@@ -30,7 +30,7 @@ export default () => {
 
 	useEffect(() => {
 		if (rTermsServiceVar.update) {
-			router.navigate({
+			router.push({
 				pathname: '/(information)/updatelatestprivacytermsservice',
 			})
 		}
@@ -68,8 +68,8 @@ export default () => {
 								backgroundColor: segments.includes('tonight')
 									? 'transparent'
 									: rTheme.colorScheme === 'light'
-									? rTheme.theme?.gluestack.tokens.colors.light100
-									: rTheme.theme?.gluestack.tokens.colors.light900,
+										? rTheme.theme?.gluestack.tokens.colors.light100
+										: rTheme.theme?.gluestack.tokens.colors.light900,
 							}}
 							intensity={70}
 							tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
@@ -128,7 +128,7 @@ export default () => {
 									<Pressable
 										hitSlop={25}
 										onPress={() => {
-											router.navigate({
+											router.push({
 												pathname: '/(app)/newconversation',
 											})
 										}}

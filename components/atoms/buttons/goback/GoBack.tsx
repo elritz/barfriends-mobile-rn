@@ -21,7 +21,7 @@ const GoBack: React.FC<ButtonProps> = (props: ButtonProps) => {
 		if (router.canGoBack()) {
 			router.back()
 		} else {
-			router.navigate({
+			router.push({
 				pathname: '/(app)/hometab/venuefeed',
 			})
 		}

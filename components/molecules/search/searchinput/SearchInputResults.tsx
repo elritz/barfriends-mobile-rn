@@ -65,7 +65,7 @@ const SearchInputResults = (props: Props) => {
 					lineHeight={'$xs'}
 					fontWeight={'$bold'}
 					onPressIn={() => {
-						router.navigate({
+						router.push({
 							pathname: '/(app)/explore/searchtext',
 						})
 					}}

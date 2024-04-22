@@ -18,6 +18,9 @@ export default function _layout() {
 				headerTitle: () => <LogoTransparent height={30} width={192} />,
 				headerLeft: () => <ChevronBackArrow />,
 			}}
-		/>
+		>
+			<Stack.Screen name='authenticator' />
+			<Stack.Screen name='confirmationcode' />
+		</Stack>
 	)
 }

@@ -73,7 +73,7 @@ export default () => {
 			firstname: data.firstname,
 			lastname: data.lastname,
 		})
-		router.navigate({
+		router.push({
 			pathname: '/(credential)/personalcredentialstack/username',
 		})
 	}

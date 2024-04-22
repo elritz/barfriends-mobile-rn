@@ -567,7 +567,7 @@ input AddressWhereUniqueInput {
 enum AppType {
   BARFRIENDS
   PETFRIENDS
-  BARFRIENDS
+  REVEL
 }
 
 type Area {
@@ -8967,7 +8967,7 @@ type Mutation {
     members: [String!]
   ): Message
   createPersonalProfile(data: CreatePersonalDataInput): AuthenticationResponseUnion!
-  createVenueProfile(data: CreateVenueDataInput): AuthenticationResponseUnion!
+  createVenueProfile(data: CreateVenueDataInput): ProfileResponseUnion!
   declineFriendRequest(friendRequestId: String!, notificationStatusId: String!): Boolean!
   deleteFriendRequest(friendRequestId: String!): Boolean!
   qrAddFriend(dataHash: String!, qrCodeProfileId: String!): Relationship!
@@ -8997,7 +8997,7 @@ type Mutation {
   updateManyMessageNotifications(conversationId: String): Boolean
   updateOneProfile(data: ProfileUpdateInput!, where: ProfileWhereUniqueInput!): Profile
   updatePassword(newpassword: String!, oldpassword: String!): Boolean!
-  updateProfileIdentifiableInformation(data: IdentifiableInformationUpdateInput!): AuthenticationResponseUnion!
+  updateProfileIdentifiableInformation(data: IdentifiableInformationUpdateInput!): ProfileResponseUnion!
   updateProfilePrivacyTermsDocumentUpdate: Boolean!
   updateStoryEmojimood(emojimoodId: Int!, storyId: String): Story!
   updateThemeManagerSwitchTheme(id: String!, themeId: String!): ProfileTheme!
@@ -13474,6 +13474,8 @@ input ProfileRelationFilter {
   is: ProfileWhereInput
   isNot: ProfileWhereInput
 }
+
+union ProfileResponseUnion = Error | Profile
 
 enum ProfileScalarFieldEnum {
   DeviceManager
@@ -18219,7 +18221,7 @@ type Theme {
   mobileVersions: [String!]!
   name: String!
   startDate: DateTime
-  theme: Json!
+  theme: Json
   updatedAt: DateTime!
   webVersions: [String!]!
 }

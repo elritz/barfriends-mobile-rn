@@ -82,7 +82,7 @@ export default () => {
 			...credentialPersonalProfileVar,
 			username: data.username,
 		})
-		router.navigate({
+		router.push({
 			pathname: '/(credential)/personalcredentialstack/password',
 		})
 	}
@@ -141,6 +141,7 @@ export default () => {
 			</Box>
 		)
 	}
+	
 	const InputRightIcon = () => {
 		return (
 			<Box

@@ -29,7 +29,7 @@ const SearchInputVenueFeedDisabled = (props: Props) => {
 				pb={'$2'}
 				onPressIn={() => {
 					if (segments.includes('hometab')) {
-						router.navigate({
+						router.push({
 							pathname: '/(app)/explore/searchtext',
 							params: {
 								searchtext: '',

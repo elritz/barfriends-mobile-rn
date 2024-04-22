@@ -38,14 +38,13 @@ export const CREATE_PROFILE_GUEST_MUTATION = gql`
 export const UPDATE_PROFILE_IDENTIFIABLE_INFORMATION_MUTATION = gql`
 	${ERROR_FRAGMENT}
 	${PROFILE_FRAGMENT}
-	${AUTHORIZATION_DEVICE_PROFILE_FRAGMENT}
 	mutation updateProfileIdentifiableInformation($data: IdentifiableInformationUpdateInput!) {
 		updateProfileIdentifiableInformation(data: $data) {
 			... on Error {
 				...ERROR_FRAGMENT
 			}
-			... on AuthorizationDeviceProfile {
-				...AUTHORIZATION_DEVICE_PROFILE_FRAGMENT
+			... on Profile {
+				...PROFILE_FRAGMENT
 			}
 		}
 	}

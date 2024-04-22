@@ -16,7 +16,7 @@ export default () => {
 			}}
 		>
 			<Stack.Screen
-				name={'DeviceManager'}
+				name={'devicemanager'}
 				options={{
 					headerShown: true,
 					headerTitle: () => <LogoTransparent height={30} width={192} />,
