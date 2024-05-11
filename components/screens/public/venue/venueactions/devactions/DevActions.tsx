@@ -33,7 +33,7 @@ export default function DevActions() {
 						</>
 					</Pressable>
 					<VStack>
-						<HStack space={'sm'} pt={'$2'} pb={'$2'} mx={'$1'} justifyContent={'space-around'}>
+						<HStack space={'sm'} pt={'$2'} pb={'$2'} mx={'$1'} justifyContent={'space-around'} flexWrap='wrap'>
 							<TotalCard />
 							<JoinCard />
 							<LeaveCard />

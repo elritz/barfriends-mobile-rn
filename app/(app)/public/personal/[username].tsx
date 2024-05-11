@@ -88,8 +88,8 @@ export default () => {
 					backgroundColor: profile?.tonightStory?.emojimood?.colors
 						? 'transparent'
 						: rThemeVar.colorScheme === 'light'
-						? rThemeVar.theme.gluestack.tokens.colors.light100
-						: rThemeVar.theme.gluestack.tokens.colors.light800,
+							? rThemeVar.theme.gluestack.tokens.colors.light100
+							: rThemeVar.theme.gluestack.tokens.colors.light800,
 				}}
 				intensity={80}
 				tint={rThemeVar.colorScheme === 'light' ? 'light' : 'dark'}

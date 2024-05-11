@@ -17,7 +17,6 @@ export default function VenueTotals() {
 	const params = useGlobalSearchParams()
 	const { width } = useWindowDimensions()
 	const numColumns = 3
-	const itemPadding = (width / 33.33) * numColumns
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const [total, setTotal] = useState<Totals>({ name: 'total', value: 0 })
 	const [friends, setFriends] = useState<Totals>({ name: 'friends', value: 0 })
@@ -57,17 +56,16 @@ export default function VenueTotals() {
 			profileIdVenue: String(params.venueProfileId),
 		},
 		onCompleted: async data => {
-			if (data.getLiveVenueTotalsV2.__typename === 'LiveVenueTotals2') {
-				;
-				setTotal({
-					...total,
-					value: data.getLiveVenueTotalsV2.totaled ? data.getLiveVenueTotalsV2.totaled : 0,
-				})
-				setJoined({
-					...joined,
-					value: data.getLiveVenueTotalsV2.joined ? data.getLiveVenueTotalsV2.joined : 0,
-				})
-			}
+			// if (data.getLiveVenueTotalsV2.__typename === 'LiveVenueTotals2') {
+			// 	setTotal({
+			// 		...total,
+			// 		value: data.getLiveVenueTotalsV2.totaled ? data.getLiveVenueTotalsV2.totaled : 0,
+			// 	})
+			// 	setJoined({
+			// 		...joined,
+			// 		value: data.getLiveVenueTotalsV2.joined ? data.getLiveVenueTotalsV2.joined : 0,
+			// 	})
+			// }
 		}
 	})
 
@@ -106,8 +104,6 @@ export default function VenueTotals() {
 								bg: item.name !== 'friends' ? '$light900' : '$primary500',
 								opacity: l ? 50 : 100,
 							},
-							// height: 50,
-							// width: (width - itemPadding) / 3.33,
 							flex: 1,
 						}}
 						p={'$1'}

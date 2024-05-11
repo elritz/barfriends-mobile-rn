@@ -130,7 +130,6 @@ export default () => {
 		)
 	}
 	const MemoizedListHeaderComponent = memo(ListheaderComponent)
-	console.log('loading :>> ', loading);
 
 	if (!data?.venuesNearby || loading) {
 		return (

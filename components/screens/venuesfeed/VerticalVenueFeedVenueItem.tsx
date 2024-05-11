@@ -258,7 +258,7 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 							{distance} {metric}
 						</Heading>
 					)}
-					{/* {props.showJoin && (
+					{props.showJoin && (
 						<>
 							{canJoin ? (
 								<Button
@@ -294,7 +294,7 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 								</Button>
 							) : null}
 						</>
-					)} */}
+					)}
 				</VStack>
 			</VStack>
 		</Pressable>

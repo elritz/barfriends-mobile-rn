@@ -7,7 +7,7 @@ import LeaveSection from '@components/screens/public/venue/venueactions/actionca
 import VenueHeader from '@components/screens/public/venue/venueheader/VenueHeader'
 import VenueTotals from '@components/screens/public/venue/venuetotals/VenueTotals'
 import { PUBLIC_VENUE_HEADER_IMAGE_HEIGHT } from '@constants/Layout'
-import { Box, HStack, Text, VStack } from '@gluestack-ui/themed'
+import { Box, Heading, HStack, Text, VStack } from '@gluestack-ui/themed'
 import { usePublicVenueQuery } from '@graphql/generated'
 import { CurrentLocationReactiveVar, SearchAreaReactiveVar, ThemeReactiveVar } from '@reactive'
 import { FlashList } from '@shopify/flash-list'
@@ -184,10 +184,12 @@ export default () => {
 
 	const HandleEmptyUsers = () => {
 		return (
-			<Text textAlign={'center'} fontSize={'$2xl'}>
-				{' '}
-				No users present!
-			</Text>
+			<VStack alignItems='center'>
+				<Heading>Be the first to join</Heading>
+				<Text textAlign={'center'} fontSize={'$2xl'}>
+					No users present!
+				</Text>
+			</VStack>
 		)
 	}
 
@@ -200,6 +202,7 @@ export default () => {
 			numColumns={2}
 			contentInset={contentInsets}
 			showsVerticalScrollIndicator={false}
+			// ListEmptyComponent={!loading && <HandleEmptyUsers />}
 			ListHeaderComponent={
 				<VStack mb={'$5'} >
 					<VenueHeader key={uniqueId()} loading={loading} photos={data.publicVenue?.photos} />
@@ -207,12 +210,10 @@ export default () => {
 						<VenueTotals />
 						<LeaveSection />
 					</Box>
-
 					<InformationJoinVenue />
 					<VenueActions key={uniqueId()} />
 				</VStack>
 			}
-			// ListEmptyComponent={!loading && <HandleEmptyUsers />}
 			ListFooterComponent={
 				<>
 					<Details />
