@@ -101,7 +101,6 @@ export default () => {
 	const [loginPasswordQuery, { data: LPData, loading: LPLoading, error: LPError }] =
 		useLoginPasswordLazyQuery({
 			onCompleted: data => {
-				console.log("🚀 ~ data:", data)
 				if (!data.loginPassword) {
 					setError('password', { type: 'validate', message: 'Incorrect password' })
 				} else {

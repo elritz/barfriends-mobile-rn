@@ -36,25 +36,25 @@ export const SWITCH_DEVICE_PROFILE_MUTATION = gql`
 	}
 `
 
-export const REFRESH_DEVICE_MANAGER_MUTATION = gql`
-	${PROFILE_FRAGMENT}
-	mutation refreshDeviceManager {
-		refreshDeviceManager {
-			... on AuthorizationDeviceProfile {
-				id
-				isActive
-				refreshtoken
-				accesstoken
-				AppType
-				deviceManagerId
-				Profile {
-					...PROFILE_FRAGMENT
-				}
-			}
-			... on Error {
-				errorCode
-				message
-			}
-		}
-	}
-`
+// export const REFRESH_DEVICE_MANAGER_MUTATION = gql`
+// 	${PROFILE_FRAGMENT}
+// 	mutation refreshDeviceManager {
+// 		refreshDeviceManager {
+// 			... on AuthorizationDeviceProfile {
+// 				id
+// 				isActive
+// 				refreshtoken
+// 				accesstoken
+// 				AppType
+// 				deviceManagerId
+// 				Profile {
+// 					...PROFILE_FRAGMENT
+// 				}
+// 			}
+// 			... on Error {
+// 				errorCode
+// 				message
+// 			}
+// 		}
+// 	}
+// `

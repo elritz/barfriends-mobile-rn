@@ -64,6 +64,8 @@ import { KeyboardProvider } from 'react-native-keyboard-controller'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import * as Sentry from "@sentry/react-native";
 import { APP_ENV } from '@env'
+import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
+import { apolloDevToolsInit } from 'react-native-apollo-devtools-client';
 
 export {
 	// Catch any errors thrown by the Layout component.
@@ -74,10 +76,23 @@ export {
 // 	// Ensure that reloading on `/modal` keeps a back button present.
 // 	initialRouteName: '(app)',
 // }
+if (__DEV__) {
+	require("../ReactotronConfig");
+}
+if (__DEV__) {
+	apolloDevToolsInit(profilingclient);
+}
 
+if (__DEV__) {
+	// Adds messages only in a dev environment
+	loadDevMessages();
+	loadErrorMessages();
+}
 SplashScreen.preventAutoHideAsync()
 // Construct a new instrumentation instance. This is needed to communicate between the integration and React
 const routingInstrumentation = new Sentry.ReactNavigationInstrumentation();
+
+
 
 Sentry.init({
 	dsn: 'https://1c7981806da9fa394d3a549719cd777d@o4506712454660096.ingest.sentry.io/4506712456757248',

@@ -1,6 +1,6 @@
 // TODO: FN(Join a venue functionality) The join button has no ability to join a venue or track the data
 import { useReactiveVar } from '@apollo/client'
-import { Button, CheckCircleIcon, Text, VStack } from '@gluestack-ui/themed'
+import { Button, ButtonIcon, ButtonText, CheckCircleIcon, Text, VStack } from '@gluestack-ui/themed'
 import { GET_LIVE_VENUE_TOTALS_QUERY } from '@graphql/DM/profiling/out/index.query'
 import {
 	AuthorizationDeviceProfile,
@@ -133,14 +133,10 @@ export default function TotalCard() {
 					}
 				}}
 				bg={'$blue500'}
-				width={'$full'}
 				rounded={'$md'}
-				sx={{
-					w: 100,
-				}}
 			>
-				{isTotaled && <CheckCircleIcon size={'md'} mt={'$1'} color='$white' />}
-				<Text>{!APTVLoading ? <Text>{isTotaled ? 'Totaled' : 'Total'}</Text> : 'Totaling'}</Text>
+				{isTotaled && <ButtonIcon as={CheckCircleIcon} size={'md'} mr={'$1'} color='$white' />}
+				<ButtonText color='$white'>{!APTVLoading ? isTotaled ? 'Totaled' : 'Total' : 'Totaling'}</ButtonText>
 			</Button>
 		</VStack>
 	)

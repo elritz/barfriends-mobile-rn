@@ -45,7 +45,7 @@ export default function _layout() {
 										onPress={async () => {
 											await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
 											router.push({
-												pathname: `/(app)/modal/devicemanager/devicemanager`,
+												pathname: `/(app)/modal/devicemanager/deviceprofilemanager`,
 											})
 										}}
 									>

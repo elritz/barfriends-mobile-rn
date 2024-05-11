@@ -17,7 +17,6 @@ import { RefreshControl, Button } from 'react-native'
 export default () => {
 	const [refreshing, setRefreshing] = useState(false)
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
-	// console.log("🚀 ~ rAuthorizationVar:", rAuthorizationVar)
 	const insets = useContentInsets()
 
 	const rPreferenceNotificationPermission = useReactiveVar(

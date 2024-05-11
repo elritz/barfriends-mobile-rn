@@ -22,6 +22,7 @@ import {
 	Text,
 	VStack,
 } from '@gluestack-ui/themed'
+import { useRefreshDeviceManagerQuery } from '@graphql/generated'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { AuthorizationReactiveVar, SearchAreaReactiveVar, ThemeReactiveVar } from '@reactive'
 import { secureStorageItemDelete, secureStorageItemRead } from '@util/hooks/local/useSecureStorage'
@@ -93,6 +94,11 @@ export default () => {
 	const [searchAreaDeleteLoading, setSearchAreaDeleteLoading] = useState(false)
 	const [authorizationDeleteLoading, setAuthorizationDeleteLoading] = useState(false)
 
+	const { data: rdmData, loading: rdmLoading, error: rdmError, client } =
+		useRefreshDeviceManagerQuery({
+			fetchPolicy: 'network-only',
+			// fetchPolicy: 'cache-first',
+		})
 
 	// const appStateHandleBackgroundLocation = async nextAppState => {
 	// 	const hasStarted = await Location.hasStartedLocationUpdatesAsync(
@@ -313,6 +319,14 @@ export default () => {
 					LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME,
 					initialThemeColorSchemeState,
 				)
+			},
+		},
+		{
+			type: 'token',
+			title: 'Cache Reset',
+			icon: 'albums-outline',
+			onPress: async () => {
+				client.resetStore()
 			},
 		},
 	]

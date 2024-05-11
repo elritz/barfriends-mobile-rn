@@ -40,84 +40,84 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 
 	const { refreshLocation } = useGetDistance()
 
-	const [addPersonalJoinVenueMutation, { data: JVData, loading: JVLoading, error: JVError }] =
-		useAddPersonalJoinsVenueMutation({
-			variables: {
-				profileIdVenue: String(props.item?.id),
-			},
-			onCompleted: async data => {
-				if (data.addPersonalJoinsVenue) {
-					const profile = data.addPersonalJoinsVenue as Profile
-					const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
-					if (
-						profile?.Personal?.LiveOutPersonal?.Out &&
-						deviceprofile?.Profile?.Personal?.LiveOutPersonal
-					) {
-						AuthorizationReactiveVar({
-							...deviceprofile,
-							Profile: {
-								...deviceprofile.Profile,
-								Personal: {
-									...deviceprofile.Profile.Personal,
-									LiveOutPersonal: {
-										...deviceprofile.Profile.Personal.LiveOutPersonal,
-										Out: profile.Personal.LiveOutPersonal.Out,
-									},
-								},
-							},
-						})
-					}
-					setIsJoined(true)
-				}
-			},
-			refetchQueries: [
-				{
-					query: GET_LIVE_VENUE_TOTALS_QUERY,
-					variables: {
-						profileIdVenue: props.item?.id,
-					},
-				},
-			],
-		})
+	// const [addPersonalJoinVenueMutation, { data: JVData, loading: JVLoading, error: JVError }] =
+	// 	useAddPersonalJoinsVenueMutation({
+	// 		variables: {
+	// 			profileIdVenue: String(props.item?.id),
+	// 		},
+	// 		onCompleted: async data => {
+	// 			if (data.addPersonalJoinsVenue) {
+	// 				const profile = data.addPersonalJoinsVenue as Profile
+	// 				const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
+	// 				if (
+	// 					profile?.Personal?.LiveOutPersonal?.Out &&
+	// 					deviceprofile?.Profile?.Personal?.LiveOutPersonal
+	// 				) {
+	// 					AuthorizationReactiveVar({
+	// 						...deviceprofile,
+	// 						Profile: {
+	// 							...deviceprofile.Profile,
+	// 							Personal: {
+	// 								...deviceprofile.Profile.Personal,
+	// 								LiveOutPersonal: {
+	// 									...deviceprofile.Profile.Personal.LiveOutPersonal,
+	// 									Out: profile.Personal.LiveOutPersonal.Out,
+	// 								},
+	// 							},
+	// 						},
+	// 					})
+	// 				}
+	// 				setIsJoined(true)
+	// 			}
+	// 		},
+	// 		refetchQueries: [
+	// 			{
+	// 				query: GET_LIVE_VENUE_TOTALS_QUERY,
+	// 				variables: {
+	// 					profileIdVenue: props.item?.id,
+	// 				},
+	// 			},
+	// 		],
+	// 	})
 
-	const [
-		removePersonalJoinsVenueMutation,
-		{ data: RPJVData, loading: RPJVLoading, error: RPJVError },
-	] = useRemovePersonalJoinsVenueMutation({
-		onCompleted: async data => {
-			if (data.removePersonalJoinsVenue) {
-				setIsJoined(false)
-				const profile = data.removePersonalJoinsVenue as Profile
-				const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
-				if (
-					profile?.Personal?.LiveOutPersonal?.Out &&
-					deviceprofile?.Profile?.Personal?.LiveOutPersonal
-				) {
-					AuthorizationReactiveVar({
-						...deviceprofile,
-						Profile: {
-							...deviceprofile.Profile,
-							Personal: {
-								...deviceprofile.Profile.Personal,
-								LiveOutPersonal: {
-									...deviceprofile.Profile.Personal.LiveOutPersonal,
-									Out: profile.Personal.LiveOutPersonal.Out,
-								},
-							},
-						},
-					})
-				}
-			}
-		},
-		refetchQueries: [
-			{
-				query: GET_LIVE_VENUE_TOTALS_QUERY,
-				variables: {
-					profileIdVenue: props.item?.id,
-				},
-			},
-		],
-	})
+	// const [
+	// 	removePersonalJoinsVenueMutation,
+	// 	{ data: RPJVData, loading: RPJVLoading, error: RPJVError },
+	// ] = useRemovePersonalJoinsVenueMutation({
+	// 	onCompleted: async data => {
+	// 		if (data.removePersonalJoinsVenue) {
+	// 			setIsJoined(false)
+	// 			const profile = data.removePersonalJoinsVenue as Profile
+	// 			const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
+	// 			if (
+	// 				profile?.Personal?.LiveOutPersonal?.Out &&
+	// 				deviceprofile?.Profile?.Personal?.LiveOutPersonal
+	// 			) {
+	// 				AuthorizationReactiveVar({
+	// 					...deviceprofile,
+	// 					Profile: {
+	// 						...deviceprofile.Profile,
+	// 						Personal: {
+	// 							...deviceprofile.Profile.Personal,
+	// 							LiveOutPersonal: {
+	// 								...deviceprofile.Profile.Personal.LiveOutPersonal,
+	// 								Out: profile.Personal.LiveOutPersonal.Out,
+	// 							},
+	// 						},
+	// 					},
+	// 				})
+	// 			}
+	// 		}
+	// 	},
+	// 	refetchQueries: [
+	// 		{
+	// 			query: GET_LIVE_VENUE_TOTALS_QUERY,
+	// 			variables: {
+	// 				profileIdVenue: props.item?.id,
+	// 			},
+	// 		},
+	// 	],
+	// })
 
 	const setDist = useCallback(
 		({ distanceInM }) => {
@@ -185,12 +185,13 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 		})
 	}
 
-	const _pressLeave = () => {
-		isJoined ? removePersonalJoinsVenueMutation() : addPersonalJoinVenueMutation()
-	}
+	// const _pressLeave = () => {
+	// 	isJoined ? removePersonalJoinsVenueMutation() : addPersonalJoinVenueMutation()
+	// }
 
 	return (
-		<Pressable disabled={JVLoading || RPJVLoading} onPress={() => _press()}>
+		// <Pressable disabled={JVLoading || RPJVLoading} onPress={() => _press()}>
+		<Pressable onPress={() => _press()}>
 			<VStack
 				space={'md'}
 				// width={width}
@@ -257,7 +258,7 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 							{distance} {metric}
 						</Heading>
 					)}
-					{props.showJoin && (
+					{/* {props.showJoin && (
 						<>
 							{canJoin ? (
 								<Button
@@ -293,7 +294,7 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 								</Button>
 							) : null}
 						</>
-					)}
+					)} */}
 				</VStack>
 			</VStack>
 		</Pressable>

@@ -1,11 +1,11 @@
 import { useReactiveVar } from '@apollo/client'
 import { Ionicons } from '@expo/vector-icons'
 import { Box, Button, HStack, Heading, Text } from '@gluestack-ui/themed'
-import { useGetLiveVenueTotalsQuery } from '@graphql/generated'
+import { useGetLiveVenueTotalsQuery, useGetLiveVenueTotalsV2Query } from '@graphql/generated'
 import { ThemeReactiveVar } from '@reactive'
 import { useGlobalSearchParams } from 'expo-router'
 import { uniqueId } from 'lodash'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Alert, Platform, Share, useWindowDimensions } from 'react-native'
 
 type Totals = {
@@ -51,24 +51,38 @@ export default function VenueTotals() {
 		}
 	}
 
-	const { data, loading, error } = useGetLiveVenueTotalsQuery({
-		skip: !String(params.username),
+	const { data: d, loading: l, error: e } = useGetLiveVenueTotalsV2Query({
+		skip: !String(params.venueProfileId),
 		variables: {
-			profileIdVenue: String(params.username),
+			profileIdVenue: String(params.venueProfileId),
 		},
 		onCompleted: async data => {
-			if (data.getLiveVenueTotals) {
+			if (data.getLiveVenueTotalsV2.__typename === 'LiveVenueTotals2') {
+				;
 				setTotal({
 					...total,
-					value: data.getLiveVenueTotals.totaled ? data.getLiveVenueTotals.totaled.length : 0,
+					value: data.getLiveVenueTotalsV2.totaled ? data.getLiveVenueTotalsV2.totaled : 0,
 				})
 				setJoined({
 					...joined,
-					value: data.getLiveVenueTotals.joined ? data.getLiveVenueTotals.joined.length : 0,
+					value: data.getLiveVenueTotalsV2.joined ? data.getLiveVenueTotalsV2.joined : 0,
 				})
 			}
-		},
+		}
 	})
+
+	useEffect(() => {
+		if (d && d.getLiveVenueTotalsV2.__typename === 'LiveVenueTotals2') {
+			setTotal({
+				...total,
+				value: d.getLiveVenueTotalsV2.totaled ? d.getLiveVenueTotalsV2.totaled : 0,
+			})
+			setJoined({
+				...joined,
+				value: d.getLiveVenueTotalsV2.joined ? d.getLiveVenueTotalsV2.joined : 0,
+			})
+		}
+	}, [d])
 
 	return (
 		<HStack
@@ -86,11 +100,11 @@ export default function VenueTotals() {
 						sx={{
 							_light: {
 								bg: item.name !== 'friends' ? '$light200' : '$primary500',
-								opacity: loading ? 50 : 100,
+								opacity: l ? 50 : 100,
 							},
 							_dark: {
 								bg: item.name !== 'friends' ? '$light900' : '$primary500',
-								opacity: loading ? 50 : 100,
+								opacity: l ? 50 : 100,
 							},
 							// height: 50,
 							// width: (width - itemPadding) / 3.33,

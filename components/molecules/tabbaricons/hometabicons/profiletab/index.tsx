@@ -43,7 +43,7 @@ const ProfileTab = (props: TabProps) => {
 		await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
 		console.log('pressed :>> ')
 		router.push({
-			pathname: '/(app)/modal/devicemanager/devicemanager',
+			pathname: '/(app)/modal/devicemanager/deviceprofilemanager',
 		})
 	}
 

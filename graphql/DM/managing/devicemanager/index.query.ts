@@ -29,3 +29,26 @@ export const GET_A_DEVICE_MANAGER_QUERY = gql`
 		}
 	}
 `
+
+export const REFRESH_DEVICE_MANAGER_QUERY = gql`
+	${PROFILE_FRAGMENT}
+	query refreshDeviceManager {
+		refreshDeviceManager {
+			... on AuthorizationDeviceProfile {
+				id
+				isActive
+				refreshtoken
+				accesstoken
+				AppType
+				deviceManagerId
+				Profile {
+					...PROFILE_FRAGMENT
+				}
+			}
+			... on Error {
+				errorCode
+				message
+			}
+		}
+	}
+`

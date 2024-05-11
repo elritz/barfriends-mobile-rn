@@ -1,4 +1,5 @@
 import JoinCard from './joincard/JoinCard'
+import LeaveAllCard from './leaveallcard/LeaveAllCard'
 import LeaveCard from './leavecard/LeaveCard'
 import TotalCard from './totalcard/TotalCard'
 import { Box, HStack, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
@@ -12,9 +13,7 @@ export default function DevActions() {
 			{showDevMode ? (
 				<Box bg={'$transparent'}>
 					<Pressable
-						onPress={() => {
-							setShowDevMode(!showDevMode)
-						}}
+						onPress={() => setShowDevMode(!showDevMode)}
 					>
 						<>
 							<Heading
@@ -34,10 +33,11 @@ export default function DevActions() {
 						</>
 					</Pressable>
 					<VStack>
-						<HStack space={'md'} pt={'$2'} pb={'$2'} mx={'$3'} justifyContent={'space-around'}>
+						<HStack space={'sm'} pt={'$2'} pb={'$2'} mx={'$1'} justifyContent={'space-around'}>
 							<TotalCard />
 							<JoinCard />
 							<LeaveCard />
+							<LeaveAllCard />
 						</HStack>
 					</VStack>
 				</Box>

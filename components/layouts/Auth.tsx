@@ -2,7 +2,7 @@ import { AUTHORIZATION, LOCAL_STORAGE_SEARCH_AREA } from '@constants/StorageCons
 import {
 	AuthorizationDeviceProfile,
 	useCreateGuestProfileMutation,
-	useRefreshDeviceManagerMutation,
+	useRefreshDeviceManagerLazyQuery,
 } from '@graphql/generated'
 import { AuthorizationReactiveVar } from '@reactive'
 import { AuthorizationDecoded } from '@util/hooks/auth/useCheckLocalStorageForAuthorizationToken'
@@ -10,8 +10,8 @@ import { secureStorageItemDelete, secureStorageItemRead } from '@util/hooks/loca
 import { useCallback, useEffect } from 'react'
 
 export default function Auth({ children }) {
-	const [refreshDeviceManagerMutation, { data: RDMData, loading: RDMLoading, error: RDMError }] =
-		useRefreshDeviceManagerMutation({
+	const [refreshDeviceManagerQuery, { data: RDMData, loading: RDMLoading, error: RDMError }] =
+		useRefreshDeviceManagerLazyQuery({
 			fetchPolicy: 'network-only',
 			onCompleted: data => {
 				if (data.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile') {
@@ -23,7 +23,6 @@ export default function Auth({ children }) {
 				}
 			},
 			onError: e => {
-				console.log('222222222222222222222222222222 :>> ', e)
 			},
 		})
 
@@ -38,7 +37,6 @@ export default function Auth({ children }) {
 				}
 			},
 			onError: e => {
-				console.log('222222222222222222222222222222 :>> ', e)
 			},
 		})
 
@@ -59,7 +57,7 @@ export default function Auth({ children }) {
 		if (!getAuthorization) {
 			createGuestProfileMutation()
 		} else {
-			refreshDeviceManagerMutation()
+			refreshDeviceManagerQuery()
 		}
 	}, [])
 

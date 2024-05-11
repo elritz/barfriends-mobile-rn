@@ -53,6 +53,7 @@ export default () => {
 	})
 
 	if (loading || !data?.publicVenue) {
+
 		return (
 			<VStack flex={1} space={'md'}>
 				<Skeleton
@@ -191,7 +192,6 @@ export default () => {
 	}
 
 	const venueData = data.publicVenue
-	const name = venueData.Venue?.name
 
 	return (
 		<FlashList

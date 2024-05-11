@@ -7583,13 +7583,22 @@ type LiveOutVenue {
   Venue: Venue!
   createdAt: DateTime!
   id: ID!
+  joined: Int!
+  total: Int!
   updatedAt: DateTime!
   venueId: String!
+}
+
+input LiveOutVenueAvgOrderByAggregateInput {
+  joined: SortOrder
+  total: SortOrder
 }
 
 input LiveOutVenueCountOrderByAggregateInput {
   createdAt: SortOrder
   id: SortOrder
+  joined: SortOrder
+  total: SortOrder
   updatedAt: SortOrder
   venueId: SortOrder
 }
@@ -7599,12 +7608,16 @@ input LiveOutVenueCreateInput {
   Venue: VenueCreateNestedOneWithoutLiveOutVenueInput!
   createdAt: DateTime
   id: String
+  joined: Int
+  total: Int
   updatedAt: DateTime
 }
 
 input LiveOutVenueCreateManyInput {
   createdAt: DateTime
   id: String
+  joined: Int
+  total: Int
   updatedAt: DateTime
   venueId: String!
 }
@@ -7635,6 +7648,8 @@ input LiveOutVenueCreateWithoutOutInput {
   Venue: VenueCreateNestedOneWithoutLiveOutVenueInput!
   createdAt: DateTime
   id: String
+  joined: Int
+  total: Int
   updatedAt: DateTime
 }
 
@@ -7642,12 +7657,16 @@ input LiveOutVenueCreateWithoutVenueInput {
   Out: OutCreateNestedManyWithoutLiveOutVenueInput
   createdAt: DateTime
   id: String
+  joined: Int
+  total: Int
   updatedAt: DateTime
 }
 
 input LiveOutVenueMaxOrderByAggregateInput {
   createdAt: SortOrder
   id: SortOrder
+  joined: SortOrder
+  total: SortOrder
   updatedAt: SortOrder
   venueId: SortOrder
 }
@@ -7655,6 +7674,8 @@ input LiveOutVenueMaxOrderByAggregateInput {
 input LiveOutVenueMinOrderByAggregateInput {
   createdAt: SortOrder
   id: SortOrder
+  joined: SortOrder
+  total: SortOrder
   updatedAt: SortOrder
   venueId: SortOrder
 }
@@ -7665,11 +7686,15 @@ input LiveOutVenueNullableRelationFilter {
 }
 
 input LiveOutVenueOrderByWithAggregationInput {
+  _avg: LiveOutVenueAvgOrderByAggregateInput
   _count: LiveOutVenueCountOrderByAggregateInput
   _max: LiveOutVenueMaxOrderByAggregateInput
   _min: LiveOutVenueMinOrderByAggregateInput
+  _sum: LiveOutVenueSumOrderByAggregateInput
   createdAt: SortOrder
   id: SortOrder
+  joined: SortOrder
+  total: SortOrder
   updatedAt: SortOrder
   venueId: SortOrder
 }
@@ -7679,6 +7704,8 @@ input LiveOutVenueOrderByWithRelationInput {
   Venue: VenueOrderByWithRelationInput
   createdAt: SortOrder
   id: SortOrder
+  joined: SortOrder
+  total: SortOrder
   updatedAt: SortOrder
   venueId: SortOrder
 }
@@ -7686,6 +7713,8 @@ input LiveOutVenueOrderByWithRelationInput {
 enum LiveOutVenueScalarFieldEnum {
   createdAt
   id
+  joined
+  total
   updatedAt
   venueId
 }
@@ -7696,8 +7725,15 @@ input LiveOutVenueScalarWhereWithAggregatesInput {
   OR: [LiveOutVenueScalarWhereWithAggregatesInput!]
   createdAt: DateTimeWithAggregatesFilter
   id: StringWithAggregatesFilter
+  joined: IntWithAggregatesFilter
+  total: IntWithAggregatesFilter
   updatedAt: DateTimeWithAggregatesFilter
   venueId: StringWithAggregatesFilter
+}
+
+input LiveOutVenueSumOrderByAggregateInput {
+  joined: SortOrder
+  total: SortOrder
 }
 
 input LiveOutVenueUpdateInput {
@@ -7705,12 +7741,16 @@ input LiveOutVenueUpdateInput {
   Venue: VenueUpdateOneRequiredWithoutLiveOutVenueNestedInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
+  joined: IntFieldUpdateOperationsInput
+  total: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input LiveOutVenueUpdateManyMutationInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
+  joined: IntFieldUpdateOperationsInput
+  total: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -7748,6 +7788,8 @@ input LiveOutVenueUpdateWithoutOutInput {
   Venue: VenueUpdateOneRequiredWithoutLiveOutVenueNestedInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
+  joined: IntFieldUpdateOperationsInput
+  total: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -7755,6 +7797,8 @@ input LiveOutVenueUpdateWithoutVenueInput {
   Out: OutUpdateManyWithoutLiveOutVenueNestedInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
+  joined: IntFieldUpdateOperationsInput
+  total: IntFieldUpdateOperationsInput
   updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
@@ -7778,6 +7822,8 @@ input LiveOutVenueWhereInput {
   Venue: VenueWhereInput
   createdAt: DateTimeFilter
   id: StringFilter
+  joined: IntFilter
+  total: IntFilter
   updatedAt: DateTimeFilter
   venueId: StringFilter
 }
@@ -7790,6 +7836,8 @@ input LiveOutVenueWhereUniqueInput {
   Venue: VenueWhereInput
   createdAt: DateTimeFilter
   id: String
+  joined: IntFilter
+  total: IntFilter
   updatedAt: DateTimeFilter
   venueId: String
 }
@@ -7797,6 +7845,14 @@ input LiveOutVenueWhereUniqueInput {
 type LiveVenueTotals {
   joined: [Out!]
   totaled: [Out!]
+}
+
+type LiveVenueTotals2 {
+  id: String
+  joined: Int
+  out: [Out!]
+  totaled: Int
+  updateOut: Out
 }
 
 type Location {
@@ -8955,7 +9011,9 @@ input MessageWhereUniqueInput {
 type Mutation {
   acceptFriendRequest(friendRequestId: String!, notificationStatusId: String!, venueIdMetAt: String): Relationship!
   addPersonalJoinsVenue(profileIdVenue: String): Profile!
+  addPersonalJoinsVenue2(profileIdVenue: String): VenueTotalsResponseUnion!
   addPersonalTotalsVenue(profileIdPersonal: String, profileIdVenue: String): Boolean!
+  addPersonalTotalsVenue2(profileIdPersonal: String, profileIdVenue: String): Boolean!
   addStoryPhotos(photos: PhotoCreateManyProfileInputEnvelope): Story!
   createFriendRequest(receiversProfileId: [String!]!): Request!
   createGuestProfile: AuthenticationResponseUnion!
@@ -8971,12 +9029,14 @@ type Mutation {
   declineFriendRequest(friendRequestId: String!, notificationStatusId: String!): Boolean!
   deleteFriendRequest(friendRequestId: String!): Boolean!
   qrAddFriend(dataHash: String!, qrCodeProfileId: String!): Relationship!
-  refreshDeviceManager: AuthenticationResponseUnion!
   removeAllFromVenueDeveloper(profileIdVenue: String): Boolean!
+  removeAllJoinedTotalFromVenue(profileIdVenue: String): VenueTotalsResponseUnion!
   removeDeviceProfileFromDeviceManager(profileId: String!): Boolean!
   removeFriend(relationshipId: String!): Boolean!
   removePersonalJoinsVenue: Profile!
+  removePersonalJoinsVenue2(profileIdVenue: String): VenueTotalsResponseUnion!
   removePersonalTotalsVenue(profileIdVenue: String): Boolean!
+  removePersonalTotalsVenue2(profileIdVenue: String): Boolean!
   removeStoryPhotos(photoId: String!): Story!
   sendAuthenticatorDeviceOwnerCode(data: CodeDataInput, where: CustomCodeWhereInput): CodeResponse!
   sendAuthenticatorForgotPasswordCode(data: CodeDataInput, where: CustomCodeWhereInput): CodeResponse!
@@ -13457,6 +13517,7 @@ type ProfilePersonal {
   Credentials: Credentials!
   DetailInformation: DetailInformation
   IdentifiableInformation: IdentifiableInformation
+  Personal: Personal!
   ProfileType: ProfileType!
   Relationships: [Relationship!]!
   ThemeManager: ThemeManager
@@ -14942,6 +15003,7 @@ type Query {
   getH3Index6VenueRecommendationById(id: String!, venuesProfileIds: [String!]): H3Index6VenueRecommendation
   getInterests: [Category!]!
   getLiveVenueTotals(profileIdVenue: String): LiveVenueTotals!
+  getLiveVenueTotalsV2(profileIdVenue: String): VenueTotalsResponseUnion!
   getNotifications: NotificationResponse!
   getProfileThemeManager: ThemeManager!
   getSecureFriendQRCodeData: String!
@@ -14951,6 +15013,7 @@ type Query {
   profiles(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): [Profile!]
   publicProfile(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): PublicProfilePersonal
   publicVenue(currentLocationCoords: CoordsInput, cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): ProfileVenue
+  refreshDeviceManager: AuthenticationResponseUnion!
   sendAuthenticatorDeviceOwnerCode: Boolean!
   venue(cursor: VenueWhereUniqueInput, distinct: [VenueScalarFieldEnum!], orderBy: [VenueOrderByWithRelationInput!], skip: Int, take: Int, where: VenueWhereInput): Venue
   venues(cursor: VenueWhereUniqueInput, distinct: [VenueScalarFieldEnum!], orderBy: [VenueOrderByWithRelationInput!], skip: Int, take: Int, where: VenueWhereInput): [Venue!]!
@@ -19290,6 +19353,8 @@ input VenueStatsWhereUniqueInput {
   id: String
   updatedAt: DateTimeFilter
 }
+
+union VenueTotalsResponseUnion = Error | LiveVenueTotals2
 
 input VenueUpdateInput {
   LiveOutVenue: LiveOutVenueUpdateOneWithoutVenueNestedInput

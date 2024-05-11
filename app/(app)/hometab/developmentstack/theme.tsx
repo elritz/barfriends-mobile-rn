@@ -103,7 +103,6 @@ export default function Preferences() {
 	const [updateSwitchTheme] = useUpdateThemeManagerSwitchThemeMutation({
 		onCompleted: data => {
 			refreshMutation()
-			console.log('🚀 ~ file: theme.tsx:43 ~ Preferences ~ data:', data)
 		},
 		onError: error => {
 			console.log('errorwwww :>> ', error)
@@ -171,10 +170,6 @@ export default function Preferences() {
 							{rTheme.colorScheme === 'light' ? (
 								<>
 									{Object.entries(gluestack).map((item, index) => {
-										console.log(`🚀 ---------------🚀`)
-										console.log(`🚀 ~ item:`, item)
-										console.log(`🚀 ---------------🚀`)
-
 										return (
 											<Box
 												key={index}

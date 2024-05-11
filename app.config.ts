@@ -20,7 +20,14 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 		return [
 			'expo-router',
 			'sentry-expo',
-			'expo-build-properties',
+			[
+			 'expo-build-properties', 
+			 	{
+					"ios": {
+						"flipper": true
+					}
+				}
+			],
 			[
         "expo-updates",
         {

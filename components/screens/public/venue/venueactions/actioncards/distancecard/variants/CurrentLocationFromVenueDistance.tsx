@@ -25,9 +25,6 @@ const size = 50
 
 const CurrentLocationFromVenueDistance = () => {
 	const params = useLocalSearchParams()
-
-	console.log("🚀 ~ file: CurrentLocationFromVenueDistance.tsx:29 ~ CurrentLocationFromVenueDistance ~ params:", params)
-
 	const isFocused = useIsFocused()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)

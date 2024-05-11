@@ -1,74 +1,103 @@
 // TODO: FN(Join a venue functionality) The join button has no ability to join a venue or track the data
-import { useReactiveVar } from '@apollo/client'
 import { Button, VStack, ButtonText } from '@gluestack-ui/themed'
-import { GET_LIVE_VENUE_TOTALS_QUERY } from '@graphql/DM/profiling/out/index.query'
 import {
-	AuthorizationDeviceProfile,
-	Profile,
-	useRemovePersonalJoinsVenueMutation,
+	useGetLiveVenueTotalsV2Query,
+	useRefreshDeviceManagerQuery,
+	useRemovePersonalJoinsVenue2Mutation,
 } from '@graphql/generated'
-import { AuthorizationReactiveVar } from '@reactive'
 import { useLocalSearchParams } from 'expo-router'
 import { useEffect, useState } from 'react'
 
 export default function LeaveCard() {
 	const params = useLocalSearchParams()
-	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
-	const [isLeaving, setIsLeaving] = useState(false)
 	const [isJoined, setIsJoined] = useState(false)
-	const [outId, setOutId] = useState('')
 
-	useEffect(() => {
-		const joinedToVenue = rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out.map(item => {
-			return item.venueProfileId
+	const { data: rdmData, loading: rdmLoading, error: rdmError } =
+		useRefreshDeviceManagerQuery({
+			fetchPolicy: 'cache-first',
 		})
-		const out = rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out.find(
-			item => item.venueProfileId === String(params.venueProfileId),
-		)
-		if (out) {
-			setOutId(out.id)
+
+	const { data: glvtData, loading: glvtLoading, error: glvtError } = useGetLiveVenueTotalsV2Query({
+		skip: !String(params.venueProfileId),
+		fetchPolicy: 'cache-first',
+		variables: {
+			profileIdVenue: String(params.venueProfileId),
+		},
+		onCompleted: async data => {
+			if (data.getLiveVenueTotalsV2.__typename === 'LiveVenueTotals2') {
+				data.getLiveVenueTotalsV2.out?.some(item => {
+					if (data.getLiveVenueTotalsV2.__typename === 'LiveVenueTotals2' && rdmData?.refreshDeviceManager.__typename === 'AuthorizationDeviceProfile') {
+						if (item.personalProfileId === rdmData?.refreshDeviceManager.Profile?.id) {
+							setIsJoined(true)
+						}
+					}
+				})
+			}
 		}
-		if (joinedToVenue) {
-			setIsJoined(joinedToVenue.includes(String(params.venueProfileId)))
-		}
-	}, [rAuthorizationVar, isJoined])
+	})
 
 	const [removePersonalJoinsVenueMutation, { data: JVData, loading: JVLoading, error: JVError }] =
-		useRemovePersonalJoinsVenueMutation({
-			onCompleted: async data => {
-				if (data.removePersonalJoinsVenue) {
+		useRemovePersonalJoinsVenue2Mutation({
+			variables: {
+				profileIdVenue: String(params.venueProfileId),
+			},
+			update: (cache, { data }) => {
+				if (glvtData?.getLiveVenueTotalsV2.__typename === 'LiveVenueTotals2') {
+					if (data?.removePersonalJoinsVenue2?.updateOut?.id) {
+						if (rdmData?.refreshDeviceManager?.Profile?.Personal?.LiveOutPersonal) {
+							const tobeRemoved = cache.identify(data.removePersonalJoinsVenue2.updateOut)
+							cache.modify({
+								id: cache.identify(rdmData.refreshDeviceManager.Profile?.Personal?.LiveOutPersonal),
+								fields: {
+									Out(existingItemsRefs, { toReference }) {
+										return existingItemsRefs.filter(
+											itemRef => itemRef === toReference(tobeRemoved)
+										);
+									}
+								}
+							})
+						}
+					}
+				}
+
+				if (data?.removePersonalJoinsVenue2.__typename === 'LiveVenueTotals2' && rdmData?.refreshDeviceManager.__typename === 'AuthorizationDeviceProfile') {
 					setIsJoined(false)
-					const profile = data.removePersonalJoinsVenue as Profile
-					const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
-					if (
-						profile?.Personal?.LiveOutPersonal?.Out &&
-						deviceprofile?.Profile?.Personal?.LiveOutPersonal
-					) {
-						AuthorizationReactiveVar({
-							...deviceprofile,
-							Profile: {
-								...deviceprofile.Profile,
-								Personal: {
-									...deviceprofile.Profile.Personal,
-									LiveOutPersonal: {
-										...deviceprofile.Profile.Personal.LiveOutPersonal,
-										Out: profile.Personal.LiveOutPersonal.Out,
-									},
-								},
-							},
+					if (data.removePersonalJoinsVenue2.updateOut?.id) {
+						const tobeRemoved = cache.identify(data.removePersonalJoinsVenue2.updateOut)
+						cache.modify({
+							id: cache.identify(data.removePersonalJoinsVenue2),
+							fields: {
+								joined: () => data.removePersonalJoinsVenue2.__typename === 'LiveVenueTotals2' && data.removePersonalJoinsVenue2.joined ? data.removePersonalJoinsVenue2.joined : 0,
+								totaled: () => data.removePersonalJoinsVenue2.__typename === 'LiveVenueTotals2' && data.removePersonalJoinsVenue2.totaled ? data.removePersonalJoinsVenue2.totaled : 0,
+								out(existingItemsRefs, { toReference }) {
+									return existingItemsRefs.filter(
+										itemRef => itemRef === toReference(tobeRemoved)
+									);
+								}
+							}
 						})
 					}
 				}
-			},
-			refetchQueries: [
-				{
-					query: GET_LIVE_VENUE_TOTALS_QUERY,
-					variables: {
-						profileIdVenue: String(params.venueProfileId),
-					},
-				},
-			],
+			}
 		})
+
+	useEffect(() => {
+		if (glvtData && glvtData.getLiveVenueTotalsV2.__typename === 'LiveVenueTotals2') {
+			if (glvtData.getLiveVenueTotalsV2.out?.length) {
+				glvtData.getLiveVenueTotalsV2.out?.some(item => {
+					if (glvtData.getLiveVenueTotalsV2.__typename === 'LiveVenueTotals2' && rdmData?.refreshDeviceManager.__typename === 'AuthorizationDeviceProfile') {
+						if (item.personalProfileId === rdmData?.refreshDeviceManager.Profile?.id) {
+							setIsJoined(true)
+						} else {
+							setIsJoined(false)
+						}
+					}
+				})
+			} else {
+				setIsJoined(false)
+			}
+		}
+	}, [rdmData, glvtData])
 
 	return (
 		<VStack>
@@ -79,11 +108,8 @@ export default function LeaveCard() {
 				backgroundColor={'$error600'}
 				rounded={'$md'}
 				isDisabled={!isJoined || JVLoading}
-				sx={{
-					w: 100,
-				}}
 			>
-				<ButtonText>{isLeaving ? 'Leaving' : 'Leave'}</ButtonText>
+				<ButtonText>Leave</ButtonText>
 			</Button>
 		</VStack>
 	)

@@ -85,7 +85,7 @@ export default function ProfilePhoto({ photo }: Props) {
 					w: 120,
 					h: 130,
 					_light: {
-						bg: '$red300',
+						bg: '$dar',
 					},
 					_dark: {
 						bg: '$red500',
