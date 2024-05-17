@@ -1,4 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
+import { FontAwesome5 } from '@expo/vector-icons'
 import {
 	Box,
 	Button,
@@ -10,7 +11,7 @@ import {
 	VStack,
 } from '@gluestack-ui/themed'
 import { useGetSecureFriendQrCodeDataLazyQuery } from '@graphql/generated'
-import { AuthorizationReactiveVar, PermissionCameraReactiveVar } from '@reactive'
+import { AuthorizationReactiveVar, PermissionCameraReactiveVar, ThemeReactiveVar } from '@reactive'
 import { useDisclose } from '@util/hooks/useDisclose'
 import { useRouter } from 'expo-router'
 import { useEffect, useState } from 'react'
@@ -28,6 +29,7 @@ type Props = {
 
 export default function QuickBarfriendCard({ qrcodesize, logosize, showIcon, color }: Props) {
 	const router = useRouter()
+	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 	const rPermissionCamera = useReactiveVar(PermissionCameraReactiveVar)
 	const { isOpen, onOpen, onClose } = useDisclose()
@@ -68,11 +70,9 @@ export default function QuickBarfriendCard({ qrcodesize, logosize, showIcon, col
 		)
 	}
 	return (
-		<View style={{ flex: 1, width: '100%' }}>
-			<Heading fontWeight={'$black'} fontSize={'$lg'}>
-				Add Friend
-			</Heading>
+		<View style={{ flex: 1, width: '100%', alignItems: 'center', justifyContent: 'center' }}>
 			<Pressable
+				style={{ alignItems: 'center', justifyContent: 'center' }}
 				onPress={() =>
 					rPermissionCamera?.granted
 						? onOpen()
@@ -81,47 +81,33 @@ export default function QuickBarfriendCard({ qrcodesize, logosize, showIcon, col
 						})
 				}
 			>
+				<Box bg='$primary400' h={'$16'} w={'$16'} alignItems='center' justifyContent='center' rounded={'$md'}>
+					<FontAwesome5
+						name={'user'}
+						size={30}
+						color={
+							rTheme.colorScheme === 'light'
+								? rTheme.theme?.gluestack.tokens.colors.light900
+								: rTheme.theme?.gluestack.tokens.colors.light100
+						}
+					/>
+				</Box>
+				<Heading
+					mt={'$3'}
+					textAlign={'center'}
+					fontSize={'$lg'}
+					fontWeight={'$black'}
+					textTransform={'uppercase'}
+					lineHeight={'$lg'}
+				>
+					Add Friends
+				</Heading>
 				<VStack
 					mt={'$2'}
 					flexDirection={'column'}
 					justifyContent={'space-around'}
 					alignItems={'center'}
 				>
-					{rPermissionCamera?.granted ? (
-						<View>
-							<VStack alignItems={'center'} justifyContent={'center'}>
-								{dataQR && (
-									<QRCode
-										size={qrcodesize}
-										value={dataQR}
-										color={color}
-										backgroundColor={'transparent'}
-										logo={showIcon ? LOGO_COASTER : null}
-										logoSize={logosize}
-										logoBackgroundColor={'transparent'}
-									/>
-								)}
-							</VStack>
-						</View>
-					) : (
-						<Box bg={'transparent'} flexDirection={'column'} justifyContent={'space-around'}>
-							<Box bg={'transparent'} alignItems={'center'} justifyContent={'center'}>
-								<>
-									{dataQR && (
-										<QRCode
-											size={qrcodesize}
-											value={dataQR}
-											color={color ? color : '#ff7000'}
-											backgroundColor={'transparent'}
-											logo={showIcon ? LOGO_COASTER : null}
-											logoSize={logosize}
-											logoBackgroundColor={'transparent'}
-										/>
-									)}
-								</>
-							</Box>
-						</Box>
-					)}
 				</VStack>
 			</Pressable>
 		</View>

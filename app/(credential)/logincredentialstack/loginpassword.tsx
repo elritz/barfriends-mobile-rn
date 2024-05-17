@@ -7,7 +7,9 @@ import {
 	HStack,
 	Icon,
 	Input,
+	InputField,
 	InputIcon,
+	InputSlot,
 	Pressable,
 	Spinner,
 	Text,
@@ -181,7 +183,7 @@ export default () => {
 						render={({ field: { onChange, onBlur, value } }) => {
 							return (
 								<Input variant={'underlined'} size='lg' alignItems='center'>
-									<Input.Input
+									<InputField
 										keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 										value={value}
 										placeholder='Password'
@@ -208,14 +210,15 @@ export default () => {
 										numberOfLines={1}
 									/>
 									<Pressable onPress={handleShowPassword}>
-										<InputIcon pr='$3'>
+										<InputSlot pr='$3'>
+
 											{/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
 											{showPassword ? (
 												<Icon as={EyeIcon} size={'lg'} color='$primary500' />
 											) : (
 												<Icon as={EyeOffIcon} size={'lg'} color='$primary500' />
 											)}
-										</InputIcon>
+										</InputSlot>
 									</Pressable>
 									{LPLoading && <Spinner size='small' accessibilityLabel={'Loading...'} />}
 								</Input>
@@ -274,22 +277,24 @@ export default () => {
 					</Text>
 				</VStack>
 			</Reanimated.View>
-			{Platform.OS === 'ios' ? (
-				<InputAccessoryView nativeID={INPUT_ACCESSORY_VIEW_ID}>
-					<InnerContent />
-				</InputAccessoryView>
-			) : (
-				<Reanimated.View
-					style={[
-						{
-							height: INPUT_CONTAINER_HEIGHT,
-						},
-						textInputContainerStyle,
-					]}
-				>
-					<InnerContent />
-				</Reanimated.View>
-			)}
-		</KeyboardAvoidingView>
+			{
+				Platform.OS === 'ios' ? (
+					<InputAccessoryView nativeID={INPUT_ACCESSORY_VIEW_ID}>
+						<InnerContent />
+					</InputAccessoryView>
+				) : (
+					<Reanimated.View
+						style={[
+							{
+								height: INPUT_CONTAINER_HEIGHT,
+							},
+							textInputContainerStyle,
+						]}
+					>
+						<InnerContent />
+					</Reanimated.View>
+				)
+			}
+		</KeyboardAvoidingView >
 	)
 }

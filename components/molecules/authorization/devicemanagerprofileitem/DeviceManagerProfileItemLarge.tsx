@@ -34,13 +34,13 @@ const DeviceManagerProfileItemLarge = ({ item, loading }: ProfileItemType) => {
 							{rAuthorizationVar?.Profile?.id === item?.id ? (
 								<Ionicons
 									name='checkmark-circle'
-									size={25}
+									size={20}
 									color={rTheme.theme?.gluestack.tokens.colors.success600}
 								/>
 							) : (
 								<MaterialIcons
 									name='radio-button-unchecked'
-									size={25}
+									size={20}
 									color={rTheme.theme?.gluestack.tokens.colors.green400}
 								/>
 							)}

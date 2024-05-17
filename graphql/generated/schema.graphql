@@ -8626,15 +8626,19 @@ type Message {
   Request: Request
   content: Json!
   conversationId: String
+  createAt: DateTime!
   id: ID!
   messageId: String
+  updatedAt: DateTime!
 }
 
 input MessageCountOrderByAggregateInput {
   content: SortOrder
   conversationId: SortOrder
+  createAt: SortOrder
   id: SortOrder
   messageId: SortOrder
+  updatedAt: SortOrder
 }
 
 input MessageCreateInput {
@@ -8643,13 +8647,17 @@ input MessageCreateInput {
   Reply: MessageCreateNestedOneWithoutRepliesInput
   Request: RequestCreateNestedOneWithoutMessageInput
   content: Json!
+  createAt: DateTime
   id: String
+  updatedAt: DateTime
 }
 
 input MessageCreateManyConversationInput {
   content: Json!
+  createAt: DateTime
   id: String
   messageId: String
+  updatedAt: DateTime
 }
 
 input MessageCreateManyConversationInputEnvelope {
@@ -8660,14 +8668,18 @@ input MessageCreateManyConversationInputEnvelope {
 input MessageCreateManyInput {
   content: Json!
   conversationId: String
+  createAt: DateTime
   id: String
   messageId: String
+  updatedAt: DateTime
 }
 
 input MessageCreateManyReplyInput {
   content: Json!
   conversationId: String
+  createAt: DateTime
   id: String
+  updatedAt: DateTime
 }
 
 input MessageCreateManyReplyInputEnvelope {
@@ -8726,7 +8738,9 @@ input MessageCreateWithoutConversationInput {
   Reply: MessageCreateNestedOneWithoutRepliesInput
   Request: RequestCreateNestedOneWithoutMessageInput
   content: Json!
+  createAt: DateTime
   id: String
+  updatedAt: DateTime
 }
 
 input MessageCreateWithoutRepliesInput {
@@ -8734,7 +8748,9 @@ input MessageCreateWithoutRepliesInput {
   Reply: MessageCreateNestedOneWithoutRepliesInput
   Request: RequestCreateNestedOneWithoutMessageInput
   content: Json!
+  createAt: DateTime
   id: String
+  updatedAt: DateTime
 }
 
 input MessageCreateWithoutReplyInput {
@@ -8742,7 +8758,9 @@ input MessageCreateWithoutReplyInput {
   Replies: MessageCreateNestedManyWithoutReplyInput
   Request: RequestCreateNestedOneWithoutMessageInput
   content: Json!
+  createAt: DateTime
   id: String
+  updatedAt: DateTime
 }
 
 input MessageCreateWithoutRequestInput {
@@ -8750,7 +8768,9 @@ input MessageCreateWithoutRequestInput {
   Replies: MessageCreateNestedManyWithoutReplyInput
   Reply: MessageCreateNestedOneWithoutRepliesInput
   content: Json!
+  createAt: DateTime
   id: String
+  updatedAt: DateTime
 }
 
 enum MessageEventType {
@@ -8765,14 +8785,18 @@ input MessageListRelationFilter {
 
 input MessageMaxOrderByAggregateInput {
   conversationId: SortOrder
+  createAt: SortOrder
   id: SortOrder
   messageId: SortOrder
+  updatedAt: SortOrder
 }
 
 input MessageMinOrderByAggregateInput {
   conversationId: SortOrder
+  createAt: SortOrder
   id: SortOrder
   messageId: SortOrder
+  updatedAt: SortOrder
 }
 
 input MessageNullableRelationFilter {
@@ -8790,8 +8814,10 @@ input MessageOrderByWithAggregationInput {
   _min: MessageMinOrderByAggregateInput
   content: SortOrder
   conversationId: SortOrder
+  createAt: SortOrder
   id: SortOrder
   messageId: SortOrder
+  updatedAt: SortOrder
 }
 
 input MessageOrderByWithRelationInput {
@@ -8801,15 +8827,19 @@ input MessageOrderByWithRelationInput {
   Request: RequestOrderByWithRelationInput
   content: SortOrder
   conversationId: SortOrder
+  createAt: SortOrder
   id: SortOrder
   messageId: SortOrder
+  updatedAt: SortOrder
 }
 
 enum MessageScalarFieldEnum {
   content
   conversationId
+  createAt
   id
   messageId
+  updatedAt
 }
 
 input MessageScalarWhereInput {
@@ -8818,8 +8848,10 @@ input MessageScalarWhereInput {
   OR: [MessageScalarWhereInput!]
   content: JsonFilter
   conversationId: StringNullableFilter
+  createAt: DateTimeFilter
   id: StringFilter
   messageId: StringNullableFilter
+  updatedAt: DateTimeFilter
 }
 
 input MessageScalarWhereWithAggregatesInput {
@@ -8828,8 +8860,10 @@ input MessageScalarWhereWithAggregatesInput {
   OR: [MessageScalarWhereWithAggregatesInput!]
   content: JsonWithAggregatesFilter
   conversationId: StringNullableWithAggregatesFilter
+  createAt: DateTimeWithAggregatesFilter
   id: StringWithAggregatesFilter
   messageId: StringNullableWithAggregatesFilter
+  updatedAt: DateTimeWithAggregatesFilter
 }
 
 input MessageUpdateInput {
@@ -8838,12 +8872,16 @@ input MessageUpdateInput {
   Reply: MessageUpdateOneWithoutRepliesNestedInput
   Request: RequestUpdateOneWithoutMessageNestedInput
   content: Json
+  createAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input MessageUpdateManyMutationInput {
   content: Json
+  createAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input MessageUpdateManyWithWhereWithoutConversationInput {
@@ -8929,7 +8967,9 @@ input MessageUpdateWithoutConversationInput {
   Reply: MessageUpdateOneWithoutRepliesNestedInput
   Request: RequestUpdateOneWithoutMessageNestedInput
   content: Json
+  createAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input MessageUpdateWithoutRepliesInput {
@@ -8937,7 +8977,9 @@ input MessageUpdateWithoutRepliesInput {
   Reply: MessageUpdateOneWithoutRepliesNestedInput
   Request: RequestUpdateOneWithoutMessageNestedInput
   content: Json
+  createAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input MessageUpdateWithoutReplyInput {
@@ -8945,7 +8987,9 @@ input MessageUpdateWithoutReplyInput {
   Replies: MessageUpdateManyWithoutReplyNestedInput
   Request: RequestUpdateOneWithoutMessageNestedInput
   content: Json
+  createAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input MessageUpdateWithoutRequestInput {
@@ -8953,7 +8997,9 @@ input MessageUpdateWithoutRequestInput {
   Replies: MessageUpdateManyWithoutReplyNestedInput
   Reply: MessageUpdateOneWithoutRepliesNestedInput
   content: Json
+  createAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input MessageUpsertWithWhereUniqueWithoutConversationInput {
@@ -8990,8 +9036,10 @@ input MessageWhereInput {
   Request: RequestWhereInput
   content: JsonFilter
   conversationId: StringNullableFilter
+  createAt: DateTimeFilter
   id: StringFilter
   messageId: StringNullableFilter
+  updatedAt: DateTimeFilter
 }
 
 input MessageWhereUniqueInput {
@@ -9004,15 +9052,15 @@ input MessageWhereUniqueInput {
   Request: RequestWhereInput
   content: JsonFilter
   conversationId: StringNullableFilter
+  createAt: DateTimeFilter
   id: String
   messageId: StringNullableFilter
+  updatedAt: DateTimeFilter
 }
 
 type Mutation {
   acceptFriendRequest(friendRequestId: String!, notificationStatusId: String!, venueIdMetAt: String): Relationship!
-  addPersonalJoinsVenue(profileIdVenue: String): Profile!
   addPersonalJoinsVenue2(profileIdVenue: String): VenueTotalsResponseUnion!
-  addPersonalTotalsVenue(profileIdPersonal: String, profileIdVenue: String): Boolean!
   addPersonalTotalsVenue2(profileIdPersonal: String, profileIdVenue: String): Boolean!
   addStoryPhotos(photos: PhotoCreateManyProfileInputEnvelope): Story!
   createFriendRequest(receiversProfileId: [String!]!): Request!
@@ -9033,9 +9081,7 @@ type Mutation {
   removeAllJoinedTotalFromVenue(profileIdVenue: String): VenueTotalsResponseUnion!
   removeDeviceProfileFromDeviceManager(profileId: String!): Boolean!
   removeFriend(relationshipId: String!): Boolean!
-  removePersonalJoinsVenue: Profile!
   removePersonalJoinsVenue2(profileIdVenue: String): VenueTotalsResponseUnion!
-  removePersonalTotalsVenue(profileIdVenue: String): Boolean!
   removePersonalTotalsVenue2(profileIdVenue: String): Boolean!
   removeStoryPhotos(photoId: String!): Story!
   sendAuthenticatorDeviceOwnerCode(data: CodeDataInput, where: CustomCodeWhereInput): CodeResponse!
@@ -14992,12 +15038,7 @@ type Query {
   getAllFriends: [Profile!]!
   getAllStatesByCountry(countryIsoCode: String!): [StateResponseObject!]!
   getAllThemes: [Theme!]!
-  getConversations(
-    conversationId: String
-
-    """This is a list of ProfileIds."""
-    members: [String!]
-  ): [Conversation!]
+  getConversations: [Conversation!]
   getCurrentPushNotificationToken: PushToken
   getFriends: [PublicProfilePersonal!]
   getH3Index6VenueRecommendationById(id: String!, venuesProfileIds: [String!]): H3Index6VenueRecommendation

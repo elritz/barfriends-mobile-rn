@@ -21,8 +21,8 @@ export default () => {
 
 	//? Hometabs
 	// return <Redirect href={'/brokenstate'} />
-	return <Redirect href={'/(app)/hometab/venuefeed'} />
-	// return <Redirect href={'/(app)/hometab/messagestack'} />
+	// return <Redirect href={'/(app)/hometab/venuefeed'} />
+	return <Redirect href={'/(app)/hometab/messagestack'} />
 	// return <Redirect href={'/(app)/hometab/profilestack/userprofile'} />
 	// return <Redirect href={'/(app)/hometab/developmentstack/theme'} />
 

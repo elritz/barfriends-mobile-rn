@@ -8913,8 +8913,10 @@ export type Message = {
   Request?: Maybe<Request>;
   content: Scalars['Json']['output'];
   conversationId?: Maybe<Scalars['String']['output']>;
+  createAt: Scalars['DateTime']['output'];
   id: Scalars['ID']['output'];
   messageId?: Maybe<Scalars['String']['output']>;
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 
@@ -8930,8 +8932,10 @@ export type MessageRepliesArgs = {
 export type MessageCountOrderByAggregateInput = {
   content?: InputMaybe<SortOrder>;
   conversationId?: InputMaybe<SortOrder>;
+  createAt?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   messageId?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
 };
 
 export type MessageCreateInput = {
@@ -8940,13 +8944,17 @@ export type MessageCreateInput = {
   Reply?: InputMaybe<MessageCreateNestedOneWithoutRepliesInput>;
   Request?: InputMaybe<RequestCreateNestedOneWithoutMessageInput>;
   content: Scalars['Json']['input'];
+  createAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type MessageCreateManyConversationInput = {
   content: Scalars['Json']['input'];
+  createAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   messageId?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type MessageCreateManyConversationInputEnvelope = {
@@ -8957,14 +8965,18 @@ export type MessageCreateManyConversationInputEnvelope = {
 export type MessageCreateManyInput = {
   content: Scalars['Json']['input'];
   conversationId?: InputMaybe<Scalars['String']['input']>;
+  createAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   messageId?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type MessageCreateManyReplyInput = {
   content: Scalars['Json']['input'];
   conversationId?: InputMaybe<Scalars['String']['input']>;
+  createAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type MessageCreateManyReplyInputEnvelope = {
@@ -9023,7 +9035,9 @@ export type MessageCreateWithoutConversationInput = {
   Reply?: InputMaybe<MessageCreateNestedOneWithoutRepliesInput>;
   Request?: InputMaybe<RequestCreateNestedOneWithoutMessageInput>;
   content: Scalars['Json']['input'];
+  createAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type MessageCreateWithoutRepliesInput = {
@@ -9031,7 +9045,9 @@ export type MessageCreateWithoutRepliesInput = {
   Reply?: InputMaybe<MessageCreateNestedOneWithoutRepliesInput>;
   Request?: InputMaybe<RequestCreateNestedOneWithoutMessageInput>;
   content: Scalars['Json']['input'];
+  createAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type MessageCreateWithoutReplyInput = {
@@ -9039,7 +9055,9 @@ export type MessageCreateWithoutReplyInput = {
   Replies?: InputMaybe<MessageCreateNestedManyWithoutReplyInput>;
   Request?: InputMaybe<RequestCreateNestedOneWithoutMessageInput>;
   content: Scalars['Json']['input'];
+  createAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type MessageCreateWithoutRequestInput = {
@@ -9047,7 +9065,9 @@ export type MessageCreateWithoutRequestInput = {
   Replies?: InputMaybe<MessageCreateNestedManyWithoutReplyInput>;
   Reply?: InputMaybe<MessageCreateNestedOneWithoutRepliesInput>;
   content: Scalars['Json']['input'];
+  createAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export enum MessageEventType {
@@ -9062,14 +9082,18 @@ export type MessageListRelationFilter = {
 
 export type MessageMaxOrderByAggregateInput = {
   conversationId?: InputMaybe<SortOrder>;
+  createAt?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   messageId?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
 };
 
 export type MessageMinOrderByAggregateInput = {
   conversationId?: InputMaybe<SortOrder>;
+  createAt?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   messageId?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
 };
 
 export type MessageNullableRelationFilter = {
@@ -9087,8 +9111,10 @@ export type MessageOrderByWithAggregationInput = {
   _min?: InputMaybe<MessageMinOrderByAggregateInput>;
   content?: InputMaybe<SortOrder>;
   conversationId?: InputMaybe<SortOrder>;
+  createAt?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   messageId?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
 };
 
 export type MessageOrderByWithRelationInput = {
@@ -9098,15 +9124,19 @@ export type MessageOrderByWithRelationInput = {
   Request?: InputMaybe<RequestOrderByWithRelationInput>;
   content?: InputMaybe<SortOrder>;
   conversationId?: InputMaybe<SortOrder>;
+  createAt?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   messageId?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
 };
 
 export enum MessageScalarFieldEnum {
   Content = 'content',
   ConversationId = 'conversationId',
+  CreateAt = 'createAt',
   Id = 'id',
-  MessageId = 'messageId'
+  MessageId = 'messageId',
+  UpdatedAt = 'updatedAt'
 }
 
 export type MessageScalarWhereInput = {
@@ -9115,8 +9145,10 @@ export type MessageScalarWhereInput = {
   OR?: InputMaybe<Array<MessageScalarWhereInput>>;
   content?: InputMaybe<JsonFilter>;
   conversationId?: InputMaybe<StringNullableFilter>;
+  createAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<StringFilter>;
   messageId?: InputMaybe<StringNullableFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
 export type MessageScalarWhereWithAggregatesInput = {
@@ -9125,8 +9157,10 @@ export type MessageScalarWhereWithAggregatesInput = {
   OR?: InputMaybe<Array<MessageScalarWhereWithAggregatesInput>>;
   content?: InputMaybe<JsonWithAggregatesFilter>;
   conversationId?: InputMaybe<StringNullableWithAggregatesFilter>;
+  createAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   messageId?: InputMaybe<StringNullableWithAggregatesFilter>;
+  updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
 };
 
 export type MessageUpdateInput = {
@@ -9135,12 +9169,16 @@ export type MessageUpdateInput = {
   Reply?: InputMaybe<MessageUpdateOneWithoutRepliesNestedInput>;
   Request?: InputMaybe<RequestUpdateOneWithoutMessageNestedInput>;
   content?: InputMaybe<Scalars['Json']['input']>;
+  createAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type MessageUpdateManyMutationInput = {
   content?: InputMaybe<Scalars['Json']['input']>;
+  createAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type MessageUpdateManyWithWhereWithoutConversationInput = {
@@ -9226,7 +9264,9 @@ export type MessageUpdateWithoutConversationInput = {
   Reply?: InputMaybe<MessageUpdateOneWithoutRepliesNestedInput>;
   Request?: InputMaybe<RequestUpdateOneWithoutMessageNestedInput>;
   content?: InputMaybe<Scalars['Json']['input']>;
+  createAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type MessageUpdateWithoutRepliesInput = {
@@ -9234,7 +9274,9 @@ export type MessageUpdateWithoutRepliesInput = {
   Reply?: InputMaybe<MessageUpdateOneWithoutRepliesNestedInput>;
   Request?: InputMaybe<RequestUpdateOneWithoutMessageNestedInput>;
   content?: InputMaybe<Scalars['Json']['input']>;
+  createAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type MessageUpdateWithoutReplyInput = {
@@ -9242,7 +9284,9 @@ export type MessageUpdateWithoutReplyInput = {
   Replies?: InputMaybe<MessageUpdateManyWithoutReplyNestedInput>;
   Request?: InputMaybe<RequestUpdateOneWithoutMessageNestedInput>;
   content?: InputMaybe<Scalars['Json']['input']>;
+  createAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type MessageUpdateWithoutRequestInput = {
@@ -9250,7 +9294,9 @@ export type MessageUpdateWithoutRequestInput = {
   Replies?: InputMaybe<MessageUpdateManyWithoutReplyNestedInput>;
   Reply?: InputMaybe<MessageUpdateOneWithoutRepliesNestedInput>;
   content?: InputMaybe<Scalars['Json']['input']>;
+  createAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type MessageUpsertWithWhereUniqueWithoutConversationInput = {
@@ -9287,8 +9333,10 @@ export type MessageWhereInput = {
   Request?: InputMaybe<RequestWhereInput>;
   content?: InputMaybe<JsonFilter>;
   conversationId?: InputMaybe<StringNullableFilter>;
+  createAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<StringFilter>;
   messageId?: InputMaybe<StringNullableFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
 export type MessageWhereUniqueInput = {
@@ -9301,16 +9349,16 @@ export type MessageWhereUniqueInput = {
   Request?: InputMaybe<RequestWhereInput>;
   content?: InputMaybe<JsonFilter>;
   conversationId?: InputMaybe<StringNullableFilter>;
+  createAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
   messageId?: InputMaybe<StringNullableFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
   acceptFriendRequest: Relationship;
-  addPersonalJoinsVenue: Profile;
   addPersonalJoinsVenue2: VenueTotalsResponseUnion;
-  addPersonalTotalsVenue: Scalars['Boolean']['output'];
   addPersonalTotalsVenue2: Scalars['Boolean']['output'];
   addStoryPhotos: Story;
   createFriendRequest: Request;
@@ -9325,9 +9373,7 @@ export type Mutation = {
   removeAllJoinedTotalFromVenue: VenueTotalsResponseUnion;
   removeDeviceProfileFromDeviceManager: Scalars['Boolean']['output'];
   removeFriend: Scalars['Boolean']['output'];
-  removePersonalJoinsVenue: Profile;
   removePersonalJoinsVenue2: VenueTotalsResponseUnion;
-  removePersonalTotalsVenue: Scalars['Boolean']['output'];
   removePersonalTotalsVenue2: Scalars['Boolean']['output'];
   removeStoryPhotos: Story;
   sendAuthenticatorDeviceOwnerCode: CodeResponse;
@@ -9360,18 +9406,7 @@ export type MutationAcceptFriendRequestArgs = {
 };
 
 
-export type MutationAddPersonalJoinsVenueArgs = {
-  profileIdVenue?: InputMaybe<Scalars['String']['input']>;
-};
-
-
 export type MutationAddPersonalJoinsVenue2Args = {
-  profileIdVenue?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationAddPersonalTotalsVenueArgs = {
-  profileIdPersonal?: InputMaybe<Scalars['String']['input']>;
   profileIdVenue?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -9447,11 +9482,6 @@ export type MutationRemoveFriendArgs = {
 
 
 export type MutationRemovePersonalJoinsVenue2Args = {
-  profileIdVenue?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationRemovePersonalTotalsVenueArgs = {
   profileIdVenue?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -15604,12 +15634,6 @@ export type QueryGetAllStatesByCountryArgs = {
 };
 
 
-export type QueryGetConversationsArgs = {
-  conversationId?: InputMaybe<Scalars['String']['input']>;
-  members?: InputMaybe<Array<Scalars['String']['input']>>;
-};
-
-
 export type QueryGetH3Index6VenueRecommendationByIdArgs = {
   id: Scalars['String']['input'];
   venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
@@ -21015,26 +21039,12 @@ export type GetNotificationsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetNotificationsQuery = { __typename?: 'Query', getNotifications: { __typename?: 'NotificationResponse', friendRequestNotifications?: Array<{ __typename?: 'Request', id: string, NotificationType: string, updatedAt: any, createdAt: any, NotificationFriendRequest: Array<{ __typename?: 'Notifications', id: string, profileId: string }>, recievers: Array<{ __typename: 'RequestReceiver', id: string, profileId: string, requestId?: string | null, notificationStatusId: string, Profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any } } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } | null, NotificationStatus: { __typename?: 'NotificationStatus', id: string, isAccepted: boolean, isAnswered: boolean, isCanceled: boolean, isChecked: boolean, createdAt: any, updatedAt: any } }>, senderProfile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any } } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } | null }> | null } };
 
-export type AddPersonalTotalsVenueMutationVariables = Exact<{
-  profileIdVenue: Scalars['String']['input'];
-}>;
-
-
-export type AddPersonalTotalsVenueMutation = { __typename?: 'Mutation', addPersonalTotalsVenue: boolean };
-
-export type RemovePersonalTotalsVenueMutationVariables = Exact<{
-  profileIdVenue: Scalars['String']['input'];
-}>;
-
-
-export type RemovePersonalTotalsVenueMutation = { __typename?: 'Mutation', removePersonalTotalsVenue: boolean };
-
 export type RemoveAllJoinedTotalFromVenueMutationVariables = Exact<{
   profileIdVenue: Scalars['String']['input'];
 }>;
 
 
-export type RemoveAllJoinedTotalFromVenueMutation = { __typename?: 'Mutation', removeAllJoinedTotalFromVenue: { __typename?: 'Error', errorCode: string, message: string } | { __typename?: 'LiveVenueTotals2', id?: string | null, joined?: number | null, totaled?: number | null, out?: Array<{ __typename?: 'Out', id: string, leftAt?: any | null, liveOutPersonalId?: string | null, liveOutVenueId?: string | null, personalProfileId: string, personalStatsId?: string | null, createdAt: any, updatedAt: any }> | null } };
+export type RemoveAllJoinedTotalFromVenueMutation = { __typename?: 'Mutation', removeAllJoinedTotalFromVenue: { __typename?: 'Error', errorCode: string, message: string } | { __typename?: 'LiveVenueTotals2', id?: string | null, joined?: number | null, totaled?: number | null, out?: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> | null } };
 
 export type AddPersonalJoinsVenue2MutationVariables = Exact<{
   profileIdVenue: Scalars['String']['input'];
@@ -21049,13 +21059,6 @@ export type RemovePersonalJoinsVenue2MutationVariables = Exact<{
 
 
 export type RemovePersonalJoinsVenue2Mutation = { __typename?: 'Mutation', removePersonalJoinsVenue2: { __typename?: 'Error', errorCode: string, message: string } | { __typename?: 'LiveVenueTotals2', id?: string | null, joined?: number | null, totaled?: number | null, updateOut?: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null } | null } };
-
-export type GetLiveVenueTotalsQueryVariables = Exact<{
-  profileIdVenue: Scalars['String']['input'];
-}>;
-
-
-export type GetLiveVenueTotalsQuery = { __typename?: 'Query', getLiveVenueTotals: { __typename?: 'LiveVenueTotals', totaled?: Array<{ __typename?: 'Out', id: string, personalProfileId: string }> | null, joined?: Array<{ __typename?: 'Out', id: string, personalProfileId: string }> | null } };
 
 export type GetLiveVenueTotalsV2QueryVariables = Exact<{
   profileIdVenue?: InputMaybe<Scalars['String']['input']>;
@@ -23105,68 +23108,6 @@ export function useGetNotificationsLazyQuery(baseOptions?: Apollo.LazyQueryHookO
 export type GetNotificationsQueryHookResult = ReturnType<typeof useGetNotificationsQuery>;
 export type GetNotificationsLazyQueryHookResult = ReturnType<typeof useGetNotificationsLazyQuery>;
 export type GetNotificationsQueryResult = Apollo.QueryResult<GetNotificationsQuery, GetNotificationsQueryVariables>;
-export const AddPersonalTotalsVenueDocument = gql`
-    mutation addPersonalTotalsVenue($profileIdVenue: String!) {
-  addPersonalTotalsVenue(profileIdVenue: $profileIdVenue)
-}
-    `;
-export type AddPersonalTotalsVenueMutationFn = Apollo.MutationFunction<AddPersonalTotalsVenueMutation, AddPersonalTotalsVenueMutationVariables>;
-
-/**
- * __useAddPersonalTotalsVenueMutation__
- *
- * To run a mutation, you first call `useAddPersonalTotalsVenueMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useAddPersonalTotalsVenueMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [addPersonalTotalsVenueMutation, { data, loading, error }] = useAddPersonalTotalsVenueMutation({
- *   variables: {
- *      profileIdVenue: // value for 'profileIdVenue'
- *   },
- * });
- */
-export function useAddPersonalTotalsVenueMutation(baseOptions?: Apollo.MutationHookOptions<AddPersonalTotalsVenueMutation, AddPersonalTotalsVenueMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<AddPersonalTotalsVenueMutation, AddPersonalTotalsVenueMutationVariables>(AddPersonalTotalsVenueDocument, options);
-      }
-export type AddPersonalTotalsVenueMutationHookResult = ReturnType<typeof useAddPersonalTotalsVenueMutation>;
-export type AddPersonalTotalsVenueMutationResult = Apollo.MutationResult<AddPersonalTotalsVenueMutation>;
-export type AddPersonalTotalsVenueMutationOptions = Apollo.BaseMutationOptions<AddPersonalTotalsVenueMutation, AddPersonalTotalsVenueMutationVariables>;
-export const RemovePersonalTotalsVenueDocument = gql`
-    mutation removePersonalTotalsVenue($profileIdVenue: String!) {
-  removePersonalTotalsVenue(profileIdVenue: $profileIdVenue)
-}
-    `;
-export type RemovePersonalTotalsVenueMutationFn = Apollo.MutationFunction<RemovePersonalTotalsVenueMutation, RemovePersonalTotalsVenueMutationVariables>;
-
-/**
- * __useRemovePersonalTotalsVenueMutation__
- *
- * To run a mutation, you first call `useRemovePersonalTotalsVenueMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemovePersonalTotalsVenueMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removePersonalTotalsVenueMutation, { data, loading, error }] = useRemovePersonalTotalsVenueMutation({
- *   variables: {
- *      profileIdVenue: // value for 'profileIdVenue'
- *   },
- * });
- */
-export function useRemovePersonalTotalsVenueMutation(baseOptions?: Apollo.MutationHookOptions<RemovePersonalTotalsVenueMutation, RemovePersonalTotalsVenueMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<RemovePersonalTotalsVenueMutation, RemovePersonalTotalsVenueMutationVariables>(RemovePersonalTotalsVenueDocument, options);
-      }
-export type RemovePersonalTotalsVenueMutationHookResult = ReturnType<typeof useRemovePersonalTotalsVenueMutation>;
-export type RemovePersonalTotalsVenueMutationResult = Apollo.MutationResult<RemovePersonalTotalsVenueMutation>;
-export type RemovePersonalTotalsVenueMutationOptions = Apollo.BaseMutationOptions<RemovePersonalTotalsVenueMutation, RemovePersonalTotalsVenueMutationVariables>;
 export const RemoveAllJoinedTotalFromVenueDocument = gql`
     mutation removeAllJoinedTotalFromVenue($profileIdVenue: String!) {
   removeAllJoinedTotalFromVenue(profileIdVenue: $profileIdVenue) {
@@ -23179,19 +23120,12 @@ export const RemoveAllJoinedTotalFromVenueDocument = gql`
       joined
       totaled
       out {
-        id
-        leftAt
-        liveOutPersonalId
-        liveOutVenueId
-        personalProfileId
-        personalStatsId
-        createdAt
-        updatedAt
+        ...OUT_FRAGMENT
       }
     }
   }
 }
-    `;
+    ${Out_FragmentFragmentDoc}`;
 export type RemoveAllJoinedTotalFromVenueMutationFn = Apollo.MutationFunction<RemoveAllJoinedTotalFromVenueMutation, RemoveAllJoinedTotalFromVenueMutationVariables>;
 
 /**
@@ -23306,48 +23240,6 @@ export function useRemovePersonalJoinsVenue2Mutation(baseOptions?: Apollo.Mutati
 export type RemovePersonalJoinsVenue2MutationHookResult = ReturnType<typeof useRemovePersonalJoinsVenue2Mutation>;
 export type RemovePersonalJoinsVenue2MutationResult = Apollo.MutationResult<RemovePersonalJoinsVenue2Mutation>;
 export type RemovePersonalJoinsVenue2MutationOptions = Apollo.BaseMutationOptions<RemovePersonalJoinsVenue2Mutation, RemovePersonalJoinsVenue2MutationVariables>;
-export const GetLiveVenueTotalsDocument = gql`
-    query getLiveVenueTotals($profileIdVenue: String!) {
-  getLiveVenueTotals(profileIdVenue: $profileIdVenue) {
-    totaled {
-      id
-      personalProfileId
-    }
-    joined {
-      id
-      personalProfileId
-    }
-  }
-}
-    `;
-
-/**
- * __useGetLiveVenueTotalsQuery__
- *
- * To run a query within a React component, call `useGetLiveVenueTotalsQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetLiveVenueTotalsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetLiveVenueTotalsQuery({
- *   variables: {
- *      profileIdVenue: // value for 'profileIdVenue'
- *   },
- * });
- */
-export function useGetLiveVenueTotalsQuery(baseOptions: Apollo.QueryHookOptions<GetLiveVenueTotalsQuery, GetLiveVenueTotalsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetLiveVenueTotalsQuery, GetLiveVenueTotalsQueryVariables>(GetLiveVenueTotalsDocument, options);
-      }
-export function useGetLiveVenueTotalsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetLiveVenueTotalsQuery, GetLiveVenueTotalsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetLiveVenueTotalsQuery, GetLiveVenueTotalsQueryVariables>(GetLiveVenueTotalsDocument, options);
-        }
-export type GetLiveVenueTotalsQueryHookResult = ReturnType<typeof useGetLiveVenueTotalsQuery>;
-export type GetLiveVenueTotalsLazyQueryHookResult = ReturnType<typeof useGetLiveVenueTotalsLazyQuery>;
-export type GetLiveVenueTotalsQueryResult = Apollo.QueryResult<GetLiveVenueTotalsQuery, GetLiveVenueTotalsQueryVariables>;
 export const GetLiveVenueTotalsV2Document = gql`
     query getLiveVenueTotalsV2($profileIdVenue: String) {
   getLiveVenueTotalsV2(profileIdVenue: $profileIdVenue) {

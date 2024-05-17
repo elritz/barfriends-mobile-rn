@@ -3,9 +3,9 @@ import { Box, Heading } from '@gluestack-ui/themed'
 import { FontAwesome5 } from '@expo/vector-icons'
 import { ThemeReactiveVar } from '@reactive'
 
-const AddRelationship = ({}) => {
+const AddRelationship = ({ }) => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
-	
+
 	return (
 		<Box
 			flex={1}
@@ -21,11 +21,7 @@ const AddRelationship = ({}) => {
 				rounded={'$md'}
 				justifyContent={'center'}
 				alignItems={'center'}
-				bg={'$amber200'}
-				sx={{
-					h: 60,
-					w: 60,
-				}}
+				h={'$16'} w={'$16'}
 				borderColor={'$primary500'}
 				borderWidth={'$2'}
 			>
@@ -39,15 +35,8 @@ const AddRelationship = ({}) => {
 					}
 				/>
 			</Box>
-			<Heading
-				mt={'$3'}
-				textAlign={'center'}
-				fontSize={'$lg'}
-				fontWeight={'$bold'}
-				lineHeight={'$lg'}
-				textTransform='uppercase'
-			>
-				Add a relationship
+			<Heading fontWeight={'$black'} fontSize={'$lg'} textAlign='center'>
+				Add relationship
 			</Heading>
 		</Box>
 	)

@@ -1,18 +1,22 @@
 import { useReactiveVar } from '@apollo/client'
 import { Ionicons } from '@expo/vector-icons'
 import { Button, Heading, VStack, Box, Text, ButtonText } from '@gluestack-ui/themed'
-import { PermissionContactsReactiveVar } from '@reactive'
+import { PermissionContactsReactiveVar, ThemeReactiveVar } from '@reactive'
 import { useRouter } from 'expo-router'
 
 export default function InviteCard() {
 	const router = useRouter()
 	const rPermissionContactsVar = useReactiveVar(PermissionContactsReactiveVar)
-
+	const rTheme = useReactiveVar(ThemeReactiveVar)
 	return (
 		<VStack w={'$full'} justifyContent='space-between' flex={1} mb={'$2'}>
 			<VStack mt={'$4'} w={'$full'} alignItems={'flex-start'}>
 				<Box bg='$red400' h={'$8'} w={'$8'} alignItems='center' justifyContent='center' rounded={'$md'}>
-					<Ionicons name='people' size={23} color={'black'} />
+					<Ionicons name='people' size={23} color={
+						rTheme.colorScheme === 'light'
+							? rTheme.theme?.gluestack.tokens.colors.light900
+							: rTheme.theme?.gluestack.tokens.colors.light100
+					} />
 				</Box>
 				<Heading
 					mt={'$2'}
@@ -35,11 +39,11 @@ export default function InviteCard() {
 				onPress={() => {
 					rPermissionContactsVar?.granted
 						? router.push({
-								pathname: '/public/contacts',
-						  })
+							pathname: '/public/contacts',
+						})
 						: router.push({
-								pathname: '/(app)/permission/contacts',
-						  })
+							pathname: '/(app)/permission/contacts',
+						})
 				}}
 			>
 				<ButtonText>Invite</ButtonText>

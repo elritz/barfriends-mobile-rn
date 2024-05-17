@@ -70,7 +70,7 @@ export default () => {
 				name={'modal'}
 				options={{
 					presentation: 'modal',
-					animation: 'fade',
+					animation: 'default',
 				}}
 			/>
 			<Stack.Screen name={'public'} />

@@ -1,8 +1,10 @@
 import type { CodegenConfig } from '@graphql-codegen/cli'
 
+console.log("🚀 ~ process.env:", process.env)
 const config: CodegenConfig = {
 	overwrite: true,
-	schema: `http://${process.env.IP_ADDRESS}:4000/graphql`,
+	// schema: `${process.env.SERVER_ENDPOINT}`,
+	schema: 'http://192.168.86.36:4000/graphql',
 	documents: 'graphql/DM/**/*.*.ts',
 	generates: {
 		'./graphql/generated/index.ts': {
