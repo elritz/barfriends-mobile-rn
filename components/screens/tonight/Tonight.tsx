@@ -1,5 +1,5 @@
 import Photos from './photos'
-import ProfileActivityAndStatusCards from '@components/organisms/ProfileActivityAndStatusCards/ProfileActivityAndStatusCards'
+import ProfileActivityAndStatusCards from '#/components/organisms/ProfileActivityAndStatusCards/ProfileActivityAndStatusCards'
 import { ScrollView } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 

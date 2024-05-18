@@ -1,7 +1,7 @@
-import { AUTHORIZATION } from '@constants/StorageConstants'
-import { AuthorizationDeviceProfile } from '@graphql/generated'
-import { AuthorizationReactiveVar } from '@reactive'
-import { secureStorageItemRead } from '@util/hooks/local/useSecureStorage'
+import { AUTHORIZATION } from '#/constants/StorageConstants'
+import { AuthorizationDeviceProfile } from '#/graphql/generated'
+import { AuthorizationReactiveVar } from '#/reactive'
+import { secureStorageItemRead } from '#/util/hooks/local/useSecureStorage'
 
 export type AuthorizationDecoded =
 	| {

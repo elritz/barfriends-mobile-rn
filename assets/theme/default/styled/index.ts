@@ -1,6 +1,6 @@
 import { darkCompanyColors, lightCompanyColors } from '../companycolors'
-import * as colors from '@assets/theme/colors'
-import { revelCompanyColors } from '@assets/theme/default/revel'
+import * as colors from '#/assets/theme/colors'
+import { revelCompanyColors } from '#/assets/theme/default/revel'
 
 export const LightStyledTheme = {
 	theme: 'light',

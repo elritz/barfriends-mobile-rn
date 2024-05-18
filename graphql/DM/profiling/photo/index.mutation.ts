@@ -1,4 +1,4 @@
-import { PROFILE_FRAGMENT } from '@graphql/DM/fragments/index.fragments'
+import { PROFILE_FRAGMENT } from '#/graphql/DM/fragments/index.fragments'
 import gql from 'graphql-tag'
 
 export const UPLOAD_PROFILE_PHOTO_MUTATION = gql`

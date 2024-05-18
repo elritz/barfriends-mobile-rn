@@ -8,7 +8,7 @@ import {
 	Button,
 	ButtonText,
 } from '@gluestack-ui/themed'
-import { useRemoveAllFromVenueDeveloperMutation } from '@graphql/generated'
+import { useRemoveAllFromVenueDeveloperMutation } from '#/graphql/generated'
 import { useState } from 'react'
 
 export default function DevActions() {

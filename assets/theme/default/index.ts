@@ -1,10 +1,10 @@
-import { darkCompanyColors, lightCompanyColors } from '@assets/theme/default/companycolors'
-import gluestack from '@assets/theme/default/gluestack'
+import { darkCompanyColors, lightCompanyColors } from '#/assets/theme/default/companycolors'
+import gluestack from '#/assets/theme/default/gluestack'
 import {
 	DarkReactNavigationTheme,
 	LightReactNavigationTheme,
-} from '@assets/theme/default/reactnavigation'
-// import restyle from '@assets/theme/default/restyle'
+} from '#/assets/theme/default/reactnavigation'
+// import restyle from '#/assets/theme/default/restyle'
 
 export const defaulttheme = {
 	barfriends: {

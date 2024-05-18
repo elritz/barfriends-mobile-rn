@@ -12,8 +12,8 @@ import {
 	Text,
 } from '@gluestack-ui/themed'
 import { useIsFocused } from '@react-navigation/native'
-import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '@reactive'
-import useContentInsets from '@util/hooks/useContentInsets'
+import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '#/reactive'
+import useContentInsets from '#/util/hooks/useContentInsets'
 import { useRouter } from 'expo-router'
 import { useEffect, useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'

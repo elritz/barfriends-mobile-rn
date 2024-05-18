@@ -1,7 +1,7 @@
 import { useReactiveVar } from '@apollo/client'
 import { AddIcon, Button, Text, Input } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
-import { ThemeReactiveVar } from '@reactive'
+import { ThemeReactiveVar } from '#/reactive'
 import { ScrollView } from 'react-native'
 
 export default function NewConversation() {

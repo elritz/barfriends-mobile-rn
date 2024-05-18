@@ -11,9 +11,9 @@ import {
 	Pressable,
 	Text,
 } from '@gluestack-ui/themed'
-import { usePublicVenueQuery } from '@graphql/generated'
-import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
-import { useDisclose } from '@util/hooks/useDisclose'
+import { usePublicVenueQuery } from '#/graphql/generated'
+import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
+import { useDisclose } from '#/util/hooks/useDisclose'
 import { useRouter } from 'expo-router'
 import { useState } from 'react'
 import { Image } from 'react-native'

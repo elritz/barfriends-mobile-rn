@@ -6,12 +6,12 @@ import {
 	Photo,
 	PhotoCreateManyProfileInput,
 	useUploadProfilePhotoMutation,
-} from '@graphql/generated'
+} from '#/graphql/generated'
 import { ActivityIndicator, Image } from 'react-native'
-import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
+import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { useState } from 'react'
 import * as ImagePicker from 'expo-image-picker'
-import useCloudinaryImageUploading from '@util/uploading/useCloudinaryImageUploading'
+import useCloudinaryImageUploading from '#/util/uploading/useCloudinaryImageUploading'
 
 type Props = {
 	photo: Maybe<Photo> | undefined

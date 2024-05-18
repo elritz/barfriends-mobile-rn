@@ -6,8 +6,8 @@ import {
 	ProfileType,
 	useGetADeviceManagerQuery,
 	useSwitchDeviceProfileMutation,
-} from '@graphql/generated'
-import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
+} from '#/graphql/generated'
+import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { useRouter } from 'expo-router'
 import { useState } from 'react'
 import { Pressable, ScrollView } from 'react-native'

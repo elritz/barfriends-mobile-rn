@@ -1,12 +1,12 @@
-import { AUTHORIZATION, LOCAL_STORAGE_SEARCH_AREA } from '@constants/StorageConstants'
+import { AUTHORIZATION, LOCAL_STORAGE_SEARCH_AREA } from '#/constants/StorageConstants'
 import {
 	AuthorizationDeviceProfile,
 	useCreateGuestProfileMutation,
 	useRefreshDeviceManagerLazyQuery,
-} from '@graphql/generated'
-import { AuthorizationReactiveVar } from '@reactive'
-import { AuthorizationDecoded } from '@util/hooks/auth/useCheckLocalStorageForAuthorizationToken'
-import { secureStorageItemDelete, secureStorageItemRead } from '@util/hooks/local/useSecureStorage'
+} from '#/graphql/generated'
+import { AuthorizationReactiveVar } from '#/reactive'
+import { AuthorizationDecoded } from '#/util/hooks/auth/useCheckLocalStorageForAuthorizationToken'
+import { secureStorageItemDelete, secureStorageItemRead } from '#/util/hooks/local/useSecureStorage'
 import { useCallback, useEffect } from 'react'
 
 export default function Auth({ children }) {

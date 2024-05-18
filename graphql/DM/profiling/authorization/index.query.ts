@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client'
-import { ERROR_FRAGMENT, PROFILE_FRAGMENT } from '@graphql/DM/fragments/index.fragments'
+import { ERROR_FRAGMENT, PROFILE_FRAGMENT } from '#/graphql/DM/fragments/index.fragments'
 
 export const AUTHORIZED_PROFILES_QUERY = gql`
 	${ERROR_FRAGMENT}

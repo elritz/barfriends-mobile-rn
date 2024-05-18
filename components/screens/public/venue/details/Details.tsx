@@ -1,7 +1,7 @@
 import { useReactiveVar } from '@apollo/client'
 import { Badge, BadgeText, Box, Button, HStack, Text, VStack } from '@gluestack-ui/themed'
-import { usePublicVenueQuery } from '@graphql/generated'
-import { SearchAreaReactiveVar } from '@reactive'
+import { usePublicVenueQuery } from '#/graphql/generated'
+import { SearchAreaReactiveVar } from '#/reactive'
 import { useLocalSearchParams } from 'expo-router'
 import { useState } from 'react'
 

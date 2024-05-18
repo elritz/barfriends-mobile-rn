@@ -3,7 +3,7 @@ import {
 	PROFILE_FRAGMENT,
 	ERROR_FRAGMENT,
 	AUTHORIZATION_DEVICE_PROFILE_FRAGMENT,
-} from '@graphql/DM/fragments/index.fragments'
+} from '#/graphql/DM/fragments/index.fragments'
 
 export const CREATE_PROFILE_PERSONAL_MUTATION = gql`
 	${ERROR_FRAGMENT}

@@ -1,6 +1,6 @@
-import { CondensedHorizontalFriendNotifciation } from '@components/molecules'
+import { CondensedHorizontalFriendNotifciation } from '#/components/molecules'
 import { Box, VStack } from '@gluestack-ui/themed'
-import { useGetNotificationsQuery } from '@graphql/generated'
+import { useGetNotificationsQuery } from '#/graphql/generated'
 
 const CondensedVerticalFriendsNotficationsList = () => {
 	const { data, loading, error } = useGetNotificationsQuery({

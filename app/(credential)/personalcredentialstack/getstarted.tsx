@@ -1,9 +1,9 @@
 import { useReactiveVar } from '@apollo/client'
-import CompanyCoasterLogoDynamic from '@assets/images/company/CompanyCoasterLogoDynamic'
+import CompanyCoasterLogoDynamic from '#/assets/images/company/CompanyCoasterLogoDynamic'
 import { Box, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { Feather } from '@expo/vector-icons'
-import { usePrivacyTermsDocumentsQuery } from '@graphql/generated'
-import { CredentialPersonalProfileReactiveVar } from '@reactive'
+import { usePrivacyTermsDocumentsQuery } from '#/graphql/generated'
+import { CredentialPersonalProfileReactiveVar } from '#/reactive'
 import { Link, useRouter } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
 

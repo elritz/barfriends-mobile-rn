@@ -1,8 +1,8 @@
 import { useReactiveVar } from '@apollo/client'
-import LogoTransparent from '@assets/images/company/LogoTransparent'
-import ChevronBackArrow from '@components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
-import Theme from '@components/layouts/Theme'
-import { ThemeReactiveVar } from '@reactive'
+import LogoTransparent from '#/assets/images/company/LogoTransparent'
+import ChevronBackArrow from '#/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
+import Theme from '#/components/layouts/Theme'
+import { ThemeReactiveVar } from '#/reactive'
 import { Stack } from 'expo-router'
 
 export default function _layout() {

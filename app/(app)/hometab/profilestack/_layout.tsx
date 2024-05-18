@@ -1,7 +1,7 @@
 import { useReactiveVar } from '@apollo/client'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { Box, Button, ButtonText, HStack, Heading, VStack } from '@gluestack-ui/themed'
-import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
+import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
 import * as Haptics from 'expo-haptics'
 import { Stack, useRouter } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'

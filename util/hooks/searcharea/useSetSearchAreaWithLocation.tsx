@@ -1,11 +1,11 @@
-import { LOCAL_STORAGE_SEARCH_AREA } from '@constants/StorageConstants'
-import { LocalStoragePreferenceSearchAreaType } from '@ctypes/preferences'
+import { LOCAL_STORAGE_SEARCH_AREA } from '#/constants/StorageConstants'
+import { LocalStoragePreferenceSearchAreaType } from '#/ctypes/preferences'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
 	CurrentLocationReactiveVar,
 	PermissionForegroundLocationReactiveVar,
 	SearchAreaReactiveVar,
-} from '@reactive'
+} from '#/reactive'
 import * as IntentLauncher from 'expo-intent-launcher'
 import * as Location from 'expo-location'
 import { Alert, Linking, Platform } from 'react-native'

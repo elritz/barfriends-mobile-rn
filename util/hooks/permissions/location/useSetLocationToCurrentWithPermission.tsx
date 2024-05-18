@@ -1,5 +1,5 @@
 import { useSetLocation } from './useSetLocation'
-import { PermissionForegroundLocationReactiveVar } from '@reactive'
+import { PermissionForegroundLocationReactiveVar } from '#/reactive'
 import * as Location from 'expo-location'
 import { useEffect } from 'react'
 

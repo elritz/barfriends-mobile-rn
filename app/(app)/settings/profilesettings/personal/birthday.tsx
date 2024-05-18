@@ -1,14 +1,14 @@
 import { useReactiveVar } from '@apollo/client'
-import DatePicker from '@components/atoms/inputs/DatePicker'
+import DatePicker from '#/components/atoms/inputs/DatePicker'
 import { Box, Button, Text } from '@gluestack-ui/themed'
 import {
 	AuthorizationDeviceProfile,
 	Profile,
 	useUpdateOneProfileMutation,
-} from '@graphql/generated'
-import { AuthorizationReactiveVar } from '@reactive'
-import { calcDateDiffFromNow } from '@util/helpers/luxon'
-import { secureStorageItemCreate } from '@util/hooks/local/useSecureStorage'
+} from '#/graphql/generated'
+import { AuthorizationReactiveVar } from '#/reactive'
+import { calcDateDiffFromNow } from '#/util/helpers/luxon'
+import { secureStorageItemCreate } from '#/util/hooks/local/useSecureStorage'
 import { useRouter } from 'expo-router'
 import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'

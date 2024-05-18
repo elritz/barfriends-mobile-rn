@@ -1,7 +1,7 @@
 // TODO: UX() location icon when searchArea is using Currently Location over preset
 import { useReactiveVar } from '@apollo/client'
-import { LOCAL_STORAGE_SEARCH_AREA } from '@constants/StorageConstants'
-import { LocalStoragePreferenceSearchAreaType } from '@ctypes/preferences'
+import { LOCAL_STORAGE_SEARCH_AREA } from '#/constants/StorageConstants'
+import { LocalStoragePreferenceSearchAreaType } from '#/ctypes/preferences'
 import { FontAwesome5 } from '@expo/vector-icons'
 import { Box, ButtonText, HStack, Pressable, Text } from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -9,9 +9,9 @@ import {
 	PermissionForegroundLocationReactiveVar,
 	SearchAreaReactiveVar,
 	ThemeReactiveVar,
-} from '@reactive'
-import { capitalizeFirstLetter } from '@util/helpers/capitalizeFirstLetter'
-import useSetSearchAreaWithLocation from '@util/hooks/searcharea/useSetSearchAreaWithLocation'
+} from '#/reactive'
+import { capitalizeFirstLetter } from '#/util/helpers/capitalizeFirstLetter'
+import useSetSearchAreaWithLocation from '#/util/hooks/searcharea/useSetSearchAreaWithLocation'
 import * as IntentLauncher from 'expo-intent-launcher'
 import { useCallback } from 'react'
 import { Alert, Linking, Platform } from 'react-native'

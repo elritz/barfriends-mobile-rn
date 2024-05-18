@@ -12,7 +12,7 @@ export const products = [
 		subtitle: 'Medium, Creamy Cream, Sweet Sugar, Iced',
 		color1: '#F9AC8A',
 		color2: '#FBC6AE',
-		picture: require('@assets/images/coffee/rose.png'),
+		picture: require('#/assets/images/coffee/rose.png'),
 		aspectRatio: 1,
 	},
 
@@ -21,7 +21,7 @@ export const products = [
 		subtitle: 'Large, Medium Cream, Medium Sugar',
 		color1: '#4DD2A5',
 		color2: '#63D8B0',
-		picture: require('@assets/images/coffee/philharmonic.png'),
+		picture: require('#/assets/images/coffee/philharmonic.png'),
 		aspectRatio: 1,
 	},
 	{
@@ -29,7 +29,7 @@ export const products = [
 		subtitle: 'Try Philtered Soul',
 		color1: '#FEB829',
 		color2: '#FDD446',
-		picture: require('@assets/images/coffee/coldbrew.png'),
+		picture: require('#/assets/images/coffee/coldbrew.png'),
 		aspectRatio: 1,
 	},
 	{
@@ -37,7 +37,7 @@ export const products = [
 		subtitle: 'Large, No cream, No sugar, Iced',
 		color1: '#FE8E01',
 		color2: '#FF9A16',
-		picture: require('@assets/images/coffee/dark.png'),
+		picture: require('#/assets/images/coffee/dark.png'),
 		aspectRatio: 1,
 	},
 	{
@@ -45,7 +45,7 @@ export const products = [
 		subtitle: 'Flaky perfection, baked fresh daily',
 		color1: '#E2DDD1',
 		color2: '#F3F1ED',
-		picture: require('@assets/images/coffee/croissant.png'),
+		picture: require('#/assets/images/coffee/croissant.png'),
 		aspectRatio: 757 / 735,
 	},
 ]

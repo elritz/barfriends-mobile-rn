@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import ContactItem from '@components/screens/conversations/ContactItem'
+import ContactItem from '#/components/screens/conversations/ContactItem'
 import {
 	Button,
 	Text,
@@ -10,10 +10,10 @@ import {
 	CloseIcon,
 	ButtonText,
 } from '@gluestack-ui/themed'
-import { ThemeReactiveVar } from '@reactive'
+import { ThemeReactiveVar } from '#/reactive'
 import { FlashList } from '@shopify/flash-list'
-import useContentInsets from '@util/hooks/useContentInsets'
-import useDebounce from '@util/hooks/useDebounce'
+import useContentInsets from '#/util/hooks/useContentInsets'
+import useDebounce from '#/util/hooks/useDebounce'
 import Fuse from 'fuse.js'
 import { useMemo, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'

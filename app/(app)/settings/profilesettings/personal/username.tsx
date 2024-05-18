@@ -6,8 +6,8 @@ import {
 	Profile,
 	useCheckUsernameLazyQuery,
 	useUpdateOneProfileMutation,
-} from '@graphql/generated'
-import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
+} from '#/graphql/generated'
+import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { useForm, Controller, ValidateResult } from 'react-hook-form'
 import { ActivityIndicator, KeyboardAvoidingView } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'

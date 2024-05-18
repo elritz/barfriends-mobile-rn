@@ -1,10 +1,10 @@
 import { useReactiveVar } from '@apollo/client'
-import { DaysPreferencePermissionInitialState } from '@constants/Preferences'
-import { LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION } from '@constants/StorageConstants'
-import { LocalStoragePreferenceAskForegroundLocationPermissionType } from '@ctypes/preferences'
+import { DaysPreferencePermissionInitialState } from '#/constants/Preferences'
+import { LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION } from '#/constants/StorageConstants'
+import { LocalStoragePreferenceAskForegroundLocationPermissionType } from '#/ctypes/preferences'
 import { Button, Center, Divider, Modal, Text, VStack } from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { PreferenceForegroundLocationPermissionReactiveVar } from '@reactive'
+import { PreferenceForegroundLocationPermissionReactiveVar } from '#/reactive'
 import { useRouter } from 'expo-router'
 
 const ForegroundLocationNextAskModal = ({ isOpen, onOpen, onClose }) => {

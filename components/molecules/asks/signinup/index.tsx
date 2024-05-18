@@ -1,5 +1,5 @@
 import { Box, Button, ButtonText, Divider, Text, VStack } from '@gluestack-ui/themed'
-import GetSignInUpText from '@util/helpers/data/SignupinText'
+import GetSignInUpText from '#/util/helpers/data/SignupinText'
 import { useRouter } from 'expo-router'
 
 export default () => {

@@ -1,9 +1,9 @@
 import { useReactiveVar } from '@apollo/client'
-import TabBarIcon from '@components/atoms/icons/tabbaricon/TabBarIcon'
-import { TabProps } from '@components/atoms/icons/tabbaricon/TabBarIcon'
+import TabBarIcon from '#/components/atoms/icons/tabbaricon/TabBarIcon'
+import { TabProps } from '#/components/atoms/icons/tabbaricon/TabBarIcon'
 import { Box } from '@gluestack-ui/themed'
 import { Entypo } from '@expo/vector-icons'
-import { ThemeReactiveVar } from '@reactive'
+import { ThemeReactiveVar } from '#/reactive'
 
 const HomeTab = (props: TabProps) => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)

@@ -1,6 +1,6 @@
 import createTheme from './createTheme'
-import { LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME } from '@constants/StorageConstants'
-import { ThemeColorSchemeOptionsType } from '@ctypes/preferences'
+import { LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME } from '#/constants/StorageConstants'
+import { ThemeColorSchemeOptionsType } from '#/ctypes/preferences'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useCallback } from 'react'
 import { Appearance } from 'react-native'

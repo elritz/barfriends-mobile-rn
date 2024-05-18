@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
 import { FontAwesome5 } from '@expo/vector-icons'
-import { ThemeReactiveVar } from '@reactive'
+import { ThemeReactiveVar } from '#/reactive'
 
 export default function NavigationDragIcon() {
 	const rTheme = useReactiveVar(ThemeReactiveVar)

@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import Photos from '@components/screens/public/personal/photos'
+import Photos from '#/components/screens/public/personal/photos'
 import { Feather, FontAwesome, Ionicons } from '@expo/vector-icons'
 import { View } from '@gluestack-ui/themed'
 import {
@@ -22,11 +22,11 @@ import {
 	useGetNotificationsQuery,
 	usePublicProfileQuery,
 	useRemoveFriendMutation,
-} from '@graphql/generated'
-import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
+} from '#/graphql/generated'
+import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { FlashList } from '@shopify/flash-list'
-import { generateRandomBlurhash } from '@util/helpers/generateBlurhash'
-import useContentInsets from '@util/hooks/useContentInsets'
+import { generateRandomBlurhash } from '#/util/helpers/generateBlurhash'
+import useContentInsets from '#/util/hooks/useContentInsets'
 import { BlurView } from 'expo-blur'
 import { Image } from 'expo-image'
 import { LinearGradient } from 'expo-linear-gradient'

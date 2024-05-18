@@ -1,5 +1,5 @@
 import { HStack, Text } from '@gluestack-ui/themed'
-import { ComingArea } from '@graphql/generated'
+import { ComingArea } from '#/graphql/generated'
 import CountryFlag from 'react-native-country-flag'
 
 type Prop = {

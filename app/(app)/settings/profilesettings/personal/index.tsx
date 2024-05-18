@@ -1,8 +1,8 @@
 import { useReactiveVar } from '@apollo/client'
 import { Badge, Box, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
-import { useProfileQuery } from '@graphql/generated'
-import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
+import { useProfileQuery } from '#/graphql/generated'
+import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { useRouter } from 'expo-router'
 import { ScrollView, Pressable } from 'react-native'
 

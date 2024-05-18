@@ -3,7 +3,7 @@ import { Box, Button, ButtonText, Divider, Heading, Text, VStack } from '@gluest
 import {
 	PermissionNotificationReactiveVar,
 	PreferencePermissionNotificationReactiveVar,
-} from '@reactive'
+} from '#/reactive'
 import { useRouter } from 'expo-router'
 import { uniqueId } from 'lodash'
 import { DateTime } from 'luxon'

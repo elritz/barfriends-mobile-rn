@@ -1,6 +1,6 @@
-import LogoTransparent from '@assets/images/company/LogoTransparent'
-import ChevronBackArrow from '@components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
-import { Emojimood } from '@graphql/generated'
+import LogoTransparent from '#/assets/images/company/LogoTransparent'
+import ChevronBackArrow from '#/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
+import { Emojimood } from '#/graphql/generated'
 import { Stack } from 'expo-router'
 
 export type FormType = {

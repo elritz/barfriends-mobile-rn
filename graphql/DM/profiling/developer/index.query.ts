@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client'
-import { ERROR_FRAGMENT, PROFILE_FRAGMENT } from '@graphql/DM/fragments/index.fragments'
+import { ERROR_FRAGMENT, PROFILE_FRAGMENT } from '#/graphql/DM/fragments/index.fragments'
 
 // export const GET_LATEST_TERMS_AND_SERVICES = gql`
 // 	query privacyTermsDocuments {

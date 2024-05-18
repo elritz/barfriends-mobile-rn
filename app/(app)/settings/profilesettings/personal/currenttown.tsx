@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
 import { Input } from '@gluestack-ui/themed'
-import { ThemeReactiveVar } from '@reactive'
+import { ThemeReactiveVar } from '#/reactive'
 import { useState } from 'react'
 import { View } from 'react-native'
 

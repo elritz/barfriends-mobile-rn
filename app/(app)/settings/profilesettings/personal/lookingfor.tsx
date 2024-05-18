@@ -5,8 +5,8 @@ import {
 	AuthorizationDeviceProfile,
 	Profile,
 	useUpdateProfileIdentifiableInformationMutation,
-} from '@graphql/generated'
-import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
+} from '#/graphql/generated'
+import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { Controller, useForm } from 'react-hook-form'
 import { View, ScrollView, SafeAreaView } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'

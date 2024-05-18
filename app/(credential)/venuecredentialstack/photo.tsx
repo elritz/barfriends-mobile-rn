@@ -15,9 +15,9 @@ import {
 	CredentialPersonalProfileReactiveVar,
 	PermissionMediaReactiveVar,
 	ThemeReactiveVar,
-} from '@reactive'
+} from '#/reactive'
 import { FlashList } from '@shopify/flash-list'
-import useCloudinaryImageUploading from '@util/uploading/useCloudinaryImageUploading'
+import useCloudinaryImageUploading from '#/util/uploading/useCloudinaryImageUploading'
 import * as ImagePicker from 'expo-image-picker'
 import * as MediaLibrary from 'expo-media-library'
 import { useRouter } from 'expo-router'
@@ -29,7 +29,7 @@ import { AppState, SafeAreaView, useWindowDimensions, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Svg, { Defs, LinearGradient, Rect, Stop } from 'react-native-svg'
 
-const UserFemaleIllustration = require('@assets/images/illustration/user_female_illustration.png')
+const UserFemaleIllustration = require('#/assets/images/illustration/user_female_illustration.png')
 
 export default () => {
 	const appStateRef = useRef(AppState.currentState)

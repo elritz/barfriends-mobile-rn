@@ -1,8 +1,8 @@
 import { useReactiveVar } from '@apollo/client'
 import { Box } from '@gluestack-ui/themed'
-import { useCheckPrivacyTermsDocumentUpdateQuery } from '@graphql/generated'
-import { ThemeReactiveVar, TermsServiceReactiveVar } from '@reactive'
-import { useRouterNotifications } from '@util/hooks/useRouterNotifications'
+import { useCheckPrivacyTermsDocumentUpdateQuery } from '#/graphql/generated'
+import { ThemeReactiveVar, TermsServiceReactiveVar } from '#/reactive'
+import { useRouterNotifications } from '#/util/hooks/useRouterNotifications'
 import { Redirect } from 'expo-router'
 import { uniqueId } from 'lodash'
 import { MotiView } from 'moti'
@@ -36,6 +36,7 @@ export default () => {
 	// return <Redirect href={'/(credential)/personalcredentialstack/getstarted'} />
 	// return <Redirect href={'/(credential)/personalcredentialstack/create'} />
 	// return <Redirect href={'/(credential)/personalcredentialstack/name'} />
+	// return <Redirect href={'/(credential)/logincredentialstack/loginpassword'} />
 
 	//? Public
 	// return <Redirect href={`/(app)/public/personal/${personal_username_misia}`} />

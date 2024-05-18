@@ -13,9 +13,9 @@ import {
 import {
 	useAuthorizedProfilesLazyQuery,
 	useSendAuthenticatorDeviceOwnerCodeMutation,
-} from '@graphql/generated'
+} from '#/graphql/generated'
 import { useIsFocused } from '@react-navigation/native'
-import { ThemeReactiveVar } from '@reactive'
+import { ThemeReactiveVar } from '#/reactive'
 import { useRouter } from 'expo-router'
 import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
@@ -159,7 +159,7 @@ export default () => {
 				switch (data.authorizedProfiles?.__typename) {
 					case 'ProfilesResponse':
 						if (data.authorizedProfiles?.username.length) {
-							return router.push({
+							router.push({
 								pathname: '/(credential)/logincredentialstack/loginpassword',
 								params: {
 									profileid: data.authorizedProfiles.username[0].id,

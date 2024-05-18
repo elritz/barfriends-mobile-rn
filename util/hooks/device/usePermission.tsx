@@ -3,7 +3,7 @@ import {
 	PermissionBackgroundLocationReactiveVar,
 	PermissionForegroundLocationReactiveVar,
 	PermissionNotificationReactiveVar,
-} from '@reactive'
+} from '#/reactive'
 import { getBackgroundPermissionsAsync, getForegroundPermissionsAsync } from 'expo-location'
 import * as Notifications from 'expo-notifications'
 import { useEffect, useState } from 'react'

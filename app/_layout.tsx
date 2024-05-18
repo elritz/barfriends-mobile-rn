@@ -3,14 +3,14 @@ import 'react-native-gesture-handler'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 import { ApolloProvider, useReactiveVar } from '@apollo/client'
-import Auth from '@components/layouts/Auth'
-import Theme from '@components/layouts/Theme'
+import Auth from '#/components/layouts/Auth'
+import Theme from '#/components/layouts/Theme'
 import {
 	NowPreferencePermissionInitialState,
 	InitialStateJoiningInformationPreferencePermission,
 	InitialStateSearchArea,
 	InitialStatePreferenceSystemsOfUnits,
-} from '@constants/Preferences'
+} from '#/constants/Preferences'
 import {
 	LOCAL_STORAGE_SEARCH_AREA,
 	LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME,
@@ -19,7 +19,7 @@ import {
 	LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION,
 	LOCAL_STORAGE_PREFERENCE_SYSTEM_OF_UNITS,
 	LOCAL_STORAGE_INFORMATION_JOIN_VENUE,
-} from '@constants/StorageConstants'
+} from '#/constants/StorageConstants'
 import {
 	LocalStoragePreferenceSearchAreaType,
 	LocalStoragePreferenceThemeType,
@@ -27,9 +27,9 @@ import {
 	LocalStoragePreferenceAskBackgroundLocationPermissionType,
 	LocalStoragePreferenceSystemsOfUnitsType,
 	LocalStorageInformationJoinVenueType,
-} from '@ctypes/preferences'
+} from '#/ctypes/preferences'
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
-import profilingclient from '@graphql/apollo/profiling/profiling-apollo-server'
+import profilingclient from '#/graphql/apollo/profiling/profiling-apollo-server'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
 	SearchAreaReactiveVar,
@@ -45,8 +45,8 @@ import {
 	PermissionMediaReactiveVar,
 	PermissionNotificationReactiveVar,
 	InformationJoinVenueReactiveVar,
-} from '@reactive'
-import useSetSearchAreaWithLocation from '@util/hooks/searcharea/useSetSearchAreaWithLocation'
+} from '#/reactive'
+import useSetSearchAreaWithLocation from '#/util/hooks/searcharea/useSetSearchAreaWithLocation'
 import { Camera } from 'expo-camera'
 import * as Contacts from 'expo-contacts'
 import 'expo-dev-client'

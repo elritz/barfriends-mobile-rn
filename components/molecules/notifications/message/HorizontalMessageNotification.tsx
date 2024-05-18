@@ -1,8 +1,19 @@
 // TODO: Create message navigator
 import { Box, HStack, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
-import { Image } from 'expo-image'
+import { useRefreshDeviceManagerQuery } from '#/graphql/generated'
 
 const HorizontalMessageNotification = ({ item }) => {
+	console.log("🚀 ~ HorizontalMessageNotification ~ item:", item)
+
+	const { data: rdmData, loading: rdmLoading, error: rdmError } =
+		useRefreshDeviceManagerQuery({
+			fetchPolicy: 'cache-first',
+		})
+
+	if (item.Members.length === 2) {
+		const member = item.Members.filter(item => item.id !== rdmData?.refreshDeviceManager?.Profile?.id)
+	}
+
 	return (
 		<Box
 			flex={1}
@@ -30,11 +41,11 @@ const HorizontalMessageNotification = ({ item }) => {
 			>
 				<HStack justifyContent={'space-around'}>
 					<HStack flex={1} space={'md'}>
-						<Image
+						{/* <Image
 							alt={item.user?.name.slice(0, 1)}
 							source={{ uri: item.user?.avatar }}
 							contentFit='cover'
-							placeholder={item.user.blurhash}
+							// placeholder={item.user.blurhash}
 							transition={100}
 							style={{
 								borderRadius: 5,
@@ -42,19 +53,25 @@ const HorizontalMessageNotification = ({ item }) => {
 								width: 40,
 								backgroundColor: 'transparent',
 							}}
-						/>
+						/> */}
 						<Box bg={'$transparent'}>
 							<VStack>
-								<Heading lineHeight={'$sm'} fontSize={'$md'} fontWeight={'$bold'}>
-									{item.user.name}
-								</Heading>
+								{item.Members.length > 2 && item.name ?
+									<Heading lineHeight={'$sm'} fontSize={'$md'} fontWeight={'$bold'}>
+										Group: {item.name} {item.Members.length}
+									</Heading>
+									:
+									<Heading lineHeight={'$sm'} fontSize={'$md'} fontWeight={'$bold'}>
+										Chat: {item.Members.filter(item => item.id !== rdmData?.refreshDeviceManager?.Profile?.id)[0].IdentifiableInformation.firstname}
+									</Heading>
+								}
 								<Text
 									fontSize={'$xs'}
 									numberOfLines={2}
 									textBreakStrategy={'balanced'}
 									lineBreakMode={'tail'}
 								>
-									{item.messages[0].message}
+									{/* {item.messages[0].message} */}
 								</Text>
 							</VStack>
 						</Box>

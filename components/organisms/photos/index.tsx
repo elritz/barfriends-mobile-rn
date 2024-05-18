@@ -12,9 +12,9 @@ import {
 	ButtonIcon,
 } from '@gluestack-ui/themed'
 import { MaterialIcons } from '@expo/vector-icons'
-import { PhotoCreateManyProfileInput, useAddStoryPhotosMutation } from '@graphql/generated'
-import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
-import useCloudinaryImageUploading from '@util/uploading/useCloudinaryImageUploading'
+import { PhotoCreateManyProfileInput, useAddStoryPhotosMutation } from '#/graphql/generated'
+import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
+import useCloudinaryImageUploading from '#/util/uploading/useCloudinaryImageUploading'
 import { BlurView } from 'expo-blur'
 import * as ImagePicker from 'expo-image-picker'
 import { useCallback, useState } from 'react'

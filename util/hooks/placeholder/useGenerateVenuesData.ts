@@ -1,6 +1,6 @@
 import useGenerateUserData from './useGenerateUserData'
 import { faker } from '@faker-js/faker'
-import { Venue } from '@graphql/generated'
+import { Venue } from '#/graphql/generated'
 
 const useGenerateVenuesData = <T>(
 	numOfVenues: number,

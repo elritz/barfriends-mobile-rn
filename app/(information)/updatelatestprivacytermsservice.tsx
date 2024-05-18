@@ -1,6 +1,6 @@
 // TODO: FN(What functionality was suppose to be here)
 import { Box, Button, HStack, Heading, Text, ButtonText } from '@gluestack-ui/themed'
-import { useUpdateProfilePrivacyTermsDocumentUpdateMutation } from '@graphql/generated'
+import { useUpdateProfilePrivacyTermsDocumentUpdateMutation } from '#/graphql/generated'
 import { Link, useRouter } from 'expo-router'
 
 export default function TermsServices() {

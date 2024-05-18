@@ -1,9 +1,9 @@
 import { Box, Button, HStack, Modal, Text, VStack } from '@gluestack-ui/themed'
-// import { GET_RELATIONSHIP_FRIENDREQUESTSTATUS_QUERY } from '@graphql/DM/profiling/friending/index.query'
+// import { GET_RELATIONSHIP_FRIENDREQUESTSTATUS_QUERY } from '#/graphql/DM/profiling/friending/index.query'
 import {
 	useGetRelationshipFriendRequestStatusLazyQuery,
 	useRemoveFriendMutation,
-} from '@graphql/generated'
+} from '#/graphql/generated'
 import { useLocalSearchParams } from 'expo-router'
 import { DateTime } from 'luxon'
 import { ReactElement, useEffect } from 'react'

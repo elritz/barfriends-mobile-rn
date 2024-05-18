@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
 import { Box, Button, Heading, Text } from '@gluestack-ui/themed'
-import { PermissionMediaReactiveVar } from '@reactive'
+import { PermissionMediaReactiveVar } from '#/reactive'
 import { useRouter } from 'expo-router'
 import { uniqueId } from 'lodash'
 import { AnimatePresence, MotiView } from 'moti'

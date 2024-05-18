@@ -1,8 +1,8 @@
-import MemoizedVerticalVenueFeedVenueItem from '@components/screens/venuesfeed/VerticalVenueFeedVenueItem'
+import MemoizedVerticalVenueFeedVenueItem from '#/components/screens/venuesfeed/VerticalVenueFeedVenueItem'
 import { Box, Heading, Text } from '@gluestack-ui/themed'
-import { useGetH3Index6VenueRecommendationByIdQuery } from '@graphql/generated'
+import { useGetH3Index6VenueRecommendationByIdQuery } from '#/graphql/generated'
 import { MasonryFlashList } from '@shopify/flash-list'
-import useContentInsets from '@util/hooks/useContentInsets'
+import useContentInsets from '#/util/hooks/useContentInsets'
 import { useLocalSearchParams } from 'expo-router'
 
 export default function SearchH3Recommendation() {

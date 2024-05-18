@@ -10,9 +10,9 @@ import {
 	SlashIcon,
 	VStack,
 } from '@gluestack-ui/themed'
-import { useGetSecureFriendQrCodeDataLazyQuery } from '@graphql/generated'
-import { AuthorizationReactiveVar, PermissionCameraReactiveVar, ThemeReactiveVar } from '@reactive'
-import { useDisclose } from '@util/hooks/useDisclose'
+import { useGetSecureFriendQrCodeDataLazyQuery } from '#/graphql/generated'
+import { AuthorizationReactiveVar, PermissionCameraReactiveVar, ThemeReactiveVar } from '#/reactive'
+import { useDisclose } from '#/util/hooks/useDisclose'
 import { useRouter } from 'expo-router'
 import { useEffect, useState } from 'react'
 import { View } from 'react-native'

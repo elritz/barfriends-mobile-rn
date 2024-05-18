@@ -1,6 +1,6 @@
-import DeviceManagerProfiles from '@components/organisms/list/DeviceManagerProfiles'
+import DeviceManagerProfiles from '#/components/organisms/list/DeviceManagerProfiles'
 import { VStack, Text, Button, Pressable, Heading, ButtonText, Divider } from '@gluestack-ui/themed'
-import GetSignInUpText from '@util/helpers/data/SignupinText'
+import GetSignInUpText from '#/util/helpers/data/SignupinText'
 import { router, useRouter } from 'expo-router'
 
 const text = GetSignInUpText()

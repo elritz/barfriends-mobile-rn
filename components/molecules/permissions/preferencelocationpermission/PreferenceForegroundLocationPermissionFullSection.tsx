@@ -1,16 +1,16 @@
 import { useReactiveVar } from '@apollo/client'
-import ForegroundLocationNextAskModal from '@components/molecules/asks/permissions/foregroundlocationnextask'
-import { LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION } from '@constants/StorageConstants'
-import { LocalStoragePreferenceAskForegroundLocationPermissionType } from '@ctypes/preferences'
+import ForegroundLocationNextAskModal from '#/components/molecules/asks/permissions/foregroundlocationnextask'
+import { LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION } from '#/constants/StorageConstants'
+import { LocalStoragePreferenceAskForegroundLocationPermissionType } from '#/ctypes/preferences'
 import { EvilIcons } from '@expo/vector-icons'
 import { Box, Button, Divider, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
 	PermissionForegroundLocationReactiveVar,
 	PreferenceForegroundLocationPermissionReactiveVar,
-} from '@reactive'
-import { TomorrowPreferencePermissionInitialState } from '@constants/Preferences'
-import { useDisclose } from '@util/hooks/useDisclose'
+} from '#/reactive'
+import { TomorrowPreferencePermissionInitialState } from '#/constants/Preferences'
+import { useDisclose } from '#/util/hooks/useDisclose'
 import { useRouter } from 'expo-router'
 import { uniqueId } from 'lodash'
 import { DateTime } from 'luxon'

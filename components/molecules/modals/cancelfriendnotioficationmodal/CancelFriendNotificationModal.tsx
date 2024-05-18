@@ -10,9 +10,9 @@ import {
 import { CloseIcon } from '@gluestack-ui/themed'
 import { Icon } from '@gluestack-ui/themed'
 import { Button, ButtonText, Center, Modal, Text } from '@gluestack-ui/themed'
-// import { GET_RELATIONSHIP_FRIENDREQUESTSTATUS_QUERY } from '@graphql/DM/profiling/friending/index.query'
-// import { NOTIFICATIONS_QUERY } from '@graphql/DM/profiling/notifications/index.query'
-import { useDeleteFriendRequestMutation } from '@graphql/generated'
+// import { GET_RELATIONSHIP_FRIENDREQUESTSTATUS_QUERY } from '#/graphql/DM/profiling/friending/index.query'
+// import { NOTIFICATIONS_QUERY } from '#/graphql/DM/profiling/notifications/index.query'
+import { useDeleteFriendRequestMutation } from '#/graphql/generated'
 import React, { useState } from 'react'
 
 type Props = {

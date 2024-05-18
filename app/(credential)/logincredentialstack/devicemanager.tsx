@@ -1,12 +1,12 @@
 import { useReactiveVar } from '@apollo/client'
 import { Box, Heading, Pressable, Text } from '@gluestack-ui/themed'
-import DeviceManagerProfileItemLarge from '@components/molecules/authorization/devicemanagerprofileitem/DeviceManagerProfileItemLarge'
+import DeviceManagerProfileItemLarge from '#/components/molecules/authorization/devicemanagerprofileitem/DeviceManagerProfileItemLarge'
 import {
 	AuthorizationDeviceProfile,
 	useAuthorizedProfilesQuery,
 	useSwitchDeviceProfileMutation,
-} from '@graphql/generated'
-import { AuthorizationReactiveVar } from '@reactive'
+} from '#/graphql/generated'
+import { AuthorizationReactiveVar } from '#/reactive'
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import { SafeAreaView, View, ScrollView } from 'react-native'
 

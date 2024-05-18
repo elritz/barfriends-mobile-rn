@@ -1,6 +1,6 @@
 import { Box, Pressable, Text } from '@gluestack-ui/themed'
-import { Relationship } from '@graphql/generated'
-import { capitalizeFirstLetter } from '@util/helpers/capitalizeFirstLetter'
+import { Relationship } from '#/graphql/generated'
+import { capitalizeFirstLetter } from '#/util/helpers/capitalizeFirstLetter'
 import { Image } from 'expo-image'
 import { LinearGradient } from 'expo-linear-gradient'
 import { useRouter } from 'expo-router'

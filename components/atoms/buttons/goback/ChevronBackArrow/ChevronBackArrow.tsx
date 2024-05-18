@@ -1,7 +1,7 @@
 import GoBack from '../GoBack'
 import { useReactiveVar } from '@apollo/client'
 import { Ionicons } from '@expo/vector-icons'
-import { ThemeReactiveVar } from '@reactive'
+import { ThemeReactiveVar } from '#/reactive'
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
 
 const ChevronBackArrow = () => {

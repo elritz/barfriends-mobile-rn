@@ -1,8 +1,8 @@
 import { useReactiveVar } from '@apollo/client'
-import CardPleaseSignup from '@components/molecules/asks/signuplogin'
-import SearchAreaHeader from '@components/screens/venuesfeed/SearchAreaHeader'
-import VenueFeedSearchAreaEmptyState from '@components/screens/venuesfeed/VenueFeedSearchAreaEmptyState'
-import MemoizedVerticalVenueFeedVenueItem from '@components/screens/venuesfeed/VerticalVenueFeedVenueItem'
+import CardPleaseSignup from '#/components/molecules/asks/signuplogin'
+import SearchAreaHeader from '#/components/screens/venuesfeed/SearchAreaHeader'
+import VenueFeedSearchAreaEmptyState from '#/components/screens/venuesfeed/VenueFeedSearchAreaEmptyState'
+import MemoizedVerticalVenueFeedVenueItem from '#/components/screens/venuesfeed/VerticalVenueFeedVenueItem'
 import { Ionicons } from '@expo/vector-icons'
 import {
 	Box,
@@ -22,17 +22,17 @@ import {
 	useUpdateComingAreaToBeNotifiedMutation,
 	useUpdateH6ComingAreaVoteMutation,
 	useVenuesNearbyLazyQuery,
-} from '@graphql/generated'
+} from '#/graphql/generated'
 import {
 	AuthorizationReactiveVar,
 	CurrentLocationReactiveVar,
 	PermissionForegroundLocationReactiveVar,
 	SearchAreaReactiveVar,
 	ThemeReactiveVar,
-} from '@reactive'
+} from '#/reactive'
 import { FlashList, MasonryFlashList } from '@shopify/flash-list'
-import useSetSearchAreaWithLocation from '@util/hooks/searcharea/useSetSearchAreaWithLocation'
-import useContentInsets from '@util/hooks/useContentInsets'
+import useSetSearchAreaWithLocation from '#/util/hooks/searcharea/useSetSearchAreaWithLocation'
+import useContentInsets from '#/util/hooks/useContentInsets'
 import { useRouter } from 'expo-router'
 import { Skeleton } from 'moti/skeleton'
 import { memo, useCallback, useEffect, useState } from 'react'

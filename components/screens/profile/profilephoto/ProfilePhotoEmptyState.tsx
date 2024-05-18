@@ -1,11 +1,11 @@
 import { useReactiveVar } from '@apollo/client'
 import { Box, Center, Pressable } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
-import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
+import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
 import * as ImagePicker from 'expo-image-picker'
-import useCloudinaryImageUploading from '@util/uploading/useCloudinaryImageUploading'
+import useCloudinaryImageUploading from '#/util/uploading/useCloudinaryImageUploading'
 import { useState } from 'react'
-import { PhotoCreateManyProfileInput, useUploadProfilePhotoMutation } from '@graphql/generated'
+import { PhotoCreateManyProfileInput, useUploadProfilePhotoMutation } from '#/graphql/generated'
 
 export default function ProfilePhotoEmptyState() {
 	const rTheme = useReactiveVar(ThemeReactiveVar)

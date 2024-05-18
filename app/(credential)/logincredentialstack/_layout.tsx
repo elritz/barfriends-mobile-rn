@@ -1,7 +1,7 @@
 import { useReactiveVar } from '@apollo/client'
-import LogoTransparent from '@assets/images/company/LogoTransparent'
-import ChevronBackArrow from '@components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
-import { ThemeReactiveVar } from '@reactive'
+import LogoTransparent from '#/assets/images/company/LogoTransparent'
+import ChevronBackArrow from '#/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
+import { ThemeReactiveVar } from '#/reactive'
 import { Stack } from 'expo-router'
 
 export default function _layout() {
@@ -20,6 +20,7 @@ export default function _layout() {
 			}}
 		>
 			<Stack.Screen name='authenticator' />
+			<Stack.Screen name='loginpassword' />
 			<Stack.Screen name='confirmationcode' />
 		</Stack>
 	)

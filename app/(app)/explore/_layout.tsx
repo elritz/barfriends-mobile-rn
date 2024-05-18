@@ -1,8 +1,8 @@
 import { useReactiveVar } from '@apollo/client'
 import { VStack } from '@gluestack-ui/themed'
-import SearchInputResults from '@components/molecules/search/searchinput/SearchInputResults'
-import SearchInputText from '@components/molecules/search/searchinput/SearchInputText'
-import { ThemeReactiveVar } from '@reactive'
+import SearchInputResults from '#/components/molecules/search/searchinput/SearchInputResults'
+import SearchInputText from '#/components/molecules/search/searchinput/SearchInputText'
+import { ThemeReactiveVar } from '#/reactive'
 import { BlurView } from 'expo-blur'
 import { Stack } from 'expo-router'
 

@@ -1,15 +1,15 @@
 // TODO: FN(Change theme functionality with database and local storage save)
 import { useReactiveVar } from '@apollo/client'
-import { InitialStateSearchArea } from '@constants/Preferences'
+import { InitialStateSearchArea } from '#/constants/Preferences'
 import {
 	AUTHORIZATION,
 	LOCAL_STORAGE_SEARCH_AREA,
 	LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME,
-} from '@constants/StorageConstants'
+} from '#/constants/StorageConstants'
 import {
 	DEVELOPMENT_FOREGROUND_LOCATION_TASK_NAME,
 	DEVELOPMENT_BACKGROUND_LOCATION_TASK_NAME,
-} from '@constants/TaskManagerConstants'
+} from '#/constants/TaskManagerConstants'
 import { APP_ENV, SERVER_ENDPOINT } from '@env'
 import { Feather, Ionicons } from '@expo/vector-icons'
 import {
@@ -22,10 +22,10 @@ import {
 	Text,
 	VStack,
 } from '@gluestack-ui/themed'
-import { useRefreshDeviceManagerQuery } from '@graphql/generated'
+import { useRefreshDeviceManagerQuery } from '#/graphql/generated'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { AuthorizationReactiveVar, SearchAreaReactiveVar, ThemeReactiveVar } from '@reactive'
-import { secureStorageItemDelete, secureStorageItemRead } from '@util/hooks/local/useSecureStorage'
+import { AuthorizationReactiveVar, SearchAreaReactiveVar, ThemeReactiveVar } from '#/reactive'
+import { secureStorageItemDelete, secureStorageItemRead } from '#/util/hooks/local/useSecureStorage'
 import * as Application from 'expo-application'
 import * as Clipboard from 'expo-clipboard'
 import Constants from 'expo-constants'

@@ -4,16 +4,16 @@ import SignupCard from '../../signupcard/SignupCard'
 import { useReactiveVar } from '@apollo/client'
 import { MaterialIcons } from '@expo/vector-icons'
 import { Box, Text, Heading, Button } from '@gluestack-ui/themed'
-import { usePublicVenueQuery } from '@graphql/generated'
+import { usePublicVenueQuery } from '#/graphql/generated'
 import { useIsFocused } from '@react-navigation/native'
 import {
 	AuthorizationReactiveVar,
 	CurrentLocationReactiveVar,
 	SearchAreaReactiveVar,
 	ThemeReactiveVar,
-} from '@reactive'
-import { useDisclose } from '@util/hooks/useDisclose'
-import useGetDistance from '@util/hooks/useDistance'
+} from '#/reactive'
+import { useDisclose } from '#/util/hooks/useDisclose'
+import useGetDistance from '#/util/hooks/useDistance'
 import { useLocalSearchParams } from 'expo-router'
 import { uniqueId } from 'lodash'
 import { MotiView } from 'moti'

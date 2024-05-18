@@ -1,8 +1,8 @@
 import { Box, HStack, VStack } from '@gluestack-ui/themed'
-import QuickBarfriendCard from '@components/screens/public/venue/venueactions/actioncards/quickbarfriendcard/QuickBarfriendCard'
-import AddEmoji from '@components/screens/tonight/activity/ask/AddEmoji/AddEmoji'
-import AddRelationship from '@components/screens/tonight/activity/ask/AddRelationship/AddRelationship'
-import JoinVenue from '@components/screens/tonight/activity/ask/JoinVenue/JoinVenue'
+import QuickBarfriendCard from '#/components/screens/public/venue/venueactions/actioncards/quickbarfriendcard/QuickBarfriendCard'
+import AddEmoji from '#/components/screens/tonight/activity/ask/AddEmoji/AddEmoji'
+import AddRelationship from '#/components/screens/tonight/activity/ask/AddRelationship/AddRelationship'
+import JoinVenue from '#/components/screens/tonight/activity/ask/JoinVenue/JoinVenue'
 
 interface ProfileActivityAndStatusCardsProps {}
 

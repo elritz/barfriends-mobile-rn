@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
-import { DynamicIllustrationProps } from '@ctypes/app'
-import { ThemeReactiveVar } from '@reactive'
+import { DynamicIllustrationProps } from '#/ctypes/app'
+import { ThemeReactiveVar } from '#/reactive'
 import Svg, { G, Path } from 'react-native-svg'
 
 const IllustrationDynamicLocation: React.FC<DynamicIllustrationProps> = ({

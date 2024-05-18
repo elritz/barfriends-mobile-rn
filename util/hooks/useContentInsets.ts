@@ -1,7 +1,7 @@
 import {
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
-} from '@constants/ReactNavigationConstants'
+} from '#/constants/ReactNavigationConstants'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default function useContentInsets() {

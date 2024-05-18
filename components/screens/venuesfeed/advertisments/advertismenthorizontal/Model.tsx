@@ -65,7 +65,7 @@ export const products: Product[] = [
 	{
 		type: '_ad2',
 		title: 'Get a beer on us',
-		picture: require('@assets/images/ad/bud_light.png'),
+		picture: require('#/assets/images/ad/bud_light.png'),
 		subtitle: 'Medium, Creamy Cream, Ice cold and perfect',
 		color1: '#00A1E1',
 		color2: '#061148',
@@ -93,7 +93,7 @@ export const products: Product[] = [
 	},
 	{
 		type: '_ad4',
-		cover: require('@assets/images/ad/coors_banquet2.png'),
+		cover: require('#/assets/images/ad/coors_banquet2.png'),
 		color1: '#FEB829',
 		color2: '#FDD446',
 		buttonColor: '#ffffff',
@@ -109,7 +109,7 @@ export const products: Product[] = [
 		type: '_ad5',
 		title: 'The Shed',
 		subtitle: 'Pumping the vibes and tunes ',
-		logo: require('@assets/images/ad/coors_banquet2.png'),
+		logo: require('#/assets/images/ad/coors_banquet2.png'),
 		color1: '#4D0049',
 		color2: '#92008C',
 		buttonColor: '#ffffff',
@@ -126,7 +126,7 @@ export const products: Product[] = [
 // 	subtitle: 'Try Philtered Soul',
 // 	color1: '#FEB829',
 // 	color2: '#FDD446',
-// 	picture: require('@assets/images/coffee/coldbrew.png'),
+// 	picture: require('#/assets/images/coffee/coldbrew.png'),
 // 	aspectRatio: 1,
 // },
 // {
@@ -134,7 +134,7 @@ export const products: Product[] = [
 // 	subtitle: 'Large, No cream, No sugar, Iced',
 // 	color1: '#FE8E01',
 // 	color2: '#FF9A16',
-// 	picture: require('@assets/images/coffee/dark.png'),
+// 	picture: require('#/assets/images/coffee/dark.png'),
 // 	aspectRatio: 1,
 // },
 // {
@@ -142,7 +142,7 @@ export const products: Product[] = [
 // 	subtitle: 'Flaky perfection, baked fresh daily',
 // 	color1: '#E2DDD1',
 // 	color2: '#F3F1ED',
-// 	picture: require('@assets/images/coffee/croissant.png'),
+// 	picture: require('#/assets/images/coffee/croissant.png'),
 // 	aspectRatio: 757 / 735,
 // },
 /*

@@ -1,15 +1,15 @@
 // TODO: FN(Join a venue functionality) The join button has no ability to join a venue or track the data
 import { useReactiveVar } from '@apollo/client'
 import { Button, ButtonIcon, ButtonText, CheckCircleIcon, Text, VStack } from '@gluestack-ui/themed'
-// import { GET_LIVE_VENUE_TOTALS_QUERY } from '@graphql/DM/profiling/out/index.query'
+// import { GET_LIVE_VENUE_TOTALS_QUERY } from '#/graphql/DM/profiling/out/index.query'
 import {
 	AuthorizationDeviceProfile,
 	Profile,
 	// useAddPersonalTotalsVenueMutation,
 	useProfileLazyQuery,
 	// useRemovePersonalTotalsVenueMutation,
-} from '@graphql/generated'
-import { AuthorizationReactiveVar } from '@reactive'
+} from '#/graphql/generated'
+import { AuthorizationReactiveVar } from '#/reactive'
 import { useGlobalSearchParams } from 'expo-router'
 import { useEffect, useState } from 'react'
 

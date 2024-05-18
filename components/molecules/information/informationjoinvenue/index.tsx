@@ -1,7 +1,7 @@
 import { useReactiveVar } from '@apollo/client'
-import { TomorrowPreferencePermissionInitialState } from '@constants/Preferences'
-import { LOCAL_STORAGE_INFORMATION_JOIN_VENUE } from '@constants/StorageConstants'
-import { DefaultPreferenceToPermissionType } from '@ctypes/preferences'
+import { TomorrowPreferencePermissionInitialState } from '#/constants/Preferences'
+import { LOCAL_STORAGE_INFORMATION_JOIN_VENUE } from '#/constants/StorageConstants'
+import { DefaultPreferenceToPermissionType } from '#/ctypes/preferences'
 import {
 	Box,
 	HStack,
@@ -13,7 +13,7 @@ import {
 	ButtonText,
 } from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { InformationJoinVenueReactiveVar } from '@reactive'
+import { InformationJoinVenueReactiveVar } from '#/reactive'
 import { uniqueId } from 'lodash'
 import { DateTime } from 'luxon'
 import { AnimatePresence } from 'moti'

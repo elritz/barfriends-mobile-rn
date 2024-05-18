@@ -6,13 +6,15 @@ import {
 	Heading,
 	Icon,
 	Input,
+	InputIcon,
+	InputSlot,
 	Pressable,
 	Text,
 	VStack,
 } from '@gluestack-ui/themed'
 import { Feather } from '@expo/vector-icons'
 import { useIsFocused } from '@react-navigation/native'
-import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '@reactive'
+import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { useRouter } from 'expo-router'
 import { useEffect, useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
@@ -57,6 +59,7 @@ export default function () {
 
 	const [showPassword, setShowPassword] = useState(false)
 	const handleState = () => {
+		console.log("🚀 ~ handleState ~ showState:")
 		setShowPassword(showState => {
 			return !showState
 		})
@@ -206,10 +209,10 @@ export default function () {
 											autoCapitalize='none'
 											numberOfLines={1}
 										/>
-										<Input.Icon pr='$3' onPress={handleState}>
+										<InputSlot pr='$3' onPress={handleState}>
 											{/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
-											<Icon as={showPassword ? EyeIcon : EyeOffIcon} color='$primary500' />
-										</Input.Icon>
+											<InputIcon as={showPassword ? EyeIcon : EyeOffIcon} color='$primary500' />
+										</InputSlot>
 									</Input>
 									<Text fontSize={'$sm'} color='$error700'>
 										{errors?.password?.message}

@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
-import { LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION } from '@constants/StorageConstants'
-import { TomorrowPreferencePermissionInitialState } from '@constants/Preferences'
+import { LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION } from '#/constants/StorageConstants'
+import { TomorrowPreferencePermissionInitialState } from '#/constants/Preferences'
 import {
 	Button,
 	Center,
@@ -15,10 +15,10 @@ import {
 	Pressable,
 } from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { PreferenceBackgroundLocationPermissionReactiveVar, ThemeReactiveVar } from '@reactive'
+import { PreferenceBackgroundLocationPermissionReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { useRouter } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { DefaultPreferenceToPermissionType } from '@preferences'
+import { DefaultPreferenceToPermissionType } from '#/preferences'
 
 const BackgroundLocationNextAsk = () => {
 	const router = useRouter()

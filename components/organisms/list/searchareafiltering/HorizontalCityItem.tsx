@@ -1,8 +1,8 @@
 import { useReactiveVar } from '@apollo/client'
-import { HorizontalCityItemProps } from '@app/(app)/searcharea/_layout'
+import { HorizontalCityItemProps } from '#/app/(app)/searcharea/_layout'
 import { HStack, Text } from '@gluestack-ui/themed'
 import { Feather } from '@expo/vector-icons'
-import { ThemeReactiveVar } from '@reactive'
+import { ThemeReactiveVar } from '#/reactive'
 import { useFormContext } from 'react-hook-form'
 import { ListRenderItemInfo } from 'react-native'
 

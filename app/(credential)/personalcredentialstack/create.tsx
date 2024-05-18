@@ -1,13 +1,13 @@
 import { useReactiveVar } from '@apollo/client'
-import CompanyCoasterLogoDynamic from '@assets/images/company/CompanyCoasterLogoDynamic'
+import CompanyCoasterLogoDynamic from '#/assets/images/company/CompanyCoasterLogoDynamic'
 import { Feather } from '@expo/vector-icons'
 import { Box, Heading, Pressable, Spinner, Text, VStack } from '@gluestack-ui/themed'
 import {
 	AuthorizationDeviceProfile,
 	useCreatePersonalProfileMutation,
 	useSwitchDeviceProfileMutation,
-} from '@graphql/generated'
-import { AuthorizationReactiveVar, CredentialPersonalProfileReactiveVar } from '@reactive'
+} from '#/graphql/generated'
+import { AuthorizationReactiveVar, CredentialPersonalProfileReactiveVar } from '#/reactive'
 import { useRouter } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
 

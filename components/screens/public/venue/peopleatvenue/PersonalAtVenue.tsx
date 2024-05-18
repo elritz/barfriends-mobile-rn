@@ -2,7 +2,7 @@
 // TODO: UX() Item need to be updated for messageboard route
 // TODO: UX() Item need to be updated for Personal data, loading, error
 import { Pressable } from '@gluestack-ui/themed'
-import { Profile } from '@graphql/generated'
+import { Profile } from '#/graphql/generated'
 import { useRouter } from 'expo-router'
 import { uniqueId } from 'lodash'
 import { View } from 'react-native'

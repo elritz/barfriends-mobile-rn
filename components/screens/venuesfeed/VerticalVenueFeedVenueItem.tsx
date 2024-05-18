@@ -1,16 +1,16 @@
 // TODO: If user is joined to the venue remove join button show joined
 import { useReactiveVar } from '@apollo/client'
 import { Box, Button, Heading, Pressable, Text, VStack, ButtonText } from '@gluestack-ui/themed'
-import { GET_LIVE_VENUE_TOTALS_QUERY } from '@graphql/DM/profiling/out/index.query'
+import { GET_LIVE_VENUE_TOTALS_QUERY } from '#/graphql/DM/profiling/out/index.query'
 import {
 	AuthorizationDeviceProfile,
 	Profile,
 	ProfileVenue,
 	useAddPersonalJoinsVenueMutation,
 	useRemovePersonalJoinsVenueMutation,
-} from '@graphql/generated'
-import { AuthorizationReactiveVar } from '@reactive'
-import useGetDistance from '@util/hooks/useDistance'
+} from '#/graphql/generated'
+import { AuthorizationReactiveVar } from '#/reactive'
+import useGetDistance from '#/util/hooks/useDistance'
 import { useRouter } from 'expo-router'
 import { useEffect, useState, memo, useCallback } from 'react'
 import { Image } from 'react-native'

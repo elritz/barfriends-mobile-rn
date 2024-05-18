@@ -1,11 +1,11 @@
 import { gql } from '@apollo/client'
-import { CREDENTIALS_FRAGMENT } from '@graphql/DM/fragments/credentials.fragments'
-import { DETAIL_INFORMATION_FRAGMENT } from '@graphql/DM/fragments/detail_information.fragments'
-import { INDETIFIABLE_INFORMATION_FRAGMENT } from '@graphql/DM/fragments/identifiable_information.fragments'
-import { LOCATION_FRAGMENT } from '@graphql/DM/fragments/location.fragments'
-import { OUT_FRAGMENT } from '@graphql/DM/fragments/out.fragments'
-import { RELATIONSHIP_FRAGMENT } from '@graphql/DM/fragments/relationship.fragments'
-import { THEME_MANAGER_FRAGMENT } from '@graphql/DM/fragments/theme.fragments'
+import { CREDENTIALS_FRAGMENT } from '#/graphql/DM/fragments/credentials.fragments'
+import { DETAIL_INFORMATION_FRAGMENT } from '#/graphql/DM/fragments/detail_information.fragments'
+import { INDETIFIABLE_INFORMATION_FRAGMENT } from '#/graphql/DM/fragments/identifiable_information.fragments'
+import { LOCATION_FRAGMENT } from '#/graphql/DM/fragments/location.fragments'
+import { OUT_FRAGMENT } from '#/graphql/DM/fragments/out.fragments'
+import { RELATIONSHIP_FRAGMENT } from '#/graphql/DM/fragments/relationship.fragments'
+import { THEME_MANAGER_FRAGMENT } from '#/graphql/DM/fragments/theme.fragments'
 
 export const PROFILE_FRAGMENT = gql`
 	${CREDENTIALS_FRAGMENT}

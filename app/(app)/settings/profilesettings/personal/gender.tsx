@@ -5,8 +5,8 @@ import {
 	useUpdateProfileIdentifiableInformationMutation,
 	Profile,
 	AuthorizationDeviceProfile,
-} from '@graphql/generated'
-import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
+} from '#/graphql/generated'
+import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { Controller, useForm } from 'react-hook-form'
 import { View, Pressable, ActivityIndicator, ScrollView, KeyboardAvoidingView } from 'react-native'
 

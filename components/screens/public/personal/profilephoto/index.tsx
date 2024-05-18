@@ -1,5 +1,5 @@
 import { Box } from '@gluestack-ui/themed'
-import { Maybe, Photo } from '@graphql/generated'
+import { Maybe, Photo } from '#/graphql/generated'
 import { Image } from 'react-native'
 
 type Props = {

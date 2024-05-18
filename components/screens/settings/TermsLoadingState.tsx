@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
 import { VStack } from '@gluestack-ui/themed'
-import { ThemeReactiveVar } from '@reactive'
+import { ThemeReactiveVar } from '#/reactive'
 import { Skeleton } from 'moti/skeleton'
 
 export default function TermsLoadingState() {

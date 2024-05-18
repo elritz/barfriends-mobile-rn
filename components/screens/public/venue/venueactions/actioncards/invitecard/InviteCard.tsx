@@ -1,7 +1,7 @@
 import { useReactiveVar } from '@apollo/client'
 import { Ionicons } from '@expo/vector-icons'
 import { Button, Heading, VStack, Box, Text, ButtonText } from '@gluestack-ui/themed'
-import { PermissionContactsReactiveVar, ThemeReactiveVar } from '@reactive'
+import { PermissionContactsReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { useRouter } from 'expo-router'
 
 export default function InviteCard() {

@@ -1,7 +1,7 @@
 import { useReactiveVar } from '@apollo/client'
 import { Box, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
-import { ThemeReactiveVar } from '@reactive'
+import { ThemeReactiveVar } from '#/reactive'
 import { Image } from 'react-native'
 import { ActivityIndicator } from 'react-native'
 

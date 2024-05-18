@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client'
-import { REQUEST_FRAGMENT } from '@graphql/DM/fragments/request.fragments'
+import { REQUEST_FRAGMENT } from '#/graphql/DM/fragments/request.fragments'
 
 export const CREATE_FRIEND_REQUEST_MUTATION = gql`
 	${REQUEST_FRAGMENT}

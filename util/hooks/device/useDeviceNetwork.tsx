@@ -1,4 +1,4 @@
-import { DeviceNetworkInfoReactiveVar } from '@reactive'
+import { DeviceNetworkInfoReactiveVar } from '#/reactive'
 import { useEffect, useRef, useState } from 'react'
 import { AppState } from 'react-native'
 import * as Network from 'expo-network'

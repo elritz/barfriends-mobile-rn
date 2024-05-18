@@ -1,4 +1,4 @@
-import { CurrentLocationReactiveVar } from '@reactive'
+import { CurrentLocationReactiveVar } from '#/reactive'
 import * as Location from 'expo-location'
 
 export const useSetLocation = async (): Promise<void> => {

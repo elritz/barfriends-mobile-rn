@@ -1,4 +1,4 @@
-import { Form } from '@app/(app)/searcharea/_layout'
+import { Form } from '#/app/(app)/searcharea/_layout'
 import { Button, ButtonText } from '@gluestack-ui/themed'
 import { useFormContext } from 'react-hook-form'
 

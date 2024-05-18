@@ -7,9 +7,9 @@ import {
 	useDeleteFriendRequestMutation,
 	useGetNotificationsLazyQuery,
 	useGetNotificationsQuery,
-} from '@graphql/generated'
-import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
-import { useDisclose } from '@util/hooks/useDisclose'
+} from '#/graphql/generated'
+import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
+import { useDisclose } from '#/util/hooks/useDisclose'
 import { useRouter } from 'expo-router'
 import { BlurView } from 'expo-blur'
 

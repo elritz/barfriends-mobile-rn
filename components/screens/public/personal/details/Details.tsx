@@ -1,6 +1,6 @@
 import { Heading, Text, VStack } from '@gluestack-ui/themed'
-import { Profile } from '@graphql/generated'
-import { capitalizeFirstLetter } from '@util/helpers/capitalizeFirstLetter'
+import { Profile } from '#/graphql/generated'
+import { capitalizeFirstLetter } from '#/util/helpers/capitalizeFirstLetter'
 import React, { useState } from 'react'
 
 type Props = {

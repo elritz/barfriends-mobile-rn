@@ -6,9 +6,9 @@ import {
 	Photo,
 	PhotoCreateManyProfileInput,
 	useAddStoryPhotosMutation,
-} from '@graphql/generated'
-import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
-import useCloudinaryImageUploading from '@util/uploading/useCloudinaryImageUploading'
+} from '#/graphql/generated'
+import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
+import useCloudinaryImageUploading from '#/util/uploading/useCloudinaryImageUploading'
 import { BlurView } from 'expo-blur'
 import * as ImagePicker from 'expo-image-picker'
 import { useCallback, useState } from 'react'

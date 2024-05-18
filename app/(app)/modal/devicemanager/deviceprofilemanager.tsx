@@ -1,8 +1,8 @@
 // TODO: FN(What functionality was suppose to be here)
 import { useReactiveVar } from '@apollo/client'
-import ChevronBackArrow from '@components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
-import WithDeviceProfiles from '@components/molecules/asks/signinup'
-import DeviceManagerProfileItemLarge from '@components/molecules/authorization/devicemanagerprofileitem/DeviceManagerProfileItemLarge'
+import ChevronBackArrow from '#/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
+import WithDeviceProfiles from '#/components/molecules/asks/signinup'
+import DeviceManagerProfileItemLarge from '#/components/molecules/authorization/devicemanagerprofileitem/DeviceManagerProfileItemLarge'
 import { Entypo, Ionicons } from '@expo/vector-icons'
 import { Box, Button, HStack, Pressable, VStack, Center, ButtonText, ButtonIcon } from '@gluestack-ui/themed'
 import {
@@ -10,8 +10,8 @@ import {
 	ProfileType,
 	useGetADeviceManagerQuery,
 	useSwitchDeviceProfileMutation,
-} from '@graphql/generated'
-import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
+} from '#/graphql/generated'
+import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { useRouter } from 'expo-router'
 import { Skeleton } from 'moti/skeleton'
 import { useRef, useState } from 'react'

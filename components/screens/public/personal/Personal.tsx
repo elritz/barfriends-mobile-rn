@@ -1,8 +1,8 @@
 import Actions from './actions/Actions'
 import { HStack, VStack } from '@gluestack-ui/themed'
-import CurrentVenue from '@components/screens/public/personal/currentvenue/CurrentVenue'
-import Relationships from '@components/screens/public/personal/relationship/Relationships'
-import { Profile, useProfileQuery } from '@graphql/generated'
+import CurrentVenue from '#/components/screens/public/personal/currentvenue/CurrentVenue'
+import Relationships from '#/components/screens/public/personal/relationship/Relationships'
+import { Profile, useProfileQuery } from '#/graphql/generated'
 import { useRoute } from '@react-navigation/native'
 import { ScrollView } from 'react-native'
 

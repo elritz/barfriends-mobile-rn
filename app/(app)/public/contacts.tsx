@@ -9,13 +9,13 @@ import {
 	VStack,
 	ButtonText,
 } from '@gluestack-ui/themed'
-import { APP_STORE_URL_LINK } from '@constants/App'
+import { APP_STORE_URL_LINK } from '#/constants/App'
 import {
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
 	SEARCH_BAR_HEIGHT,
-} from '@constants/ReactNavigationConstants'
-import { ContactsReactiveVar, PermissionContactsReactiveVar, ThemeReactiveVar } from '@reactive'
+} from '#/constants/ReactNavigationConstants'
+import { ContactsReactiveVar, PermissionContactsReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { FlashList } from '@shopify/flash-list'
 import * as Contacts from 'expo-contacts'
 import { useRouter, useLocalSearchParams } from 'expo-router'

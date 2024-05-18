@@ -1,16 +1,16 @@
 import { useReactiveVar } from '@apollo/client'
 import { Box } from '@gluestack-ui/themed'
-import CardPleaseSignup from '@components/molecules/asks/signuplogin'
-import PreferenceNotificationPermission from '@components/molecules/permissions/preferencenotificationpermission/PreferenceNotificationPermission'
-import PersonalScreen from '@components/screens/profile/personalprofile/PersonalProfile'
-import VenueScreen from '@components/screens/profile/venueprofile/VenueProfile'
+import CardPleaseSignup from '#/components/molecules/asks/signuplogin'
+import PreferenceNotificationPermission from '#/components/molecules/permissions/preferencenotificationpermission/PreferenceNotificationPermission'
+import PersonalScreen from '#/components/screens/profile/personalprofile/PersonalProfile'
+import VenueScreen from '#/components/screens/profile/venueprofile/VenueProfile'
 import {
 	ProfileType,
 	useGetNotificationsLazyQuery, // useGetNotificationsLazyQuery
-} from '@graphql/generated'
-import { AuthorizationReactiveVar, PreferencePermissionNotificationReactiveVar } from '@reactive'
+} from '#/graphql/generated'
+import { AuthorizationReactiveVar, PreferencePermissionNotificationReactiveVar } from '#/reactive'
 import { FlashList } from '@shopify/flash-list'
-import useContentInsets from '@util/hooks/useContentInsets'
+import useContentInsets from '#/util/hooks/useContentInsets'
 import { useCallback, useEffect, useState } from 'react'
 import { RefreshControl, Button } from 'react-native'
 

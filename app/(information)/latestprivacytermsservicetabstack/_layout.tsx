@@ -2,10 +2,10 @@ import { useReactiveVar } from '@apollo/client'
 import {
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
-} from '@constants/ReactNavigationConstants'
-import { ITabColor } from '@ctypes/app'
+} from '#/constants/ReactNavigationConstants'
+import { ITabColor } from '#/ctypes/app'
 import { MaterialIcons } from '@expo/vector-icons'
-import { ThemeReactiveVar } from '@reactive'
+import { ThemeReactiveVar } from '#/reactive'
 import { BlurView } from 'expo-blur'
 import { Tabs } from 'expo-router'
 import { StyleSheet } from 'react-native'

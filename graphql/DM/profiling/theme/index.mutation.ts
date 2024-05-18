@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client'
-import { PROFILE_THEME_FRAGMENT } from '@graphql/DM/fragments/theme.fragments'
+import { PROFILE_THEME_FRAGMENT } from '#/graphql/DM/fragments/theme.fragments'
 
 export const UPDATE_THEME_MANAGER_ = gql`
 	${PROFILE_THEME_FRAGMENT}

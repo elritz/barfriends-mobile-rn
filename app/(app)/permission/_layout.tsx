@@ -1,4 +1,4 @@
-import NavigationDragIcon from '@components/atoms/icons/navigationdragicon/NavigationDragIcon'
+import NavigationDragIcon from '#/components/atoms/icons/navigationdragicon/NavigationDragIcon'
 import { Stack } from 'expo-router'
 
 export default () => {

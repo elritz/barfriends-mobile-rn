@@ -1,17 +1,17 @@
 // TODO: UX(handleAppStateChange) check if location permission is enabled and go somewhere with it
 import { useReactiveVar } from '@apollo/client'
 import { Box, Button, Divider, Heading, Text, VStack, ButtonText } from '@gluestack-ui/themed'
-import PermissionDetailItem from '@components/screens/permissions/PermissionDetailItem'
+import PermissionDetailItem from '#/components/screens/permissions/PermissionDetailItem'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import {
 	TokenType,
 	useGetCurrentPushNotificationTokenQuery,
 	useUpsertDevicePushTokenMutation,
-} from '@graphql/generated'
+} from '#/graphql/generated'
 import { useIsFocused } from '@react-navigation/native'
-import { PermissionNotificationReactiveVar, ThemeReactiveVar } from '@reactive'
-import { capitalizeFirstLetter } from '@util/helpers/capitalizeFirstLetter'
-import useTimer2 from '@util/hooks/useTimer2'
+import { PermissionNotificationReactiveVar, ThemeReactiveVar } from '#/reactive'
+import { capitalizeFirstLetter } from '#/util/helpers/capitalizeFirstLetter'
+import useTimer2 from '#/util/hooks/useTimer2'
 import * as Application from 'expo-application'
 import Constants from 'expo-constants'
 import * as Device from 'expo-device'

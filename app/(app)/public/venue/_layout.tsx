@@ -1,10 +1,10 @@
 // TODO: FX() Settings still needs to be done
 import { useReactiveVar } from '@apollo/client'
-import { SEARCH_BAR_HEIGHT } from '@constants/ReactNavigationConstants'
+import { SEARCH_BAR_HEIGHT } from '#/constants/ReactNavigationConstants'
 import { Entypo, Ionicons } from '@expo/vector-icons'
 import { Button, HStack, Text } from '@gluestack-ui/themed'
-import { usePublicVenueQuery } from '@graphql/generated'
-import { CurrentLocationReactiveVar, SearchAreaReactiveVar, ThemeReactiveVar } from '@reactive'
+import { usePublicVenueQuery } from '#/graphql/generated'
+import { CurrentLocationReactiveVar, SearchAreaReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { BlurView } from 'expo-blur'
 import { Stack, useLocalSearchParams, useRouter, router as xRouter } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'

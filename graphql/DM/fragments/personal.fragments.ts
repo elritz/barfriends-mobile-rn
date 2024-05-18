@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client'
-import { PROFILE_FRAGMENT } from '@graphql/DM/fragments/profile.fragments'
+import { PROFILE_FRAGMENT } from '#/graphql/DM/fragments/profile.fragments'
 
 export const PERSONAL_FRAGMENT = gql`
 	${PROFILE_FRAGMENT}

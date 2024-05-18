@@ -4,7 +4,7 @@ import {
 	useAddPersonalJoinsVenue2Mutation,
 	useGetLiveVenueTotalsV2Query,
 	useRefreshDeviceManagerQuery,
-} from '@graphql/generated'
+} from '#/graphql/generated'
 import { useLocalSearchParams } from 'expo-router'
 import { useEffect, useState } from 'react'
 

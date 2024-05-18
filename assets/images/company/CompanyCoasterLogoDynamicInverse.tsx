@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client'
-import { defaulttheme } from '@assets/theme/default'
-import { ThemeReactiveVar } from '@reactive'
+import { defaulttheme } from '#/assets/theme/default'
+import { ThemeReactiveVar } from '#/reactive'
 import { Path, Svg } from 'react-native-svg'
 
 interface Props {

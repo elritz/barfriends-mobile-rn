@@ -3,12 +3,12 @@ import { Box, Divider, HStack, Pressable, Spinner, Text, VStack } from '@gluesta
 import {
 	TomorrowPreferencePermissionInitialState,
 	NowPreferencePermissionInitialState,
-} from '@constants/Preferences'
+} from '#/constants/Preferences'
 import {
 	LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
 	LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION,
 	LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS,
-} from '@constants/StorageConstants'
+} from '#/constants/StorageConstants'
 import { Ionicons, Feather } from '@expo/vector-icons'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
@@ -16,7 +16,7 @@ import {
 	PreferenceForegroundLocationPermissionReactiveVar,
 	PreferencePermissionNotificationReactiveVar,
 	ThemeReactiveVar,
-} from '@reactive'
+} from '#/reactive'
 import { useState } from 'react'
 import { ScrollView, Alert } from 'react-native'
 

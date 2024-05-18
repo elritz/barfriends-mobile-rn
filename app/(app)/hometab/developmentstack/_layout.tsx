@@ -1,11 +1,11 @@
-import ChevronBackArrow from '@components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
+import ChevronBackArrow from '#/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
 import { Box, Text, VStack } from '@gluestack-ui/themed'
-import { SEARCH_BAR_HEIGHT } from '@constants/ReactNavigationConstants'
+import { SEARCH_BAR_HEIGHT } from '#/constants/ReactNavigationConstants'
 import { APP_ENV } from '@env'
 import { Stack } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useReactiveVar } from '@apollo/client'
-import { AuthorizationReactiveVar } from '@reactive'
+import { AuthorizationReactiveVar } from '#/reactive'
 
 export default () => {
 	const insets = useSafeAreaInsets()

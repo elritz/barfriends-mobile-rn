@@ -1,13 +1,13 @@
 import { useReactiveVar } from '@apollo/client'
 import { Box, Button, Center, HStack, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
-import SearchCard from '@components/screens/search/components/SearchCard'
+import SearchCard from '#/components/screens/search/components/SearchCard'
 import {
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
-} from '@constants/ReactNavigationConstants'
+} from '#/constants/ReactNavigationConstants'
 import { Ionicons } from '@expo/vector-icons'
-import { useExploreSearchLazyQuery } from '@graphql/generated'
-import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
+import { useExploreSearchLazyQuery } from '#/graphql/generated'
+import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { FlashList } from '@shopify/flash-list'
 import { useRouter, useLocalSearchParams } from 'expo-router'
 import { Skeleton } from 'moti/skeleton'

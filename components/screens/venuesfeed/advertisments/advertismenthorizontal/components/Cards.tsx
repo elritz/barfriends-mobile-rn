@@ -5,20 +5,20 @@ import { View, Text, Dimensions, StyleSheet } from 'react-native'
 const { width } = Dimensions.get('window')
 export const cards = [
 	{
-		picture: require('@assets/images/company/LogoTransparent'),
+		picture: require('#/assets/images/company/LogoTransparent'),
 		caption: 'We’ve got an exciting announcement coming November 23rd...',
 	},
 	{
-		picture: require('@assets/images/company/LogoTransparent'),
+		picture: require('#/assets/images/company/LogoTransparent'),
 		caption:
 			"Let's look out for one another and keep each other safe. Remember, please wear a mask to pick up your order. If you'd like to learn more about our safety procedures check out our Community Updates page",
 	},
 	{
-		picture: require('@assets/images/company/LogoTransparent'),
+		picture: require('#/assets/images/company/LogoTransparent'),
 		caption: 'We’ve got an exciting announcement coming November 23rd...',
 	},
 	{
-		picture: require('@assets/images/company/LogoTransparent'),
+		picture: require('#/assets/images/company/LogoTransparent'),
 		caption:
 			"Your mission, should you accept, is to snag yourself a bottle of this tasty cold brew to enjoy at home. Don't forget to add a 32oz bottle of Mission Cold Brew to your next order.",
 	},

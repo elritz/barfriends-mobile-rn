@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client'
-import { STORY_FRAGMENT } from '@graphql/DM/fragments/story.fragments'
+import { STORY_FRAGMENT } from '#/graphql/DM/fragments/story.fragments'
 
 export const ADD_STORY_PHOTOS_MUTATION = gql`
 	${STORY_FRAGMENT}

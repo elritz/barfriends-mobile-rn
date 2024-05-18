@@ -3,8 +3,8 @@ import {
 	PUBLIC_PERSONAL_FRAGMENT,
 	VENUE_FRAGMENT,
 	PROFILE_FRAGMENT,
-} from '@graphql/DM/fragments/index.fragments'
-import { PROFILE_VENUE_FRAGMENT } from '@graphql/DM/fragments/profilevenue.fragments'
+} from '#/graphql/DM/fragments/index.fragments'
+import { PROFILE_VENUE_FRAGMENT } from '#/graphql/DM/fragments/profilevenue.fragments'
 
 export const PROFILE = gql`
 	${PROFILE_FRAGMENT}

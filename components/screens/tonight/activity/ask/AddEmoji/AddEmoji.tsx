@@ -1,7 +1,7 @@
 import { useReactiveVar } from '@apollo/client'
 import { Box, Heading, Pressable } from '@gluestack-ui/themed'
 import { MaterialIcons } from '@expo/vector-icons'
-import { ThemeReactiveVar } from '@reactive'
+import { ThemeReactiveVar } from '#/reactive'
 import { useRouter } from 'expo-router'
 
 const AddEmoji = () => {

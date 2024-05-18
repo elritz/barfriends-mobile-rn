@@ -1,7 +1,7 @@
 import { useReactiveVar } from '@apollo/client'
-import { DaysPreferencePermissionInitialState } from '@constants/Preferences'
-import { LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS } from '@constants/StorageConstants'
-import { LocalStoragePreferenceAskNotificationPermissionType } from '@ctypes/preferences'
+import { DaysPreferencePermissionInitialState } from '#/constants/Preferences'
+import { LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS } from '#/constants/StorageConstants'
+import { LocalStoragePreferenceAskNotificationPermissionType } from '#/ctypes/preferences'
 import {
 	Button,
 	Center,
@@ -19,7 +19,7 @@ import {
 	VStack,
 } from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { PreferencePermissionNotificationReactiveVar } from '@reactive'
+import { PreferencePermissionNotificationReactiveVar } from '#/reactive'
 import { useRouter } from 'expo-router'
 
 const NotificationNextAskModal = ({ isOpen, onOpen, onClose }) => {

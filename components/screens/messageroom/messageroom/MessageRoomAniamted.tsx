@@ -2,7 +2,7 @@
 import { history } from './Message'
 import Message from './data'
 import { useReactiveVar } from '@apollo/client'
-import { ThemeReactiveVar } from '@reactive'
+import { ThemeReactiveVar } from '#/reactive'
 import { BlurView } from 'expo-blur'
 import { View } from 'react-native'
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller'

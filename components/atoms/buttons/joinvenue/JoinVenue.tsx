@@ -1,12 +1,12 @@
 import { useReactiveVar } from '@apollo/client'
 import { Button, ButtonText } from '@gluestack-ui/themed'
-import { GET_LIVE_VENUE_TOTALS_QUERY } from '@graphql/DM/profiling/out/index.query'
+import { GET_LIVE_VENUE_TOTALS_QUERY } from '#/graphql/DM/profiling/out/index.query'
 import {
 	AuthorizationDeviceProfile,
 	Profile,
 	useAddPersonalJoinsVenueMutation,
-} from '@graphql/generated'
-import { AuthorizationReactiveVar } from '@reactive'
+} from '#/graphql/generated'
+import { AuthorizationReactiveVar } from '#/reactive'
 import { useLocalSearchParams } from 'expo-router'
 import { useEffect, useState } from 'react'
 

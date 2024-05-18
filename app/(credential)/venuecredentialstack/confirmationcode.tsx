@@ -7,8 +7,8 @@ import {
 	ConfirmationCodeReactiveVar,
 	CredentialPersonalProfileReactiveVar,
 	ThemeReactiveVar,
-} from '@reactive'
-import useTimer from '@util/hooks/useTimer2'
+} from '#/reactive'
+import useTimer from '#/util/hooks/useTimer2'
 import { useLocalSearchParams, useRouter } from 'expo-router'
 import { useEffect, useState } from 'react'
 import { Controller, useForm, ValidateResult } from 'react-hook-form'

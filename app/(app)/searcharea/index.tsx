@@ -1,7 +1,7 @@
 import { useReactiveVar } from '@apollo/client'
-import LocationPermissionItemEmptyState from '@components/organisms/list/searchareafiltering/LocationPermissionItemEmptyState'
-import SearchAreaLocationPermissionItem from '@components/organisms/list/searchareafiltering/SearchAreaLocationPermissionItem'
-import { LOCAL_STORAGE_SEARCH_AREA } from '@constants/StorageConstants'
+import LocationPermissionItemEmptyState from '#/components/organisms/list/searchareafiltering/LocationPermissionItemEmptyState'
+import SearchAreaLocationPermissionItem from '#/components/organisms/list/searchareafiltering/SearchAreaLocationPermissionItem'
+import { LOCAL_STORAGE_SEARCH_AREA } from '#/constants/StorageConstants'
 import { Ionicons } from '@expo/vector-icons'
 import {
 	Box,
@@ -14,8 +14,8 @@ import {
 	VStack,
 } from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { SearchAreaReactiveVar, ThemeReactiveVar } from '@reactive'
-import useContentInsets from '@util/hooks/useContentInsets'
+import { SearchAreaReactiveVar, ThemeReactiveVar } from '#/reactive'
+import useContentInsets from '#/util/hooks/useContentInsets'
 import { useRouter } from 'expo-router'
 import { ScrollView } from 'react-native'
 

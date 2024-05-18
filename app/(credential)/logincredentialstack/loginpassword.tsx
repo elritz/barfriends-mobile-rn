@@ -19,9 +19,9 @@ import {
 	AuthorizationDeviceProfile,
 	useLoginPasswordLazyQuery,
 	useSwitchDeviceProfileMutation,
-} from '@graphql/generated'
+} from '#/graphql/generated'
 import { useIsFocused } from '@react-navigation/native'
-import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
+import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { useLocalSearchParams, useRouter } from 'expo-router'
 import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
@@ -86,6 +86,7 @@ export default () => {
 	const [switchDeviceProfileMutation, { data: SDPData, loading: SDPLoading, error: SDPError }] =
 		useSwitchDeviceProfileMutation({
 			onCompleted: data => {
+				console.log("🚀 ~ data.switchDeviceProfile:", data.switchDeviceProfile)
 				if (data.switchDeviceProfile.__typename == 'Error') {
 					setError('password', { type: 'validate', message: 'Incorrect password' })
 				}
@@ -209,65 +210,15 @@ export default () => {
 										autoCapitalize='none'
 										numberOfLines={1}
 									/>
-									<Pressable onPress={handleShowPassword}>
-										<InputSlot pr='$3'>
-
-											{/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
-											{showPassword ? (
-												<Icon as={EyeIcon} size={'lg'} color='$primary500' />
-											) : (
-												<Icon as={EyeOffIcon} size={'lg'} color='$primary500' />
-											)}
-										</InputSlot>
-									</Pressable>
+									<InputSlot pr='$3' hitSlop={15} onPress={handleShowPassword}>
+										{showPassword ? (
+											<Icon as={EyeIcon} size={'xl'} color='$primary500' />
+										) : (
+											<Icon as={EyeOffIcon} size={'xl'} color='$primary500' />
+										)}
+									</InputSlot>
 									{LPLoading && <Spinner size='small' accessibilityLabel={'Loading...'} />}
 								</Input>
-								// <Input
-								// 	variant={'underlined'}
-								// 	ref={_passwordRef}
-								// 	key='password'
-								// 	keyboardAppearance={rTheme.colorScheme}
-								// 	value={value}
-								// 	py={2}
-								// 	_input={{
-								// 		fontSize: '2xl',
-								// 		fontWeight: 'medium',
-								// 	}}
-								// 	size={'lg'}
-								// 	secureTextEntry={!showPassword}
-								// 	onChangeText={value => onChange(value)}
-								// 	onSubmitEditing={handleSubmit(onSubmit)}
-								// 	h={'50px'}
-								// 	onBlur={onBlur}
-								// 	textContentType='password'
-								// 	blurOnSubmit={false}
-								// 	autoComplete={'password'}
-								// 	autoFocus
-								// 	returnKeyType='done'
-								// 	autoCorrect={false}
-								// 	inputAccessoryViewID={INPUT_ACCESSORY_VIEW_ID}
-								// 	autoCapitalize='none'
-								// 	numberOfLines={1}
-								// 	InputRightElement={
-								// 		<HStack space={'md'}>
-								// 			{/* {LPLoading && <Spinner size='md' accessibilityLabel={'Loading...'} />} */}
-								// 			<Icon
-								// 				onPress={() => {
-								// 					setShowPassword(!showPassword)
-								// 				}}
-								// 				as={Ionicons}
-								// 				name={showPassword ? 'eye-off' : 'eye'}
-								// 				size={'md'}
-								// 				_light={{
-								// 					color: !showPassword ? 'primary.500' : 'light.800',
-								// 				}}
-								// 				_dark={{
-								// 					color: !showPassword ? 'primary.500' : 'dark.800',
-								// 				}}
-								// 			/>
-								// 		</HStack>
-								// 	}
-								// />
 							)
 						}}
 					/>

@@ -2,7 +2,7 @@ import { makeVar } from '@apollo/client'
 import {
 	InitialStateBackgroundLocationPermission,
 	InitialStateForegroundLocationPermission,
-} from '@constants/Preferences'
+} from '#/constants/Preferences'
 import { LocationPermissionResponse } from 'expo-location'
 
 export const PermissionForegroundLocationReactiveVar = makeVar<LocationPermissionResponse | null>(

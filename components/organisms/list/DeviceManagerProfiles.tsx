@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client'
-import DeviceManagerProfileItemLarge from '@components/molecules/authorization/devicemanagerprofileitem/DeviceManagerProfileItemLarge'
+import DeviceManagerProfileItemLarge from '#/components/molecules/authorization/devicemanagerprofileitem/DeviceManagerProfileItemLarge'
 import { Entypo } from '@expo/vector-icons'
 import { Button, HStack, Pressable, Center } from '@gluestack-ui/themed'
 import {
@@ -8,8 +8,8 @@ import {
 	useGetADeviceManagerQuery,
 	useRemoveDeviceProfileFromDeviceManagerMutation,
 	useSwitchDeviceProfileMutation,
-} from '@graphql/generated'
-import { AuthorizationReactiveVar, ThemeReactiveVar } from '@reactive'
+} from '#/graphql/generated'
+import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { useRouter } from 'expo-router'
 import { useRef, useState } from 'react'
 

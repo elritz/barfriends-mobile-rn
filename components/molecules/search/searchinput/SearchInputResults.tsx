@@ -1,7 +1,7 @@
 import { useReactiveVar } from '@apollo/client'
 import { Ionicons } from '@expo/vector-icons'
 import { HStack, Input, InputField, Pressable } from '@gluestack-ui/themed'
-import { ThemeReactiveVar } from '@reactive'
+import { ThemeReactiveVar } from '#/reactive'
 import { useGlobalSearchParams, useRouter } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 

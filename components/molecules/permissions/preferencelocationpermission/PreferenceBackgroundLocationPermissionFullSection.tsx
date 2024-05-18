@@ -1,8 +1,8 @@
 import { useReactiveVar } from '@apollo/client'
-import BackgroundLocationNextAsk from '@components/molecules/asks/permissions/backgroundlocationnextask'
-import { TomorrowPreferencePermissionInitialState } from '@constants/Preferences'
-import { LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION } from '@constants/StorageConstants'
-import { LocalStoragePreferenceAskBackgroundLocationPermissionType } from '@ctypes/preferences'
+import BackgroundLocationNextAsk from '#/components/molecules/asks/permissions/backgroundlocationnextask'
+import { TomorrowPreferencePermissionInitialState } from '#/constants/Preferences'
+import { LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION } from '#/constants/StorageConstants'
+import { LocalStoragePreferenceAskBackgroundLocationPermissionType } from '#/ctypes/preferences'
 import { EvilIcons } from '@expo/vector-icons'
 import {
 	Box,
@@ -18,8 +18,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
 	PermissionBackgroundLocationReactiveVar,
 	PreferenceBackgroundLocationPermissionReactiveVar,
-} from '@reactive'
-import { useDisclose } from '@util/hooks/useDisclose'
+} from '#/reactive'
+import { useDisclose } from '#/util/hooks/useDisclose'
 import { useRouter } from 'expo-router'
 import { uniqueId } from 'lodash'
 import { DateTime } from 'luxon'

@@ -2,13 +2,14 @@ module.exports = function (api) {
 	api.cache(true)
 	return {
 		presets: [
-			[
-				'babel-preset-expo',
+			["babel-preset-expo",
 				{
+					jsxImportSource: "nativewind",
 					jsxRuntime: 'automatic',
-					jsxImportSource: 'react',
-				},
+						// jsxImportSource: 'react',
+        }
 			],
+			"nativewind/babel"
 		],
 		plugins: [
 			// ['transform-remove-console'],
@@ -27,22 +28,23 @@ module.exports = function (api) {
 				{
 					root: ['.'],
 					alias: {
-						'@app': './app',
-						'@ctypes': './types',
-						'@assets': './assets',
-						'@components': './components',
-						'@graphql': './graphql/',
-						'@library': './library',
-						'@context': './context',
-						'@util': './util',
-						'@helpers': './helpers',
-						'@screens': './screens',
-						'@constants': './constants',
-						'@reactive': './reactive/index.tsx',
+						'#/app': './app',
+						'#/preferences': './types',
+						'#/ctypes': './types',
+						'#/assets': './assets',
+						'#/util': './util',
+						'#/components': './components',
+						'#/helpers': './helpers',
+						'#/screens': './screens',
+						'#/graphql': './graphql/',
+						'#/library': './library',
+						'#/constants': './constants',
+						'#/reactive': './reactive/index.tsx',
+						'#/gluestack': './gluestack-ui.config',
 					},
 				},
 			],
 			"react-native-reanimated/plugin"
 		],
-	}
+	};
 }

@@ -4,8 +4,8 @@ import {
 	AuthorizationDeviceProfile,
 	useRemoveDeviceProfileFromDeviceManagerMutation,
 	useSwitchDeviceProfileMutation,
-} from '@graphql/generated'
-import { AuthorizationReactiveVar } from '@reactive'
+} from '#/graphql/generated'
+import { AuthorizationReactiveVar } from '#/reactive'
 import { useGlobalSearchParams, useRouter } from 'expo-router'
 import { SafeAreaView, ScrollView } from 'react-native'
 

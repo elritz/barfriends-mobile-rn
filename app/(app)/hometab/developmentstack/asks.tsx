@@ -1,18 +1,18 @@
 import {
 	NowPreferencePermissionInitialState,
 	TomorrowPreferencePermissionInitialState,
-} from '@constants/Preferences'
+} from '#/constants/Preferences'
 import {
 	LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
 	LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION,
 	LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS,
-} from '@constants/StorageConstants'
+} from '#/constants/StorageConstants'
 import { Button, ButtonText, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
 	PreferenceBackgroundLocationPermissionReactiveVar,
 	PreferenceForegroundLocationPermissionReactiveVar,
-} from '@reactive'
+} from '#/reactive'
 import { useRouter } from 'expo-router'
 import { ScrollView } from 'react-native'
 export default function Preferences() {

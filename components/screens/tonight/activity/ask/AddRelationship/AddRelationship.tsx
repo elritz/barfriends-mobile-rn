@@ -1,7 +1,7 @@
 import { useReactiveVar } from '@apollo/client'
 import { Box, Heading } from '@gluestack-ui/themed'
 import { FontAwesome5 } from '@expo/vector-icons'
-import { ThemeReactiveVar } from '@reactive'
+import { ThemeReactiveVar } from '#/reactive'
 
 const AddRelationship = ({ }) => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)

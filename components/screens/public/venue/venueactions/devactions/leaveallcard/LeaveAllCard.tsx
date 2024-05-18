@@ -3,7 +3,7 @@ import {
 	useGetLiveVenueTotalsV2Query,
 	useRefreshDeviceManagerQuery,
 	useRemoveAllJoinedTotalFromVenueMutation,
-} from '@graphql/generated'
+} from '#/graphql/generated'
 import { useLocalSearchParams } from 'expo-router'
 import { useEffect, useState } from 'react'
 

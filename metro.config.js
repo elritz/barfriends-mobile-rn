@@ -1,3 +1,4 @@
+const {withNativeWind} = require('nativewind/metro');
 // const { getDefaultConfig } = require('expo/metro-config')
 /** @type {import('@sentry/react-native/metro').MetroConfig} */
 const { getSentryExpoConfig } = require('@sentry/react-native/metro')
@@ -13,4 +14,6 @@ config.transformer.minifierConfig = {
 
 config.resolver.assetExts.push('db')
 
-module.exports = config
+module.exports = withNativeWind(config, {
+    input: "./global.css"
+})
