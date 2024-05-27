@@ -47,7 +47,7 @@ import {
 	InformationJoinVenueReactiveVar,
 } from '#/reactive'
 import useSetSearchAreaWithLocation from '#/util/hooks/searcharea/useSetSearchAreaWithLocation'
-import { Camera } from 'expo-camera'
+import { Camera } from 'expo-camera/legacy'
 import * as Contacts from 'expo-contacts'
 import 'expo-dev-client'
 import { getForegroundPermissionsAsync, getBackgroundPermissionsAsync } from 'expo-location'
@@ -63,10 +63,9 @@ import { Appearance, Text, View } from 'react-native'
 import { KeyboardProvider } from 'react-native-keyboard-controller'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import * as Sentry from "@sentry/react-native";
-import { APP_ENV } from '@env'
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import { apolloDevToolsInit } from 'react-native-apollo-devtools-client';
-
+import { isRunningInExpoGo } from 'expo';
 export {
 	// Catch any errors thrown by the Layout component.
 	ErrorBoundary,
@@ -96,7 +95,7 @@ const routingInstrumentation = new Sentry.ReactNavigationInstrumentation();
 
 Sentry.init({
 	dsn: 'https://1c7981806da9fa394d3a549719cd777d@o4506712454660096.ingest.sentry.io/4506712456757248',
-	// debug: APP_ENV === 'development' ? true : false,
+	// debug: NODE_ENV === 'development' ? true : false,
 	debug: false,
 	// debug: true,
 	// enableNative: true,
@@ -104,12 +103,13 @@ Sentry.init({
 		new Sentry.ReactNativeTracing({
 			// Pass instrumentation to be used as `routingInstrumentation`
 			routingInstrumentation,
+			enableNativeFramesTracking: !isRunningInExpoGo(),
 			// ...
 		}),
 	],
 });
 
-const db = SQLite.openDatabase('../SQLite/database.db')
+// const db = SQLite.openDatabase('../SQLite/database.db')
 
 function RootLayout() {
 	const ref = useNavigationContainerRef();

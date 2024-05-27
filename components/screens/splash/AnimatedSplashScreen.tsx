@@ -1,5 +1,4 @@
 import { useReactiveVar } from '@apollo/client'
-import { APP_ENV } from '@env'
 import { ThemeReactiveVar } from '#/reactive'
 import VectorFonts from '#/util/helpers/VectorFonts'
 import { cacheFonts, cacheImages } from '#/util/hooks/local/useCacheImages'
@@ -8,14 +7,15 @@ import { Image } from 'expo-image'
 import { SplashScreen } from 'expo-router'
 import { useCallback, useEffect, useState } from 'react'
 import { View, StyleSheet } from 'react-native'
-
+import { NODE_ENV } from '@env'
 function AnimatedSplashScreen({ children }) {
 	const rThemeVar = useReactiveVar(ThemeReactiveVar)
 	const [isSplashAnimationComplete, setAnimationComplete] = useState(false)
-
+	
+	console.log("🚀 ~ NODE_ENV:", NODE_ENV)
 	const [assets, Aerror] = useAssets([
-		require(`../../../assets/images/splash/splash.${APP_ENV}.light.png`),
-		require(`../../../assets/images/splash/splash.${APP_ENV}.dark.png`),
+		require(`../../../assets/images/splash/splash.${process.env.EXPO_PUBLIC_NODE_ENV}.light.png`),
+		require(`../../../assets/images/splash/splash.${process.env.EXPO_PUBLIC_NODE_ENV}.dark.png`),
 	])
 
 	useEffect(() => {

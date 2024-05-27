@@ -10,7 +10,7 @@
 		},
 		"development-simulator": {
 			"env": {
-				"APP_ENV": "development"
+				"NODE_ENV": "development"
 			},
 			"channel": "development",
 			"developmentClient": true,
@@ -21,7 +21,7 @@
 		},
 		"development": {
 			"env": {
-				"APP_ENV": "development"
+				"NODE_ENV": "development"
 			},
 			"channel": "development",
 			"developmentClient": true,
@@ -32,7 +32,7 @@
 			"channel": "preview",
 			"distribution": "internal",
 			"env": {
-				"APP_ENV": "production"
+				"NODE_ENV": "production"
 			},
 			"extends": "fast"
 		}

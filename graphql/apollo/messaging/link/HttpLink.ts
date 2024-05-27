@@ -1,11 +1,10 @@
 import { HttpLink } from '@apollo/client'
-import { SERVER_ENDPOINT } from '@env'
 
 if(__DEV__)  {
-	console.log("🚀 ~ file: HttpLink.ts:8 ~ SERVER_ENDPOINT:", SERVER_ENDPOINT)
+	console.log("🚀 ~ file: HttpLink.ts:8 ~ process.env.SERVER_ENDPOINT:", process.env.SERVER_ENDPOINT)
 }
 const httpLink = new HttpLink({
-	uri: `${SERVER_ENDPOINT}`,
+	uri: `${process.env.SERVER_ENDPOINT}`,
 })
 
 

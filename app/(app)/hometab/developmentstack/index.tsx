@@ -10,7 +10,6 @@ import {
 	DEVELOPMENT_FOREGROUND_LOCATION_TASK_NAME,
 	DEVELOPMENT_BACKGROUND_LOCATION_TASK_NAME,
 } from '#/constants/TaskManagerConstants'
-import { APP_ENV, SERVER_ENDPOINT } from '@env'
 import { Feather, Ionicons } from '@expo/vector-icons'
 import {
 	Box,
@@ -45,8 +44,8 @@ async function registerBackgroundFetchAsync() {
 		deferredUpdatesDistance: 15,
 		timeInterval: 5000,
 		showsBackgroundLocationIndicator: true,
-		deferredUpdatesInterval: APP_ENV === 'development' ? 1000 : 5000,
-		distanceInterval: APP_ENV === 'development' ? 0 : 20,
+		deferredUpdatesInterval: process.env.NODE_ENV === 'development' ? 1000 : 5000,
+		distanceInterval: process.env.NODE_ENV === 'development' ? 0 : 20,
 		foregroundService: {
 			notificationTitle: 'Location',
 			notificationBody: 'Location tracking in background',
@@ -61,8 +60,8 @@ async function registerForegroundFetchAsync() {
 		deferredUpdatesDistance: 25,
 		timeInterval: 5000,
 		showsBackgroundLocationIndicator: true,
-		deferredUpdatesInterval: APP_ENV === 'development' ? 1000 : 5000,
-		distanceInterval: APP_ENV === 'development' ? 0 : 20,
+		deferredUpdatesInterval: process.env.NODE_ENV === 'development' ? 1000 : 5000,
+		distanceInterval: process.env.NODE_ENV === 'development' ? 0 : 20,
 		foregroundService: {
 			notificationTitle: 'Location',
 			notificationBody: 'Location tracking in background',
@@ -335,17 +334,17 @@ export default () => {
 		// {
 		// 	type: 'generalinformation',
 		// 	title: 'Check for updates',
-		// 	value: SERVER_ENDPOINT,
+		// 	value: process.env.SERVER_ENDPOINT,
 		// 	icon: '',
 		// 	onPress: onFetchUpdateAsync,
 		// },
 		{
 			type: 'generalinformation',
 			title: 'IP Address',
-			value: SERVER_ENDPOINT,
+			value: process.env.SERVER_ENDPOINT,
 			icon: '',
 			onPress: async () => {
-				await Clipboard.setStringAsync(SERVER_ENDPOINT)
+				await Clipboard.setStringAsync(String(process.env.SERVER_ENDPOINT))
 			},
 		},
 		{

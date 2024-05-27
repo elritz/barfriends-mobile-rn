@@ -1,6 +1,5 @@
 import UberButton from './UberButton'
 import { useReactiveVar } from '@apollo/client'
-import { UBER_CLIENT_ID_KEY } from '@env'
 import { HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import { usePublicVenueQuery } from '#/graphql/generated'
 import { AuthorizationReactiveVar } from '#/reactive'
@@ -29,8 +28,8 @@ export default function UberCard() {
 		},
 	})
 
-	const urlUberWithVenue = `https://m.uber.com/ul/?client_id=${UBER_CLIENT_ID_KEY}&action=setPickup&pickup[my_location]&pickup[nickname]=MyLocation&pickup[formatted_address]=1455%20Market%20St%2C%20San%20Francisco%2C%20CA%2094103&dropoff[latitude]=${PData?.publicVenue?.Venue?.Location?.Geometry?.latitude}&dropoff[longitude]=${PData?.publicVenue?.Venue?.Location?.Geometry?.longitude}&dropoff[nickname]=Coit%20Tower&dropoff[formatted_address]=1%20Telegraph%20Hill%20Blvd%2C%20San%20Francisco%2C%20CA%2094133&product_id=a1111c8c-c720-46c3-8534-2fcdd730040d`
-	const urlUber = `https://m.uber.com/ul/?client_id=${UBER_CLIENT_ID_KEY}&action=setPickup&pickup[my_location]&pickup[nickname]=MyLocation&pickup[formatted_address]=1455%20Market%20St%2C%20San%20Francisco%2C%20CA%2094103&&dropoff[formatted_address]=1%20Telegraph%20Hill%20Blvd%2C%20San%20Francisco%2C%20CA%2094133&product_id=a1111c8c-c720-46c3-8534-2fcdd730040d`
+	const urlUberWithVenue = `https://m.uber.com/ul/?client_id=${process.env.UBER_CLIENT_ID_KEY}&action=setPickup&pickup[my_location]&pickup[nickname]=MyLocation&pickup[formatted_address]=1455%20Market%20St%2C%20San%20Francisco%2C%20CA%2094103&dropoff[latitude]=${PData?.publicVenue?.Venue?.Location?.Geometry?.latitude}&dropoff[longitude]=${PData?.publicVenue?.Venue?.Location?.Geometry?.longitude}&dropoff[nickname]=Coit%20Tower&dropoff[formatted_address]=1%20Telegraph%20Hill%20Blvd%2C%20San%20Francisco%2C%20CA%2094133&product_id=a1111c8c-c720-46c3-8534-2fcdd730040d`
+	const urlUber = `https://m.uber.com/ul/?client_id=${process.env.UBER_CLIENT_ID_KEY}&action=setPickup&pickup[my_location]&pickup[nickname]=MyLocation&pickup[formatted_address]=1455%20Market%20St%2C%20San%20Francisco%2C%20CA%2094103&&dropoff[formatted_address]=1%20Telegraph%20Hill%20Blvd%2C%20San%20Francisco%2C%20CA%2094133&product_id=a1111c8c-c720-46c3-8534-2fcdd730040d`
 
 	const handleUberWithVenuePress = useCallback(async () => {
 		const supported = await Linking.canOpenURL(urlUberWithVenue)

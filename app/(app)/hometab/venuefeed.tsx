@@ -117,7 +117,7 @@ export default () => {
 	const ListheaderComponent = ({ typename }) => {
 		return (
 			<Box bg={'transparent'} py={'$2'}>
-				{/* {APP_ENV === 'development' && <DevActions />} */}
+				{/* {NODE_ENV === 'development' && <DevActions />} */}
 				<VStack bg={'transparent'} space={'md'}>
 					{rAuthorizationVar?.Profile?.ProfileType === ProfileType.Guest && (
 						<Box mx={'$2'} my={'$2'} p={'$5'} pt={'$10'}>

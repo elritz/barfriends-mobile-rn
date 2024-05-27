@@ -4,8 +4,8 @@ module.exports = function (api) {
 		presets: [
 			["babel-preset-expo",
 				{
-					jsxImportSource: "nativewind",
-					jsxRuntime: 'automatic',
+					// jsxImportSource: "nativewind",
+					// jsxRuntime: 'automatic',
 						// jsxImportSource: 'react',
         }
 			],
@@ -13,16 +13,6 @@ module.exports = function (api) {
 		],
 		plugins: [
 			// ['transform-remove-console'],
-				[
-				 'module:react-native-dotenv',
-					{
-						moduleName: '@env',
-						path: '.env',
-						safe: false,
-						allowUndefined: true,
-					},
-			 	],
-
 			[
 				'module-resolver',
 				{

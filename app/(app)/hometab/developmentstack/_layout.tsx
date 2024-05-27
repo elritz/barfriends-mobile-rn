@@ -1,7 +1,6 @@
 import ChevronBackArrow from '#/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
 import { Box, Text, VStack } from '@gluestack-ui/themed'
 import { SEARCH_BAR_HEIGHT } from '#/constants/ReactNavigationConstants'
-import { APP_ENV } from '@env'
 import { Stack } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useReactiveVar } from '@apollo/client'
@@ -55,7 +54,7 @@ export default () => {
 										fontWeight={'$black'}
 									>
 										{String.fromCharCode(60)}
-										{APP_ENV} {String.fromCharCode(47, 62)}
+										{process.env.NODE_ENV} {String.fromCharCode(47, 62)}
 									</Text>
 								</Box>
 							</VStack>

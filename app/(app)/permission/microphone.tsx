@@ -6,7 +6,7 @@ import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icon
 import { PermissionMicrophoneReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { capitalizeFirstLetter } from '#/util/helpers/capitalizeFirstLetter'
 import useTimer2 from '#/util/hooks/useTimer2'
-import { Camera, requestMicrophonePermissionsAsync } from 'expo-camera'
+import { Camera, requestMicrophonePermissionsAsync } from 'expo-camera/legacy'
 import * as Device from 'expo-device'
 import * as IntentLauncher from 'expo-intent-launcher'
 import * as Linking from 'expo-linking'

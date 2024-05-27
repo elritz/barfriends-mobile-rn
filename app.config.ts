@@ -19,7 +19,16 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 	function configExpoPlugins({APP_NAME}: {APP_NAME: string}): (string | [] | [string] | [string, any])[] | undefined {
 		return [
 			'expo-router',
-			'sentry-expo',	
+			"expo-asset",
+			"expo-font",
+			"expo-secure-store",
+			[
+        "@sentry/react-native/expo",
+        {
+          "organization": "sentry org slug, or use the `SENTRY_ORG` environment variable",
+          "project": "sentry project name, or use the `SENTRY_PROJECT` environment variable"
+        }
+      ],	
 			[
 			 'expo-build-properties', 
 			 	{
@@ -76,12 +85,12 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 		]
 	}
 
-	function configSplash({APP_ENV}: {APP_ENV: string}): Splash | undefined  {
+	function configSplash({NODE_ENV}: {NODE_ENV: string}): Splash | undefined  {
 		return {
-			image: `./assets/images/splash/splash.${APP_ENV}.dark.png`,
+			image: `./assets/images/splash/splash.${NODE_ENV}.dark.png`,
 			resizeMode: 'cover',
 			dark: {
-				image: `./assets/images/splash/splash.${APP_ENV}.dark.png`,
+				image: `./assets/images/splash/splash.${NODE_ENV}.dark.png`,
 				resizeMode: 'cover',
 			},
 		}
@@ -105,12 +114,12 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 	}
 
 
-function configIOS({APP_ENV, APP_NAME}: {APP_ENV: string, APP_NAME: string}): IOS | undefined {
+function configIOS({NODE_ENV, APP_NAME}: {NODE_ENV: string, APP_NAME: string}): IOS | undefined {
 	return {
-		splash: configSplash({APP_ENV}),
+		splash: configSplash({NODE_ENV}),
 		infoPlist: configInfoPlist({APP_NAME}),
 		associatedDomains: [`applinks:${context.config.name}.com`],
-		bundleIdentifier: `com.${context.config.name}.${APP_ENV}`,
+		bundleIdentifier: `com.${context.config.name}.${NODE_ENV}`,
 		supportsTablet: false,
 		icon: `./assets/images/icon/icon.png`,
 		config: {
@@ -119,10 +128,10 @@ function configIOS({APP_ENV, APP_NAME}: {APP_ENV: string, APP_NAME: string}): IO
 	}
 }
 
-	switch (process.env.APP_ENV) {
+	switch (process.env.NODE_ENV) {
 		case 'development':
 			return {
-				name: `${toCamelCase(context.config.name)} (${process.env.APP_ENV})`,
+				name: `${toCamelCase(context.config.name)} (${process.env.NODE_ENV})`,
 				slug: 'barfriends',
 				owner: 'barfriends',
 				scheme: 'barfriends-development',
@@ -155,7 +164,7 @@ function configIOS({APP_ENV, APP_NAME}: {APP_ENV: string, APP_NAME: string}): IO
 					bundler: 'metro',
 					favicon: './assets/images/favicon.png',
 				},
-				ios: configIOS({APP_ENV: process.env.APP_ENV, APP_NAME: toCamelCase(context.config.name)}),
+				ios: configIOS({NODE_ENV: process.env.NODE_ENV, APP_NAME: toCamelCase(context.config.name)}),
 				android: {
 					versionCode: 2,
 					package: 'com.barfriends.dev',
@@ -221,8 +230,8 @@ function configIOS({APP_ENV, APP_NAME}: {APP_ENV: string, APP_NAME: string}): IO
 					},
 					primaryColor: '#FF7000',
 					plugins: configExpoPlugins({ APP_NAME: toCamelCase(context.config.name)}),
-					splash: configSplash({APP_ENV: String(process.env.APP_ENV)}),
-					ios: configIOS({APP_ENV: String(process.env.APP_ENV), APP_NAME: toCamelCase(context.config.name)}),
+					splash: configSplash({NODE_ENV: String(process.env.NODE_ENV)}),
+					ios: configIOS({NODE_ENV: String(process.env.NODE_ENV), APP_NAME: toCamelCase(context.config.name)}),
 					updates: {
 						url: 'https://u.expo.dev/7ba3f00e-9b58-45fa-8a6e-5ba14d4855e4',
 						fallbackToCacheTimeout: 2000,

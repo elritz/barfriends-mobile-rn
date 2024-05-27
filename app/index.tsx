@@ -13,6 +13,8 @@ import { Easing } from 'react-native-reanimated'
 const size = 500
 const windowHeight = Dimensions.get('window').height
 
+console.log("🚀 ~ process.env.EXPO_PUBLIC_NODE_ENV :", process.env)
+
 export default () => {
 	const personal_username_misia = 'misia'
 	// const device_manager_profile_id = 'e90675d1-009f-4ca8-9d76-f163a885189f'
@@ -22,11 +24,11 @@ export default () => {
 	//? Hometabs
 	// return <Redirect href={'/brokenstate'} />
 	// return <Redirect href={'/(app)/hometab/venuefeed'} />
-		//? Convesations
-		// return <Redirect href={'/(app)/hometab/conversations'} />
-		// return <Redirect href={{ pathname: '/(app)/conversation/[conversationid]', params: { conversationid: 'ce353001-e8d6-4175-ae25-9c37cbd742f0' } }} />
-		return <Redirect href={{ pathname: '/(app)/animatedconversation/[animatedconversationid]', params: { animatedconversationid: 'ce353001-e8d6-4175-ae25-9c37cbd742f0' } }} />
-		//? User profile
+	//? Convesations
+	// return <Redirect href={'/(app)/hometab/conversations'} />
+	// return <Redirect href={{ pathname: '/(app)/conversation/[conversationid]', params: { conversationid: 'ce353001-e8d6-4175-ae25-9c37cbd742f0' } }} />
+	return <Redirect href={{ pathname: '/(app)/animatedconversation/[animatedconversationid]', params: { animatedconversationid: 'ce353001-e8d6-4175-ae25-9c37cbd742f0' } }} />
+	//? User profile
 
 	// return <Redirect href={'/(app)/hometab/profilestack/userprofile'} />
 	// return <Redirect href={'/(app)/hometab/developmentstack/theme'} />

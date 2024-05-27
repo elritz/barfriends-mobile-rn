@@ -1,4 +1,3 @@
-import { SERVER_ENDPOINT } from '@env'
 
 module.exports = {
 	client: {
@@ -11,7 +10,7 @@ module.exports = {
 		// service: 'barfriends',
 		service: {
 			name: 'barfriends',
-			url: `${SERVER_ENDPOINT}`,
+			url: `${process.env.SERVER_ENDPOINT}`,
 		},
 	},
 }
