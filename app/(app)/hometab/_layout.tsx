@@ -104,12 +104,15 @@ export default () => {
 				}}
 			/>
 			<Tabs.Screen
-				name='messagestack'
+				// name='messagestack'
+				name='conversations'
 				options={{
-					headerTransparent: true,
-					tabBarLabel: 'messages',
+					// headerShown: false,
+					tabBarLabel: 'conversations',
 					tabBarShowLabel: false,
 					tabBarIcon: ({ color, focused }: ITabColor) => <MessageTab color={color} focused={focused} />,
+					// headerShown: true,
+					headerTransparent: true,
 					header: () => {
 						return (
 							<BlurView intensity={70} tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}>

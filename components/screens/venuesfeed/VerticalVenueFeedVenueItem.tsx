@@ -1,13 +1,10 @@
 // TODO: If user is joined to the venue remove join button show joined
 import { useReactiveVar } from '@apollo/client'
 import { Box, Button, Heading, Pressable, Text, VStack, ButtonText } from '@gluestack-ui/themed'
-import { GET_LIVE_VENUE_TOTALS_QUERY } from '#/graphql/DM/profiling/out/index.query'
 import {
 	AuthorizationDeviceProfile,
 	Profile,
 	ProfileVenue,
-	useAddPersonalJoinsVenueMutation,
-	useRemovePersonalJoinsVenueMutation,
 } from '#/graphql/generated'
 import { AuthorizationReactiveVar } from '#/reactive'
 import useGetDistance from '#/util/hooks/useDistance'
@@ -39,85 +36,6 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 
 	const { refreshLocation } = useGetDistance()
-
-	// const [addPersonalJoinVenueMutation, { data: JVData, loading: JVLoading, error: JVError }] =
-	// 	useAddPersonalJoinsVenueMutation({
-	// 		variables: {
-	// 			profileIdVenue: String(props.item?.id),
-	// 		},
-	// 		onCompleted: async data => {
-	// 			if (data.addPersonalJoinsVenue) {
-	// 				const profile = data.addPersonalJoinsVenue as Profile
-	// 				const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
-	// 				if (
-	// 					profile?.Personal?.LiveOutPersonal?.Out &&
-	// 					deviceprofile?.Profile?.Personal?.LiveOutPersonal
-	// 				) {
-	// 					AuthorizationReactiveVar({
-	// 						...deviceprofile,
-	// 						Profile: {
-	// 							...deviceprofile.Profile,
-	// 							Personal: {
-	// 								...deviceprofile.Profile.Personal,
-	// 								LiveOutPersonal: {
-	// 									...deviceprofile.Profile.Personal.LiveOutPersonal,
-	// 									Out: profile.Personal.LiveOutPersonal.Out,
-	// 								},
-	// 							},
-	// 						},
-	// 					})
-	// 				}
-	// 				setIsJoined(true)
-	// 			}
-	// 		},
-	// 		refetchQueries: [
-	// 			{
-	// 				query: GET_LIVE_VENUE_TOTALS_QUERY,
-	// 				variables: {
-	// 					profileIdVenue: props.item?.id,
-	// 				},
-	// 			},
-	// 		],
-	// 	})
-
-	// const [
-	// 	removePersonalJoinsVenueMutation,
-	// 	{ data: RPJVData, loading: RPJVLoading, error: RPJVError },
-	// ] = useRemovePersonalJoinsVenueMutation({
-	// 	onCompleted: async data => {
-	// 		if (data.removePersonalJoinsVenue) {
-	// 			setIsJoined(false)
-	// 			const profile = data.removePersonalJoinsVenue as Profile
-	// 			const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
-	// 			if (
-	// 				profile?.Personal?.LiveOutPersonal?.Out &&
-	// 				deviceprofile?.Profile?.Personal?.LiveOutPersonal
-	// 			) {
-	// 				AuthorizationReactiveVar({
-	// 					...deviceprofile,
-	// 					Profile: {
-	// 						...deviceprofile.Profile,
-	// 						Personal: {
-	// 							...deviceprofile.Profile.Personal,
-	// 							LiveOutPersonal: {
-	// 								...deviceprofile.Profile.Personal.LiveOutPersonal,
-	// 								Out: profile.Personal.LiveOutPersonal.Out,
-	// 							},
-	// 						},
-	// 					},
-	// 				})
-	// 			}
-	// 		}
-	// 	},
-	// 	refetchQueries: [
-	// 		{
-	// 			query: GET_LIVE_VENUE_TOTALS_QUERY,
-	// 			variables: {
-	// 				profileIdVenue: props.item?.id,
-	// 			},
-	// 		},
-	// 	],
-	// })
 
 	const setDist = useCallback(
 		({ distanceInM }) => {

@@ -19,15 +19,25 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 	function configExpoPlugins({APP_NAME}: {APP_NAME: string}): (string | [] | [string] | [string, any])[] | undefined {
 		return [
 			'expo-router',
-			'sentry-expo',
+			'sentry-expo',	
 			[
 			 'expo-build-properties', 
 			 	{
 					"ios": {
 						"flipper": true
-					}
+					},
+						"android": {
+							"kotlinVersion": "1.6.21"
+						}
 				}
+				
 			],
+			[
+        "expo-av",
+        {
+          "microphonePermission": "Allow $(APP_NAME) to access your microphone."
+        }
+      ],
 			[
         "expo-updates",
         {

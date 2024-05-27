@@ -1,4 +1,7 @@
-import { Button, Text } from '@gluestack-ui/themed'
+
+import ChevronBackArrow from '#/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
+import { Button, ButtonText, Heading, Text, Box } from '@gluestack-ui/themed'
+import { BlurView } from 'expo-blur'
 import { Stack, router } from 'expo-router'
 
 export default () => {
@@ -55,10 +58,9 @@ export default () => {
 			/>
 			<Stack.Screen
 				name={'conversation'}
-				options={{
-					headerShown: false,
-					animation: 'slide_from_right',
-				}}
+			/>
+			<Stack.Screen
+				name={'animatedconversation'}
 			/>
 			<Stack.Screen
 				name={'explore'}
