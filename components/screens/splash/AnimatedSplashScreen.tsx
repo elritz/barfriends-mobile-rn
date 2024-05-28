@@ -7,16 +7,16 @@ import { Image } from 'expo-image'
 import { SplashScreen } from 'expo-router'
 import { useCallback, useEffect, useState } from 'react'
 import { View, StyleSheet } from 'react-native'
-import { NODE_ENV } from '@env'
+
 function AnimatedSplashScreen({ children }) {
 	const rThemeVar = useReactiveVar(ThemeReactiveVar)
 	const [isSplashAnimationComplete, setAnimationComplete] = useState(false)
-	
-	console.log("🚀 ~ NODE_ENV:", NODE_ENV)
-	const [assets, Aerror] = useAssets([
-		require(`../../../assets/images/splash/splash.${process.env.EXPO_PUBLIC_NODE_ENV}.light.png`),
-		require(`../../../assets/images/splash/splash.${process.env.EXPO_PUBLIC_NODE_ENV}.dark.png`),
-	])
+
+	console.log("🚀 ~ NODE_ENV:", process.env.EXPO_PUBLIC_NODE_ENV)
+	// const [assets, Aerror] = useAssets([
+	// 	require(`../../../assets/images/splash/splash.${process.env.EXPO_PUBLIC_NODE_ENV}.light.png`),
+	// 	require(`../../../assets/images/splash/splash.${process.env.EXPO_PUBLIC_NODE_ENV}.dark.png`),
+	// ])
 
 	useEffect(() => {
 		setTimeout(() => setAnimationComplete(true), 1)
@@ -37,35 +37,35 @@ function AnimatedSplashScreen({ children }) {
 		}
 	}, [])
 
-	if (!assets) {
-		return null
-	}
+	// if (!assets) {
+	// 	return null
+	// }
 
-	if (assets && !isSplashAnimationComplete) {
-		return (
-			<View
-				pointerEvents='none'
-				style={[
-					StyleSheet.absoluteFill,
-					{
-						backgroundColor: rThemeVar.colorScheme === 'light' ? '#f1f1f1' : '#0d0d0d',
-					},
-				]}
-			>
-				<Image
-					onLoad={onImageLoaded}
-					source={{
-						uri: rThemeVar.colorScheme ? assets[0].uri : assets[1].uri,
-					}}
-					style={{
-						width: '100%',
-						height: '100%',
-					}}
-					contentFit='cover'
-				/>
-			</View>
-		)
-	}
+	// if (assets && !isSplashAnimationComplete) {
+	// 	return (
+	// 		<View
+	// 			pointerEvents='none'
+	// 			style={[
+	// 				StyleSheet.absoluteFill,
+	// 				{
+	// 					backgroundColor: rThemeVar.colorScheme === 'light' ? '#f1f1f1' : '#0d0d0d',
+	// 				},
+	// 			]}
+	// 		>
+	// 			<Image
+	// 				onLoad={onImageLoaded}
+	// 				source={{
+	// 					uri: rThemeVar.colorScheme ? assets[0].uri : assets[1].uri,
+	// 				}}
+	// 				style={{
+	// 					width: '100%',
+	// 					height: '100%',
+	// 				}}
+	// 				contentFit='cover'
+	// 			/>
+	// 		</View>
+	// 	)
+	// }
 
 	return (
 		<View

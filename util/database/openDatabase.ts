@@ -1,6 +1,6 @@
 import { Asset } from 'expo-asset'
 import * as FileSystem from 'expo-file-system'
-import * as SQLite from 'expo-sqlite'
+import * as SQLite from 'expo-sqlite/legacy'
 
 export async function openDatabase(): Promise<SQLite.SQLiteDatabase> {
 	const db = await FileSystem.getInfoAsync(FileSystem.documentDirectory + 'SQLite')

@@ -56,7 +56,6 @@ import { getPermissionsAsync as getNotificiationPermissionAsync } from 'expo-not
 import { Stack, useNavigationContainerRef } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import * as ScreenOrientation from 'expo-screen-orientation'
-import * as SQLite from 'expo-sqlite'
 import { useEffect } from 'react'
 import { Appearance, Text, View } from 'react-native'
 // import 'react-native-gesture-handler'

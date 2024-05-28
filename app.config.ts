@@ -16,7 +16,7 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 	}
 	
 
-	function configExpoPlugins({APP_NAME}: {APP_NAME: string}): (string | [] | [string] | [string, any])[] | undefined {
+	function configExpoPlugins({APP_NAME, SENTRY_ORG, SENTRY_PROJECT}: {APP_NAME: string, SENTRY_ORG: string, SENTRY_PROJECT: string}): (string | [] | [string] | [string, any])[] | undefined {
 		return [
 			'expo-router',
 			"expo-asset",
@@ -25,19 +25,16 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 			[
         "@sentry/react-native/expo",
         {
-          "organization": "sentry org slug, or use the `SENTRY_ORG` environment variable",
-          "project": "sentry project name, or use the `SENTRY_PROJECT` environment variable"
+          "organization": SENTRY_ORG,
+          "project": SENTRY_PROJECT
         }
       ],	
 			[
 			 'expo-build-properties', 
 			 	{
-					"ios": {
-						"flipper": true
-					},
-						"android": {
-							"kotlinVersion": "1.6.21"
-						}
+					"android": {
+						"kotlinVersion": "1.6.21"
+					}
 				}
 				
 			],
@@ -140,7 +137,7 @@ function configIOS({NODE_ENV, APP_NAME}: {NODE_ENV: string, APP_NAME: string}): 
 				experiments: {
 					typedRoutes: true,
 				},
-				plugins: configExpoPlugins({ APP_NAME: toCamelCase(context.config.name)}),
+				plugins: configExpoPlugins({ APP_NAME: toCamelCase(context.config.name), SENTRY_PROJECT: process.env.SENTRY_PROJECT, SENTRY_ORG: process.env.SENTRY_ORG}),
 				updates: {
 					url: 'https://u.expo.dev/7ba3f00e-9b58-45fa-8a6e-5ba14d4855e4',
 					fallbackToCacheTimeout: 2000,
@@ -229,7 +226,7 @@ function configIOS({NODE_ENV, APP_NAME}: {NODE_ENV: string, APP_NAME: string}): 
 						typedRoutes: true,
 					},
 					primaryColor: '#FF7000',
-					plugins: configExpoPlugins({ APP_NAME: toCamelCase(context.config.name)}),
+					plugins: configExpoPlugins({ APP_NAME: toCamelCase(context.config.name), SENTRY_PROJECT: process.env.SENTRY_PROJECT, SENTRY_ORG: process.env.SENTRY_ORG}),
 					splash: configSplash({NODE_ENV: String(process.env.NODE_ENV)}),
 					ios: configIOS({NODE_ENV: String(process.env.NODE_ENV), APP_NAME: toCamelCase(context.config.name)}),
 					updates: {
