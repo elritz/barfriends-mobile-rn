@@ -1,4 +1,3 @@
-const {withNativeWind} = require('nativewind/metro');
 // const { getDefaultConfig } = require('expo/metro-config')
 /** @type {import('@sentry/react-native/metro').MetroConfig} */
 const { getSentryExpoConfig } = require('@sentry/react-native/metro')
@@ -11,9 +10,4 @@ config.transformer.minifierConfig = {
 	// You can automatically remove console.log statements using the following configuration:
 	// drop: ['console'],
 }
-
-config.resolver.assetExts.push('db')
-
-module.exports = withNativeWind(config, {
-    input: "./global.css"
-})
+module.exports = config;
