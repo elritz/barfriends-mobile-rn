@@ -82,12 +82,12 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 		]
 	}
 
-	function configSplash({NODE_ENV}: {NODE_ENV: string}): Splash | undefined  {
+	function configSplash(): Splash | undefined  {
 		return {
-			image: `./assets/images/splash/splash.${NODE_ENV}.dark.png`,
+			image: `./assets/images/splash/splash.development.dark.png`,
 			resizeMode: 'cover',
 			dark: {
-				image: `./assets/images/splash/splash.${NODE_ENV}.dark.png`,
+				image: `./assets/images/splash/splash.development.dark.png`,
 				resizeMode: 'cover',
 			},
 		}
@@ -113,7 +113,8 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 
 function configIOS({NODE_ENV, APP_NAME}: {NODE_ENV: string, APP_NAME: string}): IOS | undefined {
 	return {
-		splash: configSplash({NODE_ENV}),
+		// splash: configSplash({NODE_ENV}),
+		splash: configSplash(),
 		infoPlist: configInfoPlist({APP_NAME}),
 		associatedDomains: [`applinks:${context.config.name}.com`],
 		bundleIdentifier: `com.${context.config.name}.${NODE_ENV}`,
@@ -227,8 +228,9 @@ function configIOS({NODE_ENV, APP_NAME}: {NODE_ENV: string, APP_NAME: string}): 
 					},
 					primaryColor: '#FF7000',
 					plugins: configExpoPlugins({ APP_NAME: toCamelCase(context.config.name), SENTRY_PROJECT: process.env.EXPO_PUBLIC_SENTRY_PROJECT, SENTRY_ORG: process.env.EXPO_PUBLIC_SENTRY_ORG}),
-					splash: configSplash({NODE_ENV: String(process.env.EXPO_PUBLIC_APP_ENV)}),
-					ios: configIOS({NODE_ENV: String(process.env.EXPO_PUBLIC_APP_ENV), APP_NAME: toCamelCase(context.config.name)}),
+					// splash: configSplash({NODE_ENV: String(process.env.EXPO_PUBLIC_NODE_ENV)}),
+					splash: configSplash(),
+					ios: configIOS({NODE_ENV: String(process.env.EXPO_PUBLIC_NODE_ENV), APP_NAME: toCamelCase(context.config.name)}),
 					updates: {
 						url: 'https://u.expo.dev/7ba3f00e-9b58-45fa-8a6e-5ba14d4855e4',
 						fallbackToCacheTimeout: 2000,

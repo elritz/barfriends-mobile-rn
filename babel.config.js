@@ -4,12 +4,10 @@ module.exports = function (api) {
 		presets: [
 			["babel-preset-expo",
 				{
-					// jsxImportSource: "nativewind",
 					// jsxRuntime: 'automatic',
 						// jsxImportSource: 'react',
         }
 			],
-			"nativewind/babel"
 		],
 		plugins: [
 			// ['transform-remove-console'],

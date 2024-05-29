@@ -9,7 +9,6 @@ import { ThemeReactiveVar } from '#/reactive'
 import { useToggleTheme } from '#/util/hooks/theme/useToggleTheme'
 import { useCallback, useEffect, useRef } from 'react'
 import { AppState, Appearance, StatusBar } from 'react-native'
-import { GluestackUIProvider as GluestackUIProviderUI } from "#/components/ui/gluestack-ui-provider";
 import "../../global.css";
 export default function Theme({ children }) {
 	const appState = useRef(AppState.currentState)
@@ -63,21 +62,18 @@ export default function Theme({ children }) {
 
 	return (
 		<AnimatedSplashScreen>
-			<GluestackUIProviderUI>
-
-				<GluestackUIProvider
-					config={rThemeVar.theme.gluestack}
-					colorMode={rThemeVar.colorScheme === 'light' ? 'light' : 'dark'}
-				>
-					<StatusBar
-						animated
-						barStyle={rThemeVar.colorScheme === 'light' ? 'dark-content' : 'light-content'}
-					/>
-					<ReactNavigationThemeProvider value={rThemeVar.theme.reactnavigation}>
-						{children}
-					</ReactNavigationThemeProvider>
-				</GluestackUIProvider>
-			</GluestackUIProviderUI>
+			<GluestackUIProvider
+				config={rThemeVar.theme.gluestack}
+				colorMode={rThemeVar.colorScheme === 'light' ? 'light' : 'dark'}
+			>
+				<StatusBar
+					animated
+					barStyle={rThemeVar.colorScheme === 'light' ? 'dark-content' : 'light-content'}
+				/>
+				<ReactNavigationThemeProvider value={rThemeVar.theme.reactnavigation}>
+					{children}
+				</ReactNavigationThemeProvider>
+			</GluestackUIProvider>
 		</AnimatedSplashScreen>
 	)
 }
