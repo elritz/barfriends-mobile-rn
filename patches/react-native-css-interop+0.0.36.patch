@@ -261,7 +261,7 @@ index 99eda40..5eb4764 100644
 -}
 -exports.useColorScheme = useColorScheme;
  const useUnstableNativeVariable = (name) => {
-     if (process.env.NODE_ENV !== "production") {
+     if (process.env.EXPO_PUBLIC_APP_ENV !== "production") {
          console.log("useUnstableNativeVariable is not supported on web.");
 diff --git a/node_modules/react-native-css-interop/dist/runtime/web/api.js.map b/node_modules/react-native-css-interop/dist/runtime/web/api.js.map
 index d64992f..38a7312 100644

@@ -163,7 +163,7 @@ export default () => {
 			<Tabs.Screen
 				name='developmentstack'
 				options={{
-					href: showDev && process.env.NODE_ENV === 'development' ? '/(app)/hometab/developmentstack' : null,
+					href: showDev && process.env.EXPO_PUBLIC_APP_ENV === 'development' ? '/(app)/hometab/developmentstack' : null,
 					headerShown: false,
 					tabBarLabel: 'development',
 					tabBarShowLabel: false,

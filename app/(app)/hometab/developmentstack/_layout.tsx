@@ -54,7 +54,7 @@ export default () => {
 										fontWeight={'$black'}
 									>
 										{String.fromCharCode(60)}
-										{process.env.NODE_ENV} {String.fromCharCode(47, 62)}
+										{process.env.EXPO_PUBLIC_APP_ENV} {String.fromCharCode(47, 62)}
 									</Text>
 								</Box>
 							</VStack>

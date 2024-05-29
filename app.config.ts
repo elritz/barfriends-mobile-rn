@@ -125,10 +125,10 @@ function configIOS({NODE_ENV, APP_NAME}: {NODE_ENV: string, APP_NAME: string}): 
 	}
 }
 
-	switch (process.env.NODE_ENV) {
+	switch (process.env.EXPO_PUBLIC_APP_ENV) {
 		case 'development':
 			return {
-				name: `${toCamelCase(context.config.name)} (${process.env.NODE_ENV})`,
+				name: `${toCamelCase(context.config.name)} (${process.env.EXPO_PUBLIC_APP_ENV})`,
 				slug: 'barfriends',
 				owner: 'barfriends',
 				scheme: 'barfriends-development',
@@ -137,7 +137,7 @@ function configIOS({NODE_ENV, APP_NAME}: {NODE_ENV: string, APP_NAME: string}): 
 				experiments: {
 					typedRoutes: true,
 				},
-				plugins: configExpoPlugins({ APP_NAME: toCamelCase(context.config.name), SENTRY_PROJECT: process.env.SENTRY_PROJECT, SENTRY_ORG: process.env.SENTRY_ORG}),
+				plugins: configExpoPlugins({ APP_NAME: toCamelCase(context.config.name), SENTRY_PROJECT: process.env.EXPO_PUBLIC_SENTRY_PROJECT, SENTRY_ORG: process.env.EXPO_PUBLIC_SENTRY_ORG}),
 				updates: {
 					url: 'https://u.expo.dev/7ba3f00e-9b58-45fa-8a6e-5ba14d4855e4',
 					fallbackToCacheTimeout: 2000,
@@ -161,7 +161,7 @@ function configIOS({NODE_ENV, APP_NAME}: {NODE_ENV: string, APP_NAME: string}): 
 					bundler: 'metro',
 					favicon: './assets/images/favicon.png',
 				},
-				ios: configIOS({NODE_ENV: process.env.NODE_ENV, APP_NAME: toCamelCase(context.config.name)}),
+				ios: configIOS({NODE_ENV: process.env.EXPO_PUBLIC_APP_ENV, APP_NAME: toCamelCase(context.config.name)}),
 				android: {
 					versionCode: 2,
 					package: 'com.barfriends.dev',
@@ -226,9 +226,9 @@ function configIOS({NODE_ENV, APP_NAME}: {NODE_ENV: string, APP_NAME: string}): 
 						typedRoutes: true,
 					},
 					primaryColor: '#FF7000',
-					plugins: configExpoPlugins({ APP_NAME: toCamelCase(context.config.name), SENTRY_PROJECT: process.env.SENTRY_PROJECT, SENTRY_ORG: process.env.SENTRY_ORG}),
-					splash: configSplash({NODE_ENV: String(process.env.NODE_ENV)}),
-					ios: configIOS({NODE_ENV: String(process.env.NODE_ENV), APP_NAME: toCamelCase(context.config.name)}),
+					plugins: configExpoPlugins({ APP_NAME: toCamelCase(context.config.name), SENTRY_PROJECT: process.env.EXPO_PUBLIC_SENTRY_PROJECT, SENTRY_ORG: process.env.EXPO_PUBLIC_SENTRY_ORG}),
+					splash: configSplash({NODE_ENV: String(process.env.EXPO_PUBLIC_APP_ENV)}),
+					ios: configIOS({NODE_ENV: String(process.env.EXPO_PUBLIC_APP_ENV), APP_NAME: toCamelCase(context.config.name)}),
 					updates: {
 						url: 'https://u.expo.dev/7ba3f00e-9b58-45fa-8a6e-5ba14d4855e4',
 						fallbackToCacheTimeout: 2000,

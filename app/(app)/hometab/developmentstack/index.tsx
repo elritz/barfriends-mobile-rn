@@ -44,8 +44,8 @@ async function registerBackgroundFetchAsync() {
 		deferredUpdatesDistance: 15,
 		timeInterval: 5000,
 		showsBackgroundLocationIndicator: true,
-		deferredUpdatesInterval: process.env.NODE_ENV === 'development' ? 1000 : 5000,
-		distanceInterval: process.env.NODE_ENV === 'development' ? 0 : 20,
+		deferredUpdatesInterval: process.env.EXPO_PUBLIC_APP_ENV === 'development' ? 1000 : 5000,
+		distanceInterval: process.env.EXPO_PUBLIC_APP_ENV === 'development' ? 0 : 20,
 		foregroundService: {
 			notificationTitle: 'Location',
 			notificationBody: 'Location tracking in background',
@@ -60,8 +60,8 @@ async function registerForegroundFetchAsync() {
 		deferredUpdatesDistance: 25,
 		timeInterval: 5000,
 		showsBackgroundLocationIndicator: true,
-		deferredUpdatesInterval: process.env.NODE_ENV === 'development' ? 1000 : 5000,
-		distanceInterval: process.env.NODE_ENV === 'development' ? 0 : 20,
+		deferredUpdatesInterval: process.env.EXPO_PUBLIC_APP_ENV === 'development' ? 1000 : 5000,
+		distanceInterval: process.env.EXPO_PUBLIC_APP_ENV === 'development' ? 0 : 20,
 		foregroundService: {
 			notificationTitle: 'Location',
 			notificationBody: 'Location tracking in background',
