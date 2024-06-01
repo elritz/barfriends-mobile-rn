@@ -126,10 +126,10 @@ function configIOS({NODE_ENV, APP_NAME}: {NODE_ENV: string, APP_NAME: string}): 
 	}
 }
 
-	switch (process.env.EXPO_PUBLIC_APP_ENV) {
+	switch (process.env.EXPO_PUBLIC_NODE_ENV) {
 		case 'development':
 			return {
-				name: `${toCamelCase(context.config.name)} (${process.env.EXPO_PUBLIC_APP_ENV})`,
+				name: `${toCamelCase(context.config.name)} (${process.env.EXPO_PUBLIC_NODE_ENV})`,
 				slug: 'barfriends',
 				owner: 'barfriends',
 				scheme: 'barfriends-development',
@@ -162,7 +162,7 @@ function configIOS({NODE_ENV, APP_NAME}: {NODE_ENV: string, APP_NAME: string}): 
 					bundler: 'metro',
 					favicon: './assets/images/favicon.png',
 				},
-				ios: configIOS({NODE_ENV: process.env.EXPO_PUBLIC_APP_ENV, APP_NAME: toCamelCase(context.config.name)}),
+				ios: configIOS({NODE_ENV: process.env.EXPO_PUBLIC_NODE_ENV, APP_NAME: toCamelCase(context.config.name)}),
 				android: {
 					versionCode: 2,
 					package: 'com.barfriends.dev',
