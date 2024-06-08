@@ -19,9 +19,9 @@ import { useEffect } from 'react'
 import { StyleSheet } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-export default () => {
+export default function HomeTab() {
 	const showDev = true
-	const segments: String[] = useSegments()
+	const segments: string[] = useSegments()
 	const insets = useSafeAreaInsets()
 	const router = useRouter()
 	const rTheme = useReactiveVar(ThemeReactiveVar)

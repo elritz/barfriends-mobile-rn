@@ -1,7 +1,6 @@
 
 import ChevronBackArrow from '#/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
 import { Button, ButtonText, Heading, Text, Box } from '@gluestack-ui/themed'
-import { BlurView } from 'expo-blur'
 import { Stack, router } from 'expo-router'
 
 export default () => {

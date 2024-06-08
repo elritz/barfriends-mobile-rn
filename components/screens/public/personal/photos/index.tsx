@@ -29,7 +29,7 @@ const size = 70
 type Props = {
 	photos: Photo[] | undefined
 	profilePhoto: Photo | null | undefined
-	emojimoodsColors: String[] | null | undefined
+	emojimoodsColors: string[] | null | undefined
 }
 
 export default function Photos(props: Props) {

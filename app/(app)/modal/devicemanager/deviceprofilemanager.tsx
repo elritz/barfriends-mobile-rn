@@ -18,7 +18,7 @@ import { useRef, useState } from 'react'
 import { SafeAreaView, View } from 'react-native'
 
 export default function DeviceManager() {
-	const [profiles, setProfiles] = useState<Array<AuthorizationDeviceProfile>>([])
+	const [profiles, setProfiles] = useState<AuthorizationDeviceProfile[]>([])
 	const ref = useRef(null)
 	const router = useRouter()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
@@ -29,7 +29,7 @@ export default function DeviceManager() {
 		onCompleted: data => {
 			if (data.getADeviceManager?.__typename === 'DeviceManagerDeviceProfiles') {
 				const deviceProfiles = data?.getADeviceManager
-					?.DeviceProfiles as Array<AuthorizationDeviceProfile>
+					?.DeviceProfiles as AuthorizationDeviceProfile[]
 				setProfiles(deviceProfiles)
 			}
 		},

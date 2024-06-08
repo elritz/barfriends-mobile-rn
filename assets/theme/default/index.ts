@@ -65,6 +65,7 @@ export type CustomReactNavigationThemeColors = {
 	primary: string
 	background: string
 	notification: string
+	dark: boolean
 }
 
 type CustomReactNavigation = {

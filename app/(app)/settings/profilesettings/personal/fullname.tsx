@@ -58,7 +58,7 @@ export default () => {
 			},
 		})
 
-	const resetInput = (value: String) => {
+	const resetInput = (value: string) => {
 		switch (value) {
 			case 'fullname':
 				reset({

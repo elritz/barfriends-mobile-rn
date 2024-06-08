@@ -11,7 +11,7 @@ import { View } from 'react-native'
 export default () => {
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 	const rTheme = useReactiveVar(ThemeReactiveVar)
-	const [selectedTags, setSelectedTags] = useState<Array<String>>([])
+	const [selectedTags, setSelectedTags] = useState<string[]>([])
 
 	const { data, loading, error } = useGetInterestsQuery()
 

@@ -18,7 +18,7 @@ export default function SearchCountryStates() {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const contentInsets = useContentInsets()
 
-	const [countryStates, setCountryStates] = useState<Array<StateResponseObject>>([])
+	const [countryStates, setCountryStates] = useState<StateResponseObject[]>([])
 	const [pagination, setPagination] = useState<number>()
 	const formContext = useFormContext<Form>()
 

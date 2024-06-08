@@ -42,7 +42,7 @@ export interface LocalStoragePreferenceSystemsOfUnitsType
 }
 
 export type ServerNetworkType = {
-	isConnected: Boolean
+	isConnected: boolean
 }
 
 export type Coords = {

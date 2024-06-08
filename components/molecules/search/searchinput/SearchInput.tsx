@@ -20,7 +20,7 @@ const SearchInput = (props: Props) => {
 	const _inputRef = useRef<TextInput | undefined>()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const router = useRouter()
-	const segments: String[] = useSegments()
+	const segments: string[] = useSegments()
 	const params = useGlobalSearchParams()
 	const [showBack, setShowBack] = useState(false)
 

@@ -117,7 +117,7 @@ export default () => {
 		return (
 			<Box bg={'$transparent'} flex={1} px={'$2'}>
 				<FlashList
-					data={filteredRecentSearches as Array<Item>}
+					data={filteredRecentSearches as Item[]}
 					ListHeaderComponent={() => {
 						return (
 							<>

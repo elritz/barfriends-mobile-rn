@@ -16,7 +16,7 @@ export default () => {
 	const router = useRouter()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
-	const [profiles, setProfiles] = useState<Array<AuthorizationDeviceProfile>>([])
+	const [profiles, setProfiles] = useState<AuthorizationDeviceProfile[]>([])
 
 	const iconcolor =
 		rTheme.colorScheme === 'light'
@@ -29,7 +29,7 @@ export default () => {
 		onCompleted: data => {
 			if (data.getADeviceManager?.__typename === 'DeviceManagerDeviceProfiles') {
 				const deviceProfiles = data?.getADeviceManager
-					?.DeviceProfiles as Array<AuthorizationDeviceProfile>
+					?.DeviceProfiles as AuthorizationDeviceProfile[]
 				setProfiles(deviceProfiles)
 			}
 		},

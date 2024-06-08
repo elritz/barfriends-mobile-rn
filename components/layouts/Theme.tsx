@@ -2,19 +2,20 @@ import { useReactiveVar } from '@apollo/client'
 import AnimatedSplashScreen from '#/components/screens/splash/AnimatedSplashScreen'
 import { LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME } from '#/constants/StorageConstants'
 import { LocalStoragePreferenceThemeType } from '#/ctypes/preferences'
-import { GluestackUIProvider, VStack } from '@gluestack-ui/themed'
+import { GluestackUIProvider } from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { ThemeProvider as ReactNavigationThemeProvider } from '@react-navigation/native'
 import { ThemeReactiveVar } from '#/reactive'
 import { useToggleTheme } from '#/util/hooks/theme/useToggleTheme'
 import { useCallback, useEffect, useRef } from 'react'
 import { AppState, Appearance, StatusBar } from 'react-native'
-import "../../global.css";
+// import "../../global.css";
 export default function Theme({ children }) {
 	const appState = useRef(AppState.currentState)
 	const rThemeVar = useReactiveVar(ThemeReactiveVar)
 	const [toggleColorScheme] = useToggleTheme()
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const setTheme = async () => {
 		const localStorageColorScheme = await AsyncStorage.getItem(
 			LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME,
@@ -29,7 +30,7 @@ export default function Theme({ children }) {
 
 	const handleTheme = useCallback(() => {
 		setTheme()
-	}, [rThemeVar.colorScheme])
+	}, [setTheme])
 
 	useEffect(() => {
 		const subscription = AppState.addEventListener('change', nextAppState => {

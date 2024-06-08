@@ -1,45 +1,54 @@
 {
-	"cli": {
-		"appVersionSource": "remote"
-	},
-	"build": {
-		"fast": {
-			"ios": {
-				"resourceClass": "m-medium"
-			}
-		},
-		"development-simulator": {
-			"env": {
-				"NODE_ENV": "development"
-			},
-			"channel": "development",
-			"developmentClient": true,
-			"distribution": "internal",
-			"ios": {
-				"simulator": true
-			}
-		},
-		"development": {
-			"env": {
-				"NODE_ENV": "development"
-			},
-			"channel": "development",
-			"developmentClient": true,
-			"distribution": "internal",
-			"extends": "fast"
-		},
-		"preview": {
-			"channel": "preview",
-			"distribution": "internal",
-			"env": {
-				"NODE_ENV": "production"
-			},
-			"extends": "fast"
-		}
-	},
-	"submit": {
-		"production": {
-			"ios": {}
-		}
-	}
+  "cli": {
+    "version": ">= 9.2.0"
+  },
+  "build": {
+    "fast": {
+      "ios": {
+        "resourceClass": "m-medium"
+      },
+      "channel": "fast"
+    },
+    "development-simulator": {
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "channel": "development",
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": {
+        "simulator": true
+      }
+    },
+    "development-client": {
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "channel": "development",
+      "developmentClient": true,
+      "distribution": "internal",
+      "extends": "fast"
+    },
+    "development": {
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "channel": "development",
+      "distribution": "internal",
+      "extends": "fast"
+    },
+    "preview": {
+      "channel": "preview",
+      "distribution": "internal",
+      "env": {
+        "NODE_ENV": "production"
+      },
+      "extends": "fast"
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {}
+    }
+  }
 }

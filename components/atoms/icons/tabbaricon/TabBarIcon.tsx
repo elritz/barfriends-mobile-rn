@@ -31,7 +31,7 @@ const TabBarIcon = ({ icon, badge, containerStyle, onPress, onLongPress }: TabBa
 		}}
 	>
 		{/* {badge} */}
-		<MotiPressable
+		{/* <MotiPressable
 			animate={useMemo(
 				() =>
 					({ hovered, pressed }) => {
@@ -46,9 +46,9 @@ const TabBarIcon = ({ icon, badge, containerStyle, onPress, onLongPress }: TabBa
 			style={{ zIndex: 100 }}
 			onPress={onPress}
 			onLongPress={onLongPress}
-		>
-			{icon}
-		</MotiPressable>
+		> */}
+		{icon}
+		{/* </MotiPressable> */}
 	</View>
 )
 

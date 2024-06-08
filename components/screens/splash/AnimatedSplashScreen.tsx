@@ -11,8 +11,6 @@ import { View, StyleSheet } from 'react-native'
 function AnimatedSplashScreen({ children }) {
 	const rThemeVar = useReactiveVar(ThemeReactiveVar)
 	const [isSplashAnimationComplete, setAnimationComplete] = useState(false)
-
-	console.log("🚀 ~ NODE_ENV:", process.env.EXPO_PUBLIC_NODE_ENV)
 	// const [assets, Aerror] = useAssets([
 	// 	require(`../../../assets/images/splash/splash.${process.env.EXPO_PUBLIC_NODE_ENV}.light.png`),
 	// 	require(`../../../assets/images/splash/splash.${process.env.EXPO_PUBLIC_NODE_ENV}.dark.png`),

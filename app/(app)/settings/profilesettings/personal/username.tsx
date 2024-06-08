@@ -92,7 +92,7 @@ export default () => {
 		}
 	}
 
-	const resetInput = (value: String) => {
+	const resetInput = (value: string) => {
 		reset({ username: rAuthorizationVar?.Profile?.IdentifiableInformation?.username })
 	}
 

@@ -1,21 +1,7 @@
-import { useReactiveVar } from '@apollo/client'
-import { Box } from '@gluestack-ui/themed'
-import { useCheckPrivacyTermsDocumentUpdateQuery } from '#/graphql/generated'
-import { ThemeReactiveVar, TermsServiceReactiveVar } from '#/reactive'
-import { useRouterNotifications } from '#/util/hooks/useRouterNotifications'
 import { Redirect } from 'expo-router'
-import { uniqueId } from 'lodash'
-import { MotiView } from 'moti'
-import { useState } from 'react'
-import { Dimensions, StyleSheet, Text, View } from 'react-native'
-import { Easing } from 'react-native-reanimated'
+import React from 'react'
 
-const size = 500
-const windowHeight = Dimensions.get('window').height
-
-console.log("🚀 ~ process.env.EXPO_PUBLIC_NODE_ENV :", process.env)
-
-export default () => {
+export default function index() {
 	const personal_username_misia = 'misia'
 	// const device_manager_profile_id = 'e90675d1-009f-4ca8-9d76-f163a885189f'
 	const personal_username_ritz = 'ritz'

@@ -10,13 +10,15 @@ export const LightReactNavigationTheme: CustomReactNavigationThemeColors = {
 	text: LightStyledTheme.palette.primary.color,
 	border: LightStyledTheme.palette.primary.color,
 	notification: lightCompanyColors.tertiary,
-} as const
-
+	dark: true
+	} as const
+	
 export const DarkReactNavigationTheme: CustomReactNavigationThemeColors = {
-	background: DarkStyledTheme.palette.primary.background,
-	primary: darkCompanyColors.primary,
-	card: DarkStyledTheme.palette.secondary.background,
-	text: DarkStyledTheme.palette.primary.color,
-	border: DarkStyledTheme.palette.primary.color,
-	notification: darkCompanyColors.tertiary,
+		background: DarkStyledTheme.palette.primary.background,
+		primary: darkCompanyColors.primary,
+		card: DarkStyledTheme.palette.secondary.background,
+		text: DarkStyledTheme.palette.primary.color,
+		border: DarkStyledTheme.palette.primary.color,
+		notification: darkCompanyColors.tertiary,
+		dark: false
 } as const

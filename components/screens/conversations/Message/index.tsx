@@ -5,7 +5,7 @@ import type { MessageProps } from "./types";
 
 import { StyleSheet } from "react-native";
 import { useReactiveVar } from "@apollo/client";
-import { ThemeReactiveVar } from "reactive/theme";
+import { ThemeReactiveVar } from "@/reactive/theme";
 import { Text, View } from "@gluestack-ui/themed";
 
 const container = {

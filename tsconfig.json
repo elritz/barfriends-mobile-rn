@@ -1,65 +1,24 @@
 {
-	"compilerOptions": {
-		"allowSyntheticDefaultImports": true,
-		"allowJs": true,
-		"isolatedModules": true,
-		"noImplicitAny": false,
-		"target": "ESNext",
-		"rootDirs": ["src", "stories"],
-		"declaration": true,
-		"typeRoots": ["node_modules/@types", "./types/navigation", "./types/*"],
-		"jsx": "react-native",
-		"lib": ["esnext"],
-		"moduleResolution": "bundler",
-		"moduleDetection": "force",
-		"module": "esnext",
-		"noEmit": true,
-		"skipLibCheck": true,
-		"resolveJsonModule": true,
-		"allowImportingTsExtensions": true,
-		"forceConsistentCasingInFileNames": true,
-		"esModuleInterop": true,
-		"strict": true,
-		"baseUrl": "./",
-		"paths": {
-			"#/app/*": ["./app/*"],
-			"#/preferences": ["./types/preferences"],
-			"#/ctypes/*": ["./types/*"],
-			"#/assets/*": ["./assets/*"],
-			"#/util/*": ["./util/*"],
-			"#/components/*": ["./components/*"],
-			"#/helpers/*": ["./util/helpers/*"],
-			"#/screens/*": ["./screens/*"],
-			"#/graphql/*": ["./graphql/*"],
-			"#/library/*": ["./library/*"],
-			"#/constants/*": ["./constants/*"],
-			"#/reactive": ["./reactive/index.tsx"],
-			"#/gluestack": ["./gluestack-ui.config"],
-		},
-		"plugins": [
-			{
-				"name": "typescript-styled-plugin",
-				"lint": {
-					"validProperties": [
-						"aspect-ratio",
-						"elevation",
-						"margin-vertical",
-						"margin-horizontal",
-						"padding-horizontal",
-						"padding-vertical",
-						"resize-mode",
-						"shadow-color",
-						"shadow-opacity",
-						"shadow-offset",
-						"shadow-radius",
-						"text-align-vertical",
-						"tint-color"
-					]
-				}
-			}
-		],
-		"types": ["jest", "node"]
-	},
-	"include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"],
-	"extends": "expo/tsconfig.base"
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["*"],
+      "#/app/*": ["app/*"],
+      "#/preferences": ["types/preferences"],
+      "#/ctypes/*": ["types/*"],
+      "#/assets/*": ["assets/*"],
+      "#/util/*": ["util/*"],
+      "#/components/*": ["components/*"],
+      "#/helpers/*": ["util/helpers/*"],
+      "#/screens/*": ["screens/*"],
+      "#/graphql/*": ["graphql/*"],
+      "#/library/*": ["library/*"],
+      "#/constants/*": ["constants/*"],
+      "#/reactive": ["reactive/index.tsx"],
+      "#/gluestack": ["gluestack-ui.config"],
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
 }

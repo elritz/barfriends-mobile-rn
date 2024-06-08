@@ -4,7 +4,7 @@ import { defaulttheme } from '#/assets/theme/default'
 import { ThemeColorSchemeOptionsType } from '#/ctypes/preferences'
 import { Theme } from '@react-navigation/native'
 import { Appearance, ColorSchemeName } from 'react-native'
-import { config } from '../../gluestack-ui.config'
+import { config } from '../../config/gluestack-ui.config'
 
 export type IBFSTheme = {
 	reactnavigation: Theme
@@ -24,10 +24,13 @@ export const ThemeEmptyState: ThemeInterface = {
 	deviceColorScheme: Appearance.getColorScheme(),
 	colorScheme: Appearance.getColorScheme(),
 	theme: {
-		reactnavigation:
-			Appearance.getColorScheme() === 'light'
-				? defaulttheme.reactnavigation.light
-				: defaulttheme.reactnavigation.dark,
+		reactnavigation: {
+			colors:
+				Appearance.getColorScheme() === 'light'
+					? defaulttheme.reactnavigation.light
+					: defaulttheme.reactnavigation.dark,
+			dark: Appearance.getColorScheme() === 'light' ? false : true
+		},
 		gluestack: config,
 	},
 }

@@ -76,7 +76,7 @@ const getYouTubeId = (url) => {
 
 export default function conversation() {
   const [interpolator, setInterpolator] = useState<"ios" | "linear">("linear");
-  const [messages, setMessages] = useState<Array<{ _id: number; text: string; createdAt: Date; user: { _id: number; name: string; avatar: string; }; }>>([]);
+  const [messages, setMessages] = useState<{ _id: number; text: string; createdAt: Date; user: { _id: number; name: string; avatar: string; }; }[]>([]);
   const _scrollRef = useRef<Reanimated.FlatList<IMessage>>(null);
   const { height, onScroll, inset, offset } = useKeyboardAnimation();
   const insets = useSafeAreaInsets()

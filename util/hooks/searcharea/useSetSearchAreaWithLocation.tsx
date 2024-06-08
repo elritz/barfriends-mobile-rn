@@ -15,7 +15,7 @@ const useSetSearchAreaWithLocation = async () => {
 	const rSearchAreaVar = SearchAreaReactiveVar()
 	const rPermissionLocationVar = PermissionForegroundLocationReactiveVar()
 
-	const useLocationToSetSearchArea = async (): Promise<Boolean> => {
+	const useLocationToSetSearchArea = async (): Promise<boolean> => {
 		const getLastKnowPosition = await Location.getLastKnownPositionAsync({
 			requiredAccuracy: 50,
 			maxAge: 1200000,

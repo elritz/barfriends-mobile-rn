@@ -6,7 +6,7 @@ import { useWindowDimensions } from 'react-native'
 
 type Props = {
 	loading: boolean
-	photos: Array<Photo> | undefined
+	photos: Photo[] | undefined
 }
 
 const VenueHeader = (props: Props) => {

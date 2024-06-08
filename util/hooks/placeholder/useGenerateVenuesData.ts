@@ -10,7 +10,7 @@ const useGenerateVenuesData = <T>(
 	const list: T[] = []
 
 	const GenerateGenresData = () => {
-		const genres: String[] = []
+		const genres: string[] = []
 		for (let i = 0; i < faker.datatype.number(5); i++) {
 			genres.push(faker.music.genre())
 		}

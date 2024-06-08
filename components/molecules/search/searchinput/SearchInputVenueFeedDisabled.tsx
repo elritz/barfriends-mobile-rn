@@ -17,7 +17,7 @@ const SearchInputVenueFeedDisabled = (props: Props) => {
 	const insets = useSafeAreaInsets()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const router = useRouter()
-	const segments: String[] = useSegments()
+	const segments: string[] = useSegments()
 	const [showBack, setShowBack] = useState(false)
 
 	return (
