@@ -3,13 +3,21 @@
     "version": ">= 9.2.0"
   },
   "build": {
-    "fast": {
-      "ios": {
-        "resourceClass": "m-medium"
+    "base": {
+      "android": {
+        "env": {
+          "PLATFORM": "android"
+        }
       },
-      "channel": "fast"
+      "ios": {
+        "image": "latest",
+        "env": {
+          "PLATFORM": "ios"
+        }
+      }
     },
     "development-simulator": {
+      "extends": "base",
       "env": {
         "NODE_ENV": "development"
       },
@@ -21,29 +29,30 @@
       }
     },
     "development-client": {
+      "extends": "base",
       "env": {
         "NODE_ENV": "development"
       },
       "channel": "development",
       "developmentClient": true,
-      "distribution": "internal",
-      "extends": "fast"
+      "distribution": "internal"
     },
     "development": {
+      "extends": "base",
       "env": {
         "NODE_ENV": "development"
       },
       "channel": "development",
-      "distribution": "internal",
-      "extends": "fast"
+      "distribution": "internal"
     },
     "preview": {
+      "extends": "base",
       "channel": "preview",
       "distribution": "internal",
       "env": {
-        "NODE_ENV": "production"
-      },
-      "extends": "fast"
+        "NODE_ENV": "development",
+        "EAS_LOCAL_BUILD_ARTIFACTS_DIR": "./artifacts/preview/"
+      }
     }
   },
   "submit": {

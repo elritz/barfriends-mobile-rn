@@ -2,7 +2,7 @@
   "expo": {
     "name": "Barfriends",
     "slug": "barfriends",
-    "owner": "ritzz",
+    "owner": "barfriends",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -152,9 +152,11 @@
         "origin": false
       },
       "eas": {
-        "projectId": "d13b1e88-463d-41e9-aecf-24006be59908"
+        "projectId": "7ba3f00e-9b58-45fa-8a6e-5ba14d4855e4"
       }
     },
-    "runtimeVersion": "1.0.0"
+    "updates": {
+      "url": "https://u.expo.dev/7ba3f00e-9b58-45fa-8a6e-5ba14d4855e4"
+    }
   }
 }
