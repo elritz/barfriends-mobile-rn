@@ -9,9 +9,13 @@
     "scheme": "barfriends",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/images/splash/splash.development.dark.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#000000",
+      "dark": {
+        "image": "./assets/images/splash/splash.development.dark.png",
+        "resizeMode": "cover"
+      }
     },
     "ios": {
       "supportsTablet": true,
@@ -22,17 +26,14 @@
         "usesNonExemptEncryption": false
       },
       "infoPlist": {
-        "UIBackgroundModes": [
-          "location",
-          "fetch",
-          "remote-notification"
-        ]
-      }
+        "UIBackgroundModes": ["location", "fetch", "remote-notification"]
+      },
+      "icon": "./assets/images/icon/icon.png"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#000000"
       },
       "package": "com.ritzz.barfriends",
       "permissions": [
