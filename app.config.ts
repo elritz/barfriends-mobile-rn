@@ -273,5 +273,5 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
 				extra: expoExtra(),
 				updates: expoUpdates(),
 			}
-		}
+	}
 }
