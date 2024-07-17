@@ -1,6 +1,7 @@
 // @authentication
 export const BARFRIENDS = 'BARFRIENDS'
 export const AUTHORIZATION = 'authorization'
+export const REFRESH = 'refresh'
 
 // @preferences
 export const LOCAL_STORAGE_PREFERENCE_SYSTEM_OF_UNITS = '@preference_system_of_units'

@@ -19,6 +19,7 @@ import { useEffect } from 'react'
 import { StyleSheet } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
+
 export default function HomeTab() {
 	const showDev = true
 	const segments: string[] = useSegments()

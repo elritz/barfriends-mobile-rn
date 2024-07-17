@@ -19,7 +19,6 @@ export default () => {
 	const INPUT_ACCESSORY_VIEW_ID = 'n-1298187263'
 	const router = useRouter()
 	const isFocused = useIsFocused()
-	const contentInsets = useContentInsets()
 	const { bottom } = useSafeAreaInsets()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const credentialPersonalProfileVar = useReactiveVar(CredentialPersonalProfileReactiveVar)

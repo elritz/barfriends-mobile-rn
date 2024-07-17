@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import type { TextProps, GestureResponderEvent } from 'react-native';
 
 export namespace ExpoRouter {
-  type StaticRoutes = `/` | `/(app)` | `/(credential)` | `/(information)` | `/(tabs)` | `/1_layout` | `/Emojimood` | `/MediaLibrary` | `/_sitemap` | `/animatedconversation` | `/appearancesettingsscreen` | `/asks` | `/authenticator` | `/backgroundlocation` | `/backgroundlocationnextask` | `/birthday` | `/camera` | `/confirmationcode` | `/contacts` | `/conversation` | `/conversations` | `/create` | `/currenttown` | `/description` | `/developmentstack` | `/devicemanager` | `/deviceprofilemanager` | `/email` | `/explore` | `/foregroundlocation` | `/foregroundlocationnextask` | `/friendslist` | `/fullname` | `/gender` | `/getstarted` | `/hometab` | `/hometown` | `/interests` | `/latestprivacyservicetoptab` | `/latestprivacytermsservicetabstack` | `/logincredentialstack` | `/loginpassword` | `/lookingfor` | `/medialibrary` | `/microphone` | `/modal` | `/name` | `/networkinformation` | `/newconversation` | `/notificationnextask` | `/notifications` | `/notificationssettingsscreen` | `/password` | `/permission` | `/permissionmodals` | `/personal` | `/personalcredentialstack` | `/phone` | `/photo` | `/preferences` | `/privacy` | `/profilesettings` | `/profilestack` | `/public` | `/relationship` | `/searcharea` | `/searchcountry` | `/searchcountrystate` | `/searchh3recommendation` | `/searchresults` | `/searchstatecities` | `/searchtext` | `/securitysettingsscreen` | `/services` | `/settings` | `/theme` | `/tonight` | `/updatelatestprivacytermsservice` | `/username` | `/userprofile` | `/venue` | `/venuecredentialstack` | `/venuefeed`;
+  type StaticRoutes = `/` | `/(app)` | `/(credential)` | `/(information)` | `/(tabs)` | `/Emojimood` | `/MediaLibrary` | `/_sitemap` | `/animatedconversation` | `/appearancesettingsscreen` | `/asks` | `/authenticator` | `/backgroundlocation` | `/backgroundlocationnextask` | `/birthday` | `/camera` | `/confirmationcode` | `/contacts` | `/conversation` | `/conversations` | `/create` | `/currenttown` | `/description` | `/developmentstack` | `/devicemanager` | `/deviceprofilemanager` | `/email` | `/explore` | `/foregroundlocation` | `/foregroundlocationnextask` | `/friendslist` | `/fullname` | `/gender` | `/getstarted` | `/hometab` | `/hometown` | `/interests` | `/latestprivacyservicetoptab` | `/latestprivacytermsservicetabstack` | `/logincredentialstack` | `/loginpassword` | `/lookingfor` | `/medialibrary` | `/microphone` | `/modal` | `/name` | `/networkinformation` | `/newconversation` | `/notificationnextask` | `/notifications` | `/notificationssettingsscreen` | `/password` | `/permission` | `/permissionmodals` | `/personal` | `/personalcredentialstack` | `/phone` | `/photo` | `/preferences` | `/privacy` | `/profilesettings` | `/profilestack` | `/public` | `/relationship` | `/searcharea` | `/searchcountry` | `/searchcountrystate` | `/searchh3recommendation` | `/searchresults` | `/searchstatecities` | `/searchtext` | `/securitysettingsscreen` | `/services` | `/settings` | `/theme` | `/tonight` | `/updatelatestprivacytermsservice` | `/username` | `/userprofile` | `/venue` | `/venuecredentialstack` | `/venuefeed`;
   type DynamicRoutes<T extends string> = `/${SingleRoutePart<T>}`;
   type DynamicRouteTemplate = `/[animatedconversationid]` | `/[conversationid]` | `/[profileid]` | `/[username]`;
 
@@ -301,8 +301,9 @@ export namespace ExpoRouter {
   type useRouter = typeof useRouter;
 
   /**
-   * Returns the URL search parameters for the contextually focused route. e.g. \`/acme?foo=bar\` -> \`{ foo: "bar" }\`.
+   * Returns the URL parameters for the contextually focused route. e.g. \`/acme?foo=bar\` -> \`{ foo: "bar" }\`.
    * This is useful for stacks where you may push a new screen that changes the query parameters.
+   * For dynamic routes, both the route parameters and the search parameters are returned.
    *
    * To observe updates even when the invoking route is not focused, use \`useGlobalSearchParams()\`.
    * @see \`useGlobalSearchParams\`
@@ -318,10 +319,10 @@ export namespace ExpoRouter {
   type useSearchParams = typeof useSearchParams;
 
   /**
-   * Get the globally selected query parameters, including dynamic path segments. This function will update even when the route is not focused.
+   * Get the globally selected URL parameters, including search parameters and dynamic path segments as route parameters. This function will update even when the route is not focused.
    * Useful for analytics or other background operations that don't draw to the screen.
    *
-   * When querying search params in a stack, opt-towards using \`useLocalSearchParams\` as these will only
+   * When querying URL params in a stack, opt-towards using \`useLocalSearchParams\` as these will only
    * update when the route is focused.
    *
    * @see \`useLocalSearchParams\`

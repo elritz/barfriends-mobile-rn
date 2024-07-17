@@ -3,8 +3,10 @@ import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 import { Box, Center, HStack, Text, VStack } from '@gluestack-ui/themed'
 import { Maybe, Profile } from '#/graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
-import { Image, View } from 'react-native'
+import { View } from 'react-native'
+
 import { ActivityIndicator } from 'react-native'
+import { Image } from 'expo-image'
 
 type ProfileItemType = {
 	item: Partial<Profile> | null | undefined
@@ -25,7 +27,8 @@ const DeviceManagerProfileItemLarge = ({ item, loading }: ProfileItemType) => {
 			px={'$3'}
 			rounded={'$md'}
 			alignItems={'center'}
-			bg='$transparent'
+			$light-bg='$light200'
+			$dark-bg='$light800'
 		>
 			<HStack alignItems={'center'} justifyContent='space-between'>
 				<View style={{ marginRight: 8 }}>
@@ -53,6 +56,7 @@ const DeviceManagerProfileItemLarge = ({ item, loading }: ProfileItemType) => {
 				</View>
 				{item?.profilePhoto ? (
 					<Image
+						placeholder={item.profilePhoto.blurhash}
 						source={{ uri: item.profilePhoto.url }}
 						style={{ width: 50, height: 50, borderRadius: 10 }}
 						alt={'Profile photo'}

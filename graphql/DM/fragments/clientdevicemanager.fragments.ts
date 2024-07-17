@@ -7,8 +7,6 @@ export const AUTHORIZATION_DEVICE_PROFILE_FRAGMENT = gql`
 		id
 		profileId
 		isActive
-		refreshtoken
-		accesstoken
 		deviceManagerId
 		Profile {
 			...PROFILE_FRAGMENT
@@ -17,12 +15,6 @@ export const AUTHORIZATION_DEVICE_PROFILE_FRAGMENT = gql`
 		ProfileType
 		DeviceManager {
 			id
-		}
-		RefreshToken {
-			id
-			token
-			createdAt
-			updatedAt
 		}
 		createdAt
 		updatedAt

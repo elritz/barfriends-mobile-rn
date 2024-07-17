@@ -76,9 +76,9 @@ export enum AdScalarFieldEnum {
 }
 
 export type AdScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<AdScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<AdScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<AdScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<AdScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<AdScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<AdScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<IntWithAggregatesFilter>;
   updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
@@ -99,18 +99,18 @@ export type AdUpdateManyMutationInput = {
 };
 
 export type AdWhereInput = {
-  AND?: InputMaybe<AdWhereInput[]>;
-  NOT?: InputMaybe<AdWhereInput[]>;
-  OR?: InputMaybe<AdWhereInput[]>;
+  AND?: InputMaybe<Array<AdWhereInput>>;
+  NOT?: InputMaybe<Array<AdWhereInput>>;
+  OR?: InputMaybe<Array<AdWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<IntFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
 export type AdWhereUniqueInput = {
-  AND?: InputMaybe<AdWhereInput[]>;
-  NOT?: InputMaybe<AdWhereInput[]>;
-  OR?: InputMaybe<AdWhereInput[]>;
+  AND?: InputMaybe<Array<AdWhereInput>>;
+  NOT?: InputMaybe<Array<AdWhereInput>>;
+  OR?: InputMaybe<Array<AdWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<Scalars['Int']['input']>;
   updatedAt?: InputMaybe<DateTimeFilter>;
@@ -118,8 +118,8 @@ export type AdWhereUniqueInput = {
 
 export type Address = {
   __typename?: 'Address';
-  AddressComponents: AddressComponent[];
-  Location: Location[];
+  AddressComponents: Array<AddressComponent>;
+  Location: Array<Location>;
   createdAt: Scalars['DateTime']['output'];
   formattedAddress: Scalars['String']['output'];
   id: Scalars['ID']['output'];
@@ -129,8 +129,8 @@ export type Address = {
 
 export type AddressAddressComponentsArgs = {
   cursor?: InputMaybe<AddressComponentWhereUniqueInput>;
-  distinct?: InputMaybe<AddressComponentScalarFieldEnum[]>;
-  orderBy?: InputMaybe<AddressComponentOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<AddressComponentScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<AddressComponentOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<AddressComponentWhereInput>;
@@ -139,8 +139,8 @@ export type AddressAddressComponentsArgs = {
 
 export type AddressLocationArgs = {
   cursor?: InputMaybe<LocationWhereUniqueInput>;
-  distinct?: InputMaybe<LocationScalarFieldEnum[]>;
-  orderBy?: InputMaybe<LocationOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<LocationScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<LocationOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<LocationWhereInput>;
@@ -154,7 +154,7 @@ export type AddressComponent = {
   id: Scalars['ID']['output'];
   long_name: Scalars['String']['output'];
   short_name: Scalars['String']['output'];
-  types: Scalars['String']['output'][];
+  types: Array<Scalars['String']['output']>;
 };
 
 export type AddressComponentAvgOrderByAggregateInput = {
@@ -175,7 +175,7 @@ export type AddressComponentCreateInput = {
   h3Index15?: InputMaybe<Scalars['String']['input']>;
   long_name: Scalars['String']['input'];
   short_name: Scalars['String']['input'];
-  types?: InputMaybe<Scalars['String']['input'][]>;
+  types?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type AddressComponentCreateManyAddressInput = {
@@ -183,11 +183,11 @@ export type AddressComponentCreateManyAddressInput = {
   id?: InputMaybe<Scalars['Int']['input']>;
   long_name: Scalars['String']['input'];
   short_name: Scalars['String']['input'];
-  types?: InputMaybe<Scalars['String']['input'][]>;
+  types?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type AddressComponentCreateManyAddressInputEnvelope = {
-  data: AddressComponentCreateManyAddressInput[];
+  data: Array<AddressComponentCreateManyAddressInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -197,13 +197,13 @@ export type AddressComponentCreateManyInput = {
   id?: InputMaybe<Scalars['Int']['input']>;
   long_name: Scalars['String']['input'];
   short_name: Scalars['String']['input'];
-  types?: InputMaybe<Scalars['String']['input'][]>;
+  types?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type AddressComponentCreateNestedManyWithoutAddressInput = {
-  connect?: InputMaybe<AddressComponentWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<AddressComponentCreateOrConnectWithoutAddressInput[]>;
-  create?: InputMaybe<AddressComponentCreateWithoutAddressInput[]>;
+  connect?: InputMaybe<Array<AddressComponentWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<AddressComponentCreateOrConnectWithoutAddressInput>>;
+  create?: InputMaybe<Array<AddressComponentCreateWithoutAddressInput>>;
   createMany?: InputMaybe<AddressComponentCreateManyAddressInputEnvelope>;
 };
 
@@ -216,11 +216,11 @@ export type AddressComponentCreateWithoutAddressInput = {
   h3Index15?: InputMaybe<Scalars['String']['input']>;
   long_name: Scalars['String']['input'];
   short_name: Scalars['String']['input'];
-  types?: InputMaybe<Scalars['String']['input'][]>;
+  types?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type AddressComponentCreatetypesInput = {
-  set: Scalars['String']['input'][];
+  set: Array<Scalars['String']['input']>;
 };
 
 export type AddressComponentListRelationFilter = {
@@ -283,9 +283,9 @@ export enum AddressComponentScalarFieldEnum {
 }
 
 export type AddressComponentScalarWhereInput = {
-  AND?: InputMaybe<AddressComponentScalarWhereInput[]>;
-  NOT?: InputMaybe<AddressComponentScalarWhereInput[]>;
-  OR?: InputMaybe<AddressComponentScalarWhereInput[]>;
+  AND?: InputMaybe<Array<AddressComponentScalarWhereInput>>;
+  NOT?: InputMaybe<Array<AddressComponentScalarWhereInput>>;
+  OR?: InputMaybe<Array<AddressComponentScalarWhereInput>>;
   addressId?: InputMaybe<StringNullableFilter>;
   h3Index15?: InputMaybe<StringNullableFilter>;
   id?: InputMaybe<IntFilter>;
@@ -295,9 +295,9 @@ export type AddressComponentScalarWhereInput = {
 };
 
 export type AddressComponentScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<AddressComponentScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<AddressComponentScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<AddressComponentScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<AddressComponentScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<AddressComponentScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<AddressComponentScalarWhereWithAggregatesInput>>;
   addressId?: InputMaybe<StringNullableWithAggregatesFilter>;
   h3Index15?: InputMaybe<StringNullableWithAggregatesFilter>;
   id?: InputMaybe<IntWithAggregatesFilter>;
@@ -315,14 +315,14 @@ export type AddressComponentUpdateInput = {
   h3Index15?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   long_name?: InputMaybe<StringFieldUpdateOperationsInput>;
   short_name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  types?: InputMaybe<Scalars['String']['input'][]>;
+  types?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type AddressComponentUpdateManyMutationInput = {
   h3Index15?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   long_name?: InputMaybe<StringFieldUpdateOperationsInput>;
   short_name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  types?: InputMaybe<Scalars['String']['input'][]>;
+  types?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type AddressComponentUpdateManyWithWhereWithoutAddressInput = {
@@ -331,17 +331,17 @@ export type AddressComponentUpdateManyWithWhereWithoutAddressInput = {
 };
 
 export type AddressComponentUpdateManyWithoutAddressNestedInput = {
-  connect?: InputMaybe<AddressComponentWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<AddressComponentCreateOrConnectWithoutAddressInput[]>;
-  create?: InputMaybe<AddressComponentCreateWithoutAddressInput[]>;
+  connect?: InputMaybe<Array<AddressComponentWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<AddressComponentCreateOrConnectWithoutAddressInput>>;
+  create?: InputMaybe<Array<AddressComponentCreateWithoutAddressInput>>;
   createMany?: InputMaybe<AddressComponentCreateManyAddressInputEnvelope>;
-  delete?: InputMaybe<AddressComponentWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<AddressComponentScalarWhereInput[]>;
-  disconnect?: InputMaybe<AddressComponentWhereUniqueInput[]>;
-  set?: InputMaybe<AddressComponentWhereUniqueInput[]>;
-  update?: InputMaybe<AddressComponentUpdateWithWhereUniqueWithoutAddressInput[]>;
-  updateMany?: InputMaybe<AddressComponentUpdateManyWithWhereWithoutAddressInput[]>;
-  upsert?: InputMaybe<AddressComponentUpsertWithWhereUniqueWithoutAddressInput[]>;
+  delete?: InputMaybe<Array<AddressComponentWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<AddressComponentScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<AddressComponentWhereUniqueInput>>;
+  set?: InputMaybe<Array<AddressComponentWhereUniqueInput>>;
+  update?: InputMaybe<Array<AddressComponentUpdateWithWhereUniqueWithoutAddressInput>>;
+  updateMany?: InputMaybe<Array<AddressComponentUpdateManyWithWhereWithoutAddressInput>>;
+  upsert?: InputMaybe<Array<AddressComponentUpsertWithWhereUniqueWithoutAddressInput>>;
 };
 
 export type AddressComponentUpdateWithWhereUniqueWithoutAddressInput = {
@@ -353,12 +353,12 @@ export type AddressComponentUpdateWithoutAddressInput = {
   h3Index15?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   long_name?: InputMaybe<StringFieldUpdateOperationsInput>;
   short_name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  types?: InputMaybe<Scalars['String']['input'][]>;
+  types?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type AddressComponentUpdatetypesInput = {
-  push?: InputMaybe<Scalars['String']['input'][]>;
-  set?: InputMaybe<Scalars['String']['input'][]>;
+  push?: InputMaybe<Array<Scalars['String']['input']>>;
+  set?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type AddressComponentUpsertWithWhereUniqueWithoutAddressInput = {
@@ -368,10 +368,10 @@ export type AddressComponentUpsertWithWhereUniqueWithoutAddressInput = {
 };
 
 export type AddressComponentWhereInput = {
-  AND?: InputMaybe<AddressComponentWhereInput[]>;
+  AND?: InputMaybe<Array<AddressComponentWhereInput>>;
   Address?: InputMaybe<AddressWhereInput>;
-  NOT?: InputMaybe<AddressComponentWhereInput[]>;
-  OR?: InputMaybe<AddressComponentWhereInput[]>;
+  NOT?: InputMaybe<Array<AddressComponentWhereInput>>;
+  OR?: InputMaybe<Array<AddressComponentWhereInput>>;
   addressId?: InputMaybe<StringNullableFilter>;
   h3Index15?: InputMaybe<StringNullableFilter>;
   id?: InputMaybe<IntFilter>;
@@ -381,10 +381,10 @@ export type AddressComponentWhereInput = {
 };
 
 export type AddressComponentWhereUniqueInput = {
-  AND?: InputMaybe<AddressComponentWhereInput[]>;
+  AND?: InputMaybe<Array<AddressComponentWhereInput>>;
   Address?: InputMaybe<AddressWhereInput>;
-  NOT?: InputMaybe<AddressComponentWhereInput[]>;
-  OR?: InputMaybe<AddressComponentWhereInput[]>;
+  NOT?: InputMaybe<Array<AddressComponentWhereInput>>;
+  OR?: InputMaybe<Array<AddressComponentWhereInput>>;
   addressId?: InputMaybe<StringNullableFilter>;
   h3Index15?: InputMaybe<StringNullableFilter>;
   id?: InputMaybe<Scalars['Int']['input']>;
@@ -500,9 +500,9 @@ export enum AddressScalarFieldEnum {
 }
 
 export type AddressScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<AddressScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<AddressScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<AddressScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<AddressScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<AddressScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<AddressScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   formattedAddress?: InputMaybe<StringWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
@@ -584,11 +584,11 @@ export type AddressUpsertWithoutLocationInput = {
 };
 
 export type AddressWhereInput = {
-  AND?: InputMaybe<AddressWhereInput[]>;
+  AND?: InputMaybe<Array<AddressWhereInput>>;
   AddressComponents?: InputMaybe<AddressComponentListRelationFilter>;
   Location?: InputMaybe<LocationListRelationFilter>;
-  NOT?: InputMaybe<AddressWhereInput[]>;
-  OR?: InputMaybe<AddressWhereInput[]>;
+  NOT?: InputMaybe<Array<AddressWhereInput>>;
+  OR?: InputMaybe<Array<AddressWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   formattedAddress?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
@@ -596,11 +596,11 @@ export type AddressWhereInput = {
 };
 
 export type AddressWhereUniqueInput = {
-  AND?: InputMaybe<AddressWhereInput[]>;
+  AND?: InputMaybe<Array<AddressWhereInput>>;
   AddressComponents?: InputMaybe<AddressComponentListRelationFilter>;
   Location?: InputMaybe<LocationListRelationFilter>;
-  NOT?: InputMaybe<AddressWhereInput[]>;
-  OR?: InputMaybe<AddressWhereInput[]>;
+  NOT?: InputMaybe<Array<AddressWhereInput>>;
+  OR?: InputMaybe<Array<AddressWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   formattedAddress?: InputMaybe<StringFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
@@ -661,7 +661,7 @@ export type AreaCreateManyCityInput = {
 };
 
 export type AreaCreateManyCityInputEnvelope = {
-  data: AreaCreateManyCityInput[];
+  data: Array<AreaCreateManyCityInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -673,7 +673,7 @@ export type AreaCreateManyCountryInput = {
 };
 
 export type AreaCreateManyCountryInputEnvelope = {
-  data: AreaCreateManyCountryInput[];
+  data: Array<AreaCreateManyCountryInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -693,28 +693,28 @@ export type AreaCreateManyStateInput = {
 };
 
 export type AreaCreateManyStateInputEnvelope = {
-  data: AreaCreateManyStateInput[];
+  data: Array<AreaCreateManyStateInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type AreaCreateNestedManyWithoutCityInput = {
-  connect?: InputMaybe<AreaWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<AreaCreateOrConnectWithoutCityInput[]>;
-  create?: InputMaybe<AreaCreateWithoutCityInput[]>;
+  connect?: InputMaybe<Array<AreaWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<AreaCreateOrConnectWithoutCityInput>>;
+  create?: InputMaybe<Array<AreaCreateWithoutCityInput>>;
   createMany?: InputMaybe<AreaCreateManyCityInputEnvelope>;
 };
 
 export type AreaCreateNestedManyWithoutCountryInput = {
-  connect?: InputMaybe<AreaWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<AreaCreateOrConnectWithoutCountryInput[]>;
-  create?: InputMaybe<AreaCreateWithoutCountryInput[]>;
+  connect?: InputMaybe<Array<AreaWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<AreaCreateOrConnectWithoutCountryInput>>;
+  create?: InputMaybe<Array<AreaCreateWithoutCountryInput>>;
   createMany?: InputMaybe<AreaCreateManyCountryInputEnvelope>;
 };
 
 export type AreaCreateNestedManyWithoutStateInput = {
-  connect?: InputMaybe<AreaWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<AreaCreateOrConnectWithoutStateInput[]>;
-  create?: InputMaybe<AreaCreateWithoutStateInput[]>;
+  connect?: InputMaybe<Array<AreaWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<AreaCreateOrConnectWithoutStateInput>>;
+  create?: InputMaybe<Array<AreaCreateWithoutStateInput>>;
   createMany?: InputMaybe<AreaCreateManyStateInputEnvelope>;
 };
 
@@ -930,9 +930,9 @@ export enum AreaScalarFieldEnum {
 }
 
 export type AreaScalarWhereInput = {
-  AND?: InputMaybe<AreaScalarWhereInput[]>;
-  NOT?: InputMaybe<AreaScalarWhereInput[]>;
-  OR?: InputMaybe<AreaScalarWhereInput[]>;
+  AND?: InputMaybe<Array<AreaScalarWhereInput>>;
+  NOT?: InputMaybe<Array<AreaScalarWhereInput>>;
+  OR?: InputMaybe<Array<AreaScalarWhereInput>>;
   cityId?: InputMaybe<StringFilter>;
   countryId?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
@@ -941,9 +941,9 @@ export type AreaScalarWhereInput = {
 };
 
 export type AreaScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<AreaScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<AreaScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<AreaScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<AreaScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<AreaScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<AreaScalarWhereWithAggregatesInput>>;
   cityId?: InputMaybe<StringWithAggregatesFilter>;
   countryId?: InputMaybe<StringWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
@@ -988,45 +988,45 @@ export type AreaUpdateManyWithWhereWithoutStateInput = {
 };
 
 export type AreaUpdateManyWithoutCityNestedInput = {
-  connect?: InputMaybe<AreaWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<AreaCreateOrConnectWithoutCityInput[]>;
-  create?: InputMaybe<AreaCreateWithoutCityInput[]>;
+  connect?: InputMaybe<Array<AreaWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<AreaCreateOrConnectWithoutCityInput>>;
+  create?: InputMaybe<Array<AreaCreateWithoutCityInput>>;
   createMany?: InputMaybe<AreaCreateManyCityInputEnvelope>;
-  delete?: InputMaybe<AreaWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<AreaScalarWhereInput[]>;
-  disconnect?: InputMaybe<AreaWhereUniqueInput[]>;
-  set?: InputMaybe<AreaWhereUniqueInput[]>;
-  update?: InputMaybe<AreaUpdateWithWhereUniqueWithoutCityInput[]>;
-  updateMany?: InputMaybe<AreaUpdateManyWithWhereWithoutCityInput[]>;
-  upsert?: InputMaybe<AreaUpsertWithWhereUniqueWithoutCityInput[]>;
+  delete?: InputMaybe<Array<AreaWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<AreaScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<AreaWhereUniqueInput>>;
+  set?: InputMaybe<Array<AreaWhereUniqueInput>>;
+  update?: InputMaybe<Array<AreaUpdateWithWhereUniqueWithoutCityInput>>;
+  updateMany?: InputMaybe<Array<AreaUpdateManyWithWhereWithoutCityInput>>;
+  upsert?: InputMaybe<Array<AreaUpsertWithWhereUniqueWithoutCityInput>>;
 };
 
 export type AreaUpdateManyWithoutCountryNestedInput = {
-  connect?: InputMaybe<AreaWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<AreaCreateOrConnectWithoutCountryInput[]>;
-  create?: InputMaybe<AreaCreateWithoutCountryInput[]>;
+  connect?: InputMaybe<Array<AreaWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<AreaCreateOrConnectWithoutCountryInput>>;
+  create?: InputMaybe<Array<AreaCreateWithoutCountryInput>>;
   createMany?: InputMaybe<AreaCreateManyCountryInputEnvelope>;
-  delete?: InputMaybe<AreaWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<AreaScalarWhereInput[]>;
-  disconnect?: InputMaybe<AreaWhereUniqueInput[]>;
-  set?: InputMaybe<AreaWhereUniqueInput[]>;
-  update?: InputMaybe<AreaUpdateWithWhereUniqueWithoutCountryInput[]>;
-  updateMany?: InputMaybe<AreaUpdateManyWithWhereWithoutCountryInput[]>;
-  upsert?: InputMaybe<AreaUpsertWithWhereUniqueWithoutCountryInput[]>;
+  delete?: InputMaybe<Array<AreaWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<AreaScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<AreaWhereUniqueInput>>;
+  set?: InputMaybe<Array<AreaWhereUniqueInput>>;
+  update?: InputMaybe<Array<AreaUpdateWithWhereUniqueWithoutCountryInput>>;
+  updateMany?: InputMaybe<Array<AreaUpdateManyWithWhereWithoutCountryInput>>;
+  upsert?: InputMaybe<Array<AreaUpsertWithWhereUniqueWithoutCountryInput>>;
 };
 
 export type AreaUpdateManyWithoutStateNestedInput = {
-  connect?: InputMaybe<AreaWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<AreaCreateOrConnectWithoutStateInput[]>;
-  create?: InputMaybe<AreaCreateWithoutStateInput[]>;
+  connect?: InputMaybe<Array<AreaWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<AreaCreateOrConnectWithoutStateInput>>;
+  create?: InputMaybe<Array<AreaCreateWithoutStateInput>>;
   createMany?: InputMaybe<AreaCreateManyStateInputEnvelope>;
-  delete?: InputMaybe<AreaWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<AreaScalarWhereInput[]>;
-  disconnect?: InputMaybe<AreaWhereUniqueInput[]>;
-  set?: InputMaybe<AreaWhereUniqueInput[]>;
-  update?: InputMaybe<AreaUpdateWithWhereUniqueWithoutStateInput[]>;
-  updateMany?: InputMaybe<AreaUpdateManyWithWhereWithoutStateInput[]>;
-  upsert?: InputMaybe<AreaUpsertWithWhereUniqueWithoutStateInput[]>;
+  delete?: InputMaybe<Array<AreaWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<AreaScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<AreaWhereUniqueInput>>;
+  set?: InputMaybe<Array<AreaWhereUniqueInput>>;
+  update?: InputMaybe<Array<AreaUpdateWithWhereUniqueWithoutStateInput>>;
+  updateMany?: InputMaybe<Array<AreaUpdateManyWithWhereWithoutStateInput>>;
+  upsert?: InputMaybe<Array<AreaUpsertWithWhereUniqueWithoutStateInput>>;
 };
 
 export type AreaUpdateOneWithoutComingAreaNestedInput = {
@@ -1224,15 +1224,15 @@ export type AreaUpsertWithoutLocationInput = {
 };
 
 export type AreaWhereInput = {
-  AND?: InputMaybe<AreaWhereInput[]>;
+  AND?: InputMaybe<Array<AreaWhereInput>>;
   City?: InputMaybe<CityWhereInput>;
   ComingArea?: InputMaybe<ComingAreaWhereInput>;
   Country?: InputMaybe<CountryWhereInput>;
   H3Index5VenueRecommendation?: InputMaybe<H3Index5VenueRecommendationWhereInput>;
   H3Index6VenueRecommendation?: InputMaybe<H3Index6VenueRecommendationWhereInput>;
   Location?: InputMaybe<LocationWhereInput>;
-  NOT?: InputMaybe<AreaWhereInput[]>;
-  OR?: InputMaybe<AreaWhereInput[]>;
+  NOT?: InputMaybe<Array<AreaWhereInput>>;
+  OR?: InputMaybe<Array<AreaWhereInput>>;
   State?: InputMaybe<StateWhereInput>;
   cityId?: InputMaybe<StringFilter>;
   countryId?: InputMaybe<StringFilter>;
@@ -1242,15 +1242,15 @@ export type AreaWhereInput = {
 };
 
 export type AreaWhereUniqueInput = {
-  AND?: InputMaybe<AreaWhereInput[]>;
+  AND?: InputMaybe<Array<AreaWhereInput>>;
   City?: InputMaybe<CityWhereInput>;
   ComingArea?: InputMaybe<ComingAreaWhereInput>;
   Country?: InputMaybe<CountryWhereInput>;
   H3Index5VenueRecommendation?: InputMaybe<H3Index5VenueRecommendationWhereInput>;
   H3Index6VenueRecommendation?: InputMaybe<H3Index6VenueRecommendationWhereInput>;
   Location?: InputMaybe<LocationWhereInput>;
-  NOT?: InputMaybe<AreaWhereInput[]>;
-  OR?: InputMaybe<AreaWhereInput[]>;
+  NOT?: InputMaybe<Array<AreaWhereInput>>;
+  OR?: InputMaybe<Array<AreaWhereInput>>;
   State?: InputMaybe<StateWhereInput>;
   cityId?: InputMaybe<StringFilter>;
   countryId?: InputMaybe<StringFilter>;
@@ -1264,16 +1264,16 @@ export type AuthenticationProvider = {
   Credentials?: Maybe<Credentials>;
   Password?: Maybe<Password>;
   codepassword?: Maybe<Code>;
-  emails: Email[];
+  emails: Array<Email>;
   id: Scalars['ID']['output'];
-  phones: Phone[];
+  phones: Array<Phone>;
 };
 
 
 export type AuthenticationProviderEmailsArgs = {
   cursor?: InputMaybe<EmailWhereUniqueInput>;
-  distinct?: InputMaybe<EmailScalarFieldEnum[]>;
-  orderBy?: InputMaybe<EmailOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<EmailScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<EmailOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<EmailWhereInput>;
@@ -1282,8 +1282,8 @@ export type AuthenticationProviderEmailsArgs = {
 
 export type AuthenticationProviderPhonesArgs = {
   cursor?: InputMaybe<PhoneWhereUniqueInput>;
-  distinct?: InputMaybe<PhoneScalarFieldEnum[]>;
-  orderBy?: InputMaybe<PhoneOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<PhoneScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<PhoneOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<PhoneWhereInput>;
@@ -1307,15 +1307,15 @@ export type AuthenticationProviderCreateManyInput = {
 };
 
 export type AuthenticationProviderCreateNestedManyWithoutEmailsInput = {
-  connect?: InputMaybe<AuthenticationProviderWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<AuthenticationProviderCreateOrConnectWithoutEmailsInput[]>;
-  create?: InputMaybe<AuthenticationProviderCreateWithoutEmailsInput[]>;
+  connect?: InputMaybe<Array<AuthenticationProviderWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<AuthenticationProviderCreateOrConnectWithoutEmailsInput>>;
+  create?: InputMaybe<Array<AuthenticationProviderCreateWithoutEmailsInput>>;
 };
 
 export type AuthenticationProviderCreateNestedManyWithoutPhonesInput = {
-  connect?: InputMaybe<AuthenticationProviderWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<AuthenticationProviderCreateOrConnectWithoutPhonesInput[]>;
-  create?: InputMaybe<AuthenticationProviderCreateWithoutPhonesInput[]>;
+  connect?: InputMaybe<Array<AuthenticationProviderWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<AuthenticationProviderCreateOrConnectWithoutPhonesInput>>;
+  create?: InputMaybe<Array<AuthenticationProviderCreateWithoutPhonesInput>>;
 };
 
 export type AuthenticationProviderCreateNestedOneWithoutCodepasswordInput = {
@@ -1450,16 +1450,16 @@ export enum AuthenticationProviderScalarFieldEnum {
 }
 
 export type AuthenticationProviderScalarWhereInput = {
-  AND?: InputMaybe<AuthenticationProviderScalarWhereInput[]>;
-  NOT?: InputMaybe<AuthenticationProviderScalarWhereInput[]>;
-  OR?: InputMaybe<AuthenticationProviderScalarWhereInput[]>;
+  AND?: InputMaybe<Array<AuthenticationProviderScalarWhereInput>>;
+  NOT?: InputMaybe<Array<AuthenticationProviderScalarWhereInput>>;
+  OR?: InputMaybe<Array<AuthenticationProviderScalarWhereInput>>;
   id?: InputMaybe<StringFilter>;
 };
 
 export type AuthenticationProviderScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<AuthenticationProviderScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<AuthenticationProviderScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<AuthenticationProviderScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<AuthenticationProviderScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<AuthenticationProviderScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<AuthenticationProviderScalarWhereWithAggregatesInput>>;
   id?: InputMaybe<StringWithAggregatesFilter>;
 };
 
@@ -1487,29 +1487,29 @@ export type AuthenticationProviderUpdateManyWithWhereWithoutPhonesInput = {
 };
 
 export type AuthenticationProviderUpdateManyWithoutEmailsNestedInput = {
-  connect?: InputMaybe<AuthenticationProviderWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<AuthenticationProviderCreateOrConnectWithoutEmailsInput[]>;
-  create?: InputMaybe<AuthenticationProviderCreateWithoutEmailsInput[]>;
-  delete?: InputMaybe<AuthenticationProviderWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<AuthenticationProviderScalarWhereInput[]>;
-  disconnect?: InputMaybe<AuthenticationProviderWhereUniqueInput[]>;
-  set?: InputMaybe<AuthenticationProviderWhereUniqueInput[]>;
-  update?: InputMaybe<AuthenticationProviderUpdateWithWhereUniqueWithoutEmailsInput[]>;
-  updateMany?: InputMaybe<AuthenticationProviderUpdateManyWithWhereWithoutEmailsInput[]>;
-  upsert?: InputMaybe<AuthenticationProviderUpsertWithWhereUniqueWithoutEmailsInput[]>;
+  connect?: InputMaybe<Array<AuthenticationProviderWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<AuthenticationProviderCreateOrConnectWithoutEmailsInput>>;
+  create?: InputMaybe<Array<AuthenticationProviderCreateWithoutEmailsInput>>;
+  delete?: InputMaybe<Array<AuthenticationProviderWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<AuthenticationProviderScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<AuthenticationProviderWhereUniqueInput>>;
+  set?: InputMaybe<Array<AuthenticationProviderWhereUniqueInput>>;
+  update?: InputMaybe<Array<AuthenticationProviderUpdateWithWhereUniqueWithoutEmailsInput>>;
+  updateMany?: InputMaybe<Array<AuthenticationProviderUpdateManyWithWhereWithoutEmailsInput>>;
+  upsert?: InputMaybe<Array<AuthenticationProviderUpsertWithWhereUniqueWithoutEmailsInput>>;
 };
 
 export type AuthenticationProviderUpdateManyWithoutPhonesNestedInput = {
-  connect?: InputMaybe<AuthenticationProviderWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<AuthenticationProviderCreateOrConnectWithoutPhonesInput[]>;
-  create?: InputMaybe<AuthenticationProviderCreateWithoutPhonesInput[]>;
-  delete?: InputMaybe<AuthenticationProviderWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<AuthenticationProviderScalarWhereInput[]>;
-  disconnect?: InputMaybe<AuthenticationProviderWhereUniqueInput[]>;
-  set?: InputMaybe<AuthenticationProviderWhereUniqueInput[]>;
-  update?: InputMaybe<AuthenticationProviderUpdateWithWhereUniqueWithoutPhonesInput[]>;
-  updateMany?: InputMaybe<AuthenticationProviderUpdateManyWithWhereWithoutPhonesInput[]>;
-  upsert?: InputMaybe<AuthenticationProviderUpsertWithWhereUniqueWithoutPhonesInput[]>;
+  connect?: InputMaybe<Array<AuthenticationProviderWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<AuthenticationProviderCreateOrConnectWithoutPhonesInput>>;
+  create?: InputMaybe<Array<AuthenticationProviderCreateWithoutPhonesInput>>;
+  delete?: InputMaybe<Array<AuthenticationProviderWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<AuthenticationProviderScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<AuthenticationProviderWhereUniqueInput>>;
+  set?: InputMaybe<Array<AuthenticationProviderWhereUniqueInput>>;
+  update?: InputMaybe<Array<AuthenticationProviderUpdateWithWhereUniqueWithoutPhonesInput>>;
+  updateMany?: InputMaybe<Array<AuthenticationProviderUpdateManyWithWhereWithoutPhonesInput>>;
+  upsert?: InputMaybe<Array<AuthenticationProviderUpsertWithWhereUniqueWithoutPhonesInput>>;
 };
 
 export type AuthenticationProviderUpdateOneRequiredWithoutPasswordNestedInput = {
@@ -1636,10 +1636,10 @@ export type AuthenticationProviderUpsertWithoutPasswordInput = {
 };
 
 export type AuthenticationProviderWhereInput = {
-  AND?: InputMaybe<AuthenticationProviderWhereInput[]>;
+  AND?: InputMaybe<Array<AuthenticationProviderWhereInput>>;
   Credentials?: InputMaybe<CredentialsWhereInput>;
-  NOT?: InputMaybe<AuthenticationProviderWhereInput[]>;
-  OR?: InputMaybe<AuthenticationProviderWhereInput[]>;
+  NOT?: InputMaybe<Array<AuthenticationProviderWhereInput>>;
+  OR?: InputMaybe<Array<AuthenticationProviderWhereInput>>;
   Password?: InputMaybe<PasswordWhereInput>;
   codepassword?: InputMaybe<CodeWhereInput>;
   emails?: InputMaybe<EmailListRelationFilter>;
@@ -1648,10 +1648,10 @@ export type AuthenticationProviderWhereInput = {
 };
 
 export type AuthenticationProviderWhereUniqueInput = {
-  AND?: InputMaybe<AuthenticationProviderWhereInput[]>;
+  AND?: InputMaybe<Array<AuthenticationProviderWhereInput>>;
   Credentials?: InputMaybe<CredentialsWhereInput>;
-  NOT?: InputMaybe<AuthenticationProviderWhereInput[]>;
-  OR?: InputMaybe<AuthenticationProviderWhereInput[]>;
+  NOT?: InputMaybe<Array<AuthenticationProviderWhereInput>>;
+  OR?: InputMaybe<Array<AuthenticationProviderWhereInput>>;
   Password?: InputMaybe<PasswordWhereInput>;
   codepassword?: InputMaybe<CodeWhereInput>;
   emails?: InputMaybe<EmailListRelationFilter>;
@@ -1681,13 +1681,11 @@ export type AuthorizationDeviceProfile = {
   Profile?: Maybe<Profile>;
   ProfileType: ProfileType;
   RefreshToken?: Maybe<RefreshToken>;
-  accesstoken?: Maybe<Scalars['String']['output']>;
   createdAt: Scalars['DateTime']['output'];
   deviceManagerId: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   isActive: Scalars['Boolean']['output'];
   profileId: Scalars['String']['output'];
-  refreshtoken?: Maybe<Scalars['String']['output']>;
   updatedAt: Scalars['DateTime']['output'];
 };
 
@@ -1736,7 +1734,7 @@ export type BoolWithAggregatesFilter = {
 
 export type Category = {
   __typename?: 'Category';
-  Tags: Tag[];
+  Tags: Array<Tag>;
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
 };
@@ -1744,8 +1742,8 @@ export type Category = {
 
 export type CategoryTagsArgs = {
   cursor?: InputMaybe<TagWhereUniqueInput>;
-  distinct?: InputMaybe<TagScalarFieldEnum[]>;
-  orderBy?: InputMaybe<TagOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<TagScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<TagOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<TagWhereInput>;
@@ -1818,9 +1816,9 @@ export enum CategoryScalarFieldEnum {
 }
 
 export type CategoryScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<CategoryScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<CategoryScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<CategoryScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<CategoryScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<CategoryScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<CategoryScalarWhereWithAggregatesInput>>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   name?: InputMaybe<StringWithAggregatesFilter>;
 };
@@ -1863,18 +1861,18 @@ export type CategoryUpsertWithoutTagsInput = {
 };
 
 export type CategoryWhereInput = {
-  AND?: InputMaybe<CategoryWhereInput[]>;
-  NOT?: InputMaybe<CategoryWhereInput[]>;
-  OR?: InputMaybe<CategoryWhereInput[]>;
+  AND?: InputMaybe<Array<CategoryWhereInput>>;
+  NOT?: InputMaybe<Array<CategoryWhereInput>>;
+  OR?: InputMaybe<Array<CategoryWhereInput>>;
   Tags?: InputMaybe<TagListRelationFilter>;
   id?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringFilter>;
 };
 
 export type CategoryWhereUniqueInput = {
-  AND?: InputMaybe<CategoryWhereInput[]>;
-  NOT?: InputMaybe<CategoryWhereInput[]>;
-  OR?: InputMaybe<CategoryWhereInput[]>;
+  AND?: InputMaybe<Array<CategoryWhereInput>>;
+  NOT?: InputMaybe<Array<CategoryWhereInput>>;
+  OR?: InputMaybe<Array<CategoryWhereInput>>;
   Tags?: InputMaybe<TagListRelationFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<StringFilter>;
@@ -1882,7 +1880,7 @@ export type CategoryWhereUniqueInput = {
 
 export type City = {
   __typename?: 'City';
-  Area: Area[];
+  Area: Array<Area>;
   Geometry: Geometry;
   geometryId: Scalars['Int']['output'];
   id: Scalars['ID']['output'];
@@ -1892,8 +1890,8 @@ export type City = {
 
 export type CityAreaArgs = {
   cursor?: InputMaybe<AreaWhereUniqueInput>;
-  distinct?: InputMaybe<AreaScalarFieldEnum[]>;
-  orderBy?: InputMaybe<AreaOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<AreaScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<AreaOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<AreaWhereInput>;
@@ -2014,9 +2012,9 @@ export enum CityScalarFieldEnum {
 }
 
 export type CityScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<CityScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<CityScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<CityScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<CityScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<CityScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<CityScalarWhereWithAggregatesInput>>;
   geometryId?: InputMaybe<IntWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   name?: InputMaybe<StringWithAggregatesFilter>;
@@ -2091,22 +2089,22 @@ export type CityUpsertWithoutGeometryInput = {
 };
 
 export type CityWhereInput = {
-  AND?: InputMaybe<CityWhereInput[]>;
+  AND?: InputMaybe<Array<CityWhereInput>>;
   Area?: InputMaybe<AreaListRelationFilter>;
   Geometry?: InputMaybe<GeometryWhereInput>;
-  NOT?: InputMaybe<CityWhereInput[]>;
-  OR?: InputMaybe<CityWhereInput[]>;
+  NOT?: InputMaybe<Array<CityWhereInput>>;
+  OR?: InputMaybe<Array<CityWhereInput>>;
   geometryId?: InputMaybe<IntFilter>;
   id?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringFilter>;
 };
 
 export type CityWhereUniqueInput = {
-  AND?: InputMaybe<CityWhereInput[]>;
+  AND?: InputMaybe<Array<CityWhereInput>>;
   Area?: InputMaybe<AreaListRelationFilter>;
   Geometry?: InputMaybe<GeometryWhereInput>;
-  NOT?: InputMaybe<CityWhereInput[]>;
-  OR?: InputMaybe<CityWhereInput[]>;
+  NOT?: InputMaybe<Array<CityWhereInput>>;
+  OR?: InputMaybe<Array<CityWhereInput>>;
   geometryId?: InputMaybe<Scalars['Int']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
@@ -2226,9 +2224,9 @@ export enum CodeScalarFieldEnum {
 }
 
 export type CodeScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<CodeScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<CodeScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<CodeScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<CodeScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<CodeScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<CodeScalarWhereWithAggregatesInput>>;
   authenitcationProviderId?: InputMaybe<StringNullableWithAggregatesFilter>;
   canUseAsRecovery?: InputMaybe<BoolNullableWithAggregatesFilter>;
   code?: InputMaybe<StringWithAggregatesFilter>;
@@ -2284,10 +2282,10 @@ export type CodeUpsertWithoutAuthenticationProviderInput = {
 };
 
 export type CodeWhereInput = {
-  AND?: InputMaybe<CodeWhereInput[]>;
+  AND?: InputMaybe<Array<CodeWhereInput>>;
   AuthenticationProvider?: InputMaybe<AuthenticationProviderWhereInput>;
-  NOT?: InputMaybe<CodeWhereInput[]>;
-  OR?: InputMaybe<CodeWhereInput[]>;
+  NOT?: InputMaybe<Array<CodeWhereInput>>;
+  OR?: InputMaybe<Array<CodeWhereInput>>;
   authenitcationProviderId?: InputMaybe<StringNullableFilter>;
   canUseAsRecovery?: InputMaybe<BoolNullableFilter>;
   code?: InputMaybe<StringFilter>;
@@ -2297,10 +2295,10 @@ export type CodeWhereInput = {
 };
 
 export type CodeWhereUniqueInput = {
-  AND?: InputMaybe<CodeWhereInput[]>;
+  AND?: InputMaybe<Array<CodeWhereInput>>;
   AuthenticationProvider?: InputMaybe<AuthenticationProviderWhereInput>;
-  NOT?: InputMaybe<CodeWhereInput[]>;
-  OR?: InputMaybe<CodeWhereInput[]>;
+  NOT?: InputMaybe<Array<CodeWhereInput>>;
+  OR?: InputMaybe<Array<CodeWhereInput>>;
   authenitcationProviderId?: InputMaybe<Scalars['String']['input']>;
   canUseAsRecovery?: InputMaybe<BoolNullableFilter>;
   code?: InputMaybe<StringFilter>;
@@ -2312,23 +2310,23 @@ export type CodeWhereUniqueInput = {
 export type ComingArea = {
   __typename?: 'ComingArea';
   Area?: Maybe<Area>;
-  Vote: Vote[];
+  Vote: Array<Vote>;
   areaId?: Maybe<Scalars['String']['output']>;
   createdAt: Scalars['DateTime']['output'];
   h3Index5: Scalars['String']['output'];
   h3Index6: Scalars['String']['output'];
   id: Scalars['ID']['output'];
-  keywordSuggestions: Scalars['String']['output'][];
+  keywordSuggestions: Array<Scalars['String']['output']>;
   timesRequested?: Maybe<Scalars['Int']['output']>;
-  toBeNotifiedProfileIds: Scalars['String']['output'][];
+  toBeNotifiedProfileIds: Array<Scalars['String']['output']>;
   updatedAt: Scalars['DateTime']['output'];
 };
 
 
 export type ComingAreaVoteArgs = {
   cursor?: InputMaybe<VoteWhereUniqueInput>;
-  distinct?: InputMaybe<VoteScalarFieldEnum[]>;
-  orderBy?: InputMaybe<VoteOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<VoteScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<VoteOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<VoteWhereInput>;
@@ -2357,9 +2355,9 @@ export type ComingAreaCreateInput = {
   h3Index5: Scalars['String']['input'];
   h3Index6: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
-  keywordSuggestions?: InputMaybe<Scalars['String']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['String']['input']>>;
   timesRequested?: InputMaybe<Scalars['Int']['input']>;
-  toBeNotifiedProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  toBeNotifiedProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
@@ -2369,9 +2367,9 @@ export type ComingAreaCreateManyInput = {
   h3Index5: Scalars['String']['input'];
   h3Index6: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
-  keywordSuggestions?: InputMaybe<Scalars['String']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['String']['input']>>;
   timesRequested?: InputMaybe<Scalars['Int']['input']>;
-  toBeNotifiedProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  toBeNotifiedProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
@@ -2403,9 +2401,9 @@ export type ComingAreaCreateWithoutAreaInput = {
   h3Index5: Scalars['String']['input'];
   h3Index6: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
-  keywordSuggestions?: InputMaybe<Scalars['String']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['String']['input']>>;
   timesRequested?: InputMaybe<Scalars['Int']['input']>;
-  toBeNotifiedProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  toBeNotifiedProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
@@ -2415,18 +2413,18 @@ export type ComingAreaCreateWithoutVoteInput = {
   h3Index5: Scalars['String']['input'];
   h3Index6: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
-  keywordSuggestions?: InputMaybe<Scalars['String']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['String']['input']>>;
   timesRequested?: InputMaybe<Scalars['Int']['input']>;
-  toBeNotifiedProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  toBeNotifiedProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type ComingAreaCreatekeywordSuggestionsInput = {
-  set: Scalars['String']['input'][];
+  set: Array<Scalars['String']['input']>;
 };
 
 export type ComingAreaCreatetoBeNotifiedProfileIdsInput = {
-  set: Scalars['String']['input'][];
+  set: Array<Scalars['String']['input']>;
 };
 
 export type ComingAreaMaxOrderByAggregateInput = {
@@ -2487,8 +2485,8 @@ export type ComingAreaOrderByWithRelationInput = {
 
 export type ComingAreaResponse = {
   __typename?: 'ComingAreaResponse';
-  comingAreas: ComingArea[];
-  recommendedAreas?: Maybe<H3Index6VenueRecommendation[]>;
+  comingAreas: Array<ComingArea>;
+  recommendedAreas?: Maybe<Array<H3Index6VenueRecommendation>>;
   searchArea?: Maybe<Area>;
 };
 
@@ -2505,9 +2503,9 @@ export enum ComingAreaScalarFieldEnum {
 }
 
 export type ComingAreaScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<ComingAreaScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<ComingAreaScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<ComingAreaScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<ComingAreaScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<ComingAreaScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<ComingAreaScalarWhereWithAggregatesInput>>;
   areaId?: InputMaybe<StringNullableWithAggregatesFilter>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   h3Index5?: InputMaybe<StringWithAggregatesFilter>;
@@ -2530,9 +2528,9 @@ export type ComingAreaUpdateInput = {
   h3Index5?: InputMaybe<StringFieldUpdateOperationsInput>;
   h3Index6?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Scalars['String']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['String']['input']>>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  toBeNotifiedProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  toBeNotifiedProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -2541,9 +2539,9 @@ export type ComingAreaUpdateManyMutationInput = {
   h3Index5?: InputMaybe<StringFieldUpdateOperationsInput>;
   h3Index6?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Scalars['String']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['String']['input']>>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  toBeNotifiedProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  toBeNotifiedProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -2583,9 +2581,9 @@ export type ComingAreaUpdateWithoutAreaInput = {
   h3Index5?: InputMaybe<StringFieldUpdateOperationsInput>;
   h3Index6?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Scalars['String']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['String']['input']>>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  toBeNotifiedProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  toBeNotifiedProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -2595,20 +2593,20 @@ export type ComingAreaUpdateWithoutVoteInput = {
   h3Index5?: InputMaybe<StringFieldUpdateOperationsInput>;
   h3Index6?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Scalars['String']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['String']['input']>>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  toBeNotifiedProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  toBeNotifiedProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type ComingAreaUpdatekeywordSuggestionsInput = {
-  push?: InputMaybe<Scalars['String']['input'][]>;
-  set?: InputMaybe<Scalars['String']['input'][]>;
+  push?: InputMaybe<Array<Scalars['String']['input']>>;
+  set?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type ComingAreaUpdatetoBeNotifiedProfileIdsInput = {
-  push?: InputMaybe<Scalars['String']['input'][]>;
-  set?: InputMaybe<Scalars['String']['input'][]>;
+  push?: InputMaybe<Array<Scalars['String']['input']>>;
+  set?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type ComingAreaUpsertWithoutAreaInput = {
@@ -2624,10 +2622,10 @@ export type ComingAreaUpsertWithoutVoteInput = {
 };
 
 export type ComingAreaWhereInput = {
-  AND?: InputMaybe<ComingAreaWhereInput[]>;
+  AND?: InputMaybe<Array<ComingAreaWhereInput>>;
   Area?: InputMaybe<AreaWhereInput>;
-  NOT?: InputMaybe<ComingAreaWhereInput[]>;
-  OR?: InputMaybe<ComingAreaWhereInput[]>;
+  NOT?: InputMaybe<Array<ComingAreaWhereInput>>;
+  OR?: InputMaybe<Array<ComingAreaWhereInput>>;
   Vote?: InputMaybe<VoteListRelationFilter>;
   areaId?: InputMaybe<StringNullableFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -2641,10 +2639,10 @@ export type ComingAreaWhereInput = {
 };
 
 export type ComingAreaWhereUniqueInput = {
-  AND?: InputMaybe<ComingAreaWhereInput[]>;
+  AND?: InputMaybe<Array<ComingAreaWhereInput>>;
   Area?: InputMaybe<AreaWhereInput>;
-  NOT?: InputMaybe<ComingAreaWhereInput[]>;
-  OR?: InputMaybe<ComingAreaWhereInput[]>;
+  NOT?: InputMaybe<Array<ComingAreaWhereInput>>;
+  OR?: InputMaybe<Array<ComingAreaWhereInput>>;
   Vote?: InputMaybe<VoteListRelationFilter>;
   areaId?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -2664,9 +2662,9 @@ export type ContactInput = {
 
 export type Conversation = {
   __typename?: 'Conversation';
-  Members: Profile[];
-  MembersConversationNotificationSetting: MemberConversationNotificationSetting[];
-  Messages: Message[];
+  Members: Array<Profile>;
+  MembersConversationNotificationSetting: Array<MemberConversationNotificationSetting>;
+  Messages: Array<Message>;
   id: Scalars['ID']['output'];
   name?: Maybe<Scalars['String']['output']>;
 };
@@ -2674,8 +2672,8 @@ export type Conversation = {
 
 export type ConversationMembersArgs = {
   cursor?: InputMaybe<ProfileWhereUniqueInput>;
-  distinct?: InputMaybe<ProfileScalarFieldEnum[]>;
-  orderBy?: InputMaybe<ProfileOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<ProfileScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<ProfileOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ProfileWhereInput>;
@@ -2684,8 +2682,8 @@ export type ConversationMembersArgs = {
 
 export type ConversationMembersConversationNotificationSettingArgs = {
   cursor?: InputMaybe<MemberConversationNotificationSettingWhereUniqueInput>;
-  distinct?: InputMaybe<MemberConversationNotificationSettingScalarFieldEnum[]>;
-  orderBy?: InputMaybe<MemberConversationNotificationSettingOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<MemberConversationNotificationSettingScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<MemberConversationNotificationSettingOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<MemberConversationNotificationSettingWhereInput>;
@@ -2694,8 +2692,8 @@ export type ConversationMembersConversationNotificationSettingArgs = {
 
 export type ConversationMessagesArgs = {
   cursor?: InputMaybe<MessageWhereUniqueInput>;
-  distinct?: InputMaybe<MessageScalarFieldEnum[]>;
-  orderBy?: InputMaybe<MessageOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<MessageScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<MessageOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<MessageWhereInput>;
@@ -2720,9 +2718,9 @@ export type ConversationCreateManyInput = {
 };
 
 export type ConversationCreateNestedManyWithoutMembersInput = {
-  connect?: InputMaybe<ConversationWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<ConversationCreateOrConnectWithoutMembersInput[]>;
-  create?: InputMaybe<ConversationCreateWithoutMembersInput[]>;
+  connect?: InputMaybe<Array<ConversationWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ConversationCreateOrConnectWithoutMembersInput>>;
+  create?: InputMaybe<Array<ConversationCreateWithoutMembersInput>>;
 };
 
 export type ConversationCreateNestedOneWithoutMembersConversationNotificationSettingInput = {
@@ -2820,17 +2818,17 @@ export enum ConversationScalarFieldEnum {
 }
 
 export type ConversationScalarWhereInput = {
-  AND?: InputMaybe<ConversationScalarWhereInput[]>;
-  NOT?: InputMaybe<ConversationScalarWhereInput[]>;
-  OR?: InputMaybe<ConversationScalarWhereInput[]>;
+  AND?: InputMaybe<Array<ConversationScalarWhereInput>>;
+  NOT?: InputMaybe<Array<ConversationScalarWhereInput>>;
+  OR?: InputMaybe<Array<ConversationScalarWhereInput>>;
   id?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringNullableFilter>;
 };
 
 export type ConversationScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<ConversationScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<ConversationScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<ConversationScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<ConversationScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<ConversationScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<ConversationScalarWhereWithAggregatesInput>>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   name?: InputMaybe<StringNullableWithAggregatesFilter>;
 };
@@ -2854,16 +2852,16 @@ export type ConversationUpdateManyWithWhereWithoutMembersInput = {
 };
 
 export type ConversationUpdateManyWithoutMembersNestedInput = {
-  connect?: InputMaybe<ConversationWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<ConversationCreateOrConnectWithoutMembersInput[]>;
-  create?: InputMaybe<ConversationCreateWithoutMembersInput[]>;
-  delete?: InputMaybe<ConversationWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<ConversationScalarWhereInput[]>;
-  disconnect?: InputMaybe<ConversationWhereUniqueInput[]>;
-  set?: InputMaybe<ConversationWhereUniqueInput[]>;
-  update?: InputMaybe<ConversationUpdateWithWhereUniqueWithoutMembersInput[]>;
-  updateMany?: InputMaybe<ConversationUpdateManyWithWhereWithoutMembersInput[]>;
-  upsert?: InputMaybe<ConversationUpsertWithWhereUniqueWithoutMembersInput[]>;
+  connect?: InputMaybe<Array<ConversationWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ConversationCreateOrConnectWithoutMembersInput>>;
+  create?: InputMaybe<Array<ConversationCreateWithoutMembersInput>>;
+  delete?: InputMaybe<Array<ConversationWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<ConversationScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<ConversationWhereUniqueInput>>;
+  set?: InputMaybe<Array<ConversationWhereUniqueInput>>;
+  update?: InputMaybe<Array<ConversationUpdateWithWhereUniqueWithoutMembersInput>>;
+  updateMany?: InputMaybe<Array<ConversationUpdateManyWithWhereWithoutMembersInput>>;
+  upsert?: InputMaybe<Array<ConversationUpsertWithWhereUniqueWithoutMembersInput>>;
 };
 
 export type ConversationUpdateOneWithoutMembersConversationNotificationSettingNestedInput = {
@@ -2941,23 +2939,23 @@ export type ConversationUpsertWithoutMessagesInput = {
 };
 
 export type ConversationWhereInput = {
-  AND?: InputMaybe<ConversationWhereInput[]>;
+  AND?: InputMaybe<Array<ConversationWhereInput>>;
   Members?: InputMaybe<ProfileListRelationFilter>;
   MembersConversationNotificationSetting?: InputMaybe<MemberConversationNotificationSettingListRelationFilter>;
   Messages?: InputMaybe<MessageListRelationFilter>;
-  NOT?: InputMaybe<ConversationWhereInput[]>;
-  OR?: InputMaybe<ConversationWhereInput[]>;
+  NOT?: InputMaybe<Array<ConversationWhereInput>>;
+  OR?: InputMaybe<Array<ConversationWhereInput>>;
   id?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringNullableFilter>;
 };
 
 export type ConversationWhereUniqueInput = {
-  AND?: InputMaybe<ConversationWhereInput[]>;
+  AND?: InputMaybe<Array<ConversationWhereInput>>;
   Members?: InputMaybe<ProfileListRelationFilter>;
   MembersConversationNotificationSetting?: InputMaybe<MemberConversationNotificationSettingListRelationFilter>;
   Messages?: InputMaybe<MessageListRelationFilter>;
-  NOT?: InputMaybe<ConversationWhereInput[]>;
-  OR?: InputMaybe<ConversationWhereInput[]>;
+  NOT?: InputMaybe<Array<ConversationWhereInput>>;
+  OR?: InputMaybe<Array<ConversationWhereInput>>;
   id?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<StringNullableFilter>;
 };
@@ -2975,7 +2973,7 @@ export type CoordsInput = {
 
 export type Country = {
   __typename?: 'Country';
-  Area: Area[];
+  Area: Array<Area>;
   flag: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   isoCode: Scalars['String']['output'];
@@ -2985,8 +2983,8 @@ export type Country = {
 
 export type CountryAreaArgs = {
   cursor?: InputMaybe<AreaWhereUniqueInput>;
-  distinct?: InputMaybe<AreaScalarFieldEnum[]>;
-  orderBy?: InputMaybe<AreaOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<AreaScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<AreaOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<AreaWhereInput>;
@@ -3088,9 +3086,9 @@ export enum CountryScalarFieldEnum {
 }
 
 export type CountryScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<CountryScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<CountryScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<CountryScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<CountryScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<CountryScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<CountryScalarWhereWithAggregatesInput>>;
   flag?: InputMaybe<StringWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   isoCode?: InputMaybe<StringWithAggregatesFilter>;
@@ -3139,10 +3137,10 @@ export type CountryUpsertWithoutAreaInput = {
 };
 
 export type CountryWhereInput = {
-  AND?: InputMaybe<CountryWhereInput[]>;
+  AND?: InputMaybe<Array<CountryWhereInput>>;
   Area?: InputMaybe<AreaListRelationFilter>;
-  NOT?: InputMaybe<CountryWhereInput[]>;
-  OR?: InputMaybe<CountryWhereInput[]>;
+  NOT?: InputMaybe<Array<CountryWhereInput>>;
+  OR?: InputMaybe<Array<CountryWhereInput>>;
   flag?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
   isoCode?: InputMaybe<StringFilter>;
@@ -3150,10 +3148,10 @@ export type CountryWhereInput = {
 };
 
 export type CountryWhereUniqueInput = {
-  AND?: InputMaybe<CountryWhereInput[]>;
+  AND?: InputMaybe<Array<CountryWhereInput>>;
   Area?: InputMaybe<AreaListRelationFilter>;
-  NOT?: InputMaybe<CountryWhereInput[]>;
-  OR?: InputMaybe<CountryWhereInput[]>;
+  NOT?: InputMaybe<Array<CountryWhereInput>>;
+  OR?: InputMaybe<Array<CountryWhereInput>>;
   flag?: InputMaybe<StringFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
   isoCode?: InputMaybe<Scalars['String']['input']>;
@@ -3180,7 +3178,7 @@ export type CreateVenueDataInput = {
   address: Scalars['String']['input'];
   birthday?: InputMaybe<Scalars['DateTime']['input']>;
   capacity: Scalars['String']['input'];
-  contacts: VenueContactInput[];
+  contacts: Array<VenueContactInput>;
   description?: InputMaybe<Scalars['String']['input']>;
   established: Scalars['DateTime']['input'];
   ownername: Scalars['String']['input'];
@@ -3188,14 +3186,14 @@ export type CreateVenueDataInput = {
   photos?: InputMaybe<PhotoCreateManyProfileInputEnvelope>;
   venuelocalname: Scalars['String']['input'];
   venuename: Scalars['String']['input'];
-  venuetypes?: InputMaybe<Scalars['String']['input'][]>;
+  venuetypes?: InputMaybe<Array<Scalars['String']['input']>>;
   venueusername: Scalars['String']['input'];
 };
 
 export type Credentials = {
   __typename?: 'Credentials';
   AuthenticationProvider?: Maybe<AuthenticationProvider>;
-  LegalAgreement: LegalAgreement[];
+  LegalAgreement: Array<LegalAgreement>;
   Profile: Profile;
   authenticationProviderId?: Maybe<Scalars['String']['output']>;
   createdtAt: Scalars['DateTime']['output'];
@@ -3207,8 +3205,8 @@ export type Credentials = {
 
 export type CredentialsLegalAgreementArgs = {
   cursor?: InputMaybe<LegalAgreementWhereUniqueInput>;
-  distinct?: InputMaybe<LegalAgreementScalarFieldEnum[]>;
-  orderBy?: InputMaybe<LegalAgreementOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<LegalAgreementScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<LegalAgreementOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<LegalAgreementWhereInput>;
@@ -3348,9 +3346,9 @@ export enum CredentialsScalarFieldEnum {
 }
 
 export type CredentialsScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<CredentialsScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<CredentialsScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<CredentialsScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<CredentialsScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<CredentialsScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<CredentialsScalarWhereWithAggregatesInput>>;
   authenticationProviderId?: InputMaybe<StringNullableWithAggregatesFilter>;
   createdtAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
@@ -3461,11 +3459,11 @@ export type CredentialsUpsertWithoutProfileInput = {
 };
 
 export type CredentialsWhereInput = {
-  AND?: InputMaybe<CredentialsWhereInput[]>;
+  AND?: InputMaybe<Array<CredentialsWhereInput>>;
   AuthenticationProvider?: InputMaybe<AuthenticationProviderWhereInput>;
   LegalAgreement?: InputMaybe<LegalAgreementListRelationFilter>;
-  NOT?: InputMaybe<CredentialsWhereInput[]>;
-  OR?: InputMaybe<CredentialsWhereInput[]>;
+  NOT?: InputMaybe<Array<CredentialsWhereInput>>;
+  OR?: InputMaybe<Array<CredentialsWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
   authenticationProviderId?: InputMaybe<StringNullableFilter>;
   createdtAt?: InputMaybe<DateTimeFilter>;
@@ -3475,11 +3473,11 @@ export type CredentialsWhereInput = {
 };
 
 export type CredentialsWhereUniqueInput = {
-  AND?: InputMaybe<CredentialsWhereInput[]>;
+  AND?: InputMaybe<Array<CredentialsWhereInput>>;
   AuthenticationProvider?: InputMaybe<AuthenticationProviderWhereInput>;
   LegalAgreement?: InputMaybe<LegalAgreementListRelationFilter>;
-  NOT?: InputMaybe<CredentialsWhereInput[]>;
-  OR?: InputMaybe<CredentialsWhereInput[]>;
+  NOT?: InputMaybe<Array<CredentialsWhereInput>>;
+  OR?: InputMaybe<Array<CredentialsWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
   authenticationProviderId?: InputMaybe<Scalars['String']['input']>;
   createdtAt?: InputMaybe<DateTimeFilter>;
@@ -3506,22 +3504,22 @@ export type DateTimeFilter = {
   equals?: InputMaybe<Scalars['DateTime']['input']>;
   gt?: InputMaybe<Scalars['DateTime']['input']>;
   gte?: InputMaybe<Scalars['DateTime']['input']>;
-  in?: InputMaybe<Scalars['DateTime']['input'][]>;
+  in?: InputMaybe<Array<Scalars['DateTime']['input']>>;
   lt?: InputMaybe<Scalars['DateTime']['input']>;
   lte?: InputMaybe<Scalars['DateTime']['input']>;
   not?: InputMaybe<NestedDateTimeFilter>;
-  notIn?: InputMaybe<Scalars['DateTime']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['DateTime']['input']>>;
 };
 
 export type DateTimeNullableFilter = {
   equals?: InputMaybe<Scalars['DateTime']['input']>;
   gt?: InputMaybe<Scalars['DateTime']['input']>;
   gte?: InputMaybe<Scalars['DateTime']['input']>;
-  in?: InputMaybe<Scalars['DateTime']['input'][]>;
+  in?: InputMaybe<Array<Scalars['DateTime']['input']>>;
   lt?: InputMaybe<Scalars['DateTime']['input']>;
   lte?: InputMaybe<Scalars['DateTime']['input']>;
   not?: InputMaybe<NestedDateTimeNullableFilter>;
-  notIn?: InputMaybe<Scalars['DateTime']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['DateTime']['input']>>;
 };
 
 export type DateTimeNullableWithAggregatesFilter = {
@@ -3531,11 +3529,11 @@ export type DateTimeNullableWithAggregatesFilter = {
   equals?: InputMaybe<Scalars['DateTime']['input']>;
   gt?: InputMaybe<Scalars['DateTime']['input']>;
   gte?: InputMaybe<Scalars['DateTime']['input']>;
-  in?: InputMaybe<Scalars['DateTime']['input'][]>;
+  in?: InputMaybe<Array<Scalars['DateTime']['input']>>;
   lt?: InputMaybe<Scalars['DateTime']['input']>;
   lte?: InputMaybe<Scalars['DateTime']['input']>;
   not?: InputMaybe<NestedDateTimeNullableWithAggregatesFilter>;
-  notIn?: InputMaybe<Scalars['DateTime']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['DateTime']['input']>>;
 };
 
 export type DateTimeWithAggregatesFilter = {
@@ -3545,17 +3543,17 @@ export type DateTimeWithAggregatesFilter = {
   equals?: InputMaybe<Scalars['DateTime']['input']>;
   gt?: InputMaybe<Scalars['DateTime']['input']>;
   gte?: InputMaybe<Scalars['DateTime']['input']>;
-  in?: InputMaybe<Scalars['DateTime']['input'][]>;
+  in?: InputMaybe<Array<Scalars['DateTime']['input']>>;
   lt?: InputMaybe<Scalars['DateTime']['input']>;
   lte?: InputMaybe<Scalars['DateTime']['input']>;
   not?: InputMaybe<NestedDateTimeWithAggregatesFilter>;
-  notIn?: InputMaybe<Scalars['DateTime']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['DateTime']['input']>>;
 };
 
 export type DetailInformation = {
   __typename?: 'DetailInformation';
   Profile: Profile;
-  Tags: Tag[];
+  Tags: Array<Tag>;
   capacity?: Maybe<Scalars['Int']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   established?: Maybe<Scalars['DateTime']['output']>;
@@ -3566,8 +3564,8 @@ export type DetailInformation = {
 
 export type DetailInformationTagsArgs = {
   cursor?: InputMaybe<TagWhereUniqueInput>;
-  distinct?: InputMaybe<TagScalarFieldEnum[]>;
-  orderBy?: InputMaybe<TagOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<TagScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<TagOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<TagWhereInput>;
@@ -3603,9 +3601,9 @@ export type DetailInformationCreateManyInput = {
 };
 
 export type DetailInformationCreateNestedManyWithoutTagsInput = {
-  connect?: InputMaybe<DetailInformationWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<DetailInformationCreateOrConnectWithoutTagsInput[]>;
-  create?: InputMaybe<DetailInformationCreateWithoutTagsInput[]>;
+  connect?: InputMaybe<Array<DetailInformationWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<DetailInformationCreateOrConnectWithoutTagsInput>>;
+  create?: InputMaybe<Array<DetailInformationCreateWithoutTagsInput>>;
 };
 
 export type DetailInformationCreateNestedOneWithoutProfileInput = {
@@ -3703,9 +3701,9 @@ export enum DetailInformationScalarFieldEnum {
 }
 
 export type DetailInformationScalarWhereInput = {
-  AND?: InputMaybe<DetailInformationScalarWhereInput[]>;
-  NOT?: InputMaybe<DetailInformationScalarWhereInput[]>;
-  OR?: InputMaybe<DetailInformationScalarWhereInput[]>;
+  AND?: InputMaybe<Array<DetailInformationScalarWhereInput>>;
+  NOT?: InputMaybe<Array<DetailInformationScalarWhereInput>>;
+  OR?: InputMaybe<Array<DetailInformationScalarWhereInput>>;
   capacity?: InputMaybe<IntNullableFilter>;
   description?: InputMaybe<StringNullableFilter>;
   established?: InputMaybe<DateTimeNullableFilter>;
@@ -3714,9 +3712,9 @@ export type DetailInformationScalarWhereInput = {
 };
 
 export type DetailInformationScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<DetailInformationScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<DetailInformationScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<DetailInformationScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<DetailInformationScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<DetailInformationScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<DetailInformationScalarWhereWithAggregatesInput>>;
   capacity?: InputMaybe<IntNullableWithAggregatesFilter>;
   description?: InputMaybe<StringNullableWithAggregatesFilter>;
   established?: InputMaybe<DateTimeNullableWithAggregatesFilter>;
@@ -3750,16 +3748,16 @@ export type DetailInformationUpdateManyWithWhereWithoutTagsInput = {
 };
 
 export type DetailInformationUpdateManyWithoutTagsNestedInput = {
-  connect?: InputMaybe<DetailInformationWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<DetailInformationCreateOrConnectWithoutTagsInput[]>;
-  create?: InputMaybe<DetailInformationCreateWithoutTagsInput[]>;
-  delete?: InputMaybe<DetailInformationWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<DetailInformationScalarWhereInput[]>;
-  disconnect?: InputMaybe<DetailInformationWhereUniqueInput[]>;
-  set?: InputMaybe<DetailInformationWhereUniqueInput[]>;
-  update?: InputMaybe<DetailInformationUpdateWithWhereUniqueWithoutTagsInput[]>;
-  updateMany?: InputMaybe<DetailInformationUpdateManyWithWhereWithoutTagsInput[]>;
-  upsert?: InputMaybe<DetailInformationUpsertWithWhereUniqueWithoutTagsInput[]>;
+  connect?: InputMaybe<Array<DetailInformationWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<DetailInformationCreateOrConnectWithoutTagsInput>>;
+  create?: InputMaybe<Array<DetailInformationCreateWithoutTagsInput>>;
+  delete?: InputMaybe<Array<DetailInformationWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<DetailInformationScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<DetailInformationWhereUniqueInput>>;
+  set?: InputMaybe<Array<DetailInformationWhereUniqueInput>>;
+  update?: InputMaybe<Array<DetailInformationUpdateWithWhereUniqueWithoutTagsInput>>;
+  updateMany?: InputMaybe<Array<DetailInformationUpdateManyWithWhereWithoutTagsInput>>;
+  upsert?: InputMaybe<Array<DetailInformationUpsertWithWhereUniqueWithoutTagsInput>>;
 };
 
 export type DetailInformationUpdateOneWithoutProfileNestedInput = {
@@ -3811,9 +3809,9 @@ export type DetailInformationUpsertWithoutProfileInput = {
 };
 
 export type DetailInformationWhereInput = {
-  AND?: InputMaybe<DetailInformationWhereInput[]>;
-  NOT?: InputMaybe<DetailInformationWhereInput[]>;
-  OR?: InputMaybe<DetailInformationWhereInput[]>;
+  AND?: InputMaybe<Array<DetailInformationWhereInput>>;
+  NOT?: InputMaybe<Array<DetailInformationWhereInput>>;
+  OR?: InputMaybe<Array<DetailInformationWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
   Tags?: InputMaybe<TagListRelationFilter>;
   capacity?: InputMaybe<IntNullableFilter>;
@@ -3824,9 +3822,9 @@ export type DetailInformationWhereInput = {
 };
 
 export type DetailInformationWhereUniqueInput = {
-  AND?: InputMaybe<DetailInformationWhereInput[]>;
-  NOT?: InputMaybe<DetailInformationWhereInput[]>;
-  OR?: InputMaybe<DetailInformationWhereInput[]>;
+  AND?: InputMaybe<Array<DetailInformationWhereInput>>;
+  NOT?: InputMaybe<Array<DetailInformationWhereInput>>;
+  OR?: InputMaybe<Array<DetailInformationWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
   Tags?: InputMaybe<TagListRelationFilter>;
   capacity?: InputMaybe<IntNullableFilter>;
@@ -3916,7 +3914,7 @@ export type DeviceCreateWithoutPushTokenInput = {
 export type DeviceManager = {
   __typename?: 'DeviceManager';
   Device?: Maybe<Device>;
-  DeviceProfiles: AuthorizationDeviceProfile[];
+  DeviceProfiles: Array<AuthorizationDeviceProfile>;
   createdAt: Scalars['DateTime']['output'];
   id: Scalars['ID']['output'];
   updatedAt: Scalars['DateTime']['output'];
@@ -3925,8 +3923,8 @@ export type DeviceManager = {
 
 export type DeviceManagerDeviceProfilesArgs = {
   cursor?: InputMaybe<DeviceProfileWhereUniqueInput>;
-  distinct?: InputMaybe<DeviceProfileScalarFieldEnum[]>;
-  orderBy?: InputMaybe<DeviceProfileOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<DeviceProfileScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<DeviceProfileOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<DeviceProfileWhereInput>;
@@ -3990,7 +3988,7 @@ export type DeviceManagerCreateWithoutDeviceProfilesInput = {
 
 export type DeviceManagerDeviceProfiles = {
   __typename?: 'DeviceManagerDeviceProfiles';
-  DeviceProfiles: AuthorizationDeviceProfile[];
+  DeviceProfiles: Array<AuthorizationDeviceProfile>;
 };
 
 export type DeviceManagerDeviceProfilesResponseUnion = DeviceManagerDeviceProfiles | Error;
@@ -4036,9 +4034,9 @@ export enum DeviceManagerScalarFieldEnum {
 }
 
 export type DeviceManagerScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<DeviceManagerScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<DeviceManagerScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<DeviceManagerScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<DeviceManagerScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<DeviceManagerScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<DeviceManagerScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
@@ -4111,22 +4109,22 @@ export type DeviceManagerUpsertWithoutDeviceProfilesInput = {
 };
 
 export type DeviceManagerWhereInput = {
-  AND?: InputMaybe<DeviceManagerWhereInput[]>;
+  AND?: InputMaybe<Array<DeviceManagerWhereInput>>;
   Device?: InputMaybe<DeviceWhereInput>;
   DeviceProfiles?: InputMaybe<DeviceProfileListRelationFilter>;
-  NOT?: InputMaybe<DeviceManagerWhereInput[]>;
-  OR?: InputMaybe<DeviceManagerWhereInput[]>;
+  NOT?: InputMaybe<Array<DeviceManagerWhereInput>>;
+  OR?: InputMaybe<Array<DeviceManagerWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
 export type DeviceManagerWhereUniqueInput = {
-  AND?: InputMaybe<DeviceManagerWhereInput[]>;
+  AND?: InputMaybe<Array<DeviceManagerWhereInput>>;
   Device?: InputMaybe<DeviceWhereInput>;
   DeviceProfiles?: InputMaybe<DeviceProfileListRelationFilter>;
-  NOT?: InputMaybe<DeviceManagerWhereInput[]>;
-  OR?: InputMaybe<DeviceManagerWhereInput[]>;
+  NOT?: InputMaybe<Array<DeviceManagerWhereInput>>;
+  OR?: InputMaybe<Array<DeviceManagerWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<DateTimeFilter>;
@@ -4181,7 +4179,6 @@ export type DeviceOrderByWithRelationInput = {
 export type DeviceProfileCountOrderByAggregateInput = {
   AppType?: InputMaybe<SortOrder>;
   ProfileType?: InputMaybe<SortOrder>;
-  accesstoken?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   deviceManagerId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
@@ -4195,7 +4192,6 @@ export type DeviceProfileCreateInput = {
   DeviceManager: DeviceManagerCreateNestedOneWithoutDeviceProfilesInput;
   ProfileType: ProfileType;
   RefreshToken?: InputMaybe<RefreshTokenCreateNestedOneWithoutDeviceProfileInput>;
-  accesstoken?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   isActive: Scalars['Boolean']['input'];
@@ -4206,7 +4202,6 @@ export type DeviceProfileCreateInput = {
 export type DeviceProfileCreateManyDeviceManagerInput = {
   AppType: AppType;
   ProfileType: ProfileType;
-  accesstoken?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   isActive: Scalars['Boolean']['input'];
@@ -4215,14 +4210,13 @@ export type DeviceProfileCreateManyDeviceManagerInput = {
 };
 
 export type DeviceProfileCreateManyDeviceManagerInputEnvelope = {
-  data: DeviceProfileCreateManyDeviceManagerInput[];
+  data: Array<DeviceProfileCreateManyDeviceManagerInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type DeviceProfileCreateManyInput = {
   AppType: AppType;
   ProfileType: ProfileType;
-  accesstoken?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   deviceManagerId: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
@@ -4232,9 +4226,9 @@ export type DeviceProfileCreateManyInput = {
 };
 
 export type DeviceProfileCreateNestedManyWithoutDeviceManagerInput = {
-  connect?: InputMaybe<DeviceProfileWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<DeviceProfileCreateOrConnectWithoutDeviceManagerInput[]>;
-  create?: InputMaybe<DeviceProfileCreateWithoutDeviceManagerInput[]>;
+  connect?: InputMaybe<Array<DeviceProfileWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<DeviceProfileCreateOrConnectWithoutDeviceManagerInput>>;
+  create?: InputMaybe<Array<DeviceProfileCreateWithoutDeviceManagerInput>>;
   createMany?: InputMaybe<DeviceProfileCreateManyDeviceManagerInputEnvelope>;
 };
 
@@ -4258,7 +4252,6 @@ export type DeviceProfileCreateWithoutDeviceManagerInput = {
   AppType: AppType;
   ProfileType: ProfileType;
   RefreshToken?: InputMaybe<RefreshTokenCreateNestedOneWithoutDeviceProfileInput>;
-  accesstoken?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   isActive: Scalars['Boolean']['input'];
@@ -4270,7 +4263,6 @@ export type DeviceProfileCreateWithoutRefreshTokenInput = {
   AppType: AppType;
   DeviceManager: DeviceManagerCreateNestedOneWithoutDeviceProfilesInput;
   ProfileType: ProfileType;
-  accesstoken?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   isActive: Scalars['Boolean']['input'];
@@ -4287,7 +4279,6 @@ export type DeviceProfileListRelationFilter = {
 export type DeviceProfileMaxOrderByAggregateInput = {
   AppType?: InputMaybe<SortOrder>;
   ProfileType?: InputMaybe<SortOrder>;
-  accesstoken?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   deviceManagerId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
@@ -4299,7 +4290,6 @@ export type DeviceProfileMaxOrderByAggregateInput = {
 export type DeviceProfileMinOrderByAggregateInput = {
   AppType?: InputMaybe<SortOrder>;
   ProfileType?: InputMaybe<SortOrder>;
-  accesstoken?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   deviceManagerId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
@@ -4323,7 +4313,6 @@ export type DeviceProfileOrderByWithAggregationInput = {
   _count?: InputMaybe<DeviceProfileCountOrderByAggregateInput>;
   _max?: InputMaybe<DeviceProfileMaxOrderByAggregateInput>;
   _min?: InputMaybe<DeviceProfileMinOrderByAggregateInput>;
-  accesstoken?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   deviceManagerId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
@@ -4337,7 +4326,6 @@ export type DeviceProfileOrderByWithRelationInput = {
   DeviceManager?: InputMaybe<DeviceManagerOrderByWithRelationInput>;
   ProfileType?: InputMaybe<SortOrder>;
   RefreshToken?: InputMaybe<RefreshTokenOrderByWithRelationInput>;
-  accesstoken?: InputMaybe<SortOrder>;
   createdAt?: InputMaybe<SortOrder>;
   deviceManagerId?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
@@ -4349,7 +4337,6 @@ export type DeviceProfileOrderByWithRelationInput = {
 export enum DeviceProfileScalarFieldEnum {
   AppType = 'AppType',
   ProfileType = 'ProfileType',
-  Accesstoken = 'accesstoken',
   CreatedAt = 'createdAt',
   DeviceManagerId = 'deviceManagerId',
   Id = 'id',
@@ -4359,12 +4346,11 @@ export enum DeviceProfileScalarFieldEnum {
 }
 
 export type DeviceProfileScalarWhereInput = {
-  AND?: InputMaybe<DeviceProfileScalarWhereInput[]>;
+  AND?: InputMaybe<Array<DeviceProfileScalarWhereInput>>;
   AppType?: InputMaybe<EnumAppTypeFilter>;
-  NOT?: InputMaybe<DeviceProfileScalarWhereInput[]>;
-  OR?: InputMaybe<DeviceProfileScalarWhereInput[]>;
+  NOT?: InputMaybe<Array<DeviceProfileScalarWhereInput>>;
+  OR?: InputMaybe<Array<DeviceProfileScalarWhereInput>>;
   ProfileType?: InputMaybe<EnumProfileTypeFilter>;
-  accesstoken?: InputMaybe<StringNullableFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   deviceManagerId?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
@@ -4374,12 +4360,11 @@ export type DeviceProfileScalarWhereInput = {
 };
 
 export type DeviceProfileScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<DeviceProfileScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<DeviceProfileScalarWhereWithAggregatesInput>>;
   AppType?: InputMaybe<EnumAppTypeWithAggregatesFilter>;
-  NOT?: InputMaybe<DeviceProfileScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<DeviceProfileScalarWhereWithAggregatesInput[]>;
+  NOT?: InputMaybe<Array<DeviceProfileScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<DeviceProfileScalarWhereWithAggregatesInput>>;
   ProfileType?: InputMaybe<EnumProfileTypeWithAggregatesFilter>;
-  accesstoken?: InputMaybe<StringNullableWithAggregatesFilter>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   deviceManagerId?: InputMaybe<StringWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
@@ -4393,7 +4378,6 @@ export type DeviceProfileUpdateInput = {
   DeviceManager?: InputMaybe<DeviceManagerUpdateOneRequiredWithoutDeviceProfilesNestedInput>;
   ProfileType?: InputMaybe<EnumProfileTypeFieldUpdateOperationsInput>;
   RefreshToken?: InputMaybe<RefreshTokenUpdateOneWithoutDeviceProfileNestedInput>;
-  accesstoken?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   isActive?: InputMaybe<BoolFieldUpdateOperationsInput>;
@@ -4404,7 +4388,6 @@ export type DeviceProfileUpdateInput = {
 export type DeviceProfileUpdateManyMutationInput = {
   AppType?: InputMaybe<EnumAppTypeFieldUpdateOperationsInput>;
   ProfileType?: InputMaybe<EnumProfileTypeFieldUpdateOperationsInput>;
-  accesstoken?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   isActive?: InputMaybe<BoolFieldUpdateOperationsInput>;
@@ -4418,17 +4401,17 @@ export type DeviceProfileUpdateManyWithWhereWithoutDeviceManagerInput = {
 };
 
 export type DeviceProfileUpdateManyWithoutDeviceManagerNestedInput = {
-  connect?: InputMaybe<DeviceProfileWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<DeviceProfileCreateOrConnectWithoutDeviceManagerInput[]>;
-  create?: InputMaybe<DeviceProfileCreateWithoutDeviceManagerInput[]>;
+  connect?: InputMaybe<Array<DeviceProfileWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<DeviceProfileCreateOrConnectWithoutDeviceManagerInput>>;
+  create?: InputMaybe<Array<DeviceProfileCreateWithoutDeviceManagerInput>>;
   createMany?: InputMaybe<DeviceProfileCreateManyDeviceManagerInputEnvelope>;
-  delete?: InputMaybe<DeviceProfileWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<DeviceProfileScalarWhereInput[]>;
-  disconnect?: InputMaybe<DeviceProfileWhereUniqueInput[]>;
-  set?: InputMaybe<DeviceProfileWhereUniqueInput[]>;
-  update?: InputMaybe<DeviceProfileUpdateWithWhereUniqueWithoutDeviceManagerInput[]>;
-  updateMany?: InputMaybe<DeviceProfileUpdateManyWithWhereWithoutDeviceManagerInput[]>;
-  upsert?: InputMaybe<DeviceProfileUpsertWithWhereUniqueWithoutDeviceManagerInput[]>;
+  delete?: InputMaybe<Array<DeviceProfileWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<DeviceProfileScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<DeviceProfileWhereUniqueInput>>;
+  set?: InputMaybe<Array<DeviceProfileWhereUniqueInput>>;
+  update?: InputMaybe<Array<DeviceProfileUpdateWithWhereUniqueWithoutDeviceManagerInput>>;
+  updateMany?: InputMaybe<Array<DeviceProfileUpdateManyWithWhereWithoutDeviceManagerInput>>;
+  upsert?: InputMaybe<Array<DeviceProfileUpsertWithWhereUniqueWithoutDeviceManagerInput>>;
 };
 
 export type DeviceProfileUpdateOneWithoutRefreshTokenNestedInput = {
@@ -4455,7 +4438,6 @@ export type DeviceProfileUpdateWithoutDeviceManagerInput = {
   AppType?: InputMaybe<EnumAppTypeFieldUpdateOperationsInput>;
   ProfileType?: InputMaybe<EnumProfileTypeFieldUpdateOperationsInput>;
   RefreshToken?: InputMaybe<RefreshTokenUpdateOneWithoutDeviceProfileNestedInput>;
-  accesstoken?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   isActive?: InputMaybe<BoolFieldUpdateOperationsInput>;
@@ -4467,7 +4449,6 @@ export type DeviceProfileUpdateWithoutRefreshTokenInput = {
   AppType?: InputMaybe<EnumAppTypeFieldUpdateOperationsInput>;
   DeviceManager?: InputMaybe<DeviceManagerUpdateOneRequiredWithoutDeviceProfilesNestedInput>;
   ProfileType?: InputMaybe<EnumProfileTypeFieldUpdateOperationsInput>;
-  accesstoken?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   isActive?: InputMaybe<BoolFieldUpdateOperationsInput>;
@@ -4488,14 +4469,13 @@ export type DeviceProfileUpsertWithoutRefreshTokenInput = {
 };
 
 export type DeviceProfileWhereInput = {
-  AND?: InputMaybe<DeviceProfileWhereInput[]>;
+  AND?: InputMaybe<Array<DeviceProfileWhereInput>>;
   AppType?: InputMaybe<EnumAppTypeFilter>;
   DeviceManager?: InputMaybe<DeviceManagerWhereInput>;
-  NOT?: InputMaybe<DeviceProfileWhereInput[]>;
-  OR?: InputMaybe<DeviceProfileWhereInput[]>;
+  NOT?: InputMaybe<Array<DeviceProfileWhereInput>>;
+  OR?: InputMaybe<Array<DeviceProfileWhereInput>>;
   ProfileType?: InputMaybe<EnumProfileTypeFilter>;
   RefreshToken?: InputMaybe<RefreshTokenWhereInput>;
-  accesstoken?: InputMaybe<StringNullableFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   deviceManagerId?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
@@ -4505,14 +4485,13 @@ export type DeviceProfileWhereInput = {
 };
 
 export type DeviceProfileWhereUniqueInput = {
-  AND?: InputMaybe<DeviceProfileWhereInput[]>;
+  AND?: InputMaybe<Array<DeviceProfileWhereInput>>;
   AppType?: InputMaybe<EnumAppTypeFilter>;
   DeviceManager?: InputMaybe<DeviceManagerWhereInput>;
-  NOT?: InputMaybe<DeviceProfileWhereInput[]>;
-  OR?: InputMaybe<DeviceProfileWhereInput[]>;
+  NOT?: InputMaybe<Array<DeviceProfileWhereInput>>;
+  OR?: InputMaybe<Array<DeviceProfileWhereInput>>;
   ProfileType?: InputMaybe<EnumProfileTypeFilter>;
   RefreshToken?: InputMaybe<RefreshTokenWhereInput>;
-  accesstoken?: InputMaybe<StringNullableFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   deviceManagerId?: InputMaybe<StringFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
@@ -4531,9 +4510,9 @@ export enum DeviceScalarFieldEnum {
 }
 
 export type DeviceScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<DeviceScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<DeviceScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<DeviceScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<DeviceScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<DeviceScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<DeviceScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeNullableWithAggregatesFilter>;
   deviceManagerId?: InputMaybe<StringWithAggregatesFilter>;
   deviceType?: InputMaybe<StringWithAggregatesFilter>;
@@ -4617,10 +4596,10 @@ export type DeviceUpsertWithoutPushTokenInput = {
 };
 
 export type DeviceWhereInput = {
-  AND?: InputMaybe<DeviceWhereInput[]>;
+  AND?: InputMaybe<Array<DeviceWhereInput>>;
   DeviceManager?: InputMaybe<DeviceManagerWhereInput>;
-  NOT?: InputMaybe<DeviceWhereInput[]>;
-  OR?: InputMaybe<DeviceWhereInput[]>;
+  NOT?: InputMaybe<Array<DeviceWhereInput>>;
+  OR?: InputMaybe<Array<DeviceWhereInput>>;
   PushToken?: InputMaybe<PushTokenWhereInput>;
   createdAt?: InputMaybe<DateTimeNullableFilter>;
   deviceManagerId?: InputMaybe<StringFilter>;
@@ -4631,10 +4610,10 @@ export type DeviceWhereInput = {
 };
 
 export type DeviceWhereUniqueInput = {
-  AND?: InputMaybe<DeviceWhereInput[]>;
+  AND?: InputMaybe<Array<DeviceWhereInput>>;
   DeviceManager?: InputMaybe<DeviceManagerWhereInput>;
-  NOT?: InputMaybe<DeviceWhereInput[]>;
-  OR?: InputMaybe<DeviceWhereInput[]>;
+  NOT?: InputMaybe<Array<DeviceWhereInput>>;
+  OR?: InputMaybe<Array<DeviceWhereInput>>;
   PushToken?: InputMaybe<PushTokenWhereInput>;
   createdAt?: InputMaybe<DateTimeNullableFilter>;
   deviceManagerId?: InputMaybe<Scalars['String']['input']>;
@@ -4646,7 +4625,7 @@ export type DeviceWhereUniqueInput = {
 
 export type Document = {
   __typename?: 'Document';
-  LegalAgreement: LegalAgreement[];
+  LegalAgreement: Array<LegalAgreement>;
   TypeOfDocument: TypeOfDocument;
   content: Scalars['String']['output'];
   createdAt: Scalars['DateTime']['output'];
@@ -4752,9 +4731,9 @@ export enum DocumentScalarFieldEnum {
 }
 
 export type DocumentScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<DocumentScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<DocumentScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<DocumentScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<DocumentScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<DocumentScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<DocumentScalarWhereWithAggregatesInput>>;
   TypeOfDocument?: InputMaybe<EnumTypeOfDocumentWithAggregatesFilter>;
   content?: InputMaybe<StringWithAggregatesFilter>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
@@ -4808,10 +4787,10 @@ export type DocumentUpsertWithoutLegalAgreementInput = {
 };
 
 export type DocumentWhereInput = {
-  AND?: InputMaybe<DocumentWhereInput[]>;
+  AND?: InputMaybe<Array<DocumentWhereInput>>;
   LegalAgreement?: InputMaybe<LegalAgreementListRelationFilter>;
-  NOT?: InputMaybe<DocumentWhereInput[]>;
-  OR?: InputMaybe<DocumentWhereInput[]>;
+  NOT?: InputMaybe<Array<DocumentWhereInput>>;
+  OR?: InputMaybe<Array<DocumentWhereInput>>;
   TypeOfDocument?: InputMaybe<EnumTypeOfDocumentFilter>;
   content?: InputMaybe<StringFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -4820,10 +4799,10 @@ export type DocumentWhereInput = {
 };
 
 export type DocumentWhereUniqueInput = {
-  AND?: InputMaybe<DocumentWhereInput[]>;
+  AND?: InputMaybe<Array<DocumentWhereInput>>;
   LegalAgreement?: InputMaybe<LegalAgreementListRelationFilter>;
-  NOT?: InputMaybe<DocumentWhereInput[]>;
-  OR?: InputMaybe<DocumentWhereInput[]>;
+  NOT?: InputMaybe<Array<DocumentWhereInput>>;
+  OR?: InputMaybe<Array<DocumentWhereInput>>;
   TypeOfDocument?: InputMaybe<EnumTypeOfDocumentFilter>;
   content?: InputMaybe<StringFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -4833,7 +4812,7 @@ export type DocumentWhereUniqueInput = {
 
 export type Email = {
   __typename?: 'Email';
-  AuthenticationProvider: AuthenticationProvider[];
+  AuthenticationProvider: Array<AuthenticationProvider>;
   canUseAsRecovery?: Maybe<Scalars['Boolean']['output']>;
   createdAt: Scalars['DateTime']['output'];
   email: Scalars['String']['output'];
@@ -4844,8 +4823,8 @@ export type Email = {
 
 export type EmailAuthenticationProviderArgs = {
   cursor?: InputMaybe<AuthenticationProviderWhereUniqueInput>;
-  distinct?: InputMaybe<AuthenticationProviderScalarFieldEnum[]>;
-  orderBy?: InputMaybe<AuthenticationProviderOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<AuthenticationProviderScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<AuthenticationProviderOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<AuthenticationProviderWhereInput>;
@@ -4880,9 +4859,9 @@ export type EmailCreateManyInput = {
 };
 
 export type EmailCreateNestedManyWithoutAuthenticationProviderInput = {
-  connect?: InputMaybe<EmailWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<EmailCreateOrConnectWithoutAuthenticationProviderInput[]>;
-  create?: InputMaybe<EmailCreateWithoutAuthenticationProviderInput[]>;
+  connect?: InputMaybe<Array<EmailWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<EmailCreateOrConnectWithoutAuthenticationProviderInput>>;
+  create?: InputMaybe<Array<EmailCreateWithoutAuthenticationProviderInput>>;
 };
 
 export type EmailCreateOrConnectWithoutAuthenticationProviderInput = {
@@ -4958,9 +4937,9 @@ export enum EmailScalarFieldEnum {
 }
 
 export type EmailScalarWhereInput = {
-  AND?: InputMaybe<EmailScalarWhereInput[]>;
-  NOT?: InputMaybe<EmailScalarWhereInput[]>;
-  OR?: InputMaybe<EmailScalarWhereInput[]>;
+  AND?: InputMaybe<Array<EmailScalarWhereInput>>;
+  NOT?: InputMaybe<Array<EmailScalarWhereInput>>;
+  OR?: InputMaybe<Array<EmailScalarWhereInput>>;
   canUseAsRecovery?: InputMaybe<BoolNullableFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   email?: InputMaybe<StringFilter>;
@@ -4969,9 +4948,9 @@ export type EmailScalarWhereInput = {
 };
 
 export type EmailScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<EmailScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<EmailScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<EmailScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<EmailScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<EmailScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<EmailScalarWhereWithAggregatesInput>>;
   canUseAsRecovery?: InputMaybe<BoolNullableWithAggregatesFilter>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   email?: InputMaybe<StringWithAggregatesFilter>;
@@ -5004,16 +4983,16 @@ export type EmailUpdateManyWithWhereWithoutAuthenticationProviderInput = {
 };
 
 export type EmailUpdateManyWithoutAuthenticationProviderNestedInput = {
-  connect?: InputMaybe<EmailWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<EmailCreateOrConnectWithoutAuthenticationProviderInput[]>;
-  create?: InputMaybe<EmailCreateWithoutAuthenticationProviderInput[]>;
-  delete?: InputMaybe<EmailWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<EmailScalarWhereInput[]>;
-  disconnect?: InputMaybe<EmailWhereUniqueInput[]>;
-  set?: InputMaybe<EmailWhereUniqueInput[]>;
-  update?: InputMaybe<EmailUpdateWithWhereUniqueWithoutAuthenticationProviderInput[]>;
-  updateMany?: InputMaybe<EmailUpdateManyWithWhereWithoutAuthenticationProviderInput[]>;
-  upsert?: InputMaybe<EmailUpsertWithWhereUniqueWithoutAuthenticationProviderInput[]>;
+  connect?: InputMaybe<Array<EmailWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<EmailCreateOrConnectWithoutAuthenticationProviderInput>>;
+  create?: InputMaybe<Array<EmailCreateWithoutAuthenticationProviderInput>>;
+  delete?: InputMaybe<Array<EmailWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<EmailScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<EmailWhereUniqueInput>>;
+  set?: InputMaybe<Array<EmailWhereUniqueInput>>;
+  update?: InputMaybe<Array<EmailUpdateWithWhereUniqueWithoutAuthenticationProviderInput>>;
+  updateMany?: InputMaybe<Array<EmailUpdateManyWithWhereWithoutAuthenticationProviderInput>>;
+  upsert?: InputMaybe<Array<EmailUpsertWithWhereUniqueWithoutAuthenticationProviderInput>>;
 };
 
 export type EmailUpdateWithWhereUniqueWithoutAuthenticationProviderInput = {
@@ -5035,10 +5014,10 @@ export type EmailUpsertWithWhereUniqueWithoutAuthenticationProviderInput = {
 };
 
 export type EmailWhereInput = {
-  AND?: InputMaybe<EmailWhereInput[]>;
+  AND?: InputMaybe<Array<EmailWhereInput>>;
   AuthenticationProvider?: InputMaybe<AuthenticationProviderListRelationFilter>;
-  NOT?: InputMaybe<EmailWhereInput[]>;
-  OR?: InputMaybe<EmailWhereInput[]>;
+  NOT?: InputMaybe<Array<EmailWhereInput>>;
+  OR?: InputMaybe<Array<EmailWhereInput>>;
   canUseAsRecovery?: InputMaybe<BoolNullableFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   email?: InputMaybe<StringFilter>;
@@ -5047,10 +5026,10 @@ export type EmailWhereInput = {
 };
 
 export type EmailWhereUniqueInput = {
-  AND?: InputMaybe<EmailWhereInput[]>;
+  AND?: InputMaybe<Array<EmailWhereInput>>;
   AuthenticationProvider?: InputMaybe<AuthenticationProviderListRelationFilter>;
-  NOT?: InputMaybe<EmailWhereInput[]>;
-  OR?: InputMaybe<EmailWhereInput[]>;
+  NOT?: InputMaybe<Array<EmailWhereInput>>;
+  OR?: InputMaybe<Array<EmailWhereInput>>;
   canUseAsRecovery?: InputMaybe<BoolNullableFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   email?: InputMaybe<StringFilter>;
@@ -5060,7 +5039,7 @@ export type EmailWhereUniqueInput = {
 
 export type Emojimood = {
   __typename?: 'Emojimood';
-  colors: Scalars['String']['output'][];
+  colors: Array<Scalars['String']['output']>;
   emoji?: Maybe<Scalars['String']['output']>;
   emojiname?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
@@ -5079,13 +5058,13 @@ export type EmojimoodCountOrderByAggregateInput = {
 
 export type EmojimoodCreateInput = {
   Story?: InputMaybe<StoryCreateNestedManyWithoutEmojimoodInput>;
-  colors?: InputMaybe<Scalars['String']['input'][]>;
+  colors?: InputMaybe<Array<Scalars['String']['input']>>;
   emoji?: InputMaybe<Scalars['String']['input']>;
   emojiname?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type EmojimoodCreateManyInput = {
-  colors?: InputMaybe<Scalars['String']['input'][]>;
+  colors?: InputMaybe<Array<Scalars['String']['input']>>;
   emoji?: InputMaybe<Scalars['String']['input']>;
   emojiname?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
@@ -5103,13 +5082,13 @@ export type EmojimoodCreateOrConnectWithoutStoryInput = {
 };
 
 export type EmojimoodCreateWithoutStoryInput = {
-  colors?: InputMaybe<Scalars['String']['input'][]>;
+  colors?: InputMaybe<Array<Scalars['String']['input']>>;
   emoji?: InputMaybe<Scalars['String']['input']>;
   emojiname?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type EmojimoodCreatecolorsInput = {
-  set: Scalars['String']['input'][];
+  set: Array<Scalars['String']['input']>;
 };
 
 export type EmojimoodMaxOrderByAggregateInput = {
@@ -5157,9 +5136,9 @@ export enum EmojimoodScalarFieldEnum {
 }
 
 export type EmojimoodScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<EmojimoodScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<EmojimoodScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<EmojimoodScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<EmojimoodScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<EmojimoodScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<EmojimoodScalarWhereWithAggregatesInput>>;
   colors?: InputMaybe<StringNullableListFilter>;
   emoji?: InputMaybe<StringNullableWithAggregatesFilter>;
   emojiname?: InputMaybe<StringNullableWithAggregatesFilter>;
@@ -5172,13 +5151,13 @@ export type EmojimoodSumOrderByAggregateInput = {
 
 export type EmojimoodUpdateInput = {
   Story?: InputMaybe<StoryUpdateManyWithoutEmojimoodNestedInput>;
-  colors?: InputMaybe<Scalars['String']['input'][]>;
+  colors?: InputMaybe<Array<Scalars['String']['input']>>;
   emoji?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   emojiname?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
 };
 
 export type EmojimoodUpdateManyMutationInput = {
-  colors?: InputMaybe<Scalars['String']['input'][]>;
+  colors?: InputMaybe<Array<Scalars['String']['input']>>;
   emoji?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   emojiname?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
 };
@@ -5199,14 +5178,14 @@ export type EmojimoodUpdateToOneWithWhereWithoutStoryInput = {
 };
 
 export type EmojimoodUpdateWithoutStoryInput = {
-  colors?: InputMaybe<Scalars['String']['input'][]>;
+  colors?: InputMaybe<Array<Scalars['String']['input']>>;
   emoji?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   emojiname?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
 };
 
 export type EmojimoodUpdatecolorsInput = {
-  push?: InputMaybe<Scalars['String']['input'][]>;
-  set?: InputMaybe<Scalars['String']['input'][]>;
+  push?: InputMaybe<Array<Scalars['String']['input']>>;
+  set?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type EmojimoodUpsertWithoutStoryInput = {
@@ -5216,9 +5195,9 @@ export type EmojimoodUpsertWithoutStoryInput = {
 };
 
 export type EmojimoodWhereInput = {
-  AND?: InputMaybe<EmojimoodWhereInput[]>;
-  NOT?: InputMaybe<EmojimoodWhereInput[]>;
-  OR?: InputMaybe<EmojimoodWhereInput[]>;
+  AND?: InputMaybe<Array<EmojimoodWhereInput>>;
+  NOT?: InputMaybe<Array<EmojimoodWhereInput>>;
+  OR?: InputMaybe<Array<EmojimoodWhereInput>>;
   Story?: InputMaybe<StoryListRelationFilter>;
   colors?: InputMaybe<StringNullableListFilter>;
   emoji?: InputMaybe<StringNullableFilter>;
@@ -5227,9 +5206,9 @@ export type EmojimoodWhereInput = {
 };
 
 export type EmojimoodWhereUniqueInput = {
-  AND?: InputMaybe<EmojimoodWhereInput[]>;
-  NOT?: InputMaybe<EmojimoodWhereInput[]>;
-  OR?: InputMaybe<EmojimoodWhereInput[]>;
+  AND?: InputMaybe<Array<EmojimoodWhereInput>>;
+  NOT?: InputMaybe<Array<EmojimoodWhereInput>>;
+  OR?: InputMaybe<Array<EmojimoodWhereInput>>;
   Story?: InputMaybe<StoryListRelationFilter>;
   colors?: InputMaybe<StringNullableListFilter>;
   emoji?: InputMaybe<StringNullableFilter>;
@@ -5243,9 +5222,9 @@ export type EnumAppTypeFieldUpdateOperationsInput = {
 
 export type EnumAppTypeFilter = {
   equals?: InputMaybe<AppType>;
-  in?: InputMaybe<AppType[]>;
+  in?: InputMaybe<Array<AppType>>;
   not?: InputMaybe<AppType>;
-  notIn?: InputMaybe<AppType[]>;
+  notIn?: InputMaybe<Array<AppType>>;
 };
 
 export type EnumAppTypeWithAggregatesFilter = {
@@ -5253,9 +5232,9 @@ export type EnumAppTypeWithAggregatesFilter = {
   _max?: InputMaybe<NestedEnumAppTypeFilter>;
   _min?: InputMaybe<NestedEnumAppTypeFilter>;
   equals?: InputMaybe<AppType>;
-  in?: InputMaybe<AppType[]>;
+  in?: InputMaybe<Array<AppType>>;
   not?: InputMaybe<AppType>;
-  notIn?: InputMaybe<AppType[]>;
+  notIn?: InputMaybe<Array<AppType>>;
 };
 
 export type EnumNotificationTypeFieldUpdateOperationsInput = {
@@ -5264,9 +5243,9 @@ export type EnumNotificationTypeFieldUpdateOperationsInput = {
 
 export type EnumNotificationTypeFilter = {
   equals?: InputMaybe<NotificationType>;
-  in?: InputMaybe<NotificationType[]>;
+  in?: InputMaybe<Array<NotificationType>>;
   not?: InputMaybe<NotificationType>;
-  notIn?: InputMaybe<NotificationType[]>;
+  notIn?: InputMaybe<Array<NotificationType>>;
 };
 
 export type EnumNotificationTypeWithAggregatesFilter = {
@@ -5274,9 +5253,9 @@ export type EnumNotificationTypeWithAggregatesFilter = {
   _max?: InputMaybe<NestedEnumNotificationTypeFilter>;
   _min?: InputMaybe<NestedEnumNotificationTypeFilter>;
   equals?: InputMaybe<NotificationType>;
-  in?: InputMaybe<NotificationType[]>;
+  in?: InputMaybe<Array<NotificationType>>;
   not?: InputMaybe<NotificationType>;
-  notIn?: InputMaybe<NotificationType[]>;
+  notIn?: InputMaybe<Array<NotificationType>>;
 };
 
 export type EnumOutTypeFieldUpdateOperationsInput = {
@@ -5285,9 +5264,9 @@ export type EnumOutTypeFieldUpdateOperationsInput = {
 
 export type EnumOutTypeFilter = {
   equals?: InputMaybe<OutType>;
-  in?: InputMaybe<OutType[]>;
+  in?: InputMaybe<Array<OutType>>;
   not?: InputMaybe<OutType>;
-  notIn?: InputMaybe<OutType[]>;
+  notIn?: InputMaybe<Array<OutType>>;
 };
 
 export type EnumOutTypeWithAggregatesFilter = {
@@ -5295,16 +5274,16 @@ export type EnumOutTypeWithAggregatesFilter = {
   _max?: InputMaybe<NestedEnumOutTypeFilter>;
   _min?: InputMaybe<NestedEnumOutTypeFilter>;
   equals?: InputMaybe<OutType>;
-  in?: InputMaybe<OutType[]>;
+  in?: InputMaybe<Array<OutType>>;
   not?: InputMaybe<OutType>;
-  notIn?: InputMaybe<OutType[]>;
+  notIn?: InputMaybe<Array<OutType>>;
 };
 
 export type EnumPhotoTypeNullableFilter = {
   equals?: InputMaybe<PhotoType>;
-  in?: InputMaybe<PhotoType[]>;
+  in?: InputMaybe<Array<PhotoType>>;
   not?: InputMaybe<PhotoType>;
-  notIn?: InputMaybe<PhotoType[]>;
+  notIn?: InputMaybe<Array<PhotoType>>;
 };
 
 export type EnumPhotoTypeNullableWithAggregatesFilter = {
@@ -5312,9 +5291,9 @@ export type EnumPhotoTypeNullableWithAggregatesFilter = {
   _max?: InputMaybe<NestedEnumPhotoTypeNullableFilter>;
   _min?: InputMaybe<NestedEnumPhotoTypeNullableFilter>;
   equals?: InputMaybe<PhotoType>;
-  in?: InputMaybe<PhotoType[]>;
+  in?: InputMaybe<Array<PhotoType>>;
   not?: InputMaybe<PhotoType>;
-  notIn?: InputMaybe<PhotoType[]>;
+  notIn?: InputMaybe<Array<PhotoType>>;
 };
 
 export type EnumProfileTypeFieldUpdateOperationsInput = {
@@ -5323,9 +5302,9 @@ export type EnumProfileTypeFieldUpdateOperationsInput = {
 
 export type EnumProfileTypeFilter = {
   equals?: InputMaybe<ProfileType>;
-  in?: InputMaybe<ProfileType[]>;
+  in?: InputMaybe<Array<ProfileType>>;
   not?: InputMaybe<ProfileType>;
-  notIn?: InputMaybe<ProfileType[]>;
+  notIn?: InputMaybe<Array<ProfileType>>;
 };
 
 export type EnumProfileTypeWithAggregatesFilter = {
@@ -5333,16 +5312,16 @@ export type EnumProfileTypeWithAggregatesFilter = {
   _max?: InputMaybe<NestedEnumProfileTypeFilter>;
   _min?: InputMaybe<NestedEnumProfileTypeFilter>;
   equals?: InputMaybe<ProfileType>;
-  in?: InputMaybe<ProfileType[]>;
+  in?: InputMaybe<Array<ProfileType>>;
   not?: InputMaybe<ProfileType>;
-  notIn?: InputMaybe<ProfileType[]>;
+  notIn?: InputMaybe<Array<ProfileType>>;
 };
 
 export type EnumRelationshipStatusNullableListFilter = {
-  equals?: InputMaybe<RelationshipStatus[]>;
+  equals?: InputMaybe<Array<RelationshipStatus>>;
   has?: InputMaybe<RelationshipStatus>;
-  hasEvery?: InputMaybe<RelationshipStatus[]>;
-  hasSome?: InputMaybe<RelationshipStatus[]>;
+  hasEvery?: InputMaybe<Array<RelationshipStatus>>;
+  hasSome?: InputMaybe<Array<RelationshipStatus>>;
   isEmpty?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -5352,9 +5331,9 @@ export type EnumSecureDataTypeFieldUpdateOperationsInput = {
 
 export type EnumSecureDataTypeFilter = {
   equals?: InputMaybe<SecureDataType>;
-  in?: InputMaybe<SecureDataType[]>;
+  in?: InputMaybe<Array<SecureDataType>>;
   not?: InputMaybe<SecureDataType>;
-  notIn?: InputMaybe<SecureDataType[]>;
+  notIn?: InputMaybe<Array<SecureDataType>>;
 };
 
 export type EnumSecureDataTypeWithAggregatesFilter = {
@@ -5362,16 +5341,16 @@ export type EnumSecureDataTypeWithAggregatesFilter = {
   _max?: InputMaybe<NestedEnumSecureDataTypeFilter>;
   _min?: InputMaybe<NestedEnumSecureDataTypeFilter>;
   equals?: InputMaybe<SecureDataType>;
-  in?: InputMaybe<SecureDataType[]>;
+  in?: InputMaybe<Array<SecureDataType>>;
   not?: InputMaybe<SecureDataType>;
-  notIn?: InputMaybe<SecureDataType[]>;
+  notIn?: InputMaybe<Array<SecureDataType>>;
 };
 
 export type EnumTokenTypeNullableFilter = {
   equals?: InputMaybe<TokenType>;
-  in?: InputMaybe<TokenType[]>;
+  in?: InputMaybe<Array<TokenType>>;
   not?: InputMaybe<TokenType>;
-  notIn?: InputMaybe<TokenType[]>;
+  notIn?: InputMaybe<Array<TokenType>>;
 };
 
 export type EnumTokenTypeNullableWithAggregatesFilter = {
@@ -5379,9 +5358,9 @@ export type EnumTokenTypeNullableWithAggregatesFilter = {
   _max?: InputMaybe<NestedEnumTokenTypeNullableFilter>;
   _min?: InputMaybe<NestedEnumTokenTypeNullableFilter>;
   equals?: InputMaybe<TokenType>;
-  in?: InputMaybe<TokenType[]>;
+  in?: InputMaybe<Array<TokenType>>;
   not?: InputMaybe<TokenType>;
-  notIn?: InputMaybe<TokenType[]>;
+  notIn?: InputMaybe<Array<TokenType>>;
 };
 
 export type EnumTypeOfDocumentFieldUpdateOperationsInput = {
@@ -5390,9 +5369,9 @@ export type EnumTypeOfDocumentFieldUpdateOperationsInput = {
 
 export type EnumTypeOfDocumentFilter = {
   equals?: InputMaybe<TypeOfDocument>;
-  in?: InputMaybe<TypeOfDocument[]>;
+  in?: InputMaybe<Array<TypeOfDocument>>;
   not?: InputMaybe<TypeOfDocument>;
-  notIn?: InputMaybe<TypeOfDocument[]>;
+  notIn?: InputMaybe<Array<TypeOfDocument>>;
 };
 
 export type EnumTypeOfDocumentWithAggregatesFilter = {
@@ -5400,9 +5379,9 @@ export type EnumTypeOfDocumentWithAggregatesFilter = {
   _max?: InputMaybe<NestedEnumTypeOfDocumentFilter>;
   _min?: InputMaybe<NestedEnumTypeOfDocumentFilter>;
   equals?: InputMaybe<TypeOfDocument>;
-  in?: InputMaybe<TypeOfDocument[]>;
+  in?: InputMaybe<Array<TypeOfDocument>>;
   not?: InputMaybe<TypeOfDocument>;
-  notIn?: InputMaybe<TypeOfDocument[]>;
+  notIn?: InputMaybe<Array<TypeOfDocument>>;
 };
 
 /** Long necks, cool patterns, taller than you. */
@@ -5414,9 +5393,9 @@ export type Error = {
 
 export type ExploreResponse = {
   __typename?: 'ExploreResponse';
-  events?: Maybe<Scalars['Json']['output'][]>;
-  people: Personal[];
-  venues: Venue[];
+  events?: Maybe<Array<Scalars['Json']['output']>>;
+  people: Array<Personal>;
+  venues: Array<Venue>;
 };
 
 export type FloatFieldUpdateOperationsInput = {
@@ -5431,11 +5410,11 @@ export type FloatFilter = {
   equals?: InputMaybe<Scalars['Float']['input']>;
   gt?: InputMaybe<Scalars['Float']['input']>;
   gte?: InputMaybe<Scalars['Float']['input']>;
-  in?: InputMaybe<Scalars['Float']['input'][]>;
+  in?: InputMaybe<Array<Scalars['Float']['input']>>;
   lt?: InputMaybe<Scalars['Float']['input']>;
   lte?: InputMaybe<Scalars['Float']['input']>;
   not?: InputMaybe<NestedFloatFilter>;
-  notIn?: InputMaybe<Scalars['Float']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['Float']['input']>>;
 };
 
 export type FloatWithAggregatesFilter = {
@@ -5447,11 +5426,11 @@ export type FloatWithAggregatesFilter = {
   equals?: InputMaybe<Scalars['Float']['input']>;
   gt?: InputMaybe<Scalars['Float']['input']>;
   gte?: InputMaybe<Scalars['Float']['input']>;
-  in?: InputMaybe<Scalars['Float']['input'][]>;
+  in?: InputMaybe<Array<Scalars['Float']['input']>>;
   lt?: InputMaybe<Scalars['Float']['input']>;
   lte?: InputMaybe<Scalars['Float']['input']>;
   not?: InputMaybe<NestedFloatWithAggregatesFilter>;
-  notIn?: InputMaybe<Scalars['Float']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['Float']['input']>>;
 };
 
 export type Geometry = {
@@ -5605,9 +5584,9 @@ export enum GeometryScalarFieldEnum {
 }
 
 export type GeometryScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<GeometryScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<GeometryScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<GeometryScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<GeometryScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<GeometryScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<GeometryScalarWhereWithAggregatesInput>>;
   h3Index15?: InputMaybe<StringNullableWithAggregatesFilter>;
   id?: InputMaybe<IntWithAggregatesFilter>;
   latitude?: InputMaybe<FloatWithAggregatesFilter>;
@@ -5719,11 +5698,11 @@ export type GeometryUpsertWithoutStateInput = {
 };
 
 export type GeometryWhereInput = {
-  AND?: InputMaybe<GeometryWhereInput[]>;
+  AND?: InputMaybe<Array<GeometryWhereInput>>;
   City?: InputMaybe<CityWhereInput>;
   Location?: InputMaybe<LocationWhereInput>;
-  NOT?: InputMaybe<GeometryWhereInput[]>;
-  OR?: InputMaybe<GeometryWhereInput[]>;
+  NOT?: InputMaybe<Array<GeometryWhereInput>>;
+  OR?: InputMaybe<Array<GeometryWhereInput>>;
   State?: InputMaybe<StateWhereInput>;
   h3Index15?: InputMaybe<StringNullableFilter>;
   id?: InputMaybe<IntFilter>;
@@ -5732,11 +5711,11 @@ export type GeometryWhereInput = {
 };
 
 export type GeometryWhereUniqueInput = {
-  AND?: InputMaybe<GeometryWhereInput[]>;
+  AND?: InputMaybe<Array<GeometryWhereInput>>;
   City?: InputMaybe<CityWhereInput>;
   Location?: InputMaybe<LocationWhereInput>;
-  NOT?: InputMaybe<GeometryWhereInput[]>;
-  OR?: InputMaybe<GeometryWhereInput[]>;
+  NOT?: InputMaybe<Array<GeometryWhereInput>>;
+  OR?: InputMaybe<Array<GeometryWhereInput>>;
   State?: InputMaybe<StateWhereInput>;
   h3Index15?: InputMaybe<StringNullableFilter>;
   id?: InputMaybe<Scalars['Int']['input']>;
@@ -5746,8 +5725,8 @@ export type GeometryWhereUniqueInput = {
 
 export type Group = {
   __typename?: 'Group';
-  Photos: Photo[];
-  Profile: Profile[];
+  Photos: Array<Photo>;
+  Profile: Array<Profile>;
   createdAt: Scalars['DateTime']['output'];
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
@@ -5757,8 +5736,8 @@ export type Group = {
 
 export type GroupPhotosArgs = {
   cursor?: InputMaybe<PhotoWhereUniqueInput>;
-  distinct?: InputMaybe<PhotoScalarFieldEnum[]>;
-  orderBy?: InputMaybe<PhotoOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<PhotoScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<PhotoOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<PhotoWhereInput>;
@@ -5767,8 +5746,8 @@ export type GroupPhotosArgs = {
 
 export type GroupProfileArgs = {
   cursor?: InputMaybe<ProfileWhereUniqueInput>;
-  distinct?: InputMaybe<ProfileScalarFieldEnum[]>;
-  orderBy?: InputMaybe<ProfileOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<ProfileScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<ProfileOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ProfileWhereInput>;
@@ -5798,9 +5777,9 @@ export type GroupCreateManyInput = {
 };
 
 export type GroupCreateNestedManyWithoutProfileInput = {
-  connect?: InputMaybe<GroupWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<GroupCreateOrConnectWithoutProfileInput[]>;
-  create?: InputMaybe<GroupCreateWithoutProfileInput[]>;
+  connect?: InputMaybe<Array<GroupWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<GroupCreateOrConnectWithoutProfileInput>>;
+  create?: InputMaybe<Array<GroupCreateWithoutProfileInput>>;
 };
 
 export type GroupCreateNestedOneWithoutPhotosInput = {
@@ -5891,9 +5870,9 @@ export enum GroupScalarFieldEnum {
 }
 
 export type GroupScalarWhereInput = {
-  AND?: InputMaybe<GroupScalarWhereInput[]>;
-  NOT?: InputMaybe<GroupScalarWhereInput[]>;
-  OR?: InputMaybe<GroupScalarWhereInput[]>;
+  AND?: InputMaybe<Array<GroupScalarWhereInput>>;
+  NOT?: InputMaybe<Array<GroupScalarWhereInput>>;
+  OR?: InputMaybe<Array<GroupScalarWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringFilter>;
@@ -5901,9 +5880,9 @@ export type GroupScalarWhereInput = {
 };
 
 export type GroupScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<GroupScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<GroupScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<GroupScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<GroupScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<GroupScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<GroupScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   name?: InputMaybe<StringWithAggregatesFilter>;
@@ -5932,16 +5911,16 @@ export type GroupUpdateManyWithWhereWithoutProfileInput = {
 };
 
 export type GroupUpdateManyWithoutProfileNestedInput = {
-  connect?: InputMaybe<GroupWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<GroupCreateOrConnectWithoutProfileInput[]>;
-  create?: InputMaybe<GroupCreateWithoutProfileInput[]>;
-  delete?: InputMaybe<GroupWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<GroupScalarWhereInput[]>;
-  disconnect?: InputMaybe<GroupWhereUniqueInput[]>;
-  set?: InputMaybe<GroupWhereUniqueInput[]>;
-  update?: InputMaybe<GroupUpdateWithWhereUniqueWithoutProfileInput[]>;
-  updateMany?: InputMaybe<GroupUpdateManyWithWhereWithoutProfileInput[]>;
-  upsert?: InputMaybe<GroupUpsertWithWhereUniqueWithoutProfileInput[]>;
+  connect?: InputMaybe<Array<GroupWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<GroupCreateOrConnectWithoutProfileInput>>;
+  create?: InputMaybe<Array<GroupCreateWithoutProfileInput>>;
+  delete?: InputMaybe<Array<GroupWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<GroupScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<GroupWhereUniqueInput>>;
+  set?: InputMaybe<Array<GroupWhereUniqueInput>>;
+  update?: InputMaybe<Array<GroupUpdateWithWhereUniqueWithoutProfileInput>>;
+  updateMany?: InputMaybe<Array<GroupUpdateManyWithWhereWithoutProfileInput>>;
+  upsert?: InputMaybe<Array<GroupUpsertWithWhereUniqueWithoutProfileInput>>;
 };
 
 export type GroupUpdateOneWithoutPhotosNestedInput = {
@@ -5993,9 +5972,9 @@ export type GroupUpsertWithoutPhotosInput = {
 };
 
 export type GroupWhereInput = {
-  AND?: InputMaybe<GroupWhereInput[]>;
-  NOT?: InputMaybe<GroupWhereInput[]>;
-  OR?: InputMaybe<GroupWhereInput[]>;
+  AND?: InputMaybe<Array<GroupWhereInput>>;
+  NOT?: InputMaybe<Array<GroupWhereInput>>;
+  OR?: InputMaybe<Array<GroupWhereInput>>;
   Photos?: InputMaybe<PhotoListRelationFilter>;
   Profile?: InputMaybe<ProfileListRelationFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -6005,9 +5984,9 @@ export type GroupWhereInput = {
 };
 
 export type GroupWhereUniqueInput = {
-  AND?: InputMaybe<GroupWhereInput[]>;
-  NOT?: InputMaybe<GroupWhereInput[]>;
-  OR?: InputMaybe<GroupWhereInput[]>;
+  AND?: InputMaybe<Array<GroupWhereInput>>;
+  NOT?: InputMaybe<Array<GroupWhereInput>>;
+  OR?: InputMaybe<Array<GroupWhereInput>>;
   Photos?: InputMaybe<PhotoListRelationFilter>;
   Profile?: InputMaybe<ProfileListRelationFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -6019,23 +5998,23 @@ export type GroupWhereUniqueInput = {
 export type H3Index5VenueRecommendation = {
   __typename?: 'H3Index5VenueRecommendation';
   Area?: Maybe<Area>;
-  SearchAreaMetrics: SearchAreaMetrics[];
-  Vote: Vote[];
+  SearchAreaMetrics: Array<SearchAreaMetrics>;
+  Vote: Array<Vote>;
   areaId?: Maybe<Scalars['String']['output']>;
   createdAt: Scalars['DateTime']['output'];
   h3Index5: Scalars['String']['output'];
   id: Scalars['ID']['output'];
-  keywordSuggestions: Scalars['Json']['output'][];
+  keywordSuggestions: Array<Scalars['Json']['output']>;
   timesRequested?: Maybe<Scalars['Int']['output']>;
   updatedAt: Scalars['DateTime']['output'];
-  venuesProfileIds: Scalars['String']['output'][];
+  venuesProfileIds: Array<Scalars['String']['output']>;
 };
 
 
 export type H3Index5VenueRecommendationSearchAreaMetricsArgs = {
   cursor?: InputMaybe<SearchAreaMetricsWhereUniqueInput>;
-  distinct?: InputMaybe<SearchAreaMetricsScalarFieldEnum[]>;
-  orderBy?: InputMaybe<SearchAreaMetricsOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<SearchAreaMetricsScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<SearchAreaMetricsOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<SearchAreaMetricsWhereInput>;
@@ -6044,8 +6023,8 @@ export type H3Index5VenueRecommendationSearchAreaMetricsArgs = {
 
 export type H3Index5VenueRecommendationVoteArgs = {
   cursor?: InputMaybe<VoteWhereUniqueInput>;
-  distinct?: InputMaybe<VoteScalarFieldEnum[]>;
-  orderBy?: InputMaybe<VoteOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<VoteScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<VoteOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<VoteWhereInput>;
@@ -6073,10 +6052,10 @@ export type H3Index5VenueRecommendationCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   h3Index5: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
-  keywordSuggestions?: InputMaybe<Scalars['Json']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   timesRequested?: InputMaybe<Scalars['Int']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
-  venuesProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index5VenueRecommendationCreateManyInput = {
@@ -6084,10 +6063,10 @@ export type H3Index5VenueRecommendationCreateManyInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   h3Index5: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
-  keywordSuggestions?: InputMaybe<Scalars['Json']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   timesRequested?: InputMaybe<Scalars['Int']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
-  venuesProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index5VenueRecommendationCreateNestedOneWithoutAreaInput = {
@@ -6129,10 +6108,10 @@ export type H3Index5VenueRecommendationCreateWithoutAreaInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   h3Index5: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
-  keywordSuggestions?: InputMaybe<Scalars['Json']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   timesRequested?: InputMaybe<Scalars['Int']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
-  venuesProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index5VenueRecommendationCreateWithoutSearchAreaMetricsInput = {
@@ -6141,10 +6120,10 @@ export type H3Index5VenueRecommendationCreateWithoutSearchAreaMetricsInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   h3Index5: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
-  keywordSuggestions?: InputMaybe<Scalars['Json']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   timesRequested?: InputMaybe<Scalars['Int']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
-  venuesProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index5VenueRecommendationCreateWithoutVoteInput = {
@@ -6153,18 +6132,18 @@ export type H3Index5VenueRecommendationCreateWithoutVoteInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   h3Index5: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
-  keywordSuggestions?: InputMaybe<Scalars['Json']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   timesRequested?: InputMaybe<Scalars['Int']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
-  venuesProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index5VenueRecommendationCreatekeywordSuggestionsInput = {
-  set: Scalars['Json']['input'][];
+  set: Array<Scalars['Json']['input']>;
 };
 
 export type H3Index5VenueRecommendationCreatevenuesProfileIdsInput = {
-  set: Scalars['String']['input'][];
+  set: Array<Scalars['String']['input']>;
 };
 
 export type H3Index5VenueRecommendationMaxOrderByAggregateInput = {
@@ -6232,9 +6211,9 @@ export enum H3Index5VenueRecommendationScalarFieldEnum {
 }
 
 export type H3Index5VenueRecommendationScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<H3Index5VenueRecommendationScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<H3Index5VenueRecommendationScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<H3Index5VenueRecommendationScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<H3Index5VenueRecommendationScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<H3Index5VenueRecommendationScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<H3Index5VenueRecommendationScalarWhereWithAggregatesInput>>;
   areaId?: InputMaybe<StringNullableWithAggregatesFilter>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   h3Index5?: InputMaybe<StringWithAggregatesFilter>;
@@ -6256,20 +6235,20 @@ export type H3Index5VenueRecommendationUpdateInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   h3Index5?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Scalars['Json']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  venuesProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index5VenueRecommendationUpdateManyMutationInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   h3Index5?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Scalars['Json']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  venuesProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index5VenueRecommendationUpdateOneWithoutAreaNestedInput = {
@@ -6323,10 +6302,10 @@ export type H3Index5VenueRecommendationUpdateWithoutAreaInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   h3Index5?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Scalars['Json']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  venuesProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index5VenueRecommendationUpdateWithoutSearchAreaMetricsInput = {
@@ -6335,10 +6314,10 @@ export type H3Index5VenueRecommendationUpdateWithoutSearchAreaMetricsInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   h3Index5?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Scalars['Json']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  venuesProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index5VenueRecommendationUpdateWithoutVoteInput = {
@@ -6347,20 +6326,20 @@ export type H3Index5VenueRecommendationUpdateWithoutVoteInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   h3Index5?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Scalars['Json']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  venuesProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index5VenueRecommendationUpdatekeywordSuggestionsInput = {
   push?: InputMaybe<Scalars['Json']['input']>;
-  set?: InputMaybe<Scalars['Json']['input'][]>;
+  set?: InputMaybe<Array<Scalars['Json']['input']>>;
 };
 
 export type H3Index5VenueRecommendationUpdatevenuesProfileIdsInput = {
-  push?: InputMaybe<Scalars['String']['input'][]>;
-  set?: InputMaybe<Scalars['String']['input'][]>;
+  push?: InputMaybe<Array<Scalars['String']['input']>>;
+  set?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index5VenueRecommendationUpsertWithoutAreaInput = {
@@ -6382,10 +6361,10 @@ export type H3Index5VenueRecommendationUpsertWithoutVoteInput = {
 };
 
 export type H3Index5VenueRecommendationWhereInput = {
-  AND?: InputMaybe<H3Index5VenueRecommendationWhereInput[]>;
+  AND?: InputMaybe<Array<H3Index5VenueRecommendationWhereInput>>;
   Area?: InputMaybe<AreaWhereInput>;
-  NOT?: InputMaybe<H3Index5VenueRecommendationWhereInput[]>;
-  OR?: InputMaybe<H3Index5VenueRecommendationWhereInput[]>;
+  NOT?: InputMaybe<Array<H3Index5VenueRecommendationWhereInput>>;
+  OR?: InputMaybe<Array<H3Index5VenueRecommendationWhereInput>>;
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsListRelationFilter>;
   Vote?: InputMaybe<VoteListRelationFilter>;
   areaId?: InputMaybe<StringNullableFilter>;
@@ -6399,10 +6378,10 @@ export type H3Index5VenueRecommendationWhereInput = {
 };
 
 export type H3Index5VenueRecommendationWhereUniqueInput = {
-  AND?: InputMaybe<H3Index5VenueRecommendationWhereInput[]>;
+  AND?: InputMaybe<Array<H3Index5VenueRecommendationWhereInput>>;
   Area?: InputMaybe<AreaWhereInput>;
-  NOT?: InputMaybe<H3Index5VenueRecommendationWhereInput[]>;
-  OR?: InputMaybe<H3Index5VenueRecommendationWhereInput[]>;
+  NOT?: InputMaybe<Array<H3Index5VenueRecommendationWhereInput>>;
+  OR?: InputMaybe<Array<H3Index5VenueRecommendationWhereInput>>;
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsListRelationFilter>;
   Vote?: InputMaybe<VoteListRelationFilter>;
   areaId?: InputMaybe<Scalars['String']['input']>;
@@ -6418,25 +6397,25 @@ export type H3Index5VenueRecommendationWhereUniqueInput = {
 export type H3Index6VenueRecommendation = {
   __typename?: 'H3Index6VenueRecommendation';
   Area?: Maybe<Area>;
-  SearchAreaMetrics: SearchAreaMetrics[];
-  Vote: Vote[];
+  SearchAreaMetrics: Array<SearchAreaMetrics>;
+  Vote: Array<Vote>;
   areaId?: Maybe<Scalars['String']['output']>;
   createdAt: Scalars['DateTime']['output'];
   distanceInM?: Maybe<Scalars['Int']['output']>;
   h3Index6: Scalars['String']['output'];
   id: Scalars['ID']['output'];
-  keywordSuggestions: Scalars['Json']['output'][];
+  keywordSuggestions: Array<Scalars['Json']['output']>;
   timesRequested?: Maybe<Scalars['Int']['output']>;
   updatedAt: Scalars['DateTime']['output'];
-  venues?: Maybe<ProfileVenue[]>;
-  venuesProfileIds: Scalars['String']['output'][];
+  venues?: Maybe<Array<ProfileVenue>>;
+  venuesProfileIds: Array<Scalars['String']['output']>;
 };
 
 
 export type H3Index6VenueRecommendationSearchAreaMetricsArgs = {
   cursor?: InputMaybe<SearchAreaMetricsWhereUniqueInput>;
-  distinct?: InputMaybe<SearchAreaMetricsScalarFieldEnum[]>;
-  orderBy?: InputMaybe<SearchAreaMetricsOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<SearchAreaMetricsScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<SearchAreaMetricsOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<SearchAreaMetricsWhereInput>;
@@ -6445,8 +6424,8 @@ export type H3Index6VenueRecommendationSearchAreaMetricsArgs = {
 
 export type H3Index6VenueRecommendationVoteArgs = {
   cursor?: InputMaybe<VoteWhereUniqueInput>;
-  distinct?: InputMaybe<VoteScalarFieldEnum[]>;
-  orderBy?: InputMaybe<VoteOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<VoteScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<VoteOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<VoteWhereInput>;
@@ -6474,10 +6453,10 @@ export type H3Index6VenueRecommendationCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   h3Index6: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
-  keywordSuggestions?: InputMaybe<Scalars['Json']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   timesRequested?: InputMaybe<Scalars['Int']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
-  venuesProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index6VenueRecommendationCreateManyInput = {
@@ -6485,10 +6464,10 @@ export type H3Index6VenueRecommendationCreateManyInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   h3Index6: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
-  keywordSuggestions?: InputMaybe<Scalars['Json']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   timesRequested?: InputMaybe<Scalars['Int']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
-  venuesProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index6VenueRecommendationCreateNestedOneWithoutAreaInput = {
@@ -6530,10 +6509,10 @@ export type H3Index6VenueRecommendationCreateWithoutAreaInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   h3Index6: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
-  keywordSuggestions?: InputMaybe<Scalars['Json']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   timesRequested?: InputMaybe<Scalars['Int']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
-  venuesProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index6VenueRecommendationCreateWithoutSearchAreaMetricsInput = {
@@ -6542,10 +6521,10 @@ export type H3Index6VenueRecommendationCreateWithoutSearchAreaMetricsInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   h3Index6: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
-  keywordSuggestions?: InputMaybe<Scalars['Json']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   timesRequested?: InputMaybe<Scalars['Int']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
-  venuesProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index6VenueRecommendationCreateWithoutVoteInput = {
@@ -6554,18 +6533,18 @@ export type H3Index6VenueRecommendationCreateWithoutVoteInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   h3Index6: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
-  keywordSuggestions?: InputMaybe<Scalars['Json']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   timesRequested?: InputMaybe<Scalars['Int']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
-  venuesProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index6VenueRecommendationCreatekeywordSuggestionsInput = {
-  set: Scalars['Json']['input'][];
+  set: Array<Scalars['Json']['input']>;
 };
 
 export type H3Index6VenueRecommendationCreatevenuesProfileIdsInput = {
-  set: Scalars['String']['input'][];
+  set: Array<Scalars['String']['input']>;
 };
 
 export type H3Index6VenueRecommendationMaxOrderByAggregateInput = {
@@ -6633,9 +6612,9 @@ export enum H3Index6VenueRecommendationScalarFieldEnum {
 }
 
 export type H3Index6VenueRecommendationScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<H3Index6VenueRecommendationScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<H3Index6VenueRecommendationScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<H3Index6VenueRecommendationScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<H3Index6VenueRecommendationScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<H3Index6VenueRecommendationScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<H3Index6VenueRecommendationScalarWhereWithAggregatesInput>>;
   areaId?: InputMaybe<StringNullableWithAggregatesFilter>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   h3Index6?: InputMaybe<StringWithAggregatesFilter>;
@@ -6657,20 +6636,20 @@ export type H3Index6VenueRecommendationUpdateInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   h3Index6?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Scalars['Json']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  venuesProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index6VenueRecommendationUpdateManyMutationInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   h3Index6?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Scalars['Json']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  venuesProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index6VenueRecommendationUpdateOneWithoutAreaNestedInput = {
@@ -6724,10 +6703,10 @@ export type H3Index6VenueRecommendationUpdateWithoutAreaInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   h3Index6?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Scalars['Json']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  venuesProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index6VenueRecommendationUpdateWithoutSearchAreaMetricsInput = {
@@ -6736,10 +6715,10 @@ export type H3Index6VenueRecommendationUpdateWithoutSearchAreaMetricsInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   h3Index6?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Scalars['Json']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  venuesProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index6VenueRecommendationUpdateWithoutVoteInput = {
@@ -6748,20 +6727,20 @@ export type H3Index6VenueRecommendationUpdateWithoutVoteInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   h3Index6?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  keywordSuggestions?: InputMaybe<Scalars['Json']['input'][]>;
+  keywordSuggestions?: InputMaybe<Array<Scalars['Json']['input']>>;
   timesRequested?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  venuesProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index6VenueRecommendationUpdatekeywordSuggestionsInput = {
   push?: InputMaybe<Scalars['Json']['input']>;
-  set?: InputMaybe<Scalars['Json']['input'][]>;
+  set?: InputMaybe<Array<Scalars['Json']['input']>>;
 };
 
 export type H3Index6VenueRecommendationUpdatevenuesProfileIdsInput = {
-  push?: InputMaybe<Scalars['String']['input'][]>;
-  set?: InputMaybe<Scalars['String']['input'][]>;
+  push?: InputMaybe<Array<Scalars['String']['input']>>;
+  set?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type H3Index6VenueRecommendationUpsertWithoutAreaInput = {
@@ -6783,10 +6762,10 @@ export type H3Index6VenueRecommendationUpsertWithoutVoteInput = {
 };
 
 export type H3Index6VenueRecommendationWhereInput = {
-  AND?: InputMaybe<H3Index6VenueRecommendationWhereInput[]>;
+  AND?: InputMaybe<Array<H3Index6VenueRecommendationWhereInput>>;
   Area?: InputMaybe<AreaWhereInput>;
-  NOT?: InputMaybe<H3Index6VenueRecommendationWhereInput[]>;
-  OR?: InputMaybe<H3Index6VenueRecommendationWhereInput[]>;
+  NOT?: InputMaybe<Array<H3Index6VenueRecommendationWhereInput>>;
+  OR?: InputMaybe<Array<H3Index6VenueRecommendationWhereInput>>;
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsListRelationFilter>;
   Vote?: InputMaybe<VoteListRelationFilter>;
   areaId?: InputMaybe<StringNullableFilter>;
@@ -6800,10 +6779,10 @@ export type H3Index6VenueRecommendationWhereInput = {
 };
 
 export type H3Index6VenueRecommendationWhereUniqueInput = {
-  AND?: InputMaybe<H3Index6VenueRecommendationWhereInput[]>;
+  AND?: InputMaybe<Array<H3Index6VenueRecommendationWhereInput>>;
   Area?: InputMaybe<AreaWhereInput>;
-  NOT?: InputMaybe<H3Index6VenueRecommendationWhereInput[]>;
-  OR?: InputMaybe<H3Index6VenueRecommendationWhereInput[]>;
+  NOT?: InputMaybe<Array<H3Index6VenueRecommendationWhereInput>>;
+  OR?: InputMaybe<Array<H3Index6VenueRecommendationWhereInput>>;
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsListRelationFilter>;
   Vote?: InputMaybe<VoteListRelationFilter>;
   areaId?: InputMaybe<Scalars['String']['input']>;
@@ -7038,9 +7017,9 @@ export enum IdentifiableInformationScalarFieldEnum {
 }
 
 export type IdentifiableInformationScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<IdentifiableInformationScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<IdentifiableInformationScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<IdentifiableInformationScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<IdentifiableInformationScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<IdentifiableInformationScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<IdentifiableInformationScalarWhereWithAggregatesInput>>;
   birthday?: InputMaybe<DateTimeNullableWithAggregatesFilter>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   currenttown?: InputMaybe<StringNullableWithAggregatesFilter>;
@@ -7136,9 +7115,9 @@ export type IdentifiableInformationUpsertWithoutProfileInput = {
 };
 
 export type IdentifiableInformationWhereInput = {
-  AND?: InputMaybe<IdentifiableInformationWhereInput[]>;
-  NOT?: InputMaybe<IdentifiableInformationWhereInput[]>;
-  OR?: InputMaybe<IdentifiableInformationWhereInput[]>;
+  AND?: InputMaybe<Array<IdentifiableInformationWhereInput>>;
+  NOT?: InputMaybe<Array<IdentifiableInformationWhereInput>>;
+  OR?: InputMaybe<Array<IdentifiableInformationWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
   birthday?: InputMaybe<DateTimeNullableFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -7159,9 +7138,9 @@ export type IdentifiableInformationWhereInput = {
 };
 
 export type IdentifiableInformationWhereUniqueInput = {
-  AND?: InputMaybe<IdentifiableInformationWhereInput[]>;
-  NOT?: InputMaybe<IdentifiableInformationWhereInput[]>;
-  OR?: InputMaybe<IdentifiableInformationWhereInput[]>;
+  AND?: InputMaybe<Array<IdentifiableInformationWhereInput>>;
+  NOT?: InputMaybe<Array<IdentifiableInformationWhereInput>>;
+  OR?: InputMaybe<Array<IdentifiableInformationWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
   birthday?: InputMaybe<DateTimeNullableFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -7193,22 +7172,22 @@ export type IntFilter = {
   equals?: InputMaybe<Scalars['Int']['input']>;
   gt?: InputMaybe<Scalars['Int']['input']>;
   gte?: InputMaybe<Scalars['Int']['input']>;
-  in?: InputMaybe<Scalars['Int']['input'][]>;
+  in?: InputMaybe<Array<Scalars['Int']['input']>>;
   lt?: InputMaybe<Scalars['Int']['input']>;
   lte?: InputMaybe<Scalars['Int']['input']>;
   not?: InputMaybe<NestedIntFilter>;
-  notIn?: InputMaybe<Scalars['Int']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
 export type IntNullableFilter = {
   equals?: InputMaybe<Scalars['Int']['input']>;
   gt?: InputMaybe<Scalars['Int']['input']>;
   gte?: InputMaybe<Scalars['Int']['input']>;
-  in?: InputMaybe<Scalars['Int']['input'][]>;
+  in?: InputMaybe<Array<Scalars['Int']['input']>>;
   lt?: InputMaybe<Scalars['Int']['input']>;
   lte?: InputMaybe<Scalars['Int']['input']>;
   not?: InputMaybe<NestedIntNullableFilter>;
-  notIn?: InputMaybe<Scalars['Int']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
 export type IntNullableWithAggregatesFilter = {
@@ -7220,11 +7199,11 @@ export type IntNullableWithAggregatesFilter = {
   equals?: InputMaybe<Scalars['Int']['input']>;
   gt?: InputMaybe<Scalars['Int']['input']>;
   gte?: InputMaybe<Scalars['Int']['input']>;
-  in?: InputMaybe<Scalars['Int']['input'][]>;
+  in?: InputMaybe<Array<Scalars['Int']['input']>>;
   lt?: InputMaybe<Scalars['Int']['input']>;
   lte?: InputMaybe<Scalars['Int']['input']>;
   not?: InputMaybe<NestedIntNullableWithAggregatesFilter>;
-  notIn?: InputMaybe<Scalars['Int']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
 export type IntWithAggregatesFilter = {
@@ -7236,11 +7215,11 @@ export type IntWithAggregatesFilter = {
   equals?: InputMaybe<Scalars['Int']['input']>;
   gt?: InputMaybe<Scalars['Int']['input']>;
   gte?: InputMaybe<Scalars['Int']['input']>;
-  in?: InputMaybe<Scalars['Int']['input'][]>;
+  in?: InputMaybe<Array<Scalars['Int']['input']>>;
   lt?: InputMaybe<Scalars['Int']['input']>;
   lte?: InputMaybe<Scalars['Int']['input']>;
   not?: InputMaybe<NestedIntWithAggregatesFilter>;
-  notIn?: InputMaybe<Scalars['Int']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
 export type JsonFilter = {
@@ -7253,7 +7232,7 @@ export type JsonFilter = {
   lt?: InputMaybe<Scalars['Json']['input']>;
   lte?: InputMaybe<Scalars['Json']['input']>;
   not?: InputMaybe<Scalars['Json']['input']>;
-  path?: InputMaybe<Scalars['String']['input'][]>;
+  path?: InputMaybe<Array<Scalars['String']['input']>>;
   string_contains?: InputMaybe<Scalars['String']['input']>;
   string_ends_with?: InputMaybe<Scalars['String']['input']>;
   string_starts_with?: InputMaybe<Scalars['String']['input']>;
@@ -7270,10 +7249,10 @@ export enum JsonNullValueInput {
 }
 
 export type JsonNullableListFilter = {
-  equals?: InputMaybe<Scalars['Json']['input'][]>;
+  equals?: InputMaybe<Array<Scalars['Json']['input']>>;
   has?: InputMaybe<Scalars['Json']['input']>;
-  hasEvery?: InputMaybe<Scalars['Json']['input'][]>;
-  hasSome?: InputMaybe<Scalars['Json']['input'][]>;
+  hasEvery?: InputMaybe<Array<Scalars['Json']['input']>>;
+  hasSome?: InputMaybe<Array<Scalars['Json']['input']>>;
   isEmpty?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -7290,7 +7269,7 @@ export type JsonWithAggregatesFilter = {
   lt?: InputMaybe<Scalars['Json']['input']>;
   lte?: InputMaybe<Scalars['Json']['input']>;
   not?: InputMaybe<Scalars['Json']['input']>;
-  path?: InputMaybe<Scalars['String']['input'][]>;
+  path?: InputMaybe<Array<Scalars['String']['input']>>;
   string_contains?: InputMaybe<Scalars['String']['input']>;
   string_ends_with?: InputMaybe<Scalars['String']['input']>;
   string_starts_with?: InputMaybe<Scalars['String']['input']>;
@@ -7346,7 +7325,7 @@ export type LegalAgreementCreateManyCredentialsInput = {
 };
 
 export type LegalAgreementCreateManyCredentialsInputEnvelope = {
-  data: LegalAgreementCreateManyCredentialsInput[];
+  data: Array<LegalAgreementCreateManyCredentialsInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -7359,7 +7338,7 @@ export type LegalAgreementCreateManyDocumentInput = {
 };
 
 export type LegalAgreementCreateManyDocumentInputEnvelope = {
-  data: LegalAgreementCreateManyDocumentInput[];
+  data: Array<LegalAgreementCreateManyDocumentInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -7373,16 +7352,16 @@ export type LegalAgreementCreateManyInput = {
 };
 
 export type LegalAgreementCreateNestedManyWithoutCredentialsInput = {
-  connect?: InputMaybe<LegalAgreementWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<LegalAgreementCreateOrConnectWithoutCredentialsInput[]>;
-  create?: InputMaybe<LegalAgreementCreateWithoutCredentialsInput[]>;
+  connect?: InputMaybe<Array<LegalAgreementWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<LegalAgreementCreateOrConnectWithoutCredentialsInput>>;
+  create?: InputMaybe<Array<LegalAgreementCreateWithoutCredentialsInput>>;
   createMany?: InputMaybe<LegalAgreementCreateManyCredentialsInputEnvelope>;
 };
 
 export type LegalAgreementCreateNestedManyWithoutDocumentInput = {
-  connect?: InputMaybe<LegalAgreementWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<LegalAgreementCreateOrConnectWithoutDocumentInput[]>;
-  create?: InputMaybe<LegalAgreementCreateWithoutDocumentInput[]>;
+  connect?: InputMaybe<Array<LegalAgreementWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<LegalAgreementCreateOrConnectWithoutDocumentInput>>;
+  create?: InputMaybe<Array<LegalAgreementCreateWithoutDocumentInput>>;
   createMany?: InputMaybe<LegalAgreementCreateManyDocumentInputEnvelope>;
 };
 
@@ -7475,9 +7454,9 @@ export enum LegalAgreementScalarFieldEnum {
 }
 
 export type LegalAgreementScalarWhereInput = {
-  AND?: InputMaybe<LegalAgreementScalarWhereInput[]>;
-  NOT?: InputMaybe<LegalAgreementScalarWhereInput[]>;
-  OR?: InputMaybe<LegalAgreementScalarWhereInput[]>;
+  AND?: InputMaybe<Array<LegalAgreementScalarWhereInput>>;
+  NOT?: InputMaybe<Array<LegalAgreementScalarWhereInput>>;
+  OR?: InputMaybe<Array<LegalAgreementScalarWhereInput>>;
   aggreed?: InputMaybe<BoolFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   credentialsId?: InputMaybe<StringNullableFilter>;
@@ -7487,9 +7466,9 @@ export type LegalAgreementScalarWhereInput = {
 };
 
 export type LegalAgreementScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<LegalAgreementScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<LegalAgreementScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<LegalAgreementScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<LegalAgreementScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<LegalAgreementScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<LegalAgreementScalarWhereWithAggregatesInput>>;
   aggreed?: InputMaybe<BoolWithAggregatesFilter>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   credentialsId?: InputMaybe<StringNullableWithAggregatesFilter>;
@@ -7529,31 +7508,31 @@ export type LegalAgreementUpdateManyWithWhereWithoutDocumentInput = {
 };
 
 export type LegalAgreementUpdateManyWithoutCredentialsNestedInput = {
-  connect?: InputMaybe<LegalAgreementWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<LegalAgreementCreateOrConnectWithoutCredentialsInput[]>;
-  create?: InputMaybe<LegalAgreementCreateWithoutCredentialsInput[]>;
+  connect?: InputMaybe<Array<LegalAgreementWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<LegalAgreementCreateOrConnectWithoutCredentialsInput>>;
+  create?: InputMaybe<Array<LegalAgreementCreateWithoutCredentialsInput>>;
   createMany?: InputMaybe<LegalAgreementCreateManyCredentialsInputEnvelope>;
-  delete?: InputMaybe<LegalAgreementWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<LegalAgreementScalarWhereInput[]>;
-  disconnect?: InputMaybe<LegalAgreementWhereUniqueInput[]>;
-  set?: InputMaybe<LegalAgreementWhereUniqueInput[]>;
-  update?: InputMaybe<LegalAgreementUpdateWithWhereUniqueWithoutCredentialsInput[]>;
-  updateMany?: InputMaybe<LegalAgreementUpdateManyWithWhereWithoutCredentialsInput[]>;
-  upsert?: InputMaybe<LegalAgreementUpsertWithWhereUniqueWithoutCredentialsInput[]>;
+  delete?: InputMaybe<Array<LegalAgreementWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<LegalAgreementScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<LegalAgreementWhereUniqueInput>>;
+  set?: InputMaybe<Array<LegalAgreementWhereUniqueInput>>;
+  update?: InputMaybe<Array<LegalAgreementUpdateWithWhereUniqueWithoutCredentialsInput>>;
+  updateMany?: InputMaybe<Array<LegalAgreementUpdateManyWithWhereWithoutCredentialsInput>>;
+  upsert?: InputMaybe<Array<LegalAgreementUpsertWithWhereUniqueWithoutCredentialsInput>>;
 };
 
 export type LegalAgreementUpdateManyWithoutDocumentNestedInput = {
-  connect?: InputMaybe<LegalAgreementWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<LegalAgreementCreateOrConnectWithoutDocumentInput[]>;
-  create?: InputMaybe<LegalAgreementCreateWithoutDocumentInput[]>;
+  connect?: InputMaybe<Array<LegalAgreementWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<LegalAgreementCreateOrConnectWithoutDocumentInput>>;
+  create?: InputMaybe<Array<LegalAgreementCreateWithoutDocumentInput>>;
   createMany?: InputMaybe<LegalAgreementCreateManyDocumentInputEnvelope>;
-  delete?: InputMaybe<LegalAgreementWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<LegalAgreementScalarWhereInput[]>;
-  disconnect?: InputMaybe<LegalAgreementWhereUniqueInput[]>;
-  set?: InputMaybe<LegalAgreementWhereUniqueInput[]>;
-  update?: InputMaybe<LegalAgreementUpdateWithWhereUniqueWithoutDocumentInput[]>;
-  updateMany?: InputMaybe<LegalAgreementUpdateManyWithWhereWithoutDocumentInput[]>;
-  upsert?: InputMaybe<LegalAgreementUpsertWithWhereUniqueWithoutDocumentInput[]>;
+  delete?: InputMaybe<Array<LegalAgreementWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<LegalAgreementScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<LegalAgreementWhereUniqueInput>>;
+  set?: InputMaybe<Array<LegalAgreementWhereUniqueInput>>;
+  update?: InputMaybe<Array<LegalAgreementUpdateWithWhereUniqueWithoutDocumentInput>>;
+  updateMany?: InputMaybe<Array<LegalAgreementUpdateManyWithWhereWithoutDocumentInput>>;
+  upsert?: InputMaybe<Array<LegalAgreementUpsertWithWhereUniqueWithoutDocumentInput>>;
 };
 
 export type LegalAgreementUpdateWithWhereUniqueWithoutCredentialsInput = {
@@ -7595,11 +7574,11 @@ export type LegalAgreementUpsertWithWhereUniqueWithoutDocumentInput = {
 };
 
 export type LegalAgreementWhereInput = {
-  AND?: InputMaybe<LegalAgreementWhereInput[]>;
+  AND?: InputMaybe<Array<LegalAgreementWhereInput>>;
   Credentials?: InputMaybe<CredentialsWhereInput>;
   Document?: InputMaybe<DocumentWhereInput>;
-  NOT?: InputMaybe<LegalAgreementWhereInput[]>;
-  OR?: InputMaybe<LegalAgreementWhereInput[]>;
+  NOT?: InputMaybe<Array<LegalAgreementWhereInput>>;
+  OR?: InputMaybe<Array<LegalAgreementWhereInput>>;
   aggreed?: InputMaybe<BoolFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   credentialsId?: InputMaybe<StringNullableFilter>;
@@ -7609,11 +7588,11 @@ export type LegalAgreementWhereInput = {
 };
 
 export type LegalAgreementWhereUniqueInput = {
-  AND?: InputMaybe<LegalAgreementWhereInput[]>;
+  AND?: InputMaybe<Array<LegalAgreementWhereInput>>;
   Credentials?: InputMaybe<CredentialsWhereInput>;
   Document?: InputMaybe<DocumentWhereInput>;
-  NOT?: InputMaybe<LegalAgreementWhereInput[]>;
-  OR?: InputMaybe<LegalAgreementWhereInput[]>;
+  NOT?: InputMaybe<Array<LegalAgreementWhereInput>>;
+  OR?: InputMaybe<Array<LegalAgreementWhereInput>>;
   aggreed?: InputMaybe<BoolFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   credentialsId?: InputMaybe<StringNullableFilter>;
@@ -7624,7 +7603,7 @@ export type LegalAgreementWhereUniqueInput = {
 
 export type LiveOutPersonal = {
   __typename?: 'LiveOutPersonal';
-  Out: Out[];
+  Out: Array<Out>;
   Personal: Personal;
   createdAt: Scalars['DateTime']['output'];
   id: Scalars['ID']['output'];
@@ -7635,8 +7614,8 @@ export type LiveOutPersonal = {
 
 export type LiveOutPersonalOutArgs = {
   cursor?: InputMaybe<OutWhereUniqueInput>;
-  distinct?: InputMaybe<OutScalarFieldEnum[]>;
-  orderBy?: InputMaybe<OutOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<OutScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<OutOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<OutWhereInput>;
@@ -7746,9 +7725,9 @@ export enum LiveOutPersonalScalarFieldEnum {
 }
 
 export type LiveOutPersonalScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<LiveOutPersonalScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<LiveOutPersonalScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<LiveOutPersonalScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<LiveOutPersonalScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<LiveOutPersonalScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<LiveOutPersonalScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   personalId?: InputMaybe<StringWithAggregatesFilter>;
@@ -7826,9 +7805,9 @@ export type LiveOutPersonalUpsertWithoutPersonalInput = {
 };
 
 export type LiveOutPersonalWhereInput = {
-  AND?: InputMaybe<LiveOutPersonalWhereInput[]>;
-  NOT?: InputMaybe<LiveOutPersonalWhereInput[]>;
-  OR?: InputMaybe<LiveOutPersonalWhereInput[]>;
+  AND?: InputMaybe<Array<LiveOutPersonalWhereInput>>;
+  NOT?: InputMaybe<Array<LiveOutPersonalWhereInput>>;
+  OR?: InputMaybe<Array<LiveOutPersonalWhereInput>>;
   Out?: InputMaybe<OutListRelationFilter>;
   Personal?: InputMaybe<PersonalWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -7838,9 +7817,9 @@ export type LiveOutPersonalWhereInput = {
 };
 
 export type LiveOutPersonalWhereUniqueInput = {
-  AND?: InputMaybe<LiveOutPersonalWhereInput[]>;
-  NOT?: InputMaybe<LiveOutPersonalWhereInput[]>;
-  OR?: InputMaybe<LiveOutPersonalWhereInput[]>;
+  AND?: InputMaybe<Array<LiveOutPersonalWhereInput>>;
+  NOT?: InputMaybe<Array<LiveOutPersonalWhereInput>>;
+  OR?: InputMaybe<Array<LiveOutPersonalWhereInput>>;
   Out?: InputMaybe<OutListRelationFilter>;
   Personal?: InputMaybe<PersonalWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -7851,7 +7830,7 @@ export type LiveOutPersonalWhereUniqueInput = {
 
 export type LiveOutVenue = {
   __typename?: 'LiveOutVenue';
-  Out: Out[];
+  Out: Array<Out>;
   Venue: Venue;
   createdAt: Scalars['DateTime']['output'];
   id: Scalars['ID']['output'];
@@ -7864,8 +7843,8 @@ export type LiveOutVenue = {
 
 export type LiveOutVenueOutArgs = {
   cursor?: InputMaybe<OutWhereUniqueInput>;
-  distinct?: InputMaybe<OutScalarFieldEnum[]>;
-  orderBy?: InputMaybe<OutOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<OutScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<OutOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<OutWhereInput>;
@@ -8002,9 +7981,9 @@ export enum LiveOutVenueScalarFieldEnum {
 }
 
 export type LiveOutVenueScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<LiveOutVenueScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<LiveOutVenueScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<LiveOutVenueScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<LiveOutVenueScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<LiveOutVenueScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<LiveOutVenueScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   joined?: InputMaybe<IntWithAggregatesFilter>;
@@ -8097,9 +8076,9 @@ export type LiveOutVenueUpsertWithoutVenueInput = {
 };
 
 export type LiveOutVenueWhereInput = {
-  AND?: InputMaybe<LiveOutVenueWhereInput[]>;
-  NOT?: InputMaybe<LiveOutVenueWhereInput[]>;
-  OR?: InputMaybe<LiveOutVenueWhereInput[]>;
+  AND?: InputMaybe<Array<LiveOutVenueWhereInput>>;
+  NOT?: InputMaybe<Array<LiveOutVenueWhereInput>>;
+  OR?: InputMaybe<Array<LiveOutVenueWhereInput>>;
   Out?: InputMaybe<OutListRelationFilter>;
   Venue?: InputMaybe<VenueWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -8111,9 +8090,9 @@ export type LiveOutVenueWhereInput = {
 };
 
 export type LiveOutVenueWhereUniqueInput = {
-  AND?: InputMaybe<LiveOutVenueWhereInput[]>;
-  NOT?: InputMaybe<LiveOutVenueWhereInput[]>;
-  OR?: InputMaybe<LiveOutVenueWhereInput[]>;
+  AND?: InputMaybe<Array<LiveOutVenueWhereInput>>;
+  NOT?: InputMaybe<Array<LiveOutVenueWhereInput>>;
+  OR?: InputMaybe<Array<LiveOutVenueWhereInput>>;
   Out?: InputMaybe<OutListRelationFilter>;
   Venue?: InputMaybe<VenueWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -8126,15 +8105,15 @@ export type LiveOutVenueWhereUniqueInput = {
 
 export type LiveVenueTotals = {
   __typename?: 'LiveVenueTotals';
-  joined?: Maybe<Out[]>;
-  totaled?: Maybe<Out[]>;
+  joined?: Maybe<Array<Out>>;
+  totaled?: Maybe<Array<Out>>;
 };
 
 export type LiveVenueTotals2 = {
   __typename?: 'LiveVenueTotals2';
   id?: Maybe<Scalars['String']['output']>;
   joined?: Maybe<Scalars['Int']['output']>;
-  out?: Maybe<Out[]>;
+  out?: Maybe<Array<Out>>;
   totaled?: Maybe<Scalars['Int']['output']>;
   updateOut?: Maybe<Out>;
 };
@@ -8197,7 +8176,7 @@ export type LocationCreateManyAddressInput = {
 };
 
 export type LocationCreateManyAddressInputEnvelope = {
-  data: LocationCreateManyAddressInput[];
+  data: Array<LocationCreateManyAddressInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -8214,9 +8193,9 @@ export type LocationCreateManyInput = {
 };
 
 export type LocationCreateNestedManyWithoutAddressInput = {
-  connect?: InputMaybe<LocationWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<LocationCreateOrConnectWithoutAddressInput[]>;
-  create?: InputMaybe<LocationCreateWithoutAddressInput[]>;
+  connect?: InputMaybe<Array<LocationWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<LocationCreateOrConnectWithoutAddressInput>>;
+  create?: InputMaybe<Array<LocationCreateWithoutAddressInput>>;
   createMany?: InputMaybe<LocationCreateManyAddressInputEnvelope>;
 };
 
@@ -8410,9 +8389,9 @@ export enum LocationScalarFieldEnum {
 }
 
 export type LocationScalarWhereInput = {
-  AND?: InputMaybe<LocationScalarWhereInput[]>;
-  NOT?: InputMaybe<LocationScalarWhereInput[]>;
-  OR?: InputMaybe<LocationScalarWhereInput[]>;
+  AND?: InputMaybe<Array<LocationScalarWhereInput>>;
+  NOT?: InputMaybe<Array<LocationScalarWhereInput>>;
+  OR?: InputMaybe<Array<LocationScalarWhereInput>>;
   addressId?: InputMaybe<StringNullableFilter>;
   areaId?: InputMaybe<StringNullableFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -8425,9 +8404,9 @@ export type LocationScalarWhereInput = {
 };
 
 export type LocationScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<LocationScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<LocationScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<LocationScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<LocationScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<LocationScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<LocationScalarWhereWithAggregatesInput>>;
   addressId?: InputMaybe<StringNullableWithAggregatesFilter>;
   areaId?: InputMaybe<StringNullableWithAggregatesFilter>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
@@ -8468,17 +8447,17 @@ export type LocationUpdateManyWithWhereWithoutAddressInput = {
 };
 
 export type LocationUpdateManyWithoutAddressNestedInput = {
-  connect?: InputMaybe<LocationWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<LocationCreateOrConnectWithoutAddressInput[]>;
-  create?: InputMaybe<LocationCreateWithoutAddressInput[]>;
+  connect?: InputMaybe<Array<LocationWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<LocationCreateOrConnectWithoutAddressInput>>;
+  create?: InputMaybe<Array<LocationCreateWithoutAddressInput>>;
   createMany?: InputMaybe<LocationCreateManyAddressInputEnvelope>;
-  delete?: InputMaybe<LocationWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<LocationScalarWhereInput[]>;
-  disconnect?: InputMaybe<LocationWhereUniqueInput[]>;
-  set?: InputMaybe<LocationWhereUniqueInput[]>;
-  update?: InputMaybe<LocationUpdateWithWhereUniqueWithoutAddressInput[]>;
-  updateMany?: InputMaybe<LocationUpdateManyWithWhereWithoutAddressInput[]>;
-  upsert?: InputMaybe<LocationUpsertWithWhereUniqueWithoutAddressInput[]>;
+  delete?: InputMaybe<Array<LocationWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<LocationScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<LocationWhereUniqueInput>>;
+  set?: InputMaybe<Array<LocationWhereUniqueInput>>;
+  update?: InputMaybe<Array<LocationUpdateWithWhereUniqueWithoutAddressInput>>;
+  updateMany?: InputMaybe<Array<LocationUpdateManyWithWhereWithoutAddressInput>>;
+  upsert?: InputMaybe<Array<LocationUpsertWithWhereUniqueWithoutAddressInput>>;
 };
 
 export type LocationUpdateOneWithoutAreaNestedInput = {
@@ -8632,12 +8611,12 @@ export type LocationUpsertWithoutVenueInput = {
 };
 
 export type LocationWhereInput = {
-  AND?: InputMaybe<LocationWhereInput[]>;
+  AND?: InputMaybe<Array<LocationWhereInput>>;
   Address?: InputMaybe<AddressWhereInput>;
   Area?: InputMaybe<AreaWhereInput>;
   Geometry?: InputMaybe<GeometryWhereInput>;
-  NOT?: InputMaybe<LocationWhereInput[]>;
-  OR?: InputMaybe<LocationWhereInput[]>;
+  NOT?: InputMaybe<Array<LocationWhereInput>>;
+  OR?: InputMaybe<Array<LocationWhereInput>>;
   Venue?: InputMaybe<VenueWhereInput>;
   addressId?: InputMaybe<StringNullableFilter>;
   areaId?: InputMaybe<StringNullableFilter>;
@@ -8652,12 +8631,12 @@ export type LocationWhereInput = {
 };
 
 export type LocationWhereUniqueInput = {
-  AND?: InputMaybe<LocationWhereInput[]>;
+  AND?: InputMaybe<Array<LocationWhereInput>>;
   Address?: InputMaybe<AddressWhereInput>;
   Area?: InputMaybe<AreaWhereInput>;
   Geometry?: InputMaybe<GeometryWhereInput>;
-  NOT?: InputMaybe<LocationWhereInput[]>;
-  OR?: InputMaybe<LocationWhereInput[]>;
+  NOT?: InputMaybe<Array<LocationWhereInput>>;
+  OR?: InputMaybe<Array<LocationWhereInput>>;
   Venue?: InputMaybe<VenueWhereInput>;
   addressId?: InputMaybe<StringNullableFilter>;
   areaId?: InputMaybe<Scalars['String']['input']>;
@@ -8695,7 +8674,7 @@ export type MemberConversationNotificationSettingCreateManyConversationInput = {
 };
 
 export type MemberConversationNotificationSettingCreateManyConversationInputEnvelope = {
-  data: MemberConversationNotificationSettingCreateManyConversationInput[];
+  data: Array<MemberConversationNotificationSettingCreateManyConversationInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -8706,9 +8685,9 @@ export type MemberConversationNotificationSettingCreateManyInput = {
 };
 
 export type MemberConversationNotificationSettingCreateNestedManyWithoutConversationInput = {
-  connect?: InputMaybe<MemberConversationNotificationSettingWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<MemberConversationNotificationSettingCreateOrConnectWithoutConversationInput[]>;
-  create?: InputMaybe<MemberConversationNotificationSettingCreateWithoutConversationInput[]>;
+  connect?: InputMaybe<Array<MemberConversationNotificationSettingWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<MemberConversationNotificationSettingCreateOrConnectWithoutConversationInput>>;
+  create?: InputMaybe<Array<MemberConversationNotificationSettingCreateWithoutConversationInput>>;
   createMany?: InputMaybe<MemberConversationNotificationSettingCreateManyConversationInputEnvelope>;
 };
 
@@ -8791,18 +8770,18 @@ export enum MemberConversationNotificationSettingScalarFieldEnum {
 }
 
 export type MemberConversationNotificationSettingScalarWhereInput = {
-  AND?: InputMaybe<MemberConversationNotificationSettingScalarWhereInput[]>;
-  NOT?: InputMaybe<MemberConversationNotificationSettingScalarWhereInput[]>;
-  OR?: InputMaybe<MemberConversationNotificationSettingScalarWhereInput[]>;
+  AND?: InputMaybe<Array<MemberConversationNotificationSettingScalarWhereInput>>;
+  NOT?: InputMaybe<Array<MemberConversationNotificationSettingScalarWhereInput>>;
+  OR?: InputMaybe<Array<MemberConversationNotificationSettingScalarWhereInput>>;
   conversationId?: InputMaybe<StringNullableFilter>;
   id?: InputMaybe<StringFilter>;
   memberProfileId?: InputMaybe<StringFilter>;
 };
 
 export type MemberConversationNotificationSettingScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<MemberConversationNotificationSettingScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<MemberConversationNotificationSettingScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<MemberConversationNotificationSettingScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<MemberConversationNotificationSettingScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<MemberConversationNotificationSettingScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<MemberConversationNotificationSettingScalarWhereWithAggregatesInput>>;
   conversationId?: InputMaybe<StringNullableWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   memberProfileId?: InputMaybe<StringWithAggregatesFilter>;
@@ -8826,17 +8805,17 @@ export type MemberConversationNotificationSettingUpdateManyWithWhereWithoutConve
 };
 
 export type MemberConversationNotificationSettingUpdateManyWithoutConversationNestedInput = {
-  connect?: InputMaybe<MemberConversationNotificationSettingWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<MemberConversationNotificationSettingCreateOrConnectWithoutConversationInput[]>;
-  create?: InputMaybe<MemberConversationNotificationSettingCreateWithoutConversationInput[]>;
+  connect?: InputMaybe<Array<MemberConversationNotificationSettingWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<MemberConversationNotificationSettingCreateOrConnectWithoutConversationInput>>;
+  create?: InputMaybe<Array<MemberConversationNotificationSettingCreateWithoutConversationInput>>;
   createMany?: InputMaybe<MemberConversationNotificationSettingCreateManyConversationInputEnvelope>;
-  delete?: InputMaybe<MemberConversationNotificationSettingWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<MemberConversationNotificationSettingScalarWhereInput[]>;
-  disconnect?: InputMaybe<MemberConversationNotificationSettingWhereUniqueInput[]>;
-  set?: InputMaybe<MemberConversationNotificationSettingWhereUniqueInput[]>;
-  update?: InputMaybe<MemberConversationNotificationSettingUpdateWithWhereUniqueWithoutConversationInput[]>;
-  updateMany?: InputMaybe<MemberConversationNotificationSettingUpdateManyWithWhereWithoutConversationInput[]>;
-  upsert?: InputMaybe<MemberConversationNotificationSettingUpsertWithWhereUniqueWithoutConversationInput[]>;
+  delete?: InputMaybe<Array<MemberConversationNotificationSettingWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<MemberConversationNotificationSettingScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<MemberConversationNotificationSettingWhereUniqueInput>>;
+  set?: InputMaybe<Array<MemberConversationNotificationSettingWhereUniqueInput>>;
+  update?: InputMaybe<Array<MemberConversationNotificationSettingUpdateWithWhereUniqueWithoutConversationInput>>;
+  updateMany?: InputMaybe<Array<MemberConversationNotificationSettingUpdateManyWithWhereWithoutConversationInput>>;
+  upsert?: InputMaybe<Array<MemberConversationNotificationSettingUpsertWithWhereUniqueWithoutConversationInput>>;
 };
 
 export type MemberConversationNotificationSettingUpdateOneWithoutNotificationTypeSettingNestedInput = {
@@ -8884,22 +8863,22 @@ export type MemberConversationNotificationSettingUpsertWithoutNotificationTypeSe
 };
 
 export type MemberConversationNotificationSettingWhereInput = {
-  AND?: InputMaybe<MemberConversationNotificationSettingWhereInput[]>;
+  AND?: InputMaybe<Array<MemberConversationNotificationSettingWhereInput>>;
   Conversation?: InputMaybe<ConversationWhereInput>;
-  NOT?: InputMaybe<MemberConversationNotificationSettingWhereInput[]>;
+  NOT?: InputMaybe<Array<MemberConversationNotificationSettingWhereInput>>;
   NotificationTypeSetting?: InputMaybe<NotificationTypeSettingListRelationFilter>;
-  OR?: InputMaybe<MemberConversationNotificationSettingWhereInput[]>;
+  OR?: InputMaybe<Array<MemberConversationNotificationSettingWhereInput>>;
   conversationId?: InputMaybe<StringNullableFilter>;
   id?: InputMaybe<StringFilter>;
   memberProfileId?: InputMaybe<StringFilter>;
 };
 
 export type MemberConversationNotificationSettingWhereUniqueInput = {
-  AND?: InputMaybe<MemberConversationNotificationSettingWhereInput[]>;
+  AND?: InputMaybe<Array<MemberConversationNotificationSettingWhereInput>>;
   Conversation?: InputMaybe<ConversationWhereInput>;
-  NOT?: InputMaybe<MemberConversationNotificationSettingWhereInput[]>;
+  NOT?: InputMaybe<Array<MemberConversationNotificationSettingWhereInput>>;
   NotificationTypeSetting?: InputMaybe<NotificationTypeSettingListRelationFilter>;
-  OR?: InputMaybe<MemberConversationNotificationSettingWhereInput[]>;
+  OR?: InputMaybe<Array<MemberConversationNotificationSettingWhereInput>>;
   conversationId?: InputMaybe<StringNullableFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
   memberProfileId?: InputMaybe<StringFilter>;
@@ -8908,7 +8887,7 @@ export type MemberConversationNotificationSettingWhereUniqueInput = {
 export type Message = {
   __typename?: 'Message';
   Conversation?: Maybe<Conversation>;
-  Replies: Message[];
+  Replies: Array<Message>;
   Reply?: Maybe<Message>;
   Request?: Maybe<Request>;
   content: Scalars['Json']['output'];
@@ -8922,8 +8901,8 @@ export type Message = {
 
 export type MessageRepliesArgs = {
   cursor?: InputMaybe<MessageWhereUniqueInput>;
-  distinct?: InputMaybe<MessageScalarFieldEnum[]>;
-  orderBy?: InputMaybe<MessageOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<MessageScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<MessageOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<MessageWhereInput>;
@@ -8958,7 +8937,7 @@ export type MessageCreateManyConversationInput = {
 };
 
 export type MessageCreateManyConversationInputEnvelope = {
-  data: MessageCreateManyConversationInput[];
+  data: Array<MessageCreateManyConversationInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -8980,21 +8959,21 @@ export type MessageCreateManyReplyInput = {
 };
 
 export type MessageCreateManyReplyInputEnvelope = {
-  data: MessageCreateManyReplyInput[];
+  data: Array<MessageCreateManyReplyInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type MessageCreateNestedManyWithoutConversationInput = {
-  connect?: InputMaybe<MessageWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<MessageCreateOrConnectWithoutConversationInput[]>;
-  create?: InputMaybe<MessageCreateWithoutConversationInput[]>;
+  connect?: InputMaybe<Array<MessageWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<MessageCreateOrConnectWithoutConversationInput>>;
+  create?: InputMaybe<Array<MessageCreateWithoutConversationInput>>;
   createMany?: InputMaybe<MessageCreateManyConversationInputEnvelope>;
 };
 
 export type MessageCreateNestedManyWithoutReplyInput = {
-  connect?: InputMaybe<MessageWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<MessageCreateOrConnectWithoutReplyInput[]>;
-  create?: InputMaybe<MessageCreateWithoutReplyInput[]>;
+  connect?: InputMaybe<Array<MessageWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<MessageCreateOrConnectWithoutReplyInput>>;
+  create?: InputMaybe<Array<MessageCreateWithoutReplyInput>>;
   createMany?: InputMaybe<MessageCreateManyReplyInputEnvelope>;
 };
 
@@ -9140,9 +9119,9 @@ export enum MessageScalarFieldEnum {
 }
 
 export type MessageScalarWhereInput = {
-  AND?: InputMaybe<MessageScalarWhereInput[]>;
-  NOT?: InputMaybe<MessageScalarWhereInput[]>;
-  OR?: InputMaybe<MessageScalarWhereInput[]>;
+  AND?: InputMaybe<Array<MessageScalarWhereInput>>;
+  NOT?: InputMaybe<Array<MessageScalarWhereInput>>;
+  OR?: InputMaybe<Array<MessageScalarWhereInput>>;
   content?: InputMaybe<JsonFilter>;
   conversationId?: InputMaybe<StringNullableFilter>;
   createAt?: InputMaybe<DateTimeFilter>;
@@ -9152,9 +9131,9 @@ export type MessageScalarWhereInput = {
 };
 
 export type MessageScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<MessageScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<MessageScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<MessageScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<MessageScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<MessageScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<MessageScalarWhereWithAggregatesInput>>;
   content?: InputMaybe<JsonWithAggregatesFilter>;
   conversationId?: InputMaybe<StringNullableWithAggregatesFilter>;
   createAt?: InputMaybe<DateTimeWithAggregatesFilter>;
@@ -9192,31 +9171,31 @@ export type MessageUpdateManyWithWhereWithoutReplyInput = {
 };
 
 export type MessageUpdateManyWithoutConversationNestedInput = {
-  connect?: InputMaybe<MessageWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<MessageCreateOrConnectWithoutConversationInput[]>;
-  create?: InputMaybe<MessageCreateWithoutConversationInput[]>;
+  connect?: InputMaybe<Array<MessageWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<MessageCreateOrConnectWithoutConversationInput>>;
+  create?: InputMaybe<Array<MessageCreateWithoutConversationInput>>;
   createMany?: InputMaybe<MessageCreateManyConversationInputEnvelope>;
-  delete?: InputMaybe<MessageWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<MessageScalarWhereInput[]>;
-  disconnect?: InputMaybe<MessageWhereUniqueInput[]>;
-  set?: InputMaybe<MessageWhereUniqueInput[]>;
-  update?: InputMaybe<MessageUpdateWithWhereUniqueWithoutConversationInput[]>;
-  updateMany?: InputMaybe<MessageUpdateManyWithWhereWithoutConversationInput[]>;
-  upsert?: InputMaybe<MessageUpsertWithWhereUniqueWithoutConversationInput[]>;
+  delete?: InputMaybe<Array<MessageWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<MessageScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<MessageWhereUniqueInput>>;
+  set?: InputMaybe<Array<MessageWhereUniqueInput>>;
+  update?: InputMaybe<Array<MessageUpdateWithWhereUniqueWithoutConversationInput>>;
+  updateMany?: InputMaybe<Array<MessageUpdateManyWithWhereWithoutConversationInput>>;
+  upsert?: InputMaybe<Array<MessageUpsertWithWhereUniqueWithoutConversationInput>>;
 };
 
 export type MessageUpdateManyWithoutReplyNestedInput = {
-  connect?: InputMaybe<MessageWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<MessageCreateOrConnectWithoutReplyInput[]>;
-  create?: InputMaybe<MessageCreateWithoutReplyInput[]>;
+  connect?: InputMaybe<Array<MessageWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<MessageCreateOrConnectWithoutReplyInput>>;
+  create?: InputMaybe<Array<MessageCreateWithoutReplyInput>>;
   createMany?: InputMaybe<MessageCreateManyReplyInputEnvelope>;
-  delete?: InputMaybe<MessageWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<MessageScalarWhereInput[]>;
-  disconnect?: InputMaybe<MessageWhereUniqueInput[]>;
-  set?: InputMaybe<MessageWhereUniqueInput[]>;
-  update?: InputMaybe<MessageUpdateWithWhereUniqueWithoutReplyInput[]>;
-  updateMany?: InputMaybe<MessageUpdateManyWithWhereWithoutReplyInput[]>;
-  upsert?: InputMaybe<MessageUpsertWithWhereUniqueWithoutReplyInput[]>;
+  delete?: InputMaybe<Array<MessageWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<MessageScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<MessageWhereUniqueInput>>;
+  set?: InputMaybe<Array<MessageWhereUniqueInput>>;
+  update?: InputMaybe<Array<MessageUpdateWithWhereUniqueWithoutReplyInput>>;
+  updateMany?: InputMaybe<Array<MessageUpdateManyWithWhereWithoutReplyInput>>;
+  upsert?: InputMaybe<Array<MessageUpsertWithWhereUniqueWithoutReplyInput>>;
 };
 
 export type MessageUpdateOneWithoutRepliesNestedInput = {
@@ -9324,10 +9303,10 @@ export type MessageUpsertWithoutRequestInput = {
 };
 
 export type MessageWhereInput = {
-  AND?: InputMaybe<MessageWhereInput[]>;
+  AND?: InputMaybe<Array<MessageWhereInput>>;
   Conversation?: InputMaybe<ConversationWhereInput>;
-  NOT?: InputMaybe<MessageWhereInput[]>;
-  OR?: InputMaybe<MessageWhereInput[]>;
+  NOT?: InputMaybe<Array<MessageWhereInput>>;
+  OR?: InputMaybe<Array<MessageWhereInput>>;
   Replies?: InputMaybe<MessageListRelationFilter>;
   Reply?: InputMaybe<MessageWhereInput>;
   Request?: InputMaybe<RequestWhereInput>;
@@ -9340,10 +9319,10 @@ export type MessageWhereInput = {
 };
 
 export type MessageWhereUniqueInput = {
-  AND?: InputMaybe<MessageWhereInput[]>;
+  AND?: InputMaybe<Array<MessageWhereInput>>;
   Conversation?: InputMaybe<ConversationWhereInput>;
-  NOT?: InputMaybe<MessageWhereInput[]>;
-  OR?: InputMaybe<MessageWhereInput[]>;
+  NOT?: InputMaybe<Array<MessageWhereInput>>;
+  OR?: InputMaybe<Array<MessageWhereInput>>;
   Replies?: InputMaybe<MessageListRelationFilter>;
   Reply?: InputMaybe<MessageWhereInput>;
   Request?: InputMaybe<RequestWhereInput>;
@@ -9423,14 +9402,14 @@ export type MutationAddStoryPhotosArgs = {
 
 
 export type MutationCreateFriendRequestArgs = {
-  receiversProfileId: Scalars['String']['input'][];
+  receiversProfileId: Array<Scalars['String']['input']>;
 };
 
 
 export type MutationCreateMessageArgs = {
   content: Scalars['Json']['input'];
   conversationId?: InputMaybe<Scalars['String']['input']>;
-  members?: InputMaybe<Scalars['String']['input'][]>;
+  members?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 
@@ -9608,22 +9587,22 @@ export type NestedDateTimeFilter = {
   equals?: InputMaybe<Scalars['DateTime']['input']>;
   gt?: InputMaybe<Scalars['DateTime']['input']>;
   gte?: InputMaybe<Scalars['DateTime']['input']>;
-  in?: InputMaybe<Scalars['DateTime']['input'][]>;
+  in?: InputMaybe<Array<Scalars['DateTime']['input']>>;
   lt?: InputMaybe<Scalars['DateTime']['input']>;
   lte?: InputMaybe<Scalars['DateTime']['input']>;
   not?: InputMaybe<NestedDateTimeFilter>;
-  notIn?: InputMaybe<Scalars['DateTime']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['DateTime']['input']>>;
 };
 
 export type NestedDateTimeNullableFilter = {
   equals?: InputMaybe<Scalars['DateTime']['input']>;
   gt?: InputMaybe<Scalars['DateTime']['input']>;
   gte?: InputMaybe<Scalars['DateTime']['input']>;
-  in?: InputMaybe<Scalars['DateTime']['input'][]>;
+  in?: InputMaybe<Array<Scalars['DateTime']['input']>>;
   lt?: InputMaybe<Scalars['DateTime']['input']>;
   lte?: InputMaybe<Scalars['DateTime']['input']>;
   not?: InputMaybe<NestedDateTimeNullableFilter>;
-  notIn?: InputMaybe<Scalars['DateTime']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['DateTime']['input']>>;
 };
 
 export type NestedDateTimeNullableWithAggregatesFilter = {
@@ -9633,11 +9612,11 @@ export type NestedDateTimeNullableWithAggregatesFilter = {
   equals?: InputMaybe<Scalars['DateTime']['input']>;
   gt?: InputMaybe<Scalars['DateTime']['input']>;
   gte?: InputMaybe<Scalars['DateTime']['input']>;
-  in?: InputMaybe<Scalars['DateTime']['input'][]>;
+  in?: InputMaybe<Array<Scalars['DateTime']['input']>>;
   lt?: InputMaybe<Scalars['DateTime']['input']>;
   lte?: InputMaybe<Scalars['DateTime']['input']>;
   not?: InputMaybe<NestedDateTimeNullableWithAggregatesFilter>;
-  notIn?: InputMaybe<Scalars['DateTime']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['DateTime']['input']>>;
 };
 
 export type NestedDateTimeWithAggregatesFilter = {
@@ -9647,18 +9626,18 @@ export type NestedDateTimeWithAggregatesFilter = {
   equals?: InputMaybe<Scalars['DateTime']['input']>;
   gt?: InputMaybe<Scalars['DateTime']['input']>;
   gte?: InputMaybe<Scalars['DateTime']['input']>;
-  in?: InputMaybe<Scalars['DateTime']['input'][]>;
+  in?: InputMaybe<Array<Scalars['DateTime']['input']>>;
   lt?: InputMaybe<Scalars['DateTime']['input']>;
   lte?: InputMaybe<Scalars['DateTime']['input']>;
   not?: InputMaybe<NestedDateTimeWithAggregatesFilter>;
-  notIn?: InputMaybe<Scalars['DateTime']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['DateTime']['input']>>;
 };
 
 export type NestedEnumAppTypeFilter = {
   equals?: InputMaybe<AppType>;
-  in?: InputMaybe<AppType[]>;
+  in?: InputMaybe<Array<AppType>>;
   not?: InputMaybe<AppType>;
-  notIn?: InputMaybe<AppType[]>;
+  notIn?: InputMaybe<Array<AppType>>;
 };
 
 export type NestedEnumAppTypeWithAggregatesFilter = {
@@ -9666,16 +9645,16 @@ export type NestedEnumAppTypeWithAggregatesFilter = {
   _max?: InputMaybe<NestedEnumAppTypeFilter>;
   _min?: InputMaybe<NestedEnumAppTypeFilter>;
   equals?: InputMaybe<AppType>;
-  in?: InputMaybe<AppType[]>;
+  in?: InputMaybe<Array<AppType>>;
   not?: InputMaybe<AppType>;
-  notIn?: InputMaybe<AppType[]>;
+  notIn?: InputMaybe<Array<AppType>>;
 };
 
 export type NestedEnumNotificationTypeFilter = {
   equals?: InputMaybe<NotificationType>;
-  in?: InputMaybe<NotificationType[]>;
+  in?: InputMaybe<Array<NotificationType>>;
   not?: InputMaybe<NotificationType>;
-  notIn?: InputMaybe<NotificationType[]>;
+  notIn?: InputMaybe<Array<NotificationType>>;
 };
 
 export type NestedEnumNotificationTypeWithAggregatesFilter = {
@@ -9683,16 +9662,16 @@ export type NestedEnumNotificationTypeWithAggregatesFilter = {
   _max?: InputMaybe<NestedEnumNotificationTypeFilter>;
   _min?: InputMaybe<NestedEnumNotificationTypeFilter>;
   equals?: InputMaybe<NotificationType>;
-  in?: InputMaybe<NotificationType[]>;
+  in?: InputMaybe<Array<NotificationType>>;
   not?: InputMaybe<NotificationType>;
-  notIn?: InputMaybe<NotificationType[]>;
+  notIn?: InputMaybe<Array<NotificationType>>;
 };
 
 export type NestedEnumOutTypeFilter = {
   equals?: InputMaybe<OutType>;
-  in?: InputMaybe<OutType[]>;
+  in?: InputMaybe<Array<OutType>>;
   not?: InputMaybe<OutType>;
-  notIn?: InputMaybe<OutType[]>;
+  notIn?: InputMaybe<Array<OutType>>;
 };
 
 export type NestedEnumOutTypeWithAggregatesFilter = {
@@ -9700,16 +9679,16 @@ export type NestedEnumOutTypeWithAggregatesFilter = {
   _max?: InputMaybe<NestedEnumOutTypeFilter>;
   _min?: InputMaybe<NestedEnumOutTypeFilter>;
   equals?: InputMaybe<OutType>;
-  in?: InputMaybe<OutType[]>;
+  in?: InputMaybe<Array<OutType>>;
   not?: InputMaybe<OutType>;
-  notIn?: InputMaybe<OutType[]>;
+  notIn?: InputMaybe<Array<OutType>>;
 };
 
 export type NestedEnumPhotoTypeNullableFilter = {
   equals?: InputMaybe<PhotoType>;
-  in?: InputMaybe<PhotoType[]>;
+  in?: InputMaybe<Array<PhotoType>>;
   not?: InputMaybe<PhotoType>;
-  notIn?: InputMaybe<PhotoType[]>;
+  notIn?: InputMaybe<Array<PhotoType>>;
 };
 
 export type NestedEnumPhotoTypeNullableWithAggregatesFilter = {
@@ -9717,16 +9696,16 @@ export type NestedEnumPhotoTypeNullableWithAggregatesFilter = {
   _max?: InputMaybe<NestedEnumPhotoTypeNullableFilter>;
   _min?: InputMaybe<NestedEnumPhotoTypeNullableFilter>;
   equals?: InputMaybe<PhotoType>;
-  in?: InputMaybe<PhotoType[]>;
+  in?: InputMaybe<Array<PhotoType>>;
   not?: InputMaybe<PhotoType>;
-  notIn?: InputMaybe<PhotoType[]>;
+  notIn?: InputMaybe<Array<PhotoType>>;
 };
 
 export type NestedEnumProfileTypeFilter = {
   equals?: InputMaybe<ProfileType>;
-  in?: InputMaybe<ProfileType[]>;
+  in?: InputMaybe<Array<ProfileType>>;
   not?: InputMaybe<ProfileType>;
-  notIn?: InputMaybe<ProfileType[]>;
+  notIn?: InputMaybe<Array<ProfileType>>;
 };
 
 export type NestedEnumProfileTypeWithAggregatesFilter = {
@@ -9734,16 +9713,16 @@ export type NestedEnumProfileTypeWithAggregatesFilter = {
   _max?: InputMaybe<NestedEnumProfileTypeFilter>;
   _min?: InputMaybe<NestedEnumProfileTypeFilter>;
   equals?: InputMaybe<ProfileType>;
-  in?: InputMaybe<ProfileType[]>;
+  in?: InputMaybe<Array<ProfileType>>;
   not?: InputMaybe<ProfileType>;
-  notIn?: InputMaybe<ProfileType[]>;
+  notIn?: InputMaybe<Array<ProfileType>>;
 };
 
 export type NestedEnumSecureDataTypeFilter = {
   equals?: InputMaybe<SecureDataType>;
-  in?: InputMaybe<SecureDataType[]>;
+  in?: InputMaybe<Array<SecureDataType>>;
   not?: InputMaybe<SecureDataType>;
-  notIn?: InputMaybe<SecureDataType[]>;
+  notIn?: InputMaybe<Array<SecureDataType>>;
 };
 
 export type NestedEnumSecureDataTypeWithAggregatesFilter = {
@@ -9751,16 +9730,16 @@ export type NestedEnumSecureDataTypeWithAggregatesFilter = {
   _max?: InputMaybe<NestedEnumSecureDataTypeFilter>;
   _min?: InputMaybe<NestedEnumSecureDataTypeFilter>;
   equals?: InputMaybe<SecureDataType>;
-  in?: InputMaybe<SecureDataType[]>;
+  in?: InputMaybe<Array<SecureDataType>>;
   not?: InputMaybe<SecureDataType>;
-  notIn?: InputMaybe<SecureDataType[]>;
+  notIn?: InputMaybe<Array<SecureDataType>>;
 };
 
 export type NestedEnumTokenTypeNullableFilter = {
   equals?: InputMaybe<TokenType>;
-  in?: InputMaybe<TokenType[]>;
+  in?: InputMaybe<Array<TokenType>>;
   not?: InputMaybe<TokenType>;
-  notIn?: InputMaybe<TokenType[]>;
+  notIn?: InputMaybe<Array<TokenType>>;
 };
 
 export type NestedEnumTokenTypeNullableWithAggregatesFilter = {
@@ -9768,16 +9747,16 @@ export type NestedEnumTokenTypeNullableWithAggregatesFilter = {
   _max?: InputMaybe<NestedEnumTokenTypeNullableFilter>;
   _min?: InputMaybe<NestedEnumTokenTypeNullableFilter>;
   equals?: InputMaybe<TokenType>;
-  in?: InputMaybe<TokenType[]>;
+  in?: InputMaybe<Array<TokenType>>;
   not?: InputMaybe<TokenType>;
-  notIn?: InputMaybe<TokenType[]>;
+  notIn?: InputMaybe<Array<TokenType>>;
 };
 
 export type NestedEnumTypeOfDocumentFilter = {
   equals?: InputMaybe<TypeOfDocument>;
-  in?: InputMaybe<TypeOfDocument[]>;
+  in?: InputMaybe<Array<TypeOfDocument>>;
   not?: InputMaybe<TypeOfDocument>;
-  notIn?: InputMaybe<TypeOfDocument[]>;
+  notIn?: InputMaybe<Array<TypeOfDocument>>;
 };
 
 export type NestedEnumTypeOfDocumentWithAggregatesFilter = {
@@ -9785,31 +9764,31 @@ export type NestedEnumTypeOfDocumentWithAggregatesFilter = {
   _max?: InputMaybe<NestedEnumTypeOfDocumentFilter>;
   _min?: InputMaybe<NestedEnumTypeOfDocumentFilter>;
   equals?: InputMaybe<TypeOfDocument>;
-  in?: InputMaybe<TypeOfDocument[]>;
+  in?: InputMaybe<Array<TypeOfDocument>>;
   not?: InputMaybe<TypeOfDocument>;
-  notIn?: InputMaybe<TypeOfDocument[]>;
+  notIn?: InputMaybe<Array<TypeOfDocument>>;
 };
 
 export type NestedFloatFilter = {
   equals?: InputMaybe<Scalars['Float']['input']>;
   gt?: InputMaybe<Scalars['Float']['input']>;
   gte?: InputMaybe<Scalars['Float']['input']>;
-  in?: InputMaybe<Scalars['Float']['input'][]>;
+  in?: InputMaybe<Array<Scalars['Float']['input']>>;
   lt?: InputMaybe<Scalars['Float']['input']>;
   lte?: InputMaybe<Scalars['Float']['input']>;
   not?: InputMaybe<NestedFloatFilter>;
-  notIn?: InputMaybe<Scalars['Float']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['Float']['input']>>;
 };
 
 export type NestedFloatNullableFilter = {
   equals?: InputMaybe<Scalars['Float']['input']>;
   gt?: InputMaybe<Scalars['Float']['input']>;
   gte?: InputMaybe<Scalars['Float']['input']>;
-  in?: InputMaybe<Scalars['Float']['input'][]>;
+  in?: InputMaybe<Array<Scalars['Float']['input']>>;
   lt?: InputMaybe<Scalars['Float']['input']>;
   lte?: InputMaybe<Scalars['Float']['input']>;
   not?: InputMaybe<NestedFloatNullableFilter>;
-  notIn?: InputMaybe<Scalars['Float']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['Float']['input']>>;
 };
 
 export type NestedFloatWithAggregatesFilter = {
@@ -9821,33 +9800,33 @@ export type NestedFloatWithAggregatesFilter = {
   equals?: InputMaybe<Scalars['Float']['input']>;
   gt?: InputMaybe<Scalars['Float']['input']>;
   gte?: InputMaybe<Scalars['Float']['input']>;
-  in?: InputMaybe<Scalars['Float']['input'][]>;
+  in?: InputMaybe<Array<Scalars['Float']['input']>>;
   lt?: InputMaybe<Scalars['Float']['input']>;
   lte?: InputMaybe<Scalars['Float']['input']>;
   not?: InputMaybe<NestedFloatWithAggregatesFilter>;
-  notIn?: InputMaybe<Scalars['Float']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['Float']['input']>>;
 };
 
 export type NestedIntFilter = {
   equals?: InputMaybe<Scalars['Int']['input']>;
   gt?: InputMaybe<Scalars['Int']['input']>;
   gte?: InputMaybe<Scalars['Int']['input']>;
-  in?: InputMaybe<Scalars['Int']['input'][]>;
+  in?: InputMaybe<Array<Scalars['Int']['input']>>;
   lt?: InputMaybe<Scalars['Int']['input']>;
   lte?: InputMaybe<Scalars['Int']['input']>;
   not?: InputMaybe<NestedIntFilter>;
-  notIn?: InputMaybe<Scalars['Int']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
 export type NestedIntNullableFilter = {
   equals?: InputMaybe<Scalars['Int']['input']>;
   gt?: InputMaybe<Scalars['Int']['input']>;
   gte?: InputMaybe<Scalars['Int']['input']>;
-  in?: InputMaybe<Scalars['Int']['input'][]>;
+  in?: InputMaybe<Array<Scalars['Int']['input']>>;
   lt?: InputMaybe<Scalars['Int']['input']>;
   lte?: InputMaybe<Scalars['Int']['input']>;
   not?: InputMaybe<NestedIntNullableFilter>;
-  notIn?: InputMaybe<Scalars['Int']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
 export type NestedIntNullableWithAggregatesFilter = {
@@ -9859,11 +9838,11 @@ export type NestedIntNullableWithAggregatesFilter = {
   equals?: InputMaybe<Scalars['Int']['input']>;
   gt?: InputMaybe<Scalars['Int']['input']>;
   gte?: InputMaybe<Scalars['Int']['input']>;
-  in?: InputMaybe<Scalars['Int']['input'][]>;
+  in?: InputMaybe<Array<Scalars['Int']['input']>>;
   lt?: InputMaybe<Scalars['Int']['input']>;
   lte?: InputMaybe<Scalars['Int']['input']>;
   not?: InputMaybe<NestedIntNullableWithAggregatesFilter>;
-  notIn?: InputMaybe<Scalars['Int']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
 export type NestedIntWithAggregatesFilter = {
@@ -9875,11 +9854,11 @@ export type NestedIntWithAggregatesFilter = {
   equals?: InputMaybe<Scalars['Int']['input']>;
   gt?: InputMaybe<Scalars['Int']['input']>;
   gte?: InputMaybe<Scalars['Int']['input']>;
-  in?: InputMaybe<Scalars['Int']['input'][]>;
+  in?: InputMaybe<Array<Scalars['Int']['input']>>;
   lt?: InputMaybe<Scalars['Int']['input']>;
   lte?: InputMaybe<Scalars['Int']['input']>;
   not?: InputMaybe<NestedIntWithAggregatesFilter>;
-  notIn?: InputMaybe<Scalars['Int']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
 export type NestedJsonFilter = {
@@ -9892,7 +9871,7 @@ export type NestedJsonFilter = {
   lt?: InputMaybe<Scalars['Json']['input']>;
   lte?: InputMaybe<Scalars['Json']['input']>;
   not?: InputMaybe<Scalars['Json']['input']>;
-  path?: InputMaybe<Scalars['String']['input'][]>;
+  path?: InputMaybe<Array<Scalars['String']['input']>>;
   string_contains?: InputMaybe<Scalars['String']['input']>;
   string_ends_with?: InputMaybe<Scalars['String']['input']>;
   string_starts_with?: InputMaybe<Scalars['String']['input']>;
@@ -9904,11 +9883,11 @@ export type NestedStringFilter = {
   equals?: InputMaybe<Scalars['String']['input']>;
   gt?: InputMaybe<Scalars['String']['input']>;
   gte?: InputMaybe<Scalars['String']['input']>;
-  in?: InputMaybe<Scalars['String']['input'][]>;
+  in?: InputMaybe<Array<Scalars['String']['input']>>;
   lt?: InputMaybe<Scalars['String']['input']>;
   lte?: InputMaybe<Scalars['String']['input']>;
   not?: InputMaybe<NestedStringFilter>;
-  notIn?: InputMaybe<Scalars['String']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>;
   startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -9918,11 +9897,11 @@ export type NestedStringNullableFilter = {
   equals?: InputMaybe<Scalars['String']['input']>;
   gt?: InputMaybe<Scalars['String']['input']>;
   gte?: InputMaybe<Scalars['String']['input']>;
-  in?: InputMaybe<Scalars['String']['input'][]>;
+  in?: InputMaybe<Array<Scalars['String']['input']>>;
   lt?: InputMaybe<Scalars['String']['input']>;
   lte?: InputMaybe<Scalars['String']['input']>;
   not?: InputMaybe<NestedStringNullableFilter>;
-  notIn?: InputMaybe<Scalars['String']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>;
   startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -9935,11 +9914,11 @@ export type NestedStringNullableWithAggregatesFilter = {
   equals?: InputMaybe<Scalars['String']['input']>;
   gt?: InputMaybe<Scalars['String']['input']>;
   gte?: InputMaybe<Scalars['String']['input']>;
-  in?: InputMaybe<Scalars['String']['input'][]>;
+  in?: InputMaybe<Array<Scalars['String']['input']>>;
   lt?: InputMaybe<Scalars['String']['input']>;
   lte?: InputMaybe<Scalars['String']['input']>;
   not?: InputMaybe<NestedStringNullableWithAggregatesFilter>;
-  notIn?: InputMaybe<Scalars['String']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>;
   startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -9952,11 +9931,11 @@ export type NestedStringWithAggregatesFilter = {
   equals?: InputMaybe<Scalars['String']['input']>;
   gt?: InputMaybe<Scalars['String']['input']>;
   gte?: InputMaybe<Scalars['String']['input']>;
-  in?: InputMaybe<Scalars['String']['input'][]>;
+  in?: InputMaybe<Array<Scalars['String']['input']>>;
   lt?: InputMaybe<Scalars['String']['input']>;
   lte?: InputMaybe<Scalars['String']['input']>;
   not?: InputMaybe<NestedStringWithAggregatesFilter>;
-  notIn?: InputMaybe<Scalars['String']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>;
   startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -9985,7 +9964,7 @@ export type NotificationFriendRequestStatusResponse = Error | Relationship | Req
 
 export type NotificationResponse = {
   __typename?: 'NotificationResponse';
-  friendRequestNotifications?: Maybe<Request[]>;
+  friendRequestNotifications?: Maybe<Array<Request>>;
 };
 
 export type NotificationStatus = {
@@ -10112,9 +10091,9 @@ export enum NotificationStatusScalarFieldEnum {
 }
 
 export type NotificationStatusScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<NotificationStatusScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<NotificationStatusScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<NotificationStatusScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<NotificationStatusScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<NotificationStatusScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<NotificationStatusScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   isAccepted?: InputMaybe<BoolWithAggregatesFilter>;
@@ -10175,9 +10154,9 @@ export type NotificationStatusUpsertWithoutRequestReceiverInput = {
 };
 
 export type NotificationStatusWhereInput = {
-  AND?: InputMaybe<NotificationStatusWhereInput[]>;
-  NOT?: InputMaybe<NotificationStatusWhereInput[]>;
-  OR?: InputMaybe<NotificationStatusWhereInput[]>;
+  AND?: InputMaybe<Array<NotificationStatusWhereInput>>;
+  NOT?: InputMaybe<Array<NotificationStatusWhereInput>>;
+  OR?: InputMaybe<Array<NotificationStatusWhereInput>>;
   RequestReceiver?: InputMaybe<RequestReceiverWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<StringFilter>;
@@ -10189,9 +10168,9 @@ export type NotificationStatusWhereInput = {
 };
 
 export type NotificationStatusWhereUniqueInput = {
-  AND?: InputMaybe<NotificationStatusWhereInput[]>;
-  NOT?: InputMaybe<NotificationStatusWhereInput[]>;
-  OR?: InputMaybe<NotificationStatusWhereInput[]>;
+  AND?: InputMaybe<Array<NotificationStatusWhereInput>>;
+  NOT?: InputMaybe<Array<NotificationStatusWhereInput>>;
+  OR?: InputMaybe<Array<NotificationStatusWhereInput>>;
   RequestReceiver?: InputMaybe<RequestReceiverWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
@@ -10240,14 +10219,14 @@ export type NotificationTypeSettingCreateManyMemberConversationNotificationSetti
 };
 
 export type NotificationTypeSettingCreateManyMemberConversationNotificationSettingInputEnvelope = {
-  data: NotificationTypeSettingCreateManyMemberConversationNotificationSettingInput[];
+  data: Array<NotificationTypeSettingCreateManyMemberConversationNotificationSettingInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type NotificationTypeSettingCreateNestedManyWithoutMemberConversationNotificationSettingInput = {
-  connect?: InputMaybe<NotificationTypeSettingWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<NotificationTypeSettingCreateOrConnectWithoutMemberConversationNotificationSettingInput[]>;
-  create?: InputMaybe<NotificationTypeSettingCreateWithoutMemberConversationNotificationSettingInput[]>;
+  connect?: InputMaybe<Array<NotificationTypeSettingWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<NotificationTypeSettingCreateOrConnectWithoutMemberConversationNotificationSettingInput>>;
+  create?: InputMaybe<Array<NotificationTypeSettingCreateWithoutMemberConversationNotificationSettingInput>>;
   createMany?: InputMaybe<NotificationTypeSettingCreateManyMemberConversationNotificationSettingInputEnvelope>;
 };
 
@@ -10312,20 +10291,20 @@ export enum NotificationTypeSettingScalarFieldEnum {
 }
 
 export type NotificationTypeSettingScalarWhereInput = {
-  AND?: InputMaybe<NotificationTypeSettingScalarWhereInput[]>;
-  NOT?: InputMaybe<NotificationTypeSettingScalarWhereInput[]>;
+  AND?: InputMaybe<Array<NotificationTypeSettingScalarWhereInput>>;
+  NOT?: InputMaybe<Array<NotificationTypeSettingScalarWhereInput>>;
   NotificationType?: InputMaybe<EnumNotificationTypeFilter>;
-  OR?: InputMaybe<NotificationTypeSettingScalarWhereInput[]>;
+  OR?: InputMaybe<Array<NotificationTypeSettingScalarWhereInput>>;
   allowed?: InputMaybe<BoolFilter>;
   id?: InputMaybe<StringFilter>;
   memberConversationNotificationSettingId?: InputMaybe<StringNullableFilter>;
 };
 
 export type NotificationTypeSettingScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<NotificationTypeSettingScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<NotificationTypeSettingScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<NotificationTypeSettingScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<NotificationTypeSettingScalarWhereWithAggregatesInput>>;
   NotificationType?: InputMaybe<EnumNotificationTypeWithAggregatesFilter>;
-  OR?: InputMaybe<NotificationTypeSettingScalarWhereWithAggregatesInput[]>;
+  OR?: InputMaybe<Array<NotificationTypeSettingScalarWhereWithAggregatesInput>>;
   allowed?: InputMaybe<BoolWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   memberConversationNotificationSettingId?: InputMaybe<StringNullableWithAggregatesFilter>;
@@ -10350,17 +10329,17 @@ export type NotificationTypeSettingUpdateManyWithWhereWithoutMemberConversationN
 };
 
 export type NotificationTypeSettingUpdateManyWithoutMemberConversationNotificationSettingNestedInput = {
-  connect?: InputMaybe<NotificationTypeSettingWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<NotificationTypeSettingCreateOrConnectWithoutMemberConversationNotificationSettingInput[]>;
-  create?: InputMaybe<NotificationTypeSettingCreateWithoutMemberConversationNotificationSettingInput[]>;
+  connect?: InputMaybe<Array<NotificationTypeSettingWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<NotificationTypeSettingCreateOrConnectWithoutMemberConversationNotificationSettingInput>>;
+  create?: InputMaybe<Array<NotificationTypeSettingCreateWithoutMemberConversationNotificationSettingInput>>;
   createMany?: InputMaybe<NotificationTypeSettingCreateManyMemberConversationNotificationSettingInputEnvelope>;
-  delete?: InputMaybe<NotificationTypeSettingWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<NotificationTypeSettingScalarWhereInput[]>;
-  disconnect?: InputMaybe<NotificationTypeSettingWhereUniqueInput[]>;
-  set?: InputMaybe<NotificationTypeSettingWhereUniqueInput[]>;
-  update?: InputMaybe<NotificationTypeSettingUpdateWithWhereUniqueWithoutMemberConversationNotificationSettingInput[]>;
-  updateMany?: InputMaybe<NotificationTypeSettingUpdateManyWithWhereWithoutMemberConversationNotificationSettingInput[]>;
-  upsert?: InputMaybe<NotificationTypeSettingUpsertWithWhereUniqueWithoutMemberConversationNotificationSettingInput[]>;
+  delete?: InputMaybe<Array<NotificationTypeSettingWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<NotificationTypeSettingScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<NotificationTypeSettingWhereUniqueInput>>;
+  set?: InputMaybe<Array<NotificationTypeSettingWhereUniqueInput>>;
+  update?: InputMaybe<Array<NotificationTypeSettingUpdateWithWhereUniqueWithoutMemberConversationNotificationSettingInput>>;
+  updateMany?: InputMaybe<Array<NotificationTypeSettingUpdateManyWithWhereWithoutMemberConversationNotificationSettingInput>>;
+  upsert?: InputMaybe<Array<NotificationTypeSettingUpsertWithWhereUniqueWithoutMemberConversationNotificationSettingInput>>;
 };
 
 export type NotificationTypeSettingUpdateWithWhereUniqueWithoutMemberConversationNotificationSettingInput = {
@@ -10381,22 +10360,22 @@ export type NotificationTypeSettingUpsertWithWhereUniqueWithoutMemberConversatio
 };
 
 export type NotificationTypeSettingWhereInput = {
-  AND?: InputMaybe<NotificationTypeSettingWhereInput[]>;
+  AND?: InputMaybe<Array<NotificationTypeSettingWhereInput>>;
   MemberConversationNotificationSetting?: InputMaybe<MemberConversationNotificationSettingWhereInput>;
-  NOT?: InputMaybe<NotificationTypeSettingWhereInput[]>;
+  NOT?: InputMaybe<Array<NotificationTypeSettingWhereInput>>;
   NotificationType?: InputMaybe<EnumNotificationTypeFilter>;
-  OR?: InputMaybe<NotificationTypeSettingWhereInput[]>;
+  OR?: InputMaybe<Array<NotificationTypeSettingWhereInput>>;
   allowed?: InputMaybe<BoolFilter>;
   id?: InputMaybe<StringFilter>;
   memberConversationNotificationSettingId?: InputMaybe<StringNullableFilter>;
 };
 
 export type NotificationTypeSettingWhereUniqueInput = {
-  AND?: InputMaybe<NotificationTypeSettingWhereInput[]>;
+  AND?: InputMaybe<Array<NotificationTypeSettingWhereInput>>;
   MemberConversationNotificationSetting?: InputMaybe<MemberConversationNotificationSettingWhereInput>;
-  NOT?: InputMaybe<NotificationTypeSettingWhereInput[]>;
+  NOT?: InputMaybe<Array<NotificationTypeSettingWhereInput>>;
   NotificationType?: InputMaybe<EnumNotificationTypeFilter>;
-  OR?: InputMaybe<NotificationTypeSettingWhereInput[]>;
+  OR?: InputMaybe<Array<NotificationTypeSettingWhereInput>>;
   allowed?: InputMaybe<BoolFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
   memberConversationNotificationSettingId?: InputMaybe<StringNullableFilter>;
@@ -10404,8 +10383,8 @@ export type NotificationTypeSettingWhereUniqueInput = {
 
 export type Notifications = {
   __typename?: 'Notifications';
-  FriendRequests: Request[];
-  MessageRequests: Request[];
+  FriendRequests: Array<Request>;
+  MessageRequests: Array<Request>;
   Profile: Profile;
   id: Scalars['ID']['output'];
   profileId: Scalars['String']['output'];
@@ -10414,8 +10393,8 @@ export type Notifications = {
 
 export type NotificationsFriendRequestsArgs = {
   cursor?: InputMaybe<RequestWhereUniqueInput>;
-  distinct?: InputMaybe<RequestScalarFieldEnum[]>;
-  orderBy?: InputMaybe<RequestOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<RequestScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<RequestOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<RequestWhereInput>;
@@ -10424,8 +10403,8 @@ export type NotificationsFriendRequestsArgs = {
 
 export type NotificationsMessageRequestsArgs = {
   cursor?: InputMaybe<RequestWhereUniqueInput>;
-  distinct?: InputMaybe<RequestScalarFieldEnum[]>;
-  orderBy?: InputMaybe<RequestOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<RequestScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<RequestOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<RequestWhereInput>;
@@ -10449,15 +10428,15 @@ export type NotificationsCreateManyInput = {
 };
 
 export type NotificationsCreateNestedManyWithoutFriendRequestsInput = {
-  connect?: InputMaybe<NotificationsWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<NotificationsCreateOrConnectWithoutFriendRequestsInput[]>;
-  create?: InputMaybe<NotificationsCreateWithoutFriendRequestsInput[]>;
+  connect?: InputMaybe<Array<NotificationsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<NotificationsCreateOrConnectWithoutFriendRequestsInput>>;
+  create?: InputMaybe<Array<NotificationsCreateWithoutFriendRequestsInput>>;
 };
 
 export type NotificationsCreateNestedManyWithoutMessageRequestsInput = {
-  connect?: InputMaybe<NotificationsWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<NotificationsCreateOrConnectWithoutMessageRequestsInput[]>;
-  create?: InputMaybe<NotificationsCreateWithoutMessageRequestsInput[]>;
+  connect?: InputMaybe<Array<NotificationsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<NotificationsCreateOrConnectWithoutMessageRequestsInput>>;
+  create?: InputMaybe<Array<NotificationsCreateWithoutMessageRequestsInput>>;
 };
 
 export type NotificationsCreateNestedOneWithoutProfileInput = {
@@ -10546,17 +10525,17 @@ export enum NotificationsScalarFieldEnum {
 }
 
 export type NotificationsScalarWhereInput = {
-  AND?: InputMaybe<NotificationsScalarWhereInput[]>;
-  NOT?: InputMaybe<NotificationsScalarWhereInput[]>;
-  OR?: InputMaybe<NotificationsScalarWhereInput[]>;
+  AND?: InputMaybe<Array<NotificationsScalarWhereInput>>;
+  NOT?: InputMaybe<Array<NotificationsScalarWhereInput>>;
+  OR?: InputMaybe<Array<NotificationsScalarWhereInput>>;
   id?: InputMaybe<StringFilter>;
   profileId?: InputMaybe<StringFilter>;
 };
 
 export type NotificationsScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<NotificationsScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<NotificationsScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<NotificationsScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<NotificationsScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<NotificationsScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<NotificationsScalarWhereWithAggregatesInput>>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   profileId?: InputMaybe<StringWithAggregatesFilter>;
 };
@@ -10583,29 +10562,29 @@ export type NotificationsUpdateManyWithWhereWithoutMessageRequestsInput = {
 };
 
 export type NotificationsUpdateManyWithoutFriendRequestsNestedInput = {
-  connect?: InputMaybe<NotificationsWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<NotificationsCreateOrConnectWithoutFriendRequestsInput[]>;
-  create?: InputMaybe<NotificationsCreateWithoutFriendRequestsInput[]>;
-  delete?: InputMaybe<NotificationsWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<NotificationsScalarWhereInput[]>;
-  disconnect?: InputMaybe<NotificationsWhereUniqueInput[]>;
-  set?: InputMaybe<NotificationsWhereUniqueInput[]>;
-  update?: InputMaybe<NotificationsUpdateWithWhereUniqueWithoutFriendRequestsInput[]>;
-  updateMany?: InputMaybe<NotificationsUpdateManyWithWhereWithoutFriendRequestsInput[]>;
-  upsert?: InputMaybe<NotificationsUpsertWithWhereUniqueWithoutFriendRequestsInput[]>;
+  connect?: InputMaybe<Array<NotificationsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<NotificationsCreateOrConnectWithoutFriendRequestsInput>>;
+  create?: InputMaybe<Array<NotificationsCreateWithoutFriendRequestsInput>>;
+  delete?: InputMaybe<Array<NotificationsWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<NotificationsScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<NotificationsWhereUniqueInput>>;
+  set?: InputMaybe<Array<NotificationsWhereUniqueInput>>;
+  update?: InputMaybe<Array<NotificationsUpdateWithWhereUniqueWithoutFriendRequestsInput>>;
+  updateMany?: InputMaybe<Array<NotificationsUpdateManyWithWhereWithoutFriendRequestsInput>>;
+  upsert?: InputMaybe<Array<NotificationsUpsertWithWhereUniqueWithoutFriendRequestsInput>>;
 };
 
 export type NotificationsUpdateManyWithoutMessageRequestsNestedInput = {
-  connect?: InputMaybe<NotificationsWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<NotificationsCreateOrConnectWithoutMessageRequestsInput[]>;
-  create?: InputMaybe<NotificationsCreateWithoutMessageRequestsInput[]>;
-  delete?: InputMaybe<NotificationsWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<NotificationsScalarWhereInput[]>;
-  disconnect?: InputMaybe<NotificationsWhereUniqueInput[]>;
-  set?: InputMaybe<NotificationsWhereUniqueInput[]>;
-  update?: InputMaybe<NotificationsUpdateWithWhereUniqueWithoutMessageRequestsInput[]>;
-  updateMany?: InputMaybe<NotificationsUpdateManyWithWhereWithoutMessageRequestsInput[]>;
-  upsert?: InputMaybe<NotificationsUpsertWithWhereUniqueWithoutMessageRequestsInput[]>;
+  connect?: InputMaybe<Array<NotificationsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<NotificationsCreateOrConnectWithoutMessageRequestsInput>>;
+  create?: InputMaybe<Array<NotificationsCreateWithoutMessageRequestsInput>>;
+  delete?: InputMaybe<Array<NotificationsWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<NotificationsScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<NotificationsWhereUniqueInput>>;
+  set?: InputMaybe<Array<NotificationsWhereUniqueInput>>;
+  update?: InputMaybe<Array<NotificationsUpdateWithWhereUniqueWithoutMessageRequestsInput>>;
+  updateMany?: InputMaybe<Array<NotificationsUpdateManyWithWhereWithoutMessageRequestsInput>>;
+  upsert?: InputMaybe<Array<NotificationsUpsertWithWhereUniqueWithoutMessageRequestsInput>>;
 };
 
 export type NotificationsUpdateOneWithoutProfileNestedInput = {
@@ -10670,22 +10649,22 @@ export type NotificationsUpsertWithoutProfileInput = {
 };
 
 export type NotificationsWhereInput = {
-  AND?: InputMaybe<NotificationsWhereInput[]>;
+  AND?: InputMaybe<Array<NotificationsWhereInput>>;
   FriendRequests?: InputMaybe<RequestListRelationFilter>;
   MessageRequests?: InputMaybe<RequestListRelationFilter>;
-  NOT?: InputMaybe<NotificationsWhereInput[]>;
-  OR?: InputMaybe<NotificationsWhereInput[]>;
+  NOT?: InputMaybe<Array<NotificationsWhereInput>>;
+  OR?: InputMaybe<Array<NotificationsWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
   id?: InputMaybe<StringFilter>;
   profileId?: InputMaybe<StringFilter>;
 };
 
 export type NotificationsWhereUniqueInput = {
-  AND?: InputMaybe<NotificationsWhereInput[]>;
+  AND?: InputMaybe<Array<NotificationsWhereInput>>;
   FriendRequests?: InputMaybe<RequestListRelationFilter>;
   MessageRequests?: InputMaybe<RequestListRelationFilter>;
-  NOT?: InputMaybe<NotificationsWhereInput[]>;
-  OR?: InputMaybe<NotificationsWhereInput[]>;
+  NOT?: InputMaybe<Array<NotificationsWhereInput>>;
+  OR?: InputMaybe<Array<NotificationsWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
   id?: InputMaybe<Scalars['String']['input']>;
   profileId?: InputMaybe<Scalars['String']['input']>;
@@ -10726,8 +10705,8 @@ export enum NullsOrder {
 
 export type OrganizedCityResponseObject = {
   __typename?: 'OrganizedCityResponseObject';
-  allCities?: Maybe<CityResponseObject[]>;
-  popularCities?: Maybe<CityResponseObject[]>;
+  allCities?: Maybe<Array<CityResponseObject>>;
+  popularCities?: Maybe<Array<CityResponseObject>>;
 };
 
 export type Out = {
@@ -10805,7 +10784,7 @@ export type OutCreateManyLiveOutPersonalInput = {
 };
 
 export type OutCreateManyLiveOutPersonalInputEnvelope = {
-  data: OutCreateManyLiveOutPersonalInput[];
+  data: Array<OutCreateManyLiveOutPersonalInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -10823,7 +10802,7 @@ export type OutCreateManyLiveOutVenueInput = {
 };
 
 export type OutCreateManyLiveOutVenueInputEnvelope = {
-  data: OutCreateManyLiveOutVenueInput[];
+  data: Array<OutCreateManyLiveOutVenueInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -10841,7 +10820,7 @@ export type OutCreateManyPersonalStatsInput = {
 };
 
 export type OutCreateManyPersonalStatsInputEnvelope = {
-  data: OutCreateManyPersonalStatsInput[];
+  data: Array<OutCreateManyPersonalStatsInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -10859,35 +10838,35 @@ export type OutCreateManyVenueStatsInput = {
 };
 
 export type OutCreateManyVenueStatsInputEnvelope = {
-  data: OutCreateManyVenueStatsInput[];
+  data: Array<OutCreateManyVenueStatsInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type OutCreateNestedManyWithoutLiveOutPersonalInput = {
-  connect?: InputMaybe<OutWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<OutCreateOrConnectWithoutLiveOutPersonalInput[]>;
-  create?: InputMaybe<OutCreateWithoutLiveOutPersonalInput[]>;
+  connect?: InputMaybe<Array<OutWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<OutCreateOrConnectWithoutLiveOutPersonalInput>>;
+  create?: InputMaybe<Array<OutCreateWithoutLiveOutPersonalInput>>;
   createMany?: InputMaybe<OutCreateManyLiveOutPersonalInputEnvelope>;
 };
 
 export type OutCreateNestedManyWithoutLiveOutVenueInput = {
-  connect?: InputMaybe<OutWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<OutCreateOrConnectWithoutLiveOutVenueInput[]>;
-  create?: InputMaybe<OutCreateWithoutLiveOutVenueInput[]>;
+  connect?: InputMaybe<Array<OutWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<OutCreateOrConnectWithoutLiveOutVenueInput>>;
+  create?: InputMaybe<Array<OutCreateWithoutLiveOutVenueInput>>;
   createMany?: InputMaybe<OutCreateManyLiveOutVenueInputEnvelope>;
 };
 
 export type OutCreateNestedManyWithoutPersonalStatsInput = {
-  connect?: InputMaybe<OutWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<OutCreateOrConnectWithoutPersonalStatsInput[]>;
-  create?: InputMaybe<OutCreateWithoutPersonalStatsInput[]>;
+  connect?: InputMaybe<Array<OutWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<OutCreateOrConnectWithoutPersonalStatsInput>>;
+  create?: InputMaybe<Array<OutCreateWithoutPersonalStatsInput>>;
   createMany?: InputMaybe<OutCreateManyPersonalStatsInputEnvelope>;
 };
 
 export type OutCreateNestedManyWithoutVenueStatsInput = {
-  connect?: InputMaybe<OutWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<OutCreateOrConnectWithoutVenueStatsInput[]>;
-  create?: InputMaybe<OutCreateWithoutVenueStatsInput[]>;
+  connect?: InputMaybe<Array<OutWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<OutCreateOrConnectWithoutVenueStatsInput>>;
+  create?: InputMaybe<Array<OutCreateWithoutVenueStatsInput>>;
   createMany?: InputMaybe<OutCreateManyVenueStatsInputEnvelope>;
 };
 
@@ -11051,9 +11030,9 @@ export enum OutScalarFieldEnum {
 }
 
 export type OutScalarWhereInput = {
-  AND?: InputMaybe<OutScalarWhereInput[]>;
-  NOT?: InputMaybe<OutScalarWhereInput[]>;
-  OR?: InputMaybe<OutScalarWhereInput[]>;
+  AND?: InputMaybe<Array<OutScalarWhereInput>>;
+  NOT?: InputMaybe<Array<OutScalarWhereInput>>;
+  OR?: InputMaybe<Array<OutScalarWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<StringFilter>;
   leftAt?: InputMaybe<DateTimeNullableFilter>;
@@ -11068,9 +11047,9 @@ export type OutScalarWhereInput = {
 };
 
 export type OutScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<OutScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<OutScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<OutScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<OutScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<OutScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<OutScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   leftAt?: InputMaybe<DateTimeNullableWithAggregatesFilter>;
@@ -11134,59 +11113,59 @@ export type OutUpdateManyWithWhereWithoutVenueStatsInput = {
 };
 
 export type OutUpdateManyWithoutLiveOutPersonalNestedInput = {
-  connect?: InputMaybe<OutWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<OutCreateOrConnectWithoutLiveOutPersonalInput[]>;
-  create?: InputMaybe<OutCreateWithoutLiveOutPersonalInput[]>;
+  connect?: InputMaybe<Array<OutWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<OutCreateOrConnectWithoutLiveOutPersonalInput>>;
+  create?: InputMaybe<Array<OutCreateWithoutLiveOutPersonalInput>>;
   createMany?: InputMaybe<OutCreateManyLiveOutPersonalInputEnvelope>;
-  delete?: InputMaybe<OutWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<OutScalarWhereInput[]>;
-  disconnect?: InputMaybe<OutWhereUniqueInput[]>;
-  set?: InputMaybe<OutWhereUniqueInput[]>;
-  update?: InputMaybe<OutUpdateWithWhereUniqueWithoutLiveOutPersonalInput[]>;
-  updateMany?: InputMaybe<OutUpdateManyWithWhereWithoutLiveOutPersonalInput[]>;
-  upsert?: InputMaybe<OutUpsertWithWhereUniqueWithoutLiveOutPersonalInput[]>;
+  delete?: InputMaybe<Array<OutWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<OutScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<OutWhereUniqueInput>>;
+  set?: InputMaybe<Array<OutWhereUniqueInput>>;
+  update?: InputMaybe<Array<OutUpdateWithWhereUniqueWithoutLiveOutPersonalInput>>;
+  updateMany?: InputMaybe<Array<OutUpdateManyWithWhereWithoutLiveOutPersonalInput>>;
+  upsert?: InputMaybe<Array<OutUpsertWithWhereUniqueWithoutLiveOutPersonalInput>>;
 };
 
 export type OutUpdateManyWithoutLiveOutVenueNestedInput = {
-  connect?: InputMaybe<OutWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<OutCreateOrConnectWithoutLiveOutVenueInput[]>;
-  create?: InputMaybe<OutCreateWithoutLiveOutVenueInput[]>;
+  connect?: InputMaybe<Array<OutWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<OutCreateOrConnectWithoutLiveOutVenueInput>>;
+  create?: InputMaybe<Array<OutCreateWithoutLiveOutVenueInput>>;
   createMany?: InputMaybe<OutCreateManyLiveOutVenueInputEnvelope>;
-  delete?: InputMaybe<OutWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<OutScalarWhereInput[]>;
-  disconnect?: InputMaybe<OutWhereUniqueInput[]>;
-  set?: InputMaybe<OutWhereUniqueInput[]>;
-  update?: InputMaybe<OutUpdateWithWhereUniqueWithoutLiveOutVenueInput[]>;
-  updateMany?: InputMaybe<OutUpdateManyWithWhereWithoutLiveOutVenueInput[]>;
-  upsert?: InputMaybe<OutUpsertWithWhereUniqueWithoutLiveOutVenueInput[]>;
+  delete?: InputMaybe<Array<OutWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<OutScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<OutWhereUniqueInput>>;
+  set?: InputMaybe<Array<OutWhereUniqueInput>>;
+  update?: InputMaybe<Array<OutUpdateWithWhereUniqueWithoutLiveOutVenueInput>>;
+  updateMany?: InputMaybe<Array<OutUpdateManyWithWhereWithoutLiveOutVenueInput>>;
+  upsert?: InputMaybe<Array<OutUpsertWithWhereUniqueWithoutLiveOutVenueInput>>;
 };
 
 export type OutUpdateManyWithoutPersonalStatsNestedInput = {
-  connect?: InputMaybe<OutWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<OutCreateOrConnectWithoutPersonalStatsInput[]>;
-  create?: InputMaybe<OutCreateWithoutPersonalStatsInput[]>;
+  connect?: InputMaybe<Array<OutWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<OutCreateOrConnectWithoutPersonalStatsInput>>;
+  create?: InputMaybe<Array<OutCreateWithoutPersonalStatsInput>>;
   createMany?: InputMaybe<OutCreateManyPersonalStatsInputEnvelope>;
-  delete?: InputMaybe<OutWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<OutScalarWhereInput[]>;
-  disconnect?: InputMaybe<OutWhereUniqueInput[]>;
-  set?: InputMaybe<OutWhereUniqueInput[]>;
-  update?: InputMaybe<OutUpdateWithWhereUniqueWithoutPersonalStatsInput[]>;
-  updateMany?: InputMaybe<OutUpdateManyWithWhereWithoutPersonalStatsInput[]>;
-  upsert?: InputMaybe<OutUpsertWithWhereUniqueWithoutPersonalStatsInput[]>;
+  delete?: InputMaybe<Array<OutWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<OutScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<OutWhereUniqueInput>>;
+  set?: InputMaybe<Array<OutWhereUniqueInput>>;
+  update?: InputMaybe<Array<OutUpdateWithWhereUniqueWithoutPersonalStatsInput>>;
+  updateMany?: InputMaybe<Array<OutUpdateManyWithWhereWithoutPersonalStatsInput>>;
+  upsert?: InputMaybe<Array<OutUpsertWithWhereUniqueWithoutPersonalStatsInput>>;
 };
 
 export type OutUpdateManyWithoutVenueStatsNestedInput = {
-  connect?: InputMaybe<OutWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<OutCreateOrConnectWithoutVenueStatsInput[]>;
-  create?: InputMaybe<OutCreateWithoutVenueStatsInput[]>;
+  connect?: InputMaybe<Array<OutWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<OutCreateOrConnectWithoutVenueStatsInput>>;
+  create?: InputMaybe<Array<OutCreateWithoutVenueStatsInput>>;
   createMany?: InputMaybe<OutCreateManyVenueStatsInputEnvelope>;
-  delete?: InputMaybe<OutWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<OutScalarWhereInput[]>;
-  disconnect?: InputMaybe<OutWhereUniqueInput[]>;
-  set?: InputMaybe<OutWhereUniqueInput[]>;
-  update?: InputMaybe<OutUpdateWithWhereUniqueWithoutVenueStatsInput[]>;
-  updateMany?: InputMaybe<OutUpdateManyWithWhereWithoutVenueStatsInput[]>;
-  upsert?: InputMaybe<OutUpsertWithWhereUniqueWithoutVenueStatsInput[]>;
+  delete?: InputMaybe<Array<OutWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<OutScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<OutWhereUniqueInput>>;
+  set?: InputMaybe<Array<OutWhereUniqueInput>>;
+  update?: InputMaybe<Array<OutUpdateWithWhereUniqueWithoutVenueStatsInput>>;
+  updateMany?: InputMaybe<Array<OutUpdateManyWithWhereWithoutVenueStatsInput>>;
+  upsert?: InputMaybe<Array<OutUpsertWithWhereUniqueWithoutVenueStatsInput>>;
 };
 
 export type OutUpdateWithWhereUniqueWithoutLiveOutPersonalInput = {
@@ -11286,11 +11265,11 @@ export type OutUpsertWithWhereUniqueWithoutVenueStatsInput = {
 };
 
 export type OutWhereInput = {
-  AND?: InputMaybe<OutWhereInput[]>;
+  AND?: InputMaybe<Array<OutWhereInput>>;
   LiveOutPersonal?: InputMaybe<LiveOutPersonalWhereInput>;
   LiveOutVenue?: InputMaybe<LiveOutVenueWhereInput>;
-  NOT?: InputMaybe<OutWhereInput[]>;
-  OR?: InputMaybe<OutWhereInput[]>;
+  NOT?: InputMaybe<Array<OutWhereInput>>;
+  OR?: InputMaybe<Array<OutWhereInput>>;
   PersonalStats?: InputMaybe<PersonalStatsWhereInput>;
   VenueStats?: InputMaybe<VenueStatsWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -11307,11 +11286,11 @@ export type OutWhereInput = {
 };
 
 export type OutWhereUniqueInput = {
-  AND?: InputMaybe<OutWhereInput[]>;
+  AND?: InputMaybe<Array<OutWhereInput>>;
   LiveOutPersonal?: InputMaybe<LiveOutPersonalWhereInput>;
   LiveOutVenue?: InputMaybe<LiveOutVenueWhereInput>;
-  NOT?: InputMaybe<OutWhereInput[]>;
-  OR?: InputMaybe<OutWhereInput[]>;
+  NOT?: InputMaybe<Array<OutWhereInput>>;
+  OR?: InputMaybe<Array<OutWhereInput>>;
   PersonalStats?: InputMaybe<PersonalStatsWhereInput>;
   VenueStats?: InputMaybe<VenueStatsWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -11429,9 +11408,9 @@ export enum PasswordScalarFieldEnum {
 }
 
 export type PasswordScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<PasswordScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<PasswordScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<PasswordScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<PasswordScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<PasswordScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<PasswordScalarWhereWithAggregatesInput>>;
   authenitcationProviderId?: InputMaybe<StringWithAggregatesFilter>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
@@ -11483,10 +11462,10 @@ export type PasswordUpsertWithoutAuthenticationProviderInput = {
 };
 
 export type PasswordWhereInput = {
-  AND?: InputMaybe<PasswordWhereInput[]>;
+  AND?: InputMaybe<Array<PasswordWhereInput>>;
   AuthenticationProvider?: InputMaybe<AuthenticationProviderWhereInput>;
-  NOT?: InputMaybe<PasswordWhereInput[]>;
-  OR?: InputMaybe<PasswordWhereInput[]>;
+  NOT?: InputMaybe<Array<PasswordWhereInput>>;
+  OR?: InputMaybe<Array<PasswordWhereInput>>;
   authenitcationProviderId?: InputMaybe<StringFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<StringFilter>;
@@ -11495,10 +11474,10 @@ export type PasswordWhereInput = {
 };
 
 export type PasswordWhereUniqueInput = {
-  AND?: InputMaybe<PasswordWhereInput[]>;
+  AND?: InputMaybe<Array<PasswordWhereInput>>;
   AuthenticationProvider?: InputMaybe<AuthenticationProviderWhereInput>;
-  NOT?: InputMaybe<PasswordWhereInput[]>;
-  OR?: InputMaybe<PasswordWhereInput[]>;
+  NOT?: InputMaybe<Array<PasswordWhereInput>>;
+  OR?: InputMaybe<Array<PasswordWhereInput>>;
   authenitcationProviderId?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
@@ -11543,14 +11522,14 @@ export type PathCreateManyTonightPathInput = {
 };
 
 export type PathCreateManyTonightPathInputEnvelope = {
-  data: PathCreateManyTonightPathInput[];
+  data: Array<PathCreateManyTonightPathInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type PathCreateNestedManyWithoutTonightPathInput = {
-  connect?: InputMaybe<PathWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<PathCreateOrConnectWithoutTonightPathInput[]>;
-  create?: InputMaybe<PathCreateWithoutTonightPathInput[]>;
+  connect?: InputMaybe<Array<PathWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<PathCreateOrConnectWithoutTonightPathInput>>;
+  create?: InputMaybe<Array<PathCreateWithoutTonightPathInput>>;
   createMany?: InputMaybe<PathCreateManyTonightPathInputEnvelope>;
 };
 
@@ -11623,9 +11602,9 @@ export enum PathScalarFieldEnum {
 }
 
 export type PathScalarWhereInput = {
-  AND?: InputMaybe<PathScalarWhereInput[]>;
-  NOT?: InputMaybe<PathScalarWhereInput[]>;
-  OR?: InputMaybe<PathScalarWhereInput[]>;
+  AND?: InputMaybe<Array<PathScalarWhereInput>>;
+  NOT?: InputMaybe<Array<PathScalarWhereInput>>;
+  OR?: InputMaybe<Array<PathScalarWhereInput>>;
   TonightPathId?: InputMaybe<StringNullableFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<StringFilter>;
@@ -11634,9 +11613,9 @@ export type PathScalarWhereInput = {
 };
 
 export type PathScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<PathScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<PathScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<PathScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<PathScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<PathScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<PathScalarWhereWithAggregatesInput>>;
   TonightPathId?: InputMaybe<StringNullableWithAggregatesFilter>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
@@ -11670,17 +11649,17 @@ export type PathUpdateManyWithWhereWithoutTonightPathInput = {
 };
 
 export type PathUpdateManyWithoutTonightPathNestedInput = {
-  connect?: InputMaybe<PathWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<PathCreateOrConnectWithoutTonightPathInput[]>;
-  create?: InputMaybe<PathCreateWithoutTonightPathInput[]>;
+  connect?: InputMaybe<Array<PathWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<PathCreateOrConnectWithoutTonightPathInput>>;
+  create?: InputMaybe<Array<PathCreateWithoutTonightPathInput>>;
   createMany?: InputMaybe<PathCreateManyTonightPathInputEnvelope>;
-  delete?: InputMaybe<PathWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<PathScalarWhereInput[]>;
-  disconnect?: InputMaybe<PathWhereUniqueInput[]>;
-  set?: InputMaybe<PathWhereUniqueInput[]>;
-  update?: InputMaybe<PathUpdateWithWhereUniqueWithoutTonightPathInput[]>;
-  updateMany?: InputMaybe<PathUpdateManyWithWhereWithoutTonightPathInput[]>;
-  upsert?: InputMaybe<PathUpsertWithWhereUniqueWithoutTonightPathInput[]>;
+  delete?: InputMaybe<Array<PathWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<PathScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<PathWhereUniqueInput>>;
+  set?: InputMaybe<Array<PathWhereUniqueInput>>;
+  update?: InputMaybe<Array<PathUpdateWithWhereUniqueWithoutTonightPathInput>>;
+  updateMany?: InputMaybe<Array<PathUpdateManyWithWhereWithoutTonightPathInput>>;
+  upsert?: InputMaybe<Array<PathUpsertWithWhereUniqueWithoutTonightPathInput>>;
 };
 
 export type PathUpdateWithWhereUniqueWithoutTonightPathInput = {
@@ -11702,9 +11681,9 @@ export type PathUpsertWithWhereUniqueWithoutTonightPathInput = {
 };
 
 export type PathWhereInput = {
-  AND?: InputMaybe<PathWhereInput[]>;
-  NOT?: InputMaybe<PathWhereInput[]>;
-  OR?: InputMaybe<PathWhereInput[]>;
+  AND?: InputMaybe<Array<PathWhereInput>>;
+  NOT?: InputMaybe<Array<PathWhereInput>>;
+  OR?: InputMaybe<Array<PathWhereInput>>;
   TonightPath?: InputMaybe<TonightPathWhereInput>;
   TonightPathId?: InputMaybe<StringNullableFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -11714,9 +11693,9 @@ export type PathWhereInput = {
 };
 
 export type PathWhereUniqueInput = {
-  AND?: InputMaybe<PathWhereInput[]>;
-  NOT?: InputMaybe<PathWhereInput[]>;
-  OR?: InputMaybe<PathWhereInput[]>;
+  AND?: InputMaybe<Array<PathWhereInput>>;
+  NOT?: InputMaybe<Array<PathWhereInput>>;
+  OR?: InputMaybe<Array<PathWhereInput>>;
   TonightPath?: InputMaybe<TonightPathWhereInput>;
   TonightPathId?: InputMaybe<StringNullableFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -11882,9 +11861,9 @@ export enum PersonalScalarFieldEnum {
 }
 
 export type PersonalScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<PersonalScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<PersonalScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<PersonalScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<PersonalScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<PersonalScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<PersonalScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   personalStatsId?: InputMaybe<StringNullableWithAggregatesFilter>;
@@ -11894,7 +11873,7 @@ export type PersonalScalarWhereWithAggregatesInput = {
 
 export type PersonalStats = {
   __typename?: 'PersonalStats';
-  Out: Out[];
+  Out: Array<Out>;
   Personal?: Maybe<Personal>;
   createdAt: Scalars['DateTime']['output'];
   id: Scalars['ID']['output'];
@@ -11904,8 +11883,8 @@ export type PersonalStats = {
 
 export type PersonalStatsOutArgs = {
   cursor?: InputMaybe<OutWhereUniqueInput>;
-  distinct?: InputMaybe<OutScalarFieldEnum[]>;
-  orderBy?: InputMaybe<OutOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<OutScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<OutOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<OutWhereInput>;
@@ -12008,9 +11987,9 @@ export enum PersonalStatsScalarFieldEnum {
 }
 
 export type PersonalStatsScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<PersonalStatsScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<PersonalStatsScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<PersonalStatsScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<PersonalStatsScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<PersonalStatsScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<PersonalStatsScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
@@ -12087,9 +12066,9 @@ export type PersonalStatsUpsertWithoutPersonalInput = {
 };
 
 export type PersonalStatsWhereInput = {
-  AND?: InputMaybe<PersonalStatsWhereInput[]>;
-  NOT?: InputMaybe<PersonalStatsWhereInput[]>;
-  OR?: InputMaybe<PersonalStatsWhereInput[]>;
+  AND?: InputMaybe<Array<PersonalStatsWhereInput>>;
+  NOT?: InputMaybe<Array<PersonalStatsWhereInput>>;
+  OR?: InputMaybe<Array<PersonalStatsWhereInput>>;
   Out?: InputMaybe<OutListRelationFilter>;
   Personal?: InputMaybe<PersonalWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -12098,9 +12077,9 @@ export type PersonalStatsWhereInput = {
 };
 
 export type PersonalStatsWhereUniqueInput = {
-  AND?: InputMaybe<PersonalStatsWhereInput[]>;
-  NOT?: InputMaybe<PersonalStatsWhereInput[]>;
-  OR?: InputMaybe<PersonalStatsWhereInput[]>;
+  AND?: InputMaybe<Array<PersonalStatsWhereInput>>;
+  NOT?: InputMaybe<Array<PersonalStatsWhereInput>>;
+  OR?: InputMaybe<Array<PersonalStatsWhereInput>>;
   Out?: InputMaybe<OutListRelationFilter>;
   Personal?: InputMaybe<PersonalWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -12209,10 +12188,10 @@ export type PersonalUpsertWithoutProfileInput = {
 };
 
 export type PersonalWhereInput = {
-  AND?: InputMaybe<PersonalWhereInput[]>;
+  AND?: InputMaybe<Array<PersonalWhereInput>>;
   LiveOutPersonal?: InputMaybe<LiveOutPersonalWhereInput>;
-  NOT?: InputMaybe<PersonalWhereInput[]>;
-  OR?: InputMaybe<PersonalWhereInput[]>;
+  NOT?: InputMaybe<Array<PersonalWhereInput>>;
+  OR?: InputMaybe<Array<PersonalWhereInput>>;
   PersonalStats?: InputMaybe<PersonalStatsWhereInput>;
   Profile?: InputMaybe<ProfileWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -12223,10 +12202,10 @@ export type PersonalWhereInput = {
 };
 
 export type PersonalWhereUniqueInput = {
-  AND?: InputMaybe<PersonalWhereInput[]>;
+  AND?: InputMaybe<Array<PersonalWhereInput>>;
   LiveOutPersonal?: InputMaybe<LiveOutPersonalWhereInput>;
-  NOT?: InputMaybe<PersonalWhereInput[]>;
-  OR?: InputMaybe<PersonalWhereInput[]>;
+  NOT?: InputMaybe<Array<PersonalWhereInput>>;
+  OR?: InputMaybe<Array<PersonalWhereInput>>;
   PersonalStats?: InputMaybe<PersonalStatsWhereInput>;
   Profile?: InputMaybe<ProfileWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -12238,7 +12217,7 @@ export type PersonalWhereUniqueInput = {
 
 export type Phone = {
   __typename?: 'Phone';
-  AuthenticationProvider: AuthenticationProvider[];
+  AuthenticationProvider: Array<AuthenticationProvider>;
   canUseAsRecovery?: Maybe<Scalars['Boolean']['output']>;
   completeNumber?: Maybe<Scalars['String']['output']>;
   countryCallingCode?: Maybe<Scalars['String']['output']>;
@@ -12252,8 +12231,8 @@ export type Phone = {
 
 export type PhoneAuthenticationProviderArgs = {
   cursor?: InputMaybe<AuthenticationProviderWhereUniqueInput>;
-  distinct?: InputMaybe<AuthenticationProviderScalarFieldEnum[]>;
-  orderBy?: InputMaybe<AuthenticationProviderOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<AuthenticationProviderScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<AuthenticationProviderOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<AuthenticationProviderWhereInput>;
@@ -12297,9 +12276,9 @@ export type PhoneCreateManyInput = {
 };
 
 export type PhoneCreateNestedManyWithoutAuthenticationProviderInput = {
-  connect?: InputMaybe<PhoneWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<PhoneCreateOrConnectWithoutAuthenticationProviderInput[]>;
-  create?: InputMaybe<PhoneCreateWithoutAuthenticationProviderInput[]>;
+  connect?: InputMaybe<Array<PhoneWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<PhoneCreateOrConnectWithoutAuthenticationProviderInput>>;
+  create?: InputMaybe<Array<PhoneCreateWithoutAuthenticationProviderInput>>;
 };
 
 export type PhoneCreateOrConnectWithoutAuthenticationProviderInput = {
@@ -12397,9 +12376,9 @@ export enum PhoneScalarFieldEnum {
 }
 
 export type PhoneScalarWhereInput = {
-  AND?: InputMaybe<PhoneScalarWhereInput[]>;
-  NOT?: InputMaybe<PhoneScalarWhereInput[]>;
-  OR?: InputMaybe<PhoneScalarWhereInput[]>;
+  AND?: InputMaybe<Array<PhoneScalarWhereInput>>;
+  NOT?: InputMaybe<Array<PhoneScalarWhereInput>>;
+  OR?: InputMaybe<Array<PhoneScalarWhereInput>>;
   canUseAsRecovery?: InputMaybe<BoolNullableFilter>;
   completeNumber?: InputMaybe<StringNullableFilter>;
   countryCallingCode?: InputMaybe<StringNullableFilter>;
@@ -12411,9 +12390,9 @@ export type PhoneScalarWhereInput = {
 };
 
 export type PhoneScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<PhoneScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<PhoneScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<PhoneScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<PhoneScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<PhoneScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<PhoneScalarWhereWithAggregatesInput>>;
   canUseAsRecovery?: InputMaybe<BoolNullableWithAggregatesFilter>;
   completeNumber?: InputMaybe<StringNullableWithAggregatesFilter>;
   countryCallingCode?: InputMaybe<StringNullableWithAggregatesFilter>;
@@ -12455,16 +12434,16 @@ export type PhoneUpdateManyWithWhereWithoutAuthenticationProviderInput = {
 };
 
 export type PhoneUpdateManyWithoutAuthenticationProviderNestedInput = {
-  connect?: InputMaybe<PhoneWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<PhoneCreateOrConnectWithoutAuthenticationProviderInput[]>;
-  create?: InputMaybe<PhoneCreateWithoutAuthenticationProviderInput[]>;
-  delete?: InputMaybe<PhoneWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<PhoneScalarWhereInput[]>;
-  disconnect?: InputMaybe<PhoneWhereUniqueInput[]>;
-  set?: InputMaybe<PhoneWhereUniqueInput[]>;
-  update?: InputMaybe<PhoneUpdateWithWhereUniqueWithoutAuthenticationProviderInput[]>;
-  updateMany?: InputMaybe<PhoneUpdateManyWithWhereWithoutAuthenticationProviderInput[]>;
-  upsert?: InputMaybe<PhoneUpsertWithWhereUniqueWithoutAuthenticationProviderInput[]>;
+  connect?: InputMaybe<Array<PhoneWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<PhoneCreateOrConnectWithoutAuthenticationProviderInput>>;
+  create?: InputMaybe<Array<PhoneCreateWithoutAuthenticationProviderInput>>;
+  delete?: InputMaybe<Array<PhoneWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<PhoneScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<PhoneWhereUniqueInput>>;
+  set?: InputMaybe<Array<PhoneWhereUniqueInput>>;
+  update?: InputMaybe<Array<PhoneUpdateWithWhereUniqueWithoutAuthenticationProviderInput>>;
+  updateMany?: InputMaybe<Array<PhoneUpdateManyWithWhereWithoutAuthenticationProviderInput>>;
+  upsert?: InputMaybe<Array<PhoneUpsertWithWhereUniqueWithoutAuthenticationProviderInput>>;
 };
 
 export type PhoneUpdateWithWhereUniqueWithoutAuthenticationProviderInput = {
@@ -12489,10 +12468,10 @@ export type PhoneUpsertWithWhereUniqueWithoutAuthenticationProviderInput = {
 };
 
 export type PhoneWhereInput = {
-  AND?: InputMaybe<PhoneWhereInput[]>;
+  AND?: InputMaybe<Array<PhoneWhereInput>>;
   AuthenticationProvider?: InputMaybe<AuthenticationProviderListRelationFilter>;
-  NOT?: InputMaybe<PhoneWhereInput[]>;
-  OR?: InputMaybe<PhoneWhereInput[]>;
+  NOT?: InputMaybe<Array<PhoneWhereInput>>;
+  OR?: InputMaybe<Array<PhoneWhereInput>>;
   canUseAsRecovery?: InputMaybe<BoolNullableFilter>;
   completeNumber?: InputMaybe<StringNullableFilter>;
   countryCallingCode?: InputMaybe<StringNullableFilter>;
@@ -12504,10 +12483,10 @@ export type PhoneWhereInput = {
 };
 
 export type PhoneWhereUniqueInput = {
-  AND?: InputMaybe<PhoneWhereInput[]>;
+  AND?: InputMaybe<Array<PhoneWhereInput>>;
   AuthenticationProvider?: InputMaybe<AuthenticationProviderListRelationFilter>;
-  NOT?: InputMaybe<PhoneWhereInput[]>;
-  OR?: InputMaybe<PhoneWhereInput[]>;
+  NOT?: InputMaybe<Array<PhoneWhereInput>>;
+  OR?: InputMaybe<Array<PhoneWhereInput>>;
   canUseAsRecovery?: InputMaybe<BoolNullableFilter>;
   completeNumber?: InputMaybe<StringNullableFilter>;
   countryCallingCode?: InputMaybe<StringNullableFilter>;
@@ -12596,7 +12575,7 @@ export type PhotoCreateManyGroupInput = {
 };
 
 export type PhotoCreateManyGroupInputEnvelope = {
-  data: PhotoCreateManyGroupInput[];
+  data: Array<PhotoCreateManyGroupInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -12634,7 +12613,7 @@ export type PhotoCreateManyProfileInput = {
 };
 
 export type PhotoCreateManyProfileInputEnvelope = {
-  data: PhotoCreateManyProfileInput[];
+  data: Array<PhotoCreateManyProfileInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -12655,28 +12634,28 @@ export type PhotoCreateManyStoryInput = {
 };
 
 export type PhotoCreateManyStoryInputEnvelope = {
-  data: PhotoCreateManyStoryInput[];
+  data: Array<PhotoCreateManyStoryInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type PhotoCreateNestedManyWithoutGroupInput = {
-  connect?: InputMaybe<PhotoWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<PhotoCreateOrConnectWithoutGroupInput[]>;
-  create?: InputMaybe<PhotoCreateWithoutGroupInput[]>;
+  connect?: InputMaybe<Array<PhotoWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<PhotoCreateOrConnectWithoutGroupInput>>;
+  create?: InputMaybe<Array<PhotoCreateWithoutGroupInput>>;
   createMany?: InputMaybe<PhotoCreateManyGroupInputEnvelope>;
 };
 
 export type PhotoCreateNestedManyWithoutProfileInput = {
-  connect?: InputMaybe<PhotoWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<PhotoCreateOrConnectWithoutProfileInput[]>;
-  create?: InputMaybe<PhotoCreateWithoutProfileInput[]>;
+  connect?: InputMaybe<Array<PhotoWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<PhotoCreateOrConnectWithoutProfileInput>>;
+  create?: InputMaybe<Array<PhotoCreateWithoutProfileInput>>;
   createMany?: InputMaybe<PhotoCreateManyProfileInputEnvelope>;
 };
 
 export type PhotoCreateNestedManyWithoutStoryInput = {
-  connect?: InputMaybe<PhotoWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<PhotoCreateOrConnectWithoutStoryInput[]>;
-  create?: InputMaybe<PhotoCreateWithoutStoryInput[]>;
+  connect?: InputMaybe<Array<PhotoWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<PhotoCreateOrConnectWithoutStoryInput>>;
+  create?: InputMaybe<Array<PhotoCreateWithoutStoryInput>>;
   createMany?: InputMaybe<PhotoCreateManyStoryInputEnvelope>;
 };
 
@@ -12847,9 +12826,9 @@ export enum PhotoScalarFieldEnum {
 }
 
 export type PhotoScalarWhereInput = {
-  AND?: InputMaybe<PhotoScalarWhereInput[]>;
-  NOT?: InputMaybe<PhotoScalarWhereInput[]>;
-  OR?: InputMaybe<PhotoScalarWhereInput[]>;
+  AND?: InputMaybe<Array<PhotoScalarWhereInput>>;
+  NOT?: InputMaybe<Array<PhotoScalarWhereInput>>;
+  OR?: InputMaybe<Array<PhotoScalarWhereInput>>;
   active?: InputMaybe<BoolFilter>;
   blurhash?: InputMaybe<StringNullableFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -12867,9 +12846,9 @@ export type PhotoScalarWhereInput = {
 };
 
 export type PhotoScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<PhotoScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<PhotoScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<PhotoScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<PhotoScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<PhotoScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<PhotoScalarWhereWithAggregatesInput>>;
   active?: InputMaybe<BoolWithAggregatesFilter>;
   blurhash?: InputMaybe<StringNullableWithAggregatesFilter>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
@@ -12944,45 +12923,45 @@ export type PhotoUpdateManyWithWhereWithoutStoryInput = {
 };
 
 export type PhotoUpdateManyWithoutGroupNestedInput = {
-  connect?: InputMaybe<PhotoWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<PhotoCreateOrConnectWithoutGroupInput[]>;
-  create?: InputMaybe<PhotoCreateWithoutGroupInput[]>;
+  connect?: InputMaybe<Array<PhotoWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<PhotoCreateOrConnectWithoutGroupInput>>;
+  create?: InputMaybe<Array<PhotoCreateWithoutGroupInput>>;
   createMany?: InputMaybe<PhotoCreateManyGroupInputEnvelope>;
-  delete?: InputMaybe<PhotoWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<PhotoScalarWhereInput[]>;
-  disconnect?: InputMaybe<PhotoWhereUniqueInput[]>;
-  set?: InputMaybe<PhotoWhereUniqueInput[]>;
-  update?: InputMaybe<PhotoUpdateWithWhereUniqueWithoutGroupInput[]>;
-  updateMany?: InputMaybe<PhotoUpdateManyWithWhereWithoutGroupInput[]>;
-  upsert?: InputMaybe<PhotoUpsertWithWhereUniqueWithoutGroupInput[]>;
+  delete?: InputMaybe<Array<PhotoWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<PhotoScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<PhotoWhereUniqueInput>>;
+  set?: InputMaybe<Array<PhotoWhereUniqueInput>>;
+  update?: InputMaybe<Array<PhotoUpdateWithWhereUniqueWithoutGroupInput>>;
+  updateMany?: InputMaybe<Array<PhotoUpdateManyWithWhereWithoutGroupInput>>;
+  upsert?: InputMaybe<Array<PhotoUpsertWithWhereUniqueWithoutGroupInput>>;
 };
 
 export type PhotoUpdateManyWithoutProfileNestedInput = {
-  connect?: InputMaybe<PhotoWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<PhotoCreateOrConnectWithoutProfileInput[]>;
-  create?: InputMaybe<PhotoCreateWithoutProfileInput[]>;
+  connect?: InputMaybe<Array<PhotoWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<PhotoCreateOrConnectWithoutProfileInput>>;
+  create?: InputMaybe<Array<PhotoCreateWithoutProfileInput>>;
   createMany?: InputMaybe<PhotoCreateManyProfileInputEnvelope>;
-  delete?: InputMaybe<PhotoWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<PhotoScalarWhereInput[]>;
-  disconnect?: InputMaybe<PhotoWhereUniqueInput[]>;
-  set?: InputMaybe<PhotoWhereUniqueInput[]>;
-  update?: InputMaybe<PhotoUpdateWithWhereUniqueWithoutProfileInput[]>;
-  updateMany?: InputMaybe<PhotoUpdateManyWithWhereWithoutProfileInput[]>;
-  upsert?: InputMaybe<PhotoUpsertWithWhereUniqueWithoutProfileInput[]>;
+  delete?: InputMaybe<Array<PhotoWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<PhotoScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<PhotoWhereUniqueInput>>;
+  set?: InputMaybe<Array<PhotoWhereUniqueInput>>;
+  update?: InputMaybe<Array<PhotoUpdateWithWhereUniqueWithoutProfileInput>>;
+  updateMany?: InputMaybe<Array<PhotoUpdateManyWithWhereWithoutProfileInput>>;
+  upsert?: InputMaybe<Array<PhotoUpsertWithWhereUniqueWithoutProfileInput>>;
 };
 
 export type PhotoUpdateManyWithoutStoryNestedInput = {
-  connect?: InputMaybe<PhotoWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<PhotoCreateOrConnectWithoutStoryInput[]>;
-  create?: InputMaybe<PhotoCreateWithoutStoryInput[]>;
+  connect?: InputMaybe<Array<PhotoWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<PhotoCreateOrConnectWithoutStoryInput>>;
+  create?: InputMaybe<Array<PhotoCreateWithoutStoryInput>>;
   createMany?: InputMaybe<PhotoCreateManyStoryInputEnvelope>;
-  delete?: InputMaybe<PhotoWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<PhotoScalarWhereInput[]>;
-  disconnect?: InputMaybe<PhotoWhereUniqueInput[]>;
-  set?: InputMaybe<PhotoWhereUniqueInput[]>;
-  update?: InputMaybe<PhotoUpdateWithWhereUniqueWithoutStoryInput[]>;
-  updateMany?: InputMaybe<PhotoUpdateManyWithWhereWithoutStoryInput[]>;
-  upsert?: InputMaybe<PhotoUpsertWithWhereUniqueWithoutStoryInput[]>;
+  delete?: InputMaybe<Array<PhotoWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<PhotoScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<PhotoWhereUniqueInput>>;
+  set?: InputMaybe<Array<PhotoWhereUniqueInput>>;
+  update?: InputMaybe<Array<PhotoUpdateWithWhereUniqueWithoutStoryInput>>;
+  updateMany?: InputMaybe<Array<PhotoUpdateManyWithWhereWithoutStoryInput>>;
+  upsert?: InputMaybe<Array<PhotoUpsertWithWhereUniqueWithoutStoryInput>>;
 };
 
 export type PhotoUpdateWithWhereUniqueWithoutGroupInput = {
@@ -13067,10 +13046,10 @@ export type PhotoUpsertWithWhereUniqueWithoutStoryInput = {
 };
 
 export type PhotoWhereInput = {
-  AND?: InputMaybe<PhotoWhereInput[]>;
+  AND?: InputMaybe<Array<PhotoWhereInput>>;
   Group?: InputMaybe<GroupWhereInput>;
-  NOT?: InputMaybe<PhotoWhereInput[]>;
-  OR?: InputMaybe<PhotoWhereInput[]>;
+  NOT?: InputMaybe<Array<PhotoWhereInput>>;
+  OR?: InputMaybe<Array<PhotoWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
   Story?: InputMaybe<StoryWhereInput>;
   active?: InputMaybe<BoolFilter>;
@@ -13090,10 +13069,10 @@ export type PhotoWhereInput = {
 };
 
 export type PhotoWhereUniqueInput = {
-  AND?: InputMaybe<PhotoWhereInput[]>;
+  AND?: InputMaybe<Array<PhotoWhereInput>>;
   Group?: InputMaybe<GroupWhereInput>;
-  NOT?: InputMaybe<PhotoWhereInput[]>;
-  OR?: InputMaybe<PhotoWhereInput[]>;
+  NOT?: InputMaybe<Array<PhotoWhereInput>>;
+  OR?: InputMaybe<Array<PhotoWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
   Story?: InputMaybe<StoryWhereInput>;
   active?: InputMaybe<BoolFilter>;
@@ -13203,9 +13182,9 @@ export enum PluseCodeScalarFieldEnum {
 }
 
 export type PluseCodeScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<PluseCodeScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<PluseCodeScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<PluseCodeScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<PluseCodeScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<PluseCodeScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<PluseCodeScalarWhereWithAggregatesInput>>;
   compoundCode?: InputMaybe<StringNullableWithAggregatesFilter>;
   globalCode?: InputMaybe<StringWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
@@ -13252,20 +13231,20 @@ export type PluseCodeUpsertWithoutLocationInput = {
 };
 
 export type PluseCodeWhereInput = {
-  AND?: InputMaybe<PluseCodeWhereInput[]>;
+  AND?: InputMaybe<Array<PluseCodeWhereInput>>;
   Location?: InputMaybe<LocationWhereInput>;
-  NOT?: InputMaybe<PluseCodeWhereInput[]>;
-  OR?: InputMaybe<PluseCodeWhereInput[]>;
+  NOT?: InputMaybe<Array<PluseCodeWhereInput>>;
+  OR?: InputMaybe<Array<PluseCodeWhereInput>>;
   compoundCode?: InputMaybe<StringNullableFilter>;
   globalCode?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
 };
 
 export type PluseCodeWhereUniqueInput = {
-  AND?: InputMaybe<PluseCodeWhereInput[]>;
+  AND?: InputMaybe<Array<PluseCodeWhereInput>>;
   Location?: InputMaybe<LocationWhereInput>;
-  NOT?: InputMaybe<PluseCodeWhereInput[]>;
-  OR?: InputMaybe<PluseCodeWhereInput[]>;
+  NOT?: InputMaybe<Array<PluseCodeWhereInput>>;
+  OR?: InputMaybe<Array<PluseCodeWhereInput>>;
   compoundCode?: InputMaybe<StringNullableFilter>;
   globalCode?: InputMaybe<StringFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
@@ -13279,22 +13258,22 @@ export type PopularSearchServiceCountOrderByAggregateInput = {
 
 export type PopularSearchServiceCreateInput = {
   id?: InputMaybe<Scalars['String']['input']>;
-  popularPersonals?: InputMaybe<Scalars['Json']['input'][]>;
-  popularVenues?: InputMaybe<Scalars['Json']['input'][]>;
+  popularPersonals?: InputMaybe<Array<Scalars['Json']['input']>>;
+  popularVenues?: InputMaybe<Array<Scalars['Json']['input']>>;
 };
 
 export type PopularSearchServiceCreateManyInput = {
   id?: InputMaybe<Scalars['String']['input']>;
-  popularPersonals?: InputMaybe<Scalars['Json']['input'][]>;
-  popularVenues?: InputMaybe<Scalars['Json']['input'][]>;
+  popularPersonals?: InputMaybe<Array<Scalars['Json']['input']>>;
+  popularVenues?: InputMaybe<Array<Scalars['Json']['input']>>;
 };
 
 export type PopularSearchServiceCreatepopularPersonalsInput = {
-  set: Scalars['Json']['input'][];
+  set: Array<Scalars['Json']['input']>;
 };
 
 export type PopularSearchServiceCreatepopularVenuesInput = {
-  set: Scalars['Json']['input'][];
+  set: Array<Scalars['Json']['input']>;
 };
 
 export type PopularSearchServiceMaxOrderByAggregateInput = {
@@ -13327,9 +13306,9 @@ export enum PopularSearchServiceScalarFieldEnum {
 }
 
 export type PopularSearchServiceScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<PopularSearchServiceScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<PopularSearchServiceScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<PopularSearchServiceScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<PopularSearchServiceScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<PopularSearchServiceScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<PopularSearchServiceScalarWhereWithAggregatesInput>>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   popularPersonals?: InputMaybe<JsonNullableListFilter>;
   popularVenues?: InputMaybe<JsonNullableListFilter>;
@@ -13337,39 +13316,39 @@ export type PopularSearchServiceScalarWhereWithAggregatesInput = {
 
 export type PopularSearchServiceUpdateInput = {
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  popularPersonals?: InputMaybe<Scalars['Json']['input'][]>;
-  popularVenues?: InputMaybe<Scalars['Json']['input'][]>;
+  popularPersonals?: InputMaybe<Array<Scalars['Json']['input']>>;
+  popularVenues?: InputMaybe<Array<Scalars['Json']['input']>>;
 };
 
 export type PopularSearchServiceUpdateManyMutationInput = {
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  popularPersonals?: InputMaybe<Scalars['Json']['input'][]>;
-  popularVenues?: InputMaybe<Scalars['Json']['input'][]>;
+  popularPersonals?: InputMaybe<Array<Scalars['Json']['input']>>;
+  popularVenues?: InputMaybe<Array<Scalars['Json']['input']>>;
 };
 
 export type PopularSearchServiceUpdatepopularPersonalsInput = {
   push?: InputMaybe<Scalars['Json']['input']>;
-  set?: InputMaybe<Scalars['Json']['input'][]>;
+  set?: InputMaybe<Array<Scalars['Json']['input']>>;
 };
 
 export type PopularSearchServiceUpdatepopularVenuesInput = {
   push?: InputMaybe<Scalars['Json']['input']>;
-  set?: InputMaybe<Scalars['Json']['input'][]>;
+  set?: InputMaybe<Array<Scalars['Json']['input']>>;
 };
 
 export type PopularSearchServiceWhereInput = {
-  AND?: InputMaybe<PopularSearchServiceWhereInput[]>;
-  NOT?: InputMaybe<PopularSearchServiceWhereInput[]>;
-  OR?: InputMaybe<PopularSearchServiceWhereInput[]>;
+  AND?: InputMaybe<Array<PopularSearchServiceWhereInput>>;
+  NOT?: InputMaybe<Array<PopularSearchServiceWhereInput>>;
+  OR?: InputMaybe<Array<PopularSearchServiceWhereInput>>;
   id?: InputMaybe<StringFilter>;
   popularPersonals?: InputMaybe<JsonNullableListFilter>;
   popularVenues?: InputMaybe<JsonNullableListFilter>;
 };
 
 export type PopularSearchServiceWhereUniqueInput = {
-  AND?: InputMaybe<PopularSearchServiceWhereInput[]>;
-  NOT?: InputMaybe<PopularSearchServiceWhereInput[]>;
-  OR?: InputMaybe<PopularSearchServiceWhereInput[]>;
+  AND?: InputMaybe<Array<PopularSearchServiceWhereInput>>;
+  NOT?: InputMaybe<Array<PopularSearchServiceWhereInput>>;
+  OR?: InputMaybe<Array<PopularSearchServiceWhereInput>>;
   id?: InputMaybe<Scalars['String']['input']>;
   popularPersonals?: InputMaybe<JsonNullableListFilter>;
   popularVenues?: InputMaybe<JsonNullableListFilter>;
@@ -13388,13 +13367,13 @@ export type Profile = {
   IdentifiableInformation?: Maybe<IdentifiableInformation>;
   Personal?: Maybe<Personal>;
   ProfileType: ProfileType;
-  Relationships: Relationship[];
+  Relationships: Array<Relationship>;
   ThemeManager?: Maybe<ThemeManager>;
   Venue?: Maybe<Venue>;
   bfsprofileid: Scalars['String']['output'];
   createdAt: Scalars['DateTime']['output'];
   id: Scalars['String']['output'];
-  photos?: Maybe<Photo[]>;
+  photos?: Maybe<Array<Photo>>;
   profilePhoto?: Maybe<Photo>;
   resentSearches?: Maybe<SearchesService>;
   tonightStory?: Maybe<Story>;
@@ -13411,14 +13390,14 @@ export type ProfileCountOrderByAggregateInput = {
 };
 
 export type ProfileCreateDeviceManagerInput = {
-  set: Scalars['String']['input'][];
+  set: Array<Scalars['String']['input']>;
 };
 
 export type ProfileCreateInput = {
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
@@ -13440,7 +13419,7 @@ export type ProfileCreateInput = {
 };
 
 export type ProfileCreateManyInput = {
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   ProfileType?: InputMaybe<ProfileType>;
   bfsprofileid?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -13449,15 +13428,15 @@ export type ProfileCreateManyInput = {
 };
 
 export type ProfileCreateNestedManyWithoutConversationsInput = {
-  connect?: InputMaybe<ProfileWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<ProfileCreateOrConnectWithoutConversationsInput[]>;
-  create?: InputMaybe<ProfileCreateWithoutConversationsInput[]>;
+  connect?: InputMaybe<Array<ProfileWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ProfileCreateOrConnectWithoutConversationsInput>>;
+  create?: InputMaybe<Array<ProfileCreateWithoutConversationsInput>>;
 };
 
 export type ProfileCreateNestedManyWithoutGroupsInput = {
-  connect?: InputMaybe<ProfileWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<ProfileCreateOrConnectWithoutGroupsInput[]>;
-  create?: InputMaybe<ProfileCreateWithoutGroupsInput[]>;
+  connect?: InputMaybe<Array<ProfileWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ProfileCreateOrConnectWithoutGroupsInput>>;
+  create?: InputMaybe<Array<ProfileCreateWithoutGroupsInput>>;
 };
 
 export type ProfileCreateNestedOneWithoutCredentialsInput = {
@@ -13627,7 +13606,7 @@ export type ProfileCreateOrConnectWithoutVoteInput = {
 export type ProfileCreateWithoutConversationsInput = {
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
@@ -13651,7 +13630,7 @@ export type ProfileCreateWithoutConversationsInput = {
 export type ProfileCreateWithoutCredentialsInput = {
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
@@ -13675,7 +13654,7 @@ export type ProfileCreateWithoutCredentialsInput = {
 export type ProfileCreateWithoutDetailInformationInput = {
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
@@ -13700,7 +13679,7 @@ export type ProfileCreateWithoutGroupsInput = {
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
   Personal?: InputMaybe<PersonalCreateNestedOneWithoutProfileInput>;
@@ -13724,7 +13703,7 @@ export type ProfileCreateWithoutIdentifiableInformationInput = {
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
   Personal?: InputMaybe<PersonalCreateNestedOneWithoutProfileInput>;
@@ -13748,7 +13727,7 @@ export type ProfileCreateWithoutNotificationsInput = {
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Personal?: InputMaybe<PersonalCreateNestedOneWithoutProfileInput>;
@@ -13772,7 +13751,7 @@ export type ProfileCreateWithoutPersonalInput = {
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
@@ -13796,7 +13775,7 @@ export type ProfileCreateWithoutPhotosInput = {
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
@@ -13820,7 +13799,7 @@ export type ProfileCreateWithoutRelationshipsInput = {
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
@@ -13844,7 +13823,7 @@ export type ProfileCreateWithoutSearchesServiceInput = {
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
@@ -13868,7 +13847,7 @@ export type ProfileCreateWithoutSecuredDataKeysInput = {
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
@@ -13892,7 +13871,7 @@ export type ProfileCreateWithoutSettingsInput = {
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
@@ -13916,7 +13895,7 @@ export type ProfileCreateWithoutStorysInput = {
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
@@ -13940,7 +13919,7 @@ export type ProfileCreateWithoutThemeManagerInput = {
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
@@ -13964,7 +13943,7 @@ export type ProfileCreateWithoutVenueInput = {
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
@@ -13988,7 +13967,7 @@ export type ProfileCreateWithoutVoteInput = {
   Conversations?: InputMaybe<ConversationCreateNestedManyWithoutMembersInput>;
   Credentials?: InputMaybe<CredentialsCreateNestedOneWithoutProfileInput>;
   DetailInformation?: InputMaybe<DetailInformationCreateNestedOneWithoutProfileInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupCreateNestedManyWithoutProfileInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationCreateNestedOneWithoutProfileInput>;
   Notifications?: InputMaybe<NotificationsCreateNestedOneWithoutProfileInput>;
@@ -14083,12 +14062,12 @@ export type ProfilePersonal = {
   IdentifiableInformation?: Maybe<IdentifiableInformation>;
   Personal: Personal;
   ProfileType: ProfileType;
-  Relationships: Relationship[];
+  Relationships: Array<Relationship>;
   ThemeManager?: Maybe<ThemeManager>;
   bfsprofileid: Scalars['String']['output'];
   createdAt: Scalars['DateTime']['output'];
   id: Scalars['String']['output'];
-  photos: Photo[];
+  photos: Array<Photo>;
   profilePhoto?: Maybe<Photo>;
   resentSearches?: Maybe<SearchesService>;
   tonightStory?: Maybe<Story>;
@@ -14112,10 +14091,10 @@ export enum ProfileScalarFieldEnum {
 }
 
 export type ProfileScalarWhereInput = {
-  AND?: InputMaybe<ProfileScalarWhereInput[]>;
+  AND?: InputMaybe<Array<ProfileScalarWhereInput>>;
   DeviceManager?: InputMaybe<StringNullableListFilter>;
-  NOT?: InputMaybe<ProfileScalarWhereInput[]>;
-  OR?: InputMaybe<ProfileScalarWhereInput[]>;
+  NOT?: InputMaybe<Array<ProfileScalarWhereInput>>;
+  OR?: InputMaybe<Array<ProfileScalarWhereInput>>;
   ProfileType?: InputMaybe<EnumProfileTypeFilter>;
   bfsprofileid?: InputMaybe<StringFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -14124,10 +14103,10 @@ export type ProfileScalarWhereInput = {
 };
 
 export type ProfileScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<ProfileScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<ProfileScalarWhereWithAggregatesInput>>;
   DeviceManager?: InputMaybe<StringNullableListFilter>;
-  NOT?: InputMaybe<ProfileScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<ProfileScalarWhereWithAggregatesInput[]>;
+  NOT?: InputMaybe<Array<ProfileScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<ProfileScalarWhereWithAggregatesInput>>;
   ProfileType?: InputMaybe<EnumProfileTypeWithAggregatesFilter>;
   bfsprofileid?: InputMaybe<StringWithAggregatesFilter>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
@@ -14183,7 +14162,7 @@ export type ProfileThemeCreateManyThemeInput = {
 };
 
 export type ProfileThemeCreateManyThemeInputEnvelope = {
-  data: ProfileThemeCreateManyThemeInput[];
+  data: Array<ProfileThemeCreateManyThemeInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -14196,21 +14175,21 @@ export type ProfileThemeCreateManyThemeManagerInput = {
 };
 
 export type ProfileThemeCreateManyThemeManagerInputEnvelope = {
-  data: ProfileThemeCreateManyThemeManagerInput[];
+  data: Array<ProfileThemeCreateManyThemeManagerInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type ProfileThemeCreateNestedManyWithoutThemeInput = {
-  connect?: InputMaybe<ProfileThemeWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<ProfileThemeCreateOrConnectWithoutThemeInput[]>;
-  create?: InputMaybe<ProfileThemeCreateWithoutThemeInput[]>;
+  connect?: InputMaybe<Array<ProfileThemeWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ProfileThemeCreateOrConnectWithoutThemeInput>>;
+  create?: InputMaybe<Array<ProfileThemeCreateWithoutThemeInput>>;
   createMany?: InputMaybe<ProfileThemeCreateManyThemeInputEnvelope>;
 };
 
 export type ProfileThemeCreateNestedManyWithoutThemeManagerInput = {
-  connect?: InputMaybe<ProfileThemeWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<ProfileThemeCreateOrConnectWithoutThemeManagerInput[]>;
-  create?: InputMaybe<ProfileThemeCreateWithoutThemeManagerInput[]>;
+  connect?: InputMaybe<Array<ProfileThemeWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ProfileThemeCreateOrConnectWithoutThemeManagerInput>>;
+  create?: InputMaybe<Array<ProfileThemeCreateWithoutThemeManagerInput>>;
   createMany?: InputMaybe<ProfileThemeCreateManyThemeManagerInputEnvelope>;
 };
 
@@ -14301,9 +14280,9 @@ export enum ProfileThemeScalarFieldEnum {
 }
 
 export type ProfileThemeScalarWhereInput = {
-  AND?: InputMaybe<ProfileThemeScalarWhereInput[]>;
-  NOT?: InputMaybe<ProfileThemeScalarWhereInput[]>;
-  OR?: InputMaybe<ProfileThemeScalarWhereInput[]>;
+  AND?: InputMaybe<Array<ProfileThemeScalarWhereInput>>;
+  NOT?: InputMaybe<Array<ProfileThemeScalarWhereInput>>;
+  OR?: InputMaybe<Array<ProfileThemeScalarWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<StringFilter>;
   isActive?: InputMaybe<BoolFilter>;
@@ -14313,9 +14292,9 @@ export type ProfileThemeScalarWhereInput = {
 };
 
 export type ProfileThemeScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<ProfileThemeScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<ProfileThemeScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<ProfileThemeScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<ProfileThemeScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<ProfileThemeScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<ProfileThemeScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   isActive?: InputMaybe<BoolWithAggregatesFilter>;
@@ -14351,31 +14330,31 @@ export type ProfileThemeUpdateManyWithWhereWithoutThemeManagerInput = {
 };
 
 export type ProfileThemeUpdateManyWithoutThemeManagerNestedInput = {
-  connect?: InputMaybe<ProfileThemeWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<ProfileThemeCreateOrConnectWithoutThemeManagerInput[]>;
-  create?: InputMaybe<ProfileThemeCreateWithoutThemeManagerInput[]>;
+  connect?: InputMaybe<Array<ProfileThemeWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ProfileThemeCreateOrConnectWithoutThemeManagerInput>>;
+  create?: InputMaybe<Array<ProfileThemeCreateWithoutThemeManagerInput>>;
   createMany?: InputMaybe<ProfileThemeCreateManyThemeManagerInputEnvelope>;
-  delete?: InputMaybe<ProfileThemeWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<ProfileThemeScalarWhereInput[]>;
-  disconnect?: InputMaybe<ProfileThemeWhereUniqueInput[]>;
-  set?: InputMaybe<ProfileThemeWhereUniqueInput[]>;
-  update?: InputMaybe<ProfileThemeUpdateWithWhereUniqueWithoutThemeManagerInput[]>;
-  updateMany?: InputMaybe<ProfileThemeUpdateManyWithWhereWithoutThemeManagerInput[]>;
-  upsert?: InputMaybe<ProfileThemeUpsertWithWhereUniqueWithoutThemeManagerInput[]>;
+  delete?: InputMaybe<Array<ProfileThemeWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<ProfileThemeScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<ProfileThemeWhereUniqueInput>>;
+  set?: InputMaybe<Array<ProfileThemeWhereUniqueInput>>;
+  update?: InputMaybe<Array<ProfileThemeUpdateWithWhereUniqueWithoutThemeManagerInput>>;
+  updateMany?: InputMaybe<Array<ProfileThemeUpdateManyWithWhereWithoutThemeManagerInput>>;
+  upsert?: InputMaybe<Array<ProfileThemeUpsertWithWhereUniqueWithoutThemeManagerInput>>;
 };
 
 export type ProfileThemeUpdateManyWithoutThemeNestedInput = {
-  connect?: InputMaybe<ProfileThemeWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<ProfileThemeCreateOrConnectWithoutThemeInput[]>;
-  create?: InputMaybe<ProfileThemeCreateWithoutThemeInput[]>;
+  connect?: InputMaybe<Array<ProfileThemeWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ProfileThemeCreateOrConnectWithoutThemeInput>>;
+  create?: InputMaybe<Array<ProfileThemeCreateWithoutThemeInput>>;
   createMany?: InputMaybe<ProfileThemeCreateManyThemeInputEnvelope>;
-  delete?: InputMaybe<ProfileThemeWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<ProfileThemeScalarWhereInput[]>;
-  disconnect?: InputMaybe<ProfileThemeWhereUniqueInput[]>;
-  set?: InputMaybe<ProfileThemeWhereUniqueInput[]>;
-  update?: InputMaybe<ProfileThemeUpdateWithWhereUniqueWithoutThemeInput[]>;
-  updateMany?: InputMaybe<ProfileThemeUpdateManyWithWhereWithoutThemeInput[]>;
-  upsert?: InputMaybe<ProfileThemeUpsertWithWhereUniqueWithoutThemeInput[]>;
+  delete?: InputMaybe<Array<ProfileThemeWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<ProfileThemeScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<ProfileThemeWhereUniqueInput>>;
+  set?: InputMaybe<Array<ProfileThemeWhereUniqueInput>>;
+  update?: InputMaybe<Array<ProfileThemeUpdateWithWhereUniqueWithoutThemeInput>>;
+  updateMany?: InputMaybe<Array<ProfileThemeUpdateManyWithWhereWithoutThemeInput>>;
+  upsert?: InputMaybe<Array<ProfileThemeUpsertWithWhereUniqueWithoutThemeInput>>;
 };
 
 export type ProfileThemeUpdateWithWhereUniqueWithoutThemeInput = {
@@ -14417,9 +14396,9 @@ export type ProfileThemeUpsertWithWhereUniqueWithoutThemeManagerInput = {
 };
 
 export type ProfileThemeWhereInput = {
-  AND?: InputMaybe<ProfileThemeWhereInput[]>;
-  NOT?: InputMaybe<ProfileThemeWhereInput[]>;
-  OR?: InputMaybe<ProfileThemeWhereInput[]>;
+  AND?: InputMaybe<Array<ProfileThemeWhereInput>>;
+  NOT?: InputMaybe<Array<ProfileThemeWhereInput>>;
+  OR?: InputMaybe<Array<ProfileThemeWhereInput>>;
   Theme?: InputMaybe<ThemeWhereInput>;
   ThemeManager?: InputMaybe<ThemeManagerWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -14431,9 +14410,9 @@ export type ProfileThemeWhereInput = {
 };
 
 export type ProfileThemeWhereUniqueInput = {
-  AND?: InputMaybe<ProfileThemeWhereInput[]>;
-  NOT?: InputMaybe<ProfileThemeWhereInput[]>;
-  OR?: InputMaybe<ProfileThemeWhereInput[]>;
+  AND?: InputMaybe<Array<ProfileThemeWhereInput>>;
+  NOT?: InputMaybe<Array<ProfileThemeWhereInput>>;
+  OR?: InputMaybe<Array<ProfileThemeWhereInput>>;
   Theme?: InputMaybe<ThemeWhereInput>;
   ThemeManager?: InputMaybe<ThemeManagerWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -14451,15 +14430,15 @@ export enum ProfileType {
 }
 
 export type ProfileUpdateDeviceManagerInput = {
-  push?: InputMaybe<Scalars['String']['input'][]>;
-  set?: InputMaybe<Scalars['String']['input'][]>;
+  push?: InputMaybe<Array<Scalars['String']['input']>>;
+  set?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type ProfileUpdateInput = {
   Conversations?: InputMaybe<ConversationUpdateManyWithoutMembersNestedInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
   Notifications?: InputMaybe<NotificationsUpdateOneWithoutProfileNestedInput>;
@@ -14481,7 +14460,7 @@ export type ProfileUpdateInput = {
 };
 
 export type ProfileUpdateManyMutationInput = {
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   ProfileType?: InputMaybe<EnumProfileTypeFieldUpdateOperationsInput>;
   bfsprofileid?: InputMaybe<StringFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -14500,29 +14479,29 @@ export type ProfileUpdateManyWithWhereWithoutGroupsInput = {
 };
 
 export type ProfileUpdateManyWithoutConversationsNestedInput = {
-  connect?: InputMaybe<ProfileWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<ProfileCreateOrConnectWithoutConversationsInput[]>;
-  create?: InputMaybe<ProfileCreateWithoutConversationsInput[]>;
-  delete?: InputMaybe<ProfileWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<ProfileScalarWhereInput[]>;
-  disconnect?: InputMaybe<ProfileWhereUniqueInput[]>;
-  set?: InputMaybe<ProfileWhereUniqueInput[]>;
-  update?: InputMaybe<ProfileUpdateWithWhereUniqueWithoutConversationsInput[]>;
-  updateMany?: InputMaybe<ProfileUpdateManyWithWhereWithoutConversationsInput[]>;
-  upsert?: InputMaybe<ProfileUpsertWithWhereUniqueWithoutConversationsInput[]>;
+  connect?: InputMaybe<Array<ProfileWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ProfileCreateOrConnectWithoutConversationsInput>>;
+  create?: InputMaybe<Array<ProfileCreateWithoutConversationsInput>>;
+  delete?: InputMaybe<Array<ProfileWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<ProfileScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<ProfileWhereUniqueInput>>;
+  set?: InputMaybe<Array<ProfileWhereUniqueInput>>;
+  update?: InputMaybe<Array<ProfileUpdateWithWhereUniqueWithoutConversationsInput>>;
+  updateMany?: InputMaybe<Array<ProfileUpdateManyWithWhereWithoutConversationsInput>>;
+  upsert?: InputMaybe<Array<ProfileUpsertWithWhereUniqueWithoutConversationsInput>>;
 };
 
 export type ProfileUpdateManyWithoutGroupsNestedInput = {
-  connect?: InputMaybe<ProfileWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<ProfileCreateOrConnectWithoutGroupsInput[]>;
-  create?: InputMaybe<ProfileCreateWithoutGroupsInput[]>;
-  delete?: InputMaybe<ProfileWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<ProfileScalarWhereInput[]>;
-  disconnect?: InputMaybe<ProfileWhereUniqueInput[]>;
-  set?: InputMaybe<ProfileWhereUniqueInput[]>;
-  update?: InputMaybe<ProfileUpdateWithWhereUniqueWithoutGroupsInput[]>;
-  updateMany?: InputMaybe<ProfileUpdateManyWithWhereWithoutGroupsInput[]>;
-  upsert?: InputMaybe<ProfileUpsertWithWhereUniqueWithoutGroupsInput[]>;
+  connect?: InputMaybe<Array<ProfileWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ProfileCreateOrConnectWithoutGroupsInput>>;
+  create?: InputMaybe<Array<ProfileCreateWithoutGroupsInput>>;
+  delete?: InputMaybe<Array<ProfileWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<ProfileScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<ProfileWhereUniqueInput>>;
+  set?: InputMaybe<Array<ProfileWhereUniqueInput>>;
+  update?: InputMaybe<Array<ProfileUpdateWithWhereUniqueWithoutGroupsInput>>;
+  updateMany?: InputMaybe<Array<ProfileUpdateManyWithWhereWithoutGroupsInput>>;
+  upsert?: InputMaybe<Array<ProfileUpsertWithWhereUniqueWithoutGroupsInput>>;
 };
 
 export type ProfileUpdateOneRequiredWithoutCredentialsNestedInput = {
@@ -14726,7 +14705,7 @@ export type ProfileUpdateWithWhereUniqueWithoutGroupsInput = {
 export type ProfileUpdateWithoutConversationsInput = {
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
   Notifications?: InputMaybe<NotificationsUpdateOneWithoutProfileNestedInput>;
@@ -14750,7 +14729,7 @@ export type ProfileUpdateWithoutConversationsInput = {
 export type ProfileUpdateWithoutCredentialsInput = {
   Conversations?: InputMaybe<ConversationUpdateManyWithoutMembersNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
   Notifications?: InputMaybe<NotificationsUpdateOneWithoutProfileNestedInput>;
@@ -14774,7 +14753,7 @@ export type ProfileUpdateWithoutCredentialsInput = {
 export type ProfileUpdateWithoutDetailInformationInput = {
   Conversations?: InputMaybe<ConversationUpdateManyWithoutMembersNestedInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
   Notifications?: InputMaybe<NotificationsUpdateOneWithoutProfileNestedInput>;
@@ -14799,7 +14778,7 @@ export type ProfileUpdateWithoutGroupsInput = {
   Conversations?: InputMaybe<ConversationUpdateManyWithoutMembersNestedInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
   Notifications?: InputMaybe<NotificationsUpdateOneWithoutProfileNestedInput>;
   Personal?: InputMaybe<PersonalUpdateOneWithoutProfileNestedInput>;
@@ -14823,7 +14802,7 @@ export type ProfileUpdateWithoutIdentifiableInformationInput = {
   Conversations?: InputMaybe<ConversationUpdateManyWithoutMembersNestedInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   Notifications?: InputMaybe<NotificationsUpdateOneWithoutProfileNestedInput>;
   Personal?: InputMaybe<PersonalUpdateOneWithoutProfileNestedInput>;
@@ -14847,7 +14826,7 @@ export type ProfileUpdateWithoutNotificationsInput = {
   Conversations?: InputMaybe<ConversationUpdateManyWithoutMembersNestedInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
   Personal?: InputMaybe<PersonalUpdateOneWithoutProfileNestedInput>;
@@ -14871,7 +14850,7 @@ export type ProfileUpdateWithoutPersonalInput = {
   Conversations?: InputMaybe<ConversationUpdateManyWithoutMembersNestedInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
   Notifications?: InputMaybe<NotificationsUpdateOneWithoutProfileNestedInput>;
@@ -14895,7 +14874,7 @@ export type ProfileUpdateWithoutPhotosInput = {
   Conversations?: InputMaybe<ConversationUpdateManyWithoutMembersNestedInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
   Notifications?: InputMaybe<NotificationsUpdateOneWithoutProfileNestedInput>;
@@ -14919,7 +14898,7 @@ export type ProfileUpdateWithoutRelationshipsInput = {
   Conversations?: InputMaybe<ConversationUpdateManyWithoutMembersNestedInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
   Notifications?: InputMaybe<NotificationsUpdateOneWithoutProfileNestedInput>;
@@ -14943,7 +14922,7 @@ export type ProfileUpdateWithoutSearchesServiceInput = {
   Conversations?: InputMaybe<ConversationUpdateManyWithoutMembersNestedInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
   Notifications?: InputMaybe<NotificationsUpdateOneWithoutProfileNestedInput>;
@@ -14967,7 +14946,7 @@ export type ProfileUpdateWithoutSecuredDataKeysInput = {
   Conversations?: InputMaybe<ConversationUpdateManyWithoutMembersNestedInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
   Notifications?: InputMaybe<NotificationsUpdateOneWithoutProfileNestedInput>;
@@ -14991,7 +14970,7 @@ export type ProfileUpdateWithoutSettingsInput = {
   Conversations?: InputMaybe<ConversationUpdateManyWithoutMembersNestedInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
   Notifications?: InputMaybe<NotificationsUpdateOneWithoutProfileNestedInput>;
@@ -15015,7 +14994,7 @@ export type ProfileUpdateWithoutStorysInput = {
   Conversations?: InputMaybe<ConversationUpdateManyWithoutMembersNestedInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
   Notifications?: InputMaybe<NotificationsUpdateOneWithoutProfileNestedInput>;
@@ -15039,7 +15018,7 @@ export type ProfileUpdateWithoutThemeManagerInput = {
   Conversations?: InputMaybe<ConversationUpdateManyWithoutMembersNestedInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
   Notifications?: InputMaybe<NotificationsUpdateOneWithoutProfileNestedInput>;
@@ -15063,7 +15042,7 @@ export type ProfileUpdateWithoutVenueInput = {
   Conversations?: InputMaybe<ConversationUpdateManyWithoutMembersNestedInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
   Notifications?: InputMaybe<NotificationsUpdateOneWithoutProfileNestedInput>;
@@ -15087,7 +15066,7 @@ export type ProfileUpdateWithoutVoteInput = {
   Conversations?: InputMaybe<ConversationUpdateManyWithoutMembersNestedInput>;
   Credentials?: InputMaybe<CredentialsUpdateOneWithoutProfileNestedInput>;
   DetailInformation?: InputMaybe<DetailInformationUpdateOneWithoutProfileNestedInput>;
-  DeviceManager?: InputMaybe<Scalars['String']['input'][]>;
+  DeviceManager?: InputMaybe<Array<Scalars['String']['input']>>;
   Groups?: InputMaybe<GroupUpdateManyWithoutProfileNestedInput>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationUpdateOneWithoutProfileNestedInput>;
   Notifications?: InputMaybe<NotificationsUpdateOneWithoutProfileNestedInput>;
@@ -15209,30 +15188,30 @@ export type ProfileVenue = {
   DetailInformation?: Maybe<DetailInformation>;
   IdentifiableInformation?: Maybe<IdentifiableInformation>;
   ProfileType: ProfileType;
-  Relationships: Relationship[];
+  Relationships: Array<Relationship>;
   ThemeManager?: Maybe<ThemeManager>;
   Venue?: Maybe<Venue>;
   bfsprofileid: Scalars['String']['output'];
   createdAt: Scalars['DateTime']['output'];
   distanceInM?: Maybe<Scalars['Int']['output']>;
   id: Scalars['String']['output'];
-  photos: Photo[];
+  photos: Array<Photo>;
   profilePhoto?: Maybe<Photo>;
   tonightStory?: Maybe<Story>;
   updatedAt: Scalars['DateTime']['output'];
 };
 
 export type ProfileWhereInput = {
-  AND?: InputMaybe<ProfileWhereInput[]>;
+  AND?: InputMaybe<Array<ProfileWhereInput>>;
   Conversations?: InputMaybe<ConversationListRelationFilter>;
   Credentials?: InputMaybe<CredentialsWhereInput>;
   DetailInformation?: InputMaybe<DetailInformationWhereInput>;
   DeviceManager?: InputMaybe<StringNullableListFilter>;
   Groups?: InputMaybe<GroupListRelationFilter>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationWhereInput>;
-  NOT?: InputMaybe<ProfileWhereInput[]>;
+  NOT?: InputMaybe<Array<ProfileWhereInput>>;
   Notifications?: InputMaybe<NotificationsWhereInput>;
-  OR?: InputMaybe<ProfileWhereInput[]>;
+  OR?: InputMaybe<Array<ProfileWhereInput>>;
   Personal?: InputMaybe<PersonalWhereInput>;
   Photos?: InputMaybe<PhotoListRelationFilter>;
   ProfileType?: InputMaybe<EnumProfileTypeFilter>;
@@ -15251,16 +15230,16 @@ export type ProfileWhereInput = {
 };
 
 export type ProfileWhereUniqueInput = {
-  AND?: InputMaybe<ProfileWhereInput[]>;
+  AND?: InputMaybe<Array<ProfileWhereInput>>;
   Conversations?: InputMaybe<ConversationListRelationFilter>;
   Credentials?: InputMaybe<CredentialsWhereInput>;
   DetailInformation?: InputMaybe<DetailInformationWhereInput>;
   DeviceManager?: InputMaybe<StringNullableListFilter>;
   Groups?: InputMaybe<GroupListRelationFilter>;
   IdentifiableInformation?: InputMaybe<IdentifiableInformationWhereInput>;
-  NOT?: InputMaybe<ProfileWhereInput[]>;
+  NOT?: InputMaybe<Array<ProfileWhereInput>>;
   Notifications?: InputMaybe<NotificationsWhereInput>;
-  OR?: InputMaybe<ProfileWhereInput[]>;
+  OR?: InputMaybe<Array<ProfileWhereInput>>;
   Personal?: InputMaybe<PersonalWhereInput>;
   Photos?: InputMaybe<PhotoListRelationFilter>;
   ProfileType?: InputMaybe<EnumProfileTypeFilter>;
@@ -15280,9 +15259,9 @@ export type ProfileWhereUniqueInput = {
 
 export type ProfilesResponse = {
   __typename?: 'ProfilesResponse';
-  email: Profile[];
-  phone: Profile[];
-  username: Profile[];
+  email: Array<Profile>;
+  phone: Array<Profile>;
+  username: Array<Profile>;
 };
 
 export type PublicProfilePersonal = {
@@ -15307,7 +15286,7 @@ export type PushToken = {
   expoToken?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   isExpired: Scalars['Boolean']['output'];
-  receipts: Scalars['Json']['output'][];
+  receipts: Array<Scalars['Json']['output']>;
   token?: Maybe<Scalars['String']['output']>;
   type?: Maybe<TokenType>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
@@ -15330,7 +15309,7 @@ export type PushTokenCreateInput = {
   expoToken?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   isExpired?: InputMaybe<Scalars['Boolean']['input']>;
-  receipts?: InputMaybe<Scalars['Json']['input'][]>;
+  receipts?: InputMaybe<Array<Scalars['Json']['input']>>;
   token?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<TokenType>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -15341,7 +15320,7 @@ export type PushTokenCreateManyInput = {
   expoToken?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   isExpired?: InputMaybe<Scalars['Boolean']['input']>;
-  receipts?: InputMaybe<Scalars['Json']['input'][]>;
+  receipts?: InputMaybe<Array<Scalars['Json']['input']>>;
   token?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<TokenType>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -15363,14 +15342,14 @@ export type PushTokenCreateWithoutDeviceInput = {
   expoToken?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   isExpired?: InputMaybe<Scalars['Boolean']['input']>;
-  receipts?: InputMaybe<Scalars['Json']['input'][]>;
+  receipts?: InputMaybe<Array<Scalars['Json']['input']>>;
   token?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<TokenType>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type PushTokenCreatereceiptsInput = {
-  set: Scalars['Json']['input'][];
+  set: Array<Scalars['Json']['input']>;
 };
 
 export type PushTokenMaxOrderByAggregateInput = {
@@ -15436,9 +15415,9 @@ export enum PushTokenScalarFieldEnum {
 }
 
 export type PushTokenScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<PushTokenScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<PushTokenScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<PushTokenScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<PushTokenScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<PushTokenScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<PushTokenScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeNullableWithAggregatesFilter>;
   expoToken?: InputMaybe<StringNullableWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
@@ -15455,7 +15434,7 @@ export type PushTokenUpdateInput = {
   expoToken?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   isExpired?: InputMaybe<BoolFieldUpdateOperationsInput>;
-  receipts?: InputMaybe<Scalars['Json']['input'][]>;
+  receipts?: InputMaybe<Array<Scalars['Json']['input']>>;
   token?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   type?: InputMaybe<NullableEnumTokenTypeFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
@@ -15466,7 +15445,7 @@ export type PushTokenUpdateManyMutationInput = {
   expoToken?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   isExpired?: InputMaybe<BoolFieldUpdateOperationsInput>;
-  receipts?: InputMaybe<Scalars['Json']['input'][]>;
+  receipts?: InputMaybe<Array<Scalars['Json']['input']>>;
   token?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   type?: InputMaybe<NullableEnumTokenTypeFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
@@ -15492,7 +15471,7 @@ export type PushTokenUpdateWithoutDeviceInput = {
   expoToken?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   isExpired?: InputMaybe<BoolFieldUpdateOperationsInput>;
-  receipts?: InputMaybe<Scalars['Json']['input'][]>;
+  receipts?: InputMaybe<Array<Scalars['Json']['input']>>;
   token?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   type?: InputMaybe<NullableEnumTokenTypeFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
@@ -15500,7 +15479,7 @@ export type PushTokenUpdateWithoutDeviceInput = {
 
 export type PushTokenUpdatereceiptsInput = {
   push?: InputMaybe<Scalars['Json']['input']>;
-  set?: InputMaybe<Scalars['Json']['input'][]>;
+  set?: InputMaybe<Array<Scalars['Json']['input']>>;
 };
 
 export type PushTokenUpsertWithoutDeviceInput = {
@@ -15510,10 +15489,10 @@ export type PushTokenUpsertWithoutDeviceInput = {
 };
 
 export type PushTokenWhereInput = {
-  AND?: InputMaybe<PushTokenWhereInput[]>;
+  AND?: InputMaybe<Array<PushTokenWhereInput>>;
   Device?: InputMaybe<DeviceWhereInput>;
-  NOT?: InputMaybe<PushTokenWhereInput[]>;
-  OR?: InputMaybe<PushTokenWhereInput[]>;
+  NOT?: InputMaybe<Array<PushTokenWhereInput>>;
+  OR?: InputMaybe<Array<PushTokenWhereInput>>;
   createdAt?: InputMaybe<DateTimeNullableFilter>;
   expoToken?: InputMaybe<StringNullableFilter>;
   id?: InputMaybe<StringFilter>;
@@ -15525,10 +15504,10 @@ export type PushTokenWhereInput = {
 };
 
 export type PushTokenWhereUniqueInput = {
-  AND?: InputMaybe<PushTokenWhereInput[]>;
+  AND?: InputMaybe<Array<PushTokenWhereInput>>;
   Device?: InputMaybe<DeviceWhereInput>;
-  NOT?: InputMaybe<PushTokenWhereInput[]>;
-  OR?: InputMaybe<PushTokenWhereInput[]>;
+  NOT?: InputMaybe<Array<PushTokenWhereInput>>;
+  OR?: InputMaybe<Array<PushTokenWhereInput>>;
   createdAt?: InputMaybe<DateTimeNullableFilter>;
   expoToken?: InputMaybe<StringNullableFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
@@ -15541,27 +15520,27 @@ export type PushTokenWhereUniqueInput = {
 
 export type Query = {
   __typename?: 'Query';
-  H3IndexGrid: Scalars['String']['output'][];
-  H3IndexLatLng: Scalars['Float']['output'][];
+  H3IndexGrid: Array<Scalars['String']['output']>;
+  H3IndexLatLng: Array<Scalars['Float']['output']>;
   authorizedProfiles?: Maybe<AuthorizedProfilesResponseUnion>;
   checkPrivacyTermsDocumentUpdate: PrivacyTermsUpdateResponseUnion;
   checkUsername: Scalars['Boolean']['output'];
   emojimood?: Maybe<Emojimood>;
-  emojimoods: Emojimood[];
+  emojimoods: Array<Emojimood>;
   exploreSearch: ExploreResponse;
   findConversationByIdOrMembers?: Maybe<Conversation>;
   friendsFromContacts: Scalars['String']['output'];
   getADeviceManager: DeviceManagerDeviceProfilesResponseUnion;
   getAllCitiesByState: OrganizedCityResponseObject;
-  getAllCountries: CountryResponseObject[];
-  getAllFriends: Profile[];
-  getAllStatesByCountry: StateResponseObject[];
-  getAllThemes: Theme[];
-  getConversations?: Maybe<Conversation[]>;
+  getAllCountries: Array<CountryResponseObject>;
+  getAllFriends: Array<Profile>;
+  getAllStatesByCountry: Array<StateResponseObject>;
+  getAllThemes: Array<Theme>;
+  getConversations?: Maybe<Array<Conversation>>;
   getCurrentPushNotificationToken?: Maybe<PushToken>;
-  getFriends?: Maybe<PublicProfilePersonal[]>;
+  getFriends?: Maybe<Array<PublicProfilePersonal>>;
   getH3Index6VenueRecommendationById?: Maybe<H3Index6VenueRecommendation>;
-  getInterests: Category[];
+  getInterests: Array<Category>;
   getLiveVenueTotals: LiveVenueTotals;
   getLiveVenueTotalsV2: VenueTotalsResponseUnion;
   getNotifications: NotificationResponse;
@@ -15570,13 +15549,13 @@ export type Query = {
   loginPassword: Scalars['Boolean']['output'];
   privacyTermsDocuments: LatestPrivacyAndTermsDocumentResponse;
   profile?: Maybe<Profile>;
-  profiles?: Maybe<Profile[]>;
+  profiles?: Maybe<Array<Profile>>;
   publicProfile?: Maybe<PublicProfilePersonal>;
   publicVenue?: Maybe<ProfileVenue>;
   refreshDeviceManager: AuthenticationResponseUnion;
   sendAuthenticatorDeviceOwnerCode: Scalars['Boolean']['output'];
   venue?: Maybe<Venue>;
-  venues: Venue[];
+  venues: Array<Venue>;
   venuesNearby: RecommendationResponseUnion;
 };
 
@@ -15614,12 +15593,12 @@ export type QueryExploreSearchArgs = {
 
 export type QueryFindConversationByIdOrMembersArgs = {
   conversationId?: InputMaybe<Scalars['String']['input']>;
-  members?: InputMaybe<Scalars['String']['input'][]>;
+  members?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 
 export type QueryFriendsFromContactsArgs = {
-  contact: ContactInput[];
+  contact: Array<ContactInput>;
 };
 
 
@@ -15636,7 +15615,7 @@ export type QueryGetAllStatesByCountryArgs = {
 
 export type QueryGetH3Index6VenueRecommendationByIdArgs = {
   id: Scalars['String']['input'];
-  venuesProfileIds?: InputMaybe<Scalars['String']['input'][]>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 
@@ -15658,8 +15637,8 @@ export type QueryLoginPasswordArgs = {
 
 export type QueryProfileArgs = {
   cursor?: InputMaybe<ProfileWhereUniqueInput>;
-  distinct?: InputMaybe<ProfileScalarFieldEnum[]>;
-  orderBy?: InputMaybe<ProfileOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<ProfileScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<ProfileOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ProfileWhereInput>;
@@ -15668,8 +15647,8 @@ export type QueryProfileArgs = {
 
 export type QueryProfilesArgs = {
   cursor?: InputMaybe<ProfileWhereUniqueInput>;
-  distinct?: InputMaybe<ProfileScalarFieldEnum[]>;
-  orderBy?: InputMaybe<ProfileOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<ProfileScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<ProfileOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ProfileWhereInput>;
@@ -15678,8 +15657,8 @@ export type QueryProfilesArgs = {
 
 export type QueryPublicProfileArgs = {
   cursor?: InputMaybe<ProfileWhereUniqueInput>;
-  distinct?: InputMaybe<ProfileScalarFieldEnum[]>;
-  orderBy?: InputMaybe<ProfileOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<ProfileScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<ProfileOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ProfileWhereInput>;
@@ -15689,8 +15668,8 @@ export type QueryPublicProfileArgs = {
 export type QueryPublicVenueArgs = {
   currentLocationCoords?: InputMaybe<CoordsInput>;
   cursor?: InputMaybe<ProfileWhereUniqueInput>;
-  distinct?: InputMaybe<ProfileScalarFieldEnum[]>;
-  orderBy?: InputMaybe<ProfileOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<ProfileScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<ProfileOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ProfileWhereInput>;
@@ -15699,8 +15678,8 @@ export type QueryPublicVenueArgs = {
 
 export type QueryVenueArgs = {
   cursor?: InputMaybe<VenueWhereUniqueInput>;
-  distinct?: InputMaybe<VenueScalarFieldEnum[]>;
-  orderBy?: InputMaybe<VenueOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<VenueScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<VenueOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<VenueWhereInput>;
@@ -15709,8 +15688,8 @@ export type QueryVenueArgs = {
 
 export type QueryVenuesArgs = {
   cursor?: InputMaybe<VenueWhereUniqueInput>;
-  distinct?: InputMaybe<VenueScalarFieldEnum[]>;
-  orderBy?: InputMaybe<VenueOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<VenueScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<VenueOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<VenueWhereInput>;
@@ -15838,10 +15817,10 @@ export enum RefreshTokenScalarFieldEnum {
 }
 
 export type RefreshTokenScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<RefreshTokenScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<RefreshTokenScalarWhereWithAggregatesInput>>;
   DeviceProfileId?: InputMaybe<StringNullableWithAggregatesFilter>;
-  NOT?: InputMaybe<RefreshTokenScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<RefreshTokenScalarWhereWithAggregatesInput[]>;
+  NOT?: InputMaybe<Array<RefreshTokenScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<RefreshTokenScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<IntWithAggregatesFilter>;
   token?: InputMaybe<StringWithAggregatesFilter>;
@@ -15893,11 +15872,11 @@ export type RefreshTokenUpsertWithoutDeviceProfileInput = {
 };
 
 export type RefreshTokenWhereInput = {
-  AND?: InputMaybe<RefreshTokenWhereInput[]>;
+  AND?: InputMaybe<Array<RefreshTokenWhereInput>>;
   DeviceProfile?: InputMaybe<DeviceProfileWhereInput>;
   DeviceProfileId?: InputMaybe<StringNullableFilter>;
-  NOT?: InputMaybe<RefreshTokenWhereInput[]>;
-  OR?: InputMaybe<RefreshTokenWhereInput[]>;
+  NOT?: InputMaybe<Array<RefreshTokenWhereInput>>;
+  OR?: InputMaybe<Array<RefreshTokenWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<IntFilter>;
   token?: InputMaybe<StringFilter>;
@@ -15905,11 +15884,11 @@ export type RefreshTokenWhereInput = {
 };
 
 export type RefreshTokenWhereUniqueInput = {
-  AND?: InputMaybe<RefreshTokenWhereInput[]>;
+  AND?: InputMaybe<Array<RefreshTokenWhereInput>>;
   DeviceProfile?: InputMaybe<DeviceProfileWhereInput>;
   DeviceProfileId?: InputMaybe<Scalars['String']['input']>;
-  NOT?: InputMaybe<RefreshTokenWhereInput[]>;
-  OR?: InputMaybe<RefreshTokenWhereInput[]>;
+  NOT?: InputMaybe<Array<RefreshTokenWhereInput>>;
+  OR?: InputMaybe<Array<RefreshTokenWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<Scalars['Int']['input']>;
   token?: InputMaybe<Scalars['String']['input']>;
@@ -15919,7 +15898,7 @@ export type RefreshTokenWhereUniqueInput = {
 export type Relationship = {
   __typename?: 'Relationship';
   Profile?: Maybe<Profile>;
-  RelationshipStatus: RelationshipStatus[];
+  RelationshipStatus: Array<RelationshipStatus>;
   createdAt: Scalars['DateTime']['output'];
   friendProfile?: Maybe<Profile>;
   friendProfileId: Scalars['String']['output'];
@@ -15941,7 +15920,7 @@ export type RelationshipCountOrderByAggregateInput = {
 
 export type RelationshipCreateInput = {
   Profile?: InputMaybe<ProfileCreateNestedOneWithoutRelationshipsInput>;
-  RelationshipStatus?: InputMaybe<RelationshipStatus[]>;
+  RelationshipStatus?: InputMaybe<Array<RelationshipStatus>>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   friendProfileId: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
@@ -15950,7 +15929,7 @@ export type RelationshipCreateInput = {
 };
 
 export type RelationshipCreateManyInput = {
-  RelationshipStatus?: InputMaybe<RelationshipStatus[]>;
+  RelationshipStatus?: InputMaybe<Array<RelationshipStatus>>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   friendProfileId: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
@@ -15960,7 +15939,7 @@ export type RelationshipCreateManyInput = {
 };
 
 export type RelationshipCreateManyProfileInput = {
-  RelationshipStatus?: InputMaybe<RelationshipStatus[]>;
+  RelationshipStatus?: InputMaybe<Array<RelationshipStatus>>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   friendProfileId: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
@@ -15969,14 +15948,14 @@ export type RelationshipCreateManyProfileInput = {
 };
 
 export type RelationshipCreateManyProfileInputEnvelope = {
-  data: RelationshipCreateManyProfileInput[];
+  data: Array<RelationshipCreateManyProfileInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type RelationshipCreateNestedManyWithoutProfileInput = {
-  connect?: InputMaybe<RelationshipWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<RelationshipCreateOrConnectWithoutProfileInput[]>;
-  create?: InputMaybe<RelationshipCreateWithoutProfileInput[]>;
+  connect?: InputMaybe<Array<RelationshipWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<RelationshipCreateOrConnectWithoutProfileInput>>;
+  create?: InputMaybe<Array<RelationshipCreateWithoutProfileInput>>;
   createMany?: InputMaybe<RelationshipCreateManyProfileInputEnvelope>;
 };
 
@@ -15986,11 +15965,11 @@ export type RelationshipCreateOrConnectWithoutProfileInput = {
 };
 
 export type RelationshipCreateRelationshipStatusInput = {
-  set: RelationshipStatus[];
+  set: Array<RelationshipStatus>;
 };
 
 export type RelationshipCreateWithoutProfileInput = {
-  RelationshipStatus?: InputMaybe<RelationshipStatus[]>;
+  RelationshipStatus?: InputMaybe<Array<RelationshipStatus>>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   friendProfileId: Scalars['String']['input'];
   id?: InputMaybe<Scalars['String']['input']>;
@@ -16061,9 +16040,9 @@ export enum RelationshipScalarFieldEnum {
 }
 
 export type RelationshipScalarWhereInput = {
-  AND?: InputMaybe<RelationshipScalarWhereInput[]>;
-  NOT?: InputMaybe<RelationshipScalarWhereInput[]>;
-  OR?: InputMaybe<RelationshipScalarWhereInput[]>;
+  AND?: InputMaybe<Array<RelationshipScalarWhereInput>>;
+  NOT?: InputMaybe<Array<RelationshipScalarWhereInput>>;
+  OR?: InputMaybe<Array<RelationshipScalarWhereInput>>;
   RelationshipStatus?: InputMaybe<EnumRelationshipStatusNullableListFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   friendProfileId?: InputMaybe<StringFilter>;
@@ -16074,9 +16053,9 @@ export type RelationshipScalarWhereInput = {
 };
 
 export type RelationshipScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<RelationshipScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<RelationshipScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<RelationshipScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<RelationshipScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<RelationshipScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<RelationshipScalarWhereWithAggregatesInput>>;
   RelationshipStatus?: InputMaybe<EnumRelationshipStatusNullableListFilter>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   friendProfileId?: InputMaybe<StringWithAggregatesFilter>;
@@ -16102,7 +16081,7 @@ export enum RelationshipStatusResponse {
 
 export type RelationshipUpdateInput = {
   Profile?: InputMaybe<ProfileUpdateOneWithoutRelationshipsNestedInput>;
-  RelationshipStatus?: InputMaybe<RelationshipStatus[]>;
+  RelationshipStatus?: InputMaybe<Array<RelationshipStatus>>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   friendProfileId?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -16111,7 +16090,7 @@ export type RelationshipUpdateInput = {
 };
 
 export type RelationshipUpdateManyMutationInput = {
-  RelationshipStatus?: InputMaybe<RelationshipStatus[]>;
+  RelationshipStatus?: InputMaybe<Array<RelationshipStatus>>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   friendProfileId?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -16125,22 +16104,22 @@ export type RelationshipUpdateManyWithWhereWithoutProfileInput = {
 };
 
 export type RelationshipUpdateManyWithoutProfileNestedInput = {
-  connect?: InputMaybe<RelationshipWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<RelationshipCreateOrConnectWithoutProfileInput[]>;
-  create?: InputMaybe<RelationshipCreateWithoutProfileInput[]>;
+  connect?: InputMaybe<Array<RelationshipWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<RelationshipCreateOrConnectWithoutProfileInput>>;
+  create?: InputMaybe<Array<RelationshipCreateWithoutProfileInput>>;
   createMany?: InputMaybe<RelationshipCreateManyProfileInputEnvelope>;
-  delete?: InputMaybe<RelationshipWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<RelationshipScalarWhereInput[]>;
-  disconnect?: InputMaybe<RelationshipWhereUniqueInput[]>;
-  set?: InputMaybe<RelationshipWhereUniqueInput[]>;
-  update?: InputMaybe<RelationshipUpdateWithWhereUniqueWithoutProfileInput[]>;
-  updateMany?: InputMaybe<RelationshipUpdateManyWithWhereWithoutProfileInput[]>;
-  upsert?: InputMaybe<RelationshipUpsertWithWhereUniqueWithoutProfileInput[]>;
+  delete?: InputMaybe<Array<RelationshipWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<RelationshipScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<RelationshipWhereUniqueInput>>;
+  set?: InputMaybe<Array<RelationshipWhereUniqueInput>>;
+  update?: InputMaybe<Array<RelationshipUpdateWithWhereUniqueWithoutProfileInput>>;
+  updateMany?: InputMaybe<Array<RelationshipUpdateManyWithWhereWithoutProfileInput>>;
+  upsert?: InputMaybe<Array<RelationshipUpsertWithWhereUniqueWithoutProfileInput>>;
 };
 
 export type RelationshipUpdateRelationshipStatusInput = {
-  push?: InputMaybe<RelationshipStatus[]>;
-  set?: InputMaybe<RelationshipStatus[]>;
+  push?: InputMaybe<Array<RelationshipStatus>>;
+  set?: InputMaybe<Array<RelationshipStatus>>;
 };
 
 export type RelationshipUpdateWithWhereUniqueWithoutProfileInput = {
@@ -16149,7 +16128,7 @@ export type RelationshipUpdateWithWhereUniqueWithoutProfileInput = {
 };
 
 export type RelationshipUpdateWithoutProfileInput = {
-  RelationshipStatus?: InputMaybe<RelationshipStatus[]>;
+  RelationshipStatus?: InputMaybe<Array<RelationshipStatus>>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   friendProfileId?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -16164,9 +16143,9 @@ export type RelationshipUpsertWithWhereUniqueWithoutProfileInput = {
 };
 
 export type RelationshipWhereInput = {
-  AND?: InputMaybe<RelationshipWhereInput[]>;
-  NOT?: InputMaybe<RelationshipWhereInput[]>;
-  OR?: InputMaybe<RelationshipWhereInput[]>;
+  AND?: InputMaybe<Array<RelationshipWhereInput>>;
+  NOT?: InputMaybe<Array<RelationshipWhereInput>>;
+  OR?: InputMaybe<Array<RelationshipWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
   RelationshipStatus?: InputMaybe<EnumRelationshipStatusNullableListFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -16178,9 +16157,9 @@ export type RelationshipWhereInput = {
 };
 
 export type RelationshipWhereUniqueInput = {
-  AND?: InputMaybe<RelationshipWhereInput[]>;
-  NOT?: InputMaybe<RelationshipWhereInput[]>;
-  OR?: InputMaybe<RelationshipWhereInput[]>;
+  AND?: InputMaybe<Array<RelationshipWhereInput>>;
+  NOT?: InputMaybe<Array<RelationshipWhereInput>>;
+  OR?: InputMaybe<Array<RelationshipWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
   RelationshipStatus?: InputMaybe<EnumRelationshipStatusNullableListFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -16193,12 +16172,12 @@ export type RelationshipWhereUniqueInput = {
 
 export type Request = {
   __typename?: 'Request';
-  NotificationFriendRequest: Notifications[];
-  NotificationMessage: Notifications[];
+  NotificationFriendRequest: Array<Notifications>;
+  NotificationMessage: Array<Notifications>;
   NotificationType: Scalars['String']['output'];
   createdAt: Scalars['DateTime']['output'];
   id: Scalars['ID']['output'];
-  recievers: RequestReceiver[];
+  recievers: Array<RequestReceiver>;
   senderProfile?: Maybe<Profile>;
   senderProfileId: Scalars['String']['output'];
   updatedAt: Scalars['DateTime']['output'];
@@ -16235,15 +16214,15 @@ export type RequestCreateManyInput = {
 };
 
 export type RequestCreateNestedManyWithoutNotificationFriendRequestInput = {
-  connect?: InputMaybe<RequestWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<RequestCreateOrConnectWithoutNotificationFriendRequestInput[]>;
-  create?: InputMaybe<RequestCreateWithoutNotificationFriendRequestInput[]>;
+  connect?: InputMaybe<Array<RequestWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<RequestCreateOrConnectWithoutNotificationFriendRequestInput>>;
+  create?: InputMaybe<Array<RequestCreateWithoutNotificationFriendRequestInput>>;
 };
 
 export type RequestCreateNestedManyWithoutNotificationMessageInput = {
-  connect?: InputMaybe<RequestWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<RequestCreateOrConnectWithoutNotificationMessageInput[]>;
-  create?: InputMaybe<RequestCreateWithoutNotificationMessageInput[]>;
+  connect?: InputMaybe<Array<RequestWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<RequestCreateOrConnectWithoutNotificationMessageInput>>;
+  create?: InputMaybe<Array<RequestCreateWithoutNotificationMessageInput>>;
 };
 
 export type RequestCreateNestedOneWithoutMessageInput = {
@@ -16426,14 +16405,14 @@ export type RequestReceiverCreateManyRequestInput = {
 };
 
 export type RequestReceiverCreateManyRequestInputEnvelope = {
-  data: RequestReceiverCreateManyRequestInput[];
+  data: Array<RequestReceiverCreateManyRequestInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type RequestReceiverCreateNestedManyWithoutRequestInput = {
-  connect?: InputMaybe<RequestReceiverWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<RequestReceiverCreateOrConnectWithoutRequestInput[]>;
-  create?: InputMaybe<RequestReceiverCreateWithoutRequestInput[]>;
+  connect?: InputMaybe<Array<RequestReceiverWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<RequestReceiverCreateOrConnectWithoutRequestInput>>;
+  create?: InputMaybe<Array<RequestReceiverCreateWithoutRequestInput>>;
   createMany?: InputMaybe<RequestReceiverCreateManyRequestInputEnvelope>;
 };
 
@@ -16535,9 +16514,9 @@ export enum RequestReceiverScalarFieldEnum {
 }
 
 export type RequestReceiverScalarWhereInput = {
-  AND?: InputMaybe<RequestReceiverScalarWhereInput[]>;
-  NOT?: InputMaybe<RequestReceiverScalarWhereInput[]>;
-  OR?: InputMaybe<RequestReceiverScalarWhereInput[]>;
+  AND?: InputMaybe<Array<RequestReceiverScalarWhereInput>>;
+  NOT?: InputMaybe<Array<RequestReceiverScalarWhereInput>>;
+  OR?: InputMaybe<Array<RequestReceiverScalarWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<StringFilter>;
   notificationStatusId?: InputMaybe<StringFilter>;
@@ -16547,9 +16526,9 @@ export type RequestReceiverScalarWhereInput = {
 };
 
 export type RequestReceiverScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<RequestReceiverScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<RequestReceiverScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<RequestReceiverScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<RequestReceiverScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<RequestReceiverScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<RequestReceiverScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   notificationStatusId?: InputMaybe<StringWithAggregatesFilter>;
@@ -16580,17 +16559,17 @@ export type RequestReceiverUpdateManyWithWhereWithoutRequestInput = {
 };
 
 export type RequestReceiverUpdateManyWithoutRequestNestedInput = {
-  connect?: InputMaybe<RequestReceiverWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<RequestReceiverCreateOrConnectWithoutRequestInput[]>;
-  create?: InputMaybe<RequestReceiverCreateWithoutRequestInput[]>;
+  connect?: InputMaybe<Array<RequestReceiverWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<RequestReceiverCreateOrConnectWithoutRequestInput>>;
+  create?: InputMaybe<Array<RequestReceiverCreateWithoutRequestInput>>;
   createMany?: InputMaybe<RequestReceiverCreateManyRequestInputEnvelope>;
-  delete?: InputMaybe<RequestReceiverWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<RequestReceiverScalarWhereInput[]>;
-  disconnect?: InputMaybe<RequestReceiverWhereUniqueInput[]>;
-  set?: InputMaybe<RequestReceiverWhereUniqueInput[]>;
-  update?: InputMaybe<RequestReceiverUpdateWithWhereUniqueWithoutRequestInput[]>;
-  updateMany?: InputMaybe<RequestReceiverUpdateManyWithWhereWithoutRequestInput[]>;
-  upsert?: InputMaybe<RequestReceiverUpsertWithWhereUniqueWithoutRequestInput[]>;
+  delete?: InputMaybe<Array<RequestReceiverWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<RequestReceiverScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<RequestReceiverWhereUniqueInput>>;
+  set?: InputMaybe<Array<RequestReceiverWhereUniqueInput>>;
+  update?: InputMaybe<Array<RequestReceiverUpdateWithWhereUniqueWithoutRequestInput>>;
+  updateMany?: InputMaybe<Array<RequestReceiverUpdateManyWithWhereWithoutRequestInput>>;
+  upsert?: InputMaybe<Array<RequestReceiverUpsertWithWhereUniqueWithoutRequestInput>>;
 };
 
 export type RequestReceiverUpdateOneWithoutNotificationStatusNestedInput = {
@@ -16642,10 +16621,10 @@ export type RequestReceiverUpsertWithoutNotificationStatusInput = {
 };
 
 export type RequestReceiverWhereInput = {
-  AND?: InputMaybe<RequestReceiverWhereInput[]>;
-  NOT?: InputMaybe<RequestReceiverWhereInput[]>;
+  AND?: InputMaybe<Array<RequestReceiverWhereInput>>;
+  NOT?: InputMaybe<Array<RequestReceiverWhereInput>>;
   NotificationStatus?: InputMaybe<NotificationStatusWhereInput>;
-  OR?: InputMaybe<RequestReceiverWhereInput[]>;
+  OR?: InputMaybe<Array<RequestReceiverWhereInput>>;
   Request?: InputMaybe<RequestWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<StringFilter>;
@@ -16656,10 +16635,10 @@ export type RequestReceiverWhereInput = {
 };
 
 export type RequestReceiverWhereUniqueInput = {
-  AND?: InputMaybe<RequestReceiverWhereInput[]>;
-  NOT?: InputMaybe<RequestReceiverWhereInput[]>;
+  AND?: InputMaybe<Array<RequestReceiverWhereInput>>;
+  NOT?: InputMaybe<Array<RequestReceiverWhereInput>>;
   NotificationStatus?: InputMaybe<NotificationStatusWhereInput>;
-  OR?: InputMaybe<RequestReceiverWhereInput[]>;
+  OR?: InputMaybe<Array<RequestReceiverWhereInput>>;
   Request?: InputMaybe<RequestWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
@@ -16679,10 +16658,10 @@ export enum RequestScalarFieldEnum {
 }
 
 export type RequestScalarWhereInput = {
-  AND?: InputMaybe<RequestScalarWhereInput[]>;
-  NOT?: InputMaybe<RequestScalarWhereInput[]>;
+  AND?: InputMaybe<Array<RequestScalarWhereInput>>;
+  NOT?: InputMaybe<Array<RequestScalarWhereInput>>;
   NotificationType?: InputMaybe<EnumNotificationTypeFilter>;
-  OR?: InputMaybe<RequestScalarWhereInput[]>;
+  OR?: InputMaybe<Array<RequestScalarWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<StringFilter>;
   messageId?: InputMaybe<StringNullableFilter>;
@@ -16691,10 +16670,10 @@ export type RequestScalarWhereInput = {
 };
 
 export type RequestScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<RequestScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<RequestScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<RequestScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<RequestScalarWhereWithAggregatesInput>>;
   NotificationType?: InputMaybe<EnumNotificationTypeWithAggregatesFilter>;
-  OR?: InputMaybe<RequestScalarWhereWithAggregatesInput[]>;
+  OR?: InputMaybe<Array<RequestScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   messageId?: InputMaybe<StringNullableWithAggregatesFilter>;
@@ -16733,29 +16712,29 @@ export type RequestUpdateManyWithWhereWithoutNotificationMessageInput = {
 };
 
 export type RequestUpdateManyWithoutNotificationFriendRequestNestedInput = {
-  connect?: InputMaybe<RequestWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<RequestCreateOrConnectWithoutNotificationFriendRequestInput[]>;
-  create?: InputMaybe<RequestCreateWithoutNotificationFriendRequestInput[]>;
-  delete?: InputMaybe<RequestWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<RequestScalarWhereInput[]>;
-  disconnect?: InputMaybe<RequestWhereUniqueInput[]>;
-  set?: InputMaybe<RequestWhereUniqueInput[]>;
-  update?: InputMaybe<RequestUpdateWithWhereUniqueWithoutNotificationFriendRequestInput[]>;
-  updateMany?: InputMaybe<RequestUpdateManyWithWhereWithoutNotificationFriendRequestInput[]>;
-  upsert?: InputMaybe<RequestUpsertWithWhereUniqueWithoutNotificationFriendRequestInput[]>;
+  connect?: InputMaybe<Array<RequestWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<RequestCreateOrConnectWithoutNotificationFriendRequestInput>>;
+  create?: InputMaybe<Array<RequestCreateWithoutNotificationFriendRequestInput>>;
+  delete?: InputMaybe<Array<RequestWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<RequestScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<RequestWhereUniqueInput>>;
+  set?: InputMaybe<Array<RequestWhereUniqueInput>>;
+  update?: InputMaybe<Array<RequestUpdateWithWhereUniqueWithoutNotificationFriendRequestInput>>;
+  updateMany?: InputMaybe<Array<RequestUpdateManyWithWhereWithoutNotificationFriendRequestInput>>;
+  upsert?: InputMaybe<Array<RequestUpsertWithWhereUniqueWithoutNotificationFriendRequestInput>>;
 };
 
 export type RequestUpdateManyWithoutNotificationMessageNestedInput = {
-  connect?: InputMaybe<RequestWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<RequestCreateOrConnectWithoutNotificationMessageInput[]>;
-  create?: InputMaybe<RequestCreateWithoutNotificationMessageInput[]>;
-  delete?: InputMaybe<RequestWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<RequestScalarWhereInput[]>;
-  disconnect?: InputMaybe<RequestWhereUniqueInput[]>;
-  set?: InputMaybe<RequestWhereUniqueInput[]>;
-  update?: InputMaybe<RequestUpdateWithWhereUniqueWithoutNotificationMessageInput[]>;
-  updateMany?: InputMaybe<RequestUpdateManyWithWhereWithoutNotificationMessageInput[]>;
-  upsert?: InputMaybe<RequestUpsertWithWhereUniqueWithoutNotificationMessageInput[]>;
+  connect?: InputMaybe<Array<RequestWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<RequestCreateOrConnectWithoutNotificationMessageInput>>;
+  create?: InputMaybe<Array<RequestCreateWithoutNotificationMessageInput>>;
+  delete?: InputMaybe<Array<RequestWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<RequestScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<RequestWhereUniqueInput>>;
+  set?: InputMaybe<Array<RequestWhereUniqueInput>>;
+  update?: InputMaybe<Array<RequestUpdateWithWhereUniqueWithoutNotificationMessageInput>>;
+  updateMany?: InputMaybe<Array<RequestUpdateManyWithWhereWithoutNotificationMessageInput>>;
+  upsert?: InputMaybe<Array<RequestUpsertWithWhereUniqueWithoutNotificationMessageInput>>;
 };
 
 export type RequestUpdateOneWithoutMessageNestedInput = {
@@ -16867,13 +16846,13 @@ export type RequestUpsertWithoutReceiversInput = {
 };
 
 export type RequestWhereInput = {
-  AND?: InputMaybe<RequestWhereInput[]>;
+  AND?: InputMaybe<Array<RequestWhereInput>>;
   Message?: InputMaybe<MessageWhereInput>;
-  NOT?: InputMaybe<RequestWhereInput[]>;
+  NOT?: InputMaybe<Array<RequestWhereInput>>;
   NotificationFriendRequest?: InputMaybe<NotificationsListRelationFilter>;
   NotificationMessage?: InputMaybe<NotificationsListRelationFilter>;
   NotificationType?: InputMaybe<EnumNotificationTypeFilter>;
-  OR?: InputMaybe<RequestWhereInput[]>;
+  OR?: InputMaybe<Array<RequestWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<StringFilter>;
   messageId?: InputMaybe<StringNullableFilter>;
@@ -16883,13 +16862,13 @@ export type RequestWhereInput = {
 };
 
 export type RequestWhereUniqueInput = {
-  AND?: InputMaybe<RequestWhereInput[]>;
+  AND?: InputMaybe<Array<RequestWhereInput>>;
   Message?: InputMaybe<MessageWhereInput>;
-  NOT?: InputMaybe<RequestWhereInput[]>;
+  NOT?: InputMaybe<Array<RequestWhereInput>>;
   NotificationFriendRequest?: InputMaybe<NotificationsListRelationFilter>;
   NotificationMessage?: InputMaybe<NotificationsListRelationFilter>;
   NotificationType?: InputMaybe<EnumNotificationTypeFilter>;
-  OR?: InputMaybe<RequestWhereInput[]>;
+  OR?: InputMaybe<Array<RequestWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
   messageId?: InputMaybe<Scalars['String']['input']>;
@@ -16950,7 +16929,7 @@ export type SearchAreaMetricsCreateManyH3Index5VenueRecommendationInput = {
 };
 
 export type SearchAreaMetricsCreateManyH3Index5VenueRecommendationInputEnvelope = {
-  data: SearchAreaMetricsCreateManyH3Index5VenueRecommendationInput[];
+  data: Array<SearchAreaMetricsCreateManyH3Index5VenueRecommendationInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -16965,7 +16944,7 @@ export type SearchAreaMetricsCreateManyH3Index6VenueRecommendationInput = {
 };
 
 export type SearchAreaMetricsCreateManyH3Index6VenueRecommendationInputEnvelope = {
-  data: SearchAreaMetricsCreateManyH3Index6VenueRecommendationInput[];
+  data: Array<SearchAreaMetricsCreateManyH3Index6VenueRecommendationInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -16991,28 +16970,28 @@ export type SearchAreaMetricsCreateManySearchesServiceInput = {
 };
 
 export type SearchAreaMetricsCreateManySearchesServiceInputEnvelope = {
-  data: SearchAreaMetricsCreateManySearchesServiceInput[];
+  data: Array<SearchAreaMetricsCreateManySearchesServiceInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type SearchAreaMetricsCreateNestedManyWithoutH3Index5VenueRecommendationInput = {
-  connect?: InputMaybe<SearchAreaMetricsWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<SearchAreaMetricsCreateOrConnectWithoutH3Index5VenueRecommendationInput[]>;
-  create?: InputMaybe<SearchAreaMetricsCreateWithoutH3Index5VenueRecommendationInput[]>;
+  connect?: InputMaybe<Array<SearchAreaMetricsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<SearchAreaMetricsCreateOrConnectWithoutH3Index5VenueRecommendationInput>>;
+  create?: InputMaybe<Array<SearchAreaMetricsCreateWithoutH3Index5VenueRecommendationInput>>;
   createMany?: InputMaybe<SearchAreaMetricsCreateManyH3Index5VenueRecommendationInputEnvelope>;
 };
 
 export type SearchAreaMetricsCreateNestedManyWithoutH3Index6VenueRecommendationInput = {
-  connect?: InputMaybe<SearchAreaMetricsWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<SearchAreaMetricsCreateOrConnectWithoutH3Index6VenueRecommendationInput[]>;
-  create?: InputMaybe<SearchAreaMetricsCreateWithoutH3Index6VenueRecommendationInput[]>;
+  connect?: InputMaybe<Array<SearchAreaMetricsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<SearchAreaMetricsCreateOrConnectWithoutH3Index6VenueRecommendationInput>>;
+  create?: InputMaybe<Array<SearchAreaMetricsCreateWithoutH3Index6VenueRecommendationInput>>;
   createMany?: InputMaybe<SearchAreaMetricsCreateManyH3Index6VenueRecommendationInputEnvelope>;
 };
 
 export type SearchAreaMetricsCreateNestedManyWithoutSearchesServiceInput = {
-  connect?: InputMaybe<SearchAreaMetricsWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<SearchAreaMetricsCreateOrConnectWithoutSearchesServiceInput[]>;
-  create?: InputMaybe<SearchAreaMetricsCreateWithoutSearchesServiceInput[]>;
+  connect?: InputMaybe<Array<SearchAreaMetricsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<SearchAreaMetricsCreateOrConnectWithoutSearchesServiceInput>>;
+  create?: InputMaybe<Array<SearchAreaMetricsCreateWithoutSearchesServiceInput>>;
   createMany?: InputMaybe<SearchAreaMetricsCreateManySearchesServiceInputEnvelope>;
 };
 
@@ -17132,9 +17111,9 @@ export enum SearchAreaMetricsScalarFieldEnum {
 }
 
 export type SearchAreaMetricsScalarWhereInput = {
-  AND?: InputMaybe<SearchAreaMetricsScalarWhereInput[]>;
-  NOT?: InputMaybe<SearchAreaMetricsScalarWhereInput[]>;
-  OR?: InputMaybe<SearchAreaMetricsScalarWhereInput[]>;
+  AND?: InputMaybe<Array<SearchAreaMetricsScalarWhereInput>>;
+  NOT?: InputMaybe<Array<SearchAreaMetricsScalarWhereInput>>;
+  OR?: InputMaybe<Array<SearchAreaMetricsScalarWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   h3Index5VenueRecommendationId?: InputMaybe<StringNullableFilter>;
   h3Index6VenueRecommendationId?: InputMaybe<StringNullableFilter>;
@@ -17146,9 +17125,9 @@ export type SearchAreaMetricsScalarWhereInput = {
 };
 
 export type SearchAreaMetricsScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<SearchAreaMetricsScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<SearchAreaMetricsScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<SearchAreaMetricsScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<SearchAreaMetricsScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<SearchAreaMetricsScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<SearchAreaMetricsScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   h3Index5VenueRecommendationId?: InputMaybe<StringNullableWithAggregatesFilter>;
   h3Index6VenueRecommendationId?: InputMaybe<StringNullableWithAggregatesFilter>;
@@ -17197,45 +17176,45 @@ export type SearchAreaMetricsUpdateManyWithWhereWithoutSearchesServiceInput = {
 };
 
 export type SearchAreaMetricsUpdateManyWithoutH3Index5VenueRecommendationNestedInput = {
-  connect?: InputMaybe<SearchAreaMetricsWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<SearchAreaMetricsCreateOrConnectWithoutH3Index5VenueRecommendationInput[]>;
-  create?: InputMaybe<SearchAreaMetricsCreateWithoutH3Index5VenueRecommendationInput[]>;
+  connect?: InputMaybe<Array<SearchAreaMetricsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<SearchAreaMetricsCreateOrConnectWithoutH3Index5VenueRecommendationInput>>;
+  create?: InputMaybe<Array<SearchAreaMetricsCreateWithoutH3Index5VenueRecommendationInput>>;
   createMany?: InputMaybe<SearchAreaMetricsCreateManyH3Index5VenueRecommendationInputEnvelope>;
-  delete?: InputMaybe<SearchAreaMetricsWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<SearchAreaMetricsScalarWhereInput[]>;
-  disconnect?: InputMaybe<SearchAreaMetricsWhereUniqueInput[]>;
-  set?: InputMaybe<SearchAreaMetricsWhereUniqueInput[]>;
-  update?: InputMaybe<SearchAreaMetricsUpdateWithWhereUniqueWithoutH3Index5VenueRecommendationInput[]>;
-  updateMany?: InputMaybe<SearchAreaMetricsUpdateManyWithWhereWithoutH3Index5VenueRecommendationInput[]>;
-  upsert?: InputMaybe<SearchAreaMetricsUpsertWithWhereUniqueWithoutH3Index5VenueRecommendationInput[]>;
+  delete?: InputMaybe<Array<SearchAreaMetricsWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<SearchAreaMetricsScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<SearchAreaMetricsWhereUniqueInput>>;
+  set?: InputMaybe<Array<SearchAreaMetricsWhereUniqueInput>>;
+  update?: InputMaybe<Array<SearchAreaMetricsUpdateWithWhereUniqueWithoutH3Index5VenueRecommendationInput>>;
+  updateMany?: InputMaybe<Array<SearchAreaMetricsUpdateManyWithWhereWithoutH3Index5VenueRecommendationInput>>;
+  upsert?: InputMaybe<Array<SearchAreaMetricsUpsertWithWhereUniqueWithoutH3Index5VenueRecommendationInput>>;
 };
 
 export type SearchAreaMetricsUpdateManyWithoutH3Index6VenueRecommendationNestedInput = {
-  connect?: InputMaybe<SearchAreaMetricsWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<SearchAreaMetricsCreateOrConnectWithoutH3Index6VenueRecommendationInput[]>;
-  create?: InputMaybe<SearchAreaMetricsCreateWithoutH3Index6VenueRecommendationInput[]>;
+  connect?: InputMaybe<Array<SearchAreaMetricsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<SearchAreaMetricsCreateOrConnectWithoutH3Index6VenueRecommendationInput>>;
+  create?: InputMaybe<Array<SearchAreaMetricsCreateWithoutH3Index6VenueRecommendationInput>>;
   createMany?: InputMaybe<SearchAreaMetricsCreateManyH3Index6VenueRecommendationInputEnvelope>;
-  delete?: InputMaybe<SearchAreaMetricsWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<SearchAreaMetricsScalarWhereInput[]>;
-  disconnect?: InputMaybe<SearchAreaMetricsWhereUniqueInput[]>;
-  set?: InputMaybe<SearchAreaMetricsWhereUniqueInput[]>;
-  update?: InputMaybe<SearchAreaMetricsUpdateWithWhereUniqueWithoutH3Index6VenueRecommendationInput[]>;
-  updateMany?: InputMaybe<SearchAreaMetricsUpdateManyWithWhereWithoutH3Index6VenueRecommendationInput[]>;
-  upsert?: InputMaybe<SearchAreaMetricsUpsertWithWhereUniqueWithoutH3Index6VenueRecommendationInput[]>;
+  delete?: InputMaybe<Array<SearchAreaMetricsWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<SearchAreaMetricsScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<SearchAreaMetricsWhereUniqueInput>>;
+  set?: InputMaybe<Array<SearchAreaMetricsWhereUniqueInput>>;
+  update?: InputMaybe<Array<SearchAreaMetricsUpdateWithWhereUniqueWithoutH3Index6VenueRecommendationInput>>;
+  updateMany?: InputMaybe<Array<SearchAreaMetricsUpdateManyWithWhereWithoutH3Index6VenueRecommendationInput>>;
+  upsert?: InputMaybe<Array<SearchAreaMetricsUpsertWithWhereUniqueWithoutH3Index6VenueRecommendationInput>>;
 };
 
 export type SearchAreaMetricsUpdateManyWithoutSearchesServiceNestedInput = {
-  connect?: InputMaybe<SearchAreaMetricsWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<SearchAreaMetricsCreateOrConnectWithoutSearchesServiceInput[]>;
-  create?: InputMaybe<SearchAreaMetricsCreateWithoutSearchesServiceInput[]>;
+  connect?: InputMaybe<Array<SearchAreaMetricsWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<SearchAreaMetricsCreateOrConnectWithoutSearchesServiceInput>>;
+  create?: InputMaybe<Array<SearchAreaMetricsCreateWithoutSearchesServiceInput>>;
   createMany?: InputMaybe<SearchAreaMetricsCreateManySearchesServiceInputEnvelope>;
-  delete?: InputMaybe<SearchAreaMetricsWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<SearchAreaMetricsScalarWhereInput[]>;
-  disconnect?: InputMaybe<SearchAreaMetricsWhereUniqueInput[]>;
-  set?: InputMaybe<SearchAreaMetricsWhereUniqueInput[]>;
-  update?: InputMaybe<SearchAreaMetricsUpdateWithWhereUniqueWithoutSearchesServiceInput[]>;
-  updateMany?: InputMaybe<SearchAreaMetricsUpdateManyWithWhereWithoutSearchesServiceInput[]>;
-  upsert?: InputMaybe<SearchAreaMetricsUpsertWithWhereUniqueWithoutSearchesServiceInput[]>;
+  delete?: InputMaybe<Array<SearchAreaMetricsWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<SearchAreaMetricsScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<SearchAreaMetricsWhereUniqueInput>>;
+  set?: InputMaybe<Array<SearchAreaMetricsWhereUniqueInput>>;
+  update?: InputMaybe<Array<SearchAreaMetricsUpdateWithWhereUniqueWithoutSearchesServiceInput>>;
+  updateMany?: InputMaybe<Array<SearchAreaMetricsUpdateManyWithWhereWithoutSearchesServiceInput>>;
+  upsert?: InputMaybe<Array<SearchAreaMetricsUpsertWithWhereUniqueWithoutSearchesServiceInput>>;
 };
 
 export type SearchAreaMetricsUpdateWithWhereUniqueWithoutH3Index5VenueRecommendationInput = {
@@ -17299,11 +17278,11 @@ export type SearchAreaMetricsUpsertWithWhereUniqueWithoutSearchesServiceInput = 
 };
 
 export type SearchAreaMetricsWhereInput = {
-  AND?: InputMaybe<SearchAreaMetricsWhereInput[]>;
+  AND?: InputMaybe<Array<SearchAreaMetricsWhereInput>>;
   H3Index5VenueRecommendation?: InputMaybe<H3Index5VenueRecommendationWhereInput>;
   H3Index6VenueRecommendation?: InputMaybe<H3Index6VenueRecommendationWhereInput>;
-  NOT?: InputMaybe<SearchAreaMetricsWhereInput[]>;
-  OR?: InputMaybe<SearchAreaMetricsWhereInput[]>;
+  NOT?: InputMaybe<Array<SearchAreaMetricsWhereInput>>;
+  OR?: InputMaybe<Array<SearchAreaMetricsWhereInput>>;
   SearchesService?: InputMaybe<SearchesServiceWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
   h3Index5VenueRecommendationId?: InputMaybe<StringNullableFilter>;
@@ -17316,11 +17295,11 @@ export type SearchAreaMetricsWhereInput = {
 };
 
 export type SearchAreaMetricsWhereUniqueInput = {
-  AND?: InputMaybe<SearchAreaMetricsWhereInput[]>;
+  AND?: InputMaybe<Array<SearchAreaMetricsWhereInput>>;
   H3Index5VenueRecommendation?: InputMaybe<H3Index5VenueRecommendationWhereInput>;
   H3Index6VenueRecommendation?: InputMaybe<H3Index6VenueRecommendationWhereInput>;
-  NOT?: InputMaybe<SearchAreaMetricsWhereInput[]>;
-  OR?: InputMaybe<SearchAreaMetricsWhereInput[]>;
+  NOT?: InputMaybe<Array<SearchAreaMetricsWhereInput>>;
+  OR?: InputMaybe<Array<SearchAreaMetricsWhereInput>>;
   SearchesService?: InputMaybe<SearchesServiceWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
   h3Index5VenueRecommendationId?: InputMaybe<StringNullableFilter>;
@@ -17335,19 +17314,19 @@ export type SearchAreaMetricsWhereUniqueInput = {
 export type SearchesService = {
   __typename?: 'SearchesService';
   Profile: Profile;
-  SearchAreaMetrics: SearchAreaMetrics[];
+  SearchAreaMetrics: Array<SearchAreaMetrics>;
   createdAt: Scalars['DateTime']['output'];
   id: Scalars['ID']['output'];
   profileId: Scalars['String']['output'];
-  searches: Scalars['Json']['output'][];
+  searches: Array<Scalars['Json']['output']>;
   updatedAt: Scalars['DateTime']['output'];
 };
 
 
 export type SearchesServiceSearchAreaMetricsArgs = {
   cursor?: InputMaybe<SearchAreaMetricsWhereUniqueInput>;
-  distinct?: InputMaybe<SearchAreaMetricsScalarFieldEnum[]>;
-  orderBy?: InputMaybe<SearchAreaMetricsOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<SearchAreaMetricsScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<SearchAreaMetricsOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<SearchAreaMetricsWhereInput>;
@@ -17366,7 +17345,7 @@ export type SearchesServiceCreateInput = {
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsCreateNestedManyWithoutSearchesServiceInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
-  searches?: InputMaybe<Scalars['Json']['input'][]>;
+  searches?: InputMaybe<Array<Scalars['Json']['input']>>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
@@ -17374,7 +17353,7 @@ export type SearchesServiceCreateManyInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   profileId: Scalars['String']['input'];
-  searches?: InputMaybe<Scalars['Json']['input'][]>;
+  searches?: InputMaybe<Array<Scalars['Json']['input']>>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
@@ -17404,7 +17383,7 @@ export type SearchesServiceCreateWithoutProfileInput = {
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsCreateNestedManyWithoutSearchesServiceInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
-  searches?: InputMaybe<Scalars['Json']['input'][]>;
+  searches?: InputMaybe<Array<Scalars['Json']['input']>>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
@@ -17412,12 +17391,12 @@ export type SearchesServiceCreateWithoutSearchAreaMetricsInput = {
   Profile: ProfileCreateNestedOneWithoutSearchesServiceInput;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
-  searches?: InputMaybe<Scalars['Json']['input'][]>;
+  searches?: InputMaybe<Array<Scalars['Json']['input']>>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type SearchesServiceCreatesearchesInput = {
-  set: Scalars['Json']['input'][];
+  set: Array<Scalars['Json']['input']>;
 };
 
 export type SearchesServiceMaxOrderByAggregateInput = {
@@ -17469,9 +17448,9 @@ export enum SearchesServiceScalarFieldEnum {
 }
 
 export type SearchesServiceScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<SearchesServiceScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<SearchesServiceScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<SearchesServiceScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<SearchesServiceScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<SearchesServiceScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<SearchesServiceScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   profileId?: InputMaybe<StringWithAggregatesFilter>;
@@ -17484,14 +17463,14 @@ export type SearchesServiceUpdateInput = {
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsUpdateManyWithoutSearchesServiceNestedInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  searches?: InputMaybe<Scalars['Json']['input'][]>;
+  searches?: InputMaybe<Array<Scalars['Json']['input']>>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type SearchesServiceUpdateManyMutationInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  searches?: InputMaybe<Scalars['Json']['input'][]>;
+  searches?: InputMaybe<Array<Scalars['Json']['input']>>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -17529,7 +17508,7 @@ export type SearchesServiceUpdateWithoutProfileInput = {
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsUpdateManyWithoutSearchesServiceNestedInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  searches?: InputMaybe<Scalars['Json']['input'][]>;
+  searches?: InputMaybe<Array<Scalars['Json']['input']>>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -17537,13 +17516,13 @@ export type SearchesServiceUpdateWithoutSearchAreaMetricsInput = {
   Profile?: InputMaybe<ProfileUpdateOneRequiredWithoutSearchesServiceNestedInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  searches?: InputMaybe<Scalars['Json']['input'][]>;
+  searches?: InputMaybe<Array<Scalars['Json']['input']>>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type SearchesServiceUpdatesearchesInput = {
   push?: InputMaybe<Scalars['Json']['input']>;
-  set?: InputMaybe<Scalars['Json']['input'][]>;
+  set?: InputMaybe<Array<Scalars['Json']['input']>>;
 };
 
 export type SearchesServiceUpsertWithoutProfileInput = {
@@ -17559,9 +17538,9 @@ export type SearchesServiceUpsertWithoutSearchAreaMetricsInput = {
 };
 
 export type SearchesServiceWhereInput = {
-  AND?: InputMaybe<SearchesServiceWhereInput[]>;
-  NOT?: InputMaybe<SearchesServiceWhereInput[]>;
-  OR?: InputMaybe<SearchesServiceWhereInput[]>;
+  AND?: InputMaybe<Array<SearchesServiceWhereInput>>;
+  NOT?: InputMaybe<Array<SearchesServiceWhereInput>>;
+  OR?: InputMaybe<Array<SearchesServiceWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsListRelationFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -17572,9 +17551,9 @@ export type SearchesServiceWhereInput = {
 };
 
 export type SearchesServiceWhereUniqueInput = {
-  AND?: InputMaybe<SearchesServiceWhereInput[]>;
-  NOT?: InputMaybe<SearchesServiceWhereInput[]>;
-  OR?: InputMaybe<SearchesServiceWhereInput[]>;
+  AND?: InputMaybe<Array<SearchesServiceWhereInput>>;
+  NOT?: InputMaybe<Array<SearchesServiceWhereInput>>;
+  OR?: InputMaybe<Array<SearchesServiceWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
   SearchAreaMetrics?: InputMaybe<SearchAreaMetricsListRelationFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -17633,14 +17612,14 @@ export type SecuredDataKeysCreateManyProfileInput = {
 };
 
 export type SecuredDataKeysCreateManyProfileInputEnvelope = {
-  data: SecuredDataKeysCreateManyProfileInput[];
+  data: Array<SecuredDataKeysCreateManyProfileInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type SecuredDataKeysCreateNestedManyWithoutProfileInput = {
-  connect?: InputMaybe<SecuredDataKeysWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<SecuredDataKeysCreateOrConnectWithoutProfileInput[]>;
-  create?: InputMaybe<SecuredDataKeysCreateWithoutProfileInput[]>;
+  connect?: InputMaybe<Array<SecuredDataKeysWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<SecuredDataKeysCreateOrConnectWithoutProfileInput>>;
+  create?: InputMaybe<Array<SecuredDataKeysCreateWithoutProfileInput>>;
   createMany?: InputMaybe<SecuredDataKeysCreateManyProfileInputEnvelope>;
 };
 
@@ -17725,9 +17704,9 @@ export enum SecuredDataKeysScalarFieldEnum {
 }
 
 export type SecuredDataKeysScalarWhereInput = {
-  AND?: InputMaybe<SecuredDataKeysScalarWhereInput[]>;
-  NOT?: InputMaybe<SecuredDataKeysScalarWhereInput[]>;
-  OR?: InputMaybe<SecuredDataKeysScalarWhereInput[]>;
+  AND?: InputMaybe<Array<SecuredDataKeysScalarWhereInput>>;
+  NOT?: InputMaybe<Array<SecuredDataKeysScalarWhereInput>>;
+  OR?: InputMaybe<Array<SecuredDataKeysScalarWhereInput>>;
   SecureDataType?: InputMaybe<EnumSecureDataTypeFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<StringFilter>;
@@ -17738,9 +17717,9 @@ export type SecuredDataKeysScalarWhereInput = {
 };
 
 export type SecuredDataKeysScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<SecuredDataKeysScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<SecuredDataKeysScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<SecuredDataKeysScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<SecuredDataKeysScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<SecuredDataKeysScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<SecuredDataKeysScalarWhereWithAggregatesInput>>;
   SecureDataType?: InputMaybe<EnumSecureDataTypeWithAggregatesFilter>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
@@ -17779,17 +17758,17 @@ export type SecuredDataKeysUpdateManyWithWhereWithoutProfileInput = {
 };
 
 export type SecuredDataKeysUpdateManyWithoutProfileNestedInput = {
-  connect?: InputMaybe<SecuredDataKeysWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<SecuredDataKeysCreateOrConnectWithoutProfileInput[]>;
-  create?: InputMaybe<SecuredDataKeysCreateWithoutProfileInput[]>;
+  connect?: InputMaybe<Array<SecuredDataKeysWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<SecuredDataKeysCreateOrConnectWithoutProfileInput>>;
+  create?: InputMaybe<Array<SecuredDataKeysCreateWithoutProfileInput>>;
   createMany?: InputMaybe<SecuredDataKeysCreateManyProfileInputEnvelope>;
-  delete?: InputMaybe<SecuredDataKeysWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<SecuredDataKeysScalarWhereInput[]>;
-  disconnect?: InputMaybe<SecuredDataKeysWhereUniqueInput[]>;
-  set?: InputMaybe<SecuredDataKeysWhereUniqueInput[]>;
-  update?: InputMaybe<SecuredDataKeysUpdateWithWhereUniqueWithoutProfileInput[]>;
-  updateMany?: InputMaybe<SecuredDataKeysUpdateManyWithWhereWithoutProfileInput[]>;
-  upsert?: InputMaybe<SecuredDataKeysUpsertWithWhereUniqueWithoutProfileInput[]>;
+  delete?: InputMaybe<Array<SecuredDataKeysWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<SecuredDataKeysScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<SecuredDataKeysWhereUniqueInput>>;
+  set?: InputMaybe<Array<SecuredDataKeysWhereUniqueInput>>;
+  update?: InputMaybe<Array<SecuredDataKeysUpdateWithWhereUniqueWithoutProfileInput>>;
+  updateMany?: InputMaybe<Array<SecuredDataKeysUpdateManyWithWhereWithoutProfileInput>>;
+  upsert?: InputMaybe<Array<SecuredDataKeysUpsertWithWhereUniqueWithoutProfileInput>>;
 };
 
 export type SecuredDataKeysUpdateWithWhereUniqueWithoutProfileInput = {
@@ -17813,9 +17792,9 @@ export type SecuredDataKeysUpsertWithWhereUniqueWithoutProfileInput = {
 };
 
 export type SecuredDataKeysWhereInput = {
-  AND?: InputMaybe<SecuredDataKeysWhereInput[]>;
-  NOT?: InputMaybe<SecuredDataKeysWhereInput[]>;
-  OR?: InputMaybe<SecuredDataKeysWhereInput[]>;
+  AND?: InputMaybe<Array<SecuredDataKeysWhereInput>>;
+  NOT?: InputMaybe<Array<SecuredDataKeysWhereInput>>;
+  OR?: InputMaybe<Array<SecuredDataKeysWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
   SecureDataType?: InputMaybe<EnumSecureDataTypeFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -17827,9 +17806,9 @@ export type SecuredDataKeysWhereInput = {
 };
 
 export type SecuredDataKeysWhereUniqueInput = {
-  AND?: InputMaybe<SecuredDataKeysWhereInput[]>;
-  NOT?: InputMaybe<SecuredDataKeysWhereInput[]>;
-  OR?: InputMaybe<SecuredDataKeysWhereInput[]>;
+  AND?: InputMaybe<Array<SecuredDataKeysWhereInput>>;
+  NOT?: InputMaybe<Array<SecuredDataKeysWhereInput>>;
+  OR?: InputMaybe<Array<SecuredDataKeysWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
   SecureDataType?: InputMaybe<EnumSecureDataTypeFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -17941,9 +17920,9 @@ export enum SettingsScalarFieldEnum {
 }
 
 export type SettingsScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<SettingsScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<SettingsScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<SettingsScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<SettingsScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<SettingsScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<SettingsScalarWhereWithAggregatesInput>>;
   allEventPushNotifications?: InputMaybe<BoolWithAggregatesFilter>;
   allFriendPushNotifications?: InputMaybe<BoolWithAggregatesFilter>;
   allMessagePushNotifications?: InputMaybe<BoolWithAggregatesFilter>;
@@ -17999,9 +17978,9 @@ export type SettingsUpsertWithoutProfileInput = {
 };
 
 export type SettingsWhereInput = {
-  AND?: InputMaybe<SettingsWhereInput[]>;
-  NOT?: InputMaybe<SettingsWhereInput[]>;
-  OR?: InputMaybe<SettingsWhereInput[]>;
+  AND?: InputMaybe<Array<SettingsWhereInput>>;
+  NOT?: InputMaybe<Array<SettingsWhereInput>>;
+  OR?: InputMaybe<Array<SettingsWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
   allEventPushNotifications?: InputMaybe<BoolFilter>;
   allFriendPushNotifications?: InputMaybe<BoolFilter>;
@@ -18012,9 +17991,9 @@ export type SettingsWhereInput = {
 };
 
 export type SettingsWhereUniqueInput = {
-  AND?: InputMaybe<SettingsWhereInput[]>;
-  NOT?: InputMaybe<SettingsWhereInput[]>;
-  OR?: InputMaybe<SettingsWhereInput[]>;
+  AND?: InputMaybe<Array<SettingsWhereInput>>;
+  NOT?: InputMaybe<Array<SettingsWhereInput>>;
+  OR?: InputMaybe<Array<SettingsWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
   allEventPushNotifications?: InputMaybe<BoolFilter>;
   allFriendPushNotifications?: InputMaybe<BoolFilter>;
@@ -18031,7 +18010,7 @@ export enum SortOrder {
 
 export type State = {
   __typename?: 'State';
-  Area: Area[];
+  Area: Array<Area>;
   Geometry: Geometry;
   geometryId: Scalars['Int']['output'];
   id: Scalars['ID']['output'];
@@ -18042,8 +18021,8 @@ export type State = {
 
 export type StateAreaArgs = {
   cursor?: InputMaybe<AreaWhereUniqueInput>;
-  distinct?: InputMaybe<AreaScalarFieldEnum[]>;
-  orderBy?: InputMaybe<AreaOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<AreaScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<AreaOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<AreaWhereInput>;
@@ -18173,9 +18152,9 @@ export enum StateScalarFieldEnum {
 }
 
 export type StateScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<StateScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<StateScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<StateScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<StateScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<StateScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<StateScalarWhereWithAggregatesInput>>;
   geometryId?: InputMaybe<IntWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   isoCode?: InputMaybe<StringWithAggregatesFilter>;
@@ -18255,11 +18234,11 @@ export type StateUpsertWithoutGeometryInput = {
 };
 
 export type StateWhereInput = {
-  AND?: InputMaybe<StateWhereInput[]>;
+  AND?: InputMaybe<Array<StateWhereInput>>;
   Area?: InputMaybe<AreaListRelationFilter>;
   Geometry?: InputMaybe<GeometryWhereInput>;
-  NOT?: InputMaybe<StateWhereInput[]>;
-  OR?: InputMaybe<StateWhereInput[]>;
+  NOT?: InputMaybe<Array<StateWhereInput>>;
+  OR?: InputMaybe<Array<StateWhereInput>>;
   geometryId?: InputMaybe<IntFilter>;
   id?: InputMaybe<StringFilter>;
   isoCode?: InputMaybe<StringFilter>;
@@ -18267,11 +18246,11 @@ export type StateWhereInput = {
 };
 
 export type StateWhereUniqueInput = {
-  AND?: InputMaybe<StateWhereInput[]>;
+  AND?: InputMaybe<Array<StateWhereInput>>;
   Area?: InputMaybe<AreaListRelationFilter>;
   Geometry?: InputMaybe<GeometryWhereInput>;
-  NOT?: InputMaybe<StateWhereInput[]>;
-  OR?: InputMaybe<StateWhereInput[]>;
+  NOT?: InputMaybe<Array<StateWhereInput>>;
+  OR?: InputMaybe<Array<StateWhereInput>>;
   geometryId?: InputMaybe<Scalars['Int']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
   isoCode?: InputMaybe<Scalars['String']['input']>;
@@ -18285,7 +18264,7 @@ export type Story = {
   date: Scalars['DateTime']['output'];
   emojimood?: Maybe<Emojimood>;
   id: Scalars['ID']['output'];
-  photos: Photo[];
+  photos: Array<Photo>;
   startDate: Scalars['DateTime']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
@@ -18322,7 +18301,7 @@ export type StoryCreateManyEmojimoodInput = {
 };
 
 export type StoryCreateManyEmojimoodInputEnvelope = {
-  data: StoryCreateManyEmojimoodInput[];
+  data: Array<StoryCreateManyEmojimoodInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -18344,21 +18323,21 @@ export type StoryCreateManyProfileInput = {
 };
 
 export type StoryCreateManyProfileInputEnvelope = {
-  data: StoryCreateManyProfileInput[];
+  data: Array<StoryCreateManyProfileInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type StoryCreateNestedManyWithoutEmojimoodInput = {
-  connect?: InputMaybe<StoryWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<StoryCreateOrConnectWithoutEmojimoodInput[]>;
-  create?: InputMaybe<StoryCreateWithoutEmojimoodInput[]>;
+  connect?: InputMaybe<Array<StoryWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<StoryCreateOrConnectWithoutEmojimoodInput>>;
+  create?: InputMaybe<Array<StoryCreateWithoutEmojimoodInput>>;
   createMany?: InputMaybe<StoryCreateManyEmojimoodInputEnvelope>;
 };
 
 export type StoryCreateNestedManyWithoutProfileInput = {
-  connect?: InputMaybe<StoryWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<StoryCreateOrConnectWithoutProfileInput[]>;
-  create?: InputMaybe<StoryCreateWithoutProfileInput[]>;
+  connect?: InputMaybe<Array<StoryWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<StoryCreateOrConnectWithoutProfileInput>>;
+  create?: InputMaybe<Array<StoryCreateWithoutProfileInput>>;
   createMany?: InputMaybe<StoryCreateManyProfileInputEnvelope>;
 };
 
@@ -18479,9 +18458,9 @@ export enum StoryScalarFieldEnum {
 }
 
 export type StoryScalarWhereInput = {
-  AND?: InputMaybe<StoryScalarWhereInput[]>;
-  NOT?: InputMaybe<StoryScalarWhereInput[]>;
-  OR?: InputMaybe<StoryScalarWhereInput[]>;
+  AND?: InputMaybe<Array<StoryScalarWhereInput>>;
+  NOT?: InputMaybe<Array<StoryScalarWhereInput>>;
+  OR?: InputMaybe<Array<StoryScalarWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
   date?: InputMaybe<DateTimeFilter>;
   emojimoodId?: InputMaybe<IntNullableFilter>;
@@ -18491,9 +18470,9 @@ export type StoryScalarWhereInput = {
 };
 
 export type StoryScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<StoryScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<StoryScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<StoryScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<StoryScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<StoryScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<StoryScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   date?: InputMaybe<DateTimeWithAggregatesFilter>;
   emojimoodId?: InputMaybe<IntNullableWithAggregatesFilter>;
@@ -18534,31 +18513,31 @@ export type StoryUpdateManyWithWhereWithoutProfileInput = {
 };
 
 export type StoryUpdateManyWithoutEmojimoodNestedInput = {
-  connect?: InputMaybe<StoryWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<StoryCreateOrConnectWithoutEmojimoodInput[]>;
-  create?: InputMaybe<StoryCreateWithoutEmojimoodInput[]>;
+  connect?: InputMaybe<Array<StoryWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<StoryCreateOrConnectWithoutEmojimoodInput>>;
+  create?: InputMaybe<Array<StoryCreateWithoutEmojimoodInput>>;
   createMany?: InputMaybe<StoryCreateManyEmojimoodInputEnvelope>;
-  delete?: InputMaybe<StoryWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<StoryScalarWhereInput[]>;
-  disconnect?: InputMaybe<StoryWhereUniqueInput[]>;
-  set?: InputMaybe<StoryWhereUniqueInput[]>;
-  update?: InputMaybe<StoryUpdateWithWhereUniqueWithoutEmojimoodInput[]>;
-  updateMany?: InputMaybe<StoryUpdateManyWithWhereWithoutEmojimoodInput[]>;
-  upsert?: InputMaybe<StoryUpsertWithWhereUniqueWithoutEmojimoodInput[]>;
+  delete?: InputMaybe<Array<StoryWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<StoryScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<StoryWhereUniqueInput>>;
+  set?: InputMaybe<Array<StoryWhereUniqueInput>>;
+  update?: InputMaybe<Array<StoryUpdateWithWhereUniqueWithoutEmojimoodInput>>;
+  updateMany?: InputMaybe<Array<StoryUpdateManyWithWhereWithoutEmojimoodInput>>;
+  upsert?: InputMaybe<Array<StoryUpsertWithWhereUniqueWithoutEmojimoodInput>>;
 };
 
 export type StoryUpdateManyWithoutProfileNestedInput = {
-  connect?: InputMaybe<StoryWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<StoryCreateOrConnectWithoutProfileInput[]>;
-  create?: InputMaybe<StoryCreateWithoutProfileInput[]>;
+  connect?: InputMaybe<Array<StoryWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<StoryCreateOrConnectWithoutProfileInput>>;
+  create?: InputMaybe<Array<StoryCreateWithoutProfileInput>>;
   createMany?: InputMaybe<StoryCreateManyProfileInputEnvelope>;
-  delete?: InputMaybe<StoryWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<StoryScalarWhereInput[]>;
-  disconnect?: InputMaybe<StoryWhereUniqueInput[]>;
-  set?: InputMaybe<StoryWhereUniqueInput[]>;
-  update?: InputMaybe<StoryUpdateWithWhereUniqueWithoutProfileInput[]>;
-  updateMany?: InputMaybe<StoryUpdateManyWithWhereWithoutProfileInput[]>;
-  upsert?: InputMaybe<StoryUpsertWithWhereUniqueWithoutProfileInput[]>;
+  delete?: InputMaybe<Array<StoryWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<StoryScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<StoryWhereUniqueInput>>;
+  set?: InputMaybe<Array<StoryWhereUniqueInput>>;
+  update?: InputMaybe<Array<StoryUpdateWithWhereUniqueWithoutProfileInput>>;
+  updateMany?: InputMaybe<Array<StoryUpdateManyWithWhereWithoutProfileInput>>;
+  upsert?: InputMaybe<Array<StoryUpsertWithWhereUniqueWithoutProfileInput>>;
 };
 
 export type StoryUpdateOneWithoutPhotosNestedInput = {
@@ -18632,9 +18611,9 @@ export type StoryUpsertWithoutPhotosInput = {
 };
 
 export type StoryWhereInput = {
-  AND?: InputMaybe<StoryWhereInput[]>;
-  NOT?: InputMaybe<StoryWhereInput[]>;
-  OR?: InputMaybe<StoryWhereInput[]>;
+  AND?: InputMaybe<Array<StoryWhereInput>>;
+  NOT?: InputMaybe<Array<StoryWhereInput>>;
+  OR?: InputMaybe<Array<StoryWhereInput>>;
   Photos?: InputMaybe<PhotoListRelationFilter>;
   Profile?: InputMaybe<ProfileWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -18647,9 +18626,9 @@ export type StoryWhereInput = {
 };
 
 export type StoryWhereUniqueInput = {
-  AND?: InputMaybe<StoryWhereInput[]>;
-  NOT?: InputMaybe<StoryWhereInput[]>;
-  OR?: InputMaybe<StoryWhereInput[]>;
+  AND?: InputMaybe<Array<StoryWhereInput>>;
+  NOT?: InputMaybe<Array<StoryWhereInput>>;
+  OR?: InputMaybe<Array<StoryWhereInput>>;
   Photos?: InputMaybe<PhotoListRelationFilter>;
   Profile?: InputMaybe<ProfileWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -18671,12 +18650,12 @@ export type StringFilter = {
   equals?: InputMaybe<Scalars['String']['input']>;
   gt?: InputMaybe<Scalars['String']['input']>;
   gte?: InputMaybe<Scalars['String']['input']>;
-  in?: InputMaybe<Scalars['String']['input'][]>;
+  in?: InputMaybe<Array<Scalars['String']['input']>>;
   lt?: InputMaybe<Scalars['String']['input']>;
   lte?: InputMaybe<Scalars['String']['input']>;
   mode?: InputMaybe<QueryMode>;
   not?: InputMaybe<NestedStringFilter>;
-  notIn?: InputMaybe<Scalars['String']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>;
   startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -18686,20 +18665,20 @@ export type StringNullableFilter = {
   equals?: InputMaybe<Scalars['String']['input']>;
   gt?: InputMaybe<Scalars['String']['input']>;
   gte?: InputMaybe<Scalars['String']['input']>;
-  in?: InputMaybe<Scalars['String']['input'][]>;
+  in?: InputMaybe<Array<Scalars['String']['input']>>;
   lt?: InputMaybe<Scalars['String']['input']>;
   lte?: InputMaybe<Scalars['String']['input']>;
   mode?: InputMaybe<QueryMode>;
   not?: InputMaybe<NestedStringNullableFilter>;
-  notIn?: InputMaybe<Scalars['String']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>;
   startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type StringNullableListFilter = {
-  equals?: InputMaybe<Scalars['String']['input'][]>;
+  equals?: InputMaybe<Array<Scalars['String']['input']>>;
   has?: InputMaybe<Scalars['String']['input']>;
-  hasEvery?: InputMaybe<Scalars['String']['input'][]>;
-  hasSome?: InputMaybe<Scalars['String']['input'][]>;
+  hasEvery?: InputMaybe<Array<Scalars['String']['input']>>;
+  hasSome?: InputMaybe<Array<Scalars['String']['input']>>;
   isEmpty?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -18712,12 +18691,12 @@ export type StringNullableWithAggregatesFilter = {
   equals?: InputMaybe<Scalars['String']['input']>;
   gt?: InputMaybe<Scalars['String']['input']>;
   gte?: InputMaybe<Scalars['String']['input']>;
-  in?: InputMaybe<Scalars['String']['input'][]>;
+  in?: InputMaybe<Array<Scalars['String']['input']>>;
   lt?: InputMaybe<Scalars['String']['input']>;
   lte?: InputMaybe<Scalars['String']['input']>;
   mode?: InputMaybe<QueryMode>;
   not?: InputMaybe<NestedStringNullableWithAggregatesFilter>;
-  notIn?: InputMaybe<Scalars['String']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>;
   startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -18730,12 +18709,12 @@ export type StringWithAggregatesFilter = {
   equals?: InputMaybe<Scalars['String']['input']>;
   gt?: InputMaybe<Scalars['String']['input']>;
   gte?: InputMaybe<Scalars['String']['input']>;
-  in?: InputMaybe<Scalars['String']['input'][]>;
+  in?: InputMaybe<Array<Scalars['String']['input']>>;
   lt?: InputMaybe<Scalars['String']['input']>;
   lte?: InputMaybe<Scalars['String']['input']>;
   mode?: InputMaybe<QueryMode>;
   not?: InputMaybe<NestedStringWithAggregatesFilter>;
-  notIn?: InputMaybe<Scalars['String']['input'][]>;
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>;
   startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -18750,7 +18729,7 @@ export type Subscription = {
 export type Tag = {
   __typename?: 'Tag';
   Category?: Maybe<Category>;
-  DetailInformation: DetailInformation[];
+  DetailInformation: Array<DetailInformation>;
   categoryId?: Maybe<Scalars['String']['output']>;
   emoji?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
@@ -18760,8 +18739,8 @@ export type Tag = {
 
 export type TagDetailInformationArgs = {
   cursor?: InputMaybe<DetailInformationWhereUniqueInput>;
-  distinct?: InputMaybe<DetailInformationScalarFieldEnum[]>;
-  orderBy?: InputMaybe<DetailInformationOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<DetailInformationScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<DetailInformationOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<DetailInformationWhereInput>;
@@ -18792,7 +18771,7 @@ export type TagCreateManyCategoryInput = {
 };
 
 export type TagCreateManyCategoryInputEnvelope = {
-  data: TagCreateManyCategoryInput[];
+  data: Array<TagCreateManyCategoryInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -18804,16 +18783,16 @@ export type TagCreateManyInput = {
 };
 
 export type TagCreateNestedManyWithoutCategoryInput = {
-  connect?: InputMaybe<TagWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<TagCreateOrConnectWithoutCategoryInput[]>;
-  create?: InputMaybe<TagCreateWithoutCategoryInput[]>;
+  connect?: InputMaybe<Array<TagWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<TagCreateOrConnectWithoutCategoryInput>>;
+  create?: InputMaybe<Array<TagCreateWithoutCategoryInput>>;
   createMany?: InputMaybe<TagCreateManyCategoryInputEnvelope>;
 };
 
 export type TagCreateNestedManyWithoutDetailInformationInput = {
-  connect?: InputMaybe<TagWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<TagCreateOrConnectWithoutDetailInformationInput[]>;
-  create?: InputMaybe<TagCreateWithoutDetailInformationInput[]>;
+  connect?: InputMaybe<Array<TagWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<TagCreateOrConnectWithoutDetailInformationInput>>;
+  create?: InputMaybe<Array<TagCreateWithoutDetailInformationInput>>;
 };
 
 export type TagCreateOrConnectWithoutCategoryInput = {
@@ -18891,9 +18870,9 @@ export enum TagScalarFieldEnum {
 }
 
 export type TagScalarWhereInput = {
-  AND?: InputMaybe<TagScalarWhereInput[]>;
-  NOT?: InputMaybe<TagScalarWhereInput[]>;
-  OR?: InputMaybe<TagScalarWhereInput[]>;
+  AND?: InputMaybe<Array<TagScalarWhereInput>>;
+  NOT?: InputMaybe<Array<TagScalarWhereInput>>;
+  OR?: InputMaybe<Array<TagScalarWhereInput>>;
   categoryId?: InputMaybe<StringNullableFilter>;
   emoji?: InputMaybe<StringNullableFilter>;
   id?: InputMaybe<IntFilter>;
@@ -18901,9 +18880,9 @@ export type TagScalarWhereInput = {
 };
 
 export type TagScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<TagScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<TagScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<TagScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<TagScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<TagScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<TagScalarWhereWithAggregatesInput>>;
   categoryId?: InputMaybe<StringNullableWithAggregatesFilter>;
   emoji?: InputMaybe<StringNullableWithAggregatesFilter>;
   id?: InputMaybe<IntWithAggregatesFilter>;
@@ -18937,30 +18916,30 @@ export type TagUpdateManyWithWhereWithoutDetailInformationInput = {
 };
 
 export type TagUpdateManyWithoutCategoryNestedInput = {
-  connect?: InputMaybe<TagWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<TagCreateOrConnectWithoutCategoryInput[]>;
-  create?: InputMaybe<TagCreateWithoutCategoryInput[]>;
+  connect?: InputMaybe<Array<TagWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<TagCreateOrConnectWithoutCategoryInput>>;
+  create?: InputMaybe<Array<TagCreateWithoutCategoryInput>>;
   createMany?: InputMaybe<TagCreateManyCategoryInputEnvelope>;
-  delete?: InputMaybe<TagWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<TagScalarWhereInput[]>;
-  disconnect?: InputMaybe<TagWhereUniqueInput[]>;
-  set?: InputMaybe<TagWhereUniqueInput[]>;
-  update?: InputMaybe<TagUpdateWithWhereUniqueWithoutCategoryInput[]>;
-  updateMany?: InputMaybe<TagUpdateManyWithWhereWithoutCategoryInput[]>;
-  upsert?: InputMaybe<TagUpsertWithWhereUniqueWithoutCategoryInput[]>;
+  delete?: InputMaybe<Array<TagWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<TagScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<TagWhereUniqueInput>>;
+  set?: InputMaybe<Array<TagWhereUniqueInput>>;
+  update?: InputMaybe<Array<TagUpdateWithWhereUniqueWithoutCategoryInput>>;
+  updateMany?: InputMaybe<Array<TagUpdateManyWithWhereWithoutCategoryInput>>;
+  upsert?: InputMaybe<Array<TagUpsertWithWhereUniqueWithoutCategoryInput>>;
 };
 
 export type TagUpdateManyWithoutDetailInformationNestedInput = {
-  connect?: InputMaybe<TagWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<TagCreateOrConnectWithoutDetailInformationInput[]>;
-  create?: InputMaybe<TagCreateWithoutDetailInformationInput[]>;
-  delete?: InputMaybe<TagWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<TagScalarWhereInput[]>;
-  disconnect?: InputMaybe<TagWhereUniqueInput[]>;
-  set?: InputMaybe<TagWhereUniqueInput[]>;
-  update?: InputMaybe<TagUpdateWithWhereUniqueWithoutDetailInformationInput[]>;
-  updateMany?: InputMaybe<TagUpdateManyWithWhereWithoutDetailInformationInput[]>;
-  upsert?: InputMaybe<TagUpsertWithWhereUniqueWithoutDetailInformationInput[]>;
+  connect?: InputMaybe<Array<TagWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<TagCreateOrConnectWithoutDetailInformationInput>>;
+  create?: InputMaybe<Array<TagCreateWithoutDetailInformationInput>>;
+  delete?: InputMaybe<Array<TagWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<TagScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<TagWhereUniqueInput>>;
+  set?: InputMaybe<Array<TagWhereUniqueInput>>;
+  update?: InputMaybe<Array<TagUpdateWithWhereUniqueWithoutDetailInformationInput>>;
+  updateMany?: InputMaybe<Array<TagUpdateManyWithWhereWithoutDetailInformationInput>>;
+  upsert?: InputMaybe<Array<TagUpsertWithWhereUniqueWithoutDetailInformationInput>>;
 };
 
 export type TagUpdateWithWhereUniqueWithoutCategoryInput = {
@@ -18998,11 +18977,11 @@ export type TagUpsertWithWhereUniqueWithoutDetailInformationInput = {
 };
 
 export type TagWhereInput = {
-  AND?: InputMaybe<TagWhereInput[]>;
+  AND?: InputMaybe<Array<TagWhereInput>>;
   Category?: InputMaybe<CategoryWhereInput>;
   DetailInformation?: InputMaybe<DetailInformationListRelationFilter>;
-  NOT?: InputMaybe<TagWhereInput[]>;
-  OR?: InputMaybe<TagWhereInput[]>;
+  NOT?: InputMaybe<Array<TagWhereInput>>;
+  OR?: InputMaybe<Array<TagWhereInput>>;
   categoryId?: InputMaybe<StringNullableFilter>;
   emoji?: InputMaybe<StringNullableFilter>;
   id?: InputMaybe<IntFilter>;
@@ -19010,11 +18989,11 @@ export type TagWhereInput = {
 };
 
 export type TagWhereUniqueInput = {
-  AND?: InputMaybe<TagWhereInput[]>;
+  AND?: InputMaybe<Array<TagWhereInput>>;
   Category?: InputMaybe<CategoryWhereInput>;
   DetailInformation?: InputMaybe<DetailInformationListRelationFilter>;
-  NOT?: InputMaybe<TagWhereInput[]>;
-  OR?: InputMaybe<TagWhereInput[]>;
+  NOT?: InputMaybe<Array<TagWhereInput>>;
+  OR?: InputMaybe<Array<TagWhereInput>>;
   categoryId?: InputMaybe<StringNullableFilter>;
   emoji?: InputMaybe<StringNullableFilter>;
   id?: InputMaybe<Scalars['Int']['input']>;
@@ -19023,16 +19002,16 @@ export type TagWhereUniqueInput = {
 
 export type Theme = {
   __typename?: 'Theme';
-  ProfileTheme: ProfileTheme[];
+  ProfileTheme: Array<ProfileTheme>;
   createdAt: Scalars['DateTime']['output'];
   endDate?: Maybe<Scalars['DateTime']['output']>;
   id: Scalars['ID']['output'];
-  mobileVersions: Scalars['String']['output'][];
+  mobileVersions: Array<Scalars['String']['output']>;
   name: Scalars['String']['output'];
   startDate?: Maybe<Scalars['DateTime']['output']>;
   theme?: Maybe<Scalars['Json']['output']>;
   updatedAt: Scalars['DateTime']['output'];
-  webVersions: Scalars['String']['output'][];
+  webVersions: Array<Scalars['String']['output']>;
 };
 
 export type ThemeCountOrderByAggregateInput = {
@@ -19052,24 +19031,24 @@ export type ThemeCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   endDate?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
-  mobileVersions?: InputMaybe<Scalars['String']['input'][]>;
+  mobileVersions?: InputMaybe<Array<Scalars['String']['input']>>;
   name: Scalars['String']['input'];
   startDate?: InputMaybe<Scalars['DateTime']['input']>;
   theme: Scalars['Json']['input'];
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
-  webVersions?: InputMaybe<Scalars['String']['input'][]>;
+  webVersions?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type ThemeCreateManyInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   endDate?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
-  mobileVersions?: InputMaybe<Scalars['String']['input'][]>;
+  mobileVersions?: InputMaybe<Array<Scalars['String']['input']>>;
   name: Scalars['String']['input'];
   startDate?: InputMaybe<Scalars['DateTime']['input']>;
   theme: Scalars['Json']['input'];
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
-  webVersions?: InputMaybe<Scalars['String']['input'][]>;
+  webVersions?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type ThemeCreateNestedOneWithoutProfileThemeInput = {
@@ -19087,26 +19066,26 @@ export type ThemeCreateWithoutProfileThemeInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   endDate?: InputMaybe<Scalars['DateTime']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
-  mobileVersions?: InputMaybe<Scalars['String']['input'][]>;
+  mobileVersions?: InputMaybe<Array<Scalars['String']['input']>>;
   name: Scalars['String']['input'];
   startDate?: InputMaybe<Scalars['DateTime']['input']>;
   theme: Scalars['Json']['input'];
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
-  webVersions?: InputMaybe<Scalars['String']['input'][]>;
+  webVersions?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type ThemeCreatemobileVersionsInput = {
-  set: Scalars['String']['input'][];
+  set: Array<Scalars['String']['input']>;
 };
 
 export type ThemeCreatewebVersionsInput = {
-  set: Scalars['String']['input'][];
+  set: Array<Scalars['String']['input']>;
 };
 
 export type ThemeManager = {
   __typename?: 'ThemeManager';
   Profile: Profile;
-  ProfileTheme: ProfileTheme[];
+  ProfileTheme: Array<ProfileTheme>;
   createdAt: Scalars['DateTime']['output'];
   id: Scalars['ID']['output'];
   profileId: Scalars['String']['output'];
@@ -19116,8 +19095,8 @@ export type ThemeManager = {
 
 export type ThemeManagerProfileThemeArgs = {
   cursor?: InputMaybe<ProfileThemeWhereUniqueInput>;
-  distinct?: InputMaybe<ProfileThemeScalarFieldEnum[]>;
-  orderBy?: InputMaybe<ProfileThemeOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<ProfileThemeScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<ProfileThemeOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ProfileThemeWhereInput>;
@@ -19227,9 +19206,9 @@ export enum ThemeManagerScalarFieldEnum {
 }
 
 export type ThemeManagerScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<ThemeManagerScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<ThemeManagerScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<ThemeManagerScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<ThemeManagerScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<ThemeManagerScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<ThemeManagerScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   profileId?: InputMaybe<StringWithAggregatesFilter>;
@@ -19307,9 +19286,9 @@ export type ThemeManagerUpsertWithoutProfileThemeInput = {
 };
 
 export type ThemeManagerWhereInput = {
-  AND?: InputMaybe<ThemeManagerWhereInput[]>;
-  NOT?: InputMaybe<ThemeManagerWhereInput[]>;
-  OR?: InputMaybe<ThemeManagerWhereInput[]>;
+  AND?: InputMaybe<Array<ThemeManagerWhereInput>>;
+  NOT?: InputMaybe<Array<ThemeManagerWhereInput>>;
+  OR?: InputMaybe<Array<ThemeManagerWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
   ProfileTheme?: InputMaybe<ProfileThemeListRelationFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -19319,9 +19298,9 @@ export type ThemeManagerWhereInput = {
 };
 
 export type ThemeManagerWhereUniqueInput = {
-  AND?: InputMaybe<ThemeManagerWhereInput[]>;
-  NOT?: InputMaybe<ThemeManagerWhereInput[]>;
-  OR?: InputMaybe<ThemeManagerWhereInput[]>;
+  AND?: InputMaybe<Array<ThemeManagerWhereInput>>;
+  NOT?: InputMaybe<Array<ThemeManagerWhereInput>>;
+  OR?: InputMaybe<Array<ThemeManagerWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
   ProfileTheme?: InputMaybe<ProfileThemeListRelationFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -19394,9 +19373,9 @@ export enum ThemeScalarFieldEnum {
 }
 
 export type ThemeScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<ThemeScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<ThemeScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<ThemeScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<ThemeScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<ThemeScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<ThemeScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   endDate?: InputMaybe<DateTimeNullableWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
@@ -19413,24 +19392,24 @@ export type ThemeUpdateInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   endDate?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  mobileVersions?: InputMaybe<Scalars['String']['input'][]>;
+  mobileVersions?: InputMaybe<Array<Scalars['String']['input']>>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   startDate?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   theme?: InputMaybe<Scalars['Json']['input']>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  webVersions?: InputMaybe<Scalars['String']['input'][]>;
+  webVersions?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type ThemeUpdateManyMutationInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   endDate?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  mobileVersions?: InputMaybe<Scalars['String']['input'][]>;
+  mobileVersions?: InputMaybe<Array<Scalars['String']['input']>>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   startDate?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   theme?: InputMaybe<Scalars['Json']['input']>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  webVersions?: InputMaybe<Scalars['String']['input'][]>;
+  webVersions?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type ThemeUpdateOneRequiredWithoutProfileThemeNestedInput = {
@@ -19450,22 +19429,22 @@ export type ThemeUpdateWithoutProfileThemeInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   endDate?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  mobileVersions?: InputMaybe<Scalars['String']['input'][]>;
+  mobileVersions?: InputMaybe<Array<Scalars['String']['input']>>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   startDate?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   theme?: InputMaybe<Scalars['Json']['input']>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  webVersions?: InputMaybe<Scalars['String']['input'][]>;
+  webVersions?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type ThemeUpdatemobileVersionsInput = {
-  push?: InputMaybe<Scalars['String']['input'][]>;
-  set?: InputMaybe<Scalars['String']['input'][]>;
+  push?: InputMaybe<Array<Scalars['String']['input']>>;
+  set?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type ThemeUpdatewebVersionsInput = {
-  push?: InputMaybe<Scalars['String']['input'][]>;
-  set?: InputMaybe<Scalars['String']['input'][]>;
+  push?: InputMaybe<Array<Scalars['String']['input']>>;
+  set?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 export type ThemeUpsertWithoutProfileThemeInput = {
@@ -19475,9 +19454,9 @@ export type ThemeUpsertWithoutProfileThemeInput = {
 };
 
 export type ThemeWhereInput = {
-  AND?: InputMaybe<ThemeWhereInput[]>;
-  NOT?: InputMaybe<ThemeWhereInput[]>;
-  OR?: InputMaybe<ThemeWhereInput[]>;
+  AND?: InputMaybe<Array<ThemeWhereInput>>;
+  NOT?: InputMaybe<Array<ThemeWhereInput>>;
+  OR?: InputMaybe<Array<ThemeWhereInput>>;
   ProfileTheme?: InputMaybe<ProfileThemeListRelationFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   endDate?: InputMaybe<DateTimeNullableFilter>;
@@ -19491,9 +19470,9 @@ export type ThemeWhereInput = {
 };
 
 export type ThemeWhereUniqueInput = {
-  AND?: InputMaybe<ThemeWhereInput[]>;
-  NOT?: InputMaybe<ThemeWhereInput[]>;
-  OR?: InputMaybe<ThemeWhereInput[]>;
+  AND?: InputMaybe<Array<ThemeWhereInput>>;
+  NOT?: InputMaybe<Array<ThemeWhereInput>>;
+  OR?: InputMaybe<Array<ThemeWhereInput>>;
   ProfileTheme?: InputMaybe<ProfileThemeListRelationFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   endDate?: InputMaybe<DateTimeNullableFilter>;
@@ -19596,9 +19575,9 @@ export enum TonightPathScalarFieldEnum {
 }
 
 export type TonightPathScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<TonightPathScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<TonightPathScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<TonightPathScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<TonightPathScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<TonightPathScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<TonightPathScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   profileId?: InputMaybe<StringWithAggregatesFilter>;
@@ -19649,9 +19628,9 @@ export type TonightPathUpsertWithoutPathInput = {
 };
 
 export type TonightPathWhereInput = {
-  AND?: InputMaybe<TonightPathWhereInput[]>;
-  NOT?: InputMaybe<TonightPathWhereInput[]>;
-  OR?: InputMaybe<TonightPathWhereInput[]>;
+  AND?: InputMaybe<Array<TonightPathWhereInput>>;
+  NOT?: InputMaybe<Array<TonightPathWhereInput>>;
+  OR?: InputMaybe<Array<TonightPathWhereInput>>;
   Path?: InputMaybe<PathListRelationFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<StringFilter>;
@@ -19660,9 +19639,9 @@ export type TonightPathWhereInput = {
 };
 
 export type TonightPathWhereUniqueInput = {
-  AND?: InputMaybe<TonightPathWhereInput[]>;
-  NOT?: InputMaybe<TonightPathWhereInput[]>;
-  OR?: InputMaybe<TonightPathWhereInput[]>;
+  AND?: InputMaybe<Array<TonightPathWhereInput>>;
+  NOT?: InputMaybe<Array<TonightPathWhereInput>>;
+  OR?: InputMaybe<Array<TonightPathWhereInput>>;
   Path?: InputMaybe<PathListRelationFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<Scalars['String']['input']>;
@@ -19684,7 +19663,7 @@ export enum TypeOfDocument {
 
 export type UpdateManyNotificationStatusInput = {
   /** List of the NotificationStatus IDs to update */
-  notificationStatusIds: UpdateNotificationStatusInput[];
+  notificationStatusIds: Array<UpdateNotificationStatusInput>;
 };
 
 export type UpdateManyNotificationStatusUnionResponse = Error | UpdateNotificationResponse;
@@ -19894,9 +19873,9 @@ export enum VenueScalarFieldEnum {
 }
 
 export type VenueScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<VenueScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<VenueScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<VenueScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<VenueScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<VenueScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<VenueScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   name?: InputMaybe<StringNullableWithAggregatesFilter>;
@@ -19907,7 +19886,7 @@ export type VenueScalarWhereWithAggregatesInput = {
 
 export type VenueStats = {
   __typename?: 'VenueStats';
-  Out: Out[];
+  Out: Array<Out>;
   Venue?: Maybe<Venue>;
   createdAt: Scalars['DateTime']['output'];
   id: Scalars['ID']['output'];
@@ -19917,8 +19896,8 @@ export type VenueStats = {
 
 export type VenueStatsOutArgs = {
   cursor?: InputMaybe<OutWhereUniqueInput>;
-  distinct?: InputMaybe<OutScalarFieldEnum[]>;
-  orderBy?: InputMaybe<OutOrderByWithRelationInput[]>;
+  distinct?: InputMaybe<Array<OutScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<OutOrderByWithRelationInput>>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   take?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<OutWhereInput>;
@@ -20026,9 +20005,9 @@ export enum VenueStatsScalarFieldEnum {
 }
 
 export type VenueStatsScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<VenueStatsScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<VenueStatsScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<VenueStatsScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<VenueStatsScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<VenueStatsScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<VenueStatsScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
@@ -20103,9 +20082,9 @@ export type VenueStatsUpsertWithoutVenueInput = {
 };
 
 export type VenueStatsWhereInput = {
-  AND?: InputMaybe<VenueStatsWhereInput[]>;
-  NOT?: InputMaybe<VenueStatsWhereInput[]>;
-  OR?: InputMaybe<VenueStatsWhereInput[]>;
+  AND?: InputMaybe<Array<VenueStatsWhereInput>>;
+  NOT?: InputMaybe<Array<VenueStatsWhereInput>>;
+  OR?: InputMaybe<Array<VenueStatsWhereInput>>;
   Out?: InputMaybe<OutListRelationFilter>;
   Venue?: InputMaybe<VenueWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -20114,9 +20093,9 @@ export type VenueStatsWhereInput = {
 };
 
 export type VenueStatsWhereUniqueInput = {
-  AND?: InputMaybe<VenueStatsWhereInput[]>;
-  NOT?: InputMaybe<VenueStatsWhereInput[]>;
-  OR?: InputMaybe<VenueStatsWhereInput[]>;
+  AND?: InputMaybe<Array<VenueStatsWhereInput>>;
+  NOT?: InputMaybe<Array<VenueStatsWhereInput>>;
+  OR?: InputMaybe<Array<VenueStatsWhereInput>>;
   Out?: InputMaybe<OutListRelationFilter>;
   Venue?: InputMaybe<VenueWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -20267,11 +20246,11 @@ export type VenueUpsertWithoutVenueStatsInput = {
 };
 
 export type VenueWhereInput = {
-  AND?: InputMaybe<VenueWhereInput[]>;
+  AND?: InputMaybe<Array<VenueWhereInput>>;
   LiveOutVenue?: InputMaybe<LiveOutVenueWhereInput>;
   Location?: InputMaybe<LocationWhereInput>;
-  NOT?: InputMaybe<VenueWhereInput[]>;
-  OR?: InputMaybe<VenueWhereInput[]>;
+  NOT?: InputMaybe<Array<VenueWhereInput>>;
+  OR?: InputMaybe<Array<VenueWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
   VenueStats?: InputMaybe<VenueStatsWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -20283,11 +20262,11 @@ export type VenueWhereInput = {
 };
 
 export type VenueWhereUniqueInput = {
-  AND?: InputMaybe<VenueWhereInput[]>;
+  AND?: InputMaybe<Array<VenueWhereInput>>;
   LiveOutVenue?: InputMaybe<LiveOutVenueWhereInput>;
   Location?: InputMaybe<LocationWhereInput>;
-  NOT?: InputMaybe<VenueWhereInput[]>;
-  OR?: InputMaybe<VenueWhereInput[]>;
+  NOT?: InputMaybe<Array<VenueWhereInput>>;
+  OR?: InputMaybe<Array<VenueWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
   VenueStats?: InputMaybe<VenueStatsWhereInput>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -20300,9 +20279,9 @@ export type VenueWhereUniqueInput = {
 
 export type VenuesNearbyResponse = {
   __typename?: 'VenuesNearbyResponse';
-  recommendedAreas?: Maybe<H3Index6VenueRecommendation[]>;
+  recommendedAreas?: Maybe<Array<H3Index6VenueRecommendation>>;
   searchArea?: Maybe<Area>;
-  venuesNearby: ProfileVenue[];
+  venuesNearby: Array<ProfileVenue>;
 };
 
 export type Vote = {
@@ -20354,7 +20333,7 @@ export type VoteCreateManyComingAreaInput = {
 };
 
 export type VoteCreateManyComingAreaInputEnvelope = {
-  data: VoteCreateManyComingAreaInput[];
+  data: Array<VoteCreateManyComingAreaInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -20369,7 +20348,7 @@ export type VoteCreateManyH3Index5VenueRecommendationInput = {
 };
 
 export type VoteCreateManyH3Index5VenueRecommendationInputEnvelope = {
-  data: VoteCreateManyH3Index5VenueRecommendationInput[];
+  data: Array<VoteCreateManyH3Index5VenueRecommendationInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -20384,7 +20363,7 @@ export type VoteCreateManyH3Index6VenueRecommendationInput = {
 };
 
 export type VoteCreateManyH3Index6VenueRecommendationInputEnvelope = {
-  data: VoteCreateManyH3Index6VenueRecommendationInput[];
+  data: Array<VoteCreateManyH3Index6VenueRecommendationInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -20410,35 +20389,35 @@ export type VoteCreateManyProfileInput = {
 };
 
 export type VoteCreateManyProfileInputEnvelope = {
-  data: VoteCreateManyProfileInput[];
+  data: Array<VoteCreateManyProfileInput>;
   skipDuplicates?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type VoteCreateNestedManyWithoutComingAreaInput = {
-  connect?: InputMaybe<VoteWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<VoteCreateOrConnectWithoutComingAreaInput[]>;
-  create?: InputMaybe<VoteCreateWithoutComingAreaInput[]>;
+  connect?: InputMaybe<Array<VoteWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<VoteCreateOrConnectWithoutComingAreaInput>>;
+  create?: InputMaybe<Array<VoteCreateWithoutComingAreaInput>>;
   createMany?: InputMaybe<VoteCreateManyComingAreaInputEnvelope>;
 };
 
 export type VoteCreateNestedManyWithoutH3Index5VenueRecommendationInput = {
-  connect?: InputMaybe<VoteWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<VoteCreateOrConnectWithoutH3Index5VenueRecommendationInput[]>;
-  create?: InputMaybe<VoteCreateWithoutH3Index5VenueRecommendationInput[]>;
+  connect?: InputMaybe<Array<VoteWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<VoteCreateOrConnectWithoutH3Index5VenueRecommendationInput>>;
+  create?: InputMaybe<Array<VoteCreateWithoutH3Index5VenueRecommendationInput>>;
   createMany?: InputMaybe<VoteCreateManyH3Index5VenueRecommendationInputEnvelope>;
 };
 
 export type VoteCreateNestedManyWithoutH3Index6VenueRecommendationInput = {
-  connect?: InputMaybe<VoteWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<VoteCreateOrConnectWithoutH3Index6VenueRecommendationInput[]>;
-  create?: InputMaybe<VoteCreateWithoutH3Index6VenueRecommendationInput[]>;
+  connect?: InputMaybe<Array<VoteWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<VoteCreateOrConnectWithoutH3Index6VenueRecommendationInput>>;
+  create?: InputMaybe<Array<VoteCreateWithoutH3Index6VenueRecommendationInput>>;
   createMany?: InputMaybe<VoteCreateManyH3Index6VenueRecommendationInputEnvelope>;
 };
 
 export type VoteCreateNestedManyWithoutProfileInput = {
-  connect?: InputMaybe<VoteWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<VoteCreateOrConnectWithoutProfileInput[]>;
-  create?: InputMaybe<VoteCreateWithoutProfileInput[]>;
+  connect?: InputMaybe<Array<VoteWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<VoteCreateOrConnectWithoutProfileInput>>;
+  create?: InputMaybe<Array<VoteCreateWithoutProfileInput>>;
   createMany?: InputMaybe<VoteCreateManyProfileInputEnvelope>;
 };
 
@@ -20575,9 +20554,9 @@ export enum VoteScalarFieldEnum {
 }
 
 export type VoteScalarWhereInput = {
-  AND?: InputMaybe<VoteScalarWhereInput[]>;
-  NOT?: InputMaybe<VoteScalarWhereInput[]>;
-  OR?: InputMaybe<VoteScalarWhereInput[]>;
+  AND?: InputMaybe<Array<VoteScalarWhereInput>>;
+  NOT?: InputMaybe<Array<VoteScalarWhereInput>>;
+  OR?: InputMaybe<Array<VoteScalarWhereInput>>;
   comingAreaId?: InputMaybe<StringNullableFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
   h3Index5VenueRecommendationId?: InputMaybe<StringNullableFilter>;
@@ -20589,9 +20568,9 @@ export type VoteScalarWhereInput = {
 };
 
 export type VoteScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<VoteScalarWhereWithAggregatesInput[]>;
-  NOT?: InputMaybe<VoteScalarWhereWithAggregatesInput[]>;
-  OR?: InputMaybe<VoteScalarWhereWithAggregatesInput[]>;
+  AND?: InputMaybe<Array<VoteScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<VoteScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<VoteScalarWhereWithAggregatesInput>>;
   comingAreaId?: InputMaybe<StringNullableWithAggregatesFilter>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   h3Index5VenueRecommendationId?: InputMaybe<StringNullableWithAggregatesFilter>;
@@ -20641,59 +20620,59 @@ export type VoteUpdateManyWithWhereWithoutProfileInput = {
 };
 
 export type VoteUpdateManyWithoutComingAreaNestedInput = {
-  connect?: InputMaybe<VoteWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<VoteCreateOrConnectWithoutComingAreaInput[]>;
-  create?: InputMaybe<VoteCreateWithoutComingAreaInput[]>;
+  connect?: InputMaybe<Array<VoteWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<VoteCreateOrConnectWithoutComingAreaInput>>;
+  create?: InputMaybe<Array<VoteCreateWithoutComingAreaInput>>;
   createMany?: InputMaybe<VoteCreateManyComingAreaInputEnvelope>;
-  delete?: InputMaybe<VoteWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<VoteScalarWhereInput[]>;
-  disconnect?: InputMaybe<VoteWhereUniqueInput[]>;
-  set?: InputMaybe<VoteWhereUniqueInput[]>;
-  update?: InputMaybe<VoteUpdateWithWhereUniqueWithoutComingAreaInput[]>;
-  updateMany?: InputMaybe<VoteUpdateManyWithWhereWithoutComingAreaInput[]>;
-  upsert?: InputMaybe<VoteUpsertWithWhereUniqueWithoutComingAreaInput[]>;
+  delete?: InputMaybe<Array<VoteWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<VoteScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<VoteWhereUniqueInput>>;
+  set?: InputMaybe<Array<VoteWhereUniqueInput>>;
+  update?: InputMaybe<Array<VoteUpdateWithWhereUniqueWithoutComingAreaInput>>;
+  updateMany?: InputMaybe<Array<VoteUpdateManyWithWhereWithoutComingAreaInput>>;
+  upsert?: InputMaybe<Array<VoteUpsertWithWhereUniqueWithoutComingAreaInput>>;
 };
 
 export type VoteUpdateManyWithoutH3Index5VenueRecommendationNestedInput = {
-  connect?: InputMaybe<VoteWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<VoteCreateOrConnectWithoutH3Index5VenueRecommendationInput[]>;
-  create?: InputMaybe<VoteCreateWithoutH3Index5VenueRecommendationInput[]>;
+  connect?: InputMaybe<Array<VoteWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<VoteCreateOrConnectWithoutH3Index5VenueRecommendationInput>>;
+  create?: InputMaybe<Array<VoteCreateWithoutH3Index5VenueRecommendationInput>>;
   createMany?: InputMaybe<VoteCreateManyH3Index5VenueRecommendationInputEnvelope>;
-  delete?: InputMaybe<VoteWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<VoteScalarWhereInput[]>;
-  disconnect?: InputMaybe<VoteWhereUniqueInput[]>;
-  set?: InputMaybe<VoteWhereUniqueInput[]>;
-  update?: InputMaybe<VoteUpdateWithWhereUniqueWithoutH3Index5VenueRecommendationInput[]>;
-  updateMany?: InputMaybe<VoteUpdateManyWithWhereWithoutH3Index5VenueRecommendationInput[]>;
-  upsert?: InputMaybe<VoteUpsertWithWhereUniqueWithoutH3Index5VenueRecommendationInput[]>;
+  delete?: InputMaybe<Array<VoteWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<VoteScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<VoteWhereUniqueInput>>;
+  set?: InputMaybe<Array<VoteWhereUniqueInput>>;
+  update?: InputMaybe<Array<VoteUpdateWithWhereUniqueWithoutH3Index5VenueRecommendationInput>>;
+  updateMany?: InputMaybe<Array<VoteUpdateManyWithWhereWithoutH3Index5VenueRecommendationInput>>;
+  upsert?: InputMaybe<Array<VoteUpsertWithWhereUniqueWithoutH3Index5VenueRecommendationInput>>;
 };
 
 export type VoteUpdateManyWithoutH3Index6VenueRecommendationNestedInput = {
-  connect?: InputMaybe<VoteWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<VoteCreateOrConnectWithoutH3Index6VenueRecommendationInput[]>;
-  create?: InputMaybe<VoteCreateWithoutH3Index6VenueRecommendationInput[]>;
+  connect?: InputMaybe<Array<VoteWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<VoteCreateOrConnectWithoutH3Index6VenueRecommendationInput>>;
+  create?: InputMaybe<Array<VoteCreateWithoutH3Index6VenueRecommendationInput>>;
   createMany?: InputMaybe<VoteCreateManyH3Index6VenueRecommendationInputEnvelope>;
-  delete?: InputMaybe<VoteWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<VoteScalarWhereInput[]>;
-  disconnect?: InputMaybe<VoteWhereUniqueInput[]>;
-  set?: InputMaybe<VoteWhereUniqueInput[]>;
-  update?: InputMaybe<VoteUpdateWithWhereUniqueWithoutH3Index6VenueRecommendationInput[]>;
-  updateMany?: InputMaybe<VoteUpdateManyWithWhereWithoutH3Index6VenueRecommendationInput[]>;
-  upsert?: InputMaybe<VoteUpsertWithWhereUniqueWithoutH3Index6VenueRecommendationInput[]>;
+  delete?: InputMaybe<Array<VoteWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<VoteScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<VoteWhereUniqueInput>>;
+  set?: InputMaybe<Array<VoteWhereUniqueInput>>;
+  update?: InputMaybe<Array<VoteUpdateWithWhereUniqueWithoutH3Index6VenueRecommendationInput>>;
+  updateMany?: InputMaybe<Array<VoteUpdateManyWithWhereWithoutH3Index6VenueRecommendationInput>>;
+  upsert?: InputMaybe<Array<VoteUpsertWithWhereUniqueWithoutH3Index6VenueRecommendationInput>>;
 };
 
 export type VoteUpdateManyWithoutProfileNestedInput = {
-  connect?: InputMaybe<VoteWhereUniqueInput[]>;
-  connectOrCreate?: InputMaybe<VoteCreateOrConnectWithoutProfileInput[]>;
-  create?: InputMaybe<VoteCreateWithoutProfileInput[]>;
+  connect?: InputMaybe<Array<VoteWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<VoteCreateOrConnectWithoutProfileInput>>;
+  create?: InputMaybe<Array<VoteCreateWithoutProfileInput>>;
   createMany?: InputMaybe<VoteCreateManyProfileInputEnvelope>;
-  delete?: InputMaybe<VoteWhereUniqueInput[]>;
-  deleteMany?: InputMaybe<VoteScalarWhereInput[]>;
-  disconnect?: InputMaybe<VoteWhereUniqueInput[]>;
-  set?: InputMaybe<VoteWhereUniqueInput[]>;
-  update?: InputMaybe<VoteUpdateWithWhereUniqueWithoutProfileInput[]>;
-  updateMany?: InputMaybe<VoteUpdateManyWithWhereWithoutProfileInput[]>;
-  upsert?: InputMaybe<VoteUpsertWithWhereUniqueWithoutProfileInput[]>;
+  delete?: InputMaybe<Array<VoteWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<VoteScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<VoteWhereUniqueInput>>;
+  set?: InputMaybe<Array<VoteWhereUniqueInput>>;
+  update?: InputMaybe<Array<VoteUpdateWithWhereUniqueWithoutProfileInput>>;
+  updateMany?: InputMaybe<Array<VoteUpdateManyWithWhereWithoutProfileInput>>;
+  upsert?: InputMaybe<Array<VoteUpsertWithWhereUniqueWithoutProfileInput>>;
 };
 
 export type VoteUpdateWithWhereUniqueWithoutComingAreaInput = {
@@ -20781,12 +20760,12 @@ export type VoteUpsertWithWhereUniqueWithoutProfileInput = {
 };
 
 export type VoteWhereInput = {
-  AND?: InputMaybe<VoteWhereInput[]>;
+  AND?: InputMaybe<Array<VoteWhereInput>>;
   ComingArea?: InputMaybe<ComingAreaWhereInput>;
   H3Index5VenueRecommendation?: InputMaybe<H3Index5VenueRecommendationWhereInput>;
   H3Index6VenueRecommendation?: InputMaybe<H3Index6VenueRecommendationWhereInput>;
-  NOT?: InputMaybe<VoteWhereInput[]>;
-  OR?: InputMaybe<VoteWhereInput[]>;
+  NOT?: InputMaybe<Array<VoteWhereInput>>;
+  OR?: InputMaybe<Array<VoteWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
   comingAreaId?: InputMaybe<StringNullableFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -20799,12 +20778,12 @@ export type VoteWhereInput = {
 };
 
 export type VoteWhereUniqueInput = {
-  AND?: InputMaybe<VoteWhereInput[]>;
+  AND?: InputMaybe<Array<VoteWhereInput>>;
   ComingArea?: InputMaybe<ComingAreaWhereInput>;
   H3Index5VenueRecommendation?: InputMaybe<H3Index5VenueRecommendationWhereInput>;
   H3Index6VenueRecommendation?: InputMaybe<H3Index6VenueRecommendationWhereInput>;
-  NOT?: InputMaybe<VoteWhereInput[]>;
-  OR?: InputMaybe<VoteWhereInput[]>;
+  NOT?: InputMaybe<Array<VoteWhereInput>>;
+  OR?: InputMaybe<Array<VoteWhereInput>>;
   Profile?: InputMaybe<ProfileWhereInput>;
   comingAreaId?: InputMaybe<StringNullableFilter>;
   createdAt?: InputMaybe<DateTimeFilter>;
@@ -20824,13 +20803,13 @@ export type State_FragmentFragment = { __typename?: 'State', id: string, name: s
 
 export type City_FragmentFragment = { __typename?: 'City', id: string, name: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } };
 
-export type Authorization_Device_Profile_FragmentFragment = { __typename?: 'AuthorizationDeviceProfile', id: string, profileId: string, isActive: boolean, refreshtoken?: string | null, accesstoken?: string | null, deviceManagerId: string, AppType: AppType, ProfileType: ProfileType, createdAt: any, updatedAt: any, Profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: any[], Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }[] } | null, Relationships: { __typename?: 'Relationship', id: string, RelationshipStatus: RelationshipStatus[], venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: string[] } | null, photos: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }[], profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: { __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }[], emails: { __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }[] } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[], Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: { __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: string[], h3Index15?: string | null }[] } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null } | null, DeviceManager: { __typename?: 'DeviceManager', id: string }, RefreshToken?: { __typename?: 'RefreshToken', id: string, token: string, createdAt: any, updatedAt: any } | null };
+export type Authorization_Device_Profile_FragmentFragment = { __typename?: 'AuthorizationDeviceProfile', id: string, profileId: string, isActive: boolean, deviceManagerId: string, AppType: AppType, ProfileType: ProfileType, createdAt: any, updatedAt: any, Profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: Array<any>, Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> } | null, Relationships: Array<{ __typename?: 'Relationship', id: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }>, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: Array<{ __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }>, emails: Array<{ __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }> } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }>, Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } | null, DeviceManager: { __typename?: 'DeviceManager', id: string } };
 
-export type Authorization_Device_Manager_FragmentFragment = { __typename?: 'AuthorizationDeviceManager', id: string, DeviceProfile?: { __typename?: 'AuthorizationDeviceProfile', id: string, profileId: string, isActive: boolean, refreshtoken?: string | null, accesstoken?: string | null, deviceManagerId: string, AppType: AppType, ProfileType: ProfileType, createdAt: any, updatedAt: any, Profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: any[], Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }[] } | null, Relationships: { __typename?: 'Relationship', id: string, RelationshipStatus: RelationshipStatus[], venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: string[] } | null, photos: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }[], profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: { __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }[], emails: { __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }[] } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[], Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: { __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: string[], h3Index15?: string | null }[] } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null } | null, DeviceManager: { __typename?: 'DeviceManager', id: string }, RefreshToken?: { __typename?: 'RefreshToken', id: string, token: string, createdAt: any, updatedAt: any } | null } | null, Device?: { __typename?: 'Device', id: string } | null };
+export type Authorization_Device_Manager_FragmentFragment = { __typename?: 'AuthorizationDeviceManager', id: string, DeviceProfile?: { __typename?: 'AuthorizationDeviceProfile', id: string, profileId: string, isActive: boolean, deviceManagerId: string, AppType: AppType, ProfileType: ProfileType, createdAt: any, updatedAt: any, Profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: Array<any>, Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> } | null, Relationships: Array<{ __typename?: 'Relationship', id: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }>, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: Array<{ __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }>, emails: Array<{ __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }> } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }>, Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } | null, DeviceManager: { __typename?: 'DeviceManager', id: string } } | null, Device?: { __typename?: 'Device', id: string } | null };
 
-export type Credentials_FragmentFragment = { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: { __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }[], emails: { __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }[] } | null };
+export type Credentials_FragmentFragment = { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: Array<{ __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }>, emails: Array<{ __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }> } | null };
 
-export type Detail_Information_FragmentFragment = { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] };
+export type Detail_Information_FragmentFragment = { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> };
 
 export type Error_FragmentFragment = { __typename?: 'Error', errorCode: string, message: string };
 
@@ -20838,33 +20817,33 @@ export type Indetifiable_Information_FragmentFragment = { __typename?: 'Identifi
 
 export type Code_FragmentFragment = { __typename?: 'Code', id: string, code: string };
 
-export type Location_FragmentFragment = { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: { __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: string[], h3Index15?: string | null }[] } | null };
+export type Location_FragmentFragment = { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null };
 
 export type Out_FragmentFragment = { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null };
 
-export type Personal_FragmentFragment = { __typename?: 'Personal', id: string, updatedAt: any, createdAt: any, Profile: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: any[], Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }[] } | null, Relationships: { __typename?: 'Relationship', id: string, RelationshipStatus: RelationshipStatus[], venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: string[] } | null, photos: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }[], profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: { __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }[], emails: { __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }[] } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[], Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: { __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: string[], h3Index15?: string | null }[] } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null } };
+export type Personal_FragmentFragment = { __typename?: 'Personal', id: string, updatedAt: any, createdAt: any, Profile: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: Array<any>, Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> } | null, Relationships: Array<{ __typename?: 'Relationship', id: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }>, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: Array<{ __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }>, emails: Array<{ __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }> } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }>, Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } };
 
-export type Profile_FragmentFragment = { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: any[], Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }[] } | null, Relationships: { __typename?: 'Relationship', id: string, RelationshipStatus: RelationshipStatus[], venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: string[] } | null, photos: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }[], profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: { __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }[], emails: { __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }[] } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[], Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: { __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: string[], h3Index15?: string | null }[] } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null };
+export type Profile_FragmentFragment = { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: Array<any>, Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> } | null, Relationships: Array<{ __typename?: 'Relationship', id: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }>, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: Array<{ __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }>, emails: Array<{ __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }> } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }>, Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null };
 
-export type Profile_Public_FragmentFragment = { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any } } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null };
+export type Profile_Public_FragmentFragment = { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any } } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null };
 
-export type Public_Personal_FragmentFragment = { __typename: 'PublicProfilePersonal', id: string, ProfileType: ProfileType, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, relationship?: { __typename: 'Error', errorCode: string, message: string } | { __typename: 'Relationship', id: string, profileId?: string | null, friendProfileId: string, RelationshipStatus: RelationshipStatus[], venueMetAt?: string | null, updatedAt: any, createdAt: any } | { __typename: 'Request', id: string, senderProfileId: string, updatedAt: any, createdAt: any, senderProfile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any } } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null } | null, recievers: { __typename?: 'RequestReceiver', id: string, requestId?: string | null, NotificationStatus: { __typename?: 'NotificationStatus', id: string, isAccepted: boolean, isAnswered: boolean, isCanceled: boolean, isChecked: boolean, updatedAt: any, createdAt: any } }[] } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, tonightStory?: { __typename?: 'Story', id: string, date: any, startDate: any, createdAt: any, updatedAt?: any | null, emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: string[] } | null, Profile: { __typename?: 'Profile', id: string }, photos: { __typename?: 'Photo', id: string, url: string, active: boolean, blurhash?: string | null, ratio?: string | null, type?: PhotoType | null, position?: number | null, createdAt: any, updatedAt: any }[] } | null };
+export type Public_Personal_FragmentFragment = { __typename: 'PublicProfilePersonal', id: string, ProfileType: ProfileType, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, relationship?: { __typename: 'Error', errorCode: string, message: string } | { __typename: 'Relationship', id: string, profileId?: string | null, friendProfileId: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, updatedAt: any, createdAt: any } | { __typename: 'Request', id: string, senderProfileId: string, updatedAt: any, createdAt: any, senderProfile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any } } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } | null, recievers: Array<{ __typename?: 'RequestReceiver', id: string, requestId?: string | null, NotificationStatus: { __typename?: 'NotificationStatus', id: string, isAccepted: boolean, isAnswered: boolean, isCanceled: boolean, isChecked: boolean, updatedAt: any, createdAt: any } }> } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, tonightStory?: { __typename?: 'Story', id: string, date: any, startDate: any, createdAt: any, updatedAt?: any | null, emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, Profile: { __typename?: 'Profile', id: string }, photos: Array<{ __typename?: 'Photo', id: string, url: string, active: boolean, blurhash?: string | null, ratio?: string | null, type?: PhotoType | null, position?: number | null, createdAt: any, updatedAt: any }> } | null };
 
-export type Profile_Venue_FragmentFragment = { __typename: 'ProfileVenue', id: string, ProfileType: ProfileType, distanceInM?: number | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, photos: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[], Venue?: { __typename?: 'Venue', id: string, name?: string | null, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: { __typename?: 'Out', id: string, venueProfileId: string, personalProfileId: string }[] } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: { __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: string[], h3Index15?: string | null }[] } | null } | null } | null };
+export type Profile_Venue_FragmentFragment = { __typename: 'ProfileVenue', id: string, ProfileType: ProfileType, distanceInM?: number | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }>, Venue?: { __typename?: 'Venue', id: string, name?: string | null, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, venueProfileId: string, personalProfileId: string }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null };
 
-export type Relationship_FragmentFragment = { __typename?: 'Relationship', id: string, RelationshipStatus: RelationshipStatus[], venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: string[] } | null, photos: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null };
+export type Relationship_FragmentFragment = { __typename?: 'Relationship', id: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null };
 
-export type Request_FragmentFragment = { __typename: 'Request', id: string, NotificationType: string, senderProfileId: string, createdAt: any, updatedAt: any, NotificationMessage: { __typename?: 'Notifications', id: string, profileId: string }[], NotificationFriendRequest: { __typename?: 'Notifications', id: string, profileId: string }[], senderProfile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any } } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null } | null, recievers: { __typename: 'RequestReceiver', id: string, profileId: string, requestId?: string | null, notificationStatusId: string, Profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any } } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null } | null, NotificationStatus: { __typename?: 'NotificationStatus', id: string, isAccepted: boolean, isAnswered: boolean, isCanceled: boolean, isChecked: boolean, updatedAt: any, createdAt: any } }[] };
+export type Request_FragmentFragment = { __typename: 'Request', id: string, NotificationType: string, senderProfileId: string, createdAt: any, updatedAt: any, NotificationMessage: Array<{ __typename?: 'Notifications', id: string, profileId: string }>, NotificationFriendRequest: Array<{ __typename?: 'Notifications', id: string, profileId: string }>, senderProfile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any } } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } | null, recievers: Array<{ __typename: 'RequestReceiver', id: string, profileId: string, requestId?: string | null, notificationStatusId: string, Profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any } } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } | null, NotificationStatus: { __typename?: 'NotificationStatus', id: string, isAccepted: boolean, isAnswered: boolean, isCanceled: boolean, isChecked: boolean, updatedAt: any, createdAt: any } }> };
 
-export type Story_FragmentFragment = { __typename?: 'Story', id: string, date: any, startDate: any, createdAt: any, updatedAt?: any | null, emojimood?: { __typename?: 'Emojimood', colors: string[], emoji?: string | null, emojiname?: string | null, id: string } | null, photos: { __typename?: 'Photo', active: boolean, blurhash?: string | null, createdAt: any, groupId?: string | null, height?: number | null, id: string, position?: number | null, profileId?: string | null, ratio?: string | null, storyId?: string | null, type?: PhotoType | null, updatedAt: any, url: string, width?: number | null, Group?: { __typename?: 'Group', id: string } | null, Profile?: { __typename?: 'Profile', id: string } | null, Story?: { __typename?: 'Story', id: string } | null }[] };
+export type Story_FragmentFragment = { __typename?: 'Story', id: string, date: any, startDate: any, createdAt: any, updatedAt?: any | null, emojimood?: { __typename?: 'Emojimood', colors: Array<string>, emoji?: string | null, emojiname?: string | null, id: string } | null, photos: Array<{ __typename?: 'Photo', active: boolean, blurhash?: string | null, createdAt: any, groupId?: string | null, height?: number | null, id: string, position?: number | null, profileId?: string | null, ratio?: string | null, storyId?: string | null, type?: PhotoType | null, updatedAt: any, url: string, width?: number | null, Group?: { __typename?: 'Group', id: string } | null, Profile?: { __typename?: 'Profile', id: string } | null, Story?: { __typename?: 'Story', id: string } | null }> };
 
-export type Theme_FragmentFragment = { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null };
+export type Theme_FragmentFragment = { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null };
 
-export type Profile_Theme_FragmentFragment = { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } };
+export type Profile_Theme_FragmentFragment = { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } };
 
-export type Theme_Manager_FragmentFragment = { __typename?: 'ThemeManager', id: string, ProfileTheme: { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }[] };
+export type Theme_Manager_FragmentFragment = { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> };
 
-export type Venue_FragmentFragment = { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: any[], Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }[] } | null, Relationships: { __typename?: 'Relationship', id: string, RelationshipStatus: RelationshipStatus[], venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: string[] } | null, photos: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }[], profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: { __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }[], emails: { __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }[] } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[], Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: { __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: string[], h3Index15?: string | null }[] } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null } };
+export type Venue_FragmentFragment = { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: Array<any>, Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> } | null, Relationships: Array<{ __typename?: 'Relationship', id: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }>, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: Array<{ __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }>, emails: Array<{ __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }> } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }>, Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } };
 
 export type UpsertDevicePushTokenMutationVariables = Exact<{
   token?: InputMaybe<Scalars['String']['input']>;
@@ -20892,22 +20871,31 @@ export type SwitchDeviceProfileMutationVariables = Exact<{
 }>;
 
 
-export type SwitchDeviceProfileMutation = { __typename?: 'Mutation', switchDeviceProfile: { __typename: 'AuthorizationDeviceProfile', id: string, isActive: boolean, refreshtoken?: string | null, accesstoken?: string | null, AppType: AppType, deviceManagerId: string, DeviceManager: { __typename?: 'DeviceManager', id: string }, Profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: any[], Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }[] } | null, Relationships: { __typename?: 'Relationship', id: string, RelationshipStatus: RelationshipStatus[], venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: string[] } | null, photos: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }[], profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: { __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }[], emails: { __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }[] } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[], Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: { __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: string[], h3Index15?: string | null }[] } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null } | null } | { __typename?: 'Error', errorCode: string, message: string } };
+export type SwitchDeviceProfileMutation = { __typename?: 'Mutation', switchDeviceProfile: { __typename: 'AuthorizationDeviceProfile', id: string, isActive: boolean, AppType: AppType, deviceManagerId: string, DeviceManager: { __typename?: 'DeviceManager', id: string }, Profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: Array<any>, Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> } | null, Relationships: Array<{ __typename?: 'Relationship', id: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }>, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: Array<{ __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }>, emails: Array<{ __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }> } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }>, Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } | null } | { __typename?: 'Error', errorCode: string, message: string } };
 
 export type GetADeviceManagerQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetADeviceManagerQuery = { __typename?: 'Query', getADeviceManager: { __typename?: 'DeviceManagerDeviceProfiles', DeviceProfiles: { __typename?: 'AuthorizationDeviceProfile', id: string, AppType: AppType, ProfileType: ProfileType, isActive: boolean, accesstoken?: string | null, refreshtoken?: string | null, deviceManagerId: string, profileId: string, createdAt: any, updatedAt: any, DeviceManager: { __typename?: 'DeviceManager', id: string }, Profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: any[], Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }[] } | null, Relationships: { __typename?: 'Relationship', id: string, RelationshipStatus: RelationshipStatus[], venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: string[] } | null, photos: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }[], profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: { __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }[], emails: { __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }[] } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[], Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: { __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: string[], h3Index15?: string | null }[] } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null } | null }[] } | { __typename?: 'Error' } };
+export type GetADeviceManagerQuery = { __typename?: 'Query', getADeviceManager: { __typename?: 'DeviceManagerDeviceProfiles', DeviceProfiles: Array<{ __typename?: 'AuthorizationDeviceProfile', id: string, AppType: AppType, ProfileType: ProfileType, isActive: boolean, deviceManagerId: string, profileId: string, createdAt: any, updatedAt: any, DeviceManager: { __typename?: 'DeviceManager', id: string }, Profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: Array<any>, Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> } | null, Relationships: Array<{ __typename?: 'Relationship', id: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }>, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: Array<{ __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }>, emails: Array<{ __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }> } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }>, Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } | null }> } | { __typename?: 'Error' } };
 
 export type RefreshDeviceManagerQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type RefreshDeviceManagerQuery = { __typename?: 'Query', refreshDeviceManager: { __typename?: 'AuthorizationDeviceProfile', id: string, isActive: boolean, refreshtoken?: string | null, accesstoken?: string | null, AppType: AppType, deviceManagerId: string, Profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: any[], Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }[] } | null, Relationships: { __typename?: 'Relationship', id: string, RelationshipStatus: RelationshipStatus[], venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: string[] } | null, photos: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }[], profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: { __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }[], emails: { __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }[] } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[], Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: { __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: string[], h3Index15?: string | null }[] } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null } | null } | { __typename?: 'Error', errorCode: string, message: string } };
+export type RefreshDeviceManagerQuery = { __typename?: 'Query', refreshDeviceManager: { __typename?: 'AuthorizationDeviceProfile', id: string, isActive: boolean, AppType: AppType, deviceManagerId: string, Profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: Array<any>, Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> } | null, Relationships: Array<{ __typename?: 'Relationship', id: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }>, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: Array<{ __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }>, emails: Array<{ __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }> } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }>, Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } | null } | { __typename?: 'Error', errorCode: string, message: string } };
+
+export type CreateMessageMutationVariables = Exact<{
+  content: Scalars['Json']['input'];
+  conversationId?: InputMaybe<Scalars['String']['input']>;
+  members?: InputMaybe<Array<Scalars['String']['input']> | Scalars['String']['input']>;
+}>;
+
+
+export type CreateMessageMutation = { __typename?: 'Mutation', createMessage?: { __typename?: 'Message', id: string, content: any, conversationId?: string | null, messageId?: string | null, createAt: any, updatedAt: any, Conversation?: { __typename?: 'Conversation', id: string, name?: string | null, MembersConversationNotificationSetting: Array<{ __typename?: 'MemberConversationNotificationSetting', id: string }> } | null, Request?: { __typename?: 'Request', id: string, senderProfileId: string, NotificationType: string } | null } | null };
 
 export type GetConversationsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetConversationsQuery = { __typename?: 'Query', getConversations?: { __typename?: 'Conversation', id: string, name?: string | null, Members: { __typename?: 'Profile', id: string, profilePhoto?: { __typename?: 'Photo', id: string, url: string, blurhash?: string | null } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, fullname?: string | null } | null }[], MembersConversationNotificationSetting: { __typename?: 'MemberConversationNotificationSetting', id: string }[], Messages: { __typename?: 'Message', id: string, messageId?: string | null, content: any, conversationId?: string | null }[] }[] | null };
+export type GetConversationsQuery = { __typename?: 'Query', getConversations?: Array<{ __typename?: 'Conversation', id: string, name?: string | null, Members: Array<{ __typename?: 'Profile', id: string, profilePhoto?: { __typename?: 'Photo', id: string, url: string, blurhash?: string | null } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, fullname?: string | null } | null }>, MembersConversationNotificationSetting: Array<{ __typename?: 'MemberConversationNotificationSetting', id: string }>, Messages: Array<{ __typename?: 'Message', id: string, messageId?: string | null, content: any, conversationId?: string | null }> }> | null };
 
 export type SendAuthenticatorDeviceOwnerCodeMutationVariables = Exact<{
   data?: InputMaybe<CodeDataInput>;
@@ -20922,12 +20910,12 @@ export type AuthorizedProfilesQueryVariables = Exact<{
 }>;
 
 
-export type AuthorizedProfilesQuery = { __typename?: 'Query', authorizedProfiles?: { __typename?: 'Error', errorCode: string, message: string } | { __typename?: 'ProfilesResponse', email: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: any[], Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }[] } | null, Relationships: { __typename?: 'Relationship', id: string, RelationshipStatus: RelationshipStatus[], venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: string[] } | null, photos: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }[], profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: { __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }[], emails: { __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }[] } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[], Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: { __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: string[], h3Index15?: string | null }[] } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null }[], phone: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: any[], Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }[] } | null, Relationships: { __typename?: 'Relationship', id: string, RelationshipStatus: RelationshipStatus[], venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: string[] } | null, photos: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }[], profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: { __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }[], emails: { __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }[] } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[], Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: { __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: string[], h3Index15?: string | null }[] } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null }[], username: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: any[], Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }[] } | null, Relationships: { __typename?: 'Relationship', id: string, RelationshipStatus: RelationshipStatus[], venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: string[] } | null, photos: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }[], profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: { __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }[], emails: { __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }[] } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[], Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: { __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: string[], h3Index15?: string | null }[] } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null }[] } | null };
+export type AuthorizedProfilesQuery = { __typename?: 'Query', authorizedProfiles?: { __typename?: 'Error', errorCode: string, message: string } | { __typename?: 'ProfilesResponse', email: Array<{ __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: Array<any>, Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> } | null, Relationships: Array<{ __typename?: 'Relationship', id: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }>, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: Array<{ __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }>, emails: Array<{ __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }> } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }>, Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null }>, phone: Array<{ __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: Array<any>, Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> } | null, Relationships: Array<{ __typename?: 'Relationship', id: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }>, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: Array<{ __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }>, emails: Array<{ __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }> } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }>, Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null }>, username: Array<{ __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: Array<any>, Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> } | null, Relationships: Array<{ __typename?: 'Relationship', id: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }>, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: Array<{ __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }>, emails: Array<{ __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }> } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }>, Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null }> } | null };
 
 export type PrivacyTermsDocumentsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PrivacyTermsDocumentsQuery = { __typename?: 'Query', privacyTermsDocuments: { __typename?: 'LatestPrivacyAndTermsDocumentResponse', privacy: { __typename?: 'Document', id: string, TypeOfDocument: TypeOfDocument, createdAt: any, updatedAt: any, content: string, LegalAgreement: { __typename?: 'LegalAgreement', id: string }[] }, termsofservice: { __typename?: 'Document', id: string, TypeOfDocument: TypeOfDocument, createdAt: any, updatedAt: any, content: string, LegalAgreement: { __typename?: 'LegalAgreement', id: string }[] } } };
+export type PrivacyTermsDocumentsQuery = { __typename?: 'Query', privacyTermsDocuments: { __typename?: 'LatestPrivacyAndTermsDocumentResponse', privacy: { __typename?: 'Document', id: string, TypeOfDocument: TypeOfDocument, createdAt: any, updatedAt: any, content: string, LegalAgreement: Array<{ __typename?: 'LegalAgreement', id: string }> }, termsofservice: { __typename?: 'Document', id: string, TypeOfDocument: TypeOfDocument, createdAt: any, updatedAt: any, content: string, LegalAgreement: Array<{ __typename?: 'LegalAgreement', id: string }> } } };
 
 export type LoginPasswordQueryVariables = Exact<{
   username: Scalars['String']['input'];
@@ -20952,28 +20940,28 @@ export type RemoveAllFromVenueDeveloperMutation = { __typename?: 'Mutation', rem
 export type EmojimoodsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type EmojimoodsQuery = { __typename?: 'Query', emojimoods: { __typename?: 'Emojimood', id: string, colors: string[], emoji?: string | null, emojiname?: string | null }[] };
+export type EmojimoodsQuery = { __typename?: 'Query', emojimoods: Array<{ __typename?: 'Emojimood', id: string, colors: Array<string>, emoji?: string | null, emojiname?: string | null }> };
 
 export type EmojimoodQueryVariables = Exact<{
   where: EmojimoodWhereUniqueInput;
 }>;
 
 
-export type EmojimoodQuery = { __typename?: 'Query', emojimood?: { __typename?: 'Emojimood', id: string, colors: string[], emoji?: string | null, emojiname?: string | null } | null };
+export type EmojimoodQuery = { __typename?: 'Query', emojimood?: { __typename?: 'Emojimood', id: string, colors: Array<string>, emoji?: string | null, emojiname?: string | null } | null };
 
 export type ExploreSearchQueryVariables = Exact<{
   search: Scalars['String']['input'];
 }>;
 
 
-export type ExploreSearchQuery = { __typename?: 'Query', exploreSearch: { __typename?: 'ExploreResponse', events?: any[] | null, people: { __typename?: 'Personal', id: string, Profile: { __typename?: 'Profile', id: string, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, fullname?: string | null, firstname?: string | null, lastname?: string | null, username: string } | null, photos?: { __typename?: 'Photo', id: string, active: boolean, blurhash?: string | null, url: string }[] | null } }[], venues: { __typename?: 'Venue', id: string, Profile: { __typename?: 'Profile', id: string, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, fullname?: string | null, firstname?: string | null, lastname?: string | null, username: string } | null, photos?: { __typename?: 'Photo', id: string, active: boolean, blurhash?: string | null, url: string }[] | null } }[] } };
+export type ExploreSearchQuery = { __typename?: 'Query', exploreSearch: { __typename?: 'ExploreResponse', events?: Array<any> | null, people: Array<{ __typename?: 'Personal', id: string, Profile: { __typename?: 'Profile', id: string, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, fullname?: string | null, firstname?: string | null, lastname?: string | null, username: string } | null, photos?: Array<{ __typename?: 'Photo', id: string, active: boolean, blurhash?: string | null, url: string }> | null } }>, venues: Array<{ __typename?: 'Venue', id: string, Profile: { __typename?: 'Profile', id: string, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, fullname?: string | null, firstname?: string | null, lastname?: string | null, username: string } | null, photos?: Array<{ __typename?: 'Photo', id: string, active: boolean, blurhash?: string | null, url: string }> | null } }> } };
 
 export type CreateFriendRequestMutationVariables = Exact<{
-  receiversProfileId: Scalars['String']['input'][] | Scalars['String']['input'];
+  receiversProfileId: Array<Scalars['String']['input']> | Scalars['String']['input'];
 }>;
 
 
-export type CreateFriendRequestMutation = { __typename?: 'Mutation', createFriendRequest: { __typename: 'Request', id: string, NotificationType: string, senderProfileId: string, createdAt: any, updatedAt: any, NotificationMessage: { __typename?: 'Notifications', id: string, profileId: string }[], NotificationFriendRequest: { __typename?: 'Notifications', id: string, profileId: string }[], senderProfile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any } } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null } | null, recievers: { __typename: 'RequestReceiver', id: string, profileId: string, requestId?: string | null, notificationStatusId: string, Profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any } } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null } | null, NotificationStatus: { __typename?: 'NotificationStatus', id: string, isAccepted: boolean, isAnswered: boolean, isCanceled: boolean, isChecked: boolean, updatedAt: any, createdAt: any } }[] } };
+export type CreateFriendRequestMutation = { __typename?: 'Mutation', createFriendRequest: { __typename: 'Request', id: string, NotificationType: string, senderProfileId: string, createdAt: any, updatedAt: any, NotificationMessage: Array<{ __typename?: 'Notifications', id: string, profileId: string }>, NotificationFriendRequest: Array<{ __typename?: 'Notifications', id: string, profileId: string }>, senderProfile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any } } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } | null, recievers: Array<{ __typename: 'RequestReceiver', id: string, profileId: string, requestId?: string | null, notificationStatusId: string, Profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any } } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } | null, NotificationStatus: { __typename?: 'NotificationStatus', id: string, isAccepted: boolean, isAnswered: boolean, isCanceled: boolean, isChecked: boolean, updatedAt: any, createdAt: any } }> } };
 
 export type DeleteFriendRequestMutationVariables = Exact<{
   friendRequestId: Scalars['String']['input'];
@@ -20988,7 +20976,7 @@ export type QrAddFriendMutationVariables = Exact<{
 }>;
 
 
-export type QrAddFriendMutation = { __typename?: 'Mutation', qrAddFriend: { __typename?: 'Relationship', id: string, venueMetAt?: string | null, RelationshipStatus: RelationshipStatus[], createdAt: any, updatedAt: any, Profile?: { __typename?: 'Profile', id: string } | null } };
+export type QrAddFriendMutation = { __typename?: 'Mutation', qrAddFriend: { __typename?: 'Relationship', id: string, venueMetAt?: string | null, RelationshipStatus: Array<RelationshipStatus>, createdAt: any, updatedAt: any, Profile?: { __typename?: 'Profile', id: string } | null } };
 
 export type AcceptFriendRequestMutationVariables = Exact<{
   friendRequestId: Scalars['String']['input'];
@@ -20997,7 +20985,7 @@ export type AcceptFriendRequestMutationVariables = Exact<{
 }>;
 
 
-export type AcceptFriendRequestMutation = { __typename?: 'Mutation', acceptFriendRequest: { __typename?: 'Relationship', id: string, venueMetAt?: string | null, RelationshipStatus: RelationshipStatus[], createdAt: any, updatedAt: any, Profile?: { __typename?: 'Profile', id: string } | null } };
+export type AcceptFriendRequestMutation = { __typename?: 'Mutation', acceptFriendRequest: { __typename?: 'Relationship', id: string, venueMetAt?: string | null, RelationshipStatus: Array<RelationshipStatus>, createdAt: any, updatedAt: any, Profile?: { __typename?: 'Profile', id: string } | null } };
 
 export type DeclineFriendRequestMutationVariables = Exact<{
   friendRequestId: Scalars['String']['input'];
@@ -21032,19 +21020,19 @@ export type CheckPrivacyTermsDocumentUpdateQuery = { __typename?: 'Query', check
 export type GetInterestsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetInterestsQuery = { __typename?: 'Query', getInterests: { __typename?: 'Category', id: string, name: string, Tags: { __typename?: 'Tag', id: string, name: string, categoryId?: string | null, emoji?: string | null }[] }[] };
+export type GetInterestsQuery = { __typename?: 'Query', getInterests: Array<{ __typename?: 'Category', id: string, name: string, Tags: Array<{ __typename?: 'Tag', id: string, name: string, categoryId?: string | null, emoji?: string | null }> }> };
 
 export type GetNotificationsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetNotificationsQuery = { __typename?: 'Query', getNotifications: { __typename?: 'NotificationResponse', friendRequestNotifications?: { __typename?: 'Request', id: string, NotificationType: string, updatedAt: any, createdAt: any, NotificationFriendRequest: { __typename?: 'Notifications', id: string, profileId: string }[], recievers: { __typename: 'RequestReceiver', id: string, profileId: string, requestId?: string | null, notificationStatusId: string, Profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any } } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null } | null, NotificationStatus: { __typename?: 'NotificationStatus', id: string, isAccepted: boolean, isAnswered: boolean, isCanceled: boolean, isChecked: boolean, createdAt: any, updatedAt: any } }[], senderProfile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any } } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null } | null }[] | null } };
+export type GetNotificationsQuery = { __typename?: 'Query', getNotifications: { __typename?: 'NotificationResponse', friendRequestNotifications?: Array<{ __typename?: 'Request', id: string, NotificationType: string, updatedAt: any, createdAt: any, NotificationFriendRequest: Array<{ __typename?: 'Notifications', id: string, profileId: string }>, recievers: Array<{ __typename: 'RequestReceiver', id: string, profileId: string, requestId?: string | null, notificationStatusId: string, Profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any } } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } | null, NotificationStatus: { __typename?: 'NotificationStatus', id: string, isAccepted: boolean, isAnswered: boolean, isCanceled: boolean, isChecked: boolean, createdAt: any, updatedAt: any } }>, senderProfile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any } } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } | null }> | null } };
 
 export type RemoveAllJoinedTotalFromVenueMutationVariables = Exact<{
   profileIdVenue: Scalars['String']['input'];
 }>;
 
 
-export type RemoveAllJoinedTotalFromVenueMutation = { __typename?: 'Mutation', removeAllJoinedTotalFromVenue: { __typename?: 'Error', errorCode: string, message: string } | { __typename?: 'LiveVenueTotals2', id?: string | null, joined?: number | null, totaled?: number | null, out?: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] | null } };
+export type RemoveAllJoinedTotalFromVenueMutation = { __typename?: 'Mutation', removeAllJoinedTotalFromVenue: { __typename?: 'Error', errorCode: string, message: string } | { __typename?: 'LiveVenueTotals2', id?: string | null, joined?: number | null, totaled?: number | null, out?: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> | null } };
 
 export type AddPersonalJoinsVenue2MutationVariables = Exact<{
   profileIdVenue: Scalars['String']['input'];
@@ -21065,7 +21053,7 @@ export type GetLiveVenueTotalsV2QueryVariables = Exact<{
 }>;
 
 
-export type GetLiveVenueTotalsV2Query = { __typename?: 'Query', getLiveVenueTotalsV2: { __typename?: 'Error', errorCode: string, message: string } | { __typename?: 'LiveVenueTotals2', id?: string | null, joined?: number | null, totaled?: number | null, out?: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] | null } };
+export type GetLiveVenueTotalsV2Query = { __typename?: 'Query', getLiveVenueTotalsV2: { __typename?: 'Error', errorCode: string, message: string } | { __typename?: 'LiveVenueTotals2', id?: string | null, joined?: number | null, totaled?: number | null, out?: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> | null } };
 
 export type UploadProfilePhotoMutationVariables = Exact<{
   photos?: InputMaybe<PhotoCreateManyProfileInputEnvelope>;
@@ -21079,19 +21067,19 @@ export type CreatePersonalProfileMutationVariables = Exact<{
 }>;
 
 
-export type CreatePersonalProfileMutation = { __typename?: 'Mutation', createPersonalProfile: { __typename?: 'AuthorizationDeviceProfile', id: string, profileId: string, isActive: boolean, refreshtoken?: string | null, accesstoken?: string | null, deviceManagerId: string, AppType: AppType, ProfileType: ProfileType, createdAt: any, updatedAt: any, Profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: any[], Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }[] } | null, Relationships: { __typename?: 'Relationship', id: string, RelationshipStatus: RelationshipStatus[], venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: string[] } | null, photos: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }[], profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: { __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }[], emails: { __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }[] } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[], Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: { __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: string[], h3Index15?: string | null }[] } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null } | null, DeviceManager: { __typename?: 'DeviceManager', id: string }, RefreshToken?: { __typename?: 'RefreshToken', id: string, token: string, createdAt: any, updatedAt: any } | null } | { __typename?: 'Error', errorCode: string, message: string } };
+export type CreatePersonalProfileMutation = { __typename?: 'Mutation', createPersonalProfile: { __typename?: 'AuthorizationDeviceProfile', id: string, profileId: string, isActive: boolean, deviceManagerId: string, AppType: AppType, ProfileType: ProfileType, createdAt: any, updatedAt: any, Profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: Array<any>, Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> } | null, Relationships: Array<{ __typename?: 'Relationship', id: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }>, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: Array<{ __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }>, emails: Array<{ __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }> } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }>, Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } | null, DeviceManager: { __typename?: 'DeviceManager', id: string } } | { __typename?: 'Error', errorCode: string, message: string } };
 
 export type CreateGuestProfileMutationVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CreateGuestProfileMutation = { __typename?: 'Mutation', createGuestProfile: { __typename?: 'AuthorizationDeviceProfile', id: string, profileId: string, isActive: boolean, refreshtoken?: string | null, accesstoken?: string | null, deviceManagerId: string, AppType: AppType, ProfileType: ProfileType, createdAt: any, updatedAt: any, Profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: any[], Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }[] } | null, Relationships: { __typename?: 'Relationship', id: string, RelationshipStatus: RelationshipStatus[], venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: string[] } | null, photos: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }[], profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: { __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }[], emails: { __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }[] } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[], Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: { __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: string[], h3Index15?: string | null }[] } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null } | null, DeviceManager: { __typename?: 'DeviceManager', id: string }, RefreshToken?: { __typename?: 'RefreshToken', id: string, token: string, createdAt: any, updatedAt: any } | null } | { __typename?: 'Error', errorCode: string, message: string } };
+export type CreateGuestProfileMutation = { __typename?: 'Mutation', createGuestProfile: { __typename?: 'AuthorizationDeviceProfile', id: string, profileId: string, isActive: boolean, deviceManagerId: string, AppType: AppType, ProfileType: ProfileType, createdAt: any, updatedAt: any, Profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: Array<any>, Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> } | null, Relationships: Array<{ __typename?: 'Relationship', id: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }>, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: Array<{ __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }>, emails: Array<{ __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }> } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }>, Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } | null, DeviceManager: { __typename?: 'DeviceManager', id: string } } | { __typename?: 'Error', errorCode: string, message: string } };
 
 export type UpdateProfileIdentifiableInformationMutationVariables = Exact<{
   data: IdentifiableInformationUpdateInput;
 }>;
 
 
-export type UpdateProfileIdentifiableInformationMutation = { __typename?: 'Mutation', updateProfileIdentifiableInformation: { __typename?: 'Error', errorCode: string, message: string } | { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: any[], Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }[] } | null, Relationships: { __typename?: 'Relationship', id: string, RelationshipStatus: RelationshipStatus[], venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: string[] } | null, photos: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }[], profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: { __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }[], emails: { __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }[] } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[], Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: { __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: string[], h3Index15?: string | null }[] } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null } };
+export type UpdateProfileIdentifiableInformationMutation = { __typename?: 'Mutation', updateProfileIdentifiableInformation: { __typename?: 'Error', errorCode: string, message: string } | { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: Array<any>, Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> } | null, Relationships: Array<{ __typename?: 'Relationship', id: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }>, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: Array<{ __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }>, emails: Array<{ __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }> } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }>, Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } };
 
 export type UpdateOneProfileMutationVariables = Exact<{
   data: ProfileUpdateInput;
@@ -21099,38 +21087,38 @@ export type UpdateOneProfileMutationVariables = Exact<{
 }>;
 
 
-export type UpdateOneProfileMutation = { __typename?: 'Mutation', updateOneProfile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: any[], Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }[] } | null, Relationships: { __typename?: 'Relationship', id: string, RelationshipStatus: RelationshipStatus[], venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: string[] } | null, photos: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }[], profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: { __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }[], emails: { __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }[] } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[], Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: { __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: string[], h3Index15?: string | null }[] } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null } | null };
+export type UpdateOneProfileMutation = { __typename?: 'Mutation', updateOneProfile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: Array<any>, Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> } | null, Relationships: Array<{ __typename?: 'Relationship', id: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }>, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: Array<{ __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }>, emails: Array<{ __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }> } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }>, Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } | null };
 
 export type ProfileQueryVariables = Exact<{
   where?: InputMaybe<ProfileWhereInput>;
 }>;
 
 
-export type ProfileQuery = { __typename?: 'Query', profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: any[], Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }[] } | null, Relationships: { __typename?: 'Relationship', id: string, RelationshipStatus: RelationshipStatus[], venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: string[] } | null, photos: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }[], profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: { __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }[], emails: { __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }[] } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[], Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: { __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: string[], h3Index15?: string | null }[] } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null } | null };
+export type ProfileQuery = { __typename?: 'Query', profile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: Array<any>, Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> } | null, Relationships: Array<{ __typename?: 'Relationship', id: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }>, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: Array<{ __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }>, emails: Array<{ __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }> } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }>, Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } | null };
 
 export type ProfilesQueryVariables = Exact<{
   where?: InputMaybe<ProfileWhereInput>;
   take?: InputMaybe<Scalars['Int']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
-  distinct?: InputMaybe<ProfileScalarFieldEnum[] | ProfileScalarFieldEnum>;
+  distinct?: InputMaybe<Array<ProfileScalarFieldEnum> | ProfileScalarFieldEnum>;
 }>;
 
 
-export type ProfilesQuery = { __typename?: 'Query', profiles?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: any[], Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }[] } | null, Relationships: { __typename?: 'Relationship', id: string, RelationshipStatus: RelationshipStatus[], venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: string[] } | null, photos: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }[], profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: { __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }[], emails: { __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }[] } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[], Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: { __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: string[], h3Index15?: string | null }[] } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null }[] | null };
+export type ProfilesQuery = { __typename?: 'Query', profiles?: Array<{ __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: Array<any>, Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> } | null, Relationships: Array<{ __typename?: 'Relationship', id: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }>, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: Array<{ __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }>, emails: Array<{ __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }> } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }>, Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null }> | null };
 
 export type VenueQueryVariables = Exact<{
   where?: InputMaybe<VenueWhereInput>;
 }>;
 
 
-export type VenueQuery = { __typename?: 'Query', venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: any[], Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }[] } | null, Relationships: { __typename?: 'Relationship', id: string, RelationshipStatus: RelationshipStatus[], venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: string[] } | null, photos: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }[], profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: { __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }[], emails: { __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }[] } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[], Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: { __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: string[], h3Index15?: string | null }[] } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null } } | null };
+export type VenueQuery = { __typename?: 'Query', venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: Array<any>, Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> } | null, Relationships: Array<{ __typename?: 'Relationship', id: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }>, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: Array<{ __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }>, emails: Array<{ __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }> } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }>, Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } } | null };
 
 export type VenuesQueryVariables = Exact<{
   where?: InputMaybe<VenueWhereInput>;
 }>;
 
 
-export type VenuesQuery = { __typename?: 'Query', venues: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: any[], Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }[] } | null, Relationships: { __typename?: 'Relationship', id: string, RelationshipStatus: RelationshipStatus[], venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: string[] } | null, photos: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }[], profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: { __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }[], emails: { __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }[] } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[], Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }[] } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: { __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: string[], h3Index15?: string | null }[] } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null } }[] };
+export type VenuesQuery = { __typename?: 'Query', venues: Array<{ __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, resentSearches?: { __typename?: 'SearchesService', id: string, profileId: string, searches: Array<any>, Profile: { __typename?: 'Profile', id: string } } | null, ThemeManager?: { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> } | null, Relationships: Array<{ __typename?: 'Relationship', id: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, createdAt: any, updatedAt: any, friendProfile?: { __typename?: 'Profile', id: string, ProfileType: ProfileType, tonightStory?: { __typename?: 'Story', emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, active: boolean, position?: number | null, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> } | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, firstname?: string | null, lastname?: string | null, fullname?: string | null, username: string } | null } | null }>, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Credentials: { __typename?: 'Credentials', id: string, AuthenticationProvider?: { __typename?: 'AuthenticationProvider', id: string, phones: Array<{ __typename?: 'Phone', id: string, number: string, completeNumber?: string | null, countryCode?: string | null, canUseAsRecovery?: boolean | null, countryCallingCode?: string | null, createdAt: any, updatedAt: any }>, emails: Array<{ __typename?: 'Email', id: string, email: string, canUseAsRecovery?: boolean | null, createdAt: any, updatedAt: any }> } | null }, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, PersonalStats?: { __typename?: 'PersonalStats', id: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string, personalId: string, createdAt: any, updatedAt: any, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }>, Personal: { __typename?: 'Personal', id: string } } | null } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } }> };
 
 export type PublicVenueQueryVariables = Exact<{
   where?: InputMaybe<ProfileWhereInput>;
@@ -21138,28 +21126,28 @@ export type PublicVenueQueryVariables = Exact<{
 }>;
 
 
-export type PublicVenueQuery = { __typename?: 'Query', publicVenue?: { __typename: 'ProfileVenue', id: string, ProfileType: ProfileType, distanceInM?: number | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, photos: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[], Venue?: { __typename?: 'Venue', id: string, name?: string | null, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: { __typename?: 'Out', id: string, venueProfileId: string, personalProfileId: string }[] } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: { __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: string[], h3Index15?: string | null }[] } | null } | null } | null } | null };
+export type PublicVenueQuery = { __typename?: 'Query', publicVenue?: { __typename: 'ProfileVenue', id: string, ProfileType: ProfileType, distanceInM?: number | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }>, Venue?: { __typename?: 'Venue', id: string, name?: string | null, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, venueProfileId: string, personalProfileId: string }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null } | null };
 
 export type PublicProfileQueryVariables = Exact<{
   where?: InputMaybe<ProfileWhereInput>;
 }>;
 
 
-export type PublicProfileQuery = { __typename?: 'Query', publicProfile?: { __typename: 'PublicProfilePersonal', id: string, ProfileType: ProfileType, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, relationship?: { __typename: 'Error', errorCode: string, message: string } | { __typename: 'Relationship', id: string, profileId?: string | null, friendProfileId: string, RelationshipStatus: RelationshipStatus[], venueMetAt?: string | null, updatedAt: any, createdAt: any } | { __typename: 'Request', id: string, senderProfileId: string, updatedAt: any, createdAt: any, senderProfile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[] | null, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any } } | null, tonightStory?: { __typename?: 'Story', id: string, photos: { __typename?: 'Photo', id: string, position?: number | null, url: string }[], emojimood?: { __typename: 'Emojimood', id: string, colors: string[], emojiname?: string | null, emoji?: string | null } | null } | null } | null, recievers: { __typename?: 'RequestReceiver', id: string, requestId?: string | null, NotificationStatus: { __typename?: 'NotificationStatus', id: string, isAccepted: boolean, isAnswered: boolean, isCanceled: boolean, isChecked: boolean, updatedAt: any, createdAt: any } }[] } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, tonightStory?: { __typename?: 'Story', id: string, date: any, startDate: any, createdAt: any, updatedAt?: any | null, emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: string[] } | null, Profile: { __typename?: 'Profile', id: string }, photos: { __typename?: 'Photo', id: string, url: string, active: boolean, blurhash?: string | null, ratio?: string | null, type?: PhotoType | null, position?: number | null, createdAt: any, updatedAt: any }[] } | null } | null };
+export type PublicProfileQuery = { __typename?: 'Query', publicProfile?: { __typename: 'PublicProfilePersonal', id: string, ProfileType: ProfileType, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, relationship?: { __typename: 'Error', errorCode: string, message: string } | { __typename: 'Relationship', id: string, profileId?: string | null, friendProfileId: string, RelationshipStatus: Array<RelationshipStatus>, venueMetAt?: string | null, updatedAt: any, createdAt: any } | { __typename: 'Request', id: string, senderProfileId: string, updatedAt: any, createdAt: any, senderProfile?: { __typename: 'Profile', id: string, ProfileType: ProfileType, bfsprofileid: string, createdAt: any, updatedAt: any, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, photos?: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }> | null, Personal?: { __typename?: 'Personal', id: string, profileId: string, createdAt: any, updatedAt: any } | null, Venue?: { __typename?: 'Venue', id: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any } } | null, tonightStory?: { __typename?: 'Story', id: string, photos: Array<{ __typename?: 'Photo', id: string, position?: number | null, url: string }>, emojimood?: { __typename: 'Emojimood', id: string, colors: Array<string>, emojiname?: string | null, emoji?: string | null } | null } | null } | null, recievers: Array<{ __typename?: 'RequestReceiver', id: string, requestId?: string | null, NotificationStatus: { __typename?: 'NotificationStatus', id: string, isAccepted: boolean, isAnswered: boolean, isCanceled: boolean, isChecked: boolean, updatedAt: any, createdAt: any } }> } | null, profilePhoto?: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any } | null, tonightStory?: { __typename?: 'Story', id: string, date: any, startDate: any, createdAt: any, updatedAt?: any | null, emojimood?: { __typename?: 'Emojimood', id: string, emojiname?: string | null, emoji?: string | null, colors: Array<string> } | null, Profile: { __typename?: 'Profile', id: string }, photos: Array<{ __typename?: 'Photo', id: string, url: string, active: boolean, blurhash?: string | null, ratio?: string | null, type?: PhotoType | null, position?: number | null, createdAt: any, updatedAt: any }> } | null } | null };
 
 export type UpdateH6ComingAreaVoteMutationVariables = Exact<{
   comingAreaId: Scalars['String']['input'];
 }>;
 
 
-export type UpdateH6ComingAreaVoteMutation = { __typename?: 'Mutation', updateH6ComingAreaVote: { __typename?: 'ComingArea', id: string, areaId?: string | null, h3Index5: string, h3Index6: string, keywordSuggestions: string[], timesRequested?: number | null, toBeNotifiedProfileIds: string[], Area?: { __typename?: 'Area', id: string } | null, Vote: { __typename?: 'Vote', id: string, upvote: boolean, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string } }[] } };
+export type UpdateH6ComingAreaVoteMutation = { __typename?: 'Mutation', updateH6ComingAreaVote: { __typename?: 'ComingArea', id: string, areaId?: string | null, h3Index5: string, h3Index6: string, keywordSuggestions: Array<string>, timesRequested?: number | null, toBeNotifiedProfileIds: Array<string>, Area?: { __typename?: 'Area', id: string } | null, Vote: Array<{ __typename?: 'Vote', id: string, upvote: boolean, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string } }> } };
 
 export type UpdateComingAreaToBeNotifiedMutationVariables = Exact<{
   comingAreaId: Scalars['String']['input'];
 }>;
 
 
-export type UpdateComingAreaToBeNotifiedMutation = { __typename?: 'Mutation', updateH6ComingAreaToBeNotified: { __typename?: 'ComingArea', id: string, areaId?: string | null, h3Index5: string, h3Index6: string, keywordSuggestions: string[], timesRequested?: number | null, toBeNotifiedProfileIds: string[], Area?: { __typename?: 'Area', id: string } | null, Vote: { __typename?: 'Vote', id: string, upvote: boolean, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string } }[] } };
+export type UpdateComingAreaToBeNotifiedMutation = { __typename?: 'Mutation', updateH6ComingAreaToBeNotified: { __typename?: 'ComingArea', id: string, areaId?: string | null, h3Index5: string, h3Index6: string, keywordSuggestions: Array<string>, timesRequested?: number | null, toBeNotifiedProfileIds: Array<string>, Area?: { __typename?: 'Area', id: string } | null, Vote: Array<{ __typename?: 'Vote', id: string, upvote: boolean, profileId: string, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string } }> } };
 
 export type UpdateH6VenueRemmendationMutationVariables = Exact<{
   venueRecommendationId: Scalars['String']['input'];
@@ -21177,19 +21165,19 @@ export type VenuesNearbyQueryVariables = Exact<{
 }>;
 
 
-export type VenuesNearbyQuery = { __typename?: 'Query', venuesNearby: { __typename?: 'ComingAreaResponse', comingAreas: { __typename?: 'ComingArea', id: string, h3Index5: string, h3Index6: string, keywordSuggestions: string[], timesRequested?: number | null, toBeNotifiedProfileIds: string[], createdAt: any, updatedAt: any, Area?: { __typename?: 'Area', id: string, City: { __typename?: 'City', id: string, name: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } }, State: { __typename?: 'State', id: string, name: string, isoCode: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } }, Country: { __typename?: 'Country', id: string, name: string, flag: string, isoCode: string } } | null, Vote: { __typename?: 'Vote', id: string, profileId: string, upvote: boolean }[] }[], recommendedAreas?: { __typename?: 'H3Index6VenueRecommendation', id: string, timesRequested?: number | null, venuesProfileIds: string[], createdAt: any, updatedAt: any, Area?: { __typename?: 'Area', id: string, State: { __typename?: 'State', id: string, isoCode: string, name: string }, City: { __typename?: 'City', id: string, name: string }, Country: { __typename?: 'Country', id: string, flag: string, isoCode: string, name: string } } | null }[] | null, searchArea?: { __typename?: 'Area', id: string, City: { __typename?: 'City', id: string, name: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } }, State: { __typename?: 'State', id: string, name: string, isoCode: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } }, Country: { __typename?: 'Country', id: string, name: string, flag: string, isoCode: string } } | null } | { __typename?: 'Error', errorCode: string, message: string } | { __typename?: 'VenuesNearbyResponse', searchArea?: { __typename?: 'Area', id: string, City: { __typename?: 'City', id: string, name: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } }, State: { __typename?: 'State', id: string, name: string, isoCode: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } }, Country: { __typename?: 'Country', id: string, name: string, flag: string, isoCode: string } } | null, venuesNearby: { __typename: 'ProfileVenue', id: string, ProfileType: ProfileType, distanceInM?: number | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, photos: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[], Venue?: { __typename?: 'Venue', id: string, name?: string | null, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: { __typename?: 'Out', id: string, venueProfileId: string, personalProfileId: string }[] } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: { __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: string[], h3Index15?: string | null }[] } | null } | null } | null }[], recommendedAreas?: { __typename?: 'H3Index6VenueRecommendation', id: string, timesRequested?: number | null, venuesProfileIds: string[], distanceInM?: number | null, createdAt: any, updatedAt: any, Area?: { __typename?: 'Area', id: string, State: { __typename?: 'State', id: string, isoCode: string, name: string }, City: { __typename?: 'City', id: string, name: string }, Country: { __typename?: 'Country', id: string, flag: string, isoCode: string, name: string } } | null }[] | null } };
+export type VenuesNearbyQuery = { __typename?: 'Query', venuesNearby: { __typename?: 'ComingAreaResponse', comingAreas: Array<{ __typename?: 'ComingArea', id: string, h3Index5: string, h3Index6: string, keywordSuggestions: Array<string>, timesRequested?: number | null, toBeNotifiedProfileIds: Array<string>, createdAt: any, updatedAt: any, Area?: { __typename?: 'Area', id: string, City: { __typename?: 'City', id: string, name: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } }, State: { __typename?: 'State', id: string, name: string, isoCode: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } }, Country: { __typename?: 'Country', id: string, name: string, flag: string, isoCode: string } } | null, Vote: Array<{ __typename?: 'Vote', id: string, profileId: string, upvote: boolean }> }>, recommendedAreas?: Array<{ __typename?: 'H3Index6VenueRecommendation', id: string, timesRequested?: number | null, venuesProfileIds: Array<string>, createdAt: any, updatedAt: any, Area?: { __typename?: 'Area', id: string, State: { __typename?: 'State', id: string, isoCode: string, name: string }, City: { __typename?: 'City', id: string, name: string }, Country: { __typename?: 'Country', id: string, flag: string, isoCode: string, name: string } } | null }> | null, searchArea?: { __typename?: 'Area', id: string, City: { __typename?: 'City', id: string, name: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } }, State: { __typename?: 'State', id: string, name: string, isoCode: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } }, Country: { __typename?: 'Country', id: string, name: string, flag: string, isoCode: string } } | null } | { __typename?: 'Error', errorCode: string, message: string } | { __typename?: 'VenuesNearbyResponse', searchArea?: { __typename?: 'Area', id: string, City: { __typename?: 'City', id: string, name: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } }, State: { __typename?: 'State', id: string, name: string, isoCode: string, Geometry: { __typename?: 'Geometry', id: string, latitude: number, longitude: number } }, Country: { __typename?: 'Country', id: string, name: string, flag: string, isoCode: string } } | null, venuesNearby: Array<{ __typename: 'ProfileVenue', id: string, ProfileType: ProfileType, distanceInM?: number | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }>, Venue?: { __typename?: 'Venue', id: string, name?: string | null, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, venueProfileId: string, personalProfileId: string }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null }>, recommendedAreas?: Array<{ __typename?: 'H3Index6VenueRecommendation', id: string, timesRequested?: number | null, venuesProfileIds: Array<string>, distanceInM?: number | null, createdAt: any, updatedAt: any, Area?: { __typename?: 'Area', id: string, State: { __typename?: 'State', id: string, isoCode: string, name: string }, City: { __typename?: 'City', id: string, name: string }, Country: { __typename?: 'Country', id: string, flag: string, isoCode: string, name: string } } | null }> | null } };
 
 export type GetAllCountriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllCountriesQuery = { __typename?: 'Query', getAllCountries: { __typename?: 'CountryResponseObject', name: string, phonecode: string, isoCode: string, flag: string, currency: string, latitude: string, longitude: string }[] };
+export type GetAllCountriesQuery = { __typename?: 'Query', getAllCountries: Array<{ __typename?: 'CountryResponseObject', name: string, phonecode: string, isoCode: string, flag: string, currency: string, latitude: string, longitude: string }> };
 
 export type GetAllStatesByCountryQueryVariables = Exact<{
   countryIsoCode: Scalars['String']['input'];
 }>;
 
 
-export type GetAllStatesByCountryQuery = { __typename?: 'Query', getAllStatesByCountry: { __typename?: 'StateResponseObject', name: string, isoCode: string, countryCode: string, latitude?: string | null, longitude?: string | null }[] };
+export type GetAllStatesByCountryQuery = { __typename?: 'Query', getAllStatesByCountry: Array<{ __typename?: 'StateResponseObject', name: string, isoCode: string, countryCode: string, latitude?: string | null, longitude?: string | null }> };
 
 export type GetAllCitiesByStateQueryVariables = Exact<{
   countryIsoCode: Scalars['String']['input'];
@@ -21197,36 +21185,36 @@ export type GetAllCitiesByStateQueryVariables = Exact<{
 }>;
 
 
-export type GetAllCitiesByStateQuery = { __typename?: 'Query', getAllCitiesByState: { __typename?: 'OrganizedCityResponseObject', popularCities?: { __typename?: 'CityResponseObject', name: string, stateCode: string, venuesInArea?: number | null, countryCode: string, latitude?: string | null, longitude?: string | null }[] | null, allCities?: { __typename?: 'CityResponseObject', name: string, stateCode: string, venuesInArea?: number | null, countryCode: string, latitude?: string | null, longitude?: string | null }[] | null } };
+export type GetAllCitiesByStateQuery = { __typename?: 'Query', getAllCitiesByState: { __typename?: 'OrganizedCityResponseObject', popularCities?: Array<{ __typename?: 'CityResponseObject', name: string, stateCode: string, venuesInArea?: number | null, countryCode: string, latitude?: string | null, longitude?: string | null }> | null, allCities?: Array<{ __typename?: 'CityResponseObject', name: string, stateCode: string, venuesInArea?: number | null, countryCode: string, latitude?: string | null, longitude?: string | null }> | null } };
 
 export type GetH3Index6VenueRecommendationByIdQueryVariables = Exact<{
   id: Scalars['String']['input'];
-  venuesProfileIds?: InputMaybe<Scalars['String']['input'][] | Scalars['String']['input']>;
+  venuesProfileIds?: InputMaybe<Array<Scalars['String']['input']> | Scalars['String']['input']>;
 }>;
 
 
-export type GetH3Index6VenueRecommendationByIdQuery = { __typename?: 'Query', getH3Index6VenueRecommendationById?: { __typename?: 'H3Index6VenueRecommendation', id: string, distanceInM?: number | null, h3Index6: string, keywordSuggestions: any[], timesRequested?: number | null, venuesProfileIds: string[], areaId?: string | null, updatedAt: any, createdAt: any, Area?: { __typename?: 'Area', id: string, State: { __typename?: 'State', id: string, isoCode: string, name: string }, City: { __typename?: 'City', id: string, name: string }, Country: { __typename?: 'Country', id: string, flag: string, isoCode: string, name: string }, ComingArea?: { __typename?: 'ComingArea', id: string, timesRequested?: number | null, toBeNotifiedProfileIds: string[], updatedAt: any, createdAt: any } | null } | null, Vote: { __typename?: 'Vote', id: string, upvote: boolean, profileId: string, createdAt: any, updatedAt: any }[], venues?: { __typename: 'ProfileVenue', id: string, ProfileType: ProfileType, distanceInM?: number | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: { __typename?: 'Tag', id: string, emoji?: string | null, name: string }[] } | null, photos: { __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }[], Venue?: { __typename?: 'Venue', id: string, name?: string | null, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: { __typename?: 'Out', id: string, venueProfileId: string, personalProfileId: string }[] } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: { __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: string[], h3Index15?: string | null }[] } | null } | null } | null }[] | null } | null };
+export type GetH3Index6VenueRecommendationByIdQuery = { __typename?: 'Query', getH3Index6VenueRecommendationById?: { __typename?: 'H3Index6VenueRecommendation', id: string, distanceInM?: number | null, h3Index6: string, keywordSuggestions: Array<any>, timesRequested?: number | null, venuesProfileIds: Array<string>, areaId?: string | null, updatedAt: any, createdAt: any, Area?: { __typename?: 'Area', id: string, State: { __typename?: 'State', id: string, isoCode: string, name: string }, City: { __typename?: 'City', id: string, name: string }, Country: { __typename?: 'Country', id: string, flag: string, isoCode: string, name: string }, ComingArea?: { __typename?: 'ComingArea', id: string, timesRequested?: number | null, toBeNotifiedProfileIds: Array<string>, updatedAt: any, createdAt: any } | null } | null, Vote: Array<{ __typename?: 'Vote', id: string, upvote: boolean, profileId: string, createdAt: any, updatedAt: any }>, venues?: Array<{ __typename: 'ProfileVenue', id: string, ProfileType: ProfileType, distanceInM?: number | null, IdentifiableInformation?: { __typename?: 'IdentifiableInformation', id: string, username: string, fullname?: string | null, nickname?: string | null, firstname?: string | null, lastname?: string | null, gender?: string | null, lookfor?: string | null, birthday?: any | null, hometown?: string | null, currenttown?: string | null } | null, DetailInformation?: { __typename?: 'DetailInformation', id: string, capacity?: number | null, description?: string | null, established?: any | null, profileId: string, Tags: Array<{ __typename?: 'Tag', id: string, emoji?: string | null, name: string }> } | null, photos: Array<{ __typename?: 'Photo', id: string, url: string, type?: PhotoType | null, position?: number | null, active: boolean, ratio?: string | null, blurhash?: string | null, createdAt: any, updatedAt: any }>, Venue?: { __typename?: 'Venue', id: string, name?: string | null, createdAt: any, updatedAt: any, Profile: { __typename?: 'Profile', id: string, createdAt: any, updatedAt: any }, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string, Out: Array<{ __typename?: 'Out', id: string, venueProfileId: string, personalProfileId: string }> } | null, Location?: { __typename?: 'Location', id: string, h3Index15: string, createdAt: any, updatedAt: any, Geometry?: { __typename?: 'Geometry', id: string, h3Index15?: string | null, latitude: number, longitude: number } | null, plusCode?: { __typename?: 'PluseCode', compoundCode?: string | null, globalCode: string, id: string } | null, Address?: { __typename?: 'Address', id: string, formattedAddress: string, AddressComponents: Array<{ __typename?: 'AddressComponent', id: string, short_name: string, long_name: string, types: Array<string>, h3Index15?: string | null }> } | null } | null } | null }> | null } | null };
 
 export type AddStoryPhotosMutationVariables = Exact<{
   photos?: InputMaybe<PhotoCreateManyProfileInputEnvelope>;
 }>;
 
 
-export type AddStoryPhotosMutation = { __typename?: 'Mutation', addStoryPhotos: { __typename?: 'Story', id: string, date: any, startDate: any, createdAt: any, updatedAt?: any | null, emojimood?: { __typename?: 'Emojimood', colors: string[], emoji?: string | null, emojiname?: string | null, id: string } | null, photos: { __typename?: 'Photo', active: boolean, blurhash?: string | null, createdAt: any, groupId?: string | null, height?: number | null, id: string, position?: number | null, profileId?: string | null, ratio?: string | null, storyId?: string | null, type?: PhotoType | null, updatedAt: any, url: string, width?: number | null, Group?: { __typename?: 'Group', id: string } | null, Profile?: { __typename?: 'Profile', id: string } | null, Story?: { __typename?: 'Story', id: string } | null }[] } };
+export type AddStoryPhotosMutation = { __typename?: 'Mutation', addStoryPhotos: { __typename?: 'Story', id: string, date: any, startDate: any, createdAt: any, updatedAt?: any | null, emojimood?: { __typename?: 'Emojimood', colors: Array<string>, emoji?: string | null, emojiname?: string | null, id: string } | null, photos: Array<{ __typename?: 'Photo', active: boolean, blurhash?: string | null, createdAt: any, groupId?: string | null, height?: number | null, id: string, position?: number | null, profileId?: string | null, ratio?: string | null, storyId?: string | null, type?: PhotoType | null, updatedAt: any, url: string, width?: number | null, Group?: { __typename?: 'Group', id: string } | null, Profile?: { __typename?: 'Profile', id: string } | null, Story?: { __typename?: 'Story', id: string } | null }> } };
 
 export type RemoveStoryPhotosMutationVariables = Exact<{
   photoId: Scalars['String']['input'];
 }>;
 
 
-export type RemoveStoryPhotosMutation = { __typename?: 'Mutation', removeStoryPhotos: { __typename?: 'Story', id: string, date: any, startDate: any, createdAt: any, updatedAt?: any | null, emojimood?: { __typename?: 'Emojimood', colors: string[], emoji?: string | null, emojiname?: string | null, id: string } | null, photos: { __typename?: 'Photo', active: boolean, blurhash?: string | null, createdAt: any, groupId?: string | null, height?: number | null, id: string, position?: number | null, profileId?: string | null, ratio?: string | null, storyId?: string | null, type?: PhotoType | null, updatedAt: any, url: string, width?: number | null, Group?: { __typename?: 'Group', id: string } | null, Profile?: { __typename?: 'Profile', id: string } | null, Story?: { __typename?: 'Story', id: string } | null }[] } };
+export type RemoveStoryPhotosMutation = { __typename?: 'Mutation', removeStoryPhotos: { __typename?: 'Story', id: string, date: any, startDate: any, createdAt: any, updatedAt?: any | null, emojimood?: { __typename?: 'Emojimood', colors: Array<string>, emoji?: string | null, emojiname?: string | null, id: string } | null, photos: Array<{ __typename?: 'Photo', active: boolean, blurhash?: string | null, createdAt: any, groupId?: string | null, height?: number | null, id: string, position?: number | null, profileId?: string | null, ratio?: string | null, storyId?: string | null, type?: PhotoType | null, updatedAt: any, url: string, width?: number | null, Group?: { __typename?: 'Group', id: string } | null, Profile?: { __typename?: 'Profile', id: string } | null, Story?: { __typename?: 'Story', id: string } | null }> } };
 
 export type UpdateStoryEmojimoodMutationVariables = Exact<{
   emojimoodId: Scalars['Int']['input'];
 }>;
 
 
-export type UpdateStoryEmojimoodMutation = { __typename?: 'Mutation', updateStoryEmojimood: { __typename?: 'Story', id: string, date: any, startDate: any, createdAt: any, updatedAt?: any | null, emojimood?: { __typename?: 'Emojimood', colors: string[], emoji?: string | null, emojiname?: string | null, id: string } | null, photos: { __typename?: 'Photo', active: boolean, blurhash?: string | null, createdAt: any, groupId?: string | null, height?: number | null, id: string, position?: number | null, profileId?: string | null, ratio?: string | null, storyId?: string | null, type?: PhotoType | null, updatedAt: any, url: string, width?: number | null, Group?: { __typename?: 'Group', id: string } | null, Profile?: { __typename?: 'Profile', id: string } | null, Story?: { __typename?: 'Story', id: string } | null }[] } };
+export type UpdateStoryEmojimoodMutation = { __typename?: 'Mutation', updateStoryEmojimood: { __typename?: 'Story', id: string, date: any, startDate: any, createdAt: any, updatedAt?: any | null, emojimood?: { __typename?: 'Emojimood', colors: Array<string>, emoji?: string | null, emojiname?: string | null, id: string } | null, photos: Array<{ __typename?: 'Photo', active: boolean, blurhash?: string | null, createdAt: any, groupId?: string | null, height?: number | null, id: string, position?: number | null, profileId?: string | null, ratio?: string | null, storyId?: string | null, type?: PhotoType | null, updatedAt: any, url: string, width?: number | null, Group?: { __typename?: 'Group', id: string } | null, Profile?: { __typename?: 'Profile', id: string } | null, Story?: { __typename?: 'Story', id: string } | null }> } };
 
 export type UpdateThemeManagerSwitchThemeMutationVariables = Exact<{
   id: Scalars['String']['input'];
@@ -21234,17 +21222,17 @@ export type UpdateThemeManagerSwitchThemeMutationVariables = Exact<{
 }>;
 
 
-export type UpdateThemeManagerSwitchThemeMutation = { __typename?: 'Mutation', updateThemeManagerSwitchTheme: { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } } };
+export type UpdateThemeManagerSwitchThemeMutation = { __typename?: 'Mutation', updateThemeManagerSwitchTheme: { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } } };
 
 export type GetAllThemesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllThemesQuery = { __typename?: 'Query', getAllThemes: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null }[] };
+export type GetAllThemesQuery = { __typename?: 'Query', getAllThemes: Array<{ __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null }> };
 
 export type GetProfileThemeManagerQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetProfileThemeManagerQuery = { __typename?: 'Query', getProfileThemeManager: { __typename?: 'ThemeManager', id: string, ProfileTheme: { __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: string[], webVersions: string[], startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }[] } };
+export type GetProfileThemeManagerQuery = { __typename?: 'Query', getProfileThemeManager: { __typename?: 'ThemeManager', id: string, ProfileTheme: Array<{ __typename?: 'ProfileTheme', id: string, isActive: boolean, themeId: string, themeManagerId?: string | null, updatedAt: any, createdAt: any, ThemeManager: { __typename?: 'ThemeManager', id: string }, Theme: { __typename?: 'Theme', id: string, name: string, theme?: any | null, mobileVersions: Array<string>, webVersions: Array<string>, startDate?: any | null, updatedAt: any, createdAt: any, endDate?: any | null } }> } };
 
 export const Area_FragmentFragmentDoc = gql`
     fragment AREA_FRAGMENT on Area {
@@ -21625,8 +21613,6 @@ export const Authorization_Device_Profile_FragmentFragmentDoc = gql`
   id
   profileId
   isActive
-  refreshtoken
-  accesstoken
   deviceManagerId
   Profile {
     ...PROFILE_FRAGMENT
@@ -21635,12 +21621,6 @@ export const Authorization_Device_Profile_FragmentFragmentDoc = gql`
   ProfileType
   DeviceManager {
     id
-  }
-  RefreshToken {
-    id
-    token
-    createdAt
-    updatedAt
   }
   createdAt
   updatedAt
@@ -22089,8 +22069,6 @@ export const SwitchDeviceProfileDocument = gql`
       __typename
       id
       isActive
-      refreshtoken
-      accesstoken
       AppType
       DeviceManager {
         id
@@ -22142,8 +22120,6 @@ export const GetADeviceManagerDocument = gql`
         AppType
         ProfileType
         isActive
-        accesstoken
-        refreshtoken
         deviceManagerId
         DeviceManager {
           id
@@ -22192,8 +22168,6 @@ export const RefreshDeviceManagerDocument = gql`
     ... on AuthorizationDeviceProfile {
       id
       isActive
-      refreshtoken
-      accesstoken
       AppType
       deviceManagerId
       Profile {
@@ -22234,6 +22208,62 @@ export function useRefreshDeviceManagerLazyQuery(baseOptions?: Apollo.LazyQueryH
 export type RefreshDeviceManagerQueryHookResult = ReturnType<typeof useRefreshDeviceManagerQuery>;
 export type RefreshDeviceManagerLazyQueryHookResult = ReturnType<typeof useRefreshDeviceManagerLazyQuery>;
 export type RefreshDeviceManagerQueryResult = Apollo.QueryResult<RefreshDeviceManagerQuery, RefreshDeviceManagerQueryVariables>;
+export const CreateMessageDocument = gql`
+    mutation createMessage($content: Json!, $conversationId: String, $members: [String!]) {
+  createMessage(
+    content: $content
+    conversationId: $conversationId
+    members: $members
+  ) {
+    id
+    content
+    conversationId
+    messageId
+    Conversation {
+      id
+      name
+      MembersConversationNotificationSetting {
+        id
+      }
+    }
+    Request {
+      id
+      senderProfileId
+      NotificationType
+    }
+    createAt
+    updatedAt
+  }
+}
+    `;
+export type CreateMessageMutationFn = Apollo.MutationFunction<CreateMessageMutation, CreateMessageMutationVariables>;
+
+/**
+ * __useCreateMessageMutation__
+ *
+ * To run a mutation, you first call `useCreateMessageMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateMessageMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createMessageMutation, { data, loading, error }] = useCreateMessageMutation({
+ *   variables: {
+ *      content: // value for 'content'
+ *      conversationId: // value for 'conversationId'
+ *      members: // value for 'members'
+ *   },
+ * });
+ */
+export function useCreateMessageMutation(baseOptions?: Apollo.MutationHookOptions<CreateMessageMutation, CreateMessageMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateMessageMutation, CreateMessageMutationVariables>(CreateMessageDocument, options);
+      }
+export type CreateMessageMutationHookResult = ReturnType<typeof useCreateMessageMutation>;
+export type CreateMessageMutationResult = Apollo.MutationResult<CreateMessageMutation>;
+export type CreateMessageMutationOptions = Apollo.BaseMutationOptions<CreateMessageMutation, CreateMessageMutationVariables>;
 export const GetConversationsDocument = gql`
     query getConversations {
   getConversations {

@@ -17,8 +17,6 @@ export const SWITCH_DEVICE_PROFILE_MUTATION = gql`
 				__typename
 				id
 				isActive
-				refreshtoken
-				accesstoken
 				AppType
 				DeviceManager {
 					id

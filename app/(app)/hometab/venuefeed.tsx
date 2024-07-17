@@ -73,7 +73,7 @@ export default () => {
 	// 	),
 	// )
 
-	console.log("🚀 ~ rSearchAreaVar:", rSearchAreaVar)
+
 	const [venuesNearbyQuery, { data, loading, error }] = useVenuesNearbyLazyQuery({
 		variables: {
 			cityName: rSearchAreaVar.useCurrentLocation
@@ -108,7 +108,6 @@ export default () => {
 	}, [])
 
 	useEffect(() => {
-		console.log("🚀 ~ useEffect ~ data?.venuesNearby:", data?.venuesNearby)
 		if (!data?.venuesNearby) {
 			getNearbyVenues()
 		}

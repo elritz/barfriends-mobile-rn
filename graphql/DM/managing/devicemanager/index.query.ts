@@ -12,8 +12,6 @@ export const GET_A_DEVICE_MANAGER_QUERY = gql`
 					AppType
 					ProfileType
 					isActive
-					accesstoken
-					refreshtoken
 					deviceManagerId
 					DeviceManager {
 						id
@@ -37,8 +35,6 @@ export const REFRESH_DEVICE_MANAGER_QUERY = gql`
 			... on AuthorizationDeviceProfile {
 				id
 				isActive
-				refreshtoken
-				accesstoken
 				AppType
 				deviceManagerId
 				Profile {

@@ -20,6 +20,11 @@ export const history: MessageProps[] = [
     text: "I'm fine, thank you! Have you seen new keyboard animation library?",
   },
   { text: "No! Let me check.", sender: true },
+  { text: "No! Let me check.", sender: true },
+  { text: "No! Let me check.", sender: true },
+  { text: "No! Let me check.", sender: true },
+  { text: "No! Let me check.", sender: true },
+  { text: "No! Let me check.", sender: true },
   {
     text: "Wow! I've been looking for it for a while. It's awesome!",
     sender: true,

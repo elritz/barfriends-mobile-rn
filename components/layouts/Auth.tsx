@@ -23,6 +23,7 @@ export default function Auth({ children }) {
 				}
 			},
 			onError: e => {
+				console.log("🚀 ~ Auth ~ e:", e)
 			},
 		})
 
@@ -37,6 +38,7 @@ export default function Auth({ children }) {
 				}
 			},
 			onError: e => {
+				console.log("🚀 ~ Auth ~ e:", e)
 			},
 		})
 
@@ -53,8 +55,10 @@ export default function Auth({ children }) {
 			key: AUTHORIZATION,
 			decode: true,
 		})) as AuthorizationDecoded
+		console.log("🚀 ~ applicationAuthorization ~ getAuthorization:", !getAuthorization)
 
 		if (!getAuthorization) {
+			console.log("🚀 CREAT GUEST")
 			createGuestProfileMutation()
 		} else {
 			refreshDeviceManagerQuery()

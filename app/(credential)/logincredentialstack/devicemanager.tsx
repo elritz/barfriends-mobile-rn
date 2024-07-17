@@ -31,11 +31,10 @@ export default () => {
 	})
 
 	const [switchDeviceProfileMutation, { data: SWDPData, loading: SWDPLoading, error: SWDPError }] =
-		useSwitchDeviceProfileMutation()
-
+		useSwitchDeviceProfileMutation({
+		})
 	const _press = item => {
-		if (rAuthorizationVar?.Profile?.id === item.id) {
-		} else {
+		if (rAuthorizationVar?.Profile?.id !== item.id) {
 			switchDeviceProfileMutation({
 				variables: {
 					profileId: item.id,
@@ -44,7 +43,13 @@ export default () => {
 					if (data?.switchDeviceProfile?.__typename === 'AuthorizationDeviceProfile') {
 						const deviceManager = data.switchDeviceProfile as AuthorizationDeviceProfile
 						AuthorizationReactiveVar(deviceManager)
-						setTimeout(() => router.replace('/(app)/hometab/venuefeed'), 1000)
+						setTimeout(
+							() =>
+								router.push({
+									pathname: '/(app)/hometab/venuefeed',
+								}),
+							1000,
+						)
 					} else if (data.switchDeviceProfile.__typename === 'Error') {
 						router.push({
 							pathname: '/(credential)/logincredentialstack/loginpassword',
@@ -55,7 +60,7 @@ export default () => {
 							},
 						})
 					}
-				},
+				}
 			})
 		}
 	}

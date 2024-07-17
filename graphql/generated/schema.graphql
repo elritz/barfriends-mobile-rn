@@ -1613,13 +1613,11 @@ type AuthorizationDeviceProfile {
   Profile: Profile
   ProfileType: ProfileType!
   RefreshToken: RefreshToken
-  accesstoken: String
   createdAt: DateTime!
   deviceManagerId: String!
   id: ID!
   isActive: Boolean!
   profileId: String!
-  refreshtoken: String
   updatedAt: DateTime!
 }
 
@@ -3999,7 +3997,6 @@ input DeviceOrderByWithRelationInput {
 input DeviceProfileCountOrderByAggregateInput {
   AppType: SortOrder
   ProfileType: SortOrder
-  accesstoken: SortOrder
   createdAt: SortOrder
   deviceManagerId: SortOrder
   id: SortOrder
@@ -4013,7 +4010,6 @@ input DeviceProfileCreateInput {
   DeviceManager: DeviceManagerCreateNestedOneWithoutDeviceProfilesInput!
   ProfileType: ProfileType!
   RefreshToken: RefreshTokenCreateNestedOneWithoutDeviceProfileInput
-  accesstoken: String
   createdAt: DateTime
   id: String
   isActive: Boolean!
@@ -4024,7 +4020,6 @@ input DeviceProfileCreateInput {
 input DeviceProfileCreateManyDeviceManagerInput {
   AppType: AppType!
   ProfileType: ProfileType!
-  accesstoken: String
   createdAt: DateTime
   id: String
   isActive: Boolean!
@@ -4040,7 +4035,6 @@ input DeviceProfileCreateManyDeviceManagerInputEnvelope {
 input DeviceProfileCreateManyInput {
   AppType: AppType!
   ProfileType: ProfileType!
-  accesstoken: String
   createdAt: DateTime
   deviceManagerId: String!
   id: String
@@ -4076,7 +4070,6 @@ input DeviceProfileCreateWithoutDeviceManagerInput {
   AppType: AppType!
   ProfileType: ProfileType!
   RefreshToken: RefreshTokenCreateNestedOneWithoutDeviceProfileInput
-  accesstoken: String
   createdAt: DateTime
   id: String
   isActive: Boolean!
@@ -4088,7 +4081,6 @@ input DeviceProfileCreateWithoutRefreshTokenInput {
   AppType: AppType!
   DeviceManager: DeviceManagerCreateNestedOneWithoutDeviceProfilesInput!
   ProfileType: ProfileType!
-  accesstoken: String
   createdAt: DateTime
   id: String
   isActive: Boolean!
@@ -4105,7 +4097,6 @@ input DeviceProfileListRelationFilter {
 input DeviceProfileMaxOrderByAggregateInput {
   AppType: SortOrder
   ProfileType: SortOrder
-  accesstoken: SortOrder
   createdAt: SortOrder
   deviceManagerId: SortOrder
   id: SortOrder
@@ -4117,7 +4108,6 @@ input DeviceProfileMaxOrderByAggregateInput {
 input DeviceProfileMinOrderByAggregateInput {
   AppType: SortOrder
   ProfileType: SortOrder
-  accesstoken: SortOrder
   createdAt: SortOrder
   deviceManagerId: SortOrder
   id: SortOrder
@@ -4141,7 +4131,6 @@ input DeviceProfileOrderByWithAggregationInput {
   _count: DeviceProfileCountOrderByAggregateInput
   _max: DeviceProfileMaxOrderByAggregateInput
   _min: DeviceProfileMinOrderByAggregateInput
-  accesstoken: SortOrder
   createdAt: SortOrder
   deviceManagerId: SortOrder
   id: SortOrder
@@ -4155,7 +4144,6 @@ input DeviceProfileOrderByWithRelationInput {
   DeviceManager: DeviceManagerOrderByWithRelationInput
   ProfileType: SortOrder
   RefreshToken: RefreshTokenOrderByWithRelationInput
-  accesstoken: SortOrder
   createdAt: SortOrder
   deviceManagerId: SortOrder
   id: SortOrder
@@ -4167,7 +4155,6 @@ input DeviceProfileOrderByWithRelationInput {
 enum DeviceProfileScalarFieldEnum {
   AppType
   ProfileType
-  accesstoken
   createdAt
   deviceManagerId
   id
@@ -4182,7 +4169,6 @@ input DeviceProfileScalarWhereInput {
   NOT: [DeviceProfileScalarWhereInput!]
   OR: [DeviceProfileScalarWhereInput!]
   ProfileType: EnumProfileTypeFilter
-  accesstoken: StringNullableFilter
   createdAt: DateTimeFilter
   deviceManagerId: StringFilter
   id: StringFilter
@@ -4197,7 +4183,6 @@ input DeviceProfileScalarWhereWithAggregatesInput {
   NOT: [DeviceProfileScalarWhereWithAggregatesInput!]
   OR: [DeviceProfileScalarWhereWithAggregatesInput!]
   ProfileType: EnumProfileTypeWithAggregatesFilter
-  accesstoken: StringNullableWithAggregatesFilter
   createdAt: DateTimeWithAggregatesFilter
   deviceManagerId: StringWithAggregatesFilter
   id: StringWithAggregatesFilter
@@ -4211,7 +4196,6 @@ input DeviceProfileUpdateInput {
   DeviceManager: DeviceManagerUpdateOneRequiredWithoutDeviceProfilesNestedInput
   ProfileType: EnumProfileTypeFieldUpdateOperationsInput
   RefreshToken: RefreshTokenUpdateOneWithoutDeviceProfileNestedInput
-  accesstoken: NullableStringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   isActive: BoolFieldUpdateOperationsInput
@@ -4222,7 +4206,6 @@ input DeviceProfileUpdateInput {
 input DeviceProfileUpdateManyMutationInput {
   AppType: EnumAppTypeFieldUpdateOperationsInput
   ProfileType: EnumProfileTypeFieldUpdateOperationsInput
-  accesstoken: NullableStringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   isActive: BoolFieldUpdateOperationsInput
@@ -4273,7 +4256,6 @@ input DeviceProfileUpdateWithoutDeviceManagerInput {
   AppType: EnumAppTypeFieldUpdateOperationsInput
   ProfileType: EnumProfileTypeFieldUpdateOperationsInput
   RefreshToken: RefreshTokenUpdateOneWithoutDeviceProfileNestedInput
-  accesstoken: NullableStringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   isActive: BoolFieldUpdateOperationsInput
@@ -4285,7 +4267,6 @@ input DeviceProfileUpdateWithoutRefreshTokenInput {
   AppType: EnumAppTypeFieldUpdateOperationsInput
   DeviceManager: DeviceManagerUpdateOneRequiredWithoutDeviceProfilesNestedInput
   ProfileType: EnumProfileTypeFieldUpdateOperationsInput
-  accesstoken: NullableStringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   isActive: BoolFieldUpdateOperationsInput
@@ -4313,7 +4294,6 @@ input DeviceProfileWhereInput {
   OR: [DeviceProfileWhereInput!]
   ProfileType: EnumProfileTypeFilter
   RefreshToken: RefreshTokenWhereInput
-  accesstoken: StringNullableFilter
   createdAt: DateTimeFilter
   deviceManagerId: StringFilter
   id: StringFilter
@@ -4330,7 +4310,6 @@ input DeviceProfileWhereUniqueInput {
   OR: [DeviceProfileWhereInput!]
   ProfileType: EnumProfileTypeFilter
   RefreshToken: RefreshTokenWhereInput
-  accesstoken: StringNullableFilter
   createdAt: DateTimeFilter
   deviceManagerId: StringFilter
   id: String

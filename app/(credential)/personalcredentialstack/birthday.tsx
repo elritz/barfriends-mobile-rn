@@ -110,15 +110,18 @@ export default () => {
 	return (
 		<Box
 			flex={1}
-			alignItems='center'
+			height={'auto'}
 			flexDirection='column'
-			justifyContent='space-between'
-			mt={contentInsets.top}
+			justifyContent='flex-start'
+			// mt={contentInsets.top}
+			mx={'5%'}
 			bg='$transparent'
 		>
-			<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$3xl'}>
-				What's your birthday
-			</Heading>
+			<VStack justifyContent='flex-start' flex={1}>
+				<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$3xl'}>
+					Your Birthday
+				</Heading>
+			</VStack>
 			<>
 				<Controller
 					control={control}
@@ -133,8 +136,9 @@ export default () => {
 								maximumDate={new Date()}
 								onChange={(e, selectedDate) => onDateChange(selectedDate)}
 								style={{
+									alignSelf: 'flex-start',
 									width: '100%',
-									height: '100%',
+									height: '90%',
 								}}
 							/>
 						</View>

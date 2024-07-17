@@ -1,7 +1,7 @@
 // TODO FN(How can i set the profile here, currently only getting Profile.id)
 import { ApolloLink } from '@apollo/client'
 import { asyncMap } from '@apollo/client/utilities'
-import { AUTHORIZATION } from '#/constants/StorageConstants'
+import { AUTHORIZATION, REFRESH } from '#/constants/StorageConstants'
 import {
 	secureStorageItemCreate,
 	secureStorageItemDelete,
@@ -9,11 +9,13 @@ import {
 
 const afterwareLink = new ApolloLink((operation, forward) =>
 	asyncMap(forward(operation), async response => {
+		console.log("🚀 ~ asyncMap ~ response:", response)
 		const {
 			response: { headers },
 		} = operation.getContext()
 		if (headers) {
 			const authorization = headers.get('authorization')
+			const refresh = headers.get('refresh')
 			// await secureStorageItemDelete({
 			// 	key: AUTHORIZATION,
 			// })
@@ -22,6 +24,13 @@ const afterwareLink = new ApolloLink((operation, forward) =>
 				await secureStorageItemCreate({
 					value: authorization,
 					key: AUTHORIZATION,
+				})
+			}
+			if(refresh) {
+				console.log("🚀 ~ asyncMap ~ refresh:", refresh)
+				await secureStorageItemCreate({
+					value: refresh,
+					key: REFRESH,
 				})
 			}
 		}

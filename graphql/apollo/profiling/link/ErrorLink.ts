@@ -20,23 +20,18 @@ const errorLink = onError(({ graphQLErrors, networkError, operation, forward }) 
 	if (networkError) {
 		if(__DEV__)  {
 		console.log("~ errorLink ~ networkError:", networkError)
-		console.log('NETWORKERROR   ============ ', networkError.name, '  ============ ')
+		console.log('NETWORK ERROR   ============ ', networkError.cause, networkError.name, '  ============ ')
 		}
 		switch (networkError.name) {
 			case 'ServerError':
-				console.log('here :>> ',);
 				return forward(operation)
 			case 'TypeError':
-				console.log('here :>> 22',);
 				return forward(operation)
 			case '500':
-					console.log('here :>> 224',);
 					return forward(operation)
 			case undefined:
-				console.log('here :>> 2244',);
 				return forward(operation)
 			default:
-				console.log('here :>> 224455',);
 				return forward(operation)
 		}
 	}

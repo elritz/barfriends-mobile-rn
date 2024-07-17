@@ -1,6 +1,6 @@
 
-import React, { useCallback, useRef, useState } from "react";
-import { View } from "react-native";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { SafeAreaView as RNSafeAreaView, View } from "react-native";
 import {
   useKeyboardHandler,
 } from "react-native-keyboard-controller";
@@ -13,12 +13,14 @@ import Reanimated, {
 import { StyleSheet } from "react-native";
 import Message from "@/components/screens/conversations/Message";
 import { history } from "@/components/screens/conversations/Message/data";
-import { Input, InputField, Box, InputSlot, EyeOffIcon, InputIcon, EyeIcon } from "@gluestack-ui/themed";
+import { Input, InputField, Box, InputSlot, EyeOffIcon, InputIcon, EyeIcon, SafeAreaView } from "@gluestack-ui/themed";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { useReactiveVar } from "@apollo/client";
 import { ThemeReactiveVar } from "@/reactive/theme";
 // import { ThemeReactiveVar } from "#/reactive/theme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useCreateMessageMutation } from "@/graphql/generated";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
 const AnimatedTextInput = Reanimated.createAnimatedComponent(Box);
 
@@ -42,6 +44,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+interface FormValues {
+  text: string;
+}
 
 const useKeyboardAnimation = () => {
   const progress = useSharedValue(0);
@@ -106,21 +112,31 @@ const useKeyboardAnimation = () => {
 const TEXT_INPUT_HEIGHT = 80;
 
 const contentContainerStyle = {
-  paddingBottom: TEXT_INPUT_HEIGHT,
+  paddingBottom: TEXT_INPUT_HEIGHT + 75,
 };
-const AnimatedBoxInput = Reanimated.createAnimatedComponent(Box);
+// const AnimatedBoxInput = Reanimated.createAnimatedComponent(Box);
+const AnimatedView = Reanimated.createAnimatedComponent(View);
 
-function InteractiveKeyboard() {
-  const [showPassword, setShowPassword] = useState(false)
-  const handleState = () => {
-    setShowPassword((showState) => {
-      return !showState
-    })
-  }
+function AnimatedChatroom() {
+  const refSafeArea = useRef<RNSafeAreaView>(null);
+
   const ref = useRef<Reanimated.ScrollView>(null);
   const rTheme = useReactiveVar(ThemeReactiveVar)
-  const insets = useSafeAreaInsets()
   const { height, onScroll, inset, offset } = useKeyboardAnimation();
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isSubmitting, isSubmitted },
+  } = useForm<FormValues>({
+    defaultValues: {
+      text: '',
+      // text: 'Weqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqeqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqwe',
+    },
+  })
+
+  const [createMessageMutation, { data, loading, error }] = useCreateMessageMutation()
+
   const scrollToBottom = useCallback(() => {
     ref.current?.scrollToEnd({ animated: false });
   }, []);
@@ -128,8 +144,7 @@ function InteractiveKeyboard() {
   const BoxInputStyle = useAnimatedStyle(
     () => ({
       position: "absolute",
-      minHeight: TEXT_INPUT_HEIGHT,
-      height: 'auto',
+      minHeight: height.value < 100 ? TEXT_INPUT_HEIGHT : TEXT_INPUT_HEIGHT - 20,
       width: "100%",
       transform: [{ translateY: -height.value }],
       paddingHorizontal: 10,
@@ -148,6 +163,24 @@ function InteractiveKeyboard() {
     },
   }));
 
+  // useEffect(() => {
+  //   if (refSafeArea && refSafeArea.current) {
+  //     console.log("🚀 ~ useEffect ~ refSafeArea.current:", refSafeArea.current)
+  //   }
+  // }, [])
+
+  const handleSendMessage = useCallback<SubmitHandler<FormValues>>(({ text }) => {
+    console.log("🚀 ~ handleSendMessage ~ value:", text)
+    // createMessageMutation({
+    //   variables: {
+    //     content: {
+    //       text: value,
+    //     },
+    //     conversationId: '1'
+    //   }
+    // })
+  }, [])
+
   return (
     <View style={styles.container}>
       <Reanimated.ScrollView
@@ -158,6 +191,7 @@ function InteractiveKeyboard() {
         // simulation of `automaticallyAdjustKeyboardInsets` behavior on RN < 0.73
         animatedProps={props}
         onScroll={onScroll}
+        contentInset={{ top: 200 }}
         automaticallyAdjustContentInsets={false}
         contentInsetAdjustmentBehavior="never"
       >
@@ -165,18 +199,40 @@ function InteractiveKeyboard() {
           <Message key={index} {...message} />
         ))}
       </Reanimated.ScrollView>
-      <AnimatedBoxInput style={[BoxInputStyle, { backgroundColor: rTheme.colorScheme === 'light' ? rTheme.theme?.gluestack.tokens.colors.light100 : rTheme.theme?.gluestack.tokens.colors.black }]}>
-        {/* <AnimatedBoxInput style={BoxInputStyle}> */}
-        <Input flexDirection="row" bg="$blue600" rounded={'$xl'} alignItems="center" height={'auto'} minHeight={40} maxHeight={150} mt={'$2'}>
-          <InputField flex={1} height={'auto'} multiline onPressIn={() => ref.current?.scrollToEnd()} fontSize={'$lg'} />
-          <InputSlot bg={'$primary500'} mr={'$2'} p={'$1'} alignItems="center" justifyContent="center" h={25} w={25} rounded={'$full'}>
-            <FontAwesome6 name={'arrow-up'} fontSize={'$xl'} size={16} color={'#ffffff'} />
-          </InputSlot>
-        </Input>
 
-      </AnimatedBoxInput>
-    </View>
+      <AnimatedView style={[BoxInputStyle, { backgroundColor: rTheme.colorScheme === 'light' ? rTheme.theme?.gluestack.tokens.colors.light200 : rTheme.theme?.gluestack.tokens.colors.black }]}>
+        <Controller
+          control={control}
+          name='text'
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, onBlur, value } }) => {
+            return (
+              <SafeAreaView ref={refSafeArea} mb={'$2'}>
+                <Input borderColor="$light300" flexDirection="row" rounded={'$xl'} alignItems="center" height={'auto'} minHeight={40} maxHeight={150} mt={'$2'} >
+                  <InputField
+                    borderWidth={0}
+                    value={value}
+                    onChangeText={onChange}
+                    flex={1} height={'auto'} multiline onPressIn={() => ref.current?.scrollToEnd()} fontSize={'$lg'} />
+                  <InputSlot
+                    bg={'$primary500'}
+                    mr={'$2'}
+                    p={'$1'}
+                    alignItems="center"
+                    justifyContent="center" h={25} w={25} rounded={'$full'}
+                    onPress={handleSubmit(handleSendMessage)}>
+                    <FontAwesome6 name={'arrow-up'} fontSize={'$xl'} size={16} color={'#ffffff'} />
+                  </InputSlot>
+                </Input>
+              </SafeAreaView>
+            )
+          }}
+        />
+      </AnimatedView>
+    </View >
   );
 }
 
-export default InteractiveKeyboard;
+export default AnimatedChatroom;

@@ -1,6 +1,5 @@
 import { Redirect } from 'expo-router'
 import React from 'react'
-
 export default function index() {
 	const personal_username_misia = 'misia'
 	// const device_manager_profile_id = 'e90675d1-009f-4ca8-9d76-f163a885189f'
@@ -9,11 +8,11 @@ export default function index() {
 
 	//? Hometabs
 	// return <Redirect href={'/brokenstate'} />
-	// return <Redirect href={'/(app)/hometab/venuefeed'} />
+	return <Redirect href={'/(app)/hometab/venuefeed'} />
 	//? Convesations
 	// return <Redirect href={'/(app)/hometab/conversations'} />
 	// return <Redirect href={{ pathname: '/(app)/conversation/[conversationid]', params: { conversationid: 'ce353001-e8d6-4175-ae25-9c37cbd742f0' } }} />
-	return <Redirect href={{ pathname: '/(app)/animatedconversation/[animatedconversationid]', params: { animatedconversationid: 'ce353001-e8d6-4175-ae25-9c37cbd742f0' } }} />
+	// return <Redirect href={{ pathname: '/(app)/animatedconversation/[animatedconversationid]', params: { animatedconversationid: 'ce353001-e8d6-4175-ae25-9c37cbd742f0' } }} />
 	//? User profile
 
 	// return <Redirect href={'/(app)/hometab/profilestack/userprofile'} />
@@ -29,7 +28,9 @@ export default function index() {
 	// return <Redirect href={'/(credential)/personalcredentialstack/getstarted'} />
 	// return <Redirect href={'/(credential)/personalcredentialstack/create'} />
 	// return <Redirect href={'/(credential)/personalcredentialstack/name'} />
+	// return <Redirect href={'/(credential)/personalcredentialstack/birthday'} />
 	// return <Redirect href={'/(credential)/logincredentialstack/loginpassword'} />
+	// return <Redirect href={'/(credential)/logincredentialstack/authenticator'} />
 
 	//? Public
 	// return <Redirect href={`/(app)/public/personal/${personal_username_misia}`} />
