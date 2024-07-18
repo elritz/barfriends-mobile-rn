@@ -21,11 +21,7 @@ type Props = {
 	showDistance?: boolean
 }
 
-const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
-	VerticalVenueFeedVenueItem.defaultProps = {
-		showJoin: true,
-		showDistance: true,
-	}
+const VerticalVenueFeedVenueItem: React.FC<Props> = ({ showJoin = true, showDistance = true, item }: Props) => {
 	const router = useRouter()
 	const [hideBlur, setHideBlur] = useState(false)
 	const [distance, setDistance] = useState(0)
@@ -62,16 +58,16 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 	)
 
 	useEffect(() => {
-		if (props.item?.distanceInM) {
-			setDist({ distanceInM: props.item?.distanceInM })
+		if (item?.distanceInM) {
+			setDist({ distanceInM: item?.distanceInM })
 		}
-	}, [props.item?.distanceInM])
+	}, [item?.distanceInM])
 
 	useEffect(() => {
 		if (rAuthorizationVar?.Profile?.Personal) {
 			if (
 				rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out.some(
-					item => item.venueProfileId === props.item?.id,
+					item => item.venueProfileId === item?.id,
 				)
 			) {
 				setIsJoined(true)
@@ -93,12 +89,12 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 
 	const _press = () => {
 		router.push({
-			pathname: `/(app)/public/venue/${props.item?.IdentifiableInformation?.username}`,
+			pathname: `/(app)/public/venue/${item?.IdentifiableInformation?.username}`,
 			params: {
-				venueProfileId: String(props.item?.id),
-				distanceInM: Number(props.item?.distanceInM),
-				latitude: Number(props.item?.Venue?.Location?.Geometry?.latitude),
-				longitude: Number(props.item?.Venue?.Location?.Geometry?.longitude),
+				venueProfileId: String(item?.id),
+				distanceInM: Number(item?.distanceInM),
+				latitude: Number(item?.Venue?.Location?.Geometry?.latitude),
+				longitude: Number(item?.Venue?.Location?.Geometry?.longitude),
 			},
 		})
 	}
@@ -128,7 +124,7 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 					}}
 				>
 					<Image
-						source={{ uri: props.item?.photos?.[0]?.url }}
+						source={{ uri: item?.photos?.[0]?.url }}
 						resizeMode='cover'
 						onLoadEnd={() => setHideBlur(true)}
 						style={{
@@ -138,9 +134,9 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 					/>
 					{!hideBlur && (
 						<>
-							{props.item?.photos?.[0]?.blurhash && (
+							{item?.photos?.[0]?.blurhash && (
 								<Blurhash
-									blurhash={String(props.item.photos[0].blurhash)}
+									blurhash={String(item.photos[0].blurhash)}
 									style={{
 										flex: 1,
 										borderRadius: 10,
@@ -162,9 +158,9 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 						ellipsizeMode='tail'
 					// underline={isPressed}
 					>
-						{getTitleCase(props?.item?.IdentifiableInformation?.fullname)}
+						{getTitleCase(item?.IdentifiableInformation?.fullname)}
 					</Heading>
-					{props.showDistance && (
+					{showDistance && (
 						<Heading
 							fontSize={'$md'}
 							fontWeight={'$bold'}
@@ -176,7 +172,7 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 							{distance} {metric}
 						</Heading>
 					)}
-					{props.showJoin && (
+					{showJoin && (
 						<>
 							{canJoin ? (
 								<Button
@@ -200,8 +196,8 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = (props: Props) => {
 									onPress={async () => {
 										setLoadingDistance(true)
 										const { distanceInM } = await refreshLocation({
-											vlat: props.item?.Venue?.Location?.Geometry?.latitude,
-											vlng: props.item?.Venue?.Location?.Geometry?.longitude,
+											vlat: item?.Venue?.Location?.Geometry?.latitude,
+											vlng: item?.Venue?.Location?.Geometry?.longitude,
 										})
 										setLoadingDistance(false)
 										setDist({ distanceInM })

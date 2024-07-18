@@ -30,16 +30,13 @@ export interface DatePickerProps {
 // Type 'ModeType' is not assignable to type 'AndroidMode | undefined'.
 
 const DatePicker: React.FC<DatePickerProps> = ({
-	maxDate,
+	maxDate = new Date(),
 	value,
 	display,
 	mode,
 	style,
 	onChange,
 }: DatePickerProps) => {
-	DatePicker.defaultProps = {
-		maxDate: new Date(),
-	}
 	return (
 		<DateTimePicker
 			testID='dateTimePicker'

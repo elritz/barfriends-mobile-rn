@@ -52,10 +52,10 @@ const LocationPermissionItemEmptyState = () => {
 							: createTwoButtonAlert()
 						: await useSetSearchAreaWithLocation()
 					: (SearchAreaReactiveVar({
-							...newSearchArea,
-							useCurrentLocation: false,
-					  }),
-					  await AsyncStorage.setItem(LOCAL_STORAGE_SEARCH_AREA, JSON.stringify(newSearchArea)))
+						...newSearchArea,
+						useCurrentLocation: false,
+					}),
+						await AsyncStorage.setItem(LOCAL_STORAGE_SEARCH_AREA, JSON.stringify(newSearchArea)))
 			}}
 			rounded={'$xl'}
 			sx={{

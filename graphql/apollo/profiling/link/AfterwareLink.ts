@@ -9,7 +9,6 @@ import {
 
 const afterwareLink = new ApolloLink((operation, forward) =>
 	asyncMap(forward(operation), async response => {
-		console.log("🚀 ~ asyncMap ~ response:", response)
 		const {
 			response: { headers },
 		} = operation.getContext()

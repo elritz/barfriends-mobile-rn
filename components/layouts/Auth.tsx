@@ -23,7 +23,7 @@ export default function Auth({ children }) {
 				}
 			},
 			onError: e => {
-				console.log("🚀 ~ Auth ~ e:", e)
+				console.log("🚀 ~ Auth REFRESH DEVICE MANAGER~ e:", e)
 			},
 		})
 
@@ -38,7 +38,7 @@ export default function Auth({ children }) {
 				}
 			},
 			onError: e => {
-				console.log("🚀 ~ Auth ~ e:", e)
+				console.log("🚀 ~ Auth ~ e CREATE GUEST:", e.name)
 			},
 		})
 
@@ -55,7 +55,7 @@ export default function Auth({ children }) {
 			key: AUTHORIZATION,
 			decode: true,
 		})) as AuthorizationDecoded
-		console.log("🚀 ~ applicationAuthorization ~ getAuthorization:", !getAuthorization)
+		console.log("🚀 ~ applicationAuthorization ~ getAuthorization:", getAuthorization)
 
 		if (!getAuthorization) {
 			console.log("🚀 CREAT GUEST")

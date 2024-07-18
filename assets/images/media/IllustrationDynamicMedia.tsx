@@ -4,20 +4,12 @@ import { ThemeReactiveVar } from '#/reactive'
 import Svg, { Path, Ellipse } from 'react-native-svg'
 
 const IllustrationDynamicMedia: React.FC<DynamicIllustrationProps> = ({
-	width,
-	height,
-	primary,
-	secondary,
+	width = 200,
+	height = 200,
+	primary = ThemeReactiveVar().theme?.gluestack.tokens.colors.primary500,
+	secondary = ThemeReactiveVar().theme?.gluestack.tokens.colors.secondary900 || 'black',
+	tertiary = ThemeReactiveVar().theme?.gluestack.tokens.colors.tertiary500,
 }: DynamicIllustrationProps) => {
-	const rTheme = useReactiveVar(ThemeReactiveVar)
-
-	IllustrationDynamicMedia.defaultProps = {
-		width: 200,
-		height: 200,
-		primary: rTheme.theme?.gluestack.tokens.colors.primary500,
-		secondary: rTheme.theme?.gluestack.tokens.colors.secondary900 || 'black',
-		tertiary: rTheme.theme?.gluestack.tokens.colors.tertiary500,
-	}
 
 	return (
 		<Svg

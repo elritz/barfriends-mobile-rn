@@ -11,20 +11,11 @@ interface Props {
 }
 
 const CompanyCoasterLogoDynamicInverse: React.FC<Props> = ({
-	width,
-	height,
-	backgroundColor,
-	iconColor,
+	width = 100,
+	height = 100,
+	backgroundColor = ThemeReactiveVar().colorScheme === 'light' ? 'white' : 'black',
+	iconColor = defaulttheme.barfriends.dark.primary,
 }: Props) => {
-	const rTheme = useReactiveVar(ThemeReactiveVar)
-
-	CompanyCoasterLogoDynamicInverse.defaultProps = {
-		width: 100,
-		height: 100,
-		backgroundColor: rTheme.colorScheme === 'light' ? 'white' : 'black',
-		iconColor: defaulttheme.barfriends.dark.primary,
-	}
-
 	return (
 		<Svg
 			xmlns='http://www.w3.org/2000/svg'

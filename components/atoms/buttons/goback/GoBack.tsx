@@ -9,13 +9,12 @@ interface ButtonProps {
 	width?: number
 }
 
-const GoBack: React.FC<ButtonProps> = (props: ButtonProps) => {
+const GoBack: React.FC<ButtonProps> = ({
+	width = 40,
+	height = wp(15),
+	children
+}: ButtonProps) => {
 	const router = useRouter()
-
-	GoBack.defaultProps = {
-		width: 40,
-		height: wp(15),
-	}
 
 	const handleOnPress = () => {
 		if (router.canGoBack()) {
@@ -29,8 +28,6 @@ const GoBack: React.FC<ButtonProps> = (props: ButtonProps) => {
 		// 	searchtext: '',
 		// })
 	}
-
-	const { width, height, children } = props
 
 	return (
 		<Pressable
