@@ -242,7 +242,7 @@ export default () => {
 									}
 									fontSize={'$2xl'}
 									type='text'
-									autoFocus
+									autoFocus={true}
 									sx={{
 										h: 50,
 									}}

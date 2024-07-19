@@ -40,6 +40,7 @@ export default () => {
 					profileId: item.id,
 				},
 				onCompleted: data => {
+					console.log("🚀 ~ data?.switchDeviceProfile:", data?.switchDeviceProfile)
 					if (data?.switchDeviceProfile?.__typename === 'AuthorizationDeviceProfile') {
 						const deviceManager = data.switchDeviceProfile as AuthorizationDeviceProfile
 						AuthorizationReactiveVar(deviceManager)

@@ -100,9 +100,6 @@ export const CondensedHorizontalFriendNotifciation = <T,>({
 							>
 								{receiver?.Profile?.IdentifiableInformation?.fullname}
 							</Text>
-							<Text flex={1} fontSize={'$sm'} fontWeight='$medium'>
-								You want to be Barfriends
-							</Text>
 						</VStack>
 						<Button
 							rounded={'$lg'}
@@ -137,9 +134,6 @@ export const CondensedHorizontalFriendNotifciation = <T,>({
 							>
 								{receiver?.Profile?.IdentifiableInformation?.fullname}
 							</Text>
-							<Text flex={1} flexWrap='wrap' fontSize={'$sm'} fontWeight='$medium'>
-								Wants to be Barfriends
-							</Text>
 						</VStack>
 						<HStack space='sm'>
 							<Button
@@ -159,7 +153,7 @@ export const CondensedHorizontalFriendNotifciation = <T,>({
 									Decline
 								</Text>
 							</Button>
-							<Button
+							{/* <Button
 								size='xs'
 								height={28}
 								onPress={() => {
@@ -172,7 +166,7 @@ export const CondensedHorizontalFriendNotifciation = <T,>({
 								}}
 							>
 								<ButtonText fontSize={'$sm'}>Accept</ButtonText>
-							</Button>
+							</Button> */}
 						</HStack>
 					</HStack>
 				</SectionContainer>

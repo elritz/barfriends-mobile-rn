@@ -201,3 +201,4 @@ yarn-error.*
 *.tsbuildinfo
 
 # @end expo-cli
+.expo/devices.json
