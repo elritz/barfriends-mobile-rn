@@ -1,4 +1,5 @@
-import { Box, Text } from '@gluestack-ui/themed'
+import { Text } from "#/components/ui/text";
+import { Box } from "#/components/ui/box";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 interface StatusScreenProps {}
@@ -19,8 +20,8 @@ export default ({}: StatusScreenProps) => {
 	]
 
 	return (
-		<Box flexDirection={'column'}>
-			<KeyboardAwareScrollView
+        <Box className="flex-column">
+            <KeyboardAwareScrollView
 				keyboardDismissMode='interactive'
 				keyboardShouldPersistTaps={'always'}
 				extraScrollHeight={100}
@@ -30,6 +31,6 @@ export default ({}: StatusScreenProps) => {
 					return <Text>{item.name}</Text>
 				})}
 			</KeyboardAwareScrollView>
-		</Box>
-	)
+        </Box>
+    );
 }

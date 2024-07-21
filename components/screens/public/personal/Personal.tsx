@@ -1,5 +1,6 @@
+import { VStack } from "#/components/ui/vstack";
+import { HStack } from "#/components/ui/hstack";
 import Actions from './actions/Actions'
-import { HStack, VStack } from '@gluestack-ui/themed'
 import CurrentVenue from '#/components/screens/public/personal/currentvenue/CurrentVenue'
 import Relationships from '#/components/screens/public/personal/relationship/Relationships'
 import { Profile, useProfileQuery } from '#/graphql/generated'
@@ -30,7 +31,7 @@ const PersonalScreen = (props: any) => {
 	if (PQLoading && !PQData?.profile) return null
 
 	return (
-		<ScrollView
+        <ScrollView
 			style={{
 				paddingTop: 4,
 				marginHorizontal: 3,
@@ -38,22 +39,20 @@ const PersonalScreen = (props: any) => {
 			showsVerticalScrollIndicator={false}
 			scrollEventThrottle={16}
 		>
-			{/* <Photos story={PQData?.profile?.tonightStory} photo={PQData?.profile?.photos[0]} /> */}
-			{/* <ProfilePhoto /> */}
-			<VStack space={'md'}>
+            {/* <Photos story={PQData?.profile?.tonightStory} photo={PQData?.profile?.photos[0]} /> */}
+            {/* <ProfilePhoto /> */}
+            <VStack space={'md'}>
 				<Actions profile={PQData?.profile as Profile} />
 				<HStack
 					space={'md'}
-					sx={{
-						h: 200,
-					}}
+					className="h-[200px]"
 				>
 					{PQData?.profile?.Personal?.LiveOutPersonal?.Out.length ? <CurrentVenue /> : null}
 					<Relationships />
 				</HStack>
 			</VStack>
-		</ScrollView>
-	)
+        </ScrollView>
+    );
 }
 
 export default PersonalScreen

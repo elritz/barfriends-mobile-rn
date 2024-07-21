@@ -1,6 +1,11 @@
+import { Pressable } from "#/components/ui/pressable";
+import { Heading } from "#/components/ui/heading";
+import { Center } from "#/components/ui/center";
+import { Button } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
+import { AddIcon, RemoveIcon } from "#/components/ui/icon";
 import { useReactiveVar } from '@apollo/client'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
-import { AddIcon, Box, Button, Center, Heading, Pressable, RemoveIcon } from '@gluestack-ui/themed'
 import {
 	Emojimood,
 	Photo,
@@ -104,7 +109,7 @@ export default function Photos(props: Props) {
 
 	if (!props.photos?.length && !props.profilePhoto) {
 		return (
-			<BlurView
+            <BlurView
 				style={{
 					borderRadius: 13,
 					overflow: 'hidden',
@@ -118,7 +123,7 @@ export default function Photos(props: Props) {
 				intensity={80}
 				tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 			>
-				{/* <Box
+                {/* <Box
 						bg='$red900'
 						sx={{
 							w: '100%',
@@ -131,15 +136,8 @@ export default function Photos(props: Props) {
 						}}
 						rounded={'$md'}
 					> */}
-				<Center flex={1} mx={'$5'}>
-					<Box
-						sx={{
-							w: '100%',
-							mb: 25,
-						}}
-						bg={'$transparent'}
-						alignItems={'center'}
-					>
+                <Center className="flex-1 mx-5">
+					<Box className="w-[100%]  mb-25 bg-transparent items-center">
 						<Ionicons
 							size={32}
 							color={
@@ -151,15 +149,15 @@ export default function Photos(props: Props) {
 						/>
 					</Box>
 				</Center>
-				{/* </Box> */}
-			</BlurView>
-		)
+                {/* </Box> */}
+            </BlurView>
+        );
 	}
 
 	if (!props.photos?.length && props.profilePhoto) {
 		console.log('props.pro -----------------filePhoto :>> ', props.emojimoodsColors)
 		return (
-			<BlurView
+            <BlurView
 				style={{
 					borderRadius: 13,
 					overflow: 'hidden',
@@ -173,7 +171,7 @@ export default function Photos(props: Props) {
 				intensity={80}
 				tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 			>
-				{/* <Box
+                {/* <Box
 						bg='$red900'
 						sx={{
 							w: '100%',
@@ -186,15 +184,8 @@ export default function Photos(props: Props) {
 						}}
 						rounded={'$md'}
 					> */}
-				<Center flex={1} mx={'$5'}>
-					<Box
-						sx={{
-							w: '100%',
-							mb: 25,
-						}}
-						bg={'$transparent'}
-						alignItems={'center'}
-					>
+                <Center className="flex-1 mx-5">
+					<Box className="w-[100%]  mb-25 bg-transparent items-center">
 						<Ionicons
 							size={32}
 							color={
@@ -206,20 +197,14 @@ export default function Photos(props: Props) {
 						/>
 					</Box>
 				</Center>
-				{/* </Box> */}
-			</BlurView>
-		)
+                {/* </Box> */}
+            </BlurView>
+        );
 	}
 
 	return (
-		<Box bg={'$transparent'}>
-			<Box
-				bg='$transparent'
-				sx={{
-					h: containerHeight,
-				}}
-				rounded={'$md'}
-			>
+        <Box className="bg-transparent">
+            <Box className={` h-${containerHeight} bg-transparent  rounded-md `}>
 				<Animated.ScrollView
 					ref={scrollRef as any}
 					pagingEnabled
@@ -235,40 +220,19 @@ export default function Photos(props: Props) {
 				>
 					{props.photos?.map((item, index) => {
 						return (
-							<View key={index}>
-								<Box
-									h={'100%'}
-									w={ITEM_WIDTH}
-									rounded={'$md'}
-									overflow='hidden'
-									// bg='$transparent'
-									bg='$green200'
-								>
+                            <View key={index}>
+                                <Box
+                                    className={` w-${ITEM_WIDTH} h-[100%] rounded-md overflow-hidden bg-green-200 `}>
 									<Pressable
-										position={'absolute'}
-										top={0}
-										left={0}
-										bottom={0}
-										w={ITEM_WIDTH / 2}
-										h={'100%'}
-										opacity={20}
-										onPress={() => {
+                                        onPress={() => {
 											onPressScroll('left')
 										}}
-										zIndex={10}
-									/>
+                                        className={` w-${ITEM_WIDTH / 2} absolute top-0 left-0 bottom-0 h-[100%] opacity-20 z-10 `} />
 									<Pressable
-										position={'absolute'}
-										top={0}
-										right={0}
-										bottom={0}
-										h={'100%'}
-										w={ITEM_WIDTH / 2}
-										onPress={() => {
+                                        onPress={() => {
 											onPressScroll('right')
 										}}
-										zIndex={10}
-									/>
+                                        className={` w-${ITEM_WIDTH / 2} absolute top-0 right-[0px] bottom-0 h-[100%] z-10 `} />
 									<Image
 										source={{
 											uri: item.url,
@@ -282,8 +246,8 @@ export default function Photos(props: Props) {
 										}}
 									/>
 								</Box>
-							</View>
-						)
+                            </View>
+                        );
 					})}
 				</Animated.ScrollView>
 
@@ -312,7 +276,7 @@ export default function Photos(props: Props) {
 						})
 
 						return (
-							<Animated.View
+                            <Animated.View
 								key={i.toString()}
 								style={[
 									rDotStyle,
@@ -323,10 +287,10 @@ export default function Photos(props: Props) {
 									},
 								]}
 							/>
-						)
+                        );
 					})}
 				</View>
 			</Box>
-		</Box>
-	)
+        </Box>
+    );
 }

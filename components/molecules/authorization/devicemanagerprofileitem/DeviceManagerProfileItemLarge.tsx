@@ -1,6 +1,10 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { HStack } from "#/components/ui/hstack";
+import { Center } from "#/components/ui/center";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
-import { Box, Center, HStack, Text, VStack } from '@gluestack-ui/themed'
 import { Maybe, Profile } from '#/graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { View } from 'react-native'
@@ -18,19 +22,10 @@ const DeviceManagerProfileItemLarge = ({ item, loading }: ProfileItemType) => {
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 
 	return (
-		<Box
-			key={item?.id}
-			flex={1}
-			flexDirection={'row'}
-			my={'$2'}
-			py={'$3'}
-			px={'$3'}
-			rounded={'$md'}
-			alignItems={'center'}
-			$light-bg='$light200'
-			$dark-bg='$light800'
-		>
-			<HStack alignItems={'center'} justifyContent='space-between'>
+        <Box
+            key={item?.id}
+            className="flex-1 flex-row my-2 py-3 px-3 rounded-md items-center  light:bg-light-200  dark:bg-light-800">
+            <HStack className="items-center justify-between">
 				<View style={{ marginRight: 8 }}>
 					{!loading ? (
 						<View style={{ width: 30 }}>
@@ -63,19 +58,7 @@ const DeviceManagerProfileItemLarge = ({ item, loading }: ProfileItemType) => {
 					/>
 				) : (
 					<Box
-						rounded={'$md'}
-						sx={{
-							w: 40,
-							h: 40,
-							_light: {
-								bg: '$light200',
-							},
-							_dark: {
-								bg: '$light700',
-							},
-						}}
-						justifyContent={'center'}
-					>
+                        className="rounded-md w-[40px]  h-[40px]  bg-light-200  dark:bg-light-700 justify-center">
 						<Center>
 							<Ionicons
 								color={
@@ -89,17 +72,17 @@ const DeviceManagerProfileItemLarge = ({ item, loading }: ProfileItemType) => {
 						</Center>
 					</Box>
 				)}
-				<VStack mx={'$2'} flex={1} justifyContent='center'>
-					<Text fontSize={'$lg'} numberOfLines={1}>
+				<VStack className="mx-2 flex-1 justify-center">
+					<Text numberOfLines={1} className="text-lg">
 						{item?.IdentifiableInformation?.fullname}
 					</Text>
-					<Text fontWeight='$bold' fontSize={'$md'}>
+					<Text className="font-bold text-md">
 						@{item?.IdentifiableInformation?.username}
 					</Text>
 				</VStack>
 			</HStack>
-		</Box>
-	)
+        </Box>
+    );
 }
 
 export default DeviceManagerProfileItemLarge

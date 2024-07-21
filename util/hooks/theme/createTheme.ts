@@ -1,5 +1,5 @@
 import { ThemeObject } from '../../../assets/theme/default'
-import { defaulttheme } from '@/assets/theme/default'
+import { defaulttheme } from '#/assets/theme/default'
 import { ThemeColorSchemeOptionsType } from '#/ctypes/preferences'
 import { createConfig } from '@gluestack-ui/themed'
 import { config as defaultConfig } from '@gluestack-ui/config'

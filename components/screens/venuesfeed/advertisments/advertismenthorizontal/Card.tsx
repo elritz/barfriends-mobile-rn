@@ -1,345 +1,189 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Heading } from "#/components/ui/heading";
+import { HStack } from "#/components/ui/hstack";
+import { Button, ButtonText } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
 // TODO: UX(Complete this card for venues etc....)
-import { Product } from './Model'
-import { Box, Button, HStack, Heading, Text, VStack, ButtonText } from '@gluestack-ui/themed'
-import { Image } from 'react-native'
-import { Dimensions, View } from 'react-native'
+import { Product } from "./Model";
+import { Image } from "react-native";
+import { Dimensions, View } from "react-native";
 
-const { width } = Dimensions.get('window')
-export const CARD_HEIGHT = (width * 1564) / 1600
+const { width } = Dimensions.get("window");
+export const CARD_HEIGHT = (width * 1564) / 1600;
 
 interface CardProps {
-	product: Product
+  product: Product;
 }
 
 const Card = ({ product }: CardProps) => {
-	switch (product.type) {
-		case '_ad1':
-			return (
-				<Box
-					bg={'$transparent'}
-					sx={{
-						w: width,
-						h: CARD_HEIGHT,
-					}}
-				>
-					<VStack
-						style={{
-							borderRadius: 16,
-							margin: 19,
-							flex: 1,
-							backgroundColor: product.color1,
-							padding: 16,
-							justifyContent: 'space-between',
-						}}
-					>
-						<VStack>
-							<Heading
-								fontSize={'$6xl'}
-								fontWeight={'$extrabold'}
-								textTransform='uppercase'
-								allowFontScaling
-								adjustsFontSizeToFit
-								textAlign='left'
-								sx={{
-									lineHeight: 60,
-									color: product.primaryTextColor,
-								}}
-							>
-								{product.title}
-							</Heading>
-							<Text
-								fontWeight={'$bold'}
-								fontSize={'$xl'}
-								sx={{
-									color: product.secondaryTextColor,
-								}}
-							>
-								{product.subtitle}
-							</Text>
-						</VStack>
-						<HStack>
-							<Button
-								rounded={'$full'}
-								w={'auto'}
-								alignSelf='center'
-								onPress={() => console.log('route', product.route)}
-								sx={{
-									bg: product.buttonColor,
-								}}
-							>
-								<ButtonText
-									px={'$2'}
-									sx={{
-										color: product.buttonTextColor,
-									}}
-								>
-									{product.buttoncta}
-								</ButtonText>
-							</Button>
-						</HStack>
-					</VStack>
-				</Box>
-			)
-		case '_ad2':
-			return (
-				<Box
-					bg={'$transparent'}
-					sx={{
-						w: width,
-						h: CARD_HEIGHT,
-					}}
-				>
-					<View
-						style={{
-							borderRadius: 16,
-							margin: 19,
-							flex: 1,
-							backgroundColor: product.color1,
-							padding: 16,
-							justifyContent: 'space-between',
-						}}
-					>
-						<View>
-							<Heading
-								fontSize={'$2xl'}
-								sx={{
-									color: product.primaryTextColor,
-								}}
-							>
-								{product.title}
-							</Heading>
-							<Text
-								sx={{
-									color: product.secondaryTextColor,
-								}}
-							>
-								{product.subtitle}
-							</Text>
-						</View>
-						<Button
-							rounded={'$full'}
-							w={'auto'}
-							alignSelf='center'
-							onPress={() => console.log('route', product.route)}
-							sx={{
-								bg: product.buttonColor,
-							}}
-						>
-							<ButtonText
-								px={'$2'}
-								sx={{
-									color: product.buttonTextColor,
-								}}
-							>
-								{product.buttoncta}
-							</ButtonText>
-						</Button>
-					</View>
-				</Box>
-			)
-		case '_ad3':
-			return (
-				<Box
-					bg={'$transparent'}
-					sx={{
-						w: width,
-						h: CARD_HEIGHT,
-					}}
-				>
-					<VStack
-						style={{
-							borderRadius: 16,
-							margin: 19,
-							flex: 1,
-							backgroundColor: product.color1,
-							padding: 16,
-							justifyContent: 'space-between',
-						}}
-					>
-						<VStack>
-							<Heading
-								fontSize={'$6xl'}
-								fontWeight={'$extrabold'}
-								textTransform='uppercase'
-								allowFontScaling
-								adjustsFontSizeToFit
-								textAlign='left'
-								sx={{
-									lineHeight: 60,
-									color: product.primaryTextColor,
-								}}
-							>
-								{product.title}
-							</Heading>
-							<Text
-								fontWeight={'$bold'}
-								fontSize={'$xl'}
-								sx={{
-									color: product.secondaryTextColor,
-								}}
-							>
-								{product.subtitle}
-							</Text>
-						</VStack>
-						<HStack>
-							<Button
-								rounded={'$full'}
-								w={'auto'}
-								alignSelf='center'
-								onPress={() => console.log('route', product.route)}
-								sx={{
-									bg: product.buttonColor,
-								}}
-							>
-								<ButtonText
-									px={'$2'}
-									sx={{
-										color: product.buttonTextColor,
-									}}
-								>
-									{product.buttoncta}
-								</ButtonText>
-							</Button>
-						</HStack>
-					</VStack>
-				</Box>
-			)
-		case '_ad4':
-			return (
-				<Box
-					bg={'$transparent'}
-					sx={{
-						w: width,
-						h: CARD_HEIGHT,
-						position: 'relative',
-					}}
-				>
-					<VStack
-						style={{
-							position: 'relative',
-							borderRadius: 16,
-							margin: 19,
-							flex: 1,
-							backgroundColor: product.color1,
-							justifyContent: 'space-between',
-							overflow: 'hidden',
-						}}
-					>
-						<Image source={product.cover} style={{ width: '100%', height: '100%' }} resizeMode='cover' />
-						<HStack
-							position='absolute'
-							left={0}
-							right={0}
-							bottom={0}
-							justifyContent='space-around'
-							py={'$3'}
-						>
-							<Button
-								rounded={'$full'}
-								w={'auto'}
-								alignSelf='center'
-								zIndex={10}
-								onPress={() => console.log('route', product.route)}
-								sx={{
-									bg: product.buttonColor,
-								}}
-							>
-								<ButtonText
-									px={'$2'}
-									sx={{
-										color: product.buttonTextColor,
-									}}
-								>
-									{product.buttoncta}
-								</ButtonText>
-							</Button>
-						</HStack>
-					</VStack>
-				</Box>
-			)
-		case '_ad5':
-			return (
-				<Box
-					bg={'$transparent'}
-					sx={{
-						w: width,
-						h: CARD_HEIGHT,
-						position: 'relative',
-					}}
-				>
-					<VStack
-						p={'$3'}
-						style={{
-							position: 'relative',
-							borderRadius: 16,
-							margin: 19,
-							flex: 1,
-							backgroundColor: product.color1,
-							justifyContent: 'space-between',
-							alignItems: 'center',
-							overflow: 'hidden',
-						}}
-					>
-						<Image
-							source={product.logo}
-							resizeMode='contain'
-							style={{ width: 150, height: 150, borderRadius: 15 }}
-						/>
-						<Heading
-							fontSize={'$2xl'}
-							fontWeight={'$extrabold'}
-							textTransform='uppercase'
-							// lineHeight={'$6xl'}
-							allowFontScaling
-							adjustsFontSizeToFit
-							textAlign='center'
-							sx={{
-								color: product.primaryTextColor,
-							}}
-						>
-							{product.title}
-						</Heading>
-						<Text
-							// bg='$green300'
-							fontSize={'$lg'}
-							sx={{
-								color: product.secondaryTextColor,
-							}}
-						>
-							{product.subtitle}
-						</Text>
-						<HStack
-							// position='absolute'
-							// left={0}
-							// right={0}
-							// bottom={0}
-							justifyContent='space-around'
-							py={'$3'}
-						>
-							<Button
-								rounded={'$full'}
-								w={'auto'}
-								alignSelf='center'
-								zIndex={10}
-								onPress={() => console.log('route', product.route)}
-								sx={{
-									bg: product.buttonColor,
-								}}
-							>
-								<ButtonText
-									px={'$2'}
-									sx={{
-										color: product.buttonTextColor,
-									}}
-								>
-									{product.buttoncta}
-								</ButtonText>
-							</Button>
-						</HStack>
-					</VStack>
-				</Box>
-			)
-	}
-}
+  switch (product.type) {
+    case "_ad1":
+      return (
+        <Box className={` w-${width} h-${CARD_HEIGHT} bg-transparent`}>
+          <VStack
+            style={{
+              borderRadius: 16,
+              margin: 19,
+              flex: 1,
+              backgroundColor: product.color1,
+              padding: 16,
+              justifyContent: "space-between",
+            }}
+          >
+            <VStack>
+              <Heading
+                allowFontScaling
+                adjustsFontSizeToFit
+                className="leading-60 text-6xl font-extrabold uppercase text-[left]"
+              >
+                {product.title}
+              </Heading>
+              <Text className="text-xl font-bold">{product.subtitle}</Text>
+            </VStack>
+            <HStack>
+              <Button
+                onPress={() => console.log("route", product.route)}
+                className="w-auto self-center rounded-full bg-[undefined]"
+              >
+                <ButtonText className="px-2">{product.buttoncta}</ButtonText>
+              </Button>
+            </HStack>
+          </VStack>
+        </Box>
+      );
+    case "_ad2":
+      return (
+        <Box className={` w-${width} h-${CARD_HEIGHT} bg-transparent`}>
+          <View
+            style={{
+              borderRadius: 16,
+              margin: 19,
+              flex: 1,
+              backgroundColor: product.color1,
+              padding: 16,
+              justifyContent: "space-between",
+            }}
+          >
+            <View>
+              <Heading className="text-2xl">{product.title}</Heading>
+              <Text className="">{product.subtitle}</Text>
+            </View>
+            <Button
+              onPress={() => console.log("route", product.route)}
+              className="w-auto self-center rounded-full bg-[undefined]"
+            >
+              <ButtonText className="px-2">{product.buttoncta}</ButtonText>
+            </Button>
+          </View>
+        </Box>
+      );
+    case "_ad3":
+      return (
+        <Box className={` w-${width} h-${CARD_HEIGHT} bg-transparent`}>
+          <VStack
+            style={{
+              borderRadius: 16,
+              margin: 19,
+              flex: 1,
+              backgroundColor: product.color1,
+              padding: 16,
+              justifyContent: "space-between",
+            }}
+          >
+            <VStack>
+              <Heading
+                allowFontScaling
+                adjustsFontSizeToFit
+                className="leading-60 text-6xl font-extrabold uppercase text-[left]"
+              >
+                {product.title}
+              </Heading>
+              <Text className="text-xl font-bold">{product.subtitle}</Text>
+            </VStack>
+            <HStack>
+              <Button
+                onPress={() => console.log("route", product.route)}
+                className="w-auto self-center rounded-full bg-[undefined]"
+              >
+                <ButtonText className="px-2">{product.buttoncta}</ButtonText>
+              </Button>
+            </HStack>
+          </VStack>
+        </Box>
+      );
+    case "_ad4":
+      return (
+        <Box className={` w-${width} h-${CARD_HEIGHT} relative bg-transparent`}>
+          <VStack
+            style={{
+              position: "relative",
+              borderRadius: 16,
+              margin: 19,
+              flex: 1,
+              backgroundColor: product.color1,
+              justifyContent: "space-between",
+              overflow: "hidden",
+            }}
+          >
+            <Image
+              source={product.cover}
+              style={{ width: "100%", height: "100%" }}
+              resizeMode="cover"
+            />
+            <HStack className="absolute bottom-0 left-0 right-[0px] justify-around py-3">
+              <Button
+                onPress={() => console.log("route", product.route)}
+                className="z-10 w-auto self-center rounded-full bg-[undefined]"
+              >
+                <ButtonText className="px-2">{product.buttoncta}</ButtonText>
+              </Button>
+            </HStack>
+          </VStack>
+        </Box>
+      );
+    case "_ad5":
+      return (
+        <Box className={` w-${width} h-${CARD_HEIGHT} relative bg-transparent`}>
+          <VStack
+            style={{
+              position: "relative",
+              borderRadius: 16,
+              margin: 19,
+              flex: 1,
+              backgroundColor: product.color1,
+              justifyContent: "space-between",
+              alignItems: "center",
+              overflow: "hidden",
+            }}
+            className="p-3"
+          >
+            <Image
+              source={product.logo}
+              resizeMode="contain"
+              style={{ width: 150, height: 150, borderRadius: 15 }}
+            />
+            <Heading
+              // lineHeight={'$6xl'}
+              allowFontScaling
+              adjustsFontSizeToFit
+              className="text-center text-2xl font-extrabold uppercase"
+            >
+              {product.title}
+            </Heading>
+            <Text className="text-lg">{product.subtitle}</Text>
+            <HStack className="justify-around py-3">
+              <Button
+                onPress={() => console.log("route", product.route)}
+                className="z-10 w-auto self-center rounded-full bg-[undefined]"
+              >
+                <ButtonText className="px-2">{product.buttoncta}</ButtonText>
+              </Button>
+            </HStack>
+          </VStack>
+        </Box>
+      );
+  }
+};
 
-export default Card
+export default Card;

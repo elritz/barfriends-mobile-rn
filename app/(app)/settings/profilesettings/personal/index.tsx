@@ -1,5 +1,10 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Heading } from "#/components/ui/heading";
+import { HStack } from "#/components/ui/hstack";
+import { Box } from "#/components/ui/box";
+import { Badge } from "#/components/ui/badge";
 import { useReactiveVar } from '@apollo/client'
-import { Badge, Box, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
 import { useProfileQuery } from '#/graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
@@ -31,16 +36,9 @@ export default ({}: EditableOptionsScreenProps) => {
 
 	const RoundedListItem = ({ children, ...props }) => (
 		<Pressable onPress={props.onPress}>
-			<Box
-				my={'$2'}
-				px={'$2'}
-				py={'$3'}
-				rounded={'$md'}
-				alignItems={'flex-start'}
-				flexDirection={'column'}
-			>
+			<Box className="my-2 px-2 py-3 rounded-md items-start flex-column">
 				{props.title && (
-					<Heading fontSize={'$md'} pb={'$3'}>
+					<Heading className="text-md pb-3">
 						{props.title}
 					</Heading>
 				)}
@@ -50,7 +48,7 @@ export default ({}: EditableOptionsScreenProps) => {
 	)
 
 	return (
-		<ScrollView
+        <ScrollView
 			style={{
 				marginVertical: 20,
 				marginHorizontal: 10,
@@ -59,7 +57,7 @@ export default ({}: EditableOptionsScreenProps) => {
 			showsVerticalScrollIndicator={false}
 			contentInsetAdjustmentBehavior='scrollableAxes'
 		>
-			<RoundedListItem
+            <RoundedListItem
 				onPress={() => {
 					router.push({
 						pathname: '/(app)/settings/profilesettings/personal/fullname',
@@ -67,17 +65,17 @@ export default ({}: EditableOptionsScreenProps) => {
 				}}
 				title='Full name'
 			>
-				<Text fontSize={'$xl'}>{rIdentifiableInformation?.fullname}</Text>
+				<Text className="text-xl">{rIdentifiableInformation?.fullname}</Text>
 				{rIdentifiableInformation?.nickname && (
 					<>
-						<Text fontSize={'$xl'} py={'$2'}>
+						<Text className="text-xl py-2">
 							Nick name
 						</Text>
-						<Text fontSize={'$xl'}>{rIdentifiableInformation.nickname}</Text>
+						<Text className="text-xl">{rIdentifiableInformation.nickname}</Text>
 					</>
 				)}
 			</RoundedListItem>
-			<RoundedListItem
+            <RoundedListItem
 				onPress={() =>
 					router.push({
 						pathname: '/(app)/settings/profilesettings/personal/username',
@@ -85,17 +83,11 @@ export default ({}: EditableOptionsScreenProps) => {
 				}
 				title='Username'
 			>
-				<Text fontSize={'$xl'}>{rIdentifiableInformation?.username}</Text>
+				<Text className="text-xl">{rIdentifiableInformation?.username}</Text>
 			</RoundedListItem>
-			<RoundedListItem title='Birthday 🥳'>
-				<HStack
-					sx={{
-						w: '100%',
-					}}
-					justifyContent={'space-between'}
-					alignItems={'center'}
-				>
-					<Text color={'$light600'} fontSize={'$xl'}>
+            <RoundedListItem title='Birthday 🥳'>
+				<HStack className="w-[100%] justify-between items-center">
+					<Text className="text-light-600 text-xl">
 						{date}
 					</Text>
 					<Ionicons
@@ -109,7 +101,7 @@ export default ({}: EditableOptionsScreenProps) => {
 					/>
 				</HStack>
 			</RoundedListItem>
-			<RoundedListItem
+            <RoundedListItem
 				onPress={() =>
 					router.push({
 						pathname: '/(app)/settings/profilesettings/personal/description',
@@ -117,13 +109,13 @@ export default ({}: EditableOptionsScreenProps) => {
 				}
 				title='About me'
 			>
-				<Text fontSize={'$xl'} numberOfLines={4} ellipsizeMode='tail'>
+				<Text numberOfLines={4} ellipsizeMode='tail' className="text-xl">
 					{!rAuthorizationVar?.Profile?.DetailInformation?.description
 						? 'Add description'
 						: rAuthorizationVar.Profile.DetailInformation.description}
 				</Text>
 			</RoundedListItem>
-			<RoundedListItem
+            <RoundedListItem
 				onPress={() =>
 					router.push({
 						pathname: '/(app)/settings/profilesettings/personal/interests',
@@ -132,20 +124,13 @@ export default ({}: EditableOptionsScreenProps) => {
 				title={'My interests'}
 			>
 				<Box>
-					<VStack flexDirection={'row'} flexWrap={'wrap'}>
+					<VStack className="flex-row flex-wrap">
 						{rAuthorizationVar?.Profile?.DetailInformation?.Tags.length ? (
 							<>
 								{rAuthorizationVar?.Profile?.DetailInformation?.Tags.map((item, index) => (
-									<Badge key={item.id} rounded={'$md'} bg={'$primary500'} px={'$2'} py={'$1'} m={'$2'}>
+									<Badge key={item.id} className="rounded-md bg-primary-500 px-2 py-1 m-2">
 										<Text
-											fontWeight='$bold'
-											fontSize={'$md'}
-											color={
-												rTheme.colorScheme === 'light'
-													? rTheme.theme?.gluestack.tokens.colors.light100
-													: rTheme.theme?.gluestack.tokens.colors.light900
-											}
-										>
+                                            className={` ${rTheme.colorScheme === 'light' ? rTheme.theme?.gluestack.tokens.colors.light100 : rTheme.theme?.gluestack.tokens.colors.light900} font-bold text-md `}>
 											{item.emoji}
 											{item.name}
 										</Text>
@@ -154,7 +139,7 @@ export default ({}: EditableOptionsScreenProps) => {
 							</>
 						) : (
 							<Box>
-								<Text fontSize={'$xl'} numberOfLines={1}>
+								<Text numberOfLines={1} className="text-xl">
 									Select your interests
 								</Text>
 							</Box>
@@ -162,10 +147,10 @@ export default ({}: EditableOptionsScreenProps) => {
 					</VStack>
 				</Box>
 			</RoundedListItem>
-			<Heading fontSize={'$lg'} py={2}>
+            <Heading className="text-lg py-2">
 				MY BASIC INFO
 			</Heading>
-			<RoundedListItem
+            <RoundedListItem
 				onPress={() =>
 					router.push({
 						pathname: '/(app)/settings/profilesettings/personal/gender',
@@ -173,12 +158,12 @@ export default ({}: EditableOptionsScreenProps) => {
 				}
 				title={`I am a ...`}
 			>
-				<Text fontSize={'$xl'}>
+				<Text className="text-xl">
 					{rAuthorizationVar?.Profile?.IdentifiableInformation?.gender ||
 						'Set your gender'}
 				</Text>
 			</RoundedListItem>
-			<RoundedListItem
+            <RoundedListItem
 				onPress={() =>
 					router.push({
 						pathname: '/(app)/settings/profilesettings/personal/lookingfor',
@@ -186,12 +171,12 @@ export default ({}: EditableOptionsScreenProps) => {
 				}
 				title={`I'm looking for a ...`}
 			>
-				<Text fontSize={'$xl'} numberOfLines={1}>
+				<Text numberOfLines={1} className="text-xl">
 					{rAuthorizationVar?.Profile?.IdentifiableInformation?.lookfor ||
 						'Set the vibes your looking for'}
 				</Text>
 			</RoundedListItem>
-			<RoundedListItem
+            <RoundedListItem
 				onPress={() =>
 					router.push({
 						pathname: '/(app)/settings/profilesettings/personal/relationship',
@@ -199,9 +184,9 @@ export default ({}: EditableOptionsScreenProps) => {
 				}
 				title={`Relationship`}
 			>
-				<Text fontSize={'$xl'}>Are you in a relationship</Text>
+				<Text className="text-xl">Are you in a relationship</Text>
 			</RoundedListItem>
-			<RoundedListItem
+            <RoundedListItem
 				onPress={() =>
 					router.push({
 						pathname: '/(app)/settings/profilesettings/personal/hometown',
@@ -209,9 +194,9 @@ export default ({}: EditableOptionsScreenProps) => {
 				}
 				title={`Add your hometown`}
 			>
-				<Text fontSize={'$xl'}>add your hometown</Text>
+				<Text className="text-xl">add your hometown</Text>
 			</RoundedListItem>
-			<RoundedListItem
+            <RoundedListItem
 				onPress={() =>
 					router.push({
 						pathname: '/(app)/settings/profilesettings/personal/currenttown',
@@ -219,8 +204,8 @@ export default ({}: EditableOptionsScreenProps) => {
 				}
 				title={'Add your city'}
 			>
-				<Text fontSize={'$xl'}>Rep your city</Text>
+				<Text className="text-xl">Rep your city</Text>
 			</RoundedListItem>
-		</ScrollView>
-	)
+        </ScrollView>
+    );
 }

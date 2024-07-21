@@ -16,7 +16,7 @@ export default function _layout() {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 
 	return (
-		<Tabs
+        <Tabs
 			screenOptions={{
 				tabBarBackground: () => (
 					<BlurView
@@ -39,7 +39,7 @@ export default function _layout() {
 				// tabBarShowLabel: false,
 			}}
 		>
-			<Tabs.Screen
+            <Tabs.Screen
 				name={'privacy'}
 				options={{
 					tabBarIcon: ({ color }: ITabColor) => (
@@ -51,7 +51,7 @@ export default function _layout() {
 					},
 				}}
 			/>
-			<Tabs.Screen
+            <Tabs.Screen
 				name={'services'}
 				options={{
 					tabBarIcon: ({ color }: ITabColor) => (
@@ -63,6 +63,6 @@ export default function _layout() {
 					},
 				}}
 			/>
-		</Tabs>
-	)
+        </Tabs>
+    );
 }

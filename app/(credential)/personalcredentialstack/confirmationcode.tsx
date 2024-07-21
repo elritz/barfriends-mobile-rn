@@ -1,7 +1,12 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Pressable } from "#/components/ui/pressable";
+import { Heading } from "#/components/ui/heading";
+import { Button, ButtonText } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
 // TODO: FN(onPress(Resend Code)) - ln:162 -- when the user presses resend code need to resend and keep track of how many times
 import { useReactiveVar } from '@apollo/client'
 import { Feather } from '@expo/vector-icons'
-import { Box, Button, Heading, Pressable, Text, VStack, ButtonText } from '@gluestack-ui/themed'
 import { useIsFocused } from '@react-navigation/native'
 import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '#/reactive'
 import useContentInsets from '#/util/hooks/useContentInsets'
@@ -114,33 +119,19 @@ export default () => {
 
 	const InnerContent = () => {
 		return (
-			<Box
-				display={isFocused ? 'flex' : 'none'}
-				flexDirection={'row'}
-				justifyContent={'space-between'}
-				alignContent={'space-around'}
-				sx={{
-					h: 90,
-					_dark: {
-						bg: '$black',
-					},
-					_light: {
-						bg: '$white',
-					},
-				}}
-				px={'$2'}
-			>
-				<Box bg={'$transparent'} justifyContent={'space-around'}>
+            <Box
+                className={` ${isFocused ? "flex" : "hidden"} flex-row justify-between content-around h-[90px]  dark:bg-black bg-white px-2 `}>
+                <Box className="bg-transparent justify-around">
 					{isFinished ? (
-						<VStack space={'sm'} justifyContent={'space-around'}>
-							<Button variant={'link'} size={'md'} justifyContent={'flex-start'}>
+						<VStack space={'sm'} className="justify-around">
+							<Button variant={'link'} size={'md'} className="justify-start">
 								<ButtonText>Resend code</ButtonText>
 							</Button>
 							<Button
 								variant={'link'}
 								size={'md'}
-								justifyContent={'flex-start'}
 								onPress={() => router.back()}
+								className="justify-start"
 							>
 								<ButtonText>Update information</ButtonText>
 							</Button>
@@ -152,30 +143,22 @@ export default () => {
 						</Text>
 					)}
 				</Box>
-				<VStack justifyContent={'space-around'}>
+                <VStack className="justify-around">
 					<Pressable disabled={!!errors.code} onPress={handleSubmit(onSubmit)}>
 						<Box
-							alignItems='center'
-							justifyContent='center'
-							sx={{
-								h: 50,
-								w: 50,
-							}}
-							rounded={'$full'}
-							bg='$primary500'
-						>
+                            className="items-center justify-center h-[50px]  w-[50px] rounded-full bg-primary-500">
 							<Feather name='arrow-right' size={32} color={errors?.code ? '#292524' : 'white'} />
 						</Box>
 					</Pressable>
 				</VStack>
-			</Box>
-		)
+            </Box>
+        );
 	}
 
 	return (
-		<Box bg='$transparent' flex={1}>
-			<Reanimated.View style={{ flex: 1, marginHorizontal: 15 }}>
-				<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$2xl'} sx={{ minHeight: 70 }}>
+        <Box className="bg-transparent flex-1">
+            <Reanimated.View style={{ flex: 1, marginHorizontal: 15 }}>
+				<Heading className="mt-4 font-black text-2xl min-h-[70px]">
 					{`Enter the 4-diget code sent to you at ${
 						credentialPersonalProfileVar.email
 							? credentialPersonalProfileVar.email
@@ -208,20 +191,10 @@ export default () => {
 								onEndEditing={handleSubmit(onSubmit)}
 								renderCell={({ index, symbol, isFocused }) => (
 									<Box
-										bg='$transparent'
-										key={index}
-										sx={{
-											w: 50,
-											h: 60,
-										}}
-										rounded={'$none'}
-										justifyContent={'center'}
-										alignItems={'center'}
-										borderBottomColor={!isFocused ? '#ccc' : '#007AFF'}
-										borderBottomWidth={isFocused ? '$2' : '$1'}
-										onLayout={getCellOnLayoutHandler(index)}
-									>
-										<Heading color={'$primary500'} fontSize={'$3xl'}>
+                                        key={index}
+                                        onLayout={getCellOnLayoutHandler(index)}
+                                        className={` ${isFocused ? "border-b-2" : "border-b"} ${!isFocused ? "border-b-[#ccc]" : "border-b-[#007AFF]"} bg-transparent w-[50px]  h-[60px] rounded-none justify-center items-center `}>
+										<Heading className="text-primary-500 text-3xl">
 											{symbol || (isFocused ? <Cursor /> : null)}
 										</Heading>
 									</Box>
@@ -240,12 +213,12 @@ export default () => {
 							},
 						}}
 					/>
-					<Text fontSize={'$sm'} color='$error700'>
+					<Text className="text-sm text-error-700">
 						{errors?.code?.message}
 					</Text>
 				</View>
 			</Reanimated.View>
-			{Platform.OS === 'ios' ? (
+            {Platform.OS === 'ios' ? (
 				<InputAccessoryView nativeID={INPUT_ACCESSORY_VIEW_ID}>
 					<InnerContent />
 				</InputAccessoryView>
@@ -261,6 +234,6 @@ export default () => {
 					<InnerContent />
 				</Reanimated.View>
 			)}
-		</Box>
-	)
+        </Box>
+    );
 }

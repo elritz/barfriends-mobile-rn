@@ -1,5 +1,8 @@
+
+import { Text } from "#/components/ui/text";
+import { Input, InputField } from "#/components/ui/input";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
-import { Box, Input, Text } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
 import { useKeyboard } from '@react-native-community/hooks'
 import { ThemeReactiveVar } from '#/reactive'
@@ -113,7 +116,7 @@ export default function MessageRoom(props) {
 	}, [flatListRef])
 
 	return (
-		<Box bg={'orange.500'} flex={1}>
+		<Box className="bg-[orange.500] flex-1">
 			{/* <GestureDetector gesture={PanGesture}> */}
 			{/* <KeyboardAvoidingView keyboardVerticalOffset={0}> */}
 			<Animated.FlatList
@@ -129,10 +132,9 @@ export default function MessageRoom(props) {
 				onScroll={scrollHandler}
 				renderItem={({ item, index }) => {
 					return (
-						<Text bg={'$red500'} fontSize={'$4xl'}>
-							MessagesRoom{index}
+						<Text className="bg-red-500 text-4xl">MessagesRoom{index}
 						</Text>
-					)
+					);
 				}}
 			/>
 			{/* </KeyboardAvoidingView> */}
@@ -165,13 +167,14 @@ export default function MessageRoom(props) {
 						paddingVertical: 15,
 					}}
 				>
-					<Input variant={'rounded'} size={'lg'}>
-						<Input.Input
+					<Input variant={'rounded'} size={'lg'}
+						mx={'$2'}
+						my={'auto'}
+						rounded={'$md'}
+					>
+						<InputField
 							keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 							onPressIn={handlePressIn}
-							mx={'$2'}
-							my={'auto'}
-							rounded={'$md'}
 							multiline
 							placeholder=''
 						/>
@@ -192,11 +195,6 @@ export default function MessageRoom(props) {
 				{/* </Animated.View> */}
 			</KeyboardAvoidingView>
 			<Box
-				bg={
-					rTheme.colorScheme === 'light'
-						? rTheme.theme?.gluestack.tokens.colors.light100
-						: rTheme.theme?.gluestack.tokens.colors.light900
-				}
 				style={{
 					position: 'absolute',
 					height: insets.bottom,
@@ -204,7 +202,8 @@ export default function MessageRoom(props) {
 					left: 0,
 					right: 0,
 				}}
+				className={` ${rTheme.colorScheme === 'light' ? rTheme.theme?.gluestack.tokens.colors.light100 : rTheme.theme?.gluestack.tokens.colors.light900} `}
 			/>
 		</Box>
-	)
+	);
 }

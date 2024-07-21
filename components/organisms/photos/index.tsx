@@ -1,16 +1,11 @@
+import { Text } from "#/components/ui/text";
+import { Pressable } from "#/components/ui/pressable";
+import { Heading } from "#/components/ui/heading";
+import { Center } from "#/components/ui/center";
+import { Button, ButtonText, ButtonIcon } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
+import { AddIcon, RemoveIcon } from "#/components/ui/icon";
 import { useReactiveVar } from '@apollo/client'
-import {
-	AddIcon,
-	Box,
-	Button,
-	Center,
-	Heading,
-	Pressable,
-	RemoveIcon,
-	Text,
-	ButtonText,
-	ButtonIcon,
-} from '@gluestack-ui/themed'
 import { MaterialIcons } from '@expo/vector-icons'
 import { PhotoCreateManyProfileInput, useAddStoryPhotosMutation } from '#/graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
@@ -146,15 +141,9 @@ export default function Photos() {
 	})
 
 	return (
-		<Box bg={'$transparent'}>
+		<Box className="bg-transparent">
 			{rAuthorizationVar?.Profile?.tonightStory?.photos?.length ? (
-				<Box
-					bg='$transparent'
-					sx={{
-						h: containerHeight,
-					}}
-					rounded={'$md'}
-				>
+				<Box className={` h-${containerHeight} bg-transparent  rounded-md `}>
 					<Animated.ScrollView
 						ref={scrollRef as any}
 						pagingEnabled
@@ -173,22 +162,9 @@ export default function Photos() {
 								if (item?.__typename === 'upload') {
 									return (
 										<Box
-											bg={'$transparent'}
-											sx={{
-												h: containerHeight,
-												w: ITEM_WIDTH,
-											}}
-											rounded={'$md'}
-										>
-											<Center flex={1} mx={'$5'}>
-												<Box
-													sx={{
-														w: '100%',
-														mb: 25,
-													}}
-													bg='$transparent'
-													alignItems={'center'}
-												>
+											className={` h-${containerHeight} w-${ITEM_WIDTH} bg-transparent  rounded-md `}>
+											<Center className="flex-1 mx-5">
+												<Box className="w-[100%]  mb-25 bg-transparent items-center">
 													<MaterialIcons
 														style={{
 															zIndex: 10,
@@ -201,7 +177,7 @@ export default function Photos() {
 														size={40}
 														name={'photo-size-select-actual'}
 													/>
-													<Box bg='$transparent' position={'absolute'} zIndex={5}>
+													<Box className="bg-transparent absolute z-5">
 														<View
 															style={[
 																styles.dotSm,
@@ -231,59 +207,39 @@ export default function Photos() {
 														/>
 													</Box>
 												</Box>
-												<Heading pb={1} fontWeight={'$black'}>
+												<Heading className="pb-1 font-black">
 													Upload another image
 												</Heading>
-												<Button onPress={pickImage} bg={'$tertiary400'} rounded={'$md'} zIndex={20}>
+												<Button onPress={pickImage} className="bg-tertiary-400 rounded-md z-20">
 													<ButtonIcon>
 														<AddIcon />
 													</ButtonIcon>
 												</Button>
 											</Center>
 										</Box>
-									)
+									);
 								}
 
 								return (
 									<View key={index}>
-										<Box h={'100%'} w={ITEM_WIDTH} rounded={'$md'} overflow='hidden' bg='$transparent'>
+										<Box
+											className={` w-${ITEM_WIDTH} h-[100%] rounded-md overflow-hidden bg-transparent `}>
 											<Pressable
-												position={'absolute'}
-												top={0}
-												left={0}
-												bottom={0}
-												w={ITEM_WIDTH / 2}
-												h={'100%'}
-												opacity={20}
 												onPress={() => {
 													onPressScroll('left')
 												}}
-												zIndex={10}
-											/>
+												className={` w-${ITEM_WIDTH / 2} absolute top-0 left-0 bottom-0 h-[100%] opacity-20 z-10 `} />
 											<Pressable
-												position={'absolute'}
-												top={0}
-												right={0}
-												bottom={0}
-												h={'100%'}
-												w={ITEM_WIDTH / 2}
 												onPress={() => {
 													onPressScroll('right')
 												}}
-												zIndex={10}
-											/>
+												className={` w-${ITEM_WIDTH / 2} absolute top-0 right-[0px] bottom-0 h-[100%] z-10 `} />
 											<Button
-												position={'absolute'}
-												bg='$danger600'
-												rounded={'$full'}
-												right={10}
-												top={10}
 												size='xs'
 												onPress={() => {
 													onPressScroll('right')
 												}}
-												zIndex={20}
-											>
+												className="absolute bg-danger-600 rounded-full right-[10px] top-10 z-20">
 												<RemoveIcon />
 											</Button>
 											<Image
@@ -300,7 +256,7 @@ export default function Photos() {
 											/>
 										</Box>
 									</View>
-								)
+								);
 							},
 						)}
 					</Animated.ScrollView>
@@ -342,7 +298,7 @@ export default function Photos() {
 											},
 										]}
 									/>
-								)
+								);
 							},
 						)}
 					</View>
@@ -353,23 +309,9 @@ export default function Photos() {
 					intensity={40}
 					style={{ borderRadius: 15, overflow: 'hidden', marginHorizontal: 7 }}
 				>
-					<Box
-						bg={'$transparent'}
-						sx={{
-							h: containerHeight,
-							w: '100%',
-						}}
-						rounded={'$md'}
-					>
-						<Center flex={1} mx={'$5'}>
-							<Box
-								sx={{
-									w: '100%',
-									mb: 25,
-								}}
-								bg={'$transparent'}
-								alignItems={'center'}
-							>
+					<Box className={` h-${containerHeight} bg-transparent w-[100%] rounded-md `}>
+						<Center className="flex-1 mx-5">
+							<Box className="w-[100%]  mb-25 bg-transparent items-center">
 								<MaterialIcons
 									style={{
 										zIndex: 10,
@@ -382,7 +324,7 @@ export default function Photos() {
 									size={40}
 									name={'photo-size-select-actual'}
 								/>
-								<Box bg={'$transparent'} position={'absolute'} zIndex={5}>
+								<Box className="bg-transparent absolute z-5">
 									<View
 										style={[
 											styles.dotSm,
@@ -412,13 +354,13 @@ export default function Photos() {
 									/>
 								</Box>
 							</Box>
-							<Heading pb={1} fontWeight={'$black'}>
+							<Heading className="pb-1 font-black">
 								Start tonights story
 							</Heading>
-							<Text fontSize={'$lg'} fontWeight={'$medium'}>
+							<Text className="text-lg font-medium">
 								Ready to go out? Add photos of your fit and pick your emojimood
 							</Text>
-							<Button onPress={pickImage} bg={'$tertiary400'} rounded={'$md'} mt={'$4'}>
+							<Button onPress={pickImage} className="bg-tertiary-400 rounded-md mt-4">
 								<ButtonText>Upload{loading ? 'ing' : ''} images</ButtonText>
 							</Button>
 						</Center>
@@ -426,5 +368,5 @@ export default function Photos() {
 				</BlurView>
 			)}
 		</Box>
-	)
+	);
 }

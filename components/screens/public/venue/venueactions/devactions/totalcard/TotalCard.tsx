@@ -1,6 +1,9 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { CheckCircleIcon } from "#/components/ui/icon";
+import { Button, ButtonIcon, ButtonText } from "#/components/ui/button";
 // TODO: FN(Join a venue functionality) The join button has no ability to join a venue or track the data
 import { useReactiveVar } from '@apollo/client'
-import { Button, ButtonIcon, ButtonText, CheckCircleIcon, Text, VStack } from '@gluestack-ui/themed'
 // import { GET_LIVE_VENUE_TOTALS_QUERY } from '#/graphql/DM/profiling/out/index.query'
 import {
 	AuthorizationDeviceProfile,
@@ -125,19 +128,11 @@ export default function TotalCard() {
 	}, [])
 
 	return (
-		<VStack>
-			<Button
-				// onPress={() => {
-				// 	if (rAuthorizationVar) {
-				// 		!isTotaled ? addPersonalTotalsVenueMutation() : removePersonalTotalsVenueMutation()
-				// 	}
-				// }}
-				bg={'$blue500'}
-				rounded={'$md'}
-			>
-				{isTotaled && <ButtonIcon as={CheckCircleIcon} size={'md'} mr={'$1'} color='$white' />}
-				<ButtonText color='$white'>{isTotaled ? 'Totaled' : 'Total'}</ButtonText>
+        <VStack>
+            <Button className="bg-blue-500 rounded-md">
+				{isTotaled && <ButtonIcon as={CheckCircleIcon} size={'md'} className="mr-1 text-white" />}
+				<ButtonText className="text-white">{isTotaled ? 'Totaled' : 'Total'}</ButtonText>
 			</Button>
-		</VStack>
-	)
+        </VStack>
+    );
 }

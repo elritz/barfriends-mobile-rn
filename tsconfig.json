@@ -4,7 +4,7 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["*"],
+      "#/*": ["*"],
       "#/app/*": ["app/*"],
       "#/preferences": ["types/preferences"],
       "#/ctypes/*": ["types/*"],
@@ -17,7 +17,7 @@
       "#/library/*": ["library/*"],
       "#/constants/*": ["constants/*"],
       "#/reactive": ["reactive/index.tsx"],
-      "#/gluestack": ["gluestack-ui.config"],
+      "#/gluestack": ["gluestack-ui.config"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]

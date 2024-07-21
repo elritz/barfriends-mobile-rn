@@ -1,15 +1,12 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Pressable } from "#/components/ui/pressable";
+import { HStack } from "#/components/ui/hstack";
+import { Center } from "#/components/ui/center";
+import { Button, ButtonText } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
 // TODO: FN()
 import { useReactiveVar } from '@apollo/client'
-import {
-	Box,
-	Button,
-	Center,
-	HStack,
-	Pressable,
-	Text,
-	VStack,
-	ButtonText,
-} from '@gluestack-ui/themed'
 import { Feather, Ionicons, MaterialIcons } from '@expo/vector-icons'
 import {
 	CredentialPersonalProfileReactiveVar,
@@ -172,8 +169,8 @@ export default () => {
 
 	if (!photoLibrary?.length) {
 		return (
-			<Box bg='$transparent'>
-				<VStack alignItems={'center'}>
+            <Box className="bg-transparent">
+                <VStack className="items-center">
 					<Image
 						style={{
 							height: window.width / 1.55,
@@ -183,34 +180,30 @@ export default () => {
 						}}
 						source={watchValues?.photo?.uri ? { uri: watchValues.photo.uri } : UserFemaleIllustration}
 					/>
-					<Box mb={'$2'} mx={'$2'} rounded={'$md'} p={'$5'}>
-						<VStack my={'$2'} alignItems={'center'}>
-							<Text px={'$2'}>
+					<Box className="mb-2 mx-2 rounded-md p-5">
+						<VStack className="my-2 items-center">
+							<Text className="px-2">
 								Continue with your profile setup, use your own photos to share and create the style that
 								reflect you the best.
 							</Text>
 							<Button
-								variant='solid'
-								onPress={async () =>
+                                variant='solid'
+                                onPress={async () =>
 									router.push({
 										pathname: '/(app)/permission/medialibrary',
 									})
 								}
-								mt={'$10'}
-								sx={{
-									w: '85%',
-								}}
-							>
+                                className="mt-10 w-[85%]">
 								<ButtonText>Continue</ButtonText>
 							</Button>
 						</VStack>
 					</Box>
 					{[...Array(6)].map((item, index) => {
 						return (
-							<HStack key={index} space={'sm'} overflow='hidden'>
-								{[...Array(3)].map((item, index) => {
+                            <HStack key={index} space={'sm'} className="overflow-hidden">
+                                {[...Array(3)].map((item, index) => {
 									return (
-										<Skeleton
+                                        <Skeleton
 											height={window.width / 3}
 											width={window.width / 3}
 											radius={15}
@@ -227,19 +220,19 @@ export default () => {
 													  ]
 											}
 										/>
-									)
+                                    );
 								})}
-							</HStack>
-						)
+                            </HStack>
+                        );
 					})}
 				</VStack>
-			</Box>
-		)
+            </Box>
+        );
 	}
 
 	return (
-		<SafeAreaView style={{ flex: 1 }}>
-			<Center>
+        <SafeAreaView style={{ flex: 1 }}>
+            <Center>
 				<Svg
 					style={{
 						position: 'absolute',
@@ -265,7 +258,7 @@ export default () => {
 					source={watchValues?.photo?.uri ? { uri: watchValues.photo.uri } : UserFemaleIllustration}
 				/>
 			</Center>
-			<FlashList
+            <FlashList
 				style={{
 					width: '100%',
 					height: '100%',
@@ -278,12 +271,12 @@ export default () => {
 				scrollEnabled={!imageUploading}
 				renderItem={({ item }: any) => {
 					return (
-						<Pressable
+                        <Pressable
 							onPress={() => {
 								!imageUploading && setValue('photo.uri', item.uri)
 							}}
 						>
-							<Image
+                            <Image
 								style={{
 									height: window.width / 3,
 									width: window.width / 3,
@@ -291,7 +284,7 @@ export default () => {
 								}}
 								source={{ uri: item.uri }}
 							/>
-							{watchValues?.photo?.uri === item.uri && (
+                            {watchValues?.photo?.uri === item.uri && (
 								<Ionicons
 									name='checkmark-circle'
 									color={rTheme.theme?.gluestack.tokens.colors.success500}
@@ -303,11 +296,11 @@ export default () => {
 									size={25}
 								/>
 							)}
-						</Pressable>
-					)
+                        </Pressable>
+                    );
 				}}
 			/>
-			<View
+            <View
 				style={{
 					position: 'absolute',
 					bottom: 0,
@@ -321,10 +314,7 @@ export default () => {
 				}}
 			>
 				<Pressable
-					sx={{
-						mx: '10%',
-						w: '40%',
-					}}
+					className="mx-[10%]  w-[40%]"
 				>
 					<MaterialIcons
 						name={'photo-library'}
@@ -334,15 +324,11 @@ export default () => {
 				</Pressable>
 
 				<Button
-					mx={'$5'}
-					sx={{
-						w: '40%',
-					}}
-					onPress={handleSubmit(onSubmit)}
-					variant={'link'}
-					disabled={imageUploading}
-				>
-					<ButtonText color={'$primary500'} fontSize={'$xl'}>
+                    onPress={handleSubmit(onSubmit)}
+                    variant={'link'}
+                    disabled={imageUploading}
+                    className="mx-5 w-[40%]">
+					<ButtonText className="text-primary-500 text-xl">
 						{imageUploading ? 'Continue' : 'Uploading'}
 					</ButtonText>
 					<Feather
@@ -352,6 +338,6 @@ export default () => {
 					/>
 				</Button>
 			</View>
-		</SafeAreaView>
-	)
+        </SafeAreaView>
+    );
 }

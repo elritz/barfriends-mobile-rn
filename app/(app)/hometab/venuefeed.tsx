@@ -1,21 +1,17 @@
+import { ArrowRightIcon } from "#/components/ui/icon";
+import { Button, ButtonText, ButtonIcon } from "#/components/ui/button";
+import { Heading } from "#/components/ui/heading";
+import { HStack } from "#/components/ui/hstack";
+import { Pressable } from "#/components/ui/pressable";
+import { Text } from "#/components/ui/text";
+import { VStack } from "#/components/ui/vstack";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
 import CardPleaseSignup from '#/components/molecules/asks/signuplogin'
 import SearchAreaHeader from '#/components/screens/venuesfeed/SearchAreaHeader'
 import VenueFeedSearchAreaEmptyState from '#/components/screens/venuesfeed/VenueFeedSearchAreaEmptyState'
 import MemoizedVerticalVenueFeedVenueItem from '#/components/screens/venuesfeed/VerticalVenueFeedVenueItem'
 import { Ionicons } from '@expo/vector-icons'
-import {
-	Box,
-	VStack,
-	Text,
-	Pressable,
-	HStack,
-	Heading,
-	Button,
-	ArrowRightIcon,
-	ButtonText,
-	ButtonIcon,
-} from '@gluestack-ui/themed'
 import {
 	ProfileType,
 	ProfileVenue,
@@ -115,11 +111,11 @@ export default () => {
 
 	const ListheaderComponent = ({ typename }) => {
 		return (
-			<Box bg={'transparent'} py={'$2'}>
+			<Box className="bg-transparent py-2">
 				{/* {NODE_ENV === 'development' && <DevActions />} */}
-				<VStack bg={'transparent'} space={'md'}>
+				<VStack space={'md'} className="bg-transparent">
 					{rAuthorizationVar?.Profile?.ProfileType === ProfileType.Guest && (
-						<Box mx={'$2'} my={'$2'} p={'$5'} pt={'$10'}>
+						<Box className="mx-2 my-2 p-5 pt-10">
 							<CardPleaseSignup signupTextId={1} />
 						</Box>
 					)}
@@ -128,7 +124,7 @@ export default () => {
 					{!rSearchAreaVar.searchArea.city.name && <VenueFeedSearchAreaEmptyState />}
 				</VStack>
 			</Box>
-		)
+		);
 	}
 	const MemoizedListHeaderComponent = memo(ListheaderComponent)
 
@@ -166,11 +162,11 @@ export default () => {
 								}
 							/>
 						</View>
-					)
+					);
 				}}
-				ItemSeparatorComponent={() => <Box bg='$transparent' h={'$5'} />}
+				ItemSeparatorComponent={() => <Box className="bg-transparent h-5" />}
 			/>
-		)
+		);
 	}
 
 	const ListFooterComponent = () => {
@@ -218,26 +214,14 @@ export default () => {
 											})
 										}}
 									>
-										<Box
-											key={item.id}
-											flexDirection='row'
-											m={'$2'}
-											p={'$3'}
-											justifyContent='space-between'
-											alignItems='center'
-										>
+										<Box key={item.id} className="flex-row m-2 p-3 justify-between items-center">
 											<VStack>
-												<HStack alignItems='center'>
-													<Heading
-														fontWeight={'$medium'}
-														fontSize={'$xl'}
-														numberOfLines={1}
-														ellipsizeMode={'tail'}
-													>
+												<HStack className="items-center">
+													<Heading numberOfLines={1} ellipsizeMode={'tail'} className="font-medium text-xl">
 														{item.Area?.Country.flag}
 														{item.Area?.City.name}
 													</Heading>
-													<Text fontSize={'$md'}>
+													<Text className="text-md">
 														&nbsp; · &nbsp;
 														{distance}&nbsp;
 														{metric}
@@ -248,10 +232,10 @@ export default () => {
 											<ArrowRightIcon />
 										</Box>
 									</Pressable>
-								)
+								);
 							})}
 						</VStack>
-					)
+					);
 				case 'ComingAreaResponse':
 					return (
 						<VStack>
@@ -269,22 +253,10 @@ export default () => {
 											})
 										}}
 									>
-										<Box
-											key={item.id}
-											m={'$2'}
-											p={'$3'}
-											flexDirection='row'
-											justifyContent='space-between'
-											alignItems='center'
-										>
+										<Box key={item.id} className="m-2 p-3 flex-row justify-between items-center">
 											<VStack>
-												<HStack alignItems='center'>
-													<Heading
-														fontWeight={'$medium'}
-														fontSize={'$xl'}
-														numberOfLines={1}
-														ellipsizeMode={'tail'}
-													>
+												<HStack className="items-center">
+													<Heading numberOfLines={1} ellipsizeMode={'tail'} className="font-medium text-xl">
 														{item.Area?.Country.flag}
 														{item.Area?.City.name}
 													</Heading>
@@ -294,10 +266,10 @@ export default () => {
 											<ArrowRightIcon />
 										</Box>
 									</Pressable>
-								)
+								);
 							})}
 						</VStack>
-					)
+					);
 			}
 		}
 
@@ -311,19 +283,23 @@ export default () => {
 
 		const RecommendedAreaComponent = () => {
 			return (
-				<Box m={'$2'}>
+				<Box className="m-2">
 					<VStack>
-						<VStack space='xs' p={'$3'} flex={1}>
+						<VStack space='xs' className="p-3 flex-1">
 							<Heading>Recommended Areas</Heading>
-							<Button variant='link' width={'50%'} size='md' onPress={_press} justifyContent='flex-start'>
+							<Button
+								variant='link'
+								size='md'
+								onPress={_press}
+								className="w-[50%] justify-start">
 								<ButtonText>Filter by distance</ButtonText>
-								<ButtonIcon as={ArrowRightIcon} ml='$1' />
+								<ButtonIcon as={ArrowRightIcon} className="ml-1" />
 							</Button>
 						</VStack>
 						<RecommendedAreaList />
 					</VStack>
 				</Box>
-			)
+			);
 		}
 
 		switch (data.venuesNearby.__typename) {
@@ -341,7 +317,7 @@ export default () => {
 			<ScrollView>
 				<Text>{data.venuesNearby.message}</Text>
 			</ScrollView>
-		)
+		);
 	}
 
 	if (data.venuesNearby.__typename === 'ComingAreaResponse') {
@@ -363,19 +339,13 @@ export default () => {
 					}).length
 
 					return (
-						<Box key={item.id} py={'$1'} m={'$2'} rounded={'$xl'}>
-							<HStack flex={1} justifyContent={'space-between'}>
-								<HStack px={'$3'} space={'md'} alignItems={'center'}>
+						<Box key={item.id} className="py-1 m-2 rounded-xl">
+							<HStack className="flex-1 justify-between">
+								<HStack space={'md'} className="px-3 items-center">
 									<CountryFlag size={12} isoCode={String(item.Area?.Country.isoCode)} />
-									<Text fontSize={'$xl'}>{item.Area?.City.name}</Text>
+									<Text className="text-xl">{item.Area?.City.name}</Text>
 								</HStack>
-								<HStack
-									sx={{
-										h: 50,
-									}}
-									space={'md'}
-									justifyContent={'flex-end'}
-								>
+								<HStack space={'md'} className="h-[50px] justify-end">
 									<Pressable
 										onPress={() => {
 											updateH6VenueRecommendationVoteMutation({
@@ -384,10 +354,8 @@ export default () => {
 												},
 											})
 										}}
-										flexDirection={'row'}
-										alignItems={'center'}
-									>
-										<Text fontWeight={'$medium'} fontSize={'$xl'} mx={'$2'} textAlign={'right'}>
+										className="flex-row items-center">
+										<Text className="font-medium text-xl mx-2 text-[right]">
 											{lengthOfUpvote}
 										</Text>
 										<Ionicons
@@ -409,10 +377,6 @@ export default () => {
 										/>
 									</Pressable>
 									<Pressable
-										px={'$2'}
-										sx={{
-											w: 50,
-										}}
 										onPress={() => {
 											updateToBeNotifiedMutation({
 												variables: {
@@ -420,9 +384,7 @@ export default () => {
 												},
 											})
 										}}
-										alignItems={'center'}
-										justifyContent={'center'}
-									>
+										className="px-2 w-[50px] items-center justify-center">
 										<Ionicons
 											name='notifications-sharp'
 											size={23}
@@ -440,10 +402,10 @@ export default () => {
 								</HStack>
 							</HStack>
 						</Box>
-					)
+					);
 				}}
 			/>
-		)
+		);
 	}
 
 	if (data.venuesNearby.__typename === 'VenuesNearbyResponse') {
@@ -467,12 +429,12 @@ export default () => {
 						columnIndex={columnIndex}
 					/>
 				)}
-				ItemSeparatorComponent={() => <Box bg={'transparent'} h={'$5'} />}
+				ItemSeparatorComponent={() => <Box className="bg-transparent h-5" />}
 				keyExtractor={item => item.id}
 				ListHeaderComponent={<MemoizedListHeaderComponent typename={data.venuesNearby.__typename} />}
 				ListFooterComponent={<MemoizeFooterComponent />}
 				automaticallyAdjustContentInsets
 			/>
-		)
+		);
 	}
 }

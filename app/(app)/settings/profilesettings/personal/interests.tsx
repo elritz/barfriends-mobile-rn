@@ -1,5 +1,11 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Pressable } from "#/components/ui/pressable";
+import { Heading } from "#/components/ui/heading";
+import { HStack } from "#/components/ui/hstack";
+import { Box } from "#/components/ui/box";
+import { Badge } from "#/components/ui/badge";
 import { useReactiveVar } from '@apollo/client'
-import { Badge, Box, HStack, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { useGetInterestsQuery } from '#/graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { FlashList } from '@shopify/flash-list'
@@ -26,8 +32,8 @@ export default () => {
 
 	if (loading) {
 		return (
-			<Box bg='$transparent' flex={1} mt={'$4'}>
-				<FlashList
+            <Box className="bg-transparent flex-1 mt-4">
+                <FlashList
 					numColumns={1}
 					scrollEnabled={false}
 					keyExtractor={(item, index) => index.toString()}
@@ -38,8 +44,8 @@ export default () => {
 						const randWidth = useRandomNumber(100, 240)
 						const randInterests = useRandomNumber(5, 15)
 						return (
-							<VStack m={'$2'}>
-								<Skeleton
+                            <VStack className="m-2">
+                                <Skeleton
 									height={35}
 									width={Number(randWidth)}
 									radius={15}
@@ -56,11 +62,11 @@ export default () => {
 											  ]
 									}
 								/>
-								<VStack flexWrap={'wrap'} flexDirection={'row'}>
+                                <VStack className="flex-wrap flex-row">
 									{[...Array(randInterests)].map(item => {
 										const randWidth = useRandomNumber(40, 100)
 										return (
-											<Skeleton
+                                            <Skeleton
 												height={35}
 												width={Number(randWidth)}
 												radius={15}
@@ -77,21 +83,21 @@ export default () => {
 														  ]
 												}
 											/>
-										)
+                                        );
 									})}
 								</VStack>
-							</VStack>
-						)
+                            </VStack>
+                        );
 					}}
 					ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
 				/>
-			</Box>
-		)
+            </Box>
+        );
 	}
 
 	return (
-		<Box bg='$transparent' flex={1} mx={'$2'} mt={'$4'}>
-			<FlashList
+        <Box className="bg-transparent flex-1 mx-2 mt-4">
+            <FlashList
 				scrollEnabled
 				data={data?.getInterests}
 				estimatedItemSize={400}
@@ -100,21 +106,12 @@ export default () => {
 				extraData={selectedTags}
 				renderItem={({ item, index }) => {
 					return (
-						<VStack key={item.id}>
-							<Heading>{item.name}</Heading>
-							<HStack
-								flex={1}
-								flexDirection={'row'}
-								// alignItems='center'
-								// justifyContent='center'
-								// justifyContent='space-around'
-								// alignContent='center'
-								flexWrap={'wrap'}
-								space={'sm'}
-							>
+                        <VStack key={item.id}>
+                            <Heading>{item.name}</Heading>
+                            <HStack space={'sm'} className="flex-1 flex-row flex-wrap">
 								{item.Tags.map((tag, index) => {
 									return (
-										<Pressable
+                                        <Pressable
 											onPress={() => {
 												if (selectedTags.some(e => e === tag.id)) {
 													setSelectedTags(prev => {
@@ -125,51 +122,29 @@ export default () => {
 												}
 											}}
 										>
-											<Badge
-												rounded={'$lg'}
-												sx={{
-													_light: {
-														bg:
-															selectedTags.some(e => e === tag.id) ||
-															rAuthorizationVar?.Profile?.DetailInformation?.Tags.some(
-																e => e.id === item.id,
-															)
-																? '$primary500'
-																: '$light200',
-													},
-													_dark: {
-														bg:
-															selectedTags.some(e => e === tag.id) ||
-															rAuthorizationVar?.Profile?.DetailInformation?.Tags.some(
-																e => e.id === item.id,
-															)
-																? '$primary500'
-																: '$light400',
-													},
-												}}
-												px={'$3'}
-												py={'$2'}
-												my={'$2'}
-											>
+                                            <Badge
+                                                className={` ${selectedTags.some(e => e === tag.id) ||
+rAuthorizationVar?.Profile?.DetailInformation?.Tags.some(
+    e => e.id === item.id,
+) ? "bg-primary-500" : "bg-light-200"} ${selectedTags.some(e => e === tag.id) ||
+rAuthorizationVar?.Profile?.DetailInformation?.Tags.some(
+    e => e.id === item.id,
+) ? "dark:bg-primary-500" : "dark:bg-light-400"} rounded-lg  px-3 py-2 my-2 `}>
 												<Text
-													color={
-														rTheme.colorScheme === 'light'
-															? rTheme.theme?.gluestack.tokens.colors.light900
-															: rTheme.theme?.gluestack.tokens.colors.light100
-													}
+													className={` ${rTheme.colorScheme === 'light' ? rTheme.theme?.gluestack.tokens.colors.light900 : rTheme.theme?.gluestack.tokens.colors.light100} `}
 												>
 													{tag.emoji}
 													{tag.name}
 												</Text>
 											</Badge>
-										</Pressable>
-									)
+                                        </Pressable>
+                                    );
 								})}
 							</HStack>
-						</VStack>
-					)
+                        </VStack>
+                    );
 				}}
 			/>
-		</Box>
-	)
+        </Box>
+    );
 }

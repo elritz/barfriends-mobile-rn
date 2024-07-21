@@ -34,8 +34,8 @@ const AdvertismentHorizontal = () => {
 	})
 
 	return (
-		<Animated.View style={[style, { paddingTop: 0 }]}>
-			{/* <ScrollView
+        <Animated.View style={[style, { paddingTop: 0 }]}>
+            {/* <ScrollView
 				contentContainerStyle={{ paddingTop: 110 }}
 				bounces={false}
 				showsVerticalScrollIndicator={false}
@@ -43,7 +43,7 @@ const AdvertismentHorizontal = () => {
 				snapToEnd={false}
 				decelerationRate='fast'
 			> */}
-			<View style={styles.slider}>
+            <View style={styles.slider}>
 				<Animated.ScrollView
 					onScroll={onScroll}
 					scrollEventThrottle={16}
@@ -58,9 +58,9 @@ const AdvertismentHorizontal = () => {
 				</Animated.ScrollView>
 				<Products x={translateX} />
 			</View>
-			{/* </ScrollView> */}
-		</Animated.View>
-	)
+            {/* </ScrollView> */}
+        </Animated.View>
+    );
 }
 
 export default AdvertismentHorizontal

@@ -1,7 +1,4 @@
-// TODO: FX() Need profile item id for routing
-// TODO: UX() Item need to be updated for messageboard route
-// TODO: UX() Item need to be updated for Personal data, loading, error
-import { Pressable } from '@gluestack-ui/themed'
+import { Pressable } from "#/components/ui/pressable";
 import { Profile } from '#/graphql/generated'
 import { useRouter } from 'expo-router'
 import { uniqueId } from 'lodash'
@@ -14,18 +11,15 @@ type PersonalAtVenueProps = {
 const PersonalAtVenue = ({ item }: PersonalAtVenueProps) => {
 	const router = useRouter()
 	return (
-		<Pressable
-			key={uniqueId()}
-			flexGrow={1}
-			mx={'$1'}
-			alignSelf={'center'}
-			onPress={() => {
+        <Pressable
+            key={uniqueId()}
+            onPress={() => {
 				router.push({
 					pathname: `/(app)/public/venue/philz`,
 				})
 			}}
-		>
-			{/* <Image
+            className="grow-[1px] mx-1 self-center">
+            {/* <Image
 				source={{ uri: item.photos[0].url }}
 				alt={'User image'}
 				borderRadius={'xl'}
@@ -36,7 +30,7 @@ const PersonalAtVenue = ({ item }: PersonalAtVenueProps) => {
 					borderColor: 'white',
 				}}
 			/> */}
-			<View
+            <View
 				style={{
 					width: '100%',
 					justifyContent: 'flex-start',
@@ -44,8 +38,8 @@ const PersonalAtVenue = ({ item }: PersonalAtVenueProps) => {
 			>
 				{/* <Text fontSize={'xs'}>{item.name}</Text> */}
 			</View>
-		</Pressable>
-	)
+        </Pressable>
+    );
 }
 
 export default PersonalAtVenue

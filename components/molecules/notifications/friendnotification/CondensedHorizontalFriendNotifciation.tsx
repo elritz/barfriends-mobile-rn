@@ -1,182 +1,211 @@
-import { useReactiveVar } from '@apollo/client'
-import { HStack, VStack, Button, Text, ButtonText, View } from '@gluestack-ui/themed'
+import { View } from "#/components/ui/view";
+import { Text } from "#/components/ui/text";
+import { Button, ButtonIcon } from "#/components/ui/button";
+import { VStack } from "#/components/ui/vstack";
+import { HStack } from "#/components/ui/hstack";
+import { useReactiveVar } from "@apollo/client";
 import {
-	Request,
-	useAcceptFriendRequestMutation,
-	useDeclineFriendRequestMutation,
-	useDeleteFriendRequestMutation,
-	useGetNotificationsLazyQuery,
-	useGetNotificationsQuery,
-} from '#/graphql/generated'
-import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
-import { useDisclose } from '#/util/hooks/useDisclose'
-import { useRouter } from 'expo-router'
-import { BlurView } from 'expo-blur'
+  Request,
+  useAcceptFriendRequestMutation,
+  useDeclineFriendRequestMutation,
+  useDeleteFriendRequestMutation,
+} from "#/graphql/generated";
+import { AuthorizationReactiveVar, ThemeReactiveVar } from "#/reactive";
+import { useRouter } from "expo-router";
+import {
+  CheckCircleIcon,
+  CheckIcon,
+  CloseIcon,
+  Icon,
+} from "#/components/ui/icon";
+import { Pressable } from "react-native";
+import { Spinner } from "#/components/ui/spinner";
 
 interface CondensedHorizontalFriendNotifciationProps<T> {
-	item: Request | null | undefined
+  item: Request | null | undefined;
 }
 
 export const CondensedHorizontalFriendNotifciation = <T,>({
-	item,
+  item,
 }: CondensedHorizontalFriendNotifciationProps<T>) => {
-	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
-	const rThemeVar = useReactiveVar(ThemeReactiveVar)
-	const router = useRouter()
+  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar);
+  const rThemeVar = useReactiveVar(ThemeReactiveVar);
+  const router = useRouter();
 
-	const [deleteFriendRequestMutation, { data: dFRData, loading: dFRLoading, error: dFRError }] =
-		useDeleteFriendRequestMutation({
-			update(cache, { data }) {
-				if (item) {
-					const r = cache.evict({ id: cache.identify(item) })
-				}
-			},
-		})
+  const [
+    deleteFriendRequestMutation,
+    { data: dFRData, loading: dFRLoading, error: dFRError },
+  ] = useDeleteFriendRequestMutation({
+    update(cache, { data }) {
+      if (item) {
+        const r = cache.evict({ id: cache.identify(item) });
+      }
+    },
+  });
 
-	const [acceptFriendRequestMutation, { data: aFRMData, loading: aFRMLoading, error: aFRMError }] =
-		useAcceptFriendRequestMutation({
-			onCompleted: data => {
-				// data.acceptFriendRequest.__typename === 'Relationship' &&
-				// updateQuery(prevData => {
-				// 	return {
-				// 		...prevData,
-				// 		publicProfile: {
-				// 			...prevData?.publicProfile,
-				// 			relationship: data.acceptFriendRequest,
-				// 		},
-				// 	}
-				// })
-			},
-		})
+  const [
+    acceptFriendRequestMutation,
+    { data: aFRMData, loading: aFRMLoading, error: aFRMError },
+  ] = useAcceptFriendRequestMutation({
+    onCompleted: (data) => {
+      // data.acceptFriendRequest.__typename === 'Relationship' &&
+      // updateQuery(prevData => {
+      // 	return {
+      // 		...prevData,
+      // 		publicProfile: {
+      // 			...prevData?.publicProfile,
+      // 			relationship: data.acceptFriendRequest,
+      // 		},
+      // 	}
+      // })
+    },
+  });
 
-	const [declineFriendRequestMutation, { data: dFRMData, loading: dFRMLoading, error: dFRMError }] =
-		useDeclineFriendRequestMutation({
-			onCompleted: data => {
-				// updateQuery(prevData => {
-				// 	return {
-				// 		...prevData,
-				// 		publicProfile: {
-				// 			...prevData?.publicProfile,
-				// 			relationship: null,
-				// 		},
-				// 	}
-				// })
-			},
-		})
+  const [
+    declineFriendRequestMutation,
+    { data: dFRMData, loading: dFRMLoading, error: dFRMError },
+  ] = useDeclineFriendRequestMutation({
+    onCompleted: (data) => {
+      // updateQuery(prevData => {
+      // 	return {
+      // 		...prevData,
+      // 		publicProfile: {
+      // 			...prevData?.publicProfile,
+      // 			relationship: null,
+      // 		},
+      // 	}
+      // })
+    },
+  });
 
-	const currentUserIsSender = item?.senderProfile?.id === rAuthorizationVar?.Profile?.id
+  const currentUserIsSender =
+    item?.senderProfile?.id === rAuthorizationVar?.Profile?.id;
 
-	const receiver = item?.recievers[0]
+  const receiver = item?.recievers[0];
 
-	// console.log('item ----------------------- :>> ', JSON.stringify(item, null, 2))
+  // console.log('item ----------------------- :>> ', JSON.stringify(item, null, 2))
 
-	const SectionContainer = ({ children }) => {
-		return (
-			<View
-				style={{
-					marginHorizontal: 4,
-					padding: 10,
-					overflow: 'hidden',
-					borderBottomWidth: 0.35,
-				}}
-			>
-				{children}
-			</View>
-		)
-	}
+  const SectionContainer = ({ children }) => {
+    return (
+      <View
+        style={{
+          padding: 10,
+          overflow: "hidden",
+          borderBottomWidth: 0.35,
+        }}
+      >
+        {children}
+      </View>
+    );
+  };
 
-	return (
-		<>
-			{currentUserIsSender ? (
-				<SectionContainer>
-					<HStack alignItems='center' justifyContent='space-between' space='md' flex={1} h={'100%'}>
-						<VStack space='xs' flex={1}>
-							<Text
-								flex={1}
-								flexWrap='wrap'
-								fontSize={'$lg'}
-								fontWeight='$medium'
-								textTransform='capitalize'
-							>
-								{receiver?.Profile?.IdentifiableInformation?.fullname}
-							</Text>
-						</VStack>
-						<Button
-							rounded={'$lg'}
-							variant='outline'
-							size='xs'
-							disabled={dFRLoading}
-							onPress={() => {
-								item?.NotificationType === 'FRIEND_REQUEST' &&
-									deleteFriendRequestMutation({
-										variables: {
-											friendRequestId: item.id,
-										},
-									})
-							}}
-						>
-							<Text fontSize={'$sm'} fontWeight='$bold'>
-								Unsend
-							</Text>
-						</Button>
-					</HStack>
-				</SectionContainer>
-			) : (
-				<SectionContainer>
-					<HStack w={'$full'} justifyContent='space-between' alignItems='center'>
-						<VStack space='sm'>
-							<Text
-								flex={1}
-								flexWrap='wrap'
-								fontSize={'$lg'}
-								fontWeight='$medium'
-								textTransform='capitalize'
-							>
-								{receiver?.Profile?.IdentifiableInformation?.fullname}
-							</Text>
-						</VStack>
-						<HStack space='sm'>
-							<Button
-								size='xs'
-								variant='link'
-								height={28}
-								onPress={() => {
-									declineFriendRequestMutation({
-										variables: {
-											friendRequestId: String(item?.id),
-											notificationStatusId: String(receiver?.NotificationStatus.id),
-										},
-									})
-								}}
-							>
-								<Text fontSize={'$sm'} fontWeight='$bold'>
-									Decline
-								</Text>
-							</Button>
-							{/* <Button
-								size='xs'
-								height={28}
-								onPress={() => {
-									acceptFriendRequestMutation({
-										variables: {
-											friendRequestId: String(item?.id),
-											notificationStatusId: String(receiver?.NotificationStatus.id),
-										},
-									})
-								}}
-							>
-								<ButtonText fontSize={'$sm'}>Accept</ButtonText>
-							</Button> */}
-						</HStack>
-					</HStack>
-				</SectionContainer>
-			)}
-		</>
-	)
-}
+  return (
+    <>
+      {currentUserIsSender ? (
+        <SectionContainer>
+          <HStack
+            space="md"
+            className="h-[100%] flex-1 items-center justify-between"
+          >
+            <VStack space="xs" className="flex-1">
+              <Text className="flex-1 flex-wrap text-lg font-medium capitalize">
+                {receiver?.Profile?.IdentifiableInformation?.fullname}
+              </Text>
+            </VStack>
+            <Button
+              variant={dFRLoading ? "solid" : "outline"}
+              size="xs"
+              disabled={dFRLoading}
+              onPress={() => {
+                item?.NotificationType === "FRIEND_REQUEST" &&
+                  deleteFriendRequestMutation({
+                    variables: {
+                      friendRequestId: item.id,
+                    },
+                  });
+              }}
+              className="rounded-lg"
+            >
+              <HStack space={"sm"}>
+                <Text className="text-sm font-bold">
+                  {dFRLoading ? "Unsent" : "Unsend"}
+                </Text>
+              </HStack>
+            </Button>
+          </HStack>
+        </SectionContainer>
+      ) : (
+        <SectionContainer>
+          <HStack
+            space="md"
+            className="h-[100%] w-full flex-1 items-center justify-between"
+          >
+            <VStack space="sm">
+              <Text className="flex-wrap text-lg font-medium capitalize">
+                {receiver?.Profile?.IdentifiableInformation?.fullname}
+              </Text>
+            </VStack>
+            {/* <HStack space="sm">
+              <Button
+                size="xs"
+                variant="solid"
+                onPress={() => {
+                  declineFriendRequestMutation({
+                    variables: {
+                      friendRequestId: String(item?.id),
+                      notificationStatusId: String(
+                        receiver?.NotificationStatus.id,
+                      ),
+                    },
+                  });
+                }}
+                className="h-[28px] rounded-full bg-slate-200 dark:bg-slate-800"
+              >
+                <Text className="text-sm font-bold">Decline</Text>
+              </Button>
+              <Icon
+                as={CheckIcon}
+                className="h-7 w-7 rounded-full bg-primary-500 text-typography-500"
+              />
+            </HStack> */}
+            <HStack space="sm" className="items-center">
+              <Pressable
+                onPress={() => {
+                  declineFriendRequestMutation({
+                    variables: {
+                      friendRequestId: String(item?.id),
+                      notificationStatusId: String(
+                        receiver?.NotificationStatus.id,
+                      ),
+                    },
+                  });
+                }}
+              >
+                <Icon
+                  as={CloseIcon}
+                  className="mr-2 h-6 w-6 text-typography-500"
+                />
+              </Pressable>
+              <Button
+                size="xs"
+                variant="solid"
+                onPress={() => {
+                  console.log("ACCEPT FRIEND REQUEST");
+                }}
+                className="h-[28px] rounded-full"
+              >
+                <Text className="text-sm font-bold">Accept</Text>
+              </Button>
+            </HStack>
+          </HStack>
+        </SectionContainer>
+      )}
+    </>
+  );
+};
 
 {
-	/* {currentUserIsSender ? (
+  /* {currentUserIsSender ? (
 				<HStack justifyContent={'space-between'} alignItems={'center'}>
 					<Pressable
 					// onPress={() => {
@@ -224,7 +253,7 @@ export const CondensedHorizontalFriendNotifciation = <T,>({
 							currentUserIsSender && onOpenCancelFriendNotification()
 						}}
 					>
-						<Text fontSize={'$md'} lineHeight={'$xs'} fontWeight='$black' textTransform='uppercase'>
+						<Text fontSize={'$md'} lineHeight={'$xs'} fontWeight='$black' >
 							Requestedww
 						</Text>
 					</Button>
@@ -280,7 +309,7 @@ export const CondensedHorizontalFriendNotifciation = <T,>({
 								})
 							}
 						>
-							<Text fontWeight='$black' fontSize={'$md'} textTransform='uppercase'>
+							<Text fontWeight='$black' fontSize={'$md'}>
 								Accept
 							</Text>
 						</Button>

@@ -1,11 +1,11 @@
+import { Image } from "#/components/ui/image";
+import { Box } from "#/components/ui/box";
 import { View, Text, Dimensions, StyleSheet } from 'react-native'
 import React, { useCallback, useRef, useState } from 'react'
 import { useLocalSearchParams } from 'expo-router'
-import { Box } from '@gluestack-ui/themed'
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Platform, KeyboardAvoidingView } from 'react-native';
 import { GiftedChat, IMessage } from 'react-native-gifted-chat';
-import { Image } from '@gluestack-ui/themed'
 import { ResizeMode, Video } from 'expo-av';
 import { KeyboardAwareScrollView, KeyboardGestureArea, useKeyboardHandler } from 'react-native-keyboard-controller'
 import Reanimated, { useAnimatedProps, useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
@@ -184,23 +184,15 @@ export default function conversation() {
         return null
       }
       return (
-        <Box
-          w={width / 1.5}
-          m={'$2'}
-          h={150}
-          rounded={'$md'}
-        >
+        <Box className={` w-${width / 1.5} m-2 h-[150px] rounded-md `}>
           <Image
-            rounded={'$lg'}
             alt='youtube video thumbnail'
             source={{
               uri: `https://img.youtube.com/vi/${getYouTubeId(
                 currentMessage!.video!
               )}/sddefault.jpg`,
             }}
-            w={'100%'}
-            h={'100%'}
-          />
+            className="rounded-lg w-[100%] h-[100%]" />
         </Box>
       );
     }
@@ -209,23 +201,15 @@ export default function conversation() {
         return null
       }
       return (
-        <Box
-          w={width / 1.5}
-          m={'$2'}
-          h={150}
-          rounded={'$md'}
-        >
+        <Box className={` w-${width / 1.5} m-2 h-[150px] rounded-md `}>
           <Image
-            rounded={'$lg'}
             alt='youtube video thumbnail'
-            w={'100%'}
-            h={'100%'}
             source={{
               uri: `https://player.vimeo.com/video/${getVimeoId(
                 currentMessage!.video!
               )}`,
             }}
-          />
+            className="rounded-lg w-[100%] h-[100%]" />
         </Box>
       );
     }
@@ -264,5 +248,5 @@ export default function conversation() {
       />
       {Platform.OS === 'android' && <KeyboardAvoidingView behavior="padding" />}
     </SafeAreaView>
-  )
+  );
 }

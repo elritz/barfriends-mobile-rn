@@ -1,6 +1,11 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Heading } from "#/components/ui/heading";
+import { Divider } from "#/components/ui/divider";
+import { Button, ButtonText } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
 import IllustrationDynamicMedia from '#/assets/images/media/IllustrationDynamicMedia'
-import { Box, Button, Divider, Heading, Text, VStack, ButtonText } from '@gluestack-ui/themed'
 import PermissionDetailItem from '#/components/screens/permissions/PermissionDetailItem'
 import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 import { PermissionMediaReactiveVar, ThemeReactiveVar } from '#/reactive'
@@ -123,52 +128,40 @@ export default () => {
 	})
 
 	return (
-		<Box bg={'$transparent'} style={{ flex: 1 }} mb={'$5'}>
-			<Box bg={'$transparent'} alignItems={'center'} justifyContent={'flex-start'} my={'$5'}>
+        <Box style={{ flex: 1 }} className="bg-transparent mb-5">
+            <Box className="bg-transparent items-center justify-start my-5">
 				<IllustrationDynamicMedia width={60} height={60} />
 				<Divider style={{ width: 50, marginVertical: 10 }} />
 				<Heading
-					px={'$2'}
-					fontWeight={'$black'}
-					fontSize={'$3xl'}
-					style={{
+                    style={{
 						textAlign: 'center',
 					}}
-					allowFontScaling
-					adjustsFontSizeToFit
-					numberOfLines={3}
-				>
+                    allowFontScaling
+                    adjustsFontSizeToFit
+                    numberOfLines={3}
+                    className="px-2 font-black text-3xl">
 					Allow Barfriends to access your photos and videos
 				</Heading>
 			</Box>
-			<ScrollView>
-				<Box bg={'$transparent'} sx={{ width: wp(95), flex: 1, alignSelf: 'center' }}>
+            <ScrollView>
+				<Box className="bg-transparent w-[undefined]  flex-1  self-center">
 					{details.map((item, index) => {
 						return (
-							<View key={index}>
-								<PermissionDetailItem {...item} />
-							</View>
-						)
+                            <View key={index}>
+                                <PermissionDetailItem {...item} />
+                            </View>
+                        );
 					})}
 				</Box>
 			</ScrollView>
-			<VStack
-				space={'md'}
-				w={'$full'}
-				alignItems={'center'}
-				sx={{
-					mb: insets.bottom,
-				}}
-			>
-				<Divider w={'95%'} />
+            <VStack space={'md'} className="w-full items-center mb-[undefined]">
+				<Divider className="w-[95%]" />
 				<Button
 					size={'lg'}
-					sx={{
-						w: '95%',
-					}}
 					onPress={() =>
 						rPermissionMedia?.canAskAgain ? askMediaLibraryPermissionAsync() : openPhoneSettings()
 					}
+					className="w-[95%]"
 				>
 					<ButtonText>
 						{!rPermissionMedia?.granted
@@ -179,24 +172,19 @@ export default () => {
 					</ButtonText>
 				</Button>
 				{!started ? (
-					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
-						<ButtonText fontWeight={'$medium'}>Close</ButtonText>
+					<Button size={'lg'} onPress={() => router.back()} variant={'link'} className="w-[95%]">
+						<ButtonText className="font-medium">Close</ButtonText>
 					</Button>
 				) : (
-					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
+					<Button size={'lg'} onPress={() => router.back()} variant={'link'} className="w-[95%]">
 						{started && (
-							<Box
-								bg={'$transparent'}
-								sx={{
-									h: 24,
-								}}
-							>
-								{<Text fontWeight={'$medium'}>Auto close in {seconds}</Text>}
+							<Box className="bg-transparent h-[24px]">
+								{<Text className="font-medium">Auto close in {seconds}</Text>}
 							</Box>
 						)}
 					</Button>
 				)}
 			</VStack>
-		</Box>
-	)
+        </Box>
+    );
 }

@@ -1,5 +1,6 @@
+import { Heading } from "#/components/ui/heading";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
-import { Box, Heading } from '@gluestack-ui/themed'
 import { FontAwesome5 } from '@expo/vector-icons'
 import { ThemeReactiveVar } from '#/reactive'
 
@@ -7,24 +8,9 @@ const AddRelationship = ({ }) => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 
 	return (
-		<Box
-			flex={1}
-			sx={{
-				h: 200,
-			}}
-			justifyContent={'center'}
-			alignItems={'center'}
-			rounded='$lg'
-			px={'$5'}
-		>
-			<Box
-				rounded={'$md'}
-				justifyContent={'center'}
-				alignItems={'center'}
-				h={'$16'} w={'$16'}
-				borderColor={'$primary500'}
-				borderWidth={'$2'}
-			>
+        <Box className="flex-1 h-[200px] justify-center items-center rounded-lg px-5">
+            <Box
+                className="rounded-md justify-center items-center h-16 w-16 border-primary-500 border-2">
 				<FontAwesome5
 					name={'hand-holding-heart'}
 					size={30}
@@ -35,11 +21,11 @@ const AddRelationship = ({ }) => {
 					}
 				/>
 			</Box>
-			<Heading fontWeight={'$black'} fontSize={'$lg'} textAlign='center'>
+            <Heading className="font-black text-lg text-center">
 				Add relationship
 			</Heading>
-		</Box>
-	)
+        </Box>
+    );
 }
 
 export default AddRelationship

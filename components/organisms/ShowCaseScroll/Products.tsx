@@ -36,10 +36,10 @@ const Products = ({ x }: ProductsProps) => (
 				}
 			})
 			return (
-				<Animated.View key={index} style={[styles.container, style]}>
-					<Image source={product.picture} style={{ width: SIZE, height: SIZE * product.aspectRatio }} />
-				</Animated.View>
-			)
+                <Animated.View key={index} style={[styles.container, style]}>
+                    <Image source={product.picture} style={{ width: SIZE, height: SIZE * product.aspectRatio }} />
+                </Animated.View>
+            );
 		})}
 	</View>
 )

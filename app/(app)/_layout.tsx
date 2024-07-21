@@ -1,6 +1,9 @@
 
+import { Box } from "#/components/ui/box";
+import { Text } from "#/components/ui/text";
+import { Heading } from "#/components/ui/heading";
+import { Button, ButtonText } from "#/components/ui/button";
 import ChevronBackArrow from '#/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
-import { Button, ButtonText, Heading, Text, Box } from '@gluestack-ui/themed'
 import { Stack, router } from 'expo-router'
 
 export default () => {
@@ -26,7 +29,7 @@ export default () => {
 					animation: 'fade_from_bottom',
 					presentation: 'modal',
 					headerTitle: () => (
-						<Text fontWeight='$bold' fontSize={'$md'}>
+						<Text className="font-bold text-md">
 							New Message
 						</Text>
 					),
@@ -43,7 +46,7 @@ export default () => {
 							>
 								<Text>Cancel</Text>
 							</Button>
-						)
+						);
 					},
 				}}
 			/>
@@ -84,5 +87,5 @@ export default () => {
 			<Stack.Screen name={'permission'} options={{ presentation: 'modal' }} />
 			<Stack.Screen name={'settings'} options={{ presentation: 'fullScreenModal' }} />
 		</Stack>
-	)
+	);
 }

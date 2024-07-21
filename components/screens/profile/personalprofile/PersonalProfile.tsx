@@ -1,94 +1,95 @@
-import ProfilePhoto from '../profilephoto'
-import { useReactiveVar } from '@apollo/client'
-import CardPleaseSignup from '#/components/molecules/asks/signuplogin'
-import { FriendsList } from '#/components/organisms/list/friendslist'
-import CondensedVerticalFriendsNotficationsList from '#/components/organisms/list/notifications/friends/CondensedVerticalFriendsNotficationsList'
-import QuickBarfriendCard from '#/components/screens/public/venue/venueactions/actioncards/quickbarfriendcard/QuickBarfriendCard'
-import AddRelationship from '#/components/screens/tonight/activity/ask/AddRelationship/AddRelationship'
-import { View, Box, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
-import { ProfileType } from '#/graphql/generated'
-import { AuthorizationReactiveVar } from '#/reactive'
-import { DateTime } from 'luxon'
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Heading } from "#/components/ui/heading";
+import { HStack } from "#/components/ui/hstack";
+import { Box } from "#/components/ui/box";
+import { View } from "#/components/ui/view";
+import ProfilePhoto from "../profilephoto";
+import { useReactiveVar } from "@apollo/client";
+import CardPleaseSignup from "#/components/molecules/asks/signuplogin";
+import { FriendsList } from "#/components/organisms/list/friendslist";
+import CondensedVerticalFriendsNotficationsList from "#/components/organisms/list/notifications/friends/CondensedVerticalFriendsNotficationsList";
+import QuickBarfriendCard from "#/components/screens/public/venue/venueactions/actioncards/quickbarfriendcard/QuickBarfriendCard";
+import AddRelationship from "#/components/screens/tonight/activity/ask/AddRelationship/AddRelationship";
+import { ProfileType } from "#/graphql/generated";
+import { AuthorizationReactiveVar } from "#/reactive";
+import { DateTime } from "luxon";
 
 const PersonalScreen = () => {
-	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
+  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar);
 
-	if (rAuthorizationVar?.Profile?.ProfileType === ProfileType.Guest) {
-		return (
-			<Box bg='$red900' mx={'$3'} flex={1}>
-				<CardPleaseSignup signupTextId={4} />
-			</Box>
-		)
-	}
+  if (rAuthorizationVar?.Profile?.ProfileType === ProfileType.Guest) {
+    return (
+      <Box className="mx-3 flex-1 bg-red-900">
+        <CardPleaseSignup signupTextId={4} />
+      </Box>
+    );
+  }
 
-	return (
-		<Box bg={'transparent'}>
-			<HStack style={{ alignItems: 'flex-start', marginVertical: 20 }} mx={'$3'} space={'md'}>
-				<ProfilePhoto photo={rAuthorizationVar?.Profile?.profilePhoto} />
-				<VStack space='sm'>
-					<VStack flex={1} space='sm'>
-						<View>
-							<VStack flex={1} position='relative' mt={'$3'} space='sm'>
-								<HStack justifyContent='space-between'>
-									<Text
-										fontSize={'$sm'}
-										fontWeight={'$medium'}
-										position='absolute'
-										numberOfLines={1}
-										sx={{
-											top: -20,
-										}}
-									>
-										@{rAuthorizationVar?.Profile?.IdentifiableInformation?.username}
-									</Text>
-									<HStack>
-										<Text
-											lineHeight={'$2xl'}
-											fontSize={'$3xl'}
-											letterSpacing={'$sm'}
-											numberOfLines={2}
-											fontWeight='$bold'
-										>
-											{rAuthorizationVar?.Profile?.IdentifiableInformation?.fullname}
-										</Text>
-									</HStack>
-								</HStack>
-								<Heading fontWeight='$light' fontSize={'$md'} numberOfLines={1} lineHeight={'$xs'}>
-									{DateTime.fromISO(rAuthorizationVar?.Profile?.IdentifiableInformation?.birthday).toFormat(
-										'yyyy LLLL dd',
-									)}
-								</Heading>
-							</VStack>
-						</View>
-					</VStack>
-				</VStack>
-			</HStack>
-			<View mx={'$3'}>
-				<Heading>Requests</Heading>
-				<CondensedVerticalFriendsNotficationsList />
-			</View>
-			<VStack m={'$3'} space={'md'} justifyContent={'space-around'}>
-				<HStack space={'md'} justifyContent={'space-around'}>
-					<Box
-						flex={1}
-						sx={{
-							h: 200,
-						}}
-						justifyContent={'center'}
-						alignItems={'center'}
-						rounded='$lg'
-						px={'$5'}
-					>
-						<QuickBarfriendCard color={'#ff7000'} showIcon={false} logosize={40} qrcodesize={140} />
-					</Box>
-					<AddRelationship />
-				</HStack>
-			</VStack>
-			<Box mx={'$2'}>
-				<FriendsList />
-			</Box>
-		</Box>
-	)
-}
+  return (
+    <Box className="bg-transparent">
+      <HStack space={"md"} className="mx-3 my-[20px] items-start">
+        <ProfilePhoto photo={rAuthorizationVar?.Profile?.profilePhoto} />
+        <VStack space="sm" className="flex-1 pr-2">
+          <VStack space="sm" className="mt-3">
+            <View>
+              <VStack space="sm" className="">
+                <HStack className="justify-between">
+                  <VStack>
+                    <Text
+                      numberOfLines={1}
+                      className="absolute -top-5 text-sm font-medium"
+                    >
+                      @
+                      {
+                        rAuthorizationVar?.Profile?.IdentifiableInformation
+                          ?.username
+                      }
+                    </Text>
+                    <Text
+                      numberOfLines={2}
+                      className="leading-2xl tracking-sm text-3xl font-bold"
+                    >
+                      {
+                        rAuthorizationVar?.Profile?.IdentifiableInformation
+                          ?.fullname
+                      }
+                    </Text>
+                  </VStack>
+                </HStack>
+                <Heading
+                  numberOfLines={1}
+                  className="text-md leading-xs font-light"
+                >
+                  {DateTime.fromISO(
+                    rAuthorizationVar?.Profile?.IdentifiableInformation
+                      ?.birthday,
+                  ).toFormat("yyyy LLLL dd")}
+                </Heading>
+              </VStack>
+            </View>
+          </VStack>
+        </VStack>
+      </HStack>
 
-export default PersonalScreen
+      <VStack space={"md"} className="m-3 justify-around">
+        <HStack space={"md"} className="justify-around">
+          <Box className="h-[200px] flex-1 items-center justify-center rounded-lg px-5">
+            <QuickBarfriendCard
+              color={"#ff7000"}
+              showIcon={false}
+              logosize={40}
+              qrcodesize={140}
+            />
+          </Box>
+          <AddRelationship />
+        </HStack>
+      </VStack>
+      <Box className="mx-2">
+        <FriendsList />
+      </Box>
+    </Box>
+  );
+};
+
+export default PersonalScreen;

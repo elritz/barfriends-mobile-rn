@@ -1,4 +1,4 @@
-import { Text } from '@gluestack-ui/themed'
+import { Text } from "#/components/ui/text";
 import { View } from 'react-native'
 
 enum ProfileType {

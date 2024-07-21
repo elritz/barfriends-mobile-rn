@@ -9,7 +9,7 @@ export default function _layout() {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 
 	return (
-		<Stack
+        <Stack
 			screenOptions={{
 				headerStyle: {
 					backgroundColor:
@@ -20,7 +20,7 @@ export default function _layout() {
 				headerShown: false,
 			}}
 		>
-			<Stack.Screen
+            <Stack.Screen
 				name={'updatelatestprivacytermsservice'}
 				options={{
 					headerStyle: {
@@ -31,7 +31,7 @@ export default function _layout() {
 					// headerLeft: () => <ChevronBackArrow />,
 				}}
 			/>
-			<Stack.Screen
+            <Stack.Screen
 				name={'latestprivacyservicetoptab'}
 				options={{
 					presentation: 'fullScreenModal',
@@ -40,6 +40,6 @@ export default function _layout() {
 					headerLeft: () => <ChevronBackArrow />,
 				}}
 			/>
-		</Stack>
-	)
+        </Stack>
+    );
 }

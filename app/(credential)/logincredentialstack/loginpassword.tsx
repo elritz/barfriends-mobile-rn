@@ -1,20 +1,13 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Spinner } from "#/components/ui/spinner";
+import { Pressable } from "#/components/ui/pressable";
+import { Input, InputField, InputIcon, InputSlot } from "#/components/ui/input";
+import { HStack } from "#/components/ui/hstack";
+import { EyeIcon, EyeOffIcon, Icon } from "#/components/ui/icon";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
 import { Feather } from '@expo/vector-icons'
-import {
-	Box,
-	EyeIcon,
-	EyeOffIcon,
-	HStack,
-	Icon,
-	Input,
-	InputField,
-	InputIcon,
-	InputSlot,
-	Pressable,
-	Spinner,
-	Text,
-	VStack,
-} from '@gluestack-ui/themed'
 import {
 	AuthorizationDeviceProfile,
 	useLoginPasswordLazyQuery,
@@ -127,46 +120,22 @@ export default () => {
 
 	const InnerContent = () => {
 		return (
-			<Box
-				rounded={'$none'}
-				display={isFocused ? 'flex' : 'none'}
-				flexDirection={'row'}
-				justifyContent={'flex-end'}
-				alignItems='center'
-				alignContent={'space-around'}
-				px={'$2'}
-				sx={{
-					h: 80,
-					_dark: {
-						bg: '$black',
-					},
-					_light: {
-						bg: '$white',
-					},
-				}}
-			>
-				<HStack justifyContent='space-around' flexDirection='row'>
+            <Box
+                className={` ${isFocused ? "flex" : "hidden"} rounded-none flex-row justify-end items-center content-around px-2 h-[80px]  dark:bg-black bg-white `}>
+                <HStack className="justify-around flex-row">
 					<Pressable onPress={handleSubmit(onSubmit)}>
 						<Box
-							alignItems='center'
-							justifyContent='center'
-							sx={{
-								h: 50,
-								w: 50,
-							}}
-							rounded={'$full'}
-							bg='$primary500'
-						>
+                            className="items-center justify-center h-[50px]  w-[50px] rounded-full bg-primary-500">
 							<Feather name='arrow-right' size={32} color={errors?.password ? '#292524' : 'white'} />
 						</Box>
 					</Pressable>
 				</HStack>
-			</Box>
-		)
+            </Box>
+        );
 	}
 
 	return (
-		<KeyboardAvoidingView
+        <KeyboardAvoidingView
 			behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
 			style={{
 				flex: 1,
@@ -175,60 +144,53 @@ export default () => {
 				marginHorizontal: '5%',
 			}}
 		>
-			<Reanimated.View style={{ flex: 1 }}>
-				<VStack sx={{ h: 110 }} mt={'$12'}>
+            <Reanimated.View style={{ flex: 1 }}>
+				<VStack className="h-[110px] mt-12">
 					<Controller
 						name='password'
 						control={control}
 						defaultValue=''
 						render={({ field: { onChange, onBlur, value } }) => {
 							return (
-								<Input variant={'underlined'} size='lg' alignItems='center'>
-									<InputField
-										keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-										value={value}
-										placeholder='Password'
-										fontSize={'$2xl'}
-										lineHeight={'$2xl'}
-										fontWeight='$medium'
-										type={showPassword ? 'text' : 'password'}
-										py={'$2'}
-										sx={{
-											h: 50,
-										}}
-										secureTextEntry={!showPassword}
-										onChangeText={value => onChange(value)}
-										onSubmitEditing={handleSubmit(onSubmit)}
-										onBlur={onBlur}
-										textContentType='password'
-										blurOnSubmit={false}
-										autoComplete={'password'}
-										autoFocus
-										returnKeyType='done'
-										autoCorrect={false}
-										inputAccessoryViewID={INPUT_ACCESSORY_VIEW_ID}
-										autoCapitalize='none'
-										numberOfLines={1}
-									/>
-									<InputSlot pr='$3' hitSlop={15} onPress={handleShowPassword}>
+                                <Input variant={'underlined'} size='lg' className="items-center">
+                                    <InputField
+                                        keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+                                        value={value}
+                                        placeholder='Password'
+                                        type={showPassword ? 'text' : 'password'}
+                                        secureTextEntry={!showPassword}
+                                        onChangeText={value => onChange(value)}
+                                        onSubmitEditing={handleSubmit(onSubmit)}
+                                        onBlur={onBlur}
+                                        textContentType='password'
+                                        blurOnSubmit={false}
+                                        autoComplete={'password'}
+                                        autoFocus
+                                        returnKeyType='done'
+                                        autoCorrect={false}
+                                        inputAccessoryViewID={INPUT_ACCESSORY_VIEW_ID}
+                                        autoCapitalize='none'
+                                        numberOfLines={1}
+                                        className="text-2xl leading-2xl font-medium py-2 h-[50px]" />
+                                    <InputSlot hitSlop={15} onPress={handleShowPassword} className="pr-3">
 										{showPassword ? (
-											<Icon as={EyeIcon} size={'xl'} color='$primary500' />
+											<Icon as={EyeIcon} size={'xl'} className="text-primary-500" />
 										) : (
-											<Icon as={EyeOffIcon} size={'xl'} color='$primary500' />
+											<Icon as={EyeOffIcon} size={'xl'} className="text-primary-500" />
 										)}
 									</InputSlot>
-									{LPLoading && <Spinner size='small' accessibilityLabel={'Loading...'} />}
-								</Input>
-							)
+                                    {LPLoading && <Spinner size='small' accessibilityLabel={'Loading...'} />}
+                                </Input>
+                            );
 						}}
 					/>
 
-					<Text color={'$error500'}>
+					<Text className="text-error-500">
 						{errors.password && errors.password ? errors?.password.message : null}
 					</Text>
 				</VStack>
 			</Reanimated.View>
-			{
+            {
 				Platform.OS === 'ios' ? (
 					<InputAccessoryView nativeID={INPUT_ACCESSORY_VIEW_ID}>
 						<InnerContent />
@@ -246,6 +208,6 @@ export default () => {
 					</Reanimated.View>
 				)
 			}
-		</KeyboardAvoidingView >
-	)
+        </KeyboardAvoidingView >
+    );
 }

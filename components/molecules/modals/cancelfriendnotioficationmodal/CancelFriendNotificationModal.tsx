@@ -1,15 +1,19 @@
+import { Text } from "#/components/ui/text";
+import { Center } from "#/components/ui/center";
+import { Button, ButtonText } from "#/components/ui/button";
+import { CloseIcon, Icon } from "#/components/ui/icon";
+
 import {
-	Heading,
-	ModalBackdrop,
-	ModalBody,
-	ModalCloseButton,
-	ModalContent,
-	ModalFooter,
-	ModalHeader,
-} from '@gluestack-ui/themed'
-import { CloseIcon } from '@gluestack-ui/themed'
-import { Icon } from '@gluestack-ui/themed'
-import { Button, ButtonText, Center, Modal, Text } from '@gluestack-ui/themed'
+    ModalBackdrop,
+    ModalBody,
+    ModalCloseButton,
+    ModalContent,
+    ModalFooter,
+    ModalHeader,
+    Modal,
+} from "#/components/ui/modal";
+
+import { Heading } from "#/components/ui/heading";
 // import { GET_RELATIONSHIP_FRIENDREQUESTSTATUS_QUERY } from '#/graphql/DM/profiling/friending/index.query'
 // import { NOTIFICATIONS_QUERY } from '#/graphql/DM/profiling/notifications/index.query'
 import { useDeleteFriendRequestMutation } from '#/graphql/generated'
@@ -78,11 +82,11 @@ export default function CancelFriendNotificationModal({
 	})
 
 	return (
-		<Center h={300}>
-			<Button onPress={() => setShowModal(true)} ref={ref}>
+        <Center className="h-[300px]">
+            <Button onPress={() => setShowModal(true)} ref={ref}>
 				<ButtonText>Show Modal</ButtonText>
 			</Button>
-			<Modal
+            <Modal
 				isOpen={showModal}
 				onClose={() => {
 					setShowModal(false)
@@ -107,28 +111,28 @@ export default function CancelFriendNotificationModal({
 							variant='outline'
 							size='sm'
 							action='secondary'
-							mr='$3'
 							onPress={() => {
 								setShowModal(false)
 							}}
+							className="mr-3"
 						>
 							<ButtonText>Cancel</ButtonText>
 						</Button>
 						<Button
 							size='sm'
 							action='positive'
-							borderWidth='$0'
 							onPress={() => {
 								deleteFriendRequestMutation()
 							}}
+							className="border-0"
 						>
 							<ButtonText>Explore</ButtonText>
 						</Button>
 					</ModalFooter>
 				</ModalContent>
 			</Modal>
-		</Center>
-	)
+        </Center>
+    );
 }
 
 // return (

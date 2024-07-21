@@ -1,5 +1,12 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Pressable } from "#/components/ui/pressable";
+import { Heading } from "#/components/ui/heading";
+import { HStack } from "#/components/ui/hstack";
+import { Center } from "#/components/ui/center";
+import { Button } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Center, HStack, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import SearchCard from '#/components/screens/search/components/SearchCard'
 import {
 	HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
@@ -50,8 +57,8 @@ const SearchTextScreen = () => {
 
 	if (loading) {
 		return (
-			<Box bg={'$transparent'} px={'$3'}>
-				<FlashList
+            <Box className="bg-transparent px-3">
+                <FlashList
 					scrollEnabled={false}
 					automaticallyAdjustContentInsets
 					automaticallyAdjustKeyboardInsets
@@ -60,20 +67,18 @@ const SearchTextScreen = () => {
 					keyboardDismissMode='on-drag'
 					data={[...Array(20)]}
 					ListHeaderComponent={() => {
-						return (
-							<>
-								{!data?.exploreSearch.venues?.length && !data?.exploreSearch.people?.length && (
-									// <Box mt={insets.top}>
-									<Center>
-										<Heading fontSize={'$md'} fontWeight={'$medium'}>
-											No search results for
-										</Heading>
-										<Heading fontSize={'$3xl'}>"{params.searchtext}"</Heading>
-									</Center>
-									// </Box>
-								)}
-							</>
-						)
+						return (<>
+                            {!data?.exploreSearch.venues?.length && !data?.exploreSearch.people?.length && (
+                                // <Box mt={insets.top}>
+                                (<Center>
+                                    <Heading className="text-md font-medium">
+                                        No search results for
+                                    </Heading>
+                                    <Heading className="text-3xl">"{params.searchtext}"</Heading>
+                                </Center>)
+                                // </Box>
+                            )}
+                        </>);
 					}}
 					estimatedItemSize={80}
 					keyExtractor={(item, index) => {
@@ -88,14 +93,8 @@ const SearchTextScreen = () => {
 					}}
 					renderItem={({ index, item }) => {
 						return (
-							<HStack
-								px={'$2'}
-								sx={{
-									h: 60,
-									w: '90%',
-								}}
-							>
-								<Skeleton
+                            <HStack className="px-2 h-[60px]  w-[90%]">
+                                <Skeleton
 									height={40}
 									width={40}
 									radius={15}
@@ -112,7 +111,7 @@ const SearchTextScreen = () => {
 											  ]
 									}
 								/>
-								<VStack px={'$2'}>
+                                <VStack className="px-2">
 									<Skeleton
 										height={40}
 										width={'100%'}
@@ -148,17 +147,17 @@ const SearchTextScreen = () => {
 										}
 									/>
 								</VStack>
-							</HStack>
-						)
+                            </HStack>
+                        );
 					}}
 				/>
-			</Box>
-		)
+            </Box>
+        );
 	}
 
 	if (!params?.searchtext?.length) {
 		return (
-			<FlashList
+            <FlashList
 				scrollEnabled={true}
 				automaticallyAdjustContentInsets
 				automaticallyAdjustsScrollIndicatorInsets
@@ -166,20 +165,18 @@ const SearchTextScreen = () => {
 				keyboardDismissMode='on-drag'
 				data={filteredRecentSearches as HItem[]}
 				ListHeaderComponent={() => {
-					return (
-						<>
-							{!data?.exploreSearch.venues?.length && !data?.exploreSearch.people?.length && (
-								// <Box mt={insets.top}>
-								<Center>
-									<Heading fontSize={'$md'} fontWeight={'$medium'}>
-										No search results for
-									</Heading>
-									<Heading fontSize={'$3xl'}>"{params.searchtext}"</Heading>
-								</Center>
-								// </Box>
-							)}
-						</>
-					)
+					return (<>
+                        {!data?.exploreSearch.venues?.length && !data?.exploreSearch.people?.length && (
+                            // <Box mt={insets.top}>
+                            (<Center>
+                                <Heading className="text-md font-medium">
+                                    No search results for
+                                </Heading>
+                                <Heading className="text-3xl">"{params.searchtext}"</Heading>
+                            </Center>)
+                            // </Box>
+                        )}
+                    </>);
 				}}
 				estimatedItemSize={80}
 				keyExtractor={(item, index) => {
@@ -195,61 +192,52 @@ const SearchTextScreen = () => {
 				automaticallyAdjustKeyboardInsets
 				renderItem={({ index, item }) => {
 					return (
-						<Pressable
+                        <Pressable
 							onPress={() => {
 								router.setParams({
 									searchtext: item.search,
 								})
 							}}
 						>
-							<HStack
-								sx={{
-									h: 55,
-									w: '100%',
-								}}
-								justifyContent={'flex-start'}
-								alignItems={'center'}
-								space={'md'}
-								px={'$2'}
-							>
-								<Button rounded={'$md'} size='sm' variant='outline'>
+                            <HStack
+                                space={'md'}
+                                className="h-[55px]  w-[100%] justify-start items-center px-2">
+								<Button size='sm' variant='outline' className="rounded-md">
 									<Ionicons name={'search'} size={30} />
 								</Button>
 								<VStack>
-									<Text fontSize={'$md'} fontWeight={'$medium'}>
+									<Text className="text-md font-medium">
 										{item.search}
 									</Text>
 								</VStack>
 							</HStack>
-						</Pressable>
-					)
+                        </Pressable>
+                    );
 				}}
 			/>
-		)
+        );
 	}
 
 	return (
-		<Box mt={insets.top} flex={1}>
-			<FlashList
+        <Box className={` mt-${insets.top} flex-1 `}>
+            <FlashList
 				data={[
 					{ title: 'Accounts', data: data?.exploreSearch.people },
 					{ title: 'Venues', data: data?.exploreSearch.venues },
 				]}
 				ListHeaderComponent={() => {
-					return (
-						<>
-							{!data?.exploreSearch.venues?.length && !data?.exploreSearch.people?.length && (
-								// <Box mt={insets.top}>
-									<Center>
-										<Heading fontSize={'$md'} fontWeight={'$medium'}>
-											No search results for
-										</Heading>
-										<Heading fontSize={'$3xl'}>"{params.searchtext}"</Heading>
-									</Center>
-								// </Box>
-							)}
-						</>
-					)
+					return (<>
+                        {!data?.exploreSearch.venues?.length && !data?.exploreSearch.people?.length && (
+                            // <Box mt={insets.top}>
+                                (<Center>
+                                    <Heading className="text-md font-medium">
+                                        No search results for
+                                    </Heading>
+                                    <Heading className="text-3xl">"{params.searchtext}"</Heading>
+                                </Center>)
+                            // </Box>
+                        )}
+                    </>);
 				}}
 				estimatedItemSize={80}
 				keyExtractor={(item, index) => {
@@ -267,21 +255,21 @@ const SearchTextScreen = () => {
 				keyboardDismissMode='on-drag'
 				renderItem={({ index, item }) => {
 					return (
-						<Box bg={'$transparent'}>
-							{item.data && item.data.length ? (
-								<Box my={'$1'}>
-									<Heading mx={'$3'}>{item.title}</Heading>
+                        <Box className="bg-transparent">
+                            {item.data && item.data.length ? (
+								<Box className="my-1">
+									<Heading className="mx-3">{item.title}</Heading>
 									{item.data.map((item, index) => {
 										return <SearchCard key={index} item={item} />
 									})}
 								</Box>
 							) : null}
-						</Box>
-					)
+                        </Box>
+                    );
 				}}
 			/>
-		</Box>
-	)
+        </Box>
+    );
 }
 
 export default SearchTextScreen

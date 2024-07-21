@@ -1,5 +1,5 @@
+import { VStack } from "#/components/ui/vstack";
 import { useReactiveVar } from '@apollo/client'
-import { VStack } from '@gluestack-ui/themed'
 import { ThemeReactiveVar } from '#/reactive'
 import { Skeleton } from 'moti/skeleton'
 
@@ -7,8 +7,8 @@ export default function TermsLoadingState() {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	
 	return (
-		<VStack my={'$5'} space={'lg'} rounded={'$md'} px={'$2'}>
-			<Skeleton
+        <VStack space={'lg'} className="my-5 rounded-md px-2">
+            <Skeleton
 				height={10}
 				width={'75%'}
 				radius={15}
@@ -25,9 +25,9 @@ export default function TermsLoadingState() {
 						  ]
 				}
 			/>
-			{[...Array(4)].map(item => {
+            {[...Array(4)].map(item => {
 				return (
-					<Skeleton
+                    <Skeleton
 						key={item}
 						height={10}
 						width={'75%'}
@@ -45,8 +45,8 @@ export default function TermsLoadingState() {
 								  ]
 						}
 					/>
-				)
+                );
 			})}
-		</VStack>
-	)
+        </VStack>
+    );
 }

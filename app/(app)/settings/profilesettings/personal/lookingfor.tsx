@@ -1,5 +1,7 @@
+import { Text } from "#/components/ui/text";
+import { Button } from "#/components/ui/button";
+import { Pressable } from "#/components/ui/pressable";
 import { useReactiveVar } from '@apollo/client'
-import { Pressable, Button, Text } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
 import {
 	AuthorizationDeviceProfile,
@@ -89,8 +91,8 @@ export default () => {
 	}
 
 	return (
-		<SafeAreaView>
-			<ScrollView>
+        <SafeAreaView>
+            <ScrollView>
 				<View style={{ alignItems: 'center' }}>
 					<Controller
 						name='lookfor'
@@ -103,7 +105,7 @@ export default () => {
 							<>
 								{relationshipstatuslist.map((item, i) => {
 									return (
-										<Pressable
+                                        <Pressable
 											key={i}
 											onPress={() => onChange(item)}
 											style={{
@@ -122,8 +124,8 @@ export default () => {
 												justifyContent: 'space-between',
 											}}
 										>
-											<Text>{item}</Text>
-											{(rAuthorizationVar?.Profile?.IdentifiableInformation?.lookfor === item ||
+                                            <Text>{item}</Text>
+                                            {(rAuthorizationVar?.Profile?.IdentifiableInformation?.lookfor === item ||
 												value === item) && (
 												<Ionicons
 													name='checkmark-sharp'
@@ -135,15 +137,15 @@ export default () => {
 													}
 												/>
 											)}
-										</Pressable>
-									)
+                                        </Pressable>
+                                    );
 								})}
 							</>
 						)}
 					/>
 				</View>
 			</ScrollView>
-			{(dirtyFields.lookfor || !!errors.lookfor) && (
+            {(dirtyFields.lookfor || !!errors.lookfor) && (
 				<SafeAreaView
 					style={{
 						paddingHorizontal: 10,
@@ -163,26 +165,16 @@ export default () => {
 					}}
 				>
 					<Button
-						disabled={false}
-						onPress={handleSubmit(onSubmit)}
-						borderRadius={14}
-						sx={{
-							_dark: {
-								bg: '$light9000',
-							},
-							_light: {
-								bg: '$light500',
-							},
-						}}
-						px={'$11'}
-						style={{
+                        disabled={false}
+                        onPress={handleSubmit(onSubmit)}
+                        style={{
 							alignSelf: 'center',
 						}}
-					>
+                        className="rounded-14 dark:bg-light-9000 bg-light-500 px-11">
 						<Text>Update</Text>
 					</Button>
 				</SafeAreaView>
 			)}
-		</SafeAreaView>
-	)
+        </SafeAreaView>
+    );
 }

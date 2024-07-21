@@ -1,7 +1,8 @@
+import { Input, InputField } from "#/components/ui/input";
+import { HStack } from "#/components/ui/hstack";
 import { useReactiveVar } from '@apollo/client'
 import { Ionicons } from '@expo/vector-icons'
 import { AntDesign } from '@expo/vector-icons'
-import { HStack, Input, InputField } from '@gluestack-ui/themed'
 import { ThemeReactiveVar } from '#/reactive'
 import { useGlobalSearchParams, useRouter, useSegments, router as _Router } from 'expo-router'
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
@@ -104,23 +105,14 @@ const SearchInputVenueFeed = (props: Props) => {
 	}
 
 	return (
-		<HStack position={'relative'} flex={1} sx={{ mt: insets.top }} pb={'$2'}>
-			<Controller
+        <HStack className="relative flex-1 mt-[undefined] pb-2">
+            <Controller
 				control={control}
 				name='searchtext'
 				render={({ field: { value, onChange } }) => (
 					<Input
-						alignItems='center'
-						flex={1}
-						variant='rounded'
-						mr={'$2'}
-						ml={!showBack ? '$2' : '$0'}
-						bg={
-							rTheme.colorScheme === 'light'
-								? rTheme.theme?.gluestack.tokens.colors.light100
-								: rTheme.theme?.gluestack.tokens.colors.light900
-						}
-					>
+                        variant='rounded'
+                        className={` ${rTheme.colorScheme === 'light' ? rTheme.theme?.gluestack.tokens.colors.light100 : rTheme.theme?.gluestack.tokens.colors.light900} ${!showBack ? "ml-2" : "ml-0"} items-center flex-1 mr-2 `}>
 						<Ionicons
 							color={
 								rTheme.colorScheme === 'light'
@@ -135,26 +127,20 @@ const SearchInputVenueFeed = (props: Props) => {
 						/>
 
 						<InputField
-							zIndex={0}
-							hitSlop={{ top: 12, bottom: 12, left: 0, right: 15 }}
-							isReadOnly={!showBack}
-							bg={
-								rTheme.colorScheme === 'light'
-									? rTheme.theme?.gluestack.tokens.colors.light100
-									: rTheme.theme?.gluestack.tokens.colors.light900
-							}
-							ref={_inputRef}
-							// autoFocus={autoFucus}
-							placeholderTextColor={
+                            hitSlop={{ top: 12, bottom: 12, left: 0, right: 15 }}
+                            isReadOnly={!showBack}
+                            ref={_inputRef}
+                            // autoFocus={autoFucus}
+                            placeholderTextColor={
 								rTheme.colorScheme === 'light'
 									? rTheme.theme?.gluestack.tokens.colors.light700
 									: rTheme.theme?.gluestack.tokens.colors.light100
 							}
-							autoCapitalize={'none'}
-							autoCorrect={false}
-							autoComplete='off'
-							value={value}
-							onPressIn={() => {
+                            autoCapitalize={'none'}
+                            autoCorrect={false}
+                            autoComplete='off'
+                            value={value}
+                            onPressIn={() => {
 								if (segments.includes('hometab')) {
 									router.push({
 										pathname: '/(app)/explore/searchtext',
@@ -164,13 +150,13 @@ const SearchInputVenueFeed = (props: Props) => {
 									})
 								}
 							}}
-							onChangeText={onChange}
-							placeholder={props.placeholder || 'Search'}
-							returnKeyType='search'
-							underlineColorAndroid='transparent'
-							keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-							onSubmitEditing={handleSubmit(handleSearchSubmitEditting)}
-						/>
+                            onChangeText={onChange}
+                            placeholder={props.placeholder || 'Search'}
+                            returnKeyType='search'
+                            underlineColorAndroid='transparent'
+                            keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+                            onSubmitEditing={handleSubmit(handleSearchSubmitEditting)}
+                            className={` ${rTheme.colorScheme === 'light' ? rTheme.theme?.gluestack.tokens.colors.light100 : rTheme.theme?.gluestack.tokens.colors.light900} z-0 `} />
 						{watch('searchtext')?.length ? (
 							<AntDesign
 								onPress={() => clearSearchInput()}
@@ -182,8 +168,8 @@ const SearchInputVenueFeed = (props: Props) => {
 					</Input>
 				)}
 			/>
-		</HStack>
-	)
+        </HStack>
+    );
 }
 
 export default SearchInputVenueFeed

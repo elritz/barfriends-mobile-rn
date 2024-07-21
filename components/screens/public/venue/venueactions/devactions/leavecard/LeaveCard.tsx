@@ -1,5 +1,5 @@
-// TODO: FN(Join a venue functionality) The join button has no ability to join a venue or track the data
-import { Button, VStack, ButtonText } from '@gluestack-ui/themed'
+import { VStack } from "#/components/ui/vstack";
+import { Button, ButtonText } from "#/components/ui/button";
 import {
 	useGetLiveVenueTotalsV2Query,
 	useRefreshDeviceManagerQuery,
@@ -100,17 +100,15 @@ export default function LeaveCard() {
 	}, [rdmData, glvtData])
 
 	return (
-		<VStack>
-			<Button
-				onPress={() => {
+        <VStack>
+            <Button
+                onPress={() => {
 					removePersonalJoinsVenueMutation()
 				}}
-				backgroundColor={'$error600'}
-				rounded={'$md'}
-				isDisabled={!isJoined || JVLoading}
-			>
+                isDisabled={!isJoined || JVLoading}
+                className="bg-error-600 rounded-md">
 				<ButtonText>Leave</ButtonText>
 			</Button>
-		</VStack>
-	)
+        </VStack>
+    );
 }

@@ -1,91 +1,75 @@
-import DeviceManagerProfiles from '#/components/organisms/list/DeviceManagerProfiles'
-import { VStack, Text, Button, Pressable, Heading, ButtonText, Divider } from '@gluestack-ui/themed'
-import GetSignInUpText from '#/util/helpers/data/SignupinText'
-import { router, useRouter } from 'expo-router'
+import { Divider } from "#/components/ui/divider";
+import { Heading } from "#/components/ui/heading";
+import { Pressable } from "#/components/ui/pressable";
+import { Button, ButtonText } from "#/components/ui/button";
+import { Text } from "#/components/ui/text";
+import { VStack } from "#/components/ui/vstack";
+import DeviceManagerProfiles from "#/components/organisms/list/DeviceManagerProfiles";
+import GetSignInUpText from "#/util/helpers/data/SignupinText";
+import { router, useRouter } from "expo-router";
 
-const text = GetSignInUpText()
+const text = GetSignInUpText();
 
 type Props = {
-	signupTextId?: number
-}
+  signupTextId?: number;
+};
 export default (props: Props) => {
+  const _pressToLogin = () => {
+    router.push({
+      pathname: "/(credential)/logincredentialstack/authenticator",
+    });
+  };
+  const _pressToSignup = () => {
+    router.push({
+      pathname: "/(credential)/personalcredentialstack/getstarted",
+    });
+  };
 
-	const _pressToLogin = () => {
-		router.push({
-			pathname: '/(credential)/logincredentialstack/authenticator',
-		})
-	}
-	const _pressToSignup = () => {
-		router.push({
-			pathname: '/(credential)/personalcredentialstack/getstarted',
-		})
-	}
-
-	return (
-		<VStack space='lg'>
-			<VStack alignItems='center'>
-				<Heading
-					numberOfLines={3}
-					ellipsizeMode='tail'
-					adjustsFontSizeToFit
-					minimumFontScale={0.5}
-					pb={2}
-					w={265}
-					alignSelf='center'
-					textAlign='center'
-					textTransform='uppercase'
-					fontWeight={'$black'}
-					fontSize={'$xl'}
-				>
-					{text[props.signupTextId || 1].title}
-				</Heading>
-				<Text
-					allowFontScaling
-					fontWeight='$bold'
-					textAlign={'center'}
-					alignSelf={'center'}
-					fontSize={'$lg'}
-				>
-					{/* {text[props.signupTextId ?? 1].subTitle} */}
-					Cool slogans here
-				</Text>
-				<Text fontSize={'$sm'} color='$coolGray500' fontWeight='$bold'>
-					2 min
-				</Text>
-			</VStack>
-			<VStack space={'md'} alignItems='center'>
-				<Button
-					onPress={() =>
-						router.replace({
-							pathname: '/(credential)/personalcredentialstack/getstarted',
-						})
-					}
-					sx={{
-						w: '85%',
-					}}
-					rounded={'$md'}
-				>
-					<ButtonText fontWeight='$bold' fontSize={'$lg'}>
-						Sign up
-					</ButtonText>
-				</Button>
-				<Button
-					sx={{
-						w: '90%',
-					}}
-					variant={'link'}
-					onPress={() =>
-						router.push({
-							pathname: '/(credential)/logincredentialstack/authenticator',
-						})
-					}
-				>
-					<Text fontSize={'$lg'} fontWeight={'$bold'} alignSelf='center'>
-						Log in
-					</Text>
-				</Button>
-			</VStack>
-			<DeviceManagerProfiles />
-		</VStack>
-	)
-}
+  return (
+    <VStack space="lg">
+      <VStack className="items-center">
+        <Heading
+          numberOfLines={3}
+          ellipsizeMode="tail"
+          adjustsFontSizeToFit
+          minimumFontScale={0.5}
+          className="w-[265px] self-center pb-2 text-center text-xl font-black uppercase"
+        >
+          {text[props.signupTextId || 1].title}
+        </Heading>
+        <Text
+          allowFontScaling
+          className="self-center text-center text-lg font-bold"
+        >
+          {/* {text[props.signupTextId ?? 1].subTitle} */}
+          Cool slogans here
+        </Text>
+        <Text className="text-sm font-bold text-coolGray-500">2 min</Text>
+      </VStack>
+      <VStack space={"md"} className="items-center">
+        <Button
+          onPress={() =>
+            router.replace({
+              pathname: "/(credential)/personalcredentialstack/getstarted",
+            })
+          }
+          className="w-[85%] rounded-md"
+        >
+          <ButtonText className="text-lg font-bold">Sign up</ButtonText>
+        </Button>
+        <Button
+          variant={"link"}
+          onPress={() =>
+            router.push({
+              pathname: "/(credential)/logincredentialstack/authenticator",
+            })
+          }
+          className="w-[90%]"
+        >
+          <Text className="self-center text-lg font-bold">Log in</Text>
+        </Button>
+      </VStack>
+      <DeviceManagerProfiles />
+    </VStack>
+  );
+};

@@ -1,6 +1,10 @@
+import { VStack } from "#/components/ui/vstack";
+import { Heading } from "#/components/ui/heading";
+import { Divider } from "#/components/ui/divider";
+import { Button, ButtonText } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
 // TODO: FN(Open camera app) ln:66
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Divider, Heading, ButtonText, VStack } from '@gluestack-ui/themed'
 import PermissionDetailItem from '#/components/screens/permissions/PermissionDetailItem'
 import { AntDesign, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { PermissionCameraReactiveVar, ThemeReactiveVar } from '#/reactive'
@@ -142,18 +146,10 @@ export default () => {
 	})
 
 	return (
-		<Box bg={'$transparent'} style={{ flex: 1 }} mb={'$5'}>
-			<Box bg={'$transparent'} alignItems={'center'} justifyContent={'flex-start'} my={'$5'}>
+        <Box style={{ flex: 1 }} className="bg-transparent mb-5">
+            <Box className="bg-transparent items-center justify-start my-5">
 				<Box
-					rounded={'$md'}
-					sx={{
-						h: 65,
-						w: 65,
-					}}
-					alignItems={'center'}
-					justifyContent={'center'}
-					bg={'#ff7000'}
-				>
+                    className="rounded-md h-[65px]  w-[65px] items-center justify-center bg-[#ff7000]">
 					<Ionicons
 						color={rTheme.theme?.gluestack.tokens.colors.secondary900 || 'black'}
 						name='camera'
@@ -162,44 +158,31 @@ export default () => {
 				</Box>
 				<Divider style={{ width: 50, marginVertical: 10 }} />
 				<Heading
-					px={'$2'}
-					fontWeight={'$black'}
-					fontSize={'$3xl'}
-					style={{
+                    style={{
 						textAlign: 'center',
 					}}
-					allowFontScaling
-					adjustsFontSizeToFit
-					numberOfLines={3}
-				>
+                    allowFontScaling
+                    adjustsFontSizeToFit
+                    numberOfLines={3}
+                    className="px-2 font-black text-3xl">
 					Allow Barfriends to access your camera
 				</Heading>
 			</Box>
-			<ScrollView>
-				<Box bg={'$transparent'} style={{ width: wp(95), flex: 1, alignSelf: 'center' }}>
+            <ScrollView>
+				<Box style={{ width: wp(95), flex: 1, alignSelf: 'center' }} className="bg-transparent">
 					{details.map((item, index) => {
 						return (
-							<View key={index}>
-								<PermissionDetailItem {...item} />
-							</View>
-						)
+                            <View key={index}>
+                                <PermissionDetailItem {...item} />
+                            </View>
+                        );
 					})}
 				</Box>
 			</ScrollView>
-			<VStack
-				space={'md'}
-				w={'$full'}
-				alignItems={'center'}
-				sx={{
-					mb: insets.bottom,
-				}}
-			>
-				<Divider w={'95%'} />
+            <VStack space={'md'} className="w-full items-center mb-[undefined]">
+				<Divider className="w-[95%]" />
 				<Button
 					size={'lg'}
-					sx={{
-						w: '95%',
-					}}
 					onPress={() =>
 						!rPermissionCamera?.granted
 							? rPermissionCamera?.canAskAgain && !rPermissionCamera.granted
@@ -207,6 +190,7 @@ export default () => {
 								: handleOpenPhoneSettings()
 							: createTwoButtonAlert()
 					}
+					className="w-[95%]"
 				>
 					<ButtonText>
 						{!rPermissionCamera?.granted
@@ -217,24 +201,19 @@ export default () => {
 					</ButtonText>
 				</Button>
 				{!started ? (
-					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
-						<ButtonText fontWeight={'$medium'}>Close</ButtonText>
+					<Button size={'lg'} onPress={() => router.back()} variant={'link'} className="w-[95%]">
+						<ButtonText className="font-medium">Close</ButtonText>
 					</Button>
 				) : (
-					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
+					<Button size={'lg'} onPress={() => router.back()} variant={'link'} className="w-[95%]">
 						{started && (
-							<Box
-								bg={'$transparent'}
-								sx={{
-									h: 24,
-								}}
-							>
-								{<ButtonText fontWeight={'$medium'}>Auto close in {seconds}</ButtonText>}
+							<Box className="bg-transparent h-[24px]">
+								{<ButtonText className="font-medium">Auto close in {seconds}</ButtonText>}
 							</Box>
 						)}
 					</Button>
 				)}
 			</VStack>
-		</Box>
-	)
+        </Box>
+    );
 }

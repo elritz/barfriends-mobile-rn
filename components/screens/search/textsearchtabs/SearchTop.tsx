@@ -1,10 +1,10 @@
-// TODO: Choose to remove or to compelete
-import { Box, Heading } from '@gluestack-ui/themed'
+import { Heading } from "#/components/ui/heading";
+import { Box } from "#/components/ui/box";
 
 export default function SearchTop() {
 	return (
-		<Box style={{ flex: 1 }}>
-			<Heading>Top Explore Search Results</Heading>
-		</Box>
-	)
+        <Box style={{ flex: 1 }}>
+            <Heading>Top Explore Search Results</Heading>
+        </Box>
+    );
 }

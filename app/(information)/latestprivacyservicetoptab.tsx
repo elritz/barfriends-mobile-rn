@@ -1,5 +1,5 @@
+import { Text } from "#/components/ui/text";
 import { useReactiveVar } from '@apollo/client'
-import { Text } from '@gluestack-ui/themed'
 import Privacy from '#/components/screens/information/privacyserviceterms/Privacy'
 import Service from '#/components/screens/information/privacyserviceterms/Service'
 import { ThemeReactiveVar } from '#/reactive'
@@ -41,12 +41,12 @@ export default () => {
 	)
 
 	return (
-		<TabView
+        <TabView
 			navigationState={{ index, routes }}
 			renderScene={renderScene}
 			renderTabBar={renderTabBar}
 			onIndexChange={setIndex}
 			initialLayout={{ width: layout.width }}
 		/>
-	)
+    );
 }

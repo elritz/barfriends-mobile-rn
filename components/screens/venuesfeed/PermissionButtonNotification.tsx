@@ -1,5 +1,5 @@
+import { Button, ButtonText } from "#/components/ui/button";
 import { useReactiveVar } from '@apollo/client'
-import { Button, ButtonText } from '@gluestack-ui/themed'
 import { PermissionNotificationReactiveVar } from '#/reactive'
 import useSetSearchAreaWithLocation from '#/util/hooks/searcharea/useSetSearchAreaWithLocation'
 import { useRouter } from 'expo-router'
@@ -17,8 +17,8 @@ export default function SearchAreaLocationPermissionButton() {
 	}
 
 	return (
-		<Button variant='solid' onPress={async () => _press()} sx={{ mt: 15, w: '85%' }}>
-			<ButtonText>Continue</ButtonText>
-		</Button>
-	)
+        <Button variant='solid' onPress={async () => _press()} className="mt-15  w-[85%]">
+            <ButtonText>Continue</ButtonText>
+        </Button>
+    );
 }

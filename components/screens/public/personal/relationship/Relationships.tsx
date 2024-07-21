@@ -1,4 +1,5 @@
-import { Box, Text } from '@gluestack-ui/themed'
+import { Text } from "#/components/ui/text";
+import { Box } from "#/components/ui/box";
 import { useRoute } from '@react-navigation/native'
 import { DateTime } from 'luxon'
 import { ReactElement } from 'react'
@@ -41,10 +42,10 @@ export default function Relationships() {
 	// 			}
 	// 			return (
 	// 				<Box rounded={'$xl'} flex={1} p={'$3'}>
-	// 					<Text textTransform={'uppercase'} fontSize={'$sm'} fontWeight={'$bold'} textAlign={'center'}>
+	// 					<Text  fontSize={'$sm'} fontWeight={'$bold'} textAlign={'center'}>
 	// 						Friends since
 	// 					</Text>
-	// 					<Text textTransform={'uppercase'} fontSize={'$lg'} fontWeight={'$bold'}>
+	// 					<Text  fontSize={'$lg'} fontWeight={'$bold'}>
 	// 						{created}
 	// 					</Text>
 	// 				</Box>

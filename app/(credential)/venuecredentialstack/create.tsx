@@ -1,7 +1,12 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Spinner } from "#/components/ui/spinner";
+import { Pressable } from "#/components/ui/pressable";
+import { Heading } from "#/components/ui/heading";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
 import CompanyCoasterLogoDynamic from '#/assets/images/company/CompanyCoasterLogoDynamic'
 import { Feather } from '@expo/vector-icons'
-import { Box, Heading, Pressable, Spinner, Text, VStack } from '@gluestack-ui/themed'
 import {
 	AuthorizationDeviceProfile,
 	useCreatePersonalProfileMutation,
@@ -64,19 +69,19 @@ export default () => {
 	}
 
 	return (
-		<SafeAreaView style={{ flex: 1 }}>
-			<VStack justifyContent={'space-between'} flex={1} alignItems='center' mx={'$4'}>
-				<Box bg='$transparent' />
-				<VStack space={'md'} alignItems={'center'} justifyContent={'center'}>
+        <SafeAreaView style={{ flex: 1 }}>
+            <VStack className="justify-between flex-1 items-center mx-4">
+				<Box className="bg-transparent" />
+				<VStack space={'md'} className="items-center justify-center">
 					<CompanyCoasterLogoDynamic backgroundColor='black' />
-					<Heading fontWeight={'$black'} lineHeight={'$3xl'} fontSize={'$4xl'}>
+					<Heading className="font-black leading-3xl text-4xl">
 						Time to Barfriends
 					</Heading>
-					<Box bg='$transparent'>
-						<Text textAlign='center' fontSize={'$lg'}>
+					<Box className="bg-transparent">
+						<Text className="text-center text-lg">
 							We are those we hang around.
 						</Text>
-						<Text mt={'$3'} textAlign='center' fontSize={'$lg'}>
+						<Text className="mt-3 text-center text-lg">
 							If you're not feeling it find and make new experiences. We help do that.
 						</Text>
 					</Box>
@@ -84,23 +89,15 @@ export default () => {
 
 				<Pressable disabled={CPPLoading || SDPLoading} onPress={() => onSubmit()}>
 					<Box
-						alignItems='center'
-						justifyContent='center'
-						sx={{
-							h: 60,
-							w: 60,
-						}}
-						rounded={'$full'}
-						bg='$primary500'
-					>
+                        className="items-center justify-center h-[60px]  w-[60px] rounded-full bg-primary-500">
 						{CPPLoading || SDPLoading ? (
-							<Spinner color={'black'} size='small' />
+							<Spinner size='small' className="text-black" />
 						) : (
 							<Feather name='arrow-right' size={32} color={'white'} />
 						)}
 					</Box>
 				</Pressable>
 			</VStack>
-		</SafeAreaView>
-	)
+        </SafeAreaView>
+    );
 }

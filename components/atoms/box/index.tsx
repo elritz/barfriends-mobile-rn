@@ -1,18 +1,11 @@
-import { Box } from '@gluestack-ui/themed'
+import { Box } from "#/components/ui/box";
 
 export default ({ children }) => {
 	return (
-		<Box
-			sx={{
-				_dark: {
-					bg: '$light800',
-				},
-				_light: {
-					bg: '$light50',
-				},
-			}}
+        <Box
+			className="dark:bg-light-800 bg-light-50"
 		>
-			{children}
-		</Box>
-	)
+            {children}
+        </Box>
+    );
 }

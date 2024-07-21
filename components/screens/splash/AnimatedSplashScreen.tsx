@@ -66,14 +66,14 @@ function AnimatedSplashScreen({ children }) {
 	// }
 
 	return (
-		<View
+        <View
 			style={{
 				flex: 1,
 			}}
 		>
-			{children}
-		</View>
-	)
+            {children}
+        </View>
+    );
 }
 
 export default AnimatedSplashScreen

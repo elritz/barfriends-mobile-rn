@@ -1,6 +1,11 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Pressable } from "#/components/ui/pressable";
+import { Input, InputField } from "#/components/ui/input";
+import { Heading } from "#/components/ui/heading";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
 import { Feather } from '@expo/vector-icons'
-import { Box, Heading, Input, InputField, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { useIsFocused } from '@react-navigation/native'
 import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '#/reactive'
 import useContentInsets from '#/util/hooks/useContentInsets'
@@ -85,32 +90,11 @@ export default () => {
 
 	const InnerContent = () => {
 		return (
-			<Box
-				flexDirection={'row'}
-				justifyContent={'flex-end'}
-				alignItems={'center'}
-				sx={{
-					h: 90,
-					_dark: {
-						bg: '$black',
-					},
-					_light: {
-						bg: '$white',
-					},
-				}}
-				px={'$2'}
-			>
-				<Pressable onPress={handleSubmit(onSubmit)}>
+            <Box
+                className="flex-row justify-end items-center h-[90px]  dark:bg-black bg-white px-2">
+                <Pressable onPress={handleSubmit(onSubmit)}>
 					<Box
-						alignItems='center'
-						justifyContent='center'
-						sx={{
-							h: 50,
-							w: 50,
-						}}
-						rounded={'$full'}
-						bg='$primary500'
-					>
+                        className="items-center justify-center h-[50px]  w-[50px] rounded-full bg-primary-500">
 						<Feather
 							name='arrow-right'
 							size={32}
@@ -118,12 +102,12 @@ export default () => {
 						/>
 					</Box>
 				</Pressable>
-			</Box>
-		)
+            </Box>
+        );
 	}
 
 	return (
-		<ScrollView
+        <ScrollView
 			keyboardShouldPersistTaps
 			keyboardDismissMode='none'
 			style={{
@@ -133,10 +117,10 @@ export default () => {
 				marginHorizontal: '5%',
 			}}
 		>
-			<KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-				<Box bg='$transparent' flex={1}>
+            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+				<Box className="bg-transparent flex-1">
 					<Reanimated.View style={{ flex: 1 }}>
-						<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$3xl'}>
+						<Heading className="mt-4 font-black text-3xl">
 							Enter your name
 						</Heading>
 						<VStack space={'md'} style={{ marginVertical: '10%' }}>
@@ -165,14 +149,14 @@ export default () => {
 														? rTheme.theme?.gluestack.tokens.colors.light700
 														: rTheme.theme?.gluestack.tokens.colors.light100
 												}
-												fontSize={'$2xl'}
 												onBlur={onBlur}
 												blurOnSubmit={false}
 												onChangeText={onChange}
 												value={value.toLowerCase()}
+												className="text-2xl"
 											/>
 										</Input>
-										<Text fontSize={'$sm'} fontWeight='$bold' lineHeight='$xs'>
+										<Text className="text-sm font-bold leading-xs">
 											First name
 										</Text>
 									</VStack>
@@ -184,7 +168,7 @@ export default () => {
 									},
 								}}
 							/>
-							<Text fontSize={'$sm'} color='$error700'>
+							<Text className="text-sm text-error-700">
 								{errors?.firstname?.message}
 							</Text>
 
@@ -208,7 +192,6 @@ export default () => {
 														? rTheme.theme?.gluestack.tokens.colors.light700
 														: rTheme.theme?.gluestack.tokens.colors.light100
 												}
-												fontSize={'$2xl'}
 												numberOfLines={1}
 												placeholder='Last name'
 												inputAccessoryViewID={INPUT_ACCESSORY_VIEW_ID}
@@ -217,9 +200,10 @@ export default () => {
 												blurOnSubmit={false}
 												onChangeText={onChange}
 												value={value.toLowerCase()}
+												className="text-2xl"
 											/>
 										</Input>
-										<Text fontSize={'$sm'} fontWeight='$bold' lineHeight='$xs'>
+										<Text className="text-sm font-bold leading-xs">
 											Last name
 										</Text>
 									</VStack>
@@ -252,6 +236,6 @@ export default () => {
 					)}
 				</Box>
 			</KeyboardAvoidingView>
-		</ScrollView>
-	)
+        </ScrollView>
+    );
 }

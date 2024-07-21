@@ -1,19 +1,19 @@
+import { Box } from "#/components/ui/box";
 import AskForegroundLocationPermission from './variants/AskLocationPermission'
 import CurrentLocationFromVenueDistance from './variants/CurrentLocationFromVenueDistance'
 import { useReactiveVar } from '@apollo/client'
-import { Box } from '@gluestack-ui/themed'
 import { PermissionForegroundLocationReactiveVar } from '#/reactive'
 
 export default function DistanceCard() {
 	const rPermissionForegroundLocationVar = useReactiveVar(PermissionForegroundLocationReactiveVar)
 
 	return (
-		<Box bg={'transparent'} flexDirection={'column'} justifyContent={'space-around'} height={'100%'} w={'100%'}>
-			{rPermissionForegroundLocationVar?.granted ? (
+        <Box className="bg-transparent flex-column justify-around h-[100%] w-[100%]">
+            {rPermissionForegroundLocationVar?.granted ? (
 				<CurrentLocationFromVenueDistance />
 			) : (
 				<AskForegroundLocationPermission />
 			)}
-		</Box>
-	)
+        </Box>
+    );
 }

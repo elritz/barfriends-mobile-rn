@@ -1,4 +1,6 @@
-import { Box, Heading, VStack } from '@gluestack-ui/themed'
+import { VStack } from "#/components/ui/vstack";
+import { Heading } from "#/components/ui/heading";
+import { Box } from "#/components/ui/box";
 import { Profile } from '#/graphql/generated'
 import { BlurView } from 'expo-blur'
 import { useRouter } from 'expo-router'
@@ -35,7 +37,7 @@ const HorizontalVenueFeedVenueItem = (props: Props) => {
 	}
 
 	return (
-		<Pressable
+        <Pressable
 			key={props.item.id}
 			onPress={() => {
 				router.push({
@@ -47,44 +49,29 @@ const HorizontalVenueFeedVenueItem = (props: Props) => {
 				})
 			}}
 		>
-			<VStack
-				space={'md'}
-				mx={2}
-				// width={'full'}
-				rounded={'$md'}
-				style={{
+            <VStack
+                space={'md'}
+                style={{
 					justifyContent: 'flex-end',
 					overflow: 'hidden',
 				}}
-			>
-				<Box
-					bg={'transparent'}
-					sx={{
-						minHeight: 190,
-						maxHeight: 190,
-					}}
-				>
+                className="mx-2 rounded-md">
+				<Box className="bg-transparent min-h-[190px]  max-h-[190px]">
 					<Box
-						bg={'transparent'}
-						style={{
+                        style={{
 							height: '100%',
 							width: '100%',
 						}}
-						zIndex={10}
-					>
+                        className="bg-transparent z-10">
 						<BlurView
 							style={{ position: 'absolute', bottom: 0, width: '100%', height: 80 }}
 							tint={'dark'}
 							intensity={50}
 						/>
 						<Heading
-							fontSize={'$md'}
-							fontWeight={'$black'}
-							letterSpacing={'$xs'}
-							textAlign={'left'}
-							numberOfLines={2}
-							ellipsizeMode='tail'
-						>
+                            numberOfLines={2}
+                            ellipsizeMode='tail'
+                            className="text-md font-black tracking-xs text-[left]">
 							{getTitleCase(props?.item?.IdentifiableInformation?.fullname)}
 						</Heading>
 					</Box>
@@ -116,8 +103,8 @@ const HorizontalVenueFeedVenueItem = (props: Props) => {
 					)}
 				</Box>
 			</VStack>
-		</Pressable>
-	)
+        </Pressable>
+    );
 }
 
 export default HorizontalVenueFeedVenueItem

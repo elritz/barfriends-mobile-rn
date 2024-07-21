@@ -1,10 +1,14 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Heading } from "#/components/ui/heading";
+import { Button } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
 // TODO: FN(this needs to be operational for user story line)
 // TODO: UX(get photos in order and update order)
 import { MARGIN } from './Config'
 import Item from './Item'
 import SortableList from './SortableList'
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Heading, Text, VStack } from '@gluestack-ui/themed'
 import { MaterialIcons } from '@expo/vector-icons'
 import { ThemeReactiveVar } from '#/reactive'
 import * as ImagePicker from 'expo-image-picker'
@@ -31,7 +35,7 @@ const TonightImages = () => {
 	const window = useWindowDimensions()
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 
-	const updatePositions = async () => {}
+	const updatePositions = async () => { }
 	const handleSelectImage = async () => {
 		const result = await ImagePicker.launchImageLibraryAsync({
 			mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -47,17 +51,17 @@ const TonightImages = () => {
 	return (
 		<SafeAreaView style={{ paddingHorizontal: MARGIN, marginVertical: 20 }}>
 			{!tiles.length ? (
-				<Box mx={'$2'} h={window.width} rounded={'$md'} alignItems={'center'} justifyContent={'center'}>
-					<VStack space={'md'} alignItems={'center'}>
+				<Box
+					className={`h-${window.width} mx-2 rounded-md items-center justify-center `}
+				>
+					<VStack space="lg" className="items-center">
 						{/* <Icon color={'primary.600'} as={MaterialCommunityIcons} name={'sticker-plus'} size={'6xl'} /> */}
-						<Box bg='$transparent' alignItems={'center'} mx={'$4'}>
-							<Heading fontSize={'2xl'}>Start tonights Story</Heading>
-							<Text fontSize={'$lg'}>Ready to go out, add photos of you tonight. </Text>
+						<Box className="bg-transparent items-center mx-4">
+							<Heading className="text-[2xl]">Start tonights Story</Heading>
+							<Text className="text-lg">Ready to go out, add photos of you tonight. </Text>
 						</Box>
 						<Button
-							mt={'$4'}
-							sx={{ w: window.width / 2 }}
-							bg={'$tertiary50'}
+							className="mt-4 w-[undefined] bg-tertiary-50"
 							onPress={async () => {
 								const result = await ImagePicker.launchImageLibraryAsync({
 									mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -99,7 +103,7 @@ const TonightImages = () => {
 				</SortableList>
 			)}
 		</SafeAreaView>
-	)
+	);
 }
 
 export default TonightImages

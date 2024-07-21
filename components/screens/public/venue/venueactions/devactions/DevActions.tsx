@@ -1,57 +1,57 @@
-import JoinCard from './joincard/JoinCard'
-import LeaveAllCard from './leaveallcard/LeaveAllCard'
-import LeaveCard from './leavecard/LeaveCard'
-import TotalCard from './totalcard/TotalCard'
-import { Box, HStack, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
-import { useState } from 'react'
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Pressable } from "#/components/ui/pressable";
+import { Heading } from "#/components/ui/heading";
+import { HStack } from "#/components/ui/hstack";
+import { Box } from "#/components/ui/box";
+import JoinCard from "./joincard/JoinCard";
+import LeaveAllCard from "./leaveallcard/LeaveAllCard";
+import LeaveCard from "./leavecard/LeaveCard";
+import TotalCard from "./totalcard/TotalCard";
+import { useState } from "react";
 
 export default function DevActions() {
-	const [showDevMode, setShowDevMode] = useState(false)
+  const [showDevMode, setShowDevMode] = useState(false);
 
-	return (
-		<VStack space={'md'} justifyContent={'space-between'}>
-			{showDevMode ? (
-				<Box bg={'$transparent'}>
-					<Pressable
-						onPress={() => setShowDevMode(!showDevMode)}
-					>
-						<>
-							<Heading
-								fontSize={'$lg'}
-								fontWeight={'$800'}
-								textAlign={'center'}
-								textTransform={'uppercase'}
-							>
-								You are in {'\n'}
-								<Heading color={'$green400'} fontWeight={'$black'} textAlign='center'>
-									Dev Mode!
-								</Heading>
-							</Heading>
-							<Text fontSize={'$md'} mx={'$2'} textAlign={'center'}>
-								This section is for quick actions that we may need for testing! As developers!
-							</Text>
-						</>
-					</Pressable>
-					<VStack>
-						<HStack space={'sm'} pt={'$2'} pb={'$2'} mx={'$1'} justifyContent={'space-around'} flexWrap='wrap'>
-							<TotalCard />
-							<JoinCard />
-							<LeaveCard />
-							<LeaveAllCard />
-						</HStack>
-					</VStack>
-				</Box>
-			) : (
-				<Pressable
-					onPress={() => {
-						setShowDevMode(!showDevMode)
-					}}
-				>
-					<Text fontSize={'$md'} mx={'$2'} textAlign={'center'}>
-						Dev Mode Actions
-					</Text>
-				</Pressable>
-			)}
-		</VStack>
-	)
+  return (
+    <VStack space={"md"} className="justify-between">
+      {showDevMode ? (
+        <Box className="w-[90%]">
+          <Pressable onPress={() => setShowDevMode(!showDevMode)}>
+            <>
+              <Heading className="font-800 text-center text-lg uppercase">
+                You are in {"\n"}
+                <Heading className="text-center font-black text-green-400">
+                  Dev Mode!
+                </Heading>
+              </Heading>
+              <Text className="text-md mx-2 text-center">
+                This section is for quick actions that we may need for testing!
+                As developers!
+              </Text>
+            </>
+          </Pressable>
+          <VStack>
+            <HStack
+              space={"sm"}
+              className="mx-1 flex-wrap justify-around pb-2 pt-2"
+            >
+              <TotalCard />
+              <JoinCard />
+              <LeaveCard />
+              <LeaveAllCard />
+            </HStack>
+          </VStack>
+        </Box>
+      ) : (
+        <Pressable
+          onPress={() => {
+            setShowDevMode(!showDevMode);
+          }}
+        >
+          <Text className="text-md mx-2 text-center">Dev Mode Actions</Text>
+        </Pressable>
+      )}
+    </VStack>
+  );
 }

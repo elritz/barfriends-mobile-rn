@@ -1,7 +1,9 @@
+import { Pressable } from "#/components/ui/pressable";
+import { Input, InputField, InputIcon } from "#/components/ui/input";
+import { HStack } from "#/components/ui/hstack";
 import { useReactiveVar } from '@apollo/client'
 import { Ionicons } from '@expo/vector-icons'
 import { AntDesign } from '@expo/vector-icons'
-import { HStack, Input, InputField, InputIcon, Pressable } from '@gluestack-ui/themed'
 import { useExploreSearchLazyQuery } from '#/graphql/generated'
 import { ThemeReactiveVar } from '#/reactive'
 import useDebounce from '#/util/hooks/useDebounce'
@@ -117,27 +119,18 @@ const SearchInput = (props: Props) => {
 	}, [debouncedSearchResults])
 
 	return (
-		<HStack position={'relative'} flex={1} sx={{ mt: insets.top }} pb={'$2'}>
-			<Controller
+        <HStack className="relative flex-1 mt-[undefined] pb-2">
+            <Controller
 				control={control}
 				name='searchtext'
 				render={({ field: { value, onChange } }) => (
 					<Input
-						flex={1}
-						variant='rounded'
-						mr={'$2'}
-						ml={!showBack ? '$2' : '$0'}
-						zIndex={0}
-						hitSlop={{ top: 12, bottom: 12, left: 0, right: 15 }}
-						isReadOnly={!showBack}
-						bg={
-							rTheme.colorScheme === 'light'
-								? rTheme.theme?.gluestack.tokens.colors.light100
-								: rTheme.theme?.gluestack.tokens.colors.light900
-						}
-					>
-						<HStack alignItems='center'>
-							<InputIcon ml={'$2'}>
+                        variant='rounded'
+                        hitSlop={{ top: 12, bottom: 12, left: 0, right: 15 }}
+                        isReadOnly={!showBack}
+                        className={` ${rTheme.colorScheme === 'light' ? rTheme.theme?.gluestack.tokens.colors.light100 : rTheme.theme?.gluestack.tokens.colors.light900} ${!showBack ? "ml-2" : "ml-0"} flex-1 mr-2 z-0 `}>
+						<HStack className="items-center">
+							<InputIcon className="ml-2">
 								<Ionicons
 									color={
 										rTheme.colorScheme === 'light'
@@ -212,7 +205,7 @@ const SearchInput = (props: Props) => {
 							/>
 							{watch('searchtext')?.length ? (
 								<Pressable onPress={() => clearSearchInput()}>
-									<InputIcon mr={'$3'}>
+									<InputIcon className="mr-3">
 										<AntDesign
 											name='closecircle'
 											size={20}
@@ -225,8 +218,8 @@ const SearchInput = (props: Props) => {
 					</Input>
 				)}
 			/>
-		</HStack>
-	)
+        </HStack>
+    );
 }
 
 export default SearchInput

@@ -13,18 +13,18 @@ const IllustrationDynamicLocation: React.FC<DynamicIllustrationProps> = ({
 }: DynamicIllustrationProps) => {
 
 	return (
-		<Svg
+        <Svg
 			width={width}
 			height={height}
 			viewBox='0 0 508 508'
 			fill='none'
 			xmlns='http://www.w3.org/2000/svg'
 		>
-			<Path
+            <Path
 				d='M0 90C0 40.294 40.294 0 90 0h318.937c49.706 0 90 40.294 90 90v319.121c0 49.706-40.294 90-90 90H90c-49.706 0-90-40.294-90-90V90z'
 				fill={primary}
 			/>
-			<G filter='url(#filter0_d_345_3298)'>
+            <G filter='url(#filter0_d_345_3298)'>
 				<Path
 					fillRule='evenodd'
 					clipRule='evenodd'
@@ -32,8 +32,8 @@ const IllustrationDynamicLocation: React.FC<DynamicIllustrationProps> = ({
 					fill={secondary}
 				/>
 			</G>
-		</Svg>
-	)
+        </Svg>
+    );
 }
 
 export default IllustrationDynamicLocation

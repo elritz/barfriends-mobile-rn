@@ -4,13 +4,13 @@ import { Stack } from 'expo-router'
 
 export default function _layout() {
 	return (
-		<Stack
+        <Stack
 			initialRouteName='getstarted'
 			screenOptions={{
 				headerBackground: () => <></>,
 			}}
 		>
-			<Stack.Screen
+            <Stack.Screen
 				name={'getstarted'}
 				options={{
 					title: '',
@@ -18,56 +18,56 @@ export default function _layout() {
 					headerLeft: () => <ChevronBackArrow />,
 				}}
 			/>
-			<Stack.Screen
+            <Stack.Screen
 				name={'phone'}
 				options={{
 					headerTitle: () => <LogoTransparent height={30} width={192} />,
 					headerLeft: () => <ChevronBackArrow />,
 				}}
 			/>
-			<Stack.Screen
+            <Stack.Screen
 				name={'email'}
 				options={{
 					headerTitle: () => <LogoTransparent height={30} width={192} />,
 					headerLeft: () => <ChevronBackArrow />,
 				}}
 			/>
-			<Stack.Screen
+            <Stack.Screen
 				name={'confirmationcode'}
 				options={{
 					headerTitle: () => <LogoTransparent height={30} width={192} />,
 					headerLeft: () => <ChevronBackArrow />,
 				}}
 			/>
-			<Stack.Screen
+            <Stack.Screen
 				name={'birthday'}
 				options={{
 					headerTitle: () => <LogoTransparent height={30} width={192} />,
 					headerLeft: () => <ChevronBackArrow />,
 				}}
 			/>
-			<Stack.Screen
+            <Stack.Screen
 				name={'name'}
 				options={{
 					headerTitle: () => <LogoTransparent height={30} width={192} />,
 					headerLeft: () => <ChevronBackArrow />,
 				}}
 			/>
-			<Stack.Screen
+            <Stack.Screen
 				name={'password'}
 				options={{
 					headerTitle: () => <LogoTransparent height={30} width={192} />,
 					headerLeft: () => <ChevronBackArrow />,
 				}}
 			/>
-			<Stack.Screen
+            <Stack.Screen
 				name={'username'}
 				options={{
 					headerTitle: () => <LogoTransparent height={30} width={192} />,
 					headerLeft: () => <ChevronBackArrow />,
 				}}
 			/>
-			<Stack.Screen
+            <Stack.Screen
 				name={'create'}
 				options={{
 					animation: 'fade',
@@ -76,6 +76,6 @@ export default function _layout() {
 					headerLeft: () => <ChevronBackArrow />,
 				}}
 			/>
-		</Stack>
-	)
+        </Stack>
+    );
 }

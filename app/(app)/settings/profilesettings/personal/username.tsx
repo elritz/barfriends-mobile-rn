@@ -1,5 +1,7 @@
+import { Text } from "#/components/ui/text";
+import { Input } from "#/components/ui/input";
+import { Button } from "#/components/ui/button";
 import { useReactiveVar } from '@apollo/client'
-import { Button, Input, Text } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
 import {
 	AuthorizationDeviceProfile,
@@ -130,12 +132,12 @@ export default () => {
 	}
 
 	return (
-		<KeyboardAwareScrollView
+        <KeyboardAwareScrollView
 			keyboardDismissMode='none'
 			keyboardShouldPersistTaps={'always'}
 			extraScrollHeight={100}
 		>
-			<KeyboardAvoidingView
+            <KeyboardAvoidingView
 				style={{
 					flexDirection: 'column',
 					justifyContent: 'space-between',
@@ -158,42 +160,40 @@ export default () => {
 					render={({ field: { onChange, onBlur, value } }) => (
 						<Input variant={'rounded'}>
 							<Input
-								key='username'
-								value={value}
-								keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-								onChangeText={value => onChange(value)}
-								onSubmitEditing={handleSubmit(onSubmit)}
-								onBlur={onBlur}
-								autoCapitalize='none'
-								numberOfLines={1}
-								textContentType='username'
-								blurOnSubmit={false}
-								autoFocus
-								placeholder='Username'
-								returnKeyType='done'
-								autoCorrect={false}
-								fontSize={'$md'}
-								p={'$4'}
-								InputRightElement={<InputRightIcon />}
-							/>
+                                key='username'
+                                value={value}
+                                keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+                                onChangeText={value => onChange(value)}
+                                onSubmitEditing={handleSubmit(onSubmit)}
+                                onBlur={onBlur}
+                                autoCapitalize='none'
+                                numberOfLines={1}
+                                textContentType='username'
+                                blurOnSubmit={false}
+                                autoFocus
+                                placeholder='Username'
+                                returnKeyType='done'
+                                autoCorrect={false}
+                                InputRightElement={<InputRightIcon />}
+                                className="text-md p-4" />
 						</Input>
 					)}
 				/>
 			</KeyboardAvoidingView>
-			{dirtyFields.username && (
+            {dirtyFields.username && (
 				<Button
 					disabled={UOPLoading}
 					onPress={handleSubmit(onSubmit)}
-					rounded={'$md'}
 					style={{
 						alignSelf: 'center',
 						width: '50%',
 					}}
 					size={'lg'}
+					className="rounded-md"
 				>
 					<Text>Update</Text>
 				</Button>
 			)}
-		</KeyboardAwareScrollView>
-	)
+        </KeyboardAwareScrollView>
+    );
 }

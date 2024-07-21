@@ -1,5 +1,8 @@
-// TODO: FN(What functionality was suppose to be here)
-import { Box, Pressable, VStack, Heading, Text } from '@gluestack-ui/themed'
+import { Text } from "#/components/ui/text";
+import { Heading } from "#/components/ui/heading";
+import { VStack } from "#/components/ui/vstack";
+import { Pressable } from "#/components/ui/pressable";
+import { Box } from "#/components/ui/box";
 import {
 	AuthorizationDeviceProfile,
 	useRemoveDeviceProfileFromDeviceManagerMutation,
@@ -66,47 +69,34 @@ export default () => {
 
 	const RoundedListItem = ({ children, ...props }) => (
 		<Pressable onPress={props.onPress}>
-			<Box
-				sx={{
-					h: 50,
-				}}
-				px={'$2'}
-				py={'$3'}
-				alignItems={'flex-start'}
-				flexDirection={'column'}
-			>
+			<Box className="h-[50px] px-2 py-3 items-start flex-column">
 				{children}
 			</Box>
 		</Pressable>
 	)
 
 	return (
-		<SafeAreaView style={{ flex: 1, margin: 10 }}>
-			<Heading
-				px={'$2'}
-				sx={{
-					h: 30,
-				}}
-			>
+        <SafeAreaView style={{ flex: 1, margin: 10 }}>
+            <Heading className="px-2 h-[30px]">
 				Account Actions
 			</Heading>
-			<ScrollView
+            <ScrollView
 				style={{
 					marginVertical: 4,
 				}}
 			>
-				<VStack space='md' mt={'$4'}>
+				<VStack space='md' className="mt-4">
 					{actions.map((item, index) => {
 						return (
-							<RoundedListItem key={index} onPress={item.onPress}>
-								<Text fontWeight={'$bold'} fontSize={'$lg'} color={'$primary500'}>
+                            <RoundedListItem key={index} onPress={item.onPress}>
+                                <Text className="font-bold text-lg text-primary-500">
 									{item.title}
 								</Text>
-							</RoundedListItem>
-						)
+                            </RoundedListItem>
+                        );
 					})}
 				</VStack>
 			</ScrollView>
-		</SafeAreaView>
-	)
+        </SafeAreaView>
+    );
 }

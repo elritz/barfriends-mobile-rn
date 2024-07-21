@@ -1,6 +1,10 @@
+import { VStack } from "#/components/ui/vstack";
+import { Heading } from "#/components/ui/heading";
+import { HStack } from "#/components/ui/hstack";
+import { Center } from "#/components/ui/center";
+import { Box } from "#/components/ui/box";
 import SearchCard from '../components/SearchCard'
 import { useReactiveVar } from '@apollo/client'
-import { Box, Center, HStack, Heading, VStack } from '@gluestack-ui/themed'
 import { useExploreSearchQuery } from '#/graphql/generated'
 import { ThemeReactiveVar } from '#/reactive'
 import { FlashList } from '@shopify/flash-list'
@@ -29,7 +33,7 @@ export default function SearchVenues() {
 
 	if (ESLoading) {
 		return (
-			<FlashList
+            <FlashList
 				numColumns={1}
 				estimatedItemSize={65}
 				data={[...Array(15)]}
@@ -39,17 +43,8 @@ export default function SearchVenues() {
 				keyExtractor={(item, index) => index.toString()}
 				renderItem={({ item }) => {
 					return (
-						<HStack
-							px={'$5'}
-							sx={{
-								h: 60,
-							}}
-							space='md'
-							alignItems='center'
-							// justifyContent='center'
-							flex={1}
-						>
-							<Skeleton
+                        <HStack space='md' className="px-5 h-[60px] items-center flex-1">
+                            <Skeleton
 								height={50}
 								width={50}
 								radius={10}
@@ -66,7 +61,7 @@ export default function SearchVenues() {
 										  ]
 								}
 							/>
-							<VStack space='md'>
+                            <VStack space='md'>
 								<Skeleton
 									colors={
 										rTheme.colorScheme === 'light'
@@ -98,34 +93,29 @@ export default function SearchVenues() {
 									height={20}
 								/>
 							</VStack>
-						</HStack>
-					)
+                        </HStack>
+                    );
 				}}
 				ItemSeparatorComponent={() => <View style={{ height: 5 }} />}
 			/>
-		)
+        );
 	}
 	if (!data?.exploreSearch.venues.length) {
 		return (
-			<Box
-				bg='$transparent'
-				sx={{
-					mt: contentInsets.top,
-				}}
-			>
-				<Center>
-					<Heading fontSize={'$md'} fontWeight={'$medium'}>
+            <Box className="bg-transparent mt-[undefined]">
+                <Center>
+					<Heading className="text-md font-medium">
 						No search results for
 					</Heading>
-					<Heading fontSize={'$3xl'}>"{params.searchtext}"</Heading>
+					<Heading className="text-3xl">"{params.searchtext}"</Heading>
 				</Center>
-			</Box>
-		)
+            </Box>
+        );
 	}
 
 	return (
-		<Box style={{ flex: 1 }}>
-			<FlashList
+        <Box style={{ flex: 1 }}>
+            <FlashList
 				data={data?.exploreSearch.venues}
 				estimatedItemSize={55}
 				keyExtractor={({ id }: { id: string }) => id.toString()}
@@ -133,6 +123,6 @@ export default function SearchVenues() {
 					return <SearchCard item={item} />
 				}}
 			/>
-		</Box>
-	)
+        </Box>
+    );
 }

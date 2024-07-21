@@ -1,5 +1,7 @@
+import { Text } from "#/components/ui/text";
+import { Pressable } from "#/components/ui/pressable";
+import { HStack } from "#/components/ui/hstack";
 import { useReactiveVar } from '@apollo/client'
-import { HStack, Pressable, Text } from '@gluestack-ui/themed'
 import { LOCAL_STORAGE_SEARCH_AREA } from '#/constants/StorageConstants'
 import { LocalStoragePreferenceSearchAreaType } from '#/ctypes/preferences'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -43,8 +45,8 @@ const LocationPermissionItemEmptyState = () => {
 	}
 
 	return (
-		<Pressable
-			onPress={async () => {
+        <Pressable
+            onPress={async () => {
 				!rSearchAreaVar?.useCurrentLocation
 					? !rPermissionForegroundLocationVar?.granted
 						? rPermissionForegroundLocationVar?.canAskAgain && !rPermissionForegroundLocationVar.granted
@@ -57,30 +59,17 @@ const LocationPermissionItemEmptyState = () => {
 					}),
 						await AsyncStorage.setItem(LOCAL_STORAGE_SEARCH_AREA, JSON.stringify(newSearchArea)))
 			}}
-			rounded={'$xl'}
-			sx={{
-				':pressed': {
-					bg: '$primary500',
-				},
-			}}
-		>
-			<HStack p={'$3'} justifyContent={'space-between'}>
+            className="rounded-xl pressed:bg-primary-500">
+            <HStack className="p-3 justify-between">
 				<Text
-					sx={{
-						w: '100%',
-					}}
-					textAlign={'center'}
-					fontWeight={'$semibold'}
-					fontSize={'$lg'}
-					numberOfLines={1}
-					ellipsizeMode={'tail'}
-					alignSelf={'center'}
-				>
+                    numberOfLines={1}
+                    ellipsizeMode={'tail'}
+                    className="w-[100%] text-center font-semibold text-lg self-center">
 					{rSearchAreaVar?.useCurrentLocation ? 'Using current location' : 'Use current location'}
 				</Text>
 			</HStack>
-		</Pressable>
-	)
+        </Pressable>
+    );
 }
 
 export default LocationPermissionItemEmptyState

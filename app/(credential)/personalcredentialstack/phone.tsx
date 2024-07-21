@@ -1,6 +1,11 @@
+import { Input, InputField } from "#/components/ui/input";
+import { Box } from "#/components/ui/box";
+import { VStack } from "#/components/ui/vstack";
+import { Pressable } from "#/components/ui/pressable";
+import { Text } from "#/components/ui/text";
+import { Heading } from "#/components/ui/heading";
 import { useReactiveVar } from '@apollo/client'
 import { Feather } from '@expo/vector-icons'
-import { Heading, Text, Pressable, VStack, Box, Input, InputField } from '@gluestack-ui/themed'
 import { useSendAuthenticatorDeviceOwnerCodeMutation } from '#/graphql/generated'
 import { useIsFocused } from '@react-navigation/native'
 import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '#/reactive'
@@ -135,49 +140,19 @@ export default () => {
 
 	const InnerContent = () => {
 		return (
-			<VStack
-				display={isFocused ? 'flex' : 'none'}
-				flexDirection={'row'}
-				justifyContent={'flex-end'}
-				alignItems='center'
-				alignContent={'space-around'}
-				px={'$2'}
-				sx={{
-					h: 90,
-					_dark: {
-						bg: '$black',
-					},
-					_light: {
-						bg: '$white',
-					},
-				}}
-			>
-				<VStack
-					flex={2}
-					display={'flex'}
-					flexDirection={'column'}
-					justifyContent={'space-around'}
-					px={'$2'}
-				>
+            <VStack
+                className={` ${isFocused ? "flex" : "hidden"} flex-row justify-end items-center content-around px-2 h-[90px]  dark:bg-black bg-white `}>
+                <VStack className="flex-2 flex flex-column justify-around px-2">
 					<Text>
 						By continuing you may receive an SMS for verification. Message and data rates may apply.
 					</Text>
 				</VStack>
-
-				<Pressable
+                <Pressable
 					disabled={!!errors.mobileNumber?.completeNumber || loading}
 					onPress={handleSubmit(onSubmit)}
 				>
 					<Box
-						alignItems='center'
-						justifyContent='center'
-						sx={{
-							h: 50,
-							w: 50,
-						}}
-						rounded={'$full'}
-						bg='$primary500'
-					>
+                        className="items-center justify-center h-[50px]  w-[50px] rounded-full bg-primary-500">
 						<Feather
 							name='arrow-right'
 							size={32}
@@ -185,12 +160,12 @@ export default () => {
 						/>
 					</Box>
 				</Pressable>
-			</VStack>
-		)
+            </VStack>
+        );
 	}
 
 	return (
-		<KeyboardAvoidingView
+        <KeyboardAvoidingView
 			behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
 			style={{
 				flex: 1,
@@ -200,24 +175,19 @@ export default () => {
 				// marginTop: contentInsets.top,
 			}}
 		>
-			<Reanimated.View style={{ flex: 1 }}>
-				<VStack sx={{ h: 110 }}>
-					<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$3xl'}>
+            <Reanimated.View style={{ flex: 1 }}>
+				<VStack className="h-[110px]">
+					<Heading className="mt-4 font-black text-3xl">
 						Enter your mobile number
 					</Heading>
 					<Pressable
-						onPress={() => {
+                        onPress={() => {
 							router.push({
 								pathname: '/(credential)/personalcredentialstack/email',
 							})
 						}}
-						sx={{
-							w: 100,
-							h: 'auto',
-						}}
-						pb={'$3'}
-					>
-						<Text fontSize={'$md'} fontWeight={'$bold'} color={'$primary500'}>
+                        className="w-[100px]  h-auto pb-3">
+						<Text className="text-md font-bold text-primary-500">
 							Use email
 						</Text>
 					</Pressable>
@@ -229,37 +199,33 @@ export default () => {
 						render={({ field: { onChange, onBlur, value } }) => (
 							<Input variant={'underlined'} size='lg'>
 								<InputField
-									keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-									value={value}
-									inputMode='tel'
-									textContentType='telephoneNumber'
-									autoComplete='tel'
-									keyboardType='phone-pad'
-									placeholderTextColor={
+                                    keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+                                    value={value}
+                                    inputMode='tel'
+                                    textContentType='telephoneNumber'
+                                    autoComplete='tel'
+                                    keyboardType='phone-pad'
+                                    placeholderTextColor={
 										rTheme.colorScheme === 'light'
 											? rTheme.theme?.gluestack.tokens.colors.light700
 											: rTheme.theme?.gluestack.tokens.colors.light100
 									}
-									fontSize={'$2xl'}
-									type='text'
-									autoFocus={true}
-									sx={{
-										h: 50,
-									}}
-									key={'mobileNumber.completeNumber'}
-									inputAccessoryViewID={INPUT_ACCESSORY_VIEW_ID}
-									placeholder='Mobile Number'
-									returnKeyType={Platform.OS === 'ios' ? 'done' : 'none'}
-									numberOfLines={1}
-									blurOnSubmit={false}
-									enablesReturnKeyAutomatically={false}
-									onBlur={onBlur}
-									onChangeText={value => {
+                                    type='text'
+                                    autoFocus={true}
+                                    key={'mobileNumber.completeNumber'}
+                                    inputAccessoryViewID={INPUT_ACCESSORY_VIEW_ID}
+                                    placeholder='Mobile Number'
+                                    returnKeyType={Platform.OS === 'ios' ? 'done' : 'none'}
+                                    numberOfLines={1}
+                                    blurOnSubmit={false}
+                                    enablesReturnKeyAutomatically={false}
+                                    onBlur={onBlur}
+                                    onChangeText={value => {
 										onChange(value)
 										const replaced = value.replace(/\D/g, '')
 										setValue('mobileNumber.number', replaced)
 									}}
-								/>
+                                    className="text-2xl h-[50px]" />
 							</Input>
 						)}
 						rules={{
@@ -269,12 +235,12 @@ export default () => {
 							},
 						}}
 					/>
-					<Text fontSize={'$sm'} color='$error700'>
+					<Text className="text-sm text-error-700">
 						{errors?.mobileNumber?.completeNumber?.message}
 					</Text>
 				</View>
 			</Reanimated.View>
-			{Platform.OS === 'ios' ? (
+            {Platform.OS === 'ios' ? (
 				<InputAccessoryView nativeID={INPUT_ACCESSORY_VIEW_ID}>
 					<InnerContent />
 				</InputAccessoryView>
@@ -290,6 +256,6 @@ export default () => {
 					<InnerContent />
 				</Reanimated.View>
 			)}
-		</KeyboardAvoidingView>
-	)
+        </KeyboardAvoidingView>
+    );
 }

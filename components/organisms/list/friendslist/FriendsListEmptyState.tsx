@@ -1,6 +1,11 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Pressable } from "#/components/ui/pressable";
+import { Heading } from "#/components/ui/heading";
+import { Button, ButtonText } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
 import { Ionicons } from '@expo/vector-icons'
-import { Box, Button, ButtonText, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { PermissionContactsReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { useRouter } from 'expo-router'
 
@@ -9,39 +14,28 @@ export const FriendsListEmptyState = () => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const permissionContactsVar = useReactiveVar(PermissionContactsReactiveVar)
 	return (
-		<VStack
-			space={'md'}
-			my={'$5'}
-			p={'$5'}
-			justifyContent={'center'}
-			alignItems={'center'}
-			rounded={'$md'}
-		>
-			<Box bg='$transparent' alignItems={'center'}>
-				<Heading lineHeight={'$xl'} px={'$2'} textAlign='center' fontSize={'$2xl'}>
+        <VStack space={'md'} className="my-5 p-5 justify-center items-center rounded-md">
+            <Box className="bg-transparent items-center">
+				<Heading className="leading-xl px-2 text-center text-2xl">
 					{`No barfriends\n Find your friends below`}
 				</Heading>
 			</Box>
-			<VStack space={'md'} w={'$full'} alignItems={'center'} mt={'$4'}>
+            <VStack space={'md'} className="w-full items-center mt-4">
 				<Button
-					w={'100%'}
 					size={'lg'}
 					onPress={() =>
 						router.push({
 							pathname: '/(app)/permission/contacts',
 						})
 					}
+					className="w-[100%]"
 				>
-					<ButtonText fontSize={'$lg'} fontWeight={'$bold'}>
+					<ButtonText className="text-lg font-bold">
 						{permissionContactsVar?.granted ? 'All Contacts' : 'Use Contacts'}
 					</ButtonText>
 				</Button>
 				<Pressable
-					w={'100%'}
-					alignItems='center'
-					flexDirection='row'
-					justifyContent='center'
-					onPress={() => {
+                    onPress={() => {
 						router.push({
 							pathname: '/(app)/explore/searchtext',
 							params: {
@@ -49,7 +43,7 @@ export const FriendsListEmptyState = () => {
 							},
 						})
 					}}
-				>
+                    className="w-[100%] items-center flex-row justify-center">
 					<Ionicons
 						name='search'
 						size={20}
@@ -59,11 +53,11 @@ export const FriendsListEmptyState = () => {
 								: rTheme.theme?.gluestack.tokens.colors.light100
 						}
 					/>
-					<Text ml='$2' fontSize={'$lg'} fontWeight={'$bold'}>
+					<Text className="ml-2 text-lg font-bold">
 						Search
 					</Text>
 				</Pressable>
 			</VStack>
-		</VStack>
-	)
+        </VStack>
+    );
 }

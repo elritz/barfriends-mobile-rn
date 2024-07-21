@@ -42,9 +42,7 @@ const KeyboardAware: React.FC<{}> = props => {
 		}
 	}, [])
 
-	return (
-		<Animated.View style={{ flex: 1, transform: [{ translateY }] }}>{props.children}</Animated.View>
-	)
+	return <Animated.View style={{ flex: 1, transform: [{ translateY }] }}>{props.children}</Animated.View>;
 }
 
 export default KeyboardAware

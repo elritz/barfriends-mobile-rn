@@ -1,7 +1,10 @@
+import { Text } from "#/components/ui/text";
+import { Pressable } from "#/components/ui/pressable";
+import { Heading } from "#/components/ui/heading";
+import { Box } from "#/components/ui/box";
 import { FormType } from './_layout'
 import { useReactiveVar } from '@apollo/client'
 import Photos from '#/components/screens/tonight/photos'
-import { Box, Heading, Pressable, Text } from '@gluestack-ui/themed'
 import { useEmojimoodsQuery } from '#/graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { FlashList } from '@shopify/flash-list'
@@ -25,9 +28,8 @@ export default () => {
 	}
 
 	return (
-		<LinearGradient colors={watch('emojimood.colors') || ['#0000000']}>
-			<Box
-				bg='$transparent'
+        <LinearGradient colors={watch('emojimood.colors') || ['#0000000']}>
+            <Box
 				style={{
 					height: '100%',
 					width: '100%',
@@ -35,9 +37,9 @@ export default () => {
 					justifyContent: 'flex-start',
 					alignSelf: 'center',
 				}}
+				className="bg-transparent"
 			>
 				<Box
-					bg='$transparent'
 					style={{
 						position: 'absolute',
 						top: 0,
@@ -45,6 +47,7 @@ export default () => {
 						left: 0,
 						right: 0,
 					}}
+					className="bg-transparent"
 				>
 					<Controller
 						name='emojimood'
@@ -62,20 +65,16 @@ export default () => {
 								ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
 								renderItem={({ index, item }) => {
 									return (
-										<Pressable
-											bg='$transparent'
-											alignItems='center'
-											alignSelf={'center'}
-											flex={1}
-											onPress={() => {
+                                        <Pressable
+                                            onPress={() => {
 												rAuthorizationVar?.Profile?.tonightStory?.id === watch('emojimood').id ||
 												watch('emojimood').id === item.id ||
 												rAuthorizationVar?.Profile?.tonightStory?.emojimood?.id === item.id
 													? reset()
 													: setValue('emojimood', item)
 											}}
-										>
-											<BlurView
+                                            className="bg-transparent items-center self-center flex-1">
+                                            <BlurView
 												tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 												intensity={60}
 												style={{
@@ -111,12 +110,12 @@ export default () => {
 												>
 													<Text>{item.emoji}</Text>
 												</LinearGradient>
-												<Text mt={'$3'} fontWeight='$medium'>
+												<Text className="mt-3 font-medium">
 													{item.emojiname}
 												</Text>
 											</BlurView>
-										</Pressable>
-									)
+                                        </Pressable>
+                                    );
 								}}
 							/>
 						)}
@@ -126,6 +125,6 @@ export default () => {
 					<Photos />
 				</View>
 			</Box>
-		</LinearGradient>
-	)
+        </LinearGradient>
+    );
 }

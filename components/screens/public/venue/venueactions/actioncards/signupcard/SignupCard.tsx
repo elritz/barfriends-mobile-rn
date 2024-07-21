@@ -1,40 +1,37 @@
-import { Feather } from '@expo/vector-icons'
-import { Heading, Text, Box, Button, VStack, ButtonText, HStack } from '@gluestack-ui/themed'
-import { useRouter } from 'expo-router'
-import { View } from 'react-native'
+import { HStack } from "#/components/ui/hstack";
+import { VStack } from "#/components/ui/vstack";
+import { Button, ButtonText } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
+import { Text } from "#/components/ui/text";
+import { Heading } from "#/components/ui/heading";
+import { Feather } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
+import { View } from "react-native";
 
 export default function SignupCard() {
-	const router = useRouter()
-	return (
-		<VStack flex={1} justifyContent='space-between' flexDirection={'column'}>
-			<View>
-				<Heading
-					textTransform={'uppercase'}
-					lineHeight={'$xs'}
-					fontSize={'$lg'}
-					fontWeight={'$black'}
-					mt={'$5'}
-				>
-					Sign up, Join, Socialize
-				</Heading>
-				<Text>Also focused on stuff</Text>
-			</View>
-			<HStack justifyContent='center'>
-				<Button
-					p={3.5}
-					w={'$full'}
-					size={'lg'}
-					alignItems='center'
-					justifyContent='center'
-					rounded={'$full'}
-					onPress={() => {
-						router.push({ pathname: '/(credential)/personalcredentialstack/getstarted' })
-					}}
-				>
-					<ButtonText>Continue</ButtonText>
-					<Feather name='arrow-right' size={20} color={'white'} />
-				</Button>
-			</HStack>
-		</VStack>
-	)
+  const router = useRouter();
+  return (
+    <VStack className="flex-column flex-1 justify-between">
+      <View>
+        <Heading className="leading-xs mt-5 text-lg font-black uppercase">
+          Sign up, Join, Socialize
+        </Heading>
+        <Text>Also focused on stuff</Text>
+      </View>
+      <HStack className="justify-center">
+        <Button
+          size={"lg"}
+          onPress={() => {
+            router.push({
+              pathname: "/(credential)/personalcredentialstack/getstarted",
+            });
+          }}
+          className="w-full items-center justify-center rounded-full p-3.5"
+        >
+          <ButtonText>Continue</ButtonText>
+          <Feather name="arrow-right" size={20} color={"white"} />
+        </Button>
+      </HStack>
+    </VStack>
+  );
 }

@@ -1,5 +1,9 @@
+import { Text } from "#/components/ui/text";
+import { Modal } from "#/components/ui/modal";
+import { Center } from "#/components/ui/center";
+import { Button } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Center, Modal, Text } from '@gluestack-ui/themed'
 import { useGetSecureFriendQrCodeDataQuery, useQrAddFriendMutation } from '#/graphql/generated'
 import { AuthorizationReactiveVar, PermissionCameraReactiveVar } from '#/reactive'
 import { BarCodeScanner } from 'expo-barcode-scanner'
@@ -75,8 +79,8 @@ const CameraModal = ({ isOpen, onOpen, onClose }) => {
 	if (loadingGSFQRCD || !dataGSFQRCD) return null
 
 	return (
-		<Center>
-			{/* <Modal isOpen={isOpen} onClose={onClose}>
+        <Center>
+            {/* <Modal isOpen={isOpen} onClose={onClose}>
 				<Modal.Content h={'70%'} w={'95%'}>
 					<Modal.CloseButton />
 					{rPermissionCamera?.granted && (
@@ -117,8 +121,8 @@ const CameraModal = ({ isOpen, onOpen, onClose }) => {
 					</Modal.Footer>
 				</Modal.Content>
 			</Modal> */}
-		</Center>
-	)
+        </Center>
+    );
 }
 
 export default CameraModal

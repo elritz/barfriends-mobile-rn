@@ -1,4 +1,5 @@
-import { Box, Heading } from '@gluestack-ui/themed'
+import { Heading } from "#/components/ui/heading";
+import { Box } from "#/components/ui/box";
 
 type Props = {
 	total: number
@@ -7,21 +8,13 @@ type Props = {
 
 const Total = (props: Props) => {
 	return (
-		<Box
-			sx={{
-				h: 30,
-				w: 30,
-			}}
-			mx={'$5'}
-			rounded={'$lg'}
-			alignItems='center'
-			justifyContent='center'
-		>
-			<Heading fontWeight={'$black'} fontSize={'$lg'} color={'white'}>
+        <Box
+            className="h-[30px]  w-[30px] mx-5 rounded-lg items-center justify-center">
+            <Heading className="font-black text-lg text-white">
 				{props.total}
 			</Heading>
-		</Box>
-	)
+        </Box>
+    );
 }
 
 export default Total

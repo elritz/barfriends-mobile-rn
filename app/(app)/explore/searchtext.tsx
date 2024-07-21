@@ -1,7 +1,13 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Pressable } from "#/components/ui/pressable";
+import { Heading } from "#/components/ui/heading";
+import { HStack } from "#/components/ui/hstack";
+import { Center } from "#/components/ui/center";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
 import SearchCard from '#/components/screens/search/components/SearchCard'
 import { Ionicons } from '@expo/vector-icons'
-import { Box, Center, HStack, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { useExploreSearchLazyQuery } from '#/graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { FlashList } from '@shopify/flash-list'
@@ -57,8 +63,7 @@ export default () => {
 
 	const PastSearchItem = (item: Item) => {
 		return (
-			<Pressable
-				px={'$2'}
+            <Pressable
 				onPress={() => {
 					exploreSearchQuery({
 						variables: {
@@ -71,28 +76,11 @@ export default () => {
 						},
 					})
 				}}
+				className="px-2"
 			>
-				<HStack
-					sx={{
-						w: '100%',
-						h: 55,
-					}}
-					justifyContent={'flex-start'}
-					alignItems={'center'}
-					space={'md'}
-				>
+                <HStack space={'md'} className="w-[100%]  h-[55px] justify-start items-center">
 					<Box
-						alignContent='center'
-						justifyContent='center'
-						alignItems='center'
-						borderWidth={'$2'}
-						// borderColor='$primary500'
-						rounded={'$md'}
-						sx={{
-							h: 35,
-							w: 35,
-						}}
-					>
+                        className="content-center justify-center items-center border-2 rounded-md h-[35px]  w-[35px]">
 						<Ionicons
 							name='search'
 							size={18}
@@ -104,32 +92,30 @@ export default () => {
 						/>
 					</Box>
 					<VStack>
-						<Text fontSize={'$md'} fontWeight={'$medium'}>
+						<Text className="text-md font-medium">
 							{item.search}
 						</Text>
 					</VStack>
 				</HStack>
-			</Pressable>
-		)
+            </Pressable>
+        );
 	}
 
 	if (!params?.searchtext?.length && !loading) {
 		return (
-			<Box bg={'$transparent'} flex={1} px={'$2'}>
-				<FlashList
+            <Box className="bg-transparent flex-1 px-2">
+                <FlashList
 					data={filteredRecentSearches as Item[]}
 					ListHeaderComponent={() => {
-						return (
-							<>
-								{filteredRecentSearches.length ? (
-									<Heading>Recent</Heading>
-								) : (
-									<Heading textAlign='center' mt={'$10'}>
-										No recent searches
-									</Heading>
-								)}
-							</>
-						)
+						return (<>
+                            {filteredRecentSearches.length ? (
+                                <Heading>Recent</Heading>
+                            ) : (
+                                <Heading className="text-center mt-10">
+                                    No recent searches
+                                </Heading>
+                            )}
+                        </>);
 					}}
 					numColumns={1}
 					estimatedItemSize={55}
@@ -143,13 +129,13 @@ export default () => {
 					keyboardShouldPersistTaps='handled'
 					ItemSeparatorComponent={() => <View style={{ height: 5 }} />}
 				/>
-			</Box>
-		)
+            </Box>
+        );
 	}
 
 	if (loading) {
 		return (
-			<FlashList
+            <FlashList
 				data={[...Array(20)]}
 				numColumns={1}
 				estimatedItemSize={60}
@@ -163,17 +149,8 @@ export default () => {
 				ItemSeparatorComponent={() => <View style={{ height: 5 }} />}
 				renderItem={item => {
 					return (
-						<HStack
-							px={'$5'}
-							sx={{
-								h: 60,
-							}}
-							space='md'
-							alignItems='center'
-							// justifyContent='center'
-							flex={1}
-						>
-							<Skeleton
+                        <HStack space='md' className="px-5 h-[60px] items-center flex-1">
+                            <Skeleton
 								height={50}
 								width={50}
 								radius={10}
@@ -190,7 +167,7 @@ export default () => {
 										  ]
 								}
 							/>
-							<VStack space='md'>
+                            <VStack space='md'>
 								<Skeleton
 									colors={
 										rTheme.colorScheme === 'light'
@@ -222,16 +199,16 @@ export default () => {
 									height={20}
 								/>
 							</VStack>
-						</HStack>
-					)
+                        </HStack>
+                    );
 				}}
 			/>
-		)
+        );
 	}
 
 	return (
-		<Box bg={'$transparent'} flex={1} px={'$2'}>
-			<FlashList
+        <Box className="bg-transparent flex-1 px-2">
+            <FlashList
 				scrollEnabled={true}
 				estimatedItemSize={40}
 				contentInset={{
@@ -242,22 +219,20 @@ export default () => {
 				automaticallyAdjustContentInsets
 				refreshing={loading}
 				keyboardDismissMode='on-drag'
-				ItemSeparatorComponent={() => <Box bg='$transparent' h={'$5'} />}
+				ItemSeparatorComponent={() => <Box className="bg-transparent h-5" />}
 				ListHeaderComponent={() => {
-					return (
-						<>
-							{!data?.exploreSearch.venues?.length && !data?.exploreSearch.people?.length && (
-								<Box bg='$transparent'>
-									<Center>
-										<Heading fontSize={'$md'} fontWeight={'$medium'}>
-											No search results for
-										</Heading>
-										<Heading fontSize={'$3xl'}>"{params.searchtext}"</Heading>
-									</Center>
-								</Box>
-							)}
-						</>
-					)
+					return (<>
+                        {!data?.exploreSearch.venues?.length && !data?.exploreSearch.people?.length && (
+                            <Box className="bg-transparent">
+                                <Center>
+                                    <Heading className="text-md font-medium">
+                                        No search results for
+                                    </Heading>
+                                    <Heading className="text-3xl">"{params.searchtext}"</Heading>
+                                </Center>
+                            </Box>
+                        )}
+                    </>);
 				}}
 				data={[
 					{ title: 'Accounts', data: data?.exploreSearch.people },
@@ -265,10 +240,10 @@ export default () => {
 				]}
 				renderItem={({ item }) => {
 					return (
-						<Box bg={'transparent'}>
-							{item.data && item.data.length ? (
-								<Box bg={'transparent'}>
-									<Heading fontSize={'$lg'} mx={'$2'}>
+                        <Box className="bg-transparent">
+                            {item.data && item.data.length ? (
+								<Box className="bg-transparent">
+									<Heading className="text-lg mx-2">
 										{item.title}
 									</Heading>
 									{item.data?.map((item, index) => {
@@ -276,10 +251,10 @@ export default () => {
 									})}
 								</Box>
 							) : null}
-						</Box>
-					)
+                        </Box>
+                    );
 				}}
 			/>
-		</Box>
-	)
+        </Box>
+    );
 }

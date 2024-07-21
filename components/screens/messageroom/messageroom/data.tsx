@@ -3,10 +3,10 @@ import { Text, View, StyleSheet } from 'react-native'
 
 const Message = ({ text, sender }: MessageProps) => {
 	return (
-		<View style={sender ? styles.senderContainer : styles.recipientContainer}>
-			<Text style={styles.message}>{text}</Text>
-		</View>
-	)
+        <View style={sender ? styles.senderContainer : styles.recipientContainer}>
+            <Text style={styles.message}>{text}</Text>
+        </View>
+    );
 }
 
 export default Message

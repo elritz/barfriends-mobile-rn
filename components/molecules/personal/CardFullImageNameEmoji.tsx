@@ -1,4 +1,6 @@
-import { Box, Pressable, Text } from '@gluestack-ui/themed'
+import { Text } from "#/components/ui/text";
+import { Pressable } from "#/components/ui/pressable";
+import { Box } from "#/components/ui/box";
 import { Relationship } from '#/graphql/generated'
 import { capitalizeFirstLetter } from '#/util/helpers/capitalizeFirstLetter'
 import { Image } from 'expo-image'
@@ -18,14 +20,14 @@ export const CardFullImageNameEmoji = ({ item, cardWidth }: CardFullImageNameEmo
 		return null
 	}
 	return (
-		<Pressable
+        <Pressable
 			onPress={() => {
 				router.push({
 					pathname: `/(app)/public/personal/${item?.friendProfile?.IdentifiableInformation?.username}`,
 				})
 			}}
 		>
-			<Box
+            <Box
 				style={{
 					backgroundColor: 'transparent',
 					borderColor: 'transparent',
@@ -35,40 +37,14 @@ export const CardFullImageNameEmoji = ({ item, cardWidth }: CardFullImageNameEmo
 				}}
 			>
 				<Box
-					position={'absolute'}
-					bottom={'$0'}
-					left={'$0'}
-					right={'$0'}
-					w={'100%'}
-					zIndex={10}
-					rounded={'$md'}
-					overflow={'hidden'}
-				>
+                    className="absolute bottom-0 left-0 right-0 w-[100%] z-10 rounded-md overflow-hidden">
 					<LinearGradient colors={['transparent', '#000000d1']}>
 						<Box style={{ padding: 4 }}>
-							<Text
-								fontSize={'$md'}
-								textAlign={'center'}
-								fontWeight={'bold'}
-								sx={{
-									_light: {
-										color: 'white',
-									},
-									_dark: {
-										color: 'white',
-									},
-								}}
-							>
+							<Text className="text-md text-center font-[bold] text-white  dark:text-white">
 								{/* {capitalizeFirstLetter(item.friendProfile?.IdentifiableInformation?.firstname)} */}
 								{item.friendProfile?.IdentifiableInformation?.firstname}
 							</Text>
-							<Text
-								textAlign={'center'}
-								fontWeight={'bold'}
-								sx={{
-									color: 'white',
-								}}
-							>
+							<Text className="text-center font-[bold] text-white">
 								@{item.friendProfile?.IdentifiableInformation?.username}
 							</Text>
 						</Box>
@@ -81,6 +57,6 @@ export const CardFullImageNameEmoji = ({ item, cardWidth }: CardFullImageNameEmo
 					style={{ height: 170, flexDirection: 'column-reverse', borderRadius: 10 }}
 				/>
 			</Box>
-		</Pressable>
-	)
+        </Pressable>
+    );
 }

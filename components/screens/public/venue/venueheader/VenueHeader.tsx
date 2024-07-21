@@ -1,5 +1,5 @@
+import { Box } from "#/components/ui/box";
 import { PUBLIC_VENUE_HEADER_IMAGE_HEIGHT } from '#/constants/Layout'
-import { Box } from '@gluestack-ui/themed'
 import { Photo } from '#/graphql/generated'
 import { Image } from 'expo-image'
 import { useWindowDimensions } from 'react-native'
@@ -14,7 +14,7 @@ const VenueHeader = (props: Props) => {
 
 	if (props.loading || !props.photos?.length) {
 		return (
-			<Box
+            <Box
 				style={{
 					flexDirection: 'column',
 					justifyContent: 'flex-end',
@@ -22,20 +22,20 @@ const VenueHeader = (props: Props) => {
 					overflow: 'hidden',
 				}}
 			/>
-		)
+        );
 	}
 
 	return (
-		<Box
+        <Box
 			style={{
 				flexDirection: 'column',
 				justifyContent: 'flex-end',
 				height: PUBLIC_VENUE_HEADER_IMAGE_HEIGHT,
 				overflow: 'hidden',
 			}}
-			rounded={'$none'}
+			className="rounded-none"
 		>
-			<Image
+            <Image
 				source={{ uri: props.photos[0].url }}
 				style={{
 					width: width,
@@ -43,8 +43,8 @@ const VenueHeader = (props: Props) => {
 				}}
 				alt={'Venue Profile Photo'}
 			/>
-		</Box>
-	)
+        </Box>
+    );
 }
 
 export default VenueHeader

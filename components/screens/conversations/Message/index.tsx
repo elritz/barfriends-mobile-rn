@@ -1,3 +1,5 @@
+import { View } from "#/components/ui/view";
+import { Text } from "#/components/ui/text";
 import React from "react";
 import styles from "./styles";
 
@@ -5,8 +7,7 @@ import type { MessageProps } from "./types";
 
 import { StyleSheet } from "react-native";
 import { useReactiveVar } from "@apollo/client";
-import { ThemeReactiveVar } from "@/reactive/theme";
-import { Text, View } from "@gluestack-ui/themed";
+import { ThemeReactiveVar } from "#/reactive";
 
 const container = {
   borderRadius: 10,
@@ -33,17 +34,7 @@ export default function Message({ text, sender }: MessageProps) {
   return (
     <View style={sender ? styles.senderContainer : styles.recipientContainer}>
       <Text
-        sx={{
-          _light: {
-            color: sender ? '$light200' : '$black',
-          },
-          _dark: {
-            color: sender ? '$white' : '$light100',
-          },
-          fontWeight: sender ? '$medium' : '$normal',
-          fontSize: 15
-        }}
-        // size="md"
+        className={` ${sender ? "text-light-200" : "text-black"} ${sender ? "dark:text-white" : "dark:text-light-100"} ${sender ? "font-medium" : "font-normal"} text-[15px] `}
       >{text}</Text>
     </View>
   );

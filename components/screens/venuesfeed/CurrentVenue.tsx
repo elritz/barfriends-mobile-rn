@@ -1,16 +1,13 @@
+import { Text } from "#/components/ui/text";
+import { Pressable } from "#/components/ui/pressable";
+import { Icon } from "#/components/ui/icon";
+import { Heading } from "#/components/ui/heading";
+import { HStack } from "#/components/ui/hstack";
+import { Divider } from "#/components/ui/divider";
+import { Button, ButtonGroup } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
 import { Ionicons } from '@expo/vector-icons'
-import {
-	Box,
-	Button,
-	ButtonGroup,
-	Divider,
-	HStack,
-	Heading,
-	Icon,
-	Pressable,
-	Text,
-} from '@gluestack-ui/themed'
 import { usePublicVenueQuery } from '#/graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { useDisclose } from '#/util/hooks/useDisclose'
@@ -58,16 +55,8 @@ export default function CurrentVenue() {
 	}
 
 	return (
-		<Box
-			bg={'$white'}
-			rounded={'$md'}
-			sx={{
-				h: 220,
-				my: 3,
-				mx: 2,
-			}}
-		>
-			<Pressable
+        <Box className="bg-white rounded-md h-[220px]  my-3  mx-2">
+            <Pressable
 				onPress={() => {
 					router.push({
 						pathname: `/(app)/public/venue/${data.publicVenue?.Venue?.id}`,
@@ -79,14 +68,12 @@ export default function CurrentVenue() {
 				}}
 			>
 				<Box
-					sx={{ h: 220 }}
-					rounded={'$md'}
-					style={{
+                    style={{
 						// backgroundColor: themeContext.palette.secondary.background.default,
 						justifyContent: 'flex-end',
 						overflow: 'hidden',
 					}}
-				>
+                    className="h-[220px] rounded-md">
 					{!loading ? (
 						<Image
 							source={{ uri: data.publicVenue?.photos[0]?.url }}
@@ -108,47 +95,23 @@ export default function CurrentVenue() {
 						/>
 					)}
 
-					<HStack
-						sx={{
-							_light: {
-								bg: '$light100',
-							},
-							_dark: {
-								bg: '$light800',
-							},
-							h: 75,
-						}}
-						p={'$2'}
-					>
-						<Box bg={'transparent'} flex={1} alignSelf={'center'}>
+					<HStack className="bg-light-100  dark:bg-light-800 h-[75px] p-2">
+						<Box className="bg-transparent flex-1 self-center">
 							<Heading
-								fontSize={'$sm'}
-								fontWeight={'$medium'}
-								textAlign={'left'}
-								numberOfLines={2}
-								alignSelf={'flex-start'}
-								ellipsizeMode='tail'
-							>
+                                numberOfLines={2}
+                                ellipsizeMode='tail'
+                                className="text-sm font-medium text-[left] self-start">
 								{getTitleCase(data.publicVenue?.Venue?.name)}
 							</Heading>
 						</Box>
-						<Box alignContent={'center'} justifyContent={'center'} px={2}>
-							<ButtonGroup rounded={'$md'}>
+						<Box className="content-center justify-center px-2">
+							<ButtonGroup className="rounded-md">
 								<Button
-									sx={{
-										_light: {
-											bg: '$light100',
-										},
-										_dark: {
-											bg: '$light800',
-										},
-									}}
-									rounded={'$lg'}
-									onPress={!isOpen ? () => onToggle() : () => leaveVenue()}
-								>
+                                    onPress={!isOpen ? () => onToggle() : () => leaveVenue()}
+                                    className="bg-light-100  dark:bg-light-800 rounded-lg">
 									<Ionicons name={'exit'} size={30} />
 
-									<Text color='$error500'>{isOpen ? `Leave` : ''}</Text>
+									<Text className="text-error-500">{isOpen ? `Leave` : ''}</Text>
 								</Button>
 								{isOpen && <Divider orientation='vertical' />}
 								{isOpen && (
@@ -163,18 +126,8 @@ export default function CurrentVenue() {
 											}
 										/>
 										<Button
-											alignSelf={'center'}
-											sx={{
-												_light: {
-													bg: '$light200',
-												},
-												_dark: {
-													bg: '$light700',
-												},
-											}}
-											rounded={'$lg'}
-											onPress={onToggle}
-										/>
+                                            onPress={onToggle}
+                                            className="self-center bg-light-200  dark:bg-light-700 rounded-lg" />
 									</>
 								)}
 							</ButtonGroup>
@@ -182,6 +135,6 @@ export default function CurrentVenue() {
 					</HStack>
 				</Box>
 			</Pressable>
-		</Box>
-	)
+        </Box>
+    );
 }

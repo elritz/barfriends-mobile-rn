@@ -42,16 +42,16 @@ const Products = ({ x }: ProductsProps) => (
 				}
 			})
 			return (
-				<Animated.View key={index} style={[styles.container, style]}>
-					{product.type === '_ad2' && (
+                <Animated.View key={index} style={[styles.container, style]}>
+                    {product.type === '_ad2' && (
 						<Image
 							source={product.picture}
 							resizeMode='contain'
 							style={{ width: SIZE, height: SIZE * product.aspectRatio }}
 						/>
 					)}
-				</Animated.View>
-			)
+                </Animated.View>
+            );
 		})}
 	</View>
 )

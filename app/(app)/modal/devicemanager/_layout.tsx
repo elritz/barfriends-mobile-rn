@@ -9,13 +9,13 @@ export type FormType = {
 
 export default () => {
 	return (
-		<Stack
+        <Stack
 			screenOptions={{
 				animation: 'slide_from_right',
 				headerShown: false,
 			}}
 		>
-			<Stack.Screen
+            <Stack.Screen
 				name={'deviceprofilemanager'}
 				options={{
 					headerShown: true,
@@ -23,7 +23,7 @@ export default () => {
 					headerLeft: () => <ChevronBackArrow />,
 				}}
 			/>
-			<Stack.Screen
+            <Stack.Screen
 				name={'[profileid]'}
 				options={{
 					headerShown: true,
@@ -31,6 +31,6 @@ export default () => {
 					headerLeft: () => <ChevronBackArrow />,
 				}}
 			/>
-		</Stack>
-	)
+        </Stack>
+    );
 }

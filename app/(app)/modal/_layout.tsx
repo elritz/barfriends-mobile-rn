@@ -1,6 +1,8 @@
+import { Text } from "#/components/ui/text";
+import { HStack } from "#/components/ui/hstack";
+import { Button, ButtonText } from "#/components/ui/button";
 import { useReactiveVar } from '@apollo/client'
 import ChevronBackArrow from '#/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
-import { Button, ButtonText, HStack, Text } from '@gluestack-ui/themed'
 import { Emojimood, Story, useUpdateStoryEmojimoodMutation } from '#/graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { BlurView } from 'expo-blur'
@@ -54,8 +56,8 @@ export default () => {
 	})
 
 	return (
-		<FormProvider {...methods}>
-			<Stack
+        <FormProvider {...methods}>
+            <Stack
 				screenOptions={{
 					headerStyle: {
 						backgroundColor: 'transparent',
@@ -89,44 +91,35 @@ export default () => {
 						headerTransparent: true,
 						header: () => {
 							return (
-								<BlurView tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'} intensity={70}>
-									<HStack justifyContent='space-between' alignItems='center' py={'$3'} pr={'$2'}>
+                                <BlurView tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'} intensity={70}>
+                                    <HStack className="justify-between items-center py-3 pr-2">
 										<ChevronBackArrow />
 										{methods.watch('emojimood.id') ||
 										(rAuthorizationVar?.Profile?.tonightStory?.emojimood?.id &&
 											methods.watch('emojimood.id') !==
 												rAuthorizationVar?.Profile?.tonightStory?.emojimood?.id) ? (
 											<Button
-												size='xs'
-												sx={{
-													_dark: {
-														bg: updatedEmojimoodSuccess ? '$green500' : loading ? '$gray500' : '$blue600',
-													},
-													_light: {
-														bg: updatedEmojimoodSuccess ? '$green500' : loading ? '$gray500' : '$blue600',
-													},
-												}}
-												rounded={'$full'}
-												onPress={() => {
+                                                size='xs'
+                                                onPress={() => {
 													updateStoryEmojimoodMutation({
 														variables: {
 															emojimoodId: parseInt(methods.getValues('emojimood.id')),
 														},
 													})
 												}}
-											>
-												<ButtonText fontWeight='$bold' fontSize={'$sm'}>
+                                                className={` ${updatedEmojimoodSuccess ? "dark:bg-green-500" : loading ? "dark:bg-gray-500" : "dark:bg-blue-600"} ${updatedEmojimoodSuccess ? "bg-green-500" : loading ? "bg-gray-500" : "bg-blue-600"}  rounded-full `}>
+												<ButtonText className="font-bold text-sm">
 													{loading ? 'Updating' : updatedEmojimoodSuccess ? 'Updated' : 'Update'}
 												</ButtonText>
 											</Button>
 										) : null}
 									</HStack>
-								</BlurView>
-							)
+                                </BlurView>
+                            );
 						},
 					}}
 				/>
 			</Stack>
-		</FormProvider>
-	)
+        </FormProvider>
+    );
 }

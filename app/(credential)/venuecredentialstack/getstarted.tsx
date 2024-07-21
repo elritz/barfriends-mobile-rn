@@ -1,6 +1,10 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Pressable } from "#/components/ui/pressable";
+import { Heading } from "#/components/ui/heading";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
 import CompanyCoasterLogoDynamic from '#/assets/images/company/CompanyCoasterLogoDynamic'
-import { Box, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { Feather } from '@expo/vector-icons'
 import { usePrivacyTermsDocumentsQuery } from '#/graphql/generated'
 import { CredentialPersonalProfileReactiveVar } from '#/reactive'
@@ -33,29 +37,23 @@ export default () => {
 	}
 
 	return (
-		<SafeAreaView>
-			<VStack justifyContent={'space-between'} h={'$full'} alignItems='center' mx={'$4'}>
+        <SafeAreaView>
+            <VStack className="justify-between h-full items-center mx-4">
 				<Box />
-				<Box bg='$transparent' justifyContent={'center'}>
+				<Box className="bg-transparent justify-center">
 					<CompanyCoasterLogoDynamic backgroundColor='black' />
-					<Heading
-						testID={'title-text'}
-						mt={'$4'}
-						fontWeight={'$black'}
-						fontSize={'$4xl'}
-						lineHeight={'$3xl'}
-					>
+					<Heading testID={'title-text'} className="mt-4 font-black text-4xl leading-3xl">
 						Let's get people going out tonight!
 					</Heading>
 					<Pressable disabled={PTSLoading} onPress={() => _pressTermsServices('terms')}>
-						<Text fontSize={'$lg'}>
+						<Text className="text-lg">
 							By continuing, you agree to the
-							<Text fontSize={'$lg'} fontWeight={'$bold'} color={'$primary500'}>
+							<Text className="text-lg font-bold text-primary-500">
 								{' '}
 								Term of the Services
 							</Text>
-							<Text fontSize={'$lg'}> and</Text>
-							<Text fontSize={'$lg'} fontWeight={'$bold'} color={'$primary500'}>
+							<Text className="text-lg"> and</Text>
+							<Text className="text-lg font-bold text-primary-500">
 								{' '}
 								Privacy Policies.
 							</Text>
@@ -65,20 +63,12 @@ export default () => {
 				<>
 					<Pressable disabled={PTSLoading} onPress={_press}>
 						<Box
-							alignItems='center'
-							justifyContent='center'
-							sx={{
-								h: 60,
-								w: 60,
-							}}
-							rounded={'$full'}
-							bg='$primary500'
-						>
+                            className="items-center justify-center h-[60px]  w-[60px] rounded-full bg-primary-500">
 							<Feather name='arrow-right' size={32} color={'white'} />
 						</Box>
 					</Pressable>
 				</>
 			</VStack>
-		</SafeAreaView>
-	)
+        </SafeAreaView>
+    );
 }

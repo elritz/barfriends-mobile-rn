@@ -34,8 +34,8 @@ const PhilzCoffee = () => {
 	})
 
 	return (
-		<Animated.View style={[style, { paddingTop: 90 }]}>
-			{/* <ScrollView
+        <Animated.View style={[style, { paddingTop: 90 }]}>
+            {/* <ScrollView
 				contentContainerStyle={{ paddingTop: 110 }}
 				bounces={false}
 				showsVerticalScrollIndicator={false}
@@ -43,7 +43,7 @@ const PhilzCoffee = () => {
 				snapToEnd={false}
 				decelerationRate='fast'
 			> */}
-			<View style={styles.slider}>
+            <View style={styles.slider}>
 				<Animated.ScrollView
 					onScroll={onScroll}
 					scrollEventThrottle={16}
@@ -58,9 +58,9 @@ const PhilzCoffee = () => {
 				</Animated.ScrollView>
 				<Products x={translateX} />
 			</View>
-			{/* </ScrollView> */}
-		</Animated.View>
-	)
+            {/* </ScrollView> */}
+        </Animated.View>
+    );
 }
 
 export default PhilzCoffee

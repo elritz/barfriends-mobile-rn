@@ -26,7 +26,7 @@ const List = ({ children, editing, onDragEnd }: ListProps) => {
 	})
 
 	return (
-		<Animated.View
+        <Animated.View
 			// onScroll={onScroll}
 			ref={scrollView}
 			style={{
@@ -39,7 +39,7 @@ const List = ({ children, editing, onDragEnd }: ListProps) => {
 			// bounces={false}
 			// scrollEventThrottle={16}
 		>
-			{children.map(child => (
+            {children.map(child => (
 				<Item
 					key={child.props.id}
 					positions={positions}
@@ -52,8 +52,8 @@ const List = ({ children, editing, onDragEnd }: ListProps) => {
 					{child}
 				</Item>
 			))}
-		</Animated.View>
-	)
+        </Animated.View>
+    );
 }
 
 export default List

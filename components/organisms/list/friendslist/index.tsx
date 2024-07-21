@@ -1,6 +1,8 @@
+import { VStack } from "#/components/ui/vstack";
+import { HStack } from "#/components/ui/hstack";
+import { Divider } from "#/components/ui/divider";
 import { FriendsListEmptyState } from './FriendsListEmptyState'
 import { useReactiveVar } from '@apollo/client'
-import { Divider, HStack, VStack } from '@gluestack-ui/themed'
 import { CardFullImageNameEmoji } from '#/components/molecules/personal/CardFullImageNameEmoji'
 import { AuthorizationReactiveVar } from '#/reactive'
 import { useWindowDimensions } from 'react-native'
@@ -17,17 +19,10 @@ export const FriendsList = ({}) => {
 	if (!friendslist) return null
 
 	return (
-		<VStack
-			sx={{
-				h: '100%',
-			}}
-			mx={'$1'}
-			flex={1}
-			flexDirection={'column'}
-		>
-			{friendslist.length ? (
+        <VStack className="h-[100%] mx-1 flex-1 flex-column">
+            {friendslist.length ? (
 				<>
-					<HStack justifyContent={'flex-start'} flexWrap={'wrap'}>
+					<HStack className="justify-start flex-wrap">
 						{friendslist.map((item, index) => {
 							return <CardFullImageNameEmoji key={index} cardWidth={cardWidth} item={item} />
 						})}
@@ -37,6 +32,6 @@ export const FriendsList = ({}) => {
 			) : (
 				<FriendsListEmptyState />
 			)}
-		</VStack>
-	)
+        </VStack>
+    );
 }

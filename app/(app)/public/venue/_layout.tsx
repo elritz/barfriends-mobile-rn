@@ -1,8 +1,10 @@
+import { Text } from "#/components/ui/text";
+import { HStack } from "#/components/ui/hstack";
+import { Button } from "#/components/ui/button";
 // TODO: FX() Settings still needs to be done
 import { useReactiveVar } from '@apollo/client'
 import { SEARCH_BAR_HEIGHT } from '#/constants/ReactNavigationConstants'
 import { Entypo, Ionicons } from '@expo/vector-icons'
-import { Button, HStack, Text } from '@gluestack-ui/themed'
 import { usePublicVenueQuery } from '#/graphql/generated'
 import { CurrentLocationReactiveVar, SearchAreaReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { BlurView } from 'expo-blur'
@@ -48,8 +50,8 @@ export default () => {
 	})
 
 	return (
-		<Stack>
-			<Stack.Screen
+        <Stack>
+            <Stack.Screen
 				name={'[username]'}
 				options={{
 					headerShown: true,
@@ -61,7 +63,7 @@ export default () => {
 					animation: 'fade',
 					header: () => {
 						return (
-							<BlurView
+                            <BlurView
 								style={{
 									paddingTop: insets.top,
 									paddingBottom: 4,
@@ -69,20 +71,18 @@ export default () => {
 								intensity={60}
 								tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 							>
-								<HStack justifyContent='space-between' space='md' px={'$3'} alignItems={'center'}>
-									<HStack flex={1} justifyContent={'flex-start'} space={'md'} alignItems={'center'}>
+                                <HStack space='md' className="justify-between px-3 items-center">
+									<HStack space={'md'} className="flex-1 justify-start items-center">
 										<Button
-											variant='link'
-											rounded={'$full'}
-											height={NAVIGATION_BUTTON_HEIGHT}
-											onPress={() => {
+                                            variant='link'
+                                            onPress={() => {
 												xRouter.canGoBack()
 													? router.back()
 													: router.replace({
 															pathname: '/(app)/hometab/venuefeed',
 													  })
 											}}
-										>
+                                            className={` height-${NAVIGATION_BUTTON_HEIGHT} rounded-full `}>
 											<Ionicons
 												name='chevron-back-outline'
 												size={30}
@@ -96,22 +96,16 @@ export default () => {
 									</HStack>
 									{loading ? null : (
 										<Text
-											fontSize={'$lg'}
-											fontWeight='$medium'
-											color={rTheme.colorScheme === 'light' ? '$light900' : '$light100'}
-										>
+                                            className={` ${rTheme.colorScheme === 'light' ? "text-light-900" : "text-light-100"} text-lg font-medium `}>
 											{venueData?.publicVenue?.Venue?.name}
 										</Text>
 									)}
-									<HStack flex={1} justifyContent={'flex-end'} space={'md'} alignItems={'center'}>
+									<HStack space={'md'} className="flex-1 justify-end items-center">
 										<Button
-											height={NAVIGATION_BUTTON_HEIGHT}
-											// bg={rTheme.colorScheme === 'light' ? '$light50' : '$light900'}
-											rounded={'$full'}
-											variant='link'
-											onPress={() => router.back()}
-											size='xs'
-										>
+                                            variant='link'
+                                            onPress={() => router.back()}
+                                            size='xs'
+                                            className={` height-${NAVIGATION_BUTTON_HEIGHT} rounded-full `}>
 											<Entypo
 												name={'dots-three-vertical'}
 												size={23}
@@ -124,11 +118,11 @@ export default () => {
 										</Button>
 									</HStack>
 								</HStack>
-							</BlurView>
-						)
+                            </BlurView>
+                        );
 					},
 				}}
 			/>
-		</Stack>
-	)
+        </Stack>
+    );
 }

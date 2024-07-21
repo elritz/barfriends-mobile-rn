@@ -1,5 +1,9 @@
+import { VStack } from "#/components/ui/vstack";
+import { Heading } from "#/components/ui/heading";
+import { Divider } from "#/components/ui/divider";
+import { Button, ButtonText } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Divider, Heading, ButtonText, VStack } from '@gluestack-ui/themed'
 import PermissionDetailItem from '#/components/screens/permissions/PermissionDetailItem'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { TokenType, useUpsertDevicePushTokenMutation } from '#/graphql/generated'
@@ -218,74 +222,45 @@ export default () => {
 	})
 
 	return (
-		<Box bg={'$transparent'} style={{ flex: 1 }} mb={'$5'}>
-			<Box bg={'$transparent'} alignItems={'center'} justifyContent={'flex-start'} my={'$5'}>
+        <Box style={{ flex: 1 }} className="bg-transparent mb-5">
+            <Box className="bg-transparent items-center justify-start my-5">
 				<Box
-					bg={'#ff7000'}
-					rounded={'$md'}
-					sx={{
-						h: 65,
-						w: 65,
-					}}
-					alignItems={'center'}
-					justifyContent={'center'}
-				>
+                    className="bg-[#ff7000] rounded-md h-[65px]  w-[65px] items-center justify-center">
 					<Ionicons
 						name='notifications'
 						size={30}
 						color={rTheme.theme?.gluestack.tokens.colors.secondary900 || 'black'}
 					/>
 				</Box>
-				<Divider width={'$2'} style={{ width: 50, marginVertical: 10 }} />
+				<Divider style={{ width: 50, marginVertical: 10 }} className="w-2" />
 				<Heading
-					px={'$2'}
-					fontWeight={'$black'}
-					fontSize={'$3xl'}
-					style={{
+                    style={{
 						textAlign: 'center',
 					}}
-					allowFontScaling
-					adjustsFontSizeToFit
-					numberOfLines={3}
-				>
+                    allowFontScaling
+                    adjustsFontSizeToFit
+                    numberOfLines={3}
+                    className="px-2 font-black text-3xl">
 					Allow Barfriends to send notifications
 				</Heading>
 			</Box>
-			<ScrollView>
-				<Box
-					sx={{
-						w: wp(95),
-					}}
-					alignSelf='center'
-					flex={1}
-				>
+            <ScrollView>
+				<Box className="w-[undefined] self-center flex-1">
 					{details.map((item, index) => {
 						return (
-							<View key={index}>
-								<PermissionDetailItem {...item} />
-							</View>
-						)
+                            <View key={index}>
+                                <PermissionDetailItem {...item} />
+                            </View>
+                        );
 					})}
 				</Box>
 			</ScrollView>
-			<VStack
-				space={'md'}
-				w={'$full'}
-				alignItems={'center'}
-				sx={{
-					mb: insets.bottom,
-				}}
-			>
+            <VStack space={'md'} className="w-full items-center mb-[undefined]">
 				<Divider
-					sx={{
-						w: '95%',
-					}}
+					className="w-[95%]"
 				/>
 				<Button
 					size={'lg'}
-					sx={{
-						w: '95%',
-					}}
 					onPress={() =>
 						!rNotificationsPermission?.granted
 							? rNotificationsPermission?.canAskAgain && !rNotificationsPermission.granted
@@ -293,6 +268,7 @@ export default () => {
 								: handleOpenPhoneSettings()
 							: createTwoButtonAlert()
 					}
+					className="w-[95%]"
 				>
 					<ButtonText>
 						{!rNotificationsPermission?.granted
@@ -303,24 +279,19 @@ export default () => {
 					</ButtonText>
 				</Button>
 				{!started ? (
-					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
-						<ButtonText fontWeight={'$medium'}>Close</ButtonText>
+					<Button size={'lg'} onPress={() => router.back()} variant={'link'} className="w-[95%]">
+						<ButtonText className="font-medium">Close</ButtonText>
 					</Button>
 				) : (
-					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
+					<Button size={'lg'} onPress={() => router.back()} variant={'link'} className="w-[95%]">
 						{started && (
-							<Box
-								bg={'$transparent'}
-								sx={{
-									h: 24,
-								}}
-							>
-								{<ButtonText fontWeight={'$medium'}>Auto close in {seconds}</ButtonText>}
+							<Box className="bg-transparent h-[24px]">
+								{<ButtonText className="font-medium">Auto close in {seconds}</ButtonText>}
 							</Box>
 						)}
 					</Button>
 				)}
 			</VStack>
-		</Box>
-	)
+        </Box>
+    );
 }

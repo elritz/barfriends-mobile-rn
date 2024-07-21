@@ -5,8 +5,8 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 const Tonight = () => {
 	return (
-		<SafeAreaView style={{ flex: 1 }}>
-			<ScrollView
+        <SafeAreaView style={{ flex: 1 }}>
+            <ScrollView
 				style={{
 					flex: 1,
 				}}
@@ -22,8 +22,8 @@ const Tonight = () => {
 				<Photos />
 				<ProfileActivityAndStatusCards />
 			</ScrollView>
-		</SafeAreaView>
-	)
+        </SafeAreaView>
+    );
 }
 
 export default Tonight

@@ -1,6 +1,10 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Pressable } from "#/components/ui/pressable";
+import { Heading } from "#/components/ui/heading";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
 import { Feather } from '@expo/vector-icons'
-import { Box, Heading, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { useIsFocused } from '@react-navigation/native'
 import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '#/reactive'
@@ -108,21 +112,14 @@ export default () => {
 	}, [isFocused])
 
 	return (
-		<Box
-			flex={1}
-			height={'auto'}
-			flexDirection='column'
-			justifyContent='flex-start'
-			// mt={contentInsets.top}
-			mx={'5%'}
-			bg='$transparent'
-		>
-			<VStack justifyContent='flex-start' flex={1}>
-				<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$3xl'}>
+        <Box
+            className="flex-1 h-auto flex-column justify-start mx-[5%] bg-transparent">
+            <VStack className="justify-start flex-1">
+				<Heading className="mt-4 font-black text-3xl">
 					Your Birthday
 				</Heading>
 			</VStack>
-			<>
+            <>
 				<Controller
 					control={control}
 					name='date'
@@ -153,49 +150,24 @@ export default () => {
 						},
 					}}
 				/>
-				<Text fontSize={'$sm'} color='$error700'>
+				<Text className="text-sm text-error-700">
 					{errors.date && errors.date.type ? errors?.date?.message : null}
 				</Text>
 			</>
-			<Box
-				bg='$transparent'
-				sx={{
-					h: 90,
-				}}
-				display={'flex'}
-				justifyContent={'center'}
-				alignItems={'center'}
-				w={'100%'}
-				mb={'$5'}
-			>
+            <Box
+                className="bg-transparent h-[90px] flex justify-center items-center w-[100%] mb-5">
 				<Box
-					flexDirection={'row'}
-					justifyContent={'space-between'}
-					alignContent={'space-around'}
-					bg='$transparent'
-					sx={{
-						h: 90,
-						px: '2.5%',
-					}}
-				>
-					<VStack justifyContent={'space-around'}>
+                    className="flex-row justify-between content-around bg-transparent h-[90px]  px-[2.5%]">
+					<VStack className="justify-around">
 						<Pressable disabled={!!errors.date} onPress={handleSubmit(onSubmit)}>
 							<Box
-								alignItems='center'
-								justifyContent='center'
-								sx={{
-									h: 60,
-									w: 60,
-								}}
-								rounded={'$full'}
-								bg='$primary500'
-							>
+                                className="items-center justify-center h-[60px]  w-[60px] rounded-full bg-primary-500">
 								<Feather name='arrow-right' size={32} color={errors?.date ? '#292524' : 'white'} />
 							</Box>
 						</Pressable>
 					</VStack>
 				</Box>
 			</Box>
-		</Box>
-	)
+        </Box>
+    );
 }

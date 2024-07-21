@@ -1,6 +1,10 @@
+import { VStack } from "#/components/ui/vstack";
+import { Pressable } from "#/components/ui/pressable";
+import { Heading } from "#/components/ui/heading";
+import { Divider } from "#/components/ui/divider";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
 import { Ionicons } from '@expo/vector-icons'
-import { Box, Divider, Heading, Pressable, VStack } from '@gluestack-ui/themed'
 import { ThemeReactiveVar } from '#/reactive'
 import { useToggleTheme } from '#/util/hooks/theme/useToggleTheme'
 import { router } from 'expo-router'
@@ -15,18 +19,14 @@ export default () => {
 	}
 
 	return (
-		<Box flex={1}>
-			<VStack py={'$4'} w={'$full'} space={'md'} justifyContent={'space-around'}>
+        <Box className="flex-1">
+            <VStack space={'md'} className="py-4 w-full justify-around">
 				<Pressable
-					onPress={async () => {
+                    onPress={async () => {
 						await setTheme({ colorScheme: 'light' })
 					}}
-					px={'$4'}
-					flexDirection={'row'}
-					alignItems={'center'}
-					justifyContent={'space-between'}
-				>
-					<Heading fontWeight={'normal'} size={'md'}>
+                    className="px-4 flex-row items-center justify-between">
+					<Heading size={'md'} className="font-[normal]">
 						Light
 					</Heading>
 					{rThemeVar.localStorageColorScheme === 'light' && (
@@ -39,15 +39,11 @@ export default () => {
 				</Pressable>
 				<Divider />
 				<Pressable
-					onPress={async () => {
+                    onPress={async () => {
 						await setTheme({ colorScheme: 'dark' })
 					}}
-					px={'$4'}
-					flexDirection={'row'}
-					alignItems={'center'}
-					justifyContent={'space-between'}
-				>
-					<Heading fontWeight={'normal'} fontSize={'$md'}>
+                    className="px-4 flex-row items-center justify-between">
+					<Heading className="font-[normal] text-md">
 						Dark
 					</Heading>
 					{rThemeVar.localStorageColorScheme === 'dark' && (
@@ -60,15 +56,11 @@ export default () => {
 				</Pressable>
 				<Divider />
 				<Pressable
-					onPress={async () => {
+                    onPress={async () => {
 						await setTheme({ colorScheme: 'system' })
 					}}
-					px={'$4'}
-					flexDirection={'row'}
-					alignItems={'center'}
-					justifyContent={'space-between'}
-				>
-					<Heading fontWeight={'normal'} size={'md'}>
+                    className="px-4 flex-row items-center justify-between">
+					<Heading size={'md'} className="font-[normal]">
 						System
 					</Heading>
 					{rThemeVar.localStorageColorScheme === 'system' && (
@@ -81,6 +73,6 @@ export default () => {
 				</Pressable>
 				<Divider />
 			</VStack>
-		</Box>
-	)
+        </Box>
+    );
 }

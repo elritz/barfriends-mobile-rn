@@ -1,4 +1,6 @@
-import { Box, Button, VStack, ButtonText } from '@gluestack-ui/themed'
+import { VStack } from "#/components/ui/vstack";
+import { Button, ButtonText } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
 import {
 	useGetLiveVenueTotalsV2Query,
 	useRefreshDeviceManagerQuery,
@@ -52,19 +54,17 @@ export default function LeaveAllCard() {
 	})
 
 	return (
-		<VStack>
-			<Box bg={'transparent'}>
+        <VStack>
+            <Box className="bg-transparent">
 				<Button
-					onPress={() => {
+                    onPress={() => {
 						removeAllJoinedTotaledVenueMutation()
 					}}
-					isDisabled={glvtLoading || rpjvLoading}
-					backgroundColor={'$error600'}
-					rounded={'$md'}
-				>
+                    isDisabled={glvtLoading || rpjvLoading}
+                    className="bg-error-600 rounded-md">
 					<ButtonText>{rpjvLoading ? 'Leaving All' : 'Leave All'}</ButtonText>
 				</Button>
 			</Box>
-		</VStack>
-	)
+        </VStack>
+    );
 }

@@ -8,8 +8,8 @@ const ChevronBackArrow = () => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 
 	return (
-		<GoBack height={parseInt(wp(10).toFixed(0))} width={parseInt(wp(6).toFixed(0))}>
-			<Ionicons
+        <GoBack height={parseInt(wp(10).toFixed(0))} width={parseInt(wp(6).toFixed(0))}>
+            <Ionicons
 				name='chevron-back-outline'
 				size={35}
 				color={
@@ -18,8 +18,8 @@ const ChevronBackArrow = () => {
 						: rTheme.theme?.gluestack.tokens.colors.light100
 				}
 			/>
-		</GoBack>
-	)
+        </GoBack>
+    );
 }
 
 export default ChevronBackArrow

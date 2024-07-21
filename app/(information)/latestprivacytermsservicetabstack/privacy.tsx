@@ -1,5 +1,5 @@
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
-import { Box } from '@gluestack-ui/themed'
 import TermsLoadingState from '#/components/screens/settings/TermsLoadingState'
 import { usePrivacyTermsDocumentsQuery } from '#/graphql/generated'
 import { ThemeReactiveVar } from '#/reactive'
@@ -22,8 +22,8 @@ export default () => {
 	}
 
 	return (
-		<Box rounded={'$none'} flex={1}>
-			<ScrollView showsVerticalScrollIndicator={false}>
+        <Box className="rounded-none flex-1">
+            <ScrollView showsVerticalScrollIndicator={false}>
 				<SafeAreaView
 					style={{
 						flex: 1,
@@ -58,6 +58,6 @@ export default () => {
 					/>
 				</SafeAreaView>
 			</ScrollView>
-		</Box>
-	)
+        </Box>
+    );
 }

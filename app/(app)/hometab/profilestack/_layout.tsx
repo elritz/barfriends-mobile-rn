@@ -1,6 +1,10 @@
+import { VStack } from "#/components/ui/vstack";
+import { Heading } from "#/components/ui/heading";
+import { HStack } from "#/components/ui/hstack";
+import { Button, ButtonText } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
-import { Box, Button, ButtonText, HStack, Heading, VStack } from '@gluestack-ui/themed'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
 import * as Haptics from 'expo-haptics'
 import { Stack, useRouter } from 'expo-router'
@@ -26,17 +30,11 @@ export default function _layout() {
 				},
 				// headerTitle: '',
 				header: () => (
-					<VStack sx={{ mt: insets.top }}>
-						<HStack
-							pb={'$2'}
-							mx={'$2'}
-							justifyContent='space-between'
-							// position={'relative'}
-							// flex={1}
-						>
-							<Box bg='$transparent' justifyContent='center' flex={1}>
+					<VStack style={{ paddingTop: insets.top, }} className="mt-[undefined]">
+						<HStack className="pb-2 mx-2 justify-between">
+							<Box className="bg-transparent justify-center flex-1">
 								{rAuthorizationVar?.Profile?.ProfileType === 'GUEST' ? (
-									<Heading fontSize={'$xl'} fontWeight='$black'>
+									<Heading className="text-xl font-black">
 										Barfriends
 									</Heading>
 								) : (
@@ -49,21 +47,11 @@ export default function _layout() {
 											})
 										}}
 									>
-										<HStack ml={'$2'} space={'md'} alignItems={'center'} justifyContent='flex-start' flex={1}>
+										<HStack space={'md'} className="ml-2 items-center justify-start flex-1">
 											<ButtonText
-												fontSize={'$xl'}
-												sx={{
-													maxWidth: 195,
-													_dark: {
-														color: '$white',
-													},
-													_light: {
-														color: '$black',
-													},
-												}}
 												adjustsFontSizeToFit
 												ellipsizeMode={'tail'}
-											>
+												className="text-xl max-w-[195px]  dark:text-white text-black">
 												{rAuthorizationVar?.Profile?.IdentifiableInformation?.username}
 											</ButtonText>
 											<Ionicons
@@ -111,5 +99,5 @@ export default function _layout() {
 		>
 			<Stack.Screen name={'userprofile'} />
 		</Stack>
-	)
+	);
 }

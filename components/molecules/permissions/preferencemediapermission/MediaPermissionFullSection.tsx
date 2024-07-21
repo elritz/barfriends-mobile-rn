@@ -1,5 +1,8 @@
+import { Text } from "#/components/ui/text";
+import { Heading } from "#/components/ui/heading";
+import { Button } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Heading, Text } from '@gluestack-ui/themed'
 import { PermissionMediaReactiveVar } from '#/reactive'
 import { useRouter } from 'expo-router'
 import { uniqueId } from 'lodash'
@@ -10,8 +13,8 @@ export default function MediaPermissionFullSection() {
 	const rPermissionMediaVar = useReactiveVar(PermissionMediaReactiveVar)
 
 	return (
-		<AnimatePresence key={uniqueId()}>
-			{!rPermissionMediaVar?.granted && (
+        <AnimatePresence key={uniqueId()}>
+            {!rPermissionMediaVar?.granted && (
 				<MotiView
 					from={{
 						opacity: 0,
@@ -27,43 +30,39 @@ export default function MediaPermissionFullSection() {
 					}}
 				>
 					<Box
-						bg='$transparent'
 						style={{
 							width: '100%',
 							alignItems: 'center',
 						}}
+						className="bg-transparent"
 					>
 						<Heading
-							fontSize={'$lg'}
 							style={{
 								width: '100%',
 								marginVertical: 10,
 							}}
+							className="text-lg"
 						>
 							Media Permission
 						</Heading>
-						<Text fontSize={'$lg'} style={{ width: '100%' }}>
+						<Text style={{ width: '100%' }} className="text-lg">
 							Using your photos on your device.
 						</Text>
 						<Button
-							onPress={() =>
+                            onPress={() =>
 								router.push({
 									pathname: '/(app)/permission/medialibrary',
 								})
 							}
-							size={'sm'}
-							mt={'$4'}
-							sx={{
-								w: '85%',
-							}}
-						>
-							<Text fontSize={'$sm'} fontWeight='$bold'>
+                            size={'sm'}
+                            className="mt-4 w-[85%]">
+							<Text className="text-sm font-bold">
 								Use Current Location
 							</Text>
 						</Button>
 					</Box>
 				</MotiView>
 			)}
-		</AnimatePresence>
-	)
+        </AnimatePresence>
+    );
 }

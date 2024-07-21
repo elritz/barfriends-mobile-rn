@@ -38,7 +38,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
 	onChange,
 }: DatePickerProps) => {
 	return (
-		<DateTimePicker
+        <DateTimePicker
 			testID='dateTimePicker'
 			value={value}
 			maximumDate={maxDate}
@@ -50,6 +50,6 @@ const DatePicker: React.FC<DatePickerProps> = ({
 			}
 			style={style}
 		/>
-	)
+    );
 }
 export default DatePicker

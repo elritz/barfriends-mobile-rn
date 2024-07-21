@@ -8,7 +8,7 @@ export default function _layout() {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 
 	return (
-		<Stack
+        <Stack
 			screenOptions={{
 				headerStyle: {
 					backgroundColor:
@@ -20,11 +20,11 @@ export default function _layout() {
 				headerLeft: () => <ChevronBackArrow />,
 			}}
 		>
-			<Stack.Screen name={'index'} options={{ presentation: 'modal' }} />
-			<Stack.Screen name={'profilesettings'} />
-			<Stack.Screen name={'securitysettingsscreen'} />
-			<Stack.Screen name={'notificationssettingsscreen'} />
-			<Stack.Screen name={'appearancesettingsscreen'} />
-		</Stack>
-	)
+            <Stack.Screen name={'index'} options={{ presentation: 'modal' }} />
+            <Stack.Screen name={'profilesettings'} />
+            <Stack.Screen name={'securitysettingsscreen'} />
+            <Stack.Screen name={'notificationssettingsscreen'} />
+            <Stack.Screen name={'appearancesettingsscreen'} />
+        </Stack>
+    );
 }

@@ -1,5 +1,8 @@
+import { Text } from "#/components/ui/text";
+import { Pressable } from "#/components/ui/pressable";
+import { Heading } from "#/components/ui/heading";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
-import { Box, Heading, Pressable, Text } from '@gluestack-ui/themed'
 import DeviceManagerProfileItemLarge from '#/components/molecules/authorization/devicemanagerprofileitem/DeviceManagerProfileItemLarge'
 import {
 	AuthorizationDeviceProfile,
@@ -40,7 +43,6 @@ export default () => {
 					profileId: item.id,
 				},
 				onCompleted: data => {
-					console.log("🚀 ~ data?.switchDeviceProfile:", data?.switchDeviceProfile)
 					if (data?.switchDeviceProfile?.__typename === 'AuthorizationDeviceProfile') {
 						const deviceManager = data.switchDeviceProfile as AuthorizationDeviceProfile
 						AuthorizationReactiveVar(deviceManager)
@@ -72,10 +74,10 @@ export default () => {
 
 	if (data?.authorizedProfiles?.__typename === 'Error') {
 		return (
-			<Box>
-				<Heading fontSize={'$xl'}>Error finding profiles</Heading>
-			</Box>
-		)
+            <Box>
+                <Heading className="text-xl">Error finding profiles</Heading>
+            </Box>
+        );
 	}
 
 	if (data?.authorizedProfiles?.__typename === 'ProfilesResponse') {
@@ -95,13 +97,13 @@ export default () => {
 		const finalProfileArray = [...new Set([...emailProfiles, ...phoneProfiles])]
 
 		return (
-			<SafeAreaView style={{ flex: 1, margin: 10 }}>
-				<View style={{ top: 0 }}>
-					<Text mt={'$4'} lineHeight={'$2xl'} fontWeight={'$black'} fontSize={'$2xl'}>
+            <SafeAreaView style={{ flex: 1, margin: 10 }}>
+                <View style={{ top: 0 }}>
+					<Text className="mt-4 leading-2xl font-black text-2xl">
 						Your profiles
 					</Text>
 				</View>
-				<ScrollView
+                <ScrollView
 					showsVerticalScrollIndicator={false}
 					scrollEventThrottle={16}
 					keyboardDismissMode='none'
@@ -111,17 +113,17 @@ export default () => {
 				>
 					{finalProfileArray.map(item => {
 						return (
-							<Pressable disabled={loading || SWDPLoading} key={item.id} onPress={() => _press(item)}>
-								<DeviceManagerProfileItemLarge
+                            <Pressable disabled={loading || SWDPLoading} key={item.id} onPress={() => _press(item)}>
+                                <DeviceManagerProfileItemLarge
 									isActive={rAuthorizationVar?.Profile?.id === item.id}
 									item={item}
 									loading={SWDPLoading}
 								/>
-							</Pressable>
-						)
+                            </Pressable>
+                        );
 					})}
 				</ScrollView>
-			</SafeAreaView>
-		)
+            </SafeAreaView>
+        );
 	}
 }

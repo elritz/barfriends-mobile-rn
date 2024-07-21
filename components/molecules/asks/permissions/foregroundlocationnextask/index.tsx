@@ -1,8 +1,13 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Modal, ModalContent, ModalHeader, ModalCloseButton, ModalBody } from "#/components/ui/modal";
+import { Divider } from "#/components/ui/divider";
+import { Center } from "#/components/ui/center";
+import { Button } from "#/components/ui/button";
 import { useReactiveVar } from '@apollo/client'
 import { DaysPreferencePermissionInitialState } from '#/constants/Preferences'
 import { LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION } from '#/constants/StorageConstants'
 import { LocalStoragePreferenceAskForegroundLocationPermissionType } from '#/ctypes/preferences'
-import { Button, Center, Divider, Modal, Text, VStack } from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { PreferenceForegroundLocationPermissionReactiveVar } from '#/reactive'
 import { useRouter } from 'expo-router'
@@ -14,18 +19,18 @@ const ForegroundLocationNextAskModal = ({ isOpen, onOpen, onClose }) => {
 	)
 
 	return (
-		<Center>
-			<Modal isOpen={isOpen} onClose={onClose}>
-				<Modal.Content w={'95%'}>
-					<Modal.Header>Foreground location</Modal.Header>
-					<Modal.CloseButton />
-					<Modal.Body
+        <Center>
+            <Modal isOpen={isOpen} onClose={onClose}>
+				<ModalContent w={'95%'}>
+					<ModalHeader>Foreground location</ModalHeader>
+					<ModalCloseButton />
+					<ModalBody
 						mt={'$2'}
 						_scrollview={{
 							scrollEnabled: false,
 						}}
 					>
-						<Text fontSize={'$lg'} pb={'$3'}>
+						<Text className="text-lg pb-3">
 							By enabling foreground location, it helps you to go out, find events and it allows you to
 							join bars.
 						</Text>
@@ -50,11 +55,11 @@ const ForegroundLocationNextAskModal = ({ isOpen, onOpen, onClose }) => {
 								variant={'link'}
 								size={'lg'}
 							>
-								<Text fontSize={'$lg'} fontWeight={'$bold'} alignSelf='center'>
+								<Text className="text-lg font-bold self-center">
 									Not now
 								</Text>
 							</Button>
-							<Divider mt={'$1'} />
+							<Divider className="mt-1" />
 							<Button
 								onPress={() =>
 									router.push({
@@ -67,11 +72,11 @@ const ForegroundLocationNextAskModal = ({ isOpen, onOpen, onClose }) => {
 								<Text>Continue</Text>
 							</Button>
 						</VStack>
-					</Modal.Body>
-				</Modal.Content>
+					</ModalBody>
+				</ModalContent>
 			</Modal>
-		</Center>
-	)
+        </Center>
+    );
 }
 
 export default ForegroundLocationNextAskModal

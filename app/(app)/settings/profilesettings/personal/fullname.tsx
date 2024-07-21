@@ -1,5 +1,10 @@
+
+import { Text } from "#/components/ui/text";
+import { Input, InputField } from "#/components/ui/input";
+import { Heading } from "#/components/ui/heading";
+import { Button } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Heading, Input, Text } from '@gluestack-ui/themed'
 import {
 	AuthorizationDeviceProfile,
 	Profile,
@@ -90,7 +95,7 @@ export default () => {
 						IdentifiableInformation: {
 							update: {
 								fullname: {
-									set:  data.fullname,
+									set: data.fullname,
 								},
 								nickname: {
 									set: data.nickname,
@@ -160,16 +165,8 @@ export default () => {
 						required: true,
 					}}
 					render={({ field: { onChange, onBlur, value } }) => (
-						<Box
-							bg={'$transparent'}
-							flexDirection={'column'}
-							alignItems={'flex-start'}
-							sx={{
-								w: '100%',
-							}}
-							my={'$3'}
-						>
-							<Heading fontSize={'$lg'} style={{ marginBottom: 10 }}>
+						<Box className="bg-transparent flex-column items-start w-[100%] my-3">
+							<Heading style={{ marginBottom: 10 }} className="text-lg">
 								Full name
 							</Heading>
 							<Input
@@ -179,10 +176,9 @@ export default () => {
 									height: 55,
 									padding: 10,
 								}}
-								rounded={'$md'}
+								className="rounded-md"
 							>
-								<Input.Input
-									fontSize={'$md'}
+								<InputField
 									onBlur={onBlur}
 									keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 									onChangeText={onChange}
@@ -198,7 +194,7 @@ export default () => {
 									autoComplete='name'
 									keyboardType='default'
 								/>
-								<Box mr={'$3'}>
+								<Box className="mr-3">
 									{UOPLoading && dirtyFields.fullname ? (
 										<ActivityIndicator
 											size='small'
@@ -211,7 +207,7 @@ export default () => {
 									) : (
 										dirtyFields.fullname && (
 											<Pressable onPress={() => resetInput('fullname')}>
-												<Text fontWeight={'$bold'}>Reset</Text>
+												<Text className="font-bold">Reset</Text>
 											</Pressable>
 										)
 									)}
@@ -228,12 +224,15 @@ export default () => {
 						required: true,
 					}}
 					render={({ field: { onChange, onBlur, value } }) => (
-						<Box flexDirection={'column'} alignItems={'flex-start'} width={'100%'} my={3}>
-							<Heading fontSize={'$lg'} style={{ marginBottom: 10 }}>
+						<Box className="flex-column items-start w-[100%] my-3">
+							<Heading style={{ marginBottom: 10 }} className="text-lg">
 								Nick name
 							</Heading>
-							<Input variant={'rounded'} rounded={'$md'}>
-								<Input.Input
+							<Input variant={'rounded'} className="rounded-md"
+								fontSize={'$md'}
+								p={'$4'}
+							>
+								<InputField
 									onBlur={onBlur}
 									onChange={onChange}
 									value={value}
@@ -247,10 +246,8 @@ export default () => {
 									numberOfLines={1}
 									autoComplete='name'
 									keyboardType='default'
-									fontSize={'$md'}
-									p={'$4'}
 								/>
-								<Box mr={'$3'}>
+								<Box className="mr-3">
 									{UOPLoading && dirtyFields.nickname ? (
 										<ActivityIndicator
 											size='small'
@@ -263,7 +260,7 @@ export default () => {
 									) : (
 										dirtyFields.nickname && (
 											<Pressable onPress={() => resetInput('nickname')}>
-												<Text fontWeight={'bold'}>Reset</Text>
+												<Text className="font-[bold]">Reset</Text>
 											</Pressable>
 										)
 									)}
@@ -277,19 +274,16 @@ export default () => {
 					<Button
 						disabled={UOPLoading}
 						onPress={() => onSubmit()}
-						rounded={'$md'}
-						backgroundColor='$primary500'
 						style={{
 							alignSelf: 'center',
 							width: '50%',
 						}}
-						my={'$5'}
 						size={'lg'}
-					>
+						className="rounded-md bg-primary-500 my-5">
 						Update
 					</Button>
 				)}
 			</KeyboardAvoidingView>
 		</KeyboardAwareScrollView>
-	)
+	);
 }

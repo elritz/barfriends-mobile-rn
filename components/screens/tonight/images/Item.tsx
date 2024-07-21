@@ -1,6 +1,7 @@
+import { Text } from "#/components/ui/text";
+import { Box } from "#/components/ui/box";
 import { MARGIN, SIZE } from './Config'
 import { useReactiveVar } from '@apollo/client'
-import { Box, Text } from '@gluestack-ui/themed'
 import { MaterialIcons } from '@expo/vector-icons'
 import { PermissionMediaReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { useRouter } from 'expo-router'
@@ -26,7 +27,7 @@ const Item = ({ uri, onPress }: TileProps) => {
 	const rPermissionMedia = useReactiveVar(PermissionMediaReactiveVar)
 
 	return (
-		<Pressable
+        <Pressable
 			onPress={() => {
 				rPermissionMedia?.granted
 					? onPress()
@@ -35,7 +36,7 @@ const Item = ({ uri, onPress }: TileProps) => {
 					  })
 			}}
 		>
-			<View style={styles.container} pointerEvents='none'>
+            <View style={styles.container} pointerEvents='none'>
 				{uri ? (
 					<Image
 						source={{ uri }}
@@ -45,12 +46,7 @@ const Item = ({ uri, onPress }: TileProps) => {
 					/>
 				) : (
 					<Box
-						alignItems={'center'}
-						justifyContent={'center'}
-						flex={1}
-						rounded={MARGIN * 10}
-						m={MARGIN * 2}
-					>
+                        className={` m-${MARGIN * 2} rounded-${MARGIN * 10} items-center justify-center flex-1 `}>
 						<MaterialIcons
 							size={55}
 							name={'add-photo-alternate'}
@@ -60,12 +56,12 @@ const Item = ({ uri, onPress }: TileProps) => {
 									: rTheme.theme?.gluestack.tokens.colors.light100
 							}
 						/>
-						<Text fontSize={'$xl'}>Add photo</Text>
+						<Text className="text-xl">Add photo</Text>
 					</Box>
 				)}
 			</View>
-		</Pressable>
-	)
+        </Pressable>
+    );
 }
 
 export default Item

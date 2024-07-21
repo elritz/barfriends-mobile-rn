@@ -1,5 +1,9 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Heading } from "#/components/ui/heading";
+import { HStack } from "#/components/ui/hstack";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
-import { Box, HStack, Heading, Text, VStack } from '@gluestack-ui/themed'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 import { ThemeReactiveVar } from '#/reactive'
 import { Image } from 'react-native'
@@ -15,20 +19,20 @@ type ProfileItemType = {
 const ProfileItemSmall = ({ item, loading, isActive, selectedProfileId }: ProfileItemType) => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	return (
-		<Box key={item.id} my={'$2'} p={'$2'} px={'$3'} rounded={'$md'}>
-			<Image
+        <Box key={item.id} className="my-2 p-2 px-3 rounded-md">
+            <Image
 				source={{ uri: item.Profile.photos[0].url }}
 				style={{ width: 40, height: 40, borderRadius: 4 }}
 			/>
-			<HStack style={{ flexDirection: 'column', justifyContent: 'space-around' }}>
-				<VStack mx={'$2'}>
-					<Text fontSize={'$lg'} numberOfLines={1}>
+            <HStack style={{ flexDirection: 'column', justifyContent: 'space-around' }}>
+				<VStack className="mx-2">
+					<Text numberOfLines={1} className="text-lg">
 						{item?.IdentifiableInformation?.fullname}
 					</Text>
-					<Heading fontSize={'$sm'}>{item?.IdentifiableInformation?.username}</Heading>
+					<Heading className="text-sm">{item?.IdentifiableInformation?.username}</Heading>
 				</VStack>
 			</HStack>
-			{!loading ? (
+            {!loading ? (
 				<>
 					{isActive ? (
 						<Ionicons
@@ -47,8 +51,8 @@ const ProfileItemSmall = ({ item, loading, isActive, selectedProfileId }: Profil
 			) : (
 				<ActivityIndicator />
 			)}
-		</Box>
-	)
+        </Box>
+    );
 }
 
 export default ProfileItemSmall

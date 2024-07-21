@@ -1,37 +1,26 @@
-import { Button, Heading, VStack, ButtonText } from '@gluestack-ui/themed'
-import { useRouter } from 'expo-router'
+import { VStack } from "#/components/ui/vstack";
+import { Heading } from "#/components/ui/heading";
+import { Button, ButtonText } from "#/components/ui/button";
+import { useRouter } from "expo-router";
 
 export default function AskForegroundLocationPermission() {
-	const router = useRouter()
+  const router = useRouter();
 
-	return (
-		<VStack
-			flexDirection={'column'}
-			justifyContent={'space-around'}
-			sx={{
-				h: '100%',
-			}}
-		>
-			<Heading
-				mt={'$5'}
-				fontSize={'$lg'}
-				textTransform={'uppercase'}
-				fontWeight={'$black'}
-				lineHeight={'$xs'}
-				flex={1}
-			>
-				See how close you are?
-			</Heading>
-			<Button
-				size={'lg'}
-				onPress={() =>
-					router.push({
-						pathname: '/(app)/permission/foregroundlocation',
-					})
-				}
-			>
-				<ButtonText>Continue</ButtonText>
-			</Button>
-		</VStack>
-	)
+  return (
+    <VStack className="flex-column h-[100%] justify-around">
+      <Heading className="leading-xs mt-5 flex-1 text-lg font-black uppercase">
+        See how close you are?
+      </Heading>
+      <Button
+        size={"lg"}
+        onPress={() =>
+          router.push({
+            pathname: "/(app)/permission/foregroundlocation",
+          })
+        }
+      >
+        <ButtonText>Continue</ButtonText>
+      </Button>
+    </VStack>
+  );
 }

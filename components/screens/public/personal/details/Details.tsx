@@ -1,4 +1,6 @@
-import { Heading, Text, VStack } from '@gluestack-ui/themed'
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Heading } from "#/components/ui/heading";
 import { Profile } from '#/graphql/generated'
 import { capitalizeFirstLetter } from '#/util/helpers/capitalizeFirstLetter'
 import React, { useState } from 'react'
@@ -9,13 +11,13 @@ type Props = {
 
 export default function Details({ profile: item }: Props) {
 	return (
-		<VStack flex={1} space={'md'} mt={'$3'}>
-			<Heading fontSize={'$lg'} lineHeight={'$xs'}>
+        <VStack space={'md'} className="flex-1 mt-3">
+            <Heading className="text-lg leading-xs">
 				{capitalizeFirstLetter(item?.IdentifiableInformation?.fullname)}
 			</Heading>
-			<Text lineHeight={'$xs'} fontWeight={'$bold'} fontSize={'$sm'}>
+            <Text className="leading-xs font-bold text-sm">
 				@{item?.IdentifiableInformation?.username}
 			</Text>
-		</VStack>
-	)
+        </VStack>
+    );
 }

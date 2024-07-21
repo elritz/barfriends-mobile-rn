@@ -18,14 +18,14 @@ const CompanyCoasterLogoDynamic: React.FC<Props> = ({
 }: Props) => {
 
 	return (
-		<Svg
+        <Svg
 			width={width}
 			height={height}
 			viewBox='0 0 520 520'
 			fill='none'
 			xmlns='http://www.w3.org/2000/svg'
 		>
-			<G filter='url(#filter0_d_108_513)'>
+            <G filter='url(#filter0_d_108_513)'>
 				<Rect x={4} y={4} width={500} height={500} rx={85} fill={backgroundColor} />
 				<Path
 					fillRule='evenodd'
@@ -41,9 +41,9 @@ const CompanyCoasterLogoDynamic: React.FC<Props> = ({
 					fill={iconColor}
 				/>
 			</G>
-			<Defs></Defs>
-		</Svg>
-	)
+            <Defs></Defs>
+        </Svg>
+    );
 }
 
 export default CompanyCoasterLogoDynamic

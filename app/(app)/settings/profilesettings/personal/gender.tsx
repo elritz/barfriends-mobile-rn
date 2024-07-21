@@ -1,5 +1,8 @@
+import { Text } from "#/components/ui/text";
+import { Input } from "#/components/ui/input";
+import { Button } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, Input, Text } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
 import {
 	useUpdateProfileIdentifiableInformationMutation,
@@ -94,8 +97,8 @@ export default ({}: GenderScreenProps) => {
 	}
 
 	return (
-		<ScrollView>
-			<Controller
+        <ScrollView>
+            <Controller
 				name='gender'
 				control={control}
 				rules={{
@@ -147,23 +150,20 @@ export default ({}: GenderScreenProps) => {
 							}}
 						>
 							<Input
-								onBlur={onBlur}
-								onChangeText={onChange}
-								value={value}
-								keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-								blurOnSubmit={false}
-								onSubmitEditing={handleSubmit(onSubmit)}
-								autoFocus
-								placeholder='Gender....'
-								returnKeyType='done'
-								autoCapitalize='none'
-								autoComplete='off'
-								keyboardType='default'
-								fontSize={'md'}
-								p={'$4'}
-								rounded={'$md'}
-								rightElement={
-									<Box ml={'$3'}>
+                                onBlur={onBlur}
+                                onChangeText={onChange}
+                                value={value}
+                                keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+                                blurOnSubmit={false}
+                                onSubmitEditing={handleSubmit(onSubmit)}
+                                autoFocus
+                                placeholder='Gender....'
+                                returnKeyType='done'
+                                autoCapitalize='none'
+                                autoComplete='off'
+                                keyboardType='default'
+                                rightElement={
+									<Box className="ml-3">
 										{UPIILoading && dirtyFields.gender ? (
 											<ActivityIndicator
 												size='small'
@@ -178,35 +178,16 @@ export default ({}: GenderScreenProps) => {
 										)}
 									</Box>
 								}
-							/>
+                                className="text-[md] p-4 rounded-md" />
 							<Text>{errors?.gender?.message}</Text>
 							<Box
-								flexDirection={'row'}
-								justifyContent={'space-between'}
-								alignItems={'center'}
-								sx={{
-									minHeight: 70,
-									w: '100%',
-								}}
-								p={'$5'}
-							>
+                                className="flex-row justify-between items-center min-h-[70px]  w-[100%] p-5">
 								<Text style={{ alignSelf: 'center', marginHorizontal: 10 }}>ERROR GOES HERE</Text>
 								{(dirtyFields.gender || !!errors.gender) && (
 									<Button
-										disabled={false}
-										onPress={handleSubmit(onSubmit)}
-										rounded={'$md'}
-										sx={{
-											_dark: {
-												bg: '$light9000',
-											},
-											_light: {
-												bg: '$light500',
-											},
-										}}
-										px={'$10'}
-										alignSelf={'center'}
-									>
+                                        disabled={false}
+                                        onPress={handleSubmit(onSubmit)}
+                                        className="rounded-md dark:bg-light-9000 bg-light-500 px-10 self-center">
 										<Text>Update</Text>
 									</Button>
 								)}
@@ -215,6 +196,6 @@ export default ({}: GenderScreenProps) => {
 					</>
 				)}
 			/>
-		</ScrollView>
-	)
+        </ScrollView>
+    );
 }

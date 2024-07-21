@@ -1,131 +1,128 @@
-import { useReactiveVar } from '@apollo/client'
-import CardPleaseSignup from '#/components/molecules/asks/signuplogin'
-import InviteCard from '#/components/screens/public/venue/venueactions/actioncards/invitecard/InviteCard'
-import QuickBarfriendCard from '#/components/screens/public/venue/venueactions/actioncards/quickbarfriendcard/QuickBarfriendCard'
-import AddEmoji from '#/components/screens/tonight/activity/ask/AddEmoji/AddEmoji'
-import JoinVenue from '#/components/screens/tonight/activity/ask/JoinVenue/JoinVenue'
-import Photos from '#/components/screens/tonight/photos'
-import { Box } from '@gluestack-ui/themed'
-import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
-import { FlashList } from '@shopify/flash-list'
-import useContentInsets from '#/util/hooks/useContentInsets'
-import { BlurView } from 'expo-blur'
-import { LinearGradient } from 'expo-linear-gradient'
-import { ScrollView } from 'react-native'
+import { Box } from "#/components/ui/box";
+import { useReactiveVar } from "@apollo/client";
+import CardPleaseSignup from "#/components/molecules/asks/signuplogin";
+import InviteCard from "#/components/screens/public/venue/venueactions/actioncards/invitecard/InviteCard";
+import QuickBarfriendCard from "#/components/screens/public/venue/venueactions/actioncards/quickbarfriendcard/QuickBarfriendCard";
+import AddEmoji from "#/components/screens/tonight/activity/ask/AddEmoji/AddEmoji";
+import JoinVenue from "#/components/screens/tonight/activity/ask/JoinVenue/JoinVenue";
+import Photos from "#/components/screens/tonight/photos";
+import { AuthorizationReactiveVar, ThemeReactiveVar } from "#/reactive";
+import { FlashList } from "@shopify/flash-list";
+import useContentInsets from "#/util/hooks/useContentInsets";
+import { BlurView } from "expo-blur";
+import { LinearGradient } from "expo-linear-gradient";
+import { ScrollView } from "react-native";
 
 const Wrapper = ({ children }) => {
-	const rTheme = useReactiveVar(ThemeReactiveVar)
-	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
-	return (
-		<BlurView
-			intensity={60}
-			tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-			style={{
-				flex: 1,
-				height: 200,
-				paddingHorizontal: 10,
-				paddingVertical: 2,
-				margin: 10,
-				borderRadius: 10,
-				justifyContent: 'center',
-				alignItems: 'center',
-				overflow: 'hidden',
-				backgroundColor: rAuthorizationVar?.Profile?.tonightStory?.emojimood
-					? 'transparent'
-					: rTheme.colorScheme === 'light'
-					? rTheme.theme.gluestack.tokens.colors.light100
-					: rTheme.theme.gluestack.tokens.colors.light800,
-			}}
-			// sx={{
-			// 	h: 200,
-			// }}
-			// flex={1}
-			// rounded='$lg'
-			// justifyContent={'center'}
-			// alignItems={'center'}
-			// overflow='hidden'
-			// px={'$5'}
-			// py={'$1'}
-			// m={'$2'}
-		>
-			{children}
-		</BlurView>
-	)
-}
+  const rTheme = useReactiveVar(ThemeReactiveVar);
+  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar);
+  return (
+    <BlurView
+      intensity={60}
+      tint={rTheme.colorScheme === "light" ? "light" : "dark"}
+      style={{
+        flex: 1,
+        height: 200,
+        paddingHorizontal: 10,
+        paddingVertical: 2,
+        margin: 10,
+        borderRadius: 10,
+        justifyContent: "center",
+        alignItems: "center",
+        overflow: "hidden",
+        backgroundColor: rAuthorizationVar?.Profile?.tonightStory?.emojimood
+          ? "transparent"
+          : rTheme.colorScheme === "light"
+            ? rTheme.theme.gluestack.tokens.colors.light100
+            : rTheme.theme.gluestack.tokens.colors.light800,
+      }}
+      // flex={1}
+      // rounded='$lg'
+      // justifyContent={'center'}
+      // alignItems={'center'}
+      // overflow='hidden'
+      // px={'$5'}
+      // py={'$1'}
+      // m={'$2'}
+    >
+      {children}
+    </BlurView>
+  );
+};
 
 export default () => {
-	const contentInsets = useContentInsets()
-	const rTheme = useReactiveVar(ThemeReactiveVar)
-	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
+  const contentInsets = useContentInsets();
+  const rTheme = useReactiveVar(ThemeReactiveVar);
+  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar);
 
-	if (rAuthorizationVar?.Profile?.ProfileType === 'GUEST') {
-		return (
-			<ScrollView
-				contentContainerStyle={{
-					flex: 1,
-				}}
-			>
-				<Box mx={'$2'} mt={contentInsets.top} my={'$2'} p={'$5'} pt={'$10'}>
-					<CardPleaseSignup signupTextId={1} />
-				</Box>
-			</ScrollView>
-		)
-	}
+  if (rAuthorizationVar?.Profile?.ProfileType === "GUEST") {
+    return (
+      <ScrollView
+        contentContainerStyle={{
+          flex: 1,
+        }}
+      >
+        <Box className={` mt-${contentInsets.top} mx-2 my-2 p-5 pt-10`}>
+          <CardPleaseSignup signupTextId={1} />
+        </Box>
+      </ScrollView>
+    );
+  }
 
-	return (
-		<LinearGradient
-			style={{ flex: 1 }}
-			colors={
-				rAuthorizationVar?.Profile?.tonightStory?.emojimood?.colors.length
-					? rAuthorizationVar?.Profile?.tonightStory?.emojimood.colors
-					: ['#0000000']
-			}
-		>
-			<FlashList
-				showsVerticalScrollIndicator={false}
-				contentContainerStyle={{
-					paddingHorizontal: 5,
-				}}
-				ListHeaderComponentStyle={{
-					marginBottom: 20,
-				}}
-				contentInset={{
-					...contentInsets,
-				}}
-				ListHeaderComponent={() => {
-					return <Photos />
-				}}
-				data={[
-					{
-						_typename: 'addemoji',
-						item: <AddEmoji />,
-					},
-					{
-						_typename: 'joinvenue',
-						item: <JoinVenue />,
-					},
-					{
-						_typename: 'quickbarfriend',
-						item: (
-							<QuickBarfriendCard
-								color={rTheme.colorScheme === 'light' ? 'black' : 'white'}
-								showIcon={false}
-								logosize={40}
-								qrcodesize={140}
-							/>
-						),
-					},
-					{
-						_typename: 'invite',
-						item: <InviteCard />,
-					},
-				]}
-				numColumns={2}
-				estimatedItemSize={200}
-				renderItem={({ index, item }) => {
-					return <Wrapper>{item.item}</Wrapper>
-				}}
-			/>
-		</LinearGradient>
-	)
-}
+  return (
+    <LinearGradient
+      style={{ flex: 1 }}
+      colors={
+        rAuthorizationVar?.Profile?.tonightStory?.emojimood?.colors.length
+          ? rAuthorizationVar?.Profile?.tonightStory?.emojimood.colors
+          : ["#0000000"]
+      }
+    >
+      <FlashList
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingHorizontal: 5,
+        }}
+        ListHeaderComponentStyle={{
+          marginBottom: 20,
+        }}
+        contentInset={{
+          ...contentInsets,
+        }}
+        ListHeaderComponent={() => {
+          return <Photos />;
+        }}
+        data={[
+          {
+            _typename: "addemoji",
+            item: <AddEmoji />,
+          },
+          {
+            _typename: "joinvenue",
+            item: <JoinVenue />,
+          },
+          {
+            _typename: "quickbarfriend",
+            item: (
+              <QuickBarfriendCard
+                color={rTheme.colorScheme === "light" ? "black" : "white"}
+                showIcon={false}
+                logosize={40}
+                qrcodesize={140}
+              />
+            ),
+          },
+          {
+            _typename: "invite",
+            item: <InviteCard />,
+          },
+        ]}
+        numColumns={2}
+        estimatedItemSize={200}
+        renderItem={({ index, item }) => {
+          return <Wrapper>{item.item}</Wrapper>;
+        }}
+      />
+    </LinearGradient>
+  );
+};

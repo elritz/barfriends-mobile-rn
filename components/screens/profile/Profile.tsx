@@ -1,5 +1,6 @@
+import { Divider } from "#/components/ui/divider";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
-import { Box, Divider } from '@gluestack-ui/themed'
 import CardPleaseSignup from '#/components/molecules/asks/signuplogin'
 import PreferenceNotificationPermission from '#/components/molecules/permissions/preferencenotificationpermission/PreferenceNotificationPermission'
 import PersonalScreen from '#/components/screens/profile/personalprofile/PersonalProfile'
@@ -38,13 +39,13 @@ const Profile = () => {
 		switch (param) {
 			case ProfileType.Guest:
 				return (
-					<Box bg={'$transparent'} my={'$5'} mx={'$3'} flex={1}>
-						<View>
+                    <Box className="bg-transparent my-5 mx-3 flex-1">
+                        <View>
 							<CardPleaseSignup signupTextId={4} />
 							<Divider style={{ marginVertical: 20 }} />
 						</View>
-					</Box>
-				)
+                    </Box>
+                );
 			case ProfileType.Personal:
 				// return <PersonalScreen notifications={GNData} />
 				return <PersonalScreen notifications={null} />
@@ -55,16 +56,16 @@ const Profile = () => {
 		}
 	}
 	return (
-		<ScrollView
+        <ScrollView
 			contentInset={{ top: 0, left: 0, bottom: 150, right: 0 }}
 			showsVerticalScrollIndicator={false}
 			scrollEventThrottle={16}
 			refreshControl={<RefreshControl refreshing={false} onRefresh={_onRefresh} />}
 		>
-			{!rNotificationPermission?.granted && <PreferenceNotificationPermission />}
-			{renderProfile(rAuthorizationVar?.Profile?.ProfileType as ProfileType)}
-		</ScrollView>
-	)
+            {!rNotificationPermission?.granted && <PreferenceNotificationPermission />}
+            {renderProfile(rAuthorizationVar?.Profile?.ProfileType as ProfileType)}
+        </ScrollView>
+    );
 }
 
 export default Profile

@@ -1,15 +1,15 @@
+import { GluestackUIProvider } from "#/components/ui/gluestack-ui-provider";
 import { useReactiveVar } from '@apollo/client'
 import AnimatedSplashScreen from '#/components/screens/splash/AnimatedSplashScreen'
 import { LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME } from '#/constants/StorageConstants'
 import { LocalStoragePreferenceThemeType } from '#/ctypes/preferences'
-import { GluestackUIProvider } from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { ThemeProvider as ReactNavigationThemeProvider } from '@react-navigation/native'
 import { ThemeReactiveVar } from '#/reactive'
 import { useToggleTheme } from '#/util/hooks/theme/useToggleTheme'
 import { useCallback, useEffect, useRef } from 'react'
 import { AppState, Appearance, StatusBar } from 'react-native'
-// import "../../global.css";
+import "#/global.css";
 export default function Theme({ children }) {
 	const appState = useRef(AppState.currentState)
 	const rThemeVar = useReactiveVar(ThemeReactiveVar)
@@ -63,10 +63,7 @@ export default function Theme({ children }) {
 
 	return (
 		<AnimatedSplashScreen>
-			<GluestackUIProvider
-				config={rThemeVar.theme.gluestack}
-				colorMode={rThemeVar.colorScheme === 'light' ? 'light' : 'dark'}
-			>
+			<GluestackUIProvider mode={rThemeVar.colorScheme === 'light' ? 'light' : 'dark'}>
 				<StatusBar
 					animated
 					barStyle={rThemeVar.colorScheme === 'light' ? 'dark-content' : 'light-content'}
@@ -75,6 +72,6 @@ export default function Theme({ children }) {
 					{children}
 				</ReactNavigationThemeProvider>
 			</GluestackUIProvider>
-		</AnimatedSplashScreen>
-	)
+		</AnimatedSplashScreen >
+	);
 }

@@ -1,7 +1,10 @@
+import { Text } from "#/components/ui/text";
+import { Pressable } from "#/components/ui/pressable";
+import { Input, InputField } from "#/components/ui/input";
+import { HStack } from "#/components/ui/hstack";
 import { useReactiveVar } from '@apollo/client'
 import { Ionicons } from '@expo/vector-icons'
 import { AntDesign } from '@expo/vector-icons'
-import { HStack, Input, InputField, Pressable, Text } from '@gluestack-ui/themed'
 import { useExploreSearchLazyQuery } from '#/graphql/generated'
 import { ThemeReactiveVar } from '#/reactive'
 import useDebounce from '#/util/hooks/useDebounce'
@@ -104,24 +107,15 @@ const SearchInputText = (props: Props) => {
 	}, [debouncedSearchResults])
 
 	return (
-		<HStack position={'relative'} flex={1} sx={{ mt: insets.top }} pb={'$2'}>
-			<Controller
+        <HStack className="relative flex-1 mt-[undefined] pb-2">
+            <Controller
 				control={control}
 				name='searchtext'
 				render={({ field: { value, onChange } }) => (
 					<Input
-						flex={1}
-						alignItems='center'
-						variant='rounded'
-						ml={'$2'}
-						zIndex={0}
-						hitSlop={{ top: 12, bottom: 12, left: 0, right: 15 }}
-						bg={
-							rTheme.colorScheme === 'light'
-								? rTheme.theme?.gluestack.tokens.colors.light100
-								: rTheme.theme?.gluestack.tokens.colors.light900
-						}
-					>
+                        variant='rounded'
+                        hitSlop={{ top: 12, bottom: 12, left: 0, right: 15 }}
+                        className={` ${rTheme.colorScheme === 'light' ? rTheme.theme?.gluestack.tokens.colors.light100 : rTheme.theme?.gluestack.tokens.colors.light900} flex-1 items-center ml-2 z-0 `}>
 						<Ionicons
 							style={{ paddingLeft: 10 }}
 							color={
@@ -133,19 +127,17 @@ const SearchInputText = (props: Props) => {
 							size={20}
 						/>
 						<InputField
-							ref={_inputRef}
-							placeholderTextColor={
+                            ref={_inputRef}
+                            placeholderTextColor={
 								rTheme.colorScheme === 'light'
 									? rTheme.theme?.gluestack.tokens.colors.light700
 									: rTheme.theme?.gluestack.tokens.colors.light100
 							}
-							pl={7}
-							autoCapitalize={'none'}
-							autoCorrect={false}
-							autoComplete='off'
-							value={value}
-							lineHeight={'$sm'}
-							onFocus={() => {
+                            autoCapitalize={'none'}
+                            autoCorrect={false}
+                            autoComplete='off'
+                            value={value}
+                            onFocus={() => {
 								if (segments.includes('hometab')) {
 									router.push({
 										pathname: '/(app)/explore/searchtext',
@@ -155,15 +147,15 @@ const SearchInputText = (props: Props) => {
 									})
 								}
 							}}
-							onChangeText={onChange}
-							placeholder={props.placeholder || 'Search'}
-							returnKeyType='search'
-							underlineColorAndroid='transparent'
-							onSubmitEditing={handleSubmit(handleSearchSubmitEditting)}
-							keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-						/>
+                            onChangeText={onChange}
+                            placeholder={props.placeholder || 'Search'}
+                            returnKeyType='search'
+                            underlineColorAndroid='transparent'
+                            onSubmitEditing={handleSubmit(handleSearchSubmitEditting)}
+                            keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+                            className="pl-7 leading-sm" />
 						{watch('searchtext')?.length ? (
-							<Pressable mr={'$3'} onPress={() => clearSearchInput()}>
+							<Pressable onPress={() => clearSearchInput()} className="mr-3">
 								<AntDesign
 									name='closecircle'
 									size={20}
@@ -174,11 +166,11 @@ const SearchInputText = (props: Props) => {
 					</Input>
 				)}
 			/>
-			<Pressable onPress={() => router.back()} mx={'$3'} justifyContent='center'>
+            <Pressable onPress={() => router.back()} className="mx-3 justify-center">
 				<Text>Cancel</Text>
 			</Pressable>
-		</HStack>
-	)
+        </HStack>
+    );
 }
 
 export default SearchInputText

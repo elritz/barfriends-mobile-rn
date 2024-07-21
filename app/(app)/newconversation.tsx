@@ -1,15 +1,12 @@
+import { Input } from "#/components/ui/input";
+import { CloseIcon } from "#/components/ui/icon";
+import { VStack } from "#/components/ui/vstack";
+import { HStack } from "#/components/ui/hstack";
+import { Pressable } from "#/components/ui/pressable";
+import { Text } from "#/components/ui/text";
+import { Button, ButtonText, ButtonIcon } from "#/components/ui/button";
 import { useReactiveVar } from '@apollo/client'
 import ContactItem from '#/components/screens/conversations/ContactItem'
-import {
-	Button,
-	Text,
-	Input,
-	Pressable,
-	HStack,
-	VStack,
-	CloseIcon,
-	ButtonText,
-} from '@gluestack-ui/themed'
 import { ThemeReactiveVar } from '#/reactive'
 import { FlashList } from '@shopify/flash-list'
 import useContentInsets from '#/util/hooks/useContentInsets'
@@ -187,186 +184,138 @@ export default function NewConversation() {
 		searchFilterFunction(watch().searchtext)
 	}, [debouncedSearchResults])
 
-	return (
-		<>
-			<Input
-				variant='underlined'
-				alignItems='flex-start'
-				px={'$4'}
-				mt={'$10'}
-				flexDirection='row'
-				borderWidth={'$0'}
-				sx={{
-					height: 'auto',
-					borderBottomWidth: 1,
-					// borderTopWidth: 1,
-					_light: {
-						borderColor: '$light400',
-					},
-					_dark: {
-						borderColor: '$light700',
-					},
-				}}
-			>
-				<VStack flex={1}>
-					<Controller
-						control={control}
-						name='selected'
-						render={({ field: { value, onChange } }) => (
-							<HStack flexWrap='wrap' space='sm' mx={'$2'} mt={'$1'}>
-								{selected.map(item => (
-									<Button
-										onPress={() => {
-											_pressItemFromList({
-												listType: 'selected',
-												item,
-											})
-										}}
-										sx={{
-											_light: {
-												bg: '$light200',
-											},
-											_dark: {
-												bg: '$light700',
-											},
-										}}
-										alignSelf='center'
-										size='xs'
-										px={'$2'}
-										my={'$1'}
-										h={'$7'}
-									>
-										<ButtonText
-											sx={{
-												_light: {
-													color: '$primary500',
-												},
-												_dark: {
-													color: '$primary500',
-												},
-											}}
-											fontWeight='$normal'
-											letterSpacing={'$lg'}
-											fontSize={'$sm'}
-											textTransform='capitalize'
-										>
-											{item.value}
-										</ButtonText>
-									</Button>
-								))}
-							</HStack>
-						)}
-					/>
-					<Controller
-						control={control}
-						name='searchtext'
-						render={({ field: { value, onChange } }) => (
-							<HStack justifyContent='space-between' alignItems='center' mt={'$2'}>
-								<Text fontSize={'$sm'}>To:</Text>
-								<Input.Input
-									autoFocus
-									borderWidth={'$0'}
-									returnKeyType='default'
-									w={'$full'}
-									pr={'$2'}
-									onFocus={() => setSearchFilterIsLoading(true)}
-									py={'$1'}
-									m={'$2'}
-									underlineColorAndroid='transparent'
-									keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-									value={value}
-									// onChangeText={text => {
-									// 	console.log('text :>> ', text)
-									// 	onChange(text)
-									// 	fuse.search(text)
-									// }}
-									onChangeText={onChange}
-									// onKeyPress={e => {
-									// 	if (value.length === 0 && e.nativeEvent.key == 'Backspace') {
-									// 		_pressItemFromList({ listType: 'selected', item: selected[selected.length - 1] })
-									// 	}
-									// }}
-									onSubmitEditing={() => {
-										console.log('submitting')
+	return (<>
+		<Input
+			variant='underlined'
+			className="items-start px-4 mt-10 flex-row border-0 h-auto  border  border-light-400  dark:border-light-700">
+			<VStack className="flex-1">
+				<Controller
+					control={control}
+					name='selected'
+					render={({ field: { value, onChange } }) => (
+						<HStack space='sm' className="flex-wrap mx-2 mt-1">
+							{selected.map(item => (
+								<Button
+									onPress={() => {
+										_pressItemFromList({
+											listType: 'selected',
+											item,
+										})
 									}}
-									blurOnSubmit={false}
-								/>
-								{value.length > 0 && (
-									<Button
-										size='sm'
-										px={'$0'}
-										h={'$5'}
-										w={'$5'}
-										hitSlop={{
-											top: 12,
-											bottom: 12,
-											left: 12,
-											right: 12,
-										}}
-										variant='link'
-										rounded={'$full'}
-										borderWidth={'$1'}
-										borderColor='$primary500'
-										onPress={() => {
-											setValue('searchtext', '')
-										}}
-									>
-										<Button.Icon as={CloseIcon} />
-									</Button>
-								)}
-							</HStack>
-						)}
-					/>
-				</VStack>
-			</Input>
-
-			{watch().searchtext.length && !searchFilterIsLoading ? (
-				<FlashList
-					data={watch().searchtext.length ? filteredContacts : contacts}
-					estimatedItemSize={80}
-					keyboardDismissMode='on-drag'
-					contentInset={{
-						bottom: insets.bottom,
-					}}
-					renderItem={({ item, index }) => {
-						return (
-							<Pressable
-								onPress={() => {
-									_pressItemFromList({
-										listType: 'searchresult',
-										item,
-									})
-								}}
-							>
-								<ContactItem index={index} item={item.item} />
-							</Pressable>
-						)
-					}}
+									size='xs'
+									className="bg-light-200  dark:bg-light-700 self-center px-2 my-1 h-7">
+									<ButtonText
+										textTransform='capitalize'
+										className="text-primary-500  dark:text-primary-500 font-normal tracking-lg text-sm">
+										{item.value}
+									</ButtonText>
+								</Button>
+							))}
+						</HStack>
+					)}
 				/>
-			) : (
-				<FlashList
-					data={contacts}
-					estimatedItemSize={80}
-					keyboardDismissMode='on-drag'
-					contentInset={{
-						bottom: insets.bottom,
-					}}
-					renderItem={({ item, index }) => {
-						return (
-							<Pressable
-								onPress={() => {
-									_pressItemFromList({
-										listType: 'contacts',
-										item,
-									})
+				<Controller
+					control={control}
+					name='searchtext'
+					render={({ field: { value, onChange } }) => (
+						<HStack className="justify-between items-center mt-2">
+							<Text className="text-sm">To:</Text>
+							<Input
+								autoFocus
+								borderWidth={'$0'}
+								returnKeyType='default'
+								w={'$full'}
+								pr={'$2'}
+								onFocus={() => setSearchFilterIsLoading(true)}
+								py={'$1'}
+								m={'$2'}
+								underlineColorAndroid='transparent'
+								keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+								value={value}
+								// onChangeText={text => {
+								// 	console.log('text :>> ', text)
+								// 	onChange(text)
+								// 	fuse.search(text)
+								// }}
+								onChangeText={onChange}
+								// onKeyPress={e => {
+								// 	if (value.length === 0 && e.nativeEvent.key == 'Backspace') {
+								// 		_pressItemFromList({ listType: 'selected', item: selected[selected.length - 1] })
+								// 	}
+								// }}
+								onSubmitEditing={() => {
+									console.log('submitting')
 								}}
-							>
-								<ContactItem index={index} item={item} />
-							</Pressable>
-						)
-					}}
+								blurOnSubmit={false}
+							/>
+							{value.length > 0 && (
+								<Button
+									size='sm'
+									hitSlop={{
+										top: 12,
+										bottom: 12,
+										left: 12,
+										right: 12,
+									}}
+									variant='link'
+									onPress={() => {
+										setValue('searchtext', '')
+									}}
+									className="px-0 h-5 w-5 rounded-full border border-primary-500">
+									<ButtonIcon as={CloseIcon} />
+								</Button>
+							)}
+						</HStack>
+					)}
 				/>
-			)}
-		</>
-	)
+			</VStack>
+		</Input>
+		{watch().searchtext.length && !searchFilterIsLoading ? (
+			<FlashList
+				data={watch().searchtext.length ? filteredContacts : contacts}
+				estimatedItemSize={80}
+				keyboardDismissMode='on-drag'
+				contentInset={{
+					bottom: insets.bottom,
+				}}
+				renderItem={({ item, index }) => {
+					return (
+						<Pressable
+							onPress={() => {
+								_pressItemFromList({
+									listType: 'searchresult',
+									item,
+								})
+							}}
+						>
+							<ContactItem index={index} item={item.item} />
+						</Pressable>
+					);
+				}}
+			/>
+		) : (
+			<FlashList
+				data={contacts}
+				estimatedItemSize={80}
+				keyboardDismissMode='on-drag'
+				contentInset={{
+					bottom: insets.bottom,
+				}}
+				renderItem={({ item, index }) => {
+					return (
+						<Pressable
+							onPress={() => {
+								_pressItemFromList({
+									listType: 'contacts',
+									item,
+								})
+							}}
+						>
+							<ContactItem index={index} item={item} />
+						</Pressable>
+					);
+				}}
+			/>
+		)}
+	</>);
 }

@@ -1,6 +1,8 @@
+import { Text } from "#/components/ui/text";
+import { Button } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
 import DatePicker from '#/components/atoms/inputs/DatePicker'
-import { Box, Button, Text } from '@gluestack-ui/themed'
 import {
 	AuthorizationDeviceProfile,
 	Profile,
@@ -111,7 +113,7 @@ export default () => {
 	}
 
 	return (
-		<SafeAreaView
+        <SafeAreaView
 			style={{
 				flex: 1,
 				alignItems: 'center',
@@ -120,7 +122,7 @@ export default () => {
 				marginHorizontal: '5%',
 			}}
 		>
-			<>
+            <>
 				<Controller
 					control={control}
 					name='date'
@@ -152,28 +154,18 @@ export default () => {
 					}}
 				/>
 			</>
-			<Text>{errors.date && errors?.date.message}</Text>
-			<Box justifyContent={'center'} py={15} width={'100%'}>
+            <Text>{errors.date && errors?.date.message}</Text>
+            <Box className="justify-center py-15 w-[100%]">
 				{dirtyFields.date && (
 					<Button
-						disabled={UOPLoading}
-						onPress={handleSubmit(onSubmit)}
-						rounded={'$md'}
-						sx={{
-							_dark: {
-								bg: '$light9000',
-							},
-							_light: {
-								bg: '$light500',
-							},
-						}}
-						my={'$5'}
-						size={'lg'}
-					>
+                        disabled={UOPLoading}
+                        onPress={handleSubmit(onSubmit)}
+                        size={'lg'}
+                        className="rounded-md dark:bg-light-9000 bg-light-500 my-5">
 						<Text>Update</Text>
 					</Button>
 				)}
 			</Box>
-		</SafeAreaView>
-	)
+        </SafeAreaView>
+    );
 }

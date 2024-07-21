@@ -1,4 +1,8 @@
 
+import { SafeAreaView } from "#/components/ui/safe-area-view";
+import { EyeOffIcon, EyeIcon } from "#/components/ui/icon";
+import { Box } from "#/components/ui/box";
+import { Input, InputField, InputSlot, InputIcon } from "#/components/ui/input";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { SafeAreaView as RNSafeAreaView, View } from "react-native";
 import {
@@ -11,15 +15,13 @@ import Reanimated, {
   useSharedValue,
 } from "react-native-reanimated";
 import { StyleSheet } from "react-native";
-import Message from "@/components/screens/conversations/Message";
-import { history } from "@/components/screens/conversations/Message/data";
-import { Input, InputField, Box, InputSlot, EyeOffIcon, InputIcon, EyeIcon, SafeAreaView } from "@gluestack-ui/themed";
+import Message from "#/components/screens/conversations/Message";
+import { history } from "#/components/screens/conversations/Message/data";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { useReactiveVar } from "@apollo/client";
-import { ThemeReactiveVar } from "@/reactive/theme";
-// import { ThemeReactiveVar } from "#/reactive/theme";
+import { ThemeReactiveVar } from "#/reactive";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useCreateMessageMutation } from "@/graphql/generated";
+import { useCreateMessageMutation } from "#/graphql/generated";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
 const AnimatedTextInput = Reanimated.createAnimatedComponent(Box);
@@ -163,11 +165,6 @@ function AnimatedChatroom() {
     },
   }));
 
-  // useEffect(() => {
-  //   if (refSafeArea && refSafeArea.current) {
-  //     console.log("🚀 ~ useEffect ~ refSafeArea.current:", refSafeArea.current)
-  //   }
-  // }, [])
 
   const handleSendMessage = useCallback<SubmitHandler<FormValues>>(({ text }) => {
     console.log("🚀 ~ handleSendMessage ~ value:", text)
@@ -199,7 +196,6 @@ function AnimatedChatroom() {
           <Message key={index} {...message} />
         ))}
       </Reanimated.ScrollView>
-
       <AnimatedView style={[BoxInputStyle, { backgroundColor: rTheme.colorScheme === 'light' ? rTheme.theme?.gluestack.tokens.colors.light200 : rTheme.theme?.gluestack.tokens.colors.black }]}>
         <Controller
           control={control}
@@ -209,25 +205,23 @@ function AnimatedChatroom() {
           }}
           render={({ field: { onChange, onBlur, value } }) => {
             return (
-              <SafeAreaView ref={refSafeArea} mb={'$2'}>
-                <Input borderColor="$light300" flexDirection="row" rounded={'$xl'} alignItems="center" height={'auto'} minHeight={40} maxHeight={150} mt={'$2'} >
+              <SafeAreaView ref={refSafeArea} className="mb-2">
+                <Input
+                  className="border-light-300 flex-row rounded-xl items-center h-auto min-h-[40px] max-h-[150px] mt-2">
                   <InputField
-                    borderWidth={0}
                     value={value}
                     onChangeText={onChange}
-                    flex={1} height={'auto'} multiline onPressIn={() => ref.current?.scrollToEnd()} fontSize={'$lg'} />
+                    multiline
+                    onPressIn={() => ref.current?.scrollToEnd()}
+                    className="border-0 flex-1 h-auto text-lg" />
                   <InputSlot
-                    bg={'$primary500'}
-                    mr={'$2'}
-                    p={'$1'}
-                    alignItems="center"
-                    justifyContent="center" h={25} w={25} rounded={'$full'}
-                    onPress={handleSubmit(handleSendMessage)}>
+                    onPress={handleSubmit(handleSendMessage)}
+                    className="bg-primary-500 mr-2 p-1 items-center justify-center h-[25px] w-[25px] rounded-full">
                     <FontAwesome6 name={'arrow-up'} fontSize={'$xl'} size={16} color={'#ffffff'} />
                   </InputSlot>
                 </Input>
               </SafeAreaView>
-            )
+            );
           }}
         />
       </AnimatedView>

@@ -5,7 +5,7 @@ import { ThemeReactiveVar } from '#/reactive'
 export default function NavigationDragIcon() {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	return (
-		<FontAwesome5
+        <FontAwesome5
 			name='minus'
 			size={50}
 			color={
@@ -14,5 +14,5 @@ export default function NavigationDragIcon() {
 					: rTheme.theme?.gluestack.tokens.colors.light100
 			}
 		/>
-	)
+    );
 }

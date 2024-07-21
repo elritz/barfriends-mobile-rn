@@ -7,7 +7,7 @@ import { Stack } from 'expo-router'
 export default function _layout() {
 	const rThemeVar = useReactiveVar(ThemeReactiveVar)
 	return (
-		<Stack
+        <Stack
 			screenOptions={{
 				headerStyle: {
 					backgroundColor:
@@ -19,9 +19,9 @@ export default function _layout() {
 				headerLeft: () => <ChevronBackArrow />,
 			}}
 		>
-			<Stack.Screen name='authenticator' />
-			<Stack.Screen name='loginpassword' />
-			<Stack.Screen name='confirmationcode' />
-		</Stack>
-	)
+            <Stack.Screen name='authenticator' />
+            <Stack.Screen name='loginpassword' />
+            <Stack.Screen name='confirmationcode' />
+        </Stack>
+    );
 }

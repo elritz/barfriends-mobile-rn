@@ -1,7 +1,7 @@
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
 import { Ionicons } from '@expo/vector-icons'
 import { AuthorizationReactiveVar } from '#/reactive'
-import { Box } from '@gluestack-ui/themed'
 
 export default function Friendship() {
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
@@ -33,10 +33,10 @@ export default function Friendship() {
 	// 			).toFormat('yyyy LLL dd')
 	// 			return (
 	// 				<Box>
-	// 					<Text textTransform={'uppercase'} fontSize={'sm'} fontWeight={'bold'} textAlign={'center'}>
+	// 					<Text  fontSize={'sm'} fontWeight={'bold'} textAlign={'center'}>
 	// 						Friends since
 	// 					</Text>
-	// 					<Text textTransform={'uppercase'} fontSize={'lg'} fontWeight={'bold'}>
+	// 					<Text  fontSize={'lg'} fontWeight={'bold'}>
 	// 						{created}
 	// 					</Text>
 	// 				</Box>
@@ -48,22 +48,10 @@ export default function Friendship() {
 	// }
 
 	return (
-		<Box
-			sx={{
-				_light: {
-					bg: 'light.50',
-				},
-				_dark: {
-					bg: 'light.800',
-				},
-			}}
-			borderRadius={'$xl'}
-			flex={1}
-			p={3}
-			alignItems={'center'}
-		>
-			<Ionicons size={24} name={'person'} />
-			{/* <Friends /> */}
-		</Box>
-	)
+        <Box
+            className="bg-[light.50]  dark:bg-[light.800] rounded-xl flex-1 p-3 items-center">
+            <Ionicons size={24} name={'person'} />
+            {/* <Friends /> */}
+        </Box>
+    );
 }

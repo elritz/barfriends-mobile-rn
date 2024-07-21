@@ -1,8 +1,10 @@
+import { Pressable } from "#/components/ui/pressable";
+import { Input, InputField, InputIcon, InputSlot } from "#/components/ui/input";
+import { HStack } from "#/components/ui/hstack";
 import { useReactiveVar } from '@apollo/client'
 import ChevronBackArrow from '#/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
 import { Ionicons } from '@expo/vector-icons'
 import { AntDesign } from '@expo/vector-icons'
-import { HStack, Input, InputField, InputIcon, InputSlot, Pressable } from '@gluestack-ui/themed'
 import { ThemeReactiveVar } from '#/reactive'
 import useDebounce from '#/util/hooks/useDebounce'
 import { useRouter } from 'expo-router'
@@ -66,26 +68,16 @@ const SearchInputSearchArea = (props: Props) => {
 	}, [debouncedSearchResults])
 
 	return (
-		<HStack position={'relative'} flex={1} sx={{ mt: insets.top }} pb={'$2'}>
-			<ChevronBackArrow />
-			<Controller
+        <HStack className="relative flex-1 mt-[undefined] pb-2">
+            <ChevronBackArrow />
+            <Controller
 				control={control}
 				name='searchtext'
 				render={({ field: { value, onChange } }) => (
 					<Input
-						flex={1}
-						variant='rounded'
-						alignItems='center'
-						mx={'$3'}
-						px={'$3'}
-						zIndex={0}
-						hitSlop={{ top: 12, bottom: 12, left: 0, right: 15 }}
-						bg={
-							rTheme.colorScheme === 'light'
-								? rTheme.theme?.gluestack.tokens.colors.light100
-								: rTheme.theme?.gluestack.tokens.colors.light900
-						}
-					>
+                        variant='rounded'
+                        hitSlop={{ top: 12, bottom: 12, left: 0, right: 15 }}
+                        className={` ${rTheme.colorScheme === 'light' ? rTheme.theme?.gluestack.tokens.colors.light100 : rTheme.theme?.gluestack.tokens.colors.light900} flex-1 items-center mx-3 px-3 z-0 `}>
 						<InputSlot style={{ alignSelf: 'center' }}>
 							<Ionicons
 								color={
@@ -110,7 +102,6 @@ const SearchInputSearchArea = (props: Props) => {
 							textAlignVertical='center'
 							autoCorrect={false}
 							autoComplete='off'
-							fontSize={'$xl'}
 							value={value}
 							onChangeText={onChange}
 							placeholder={props.placeholder || 'Search'}
@@ -118,14 +109,12 @@ const SearchInputSearchArea = (props: Props) => {
 							underlineColorAndroid='transparent'
 							onSubmitEditing={handleSubmit(handleSearchSubmitEditting)}
 							keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+							className="text-xl"
 						/>
 						{watch('searchtext')?.length ? (
 							<Pressable
-								onPress={() => clearSearchInput()}
-								height={'100%'}
-								justifyContent='center'
-								px={'$2'}
-							>
+                                onPress={() => clearSearchInput()}
+                                className="h-[100%] justify-center px-2">
 								<AntDesign
 									name='closecircle'
 									size={20}
@@ -136,8 +125,8 @@ const SearchInputSearchArea = (props: Props) => {
 					</Input>
 				)}
 			/>
-		</HStack>
-	)
+        </HStack>
+    );
 }
 
 export default SearchInputSearchArea

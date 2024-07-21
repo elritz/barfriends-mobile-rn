@@ -1,7 +1,10 @@
+import { Text } from "#/components/ui/text";
+import { Pressable } from "#/components/ui/pressable";
+import { Input, InputField } from "#/components/ui/input";
+import { HStack } from "#/components/ui/hstack";
 import { useReactiveVar } from '@apollo/client'
 import { Ionicons } from '@expo/vector-icons'
 import { AntDesign } from '@expo/vector-icons'
-import { HStack, Input, InputField, Pressable, Text } from '@gluestack-ui/themed'
 import { ThemeReactiveVar } from '#/reactive'
 import { useGlobalSearchParams, useRouter, useSegments, router as _Router } from 'expo-router'
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
@@ -21,11 +24,8 @@ const SearchInputVenueFeedDisabled = (props: Props) => {
 	const [showBack, setShowBack] = useState(false)
 
 	return (
-		<HStack position={'relative'} flex={1} sx={{ mt: insets.top }}>
+		<HStack className="relative flex-1 mt-[10]">
 			<Pressable
-				position={'relative'}
-				flex={1}
-				pb={'$2'}
 				onPressIn={() => {
 					if (segments.includes('hometab')) {
 						router.push({
@@ -36,21 +36,11 @@ const SearchInputVenueFeedDisabled = (props: Props) => {
 						})
 					}
 				}}
-			>
+				className="relative flex-1 pb-2">
 				<Input
-					alignItems='center'
-					justifyContent='center'
-					flex={1}
 					variant='rounded'
-					mr={'$2'}
-					ml={!showBack ? '$2' : '$0'}
-					bg={
-						rTheme.colorScheme === 'light'
-							? rTheme.theme?.gluestack.tokens.colors.light100
-							: rTheme.theme?.gluestack.tokens.colors.light900
-					}
 					isReadOnly={true}
-				>
+					className={` ${rTheme.colorScheme === 'light' ? rTheme.theme?.gluestack.tokens.colors.light100 : rTheme.theme?.gluestack.tokens.colors.light900} ${!showBack ? "ml-2" : "ml-0"} items-center justify-center flex-1 mr-2 `}>
 					<Ionicons
 						color={
 							rTheme.colorScheme === 'light'
@@ -63,13 +53,13 @@ const SearchInputVenueFeedDisabled = (props: Props) => {
 						}}
 						size={18}
 					/>
-					<Text lineHeight={'$md'} fontSize={'$lg'}>
+					<Text className="leading-md text-lg">
 						Search
 					</Text>
 				</Input>
 			</Pressable>
 		</HStack>
-	)
+	);
 }
 
 export default SearchInputVenueFeedDisabled

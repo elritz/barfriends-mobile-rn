@@ -1,6 +1,11 @@
+import { Input, InputField } from "#/components/ui/input";
+import { Box } from "#/components/ui/box";
+import { VStack } from "#/components/ui/vstack";
+import { Pressable } from "#/components/ui/pressable";
+import { Text } from "#/components/ui/text";
+import { Heading } from "#/components/ui/heading";
 import { useReactiveVar } from '@apollo/client'
 import { Feather } from '@expo/vector-icons'
-import { Heading, Text, Pressable, VStack, Box, Input, InputField } from '@gluestack-ui/themed'
 import { useSendAuthenticatorDeviceOwnerCodeMutation } from '#/graphql/generated'
 import { useIsFocused } from '@react-navigation/native'
 import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '#/reactive'
@@ -124,54 +129,25 @@ export default () => {
 
 	const InnerContent = () => {
 		return (
-			<VStack
-				display={isFocused ? 'flex' : 'none'}
-				flexDirection={'row'}
-				alignItems='center'
-				justifyContent={'flex-end'}
-				alignContent={'space-around'}
-				px={'$2'}
-				sx={{
-					h: 90,
-					_dark: {
-						bg: '$black',
-					},
-					_light: {
-						bg: '$white',
-					},
-				}}
-			>
-				<VStack
-					flex={2}
-					display={'flex'}
-					flexDirection={'column'}
-					justifyContent={'space-around'}
-					px={'$2'}
-				>
+            <VStack
+                className={` ${isFocused ? "flex" : "hidden"} flex-row items-center justify-end content-around px-2 h-[90px]  dark:bg-black bg-white `}>
+                <VStack className="flex-2 flex flex-column justify-around px-2">
 					<Text>
 						By continuing you may receive an SMS for verification. Message and data rates may apply.
 					</Text>
 				</VStack>
-				<Pressable disabled={!!errors.email || loading} onPress={handleSubmit(onSubmit)}>
+                <Pressable disabled={!!errors.email || loading} onPress={handleSubmit(onSubmit)}>
 					<Box
-						alignItems='center'
-						justifyContent='center'
-						sx={{
-							h: 50,
-							w: 50,
-						}}
-						rounded={'$full'}
-						bg='$primary500'
-					>
+                        className="items-center justify-center h-[50px]  w-[50px] rounded-full bg-primary-500">
 						<Feather name='arrow-right' size={32} color={errors.email ? '#292524' : 'white'} />
 					</Box>
 				</Pressable>
-			</VStack>
-		)
+            </VStack>
+        );
 	}
 
 	return (
-		<KeyboardAvoidingView
+        <KeyboardAvoidingView
 			behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
 			style={{
 				flex: 1,
@@ -180,22 +156,17 @@ export default () => {
 				marginHorizontal: '5%',
 			}}
 		>
-			<Reanimated.View style={{ flex: 1 }}>
-				<VStack sx={{ h: 110 }}>
-					<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$3xl'}>
+            <Reanimated.View style={{ flex: 1 }}>
+				<VStack className="h-[110px]">
+					<Heading className="mt-4 font-black text-3xl">
 						Enter your email
 					</Heading>
 					<Pressable
-						onPress={() => {
+                        onPress={() => {
 							router.back()
 						}}
-						sx={{
-							w: 100,
-							h: 'auto',
-						}}
-						pb={'$3'}
-					>
-						<Text fontSize={'$md'} fontWeight={'$bold'} color={'$primary500'}>
+                        className="w-[100px]  h-auto pb-3">
+						<Text className="text-md font-bold text-primary-500">
 							Use phone
 						</Text>
 					</Pressable>
@@ -207,38 +178,34 @@ export default () => {
 						render={({ field: { onChange, onBlur, value } }) => (
 							<Input variant={'underlined'} size='lg'>
 								<InputField
-									keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-									placeholderTextColor={
+                                    keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+                                    placeholderTextColor={
 										rTheme.colorScheme === 'light'
 											? rTheme.theme?.gluestack.tokens.colors.light700
 											: rTheme.theme?.gluestack.tokens.colors.light100
 									}
-									fontSize={'$2xl'}
-									inputMode='email'
-									type='text'
-									textContentType='emailAddress'
-									autoFocus
-									sx={{
-										h: 50,
-									}}
-									key={'email'}
-									inputAccessoryViewID={INPUT_ACCESSORY_VIEW_ID}
-									placeholder='Email'
-									returnKeyType={Platform.OS === 'ios' ? 'done' : 'none'}
-									numberOfLines={1}
-									blurOnSubmit={false}
-									enablesReturnKeyAutomatically={false}
-									// onSubmitEditing={handleSubmit(onSubmit)}
-									onBlur={onBlur}
-									autoComplete='email'
-									importantForAutofill='auto'
-									autoCorrect={true}
-									autoCapitalize='none'
-									keyboardType='email-address'
-									onSubmitEditing={handleSubmit(onSubmit)}
-									value={value.toLowerCase()}
-									onChangeText={onChange}
-								/>
+                                    inputMode='email'
+                                    type='text'
+                                    textContentType='emailAddress'
+                                    autoFocus
+                                    key={'email'}
+                                    inputAccessoryViewID={INPUT_ACCESSORY_VIEW_ID}
+                                    placeholder='Email'
+                                    returnKeyType={Platform.OS === 'ios' ? 'done' : 'none'}
+                                    numberOfLines={1}
+                                    blurOnSubmit={false}
+                                    enablesReturnKeyAutomatically={false}
+                                    // onSubmitEditing={handleSubmit(onSubmit)}
+                                    onBlur={onBlur}
+                                    autoComplete='email'
+                                    importantForAutofill='auto'
+                                    autoCorrect={true}
+                                    autoCapitalize='none'
+                                    keyboardType='email-address'
+                                    onSubmitEditing={handleSubmit(onSubmit)}
+                                    value={value.toLowerCase()}
+                                    onChangeText={onChange}
+                                    className="text-2xl h-[50px]" />
 							</Input>
 						)}
 						rules={{
@@ -251,7 +218,7 @@ export default () => {
 					/>
 				</View>
 			</Reanimated.View>
-			{Platform.OS === 'ios' ? (
+            {Platform.OS === 'ios' ? (
 				<InputAccessoryView nativeID={INPUT_ACCESSORY_VIEW_ID}>
 					<InnerContent />
 				</InputAccessoryView>
@@ -267,6 +234,6 @@ export default () => {
 					<InnerContent />
 				</Reanimated.View>
 			)}
-		</KeyboardAvoidingView>
-	)
+        </KeyboardAvoidingView>
+    );
 }

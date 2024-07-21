@@ -1,5 +1,8 @@
-// TODO: FN(What functionality was suppose to be here)
-import { Box, Button, HStack, Heading, Text, ButtonText } from '@gluestack-ui/themed'
+import { Text } from "#/components/ui/text";
+import { Heading } from "#/components/ui/heading";
+import { HStack } from "#/components/ui/hstack";
+import { Button, ButtonText, ButtonSpinner } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
 import { useUpdateProfilePrivacyTermsDocumentUpdateMutation } from '#/graphql/generated'
 import { Link, useRouter } from 'expo-router'
 
@@ -17,49 +20,47 @@ export default function TermsServices() {
 		})
 
 	return (
-		<Box flex={1} p={'$5'}>
-			<Box mt={'45%'} bg='transparent' flex={1}>
-				<Text fontSize={'$lg'}>Welcome to Barfriends</Text>
-				<Heading fontSize={'$4xl'} lineHeight={'$3xl'}>
+        <Box className="flex-1 p-5">
+            <Box className="mt-[45%] bg-transparent flex-1">
+				<Text className="text-lg">Welcome to Barfriends</Text>
+				<Heading className="text-4xl leading-3xl">
 					Review the Terms &
 				</Heading>
-				<Heading fontSize={'$4xl'} lineHeight={'$3xl'}>
+				<Heading className="text-4xl leading-3xl">
 					Services
 				</Heading>
 				<Link href={'/(information)/latestprivacyservicetoptab'}>
-					<Text fontSize={'$lg'}>
+					<Text className="text-lg">
 						By continuing, you agree to the
-						<Text fontSize={'$lg'} fontWeight={'$bold'} color={'$primary500'}>
+						<Text className="text-lg font-bold text-primary-500">
 							{' '}
 							Terms
 						</Text>
 						,
-						<Text fontSize={'$lg'} fontWeight={'$bold'} color={'$primary500'}>
+						<Text className="text-lg font-bold text-primary-500">
 							{' '}
 							Services{' '}
 						</Text>
 						and
-						<Text fontSize={'$lg'} fontWeight={'$bold'} color={'$primary500'}>
+						<Text className="text-lg font-bold text-primary-500">
 							{' '}
 							Privacy Policy
 						</Text>
 						.
 					</Text>
 				</Link>
-				<HStack justifyContent='flex-end' mt={'$5'}>
+				<HStack className="justify-end mt-5">
 					<Button
-						onPress={() => {
+                        onPress={() => {
 							updateProfilePrivacyTermsDocuments()
 						}}
-						rounded={'$full'}
-						alignSelf='center'
-						size='lg'
-					>
-						<ButtonText mr={'$2'}>Continue</ButtonText>
-						{loading && <Button.Spinner size={'small'} />}
+                        size='lg'
+                        className="rounded-full self-center">
+						<ButtonText className="mr-2">Continue</ButtonText>
+						{loading && <ButtonSpinner size={'small'} />}
 					</Button>
 				</HStack>
 			</Box>
-		</Box>
-	)
+        </Box>
+    );
 }

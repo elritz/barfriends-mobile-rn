@@ -135,12 +135,12 @@ const GestureItem = ({
 		}
 	})
 	return (
-  <Animated.View style={style}>
-  <PanGestureHandler enabled={editing} onGestureEvent={onGestureEvent}>
-  <Animated.View style={StyleSheet.absoluteFill}>{children}</Animated.View>
-			</PanGestureHandler>
-		</Animated.View>
-	)
+        <Animated.View style={style}>
+            <PanGestureHandler enabled={editing} onGestureEvent={onGestureEvent}>
+            <Animated.View style={StyleSheet.absoluteFill}>{children}</Animated.View>
+                      </PanGestureHandler>
+        </Animated.View>
+    );
 }
 
 export default GestureItem

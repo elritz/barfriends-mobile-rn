@@ -1,4 +1,4 @@
-import { Box } from '@gluestack-ui/themed'
+import { Box } from "#/components/ui/box";
 import { Maybe, Photo } from '#/graphql/generated'
 import { Image } from 'react-native'
 
@@ -12,16 +12,8 @@ export default function ProfilePhoto({ photo }: Props) {
 	}
 
 	return (
-		<Box
-			sx={{
-				h: 150,
-				w: 150,
-			}}
-			rounded={'$md'}
-			overflow={'hidden'}
-			mb={'$3'}
-		>
-			<Image
+        <Box className="h-[150px]  w-[150px] rounded-md overflow-hidden mb-3">
+            <Image
 				source={{
 					uri: photo?.url,
 				}}
@@ -30,6 +22,6 @@ export default function ProfilePhoto({ photo }: Props) {
 					width: '100%',
 				}}
 			/>
-		</Box>
-	)
+        </Box>
+    );
 }

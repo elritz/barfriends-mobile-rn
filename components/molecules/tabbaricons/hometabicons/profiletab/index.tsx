@@ -1,9 +1,9 @@
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
 import CompanyCoasterLogoDynamic from '#/assets/images/company/CompanyCoasterLogoDynamic'
 import CompanyCoasterLogoDynamicInverse from '#/assets/images/company/CompanyCoasterLogoDynamicInverse'
 import CompanyCoasterLogoDynamicOutline from '#/assets/images/company/CompanyCoasterLogoDynamicOutline'
 import TabBarIcon, { TabProps } from '#/components/atoms/icons/tabbaricon/TabBarIcon'
-import { Box } from '@gluestack-ui/themed'
 // import { useGetNotificationsQuery } from '#/graphql/generated'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
 import * as Haptics from 'expo-haptics'
@@ -47,100 +47,84 @@ const ProfileTab = (props: TabProps) => {
 	}
 
 	if (!rAuthorizationVar || rAuthorizationVar?.Profile?.ProfileType === 'GUEST') {
-		return (
-			<>
-				<TabBarIcon
-					// onPress={() => {
-					// 	router.navigate({
-					// 		pathname: '/(app)/hometab/profilestack/userprofile',
-					// 	})
-					// }}
-					onLongPress={() => onLongPressProfileIcon()}
-					icon={
-						props.focused ? (
-							<CompanyCoasterLogoDynamic
-								width={HEIGHT}
-								height={HEIGHT}
-								iconColor={rTheme.colorScheme === 'dark' ? 'black' : 'white'}
-								backgroundColor={props.color}
-							/>
-						) : (
-							<CompanyCoasterLogoDynamicOutline
-								width={HEIGHT}
-								height={HEIGHT}
-								backgroundColor={
-									!props.focused ? (rTheme.colorScheme === 'dark' ? 'white' : 'black') : props.color
-								}
-							/>
-						)
-					}
-				/>
-				{<Box
-					bg={false ? '$red500' : 'transparent'}
-					sx={{
-						h: 4.25,
-						w: 4.25,
-					}}
-					rounded={'$full'}
-				/>}
-			</>
-		)
+		return (<>
+            <TabBarIcon
+                // onPress={() => {
+                // 	router.navigate({
+                // 		pathname: '/(app)/hometab/profilestack/userprofile',
+                // 	})
+                // }}
+                onLongPress={() => onLongPressProfileIcon()}
+                icon={
+                    props.focused ? (
+                        <CompanyCoasterLogoDynamic
+                            width={HEIGHT}
+                            height={HEIGHT}
+                            iconColor={rTheme.colorScheme === 'dark' ? 'black' : 'white'}
+                            backgroundColor={props.color}
+                        />
+                    ) : (
+                        <CompanyCoasterLogoDynamicOutline
+                            width={HEIGHT}
+                            height={HEIGHT}
+                            backgroundColor={
+                                !props.focused ? (rTheme.colorScheme === 'dark' ? 'white' : 'black') : props.color
+                            }
+                        />
+                    )
+                }
+            />
+            {<Box
+                className={` ${false ? "bg-red-500" : "bg-transparent"} h-[4.25px]  w-[4.25px] rounded-full `} />}
+        </>);
 	}
 
-	return (
-		<>
-			<TabBarIcon
-				onPress={() => {
-					router.navigate({
-						pathname: '/(app)/hometab/profilestack/userprofile',
-					})
-				}}
-				onLongPress={() => onLongPressProfileIcon()}
-				icon={
-					<>
-						{rAuthorizationVar?.Profile?.photos?.length ? (
-							<Image
-								source={{ uri: rAuthorizationVar.Profile.photos[0].url }}
-								style={{
-									width: HEIGHT,
-									height: HEIGHT,
-									borderRadius: 4,
-									borderColor: props.color,
-									borderWidth: 1.5,
-								}}
-							/>
-						) : (
-							<>
-								{!props.focused ? (
-									<CompanyCoasterLogoDynamicOutline
-										width={HEIGHT}
-										height={HEIGHT}
-										backgroundColor={rTheme.colorScheme === 'dark' ? 'white' : 'black'}
-									/>
-								) : (
-									<CompanyCoasterLogoDynamicInverse
-										width={HEIGHT}
-										height={HEIGHT}
-										backgroundColor={props.color}
-									/>
-								)}
-							</>
-						)}
-					</>
-				}
-			/>
-			{
-				<Box
-					bg={false ? '$red500' : 'transparent'}
-					sx={{
-						h: 4.25,
-						w: 4.25,
-					}}
-					rounded={'$full'}
-				/>
-			}
-		</>
-	)
+	return (<>
+        <TabBarIcon
+            onPress={() => {
+                router.navigate({
+                    pathname: '/(app)/hometab/profilestack/userprofile',
+                })
+            }}
+            onLongPress={() => onLongPressProfileIcon()}
+            icon={
+                <>
+                    {rAuthorizationVar?.Profile?.photos?.length ? (
+                        <Image
+                            source={{ uri: rAuthorizationVar.Profile.photos[0].url }}
+                            style={{
+                                width: HEIGHT,
+                                height: HEIGHT,
+                                borderRadius: 4,
+                                borderColor: props.color,
+                                borderWidth: 1.5,
+                            }}
+                        />
+                    ) : (
+                        <>
+                            {!props.focused ? (
+                                <CompanyCoasterLogoDynamicOutline
+                                    width={HEIGHT}
+                                    height={HEIGHT}
+                                    backgroundColor={rTheme.colorScheme === 'dark' ? 'white' : 'black'}
+                                />
+                            ) : (
+                                <CompanyCoasterLogoDynamicInverse
+                                    width={HEIGHT}
+                                    height={HEIGHT}
+                                    backgroundColor={props.color}
+                                />
+                            )}
+                        </>
+                    )}
+                </>
+            }
+        />
+        {
+            <Box
+                className={` ${false ? "bg-red-500" : "bg-transparent"} h-[4.25px]  w-[4.25px] rounded-full `} />
+        }
+    </>);
 }
 
 export default ProfileTab

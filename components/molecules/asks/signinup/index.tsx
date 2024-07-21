@@ -1,4 +1,8 @@
-import { Box, Button, ButtonText, Divider, Text, VStack } from '@gluestack-ui/themed'
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Divider } from "#/components/ui/divider";
+import { Button, ButtonText } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
 import GetSignInUpText from '#/util/helpers/data/SignupinText'
 import { useRouter } from 'expo-router'
 
@@ -7,45 +11,39 @@ export default () => {
 	const text = GetSignInUpText()
 
 	return (
-		<Box bg='$transparent'>
-			<VStack flexDirection='column' space='md'>
-				<Text allowFontScaling fontWeight='$bold' alignSelf='center' textAlign='center'>
+        <Box className="bg-transparent">
+            <VStack space='md' className="flex-column">
+				<Text allowFontScaling className="font-bold self-center text-center">
 					{text[1].subTitle}
 				</Text>
-				<VStack space={'md'} alignItems='center'>
+				<VStack space={'md'} className="items-center">
 					<Button
-						onPress={() =>
+                        onPress={() =>
 							router.replace({
 								pathname: '/(credential)/personalcredentialstack/getstarted',
 							})
 						}
-						sx={{
-							w: '85%',
-						}}
-						rounded={'$md'}
-					>
-						<ButtonText fontWeight='$bold' fontSize={'$lg'}>
+                        className="w-[85%] rounded-md">
+						<ButtonText className="font-bold text-lg">
 							Sign up
 						</ButtonText>
 					</Button>
 					<Button
-						sx={{
-							w: '90%',
-						}}
 						variant={'link'}
 						onPress={() =>
 							router.push({
 								pathname: '/(credential)/logincredentialstack/authenticator',
 							})
 						}
+						className="w-[90%]"
 					>
-						<Text fontSize={'$lg'} fontWeight={'$bold'} alignSelf='center'>
+						<Text className="text-lg font-bold self-center">
 							Log in
 						</Text>
 					</Button>
 				</VStack>
 			</VStack>
-			<Divider my={'$5'} />
-		</Box>
-	)
+            <Divider className="my-5" />
+        </Box>
+    );
 }

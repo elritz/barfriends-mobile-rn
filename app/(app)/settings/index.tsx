@@ -1,6 +1,9 @@
+import { Text } from "#/components/ui/text";
+import { Heading } from "#/components/ui/heading";
+import { HStack } from "#/components/ui/hstack";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
 import { Ionicons } from '@expo/vector-icons'
-import { Box, HStack, Heading, Text } from '@gluestack-ui/themed'
 import {
 	AuthorizationDeviceProfile,
 	ProfileType,
@@ -57,16 +60,7 @@ export default () => {
 
 	const RoundedListItem = ({ children, ...props }) => (
 		<Pressable onPress={props.onPress}>
-			<Box
-				bg={'transparent'}
-				sx={{
-					h: 60,
-				}}
-				px={'$2'}
-				py={'$3'}
-				alignItems={'flex-start'}
-				flexDirection={'column'}
-			>
+			<Box className="bg-transparent h-[60px] px-2 py-3 items-start flex-column">
 				{children}
 			</Box>
 		</Pressable>
@@ -154,61 +148,43 @@ export default () => {
 	]
 
 	return (
-		<ScrollView
+        <ScrollView
 			style={{
 				marginVertical: 4,
 			}}
 		>
-			<Heading
-				px={'$2'}
-				sx={{
-					h: 30,
-				}}
-			>
+            <Heading className="px-2 h-[30px]">
 				Account
 			</Heading>
-			{/* Edit Profile */}
-			{account.map((item, index) => {
+            {/* Edit Profile */}
+            {account.map((item, index) => {
 				return (
-					<RoundedListItem key={index} onPress={item.onPress}>
-						<HStack alignItems={'center'} space={'md'}>
+                    <RoundedListItem key={index} onPress={item.onPress}>
+                        <HStack space={'md'} className="items-center">
 							{item.icon}
-							<Text fontWeight={'$bold'} fontSize={'$lg'}>
+							<Text className="font-bold text-lg">
 								{item.title}
 							</Text>
 						</HStack>
-					</RoundedListItem>
-				)
+                    </RoundedListItem>
+                );
 			})}
-
-			{/* Logins */}
-			<Heading
-				px={'$2'}
-				sx={{
-					h: 30,
-				}}
-			>
+            {/* Logins */}
+            <Heading className="px-2 h-[30px]">
 				Logins
 			</Heading>
-			{actions.map((item, index) => {
+            {actions.map((item, index) => {
 				if (!item) return null
 				return (
-					<RoundedListItem key={index} onPress={item.onPress}>
-						<HStack
-							alignItems={'center'}
-							px={'$2'}
-							w={'$full'}
-							sx={{
-								h: 55,
-							}}
-						>
-							<Text fontWeight={'$bold'} fontSize={'$lg'} color={'$primary500'}>
+                    <RoundedListItem key={index} onPress={item.onPress}>
+                        <HStack className="items-center px-2 w-full h-[55px]">
+							<Text className="font-bold text-lg text-primary-500">
 								{item.title}
 							</Text>
 						</HStack>
-					</RoundedListItem>
-				)
+                    </RoundedListItem>
+                );
 			})}
-		</ScrollView>
-	)
+        </ScrollView>
+    );
 }

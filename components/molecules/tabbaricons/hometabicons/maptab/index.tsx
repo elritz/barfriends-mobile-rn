@@ -7,7 +7,7 @@ import { ThemeReactiveVar } from '#/reactive'
 const MapTab = (props: TabProps) => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	return (
-		<TabBarIcon
+        <TabBarIcon
 			icon={
 				<FontAwesome5
 					style={{
@@ -22,7 +22,7 @@ const MapTab = (props: TabProps) => {
 				/>
 			}
 		/>
-	)
+    );
 }
 
 export default MapTab

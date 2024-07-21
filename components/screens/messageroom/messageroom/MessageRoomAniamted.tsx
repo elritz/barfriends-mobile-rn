@@ -33,12 +33,12 @@ const MessageRoomAniamted = () => {
 	)
 
 	return (
-		<View
+        <View
 			style={{
 				flex: 1,
 			}}
 		>
-			<Reanimated.FlatList
+            <Reanimated.FlatList
 				keyboardDismissMode={'interactive'}
 				showsVerticalScrollIndicator={false}
 				style={aFlatListStyle}
@@ -48,7 +48,7 @@ const MessageRoomAniamted = () => {
 					return <Message {...item.item} />
 				}}
 			/>
-			<Reanimated.View
+            <Reanimated.View
 				style={[
 					{
 						height: INPUT_CONTAINER_HEIGHT + bottom,
@@ -93,8 +93,8 @@ const MessageRoomAniamted = () => {
 					/> */}
 				</BlurView>
 			</Reanimated.View>
-		</View>
-	)
+        </View>
+    );
 }
 
 export default MessageRoomAniamted

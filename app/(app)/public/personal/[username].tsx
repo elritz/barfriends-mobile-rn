@@ -1,18 +1,15 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Pressable } from "#/components/ui/pressable";
+import { Heading } from "#/components/ui/heading";
+import { HStack } from "#/components/ui/hstack";
+import { Button, ButtonText } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
+import { Badge, BadgeText } from "#/components/ui/badge";
+import { View } from "#/components/ui/view";
 import { useReactiveVar } from '@apollo/client'
 import Photos from '#/components/screens/public/personal/photos'
 import { Feather, FontAwesome, Ionicons } from '@expo/vector-icons'
-import { View } from '@gluestack-ui/themed'
-import {
-	Badge,
-	Box,
-	Button,
-	HStack,
-	Heading,
-	Pressable,
-	Text,
-	VStack,
-	ButtonText,
-} from '@gluestack-ui/themed'
 import { BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet'
 import {
 	useAcceptFriendRequestMutation,
@@ -73,14 +70,14 @@ export default () => {
 
 	const SectionHeader = ({ title }: { title: string }) => {
 		return (
-			<Heading py={'$2'} fontSize={'$md'} fontWeight='$bold'>
-				{title}
-			</Heading>
-		)
+            <Heading className="py-2 text-md font-bold">
+                {title}
+            </Heading>
+        );
 	}
 	const SectionContainer = ({ children }) => {
 		return (
-			<BlurView
+            <BlurView
 				style={{
 					padding: 15,
 					borderRadius: 13,
@@ -94,9 +91,9 @@ export default () => {
 				intensity={80}
 				tint={rThemeVar.colorScheme === 'light' ? 'light' : 'dark'}
 			>
-				{children}
-			</BlurView>
-		)
+                {children}
+            </BlurView>
+        );
 	}
 
 	const {
@@ -218,137 +215,114 @@ export default () => {
 
 	if (loading)
 		return (
-			<Text fontSize={'$2xl'} mt={'$12'}>
-				Loading...
-			</Text>
-		)
+            <Text className="text-2xl mt-12">Loading...
+                            </Text>
+        );
 
 	const profile = data?.publicProfile
 
 	if (!profile) {
 		return (
-			<Text fontSize={'$2xl'} mt={'$12'}>
-				No profile found
-			</Text>
-		)
+            <Text className="text-2xl mt-12">No profile found
+                            </Text>
+        );
 	}
 
 	const Username = () => {
 		return (
-			<VStack flex={1} position='relative' mt={'$3'} space='sm'>
-				<HStack justifyContent='space-between'>
+            <VStack space='sm' className="flex-1 relative mt-3">
+                <HStack className="justify-between">
 					<Text
-						fontSize={'$sm'}
-						fontWeight={'$medium'}
-						position='absolute'
-						numberOfLines={1}
-						color={rThemeVar.colorScheme === 'light' ? '$light800' : '$light100'}
-						sx={{
-							top: -15,
-						}}
-					>
+                        numberOfLines={1}
+                        className={` ${rThemeVar.colorScheme === 'light' ? "text-light-800" : "text-light-100"} text-sm font-medium absolute -top-15 `}>
 						@{profile?.IdentifiableInformation?.username}
 					</Text>
 					<HStack>
 						<Text
-							lineHeight={'$2xl'}
-							fontSize={'$2xl'}
-							letterSpacing={'$sm'}
-							numberOfLines={2}
-							fontWeight='$bold'
-							color={rThemeVar.colorScheme === 'light' ? '$light900' : '$light100'}
-						>
+                            numberOfLines={2}
+                            className={` ${rThemeVar.colorScheme === 'light' ? "text-light-900" : "text-light-100"} leading-2xl text-2xl tracking-sm font-bold `}>
 							{profile?.IdentifiableInformation?.fullname}
 						</Text>
 					</HStack>
 				</HStack>
-			</VStack>
-		)
+            </VStack>
+        );
 	}
 
 	const IdentifiableInformation = () => {
-		return (
-			<>
-				<HStack py={'$3'} alignItems='center' space='md'>
-					<Username />
-					{profile?.relationship?.__typename === 'Relationship' && (
-						<Button
-							size='xs'
-							bg={'$primary500'}
-							px={'$2'}
-							rounded={'$lg'}
-							onPress={handlePresentModalPress}
-						>
-							<FontAwesome name='user' size={20} color={'white'} />
-						</Button>
-					)}
-					{rAuthorizationVar?.Profile?.ProfileType !== 'GUEST' && (
-						<Button
-							onPress={() => {
-								console.log('//todo: Message icon to conversation with this person')
-							}}
-							size='xs'
-							bg={'$tertiary400'}
-							rounded={'$full'}
-						>
-							<ButtonText fontSize={'$sm'} mr={'$2'}>
-								Message
-							</ButtonText>
-							<Ionicons
-								color={rThemeVar.theme?.gluestack?.tokens.colors.light100}
-								name='chatbubble-ellipses'
-								size={20}
-							/>
-						</Button>
-					)}
-				</HStack>
-			</>
-		)
+		return (<>
+            <HStack space='md' className="py-3 items-center">
+                <Username />
+                {profile?.relationship?.__typename === 'Relationship' && (
+                    <Button
+                        size='xs'
+                        onPress={handlePresentModalPress}
+                        className="bg-primary-500 px-2 rounded-lg">
+                        <FontAwesome name='user' size={20} color={'white'} />
+                    </Button>
+                )}
+                {rAuthorizationVar?.Profile?.ProfileType !== 'GUEST' && (
+                    <Button
+                        onPress={() => {
+                            console.log('//todo: Message icon to conversation with this person')
+                        }}
+                        size='xs'
+                        className="bg-tertiary-400 rounded-full">
+                        <ButtonText className="text-sm mr-2">
+                            Message
+                        </ButtonText>
+                        <Ionicons
+                            color={rThemeVar.theme?.gluestack?.tokens.colors.light100}
+                            name='chatbubble-ellipses'
+                            size={20}
+                        />
+                    </Button>
+                )}
+            </HStack>
+        </>);
 	}
 
 	const TonightVenue = () => {
-		return (
-			<>
-				<SectionHeader title='Tonight' />
-				<Pressable
-					onPress={() => {
-						console.log('//todo: Navigate to Public Venue ')
-					}}
-				>
-					<HStack justifyContent='space-between' alignItems='center'>
-						<HStack space='sm' alignItems='center'>
-							<Image
-								source={{
-									uri: 'https://images.unsplash.com/photo-1544450030-1fccab69a2f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80',
-								}}
-								style={{
-									width: 40,
-									height: 40,
-									borderRadius: 5,
-								}}
-								placeholder={generateRandomBlurhash()}
-							/>
-							<Text fontSize={'$lg'}>Dallas Night Club</Text>
-						</HStack>
-						<Feather
-							name='arrow-right'
-							size={25}
-							color={
-								rThemeVar.colorScheme === 'light'
-									? rThemeVar.theme?.gluestack.tokens.colors.light900
-									: rThemeVar.theme?.gluestack.tokens.colors.light100
-							}
-						/>
-					</HStack>
-				</Pressable>
-			</>
-		)
+		return (<>
+            <SectionHeader title='Tonight' />
+            <Pressable
+                onPress={() => {
+                    console.log('//todo: Navigate to Public Venue ')
+                }}
+            >
+                <HStack className="justify-between items-center">
+                    <HStack space='sm' className="items-center">
+                        <Image
+                            source={{
+                                uri: 'https://images.unsplash.com/photo-1544450030-1fccab69a2f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80',
+                            }}
+                            style={{
+                                width: 40,
+                                height: 40,
+                                borderRadius: 5,
+                            }}
+                            placeholder={generateRandomBlurhash()}
+                        />
+                        <Text className="text-lg">Dallas Night Club</Text>
+                    </HStack>
+                    <Feather
+                        name='arrow-right'
+                        size={25}
+                        color={
+                            rThemeVar.colorScheme === 'light'
+                                ? rThemeVar.theme?.gluestack.tokens.colors.light900
+                                : rThemeVar.theme?.gluestack.tokens.colors.light100
+                        }
+                    />
+                </HStack>
+            </Pressable>
+        </>);
 	}
 
 	const Relationship = () => {
 		return (
-			<HStack mb={'$2'} alignItems='center' justifyContent='space-between'>
-				<HStack alignItems='center' space='sm'>
+            <HStack className="mb-2 items-center justify-between">
+                <HStack space='sm' className="items-center">
 					{profile?.DetailInformation?.description}
 					<Image
 						source={{
@@ -361,209 +335,183 @@ export default () => {
 						}}
 						placeholder={generateRandomBlurhash()}
 					/>
-					<HStack justifyContent='space-between' flex={1}>
-						<Text fontSize={'$lg'}>Christian Firmi</Text>
-						<Text fontSize={'$sm'} fontStyle={'italic'}>
+					<HStack className="justify-between flex-1">
+						<Text className="text-lg">Christian Firmi</Text>
+						<Text className="text-sm italic-[italic]">
 							dating
 						</Text>
 					</HStack>
 				</HStack>
-			</HStack>
-		)
+            </HStack>
+        );
 	}
 
 	const FriendRequest = () => {
 		switch (profile.relationship?.__typename) {
 			case 'Error':
 				return (
-					<Box>
-						<Text>{profile.relationship.message}</Text>
-					</Box>
-				)
+                    <Box>
+                        <Text>{profile.relationship.message}</Text>
+                    </Box>
+                );
 			case 'Request':
-				return (
-					<>
-						{profile.relationship.senderProfileId === rAuthorizationVar?.Profile?.id ? (
-							<SectionContainer>
-								<HStack py={'$3'} alignItems='center' justifyContent='space-between' space='md' flex={1}>
-									<Text flex={1} flexWrap='wrap' fontSize={'$md'} fontWeight='$medium'>
-										You requested to be friends!
-									</Text>
-									<Button
-										rounded={'$lg'}
-										variant='outline'
-										size='xs'
-										disabled={dFRLoading}
-										onPress={() => {
-											profile.relationship?.__typename === 'Request' &&
-												deleteFriendRequestMutation({
-													variables: {
-														friendRequestId: profile.relationship.id,
-													},
-												})
-										}}
-									>
-										<Text fontSize={'$sm'} fontWeight='$bold'>
-											Requested
-										</Text>
-									</Button>
-								</HStack>
-							</SectionContainer>
-						) : (
-							<SectionContainer>
-								<HStack py={'$3'} w={'$full'} justifyContent='space-between' alignItems='center'>
-									<Text fontSize={'$md'} fontWeight='$medium'>
-										Wants to be Barfriends
-									</Text>
-									<HStack space='sm'>
-										<Button
-											size='xs'
-											variant='link'
-											height={28}
-											onPress={() => {
-												profile.relationship?.__typename === 'Request' &&
-													declineFriendRequestMutation({
-														variables: {
-															friendRequestId: profile.relationship.id,
-															notificationStatusId: profile.relationship.recievers[0].NotificationStatus.id,
-														},
-													})
-											}}
-										>
-											<Text fontSize={'$sm'} fontWeight='$bold'>
-												Decline
-											</Text>
-										</Button>
-										<Button
-											size='xs'
-											height={28}
-											onPress={() => {
-												profile.relationship?.__typename === 'Request' &&
-													acceptFriendRequestMutation({
-														variables: {
-															friendRequestId: profile.relationship.id,
-															notificationStatusId: profile.relationship.recievers[0].NotificationStatus.id,
-														},
-													})
-											}}
-										>
-											<ButtonText fontSize={'$sm'}>Accept</ButtonText>
-										</Button>
-									</HStack>
-								</HStack>
-							</SectionContainer>
-						)}
-					</>
-				)
+				return (<>
+                    {profile.relationship.senderProfileId === rAuthorizationVar?.Profile?.id ? (
+                        <SectionContainer>
+                            <HStack space='md' className="py-3 items-center justify-between flex-1">
+                                <Text className="flex-1 flex-wrap text-md font-medium">
+                                    You requested to be friends!
+                                </Text>
+                                <Button
+                                    variant='outline'
+                                    size='xs'
+                                    disabled={dFRLoading}
+                                    onPress={() => {
+                                        profile.relationship?.__typename === 'Request' &&
+                                            deleteFriendRequestMutation({
+                                                variables: {
+                                                    friendRequestId: profile.relationship.id,
+                                                },
+                                            })
+                                    }}
+                                    className="rounded-lg"
+                                >
+                                    <Text className="text-sm font-bold">
+                                        Requested
+                                    </Text>
+                                </Button>
+                            </HStack>
+                        </SectionContainer>
+                    ) : (
+                        <SectionContainer>
+                            <HStack className="py-3 w-full justify-between items-center">
+                                <Text className="text-md font-medium">
+                                    Wants to be Barfriends
+                                </Text>
+                                <HStack space='sm'>
+                                    <Button
+                                        size='xs'
+                                        variant='link'
+                                        onPress={() => {
+                                            profile.relationship?.__typename === 'Request' &&
+                                                declineFriendRequestMutation({
+                                                    variables: {
+                                                        friendRequestId: profile.relationship.id,
+                                                        notificationStatusId: profile.relationship.recievers[0].NotificationStatus.id,
+                                                    },
+                                                })
+                                        }}
+                                        className="h-[28px]"
+                                    >
+                                        <Text className="text-sm font-bold">
+                                            Decline
+                                        </Text>
+                                    </Button>
+                                    <Button
+                                        size='xs'
+                                        onPress={() => {
+                                            profile.relationship?.__typename === 'Request' &&
+                                                acceptFriendRequestMutation({
+                                                    variables: {
+                                                        friendRequestId: profile.relationship.id,
+                                                        notificationStatusId: profile.relationship.recievers[0].NotificationStatus.id,
+                                                    },
+                                                })
+                                        }}
+                                        className="h-[28px]"
+                                    >
+                                        <ButtonText className="text-sm">Accept</ButtonText>
+                                    </Button>
+                                </HStack>
+                            </HStack>
+                        </SectionContainer>
+                    )}
+                </>);
 			case 'Relationship':
-				return (
-					<>
-						{!profile.relationship.id && (
-							<SectionContainer>
-								<HStack py={'$3'} w={'$full'} justifyContent='space-between' alignItems='center'>
-									<Text fontWeight='$medium' fontSize={'$md'}>
-										Add to your friends
-									</Text>
-									<Button
-										rounded={'$lg'}
-										disabled={cFRLoading}
-										size='xs'
-										onPress={() => createFriendRequestMutation()}
-									>
-										<ButtonText fontSize={'$md'}>Barfriend</ButtonText>
-									</Button>
-								</HStack>
-							</SectionContainer>
-						)}
-					</>
-				)
+				return (<>
+                    {!profile.relationship.id && (
+                        <SectionContainer>
+                            <HStack className="py-3 w-full justify-between items-center">
+                                <Text className="font-medium text-md">
+                                    Add to your friends
+                                </Text>
+                                <Button
+                                    disabled={cFRLoading}
+                                    size='xs'
+                                    onPress={() => createFriendRequestMutation()}
+                                    className="rounded-lg"
+                                >
+                                    <ButtonText className="text-md">Barfriend</ButtonText>
+                                </Button>
+                            </HStack>
+                        </SectionContainer>
+                    )}
+                </>);
 			default:
 				return (
-					<SectionContainer>
-						<HStack py={'$3'} w={'$full'} justifyContent='space-between' alignItems='center'>
-							<Text fontWeight='$medium' fontSize={'$md'}>
+                    <SectionContainer>
+                        <HStack className="py-3 w-full justify-between items-center">
+							<Text className="font-medium text-md">
 								Add to your friends
 							</Text>
 							<Button
-								rounded={'$lg'}
 								disabled={cFRLoading}
 								size='xs'
 								onPress={() => createFriendRequestMutation()}
+								className="rounded-lg"
 							>
-								<ButtonText fontSize={'$md'}>Barfriend</ButtonText>
+								<ButtonText className="text-md">Barfriend</ButtonText>
 							</Button>
 						</HStack>
-					</SectionContainer>
-				)
+                    </SectionContainer>
+                );
 		}
 	}
 
 	const Tags = () => {
 		return (
-			<HStack py={'$2'} space='xs' flexWrap='wrap'>
-				{profile?.DetailInformation?.Tags.map(interest => {
+            <HStack space='xs' className="py-2 flex-wrap">
+                {profile?.DetailInformation?.Tags.map(interest => {
 					return (
-						<Badge
-							key={interest.id}
-							size='lg'
-							my={'$1'}
-							p={'$2'}
-							px={'$3'}
-							variant='solid'
-							borderRadius='$lg'
-							sx={{
-								_dark: {
-									bg: '$black',
-								},
-								_light: {
-									bg: '$light200',
-								},
-							}}
-						>
-							<Badge.Text fontSize={'$sm'} textTransform='capitalize' pr={'$0.5'}>
+                        <Badge
+                            key={interest.id}
+                            size='lg'
+                            variant='solid'
+                            className="my-1 p-2 px-3 rounded-lg dark:bg-black bg-light-200">
+                            <BadgeText fontSize={'$sm'} textTransform='capitalize' pr={'$0.5'}>
 								{interest.emoji}
-							</Badge.Text>
-							<Text
-								sx={{
-									_dark: {
-										color: '$white',
-									},
-									_light: {
-										color: '$black',
-									},
-								}}
-								fontWeight='$medium'
-								fontSize={'$sm'}
-								textTransform='capitalize'
-							>
+							</BadgeText>
+                            <Text
+                                textTransform='capitalize'
+                                className="dark:text-white text-black font-medium text-sm">
 								{interest.name}
 							</Text>
-						</Badge>
-					)
+                        </Badge>
+                    );
 				})}
-			</HStack>
-		)
+            </HStack>
+        );
 	}
 
 	const Description = () => {
 		return (
-			<HStack space='sm' flexWrap='wrap'>
-				{!profile?.DetailInformation?.description?.length ? (
-					<Text fontSize={'$lg'} fontWeight='$normal' lineHeight={'$xl'}>
+            <HStack space='sm' className="flex-wrap">
+                {!profile?.DetailInformation?.description?.length ? (
+					<Text className="text-lg font-normal leading-xl">
 						{profile?.DetailInformation?.description}
 					</Text>
 				) : (
-					<Text fontSize={'$lg'} fontWeight='$normal' lineHeight={'$xl'} textAlign='center' w={'$full'}>
+					<Text className="text-lg font-normal leading-xl text-center w-full">
 						No details yet!
 					</Text>
 				)}
-			</HStack>
-		)
+            </HStack>
+        );
 	}
 
 	const RelationshipSettingsBottomSheet = () => {
 		return (
-			<BottomSheetModal
+            <BottomSheetModal
 				ref={bottomSheetModalRef}
 				index={1}
 				snapPoints={snapPoints}
@@ -581,7 +529,7 @@ export default () => {
 							: rThemeVar.theme.gluestack.tokens.colors.light800,
 				}}
 			>
-				<HStack alignItems={'center'}>
+                <HStack className="items-center">
 					<Pressable onPress={handleCloseModalPress}>
 						<Ionicons
 							name='chevron-back-outline'
@@ -595,74 +543,52 @@ export default () => {
 					</Pressable>
 					<Heading>Relationship</Heading>
 				</HStack>
-				<FlashList
+                <FlashList
 					contentContainerStyle={{ paddingHorizontal: 10 }}
 					data={listItems}
 					estimatedItemSize={100}
 					ListHeaderComponent={() => {
 						return (
-							<VStack mt={'$3'}>
-								<Username />
-								<HStack space='md'>
+                            <VStack className="mt-3">
+                                <Username />
+                                <HStack space='md'>
 									{[
 										{ icon: '🎈', date: 'Jan 11, 1995' },
 										{ icon: '👥', date: 'Jan 11' },
 									].map((item, index) => {
 										return (
-											<Badge
-												key={index}
-												size='lg'
-												my={'$1'}
-												p={'$2'}
-												px={'$3'}
-												variant='solid'
-												borderRadius='$full'
-												sx={{
-													_dark: {
-														bg: '$black',
-													},
-													_light: {
-														bg: '$light200',
-													},
-												}}
-											>
-												<Text
-													sx={{
-														_dark: {
-															color: '$white',
-														},
-														_light: {
-															color: '$black',
-														},
-													}}
-													fontWeight='$medium'
-													fontSize={'$sm'}
-													textTransform='capitalize'
-												>
+                                            <Badge
+                                                key={index}
+                                                size='lg'
+                                                variant='solid'
+                                                className="my-1 p-2 px-3 rounded-full dark:bg-black bg-light-200">
+                                                <Text
+                                                    textTransform='capitalize'
+                                                    className="dark:text-white text-black font-medium text-sm">
 													{item.date}
 												</Text>
-											</Badge>
-										)
+                                            </Badge>
+                                        );
 									})}
 								</HStack>
-							</VStack>
-						)
+                            </VStack>
+                        );
 					}}
 					renderItem={({ item }) => {
 						return (
-							<View style={{ height: 50 }}>
-								<Text>{item.title}</Text>
-							</View>
-						)
+                            <View style={{ height: 50 }}>
+                                <Text>{item.title}</Text>
+                            </View>
+                        );
 					}}
 				/>
-			</BottomSheetModal>
-		)
+            </BottomSheetModal>
+        );
 	}
 	console.log('rAuthorizationVar?.ProfileType :>> ')
 	return (
-		<BottomSheetModalProvider>
-			<LinearGradient
+        <BottomSheetModalProvider>
+            <LinearGradient
 				style={{
 					flex: 1,
 				}}
@@ -674,7 +600,7 @@ export default () => {
 			>
 				<RelationshipSettingsBottomSheet />
 				<ScrollView contentInset={contentInsets}>
-					<VStack mx={'$3'} space='md'>
+					<VStack space='md' className="mx-3">
 						<Photos
 							photos={profile?.tonightStory?.photos}
 							profilePhoto={profile?.profilePhoto}
@@ -697,6 +623,6 @@ export default () => {
 					</VStack>
 				</ScrollView>
 			</LinearGradient>
-		</BottomSheetModalProvider>
-	)
+        </BottomSheetModalProvider>
+    );
 }

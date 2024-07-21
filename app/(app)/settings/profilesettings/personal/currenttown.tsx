@@ -1,12 +1,12 @@
+import { Input, InputField } from "#/components/ui/input";
 import { useReactiveVar } from '@apollo/client'
-import { Input } from '@gluestack-ui/themed'
 import { ThemeReactiveVar } from '#/reactive'
 import { useState } from 'react'
 import { View } from 'react-native'
 
-interface CurrentPlacceScreenProps {}
+interface CurrentPlacceScreenProps { }
 
-export default ({}: CurrentPlacceScreenProps) => {
+export default ({ }: CurrentPlacceScreenProps) => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const [search, setSearch] = useState<string>('')
 
@@ -21,7 +21,7 @@ export default ({}: CurrentPlacceScreenProps) => {
 					borderRadius: 14,
 				}}
 			>
-				<Input.Input
+				<InputField
 					style={{
 						color:
 							rTheme.colorScheme === 'light'
@@ -40,5 +40,5 @@ export default ({}: CurrentPlacceScreenProps) => {
 				/>
 			</Input>
 		</View>
-	)
+	);
 }

@@ -1,5 +1,5 @@
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
-import { Box } from '@gluestack-ui/themed'
 import TermsLoadingState from '#/components/screens/settings/TermsLoadingState'
 import { usePrivacyTermsDocumentsQuery } from '#/graphql/generated'
 import { ThemeReactiveVar } from '#/reactive'
@@ -16,8 +16,8 @@ export default function Service() {
 		return <TermsLoadingState />
 	}
 	return (
-		<Box bg={'$transparent'} style={{ flex: 1 }} p={'$3'}>
-			<ScrollView>
+        <Box style={{ flex: 1 }} className="bg-transparent p-3">
+            <ScrollView>
 				<RenderHTML
 					contentWidth={width}
 					source={{ html: data.privacyTermsDocuments.termsofservice.content }}
@@ -44,6 +44,6 @@ export default function Service() {
 					}}
 				/>
 			</ScrollView>
-		</Box>
-	)
+        </Box>
+    );
 }

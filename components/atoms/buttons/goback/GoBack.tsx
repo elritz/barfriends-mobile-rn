@@ -1,4 +1,4 @@
-import { Pressable } from '@gluestack-ui/themed'
+import { Pressable } from "#/components/ui/pressable";
 import { useRouter } from 'expo-router'
 import * as React from 'react'
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
@@ -30,7 +30,7 @@ const GoBack: React.FC<ButtonProps> = ({
 	}
 
 	return (
-		<Pressable
+        <Pressable
 			style={{
 				flex: 1,
 				maxWidth: width,
@@ -40,9 +40,9 @@ const GoBack: React.FC<ButtonProps> = ({
 			}}
 			onPress={() => handleOnPress()}
 		>
-			{children}
-		</Pressable>
-	)
+            {children}
+        </Pressable>
+    );
 }
 
 export default GoBack

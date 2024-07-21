@@ -1,5 +1,10 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Pressable } from "#/components/ui/pressable";
+import { Input, InputField, InputIcon } from "#/components/ui/input";
+import { Heading } from "#/components/ui/heading";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
-import { Box, Heading, Input, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { Feather, Ionicons } from '@expo/vector-icons'
 import { useCheckUsernameLazyQuery } from '#/graphql/generated'
 import { useIsFocused } from '@react-navigation/native'
@@ -99,56 +104,28 @@ export default () => {
 
 	const InnerContent = () => {
 		return (
-			<Box
-				flexDirection={'row'}
-				justifyContent={'flex-end'}
-				sx={{
-					h: 90,
-					_dark: {
-						bg: '$black',
-					},
-					_light: {
-						bg: '$white',
-					},
-				}}
-				px={'$2'}
-			>
+			<Box className="flex-row justify-end h-[90px]  dark:bg-black bg-white px-2">
 				<Box
-					bg='$transparent'
 					style={{
 						display: 'flex',
 						flexDirection: 'column',
 						justifyContent: 'space-around',
 					}}
+					className="bg-transparent"
 				>
 					<Pressable disabled={!!errors.username || CULoading} onPress={handleSubmit(onSubmit)}>
 						<Box
-							alignItems='center'
-							justifyContent='center'
-							sx={{
-								h: 50,
-								w: 50,
-							}}
-							rounded={'$full'}
-							bg='$primary500'
-						>
+							className="items-center justify-center h-[50px]  w-[50px] rounded-full bg-primary-500">
 							<Feather name='arrow-right' size={32} color={errors?.username ? '#292524' : 'white'} />
 						</Box>
 					</Pressable>
 				</Box>
 			</Box>
-		)
+		);
 	}
 	const InputRightIcon = () => {
 		return (
-			<Box
-				bg='$transparent'
-				sx={{
-					w: 35,
-				}}
-				justifyContent={'center'}
-				alignItems={'center'}
-			>
+			<Box className="bg-transparent w-[35px] justify-center items-center">
 				{values.username.length && CUData?.checkUsername ? (
 					<Ionicons
 						name='checkmark-circle'
@@ -157,23 +134,23 @@ export default () => {
 					/>
 				) : null}
 			</Box>
-		)
+		);
 	}
 
 	return (
-		<Box bg='$transparent' flex={1}>
+		<Box className="bg-transparent flex-1">
 			<Reanimated.View style={{ flex: 1, marginHorizontal: 15 }}>
-				<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$2xl'}>
+				<Heading className="mt-4 font-black text-2xl">
 					Choose your username
 				</Heading>
-				<VStack flex={1} my={'$6'} space='xs'>
+				<VStack space='xs' className="flex-1 my-6">
 					<Controller
 						name='username'
 						control={control}
 						defaultValue=''
 						render={({ field: { onChange, onBlur, value } }) => (
-							<Input key={'username'} variant={'underlined'} py={'$1'} size={'lg'}>
-								<Input.Input
+							<Input key={'username'} variant={'underlined'} size={'lg'} className="py-1">
+								<InputField
 									ref={_usernameRef}
 									type='text'
 									value={value}
@@ -190,16 +167,15 @@ export default () => {
 									textContentType='nickname'
 									autoComplete='username-new'
 									returnKeyType='done'
-									py={'$1'}
 									numberOfLines={1}
 									keyboardType='default'
 									autoCapitalize='none'
 									inputAccessoryViewID={INPUT_ACCESSORY_VIEW_ID}
 									blurOnSubmit={false}
 								/>
-								<Input.Icon>
+								<InputIcon>
 									<InputRightIcon />
-								</Input.Icon>
+								</InputIcon>
 							</Input>
 						)}
 						rules={{
@@ -215,7 +191,7 @@ export default () => {
 							},
 						}}
 					/>
-					<Text fontSize={'$sm'} color='$error700'>
+					<Text className="text-sm text-error-700">
 						{errors?.username?.message}
 					</Text>
 				</VStack>
@@ -237,5 +213,5 @@ export default () => {
 				</Reanimated.View>
 			)}
 		</Box>
-	)
+	);
 }

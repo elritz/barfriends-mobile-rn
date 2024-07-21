@@ -1,6 +1,10 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { HStack } from "#/components/ui/hstack";
+import { Button } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
 import Details from '../details/Details'
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, HStack, Text, VStack } from '@gluestack-ui/themed'
 import SignupModal from '#/components/molecules/modals/signupaskmodal'
 import { Ionicons } from '@expo/vector-icons'
 import { Profile } from '#/graphql/generated'
@@ -41,8 +45,8 @@ export default function Actions({ profile }: Props) {
 	// if (GRFRSLoading || !GRFRSData) return null
 
 	return (
-		<VStack rounded={'$xl'} flex={1} py={'$3'} px={'$2'} space={'md'}>
-			<HStack alignItems={'flex-start'}>
+        <VStack space={'md'} className="rounded-xl flex-1 py-3 px-2">
+            <HStack className="items-start">
 				{/* <RelationshipModal isOpen={isOpenRelationshipModal} onClose={onCloseRelaationshipModal} /> */}
 				<SignupModal isOpen={isOpenSignupModal} onClose={onCloseSignupModal} />
 
@@ -58,7 +62,7 @@ export default function Actions({ profile }: Props) {
 									},
 							  })
 					}}
-					rounded={'$md'}
+					className="rounded-md"
 				>
 					<Ionicons
 						name='chatbubble-ellipses'
@@ -76,29 +80,28 @@ export default function Actions({ profile }: Props) {
 					/>
 				</Button>
 			</HStack>
-
-			<Box bg={'$transparent'} flex={1}>
+            <Box className="bg-transparent flex-1">
 				{profile?.DetailInformation?.description?.length ? (
-					<Box bg={'$transparent'}>
+					<Box className="bg-transparent">
 						{!showMore ? (
-							<Text fontSize={'$lg'} numberOfLines={2}>
+							<Text numberOfLines={2} className="text-lg">
 								{profile.DetailInformation?.description}
 							</Text>
 						) : (
-							<Text fontSize={'$lg'}>{profile.DetailInformation?.description}</Text>
+							<Text className="text-lg">{profile.DetailInformation?.description}</Text>
 						)}
-						<Button my={'$2'} onPress={() => setShowMore(!showMore)} variant={'link'}>
+						<Button onPress={() => setShowMore(!showMore)} variant={'link'} className="my-2">
 							<Text>{showMore ? 'Show Less' : 'Show More'}</Text>
 						</Button>
 					</Box>
 				) : (
-					<Box my={2}>
-						<Text h={'auto'} fontSize={'$lg'}>
+					<Box className="my-2">
+						<Text className="h-auto text-lg">
 							No description available
 						</Text>
 					</Box>
 				)}
 			</Box>
-		</VStack>
-	)
+        </VStack>
+    );
 }

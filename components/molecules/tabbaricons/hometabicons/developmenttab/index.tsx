@@ -7,7 +7,7 @@ import { ThemeReactiveVar } from '#/reactive'
 const DevelopmentTab = (props: TabProps) => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	return (
-		<TabBarIcon
+        <TabBarIcon
 			icon={
 				<MaterialCommunityIcons
 					style={{
@@ -21,7 +21,7 @@ const DevelopmentTab = (props: TabProps) => {
 				/>
 			}
 		/>
-	)
+    );
 }
 
 export default DevelopmentTab

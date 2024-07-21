@@ -6,7 +6,7 @@ import { ThemeReactiveVar } from '#/reactive'
 const NotificationTab = (props: TabProps) => {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	return (
-		<TabBarIcon
+        <TabBarIcon
 			icon={
 				<MaterialIcons
 					style={{
@@ -19,7 +19,7 @@ const NotificationTab = (props: TabProps) => {
 				/>
 			}
 		/>
-	)
+    );
 }
 
 export default NotificationTab

@@ -1,13 +1,13 @@
+import { Input, InputField } from "#/components/ui/input";
 import { useReactiveVar } from '@apollo/client'
-import { Input } from '@gluestack-ui/themed'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { View } from 'react-native'
 
-interface HomeTownScreenProps {}
+interface HomeTownScreenProps { }
 
-export default ({}: HomeTownScreenProps) => {
+export default ({ }: HomeTownScreenProps) => {
 	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 	const rTheme = useReactiveVar(ThemeReactiveVar)
 	const [search, setSearch] = useState<string>('')
@@ -40,26 +40,26 @@ export default ({}: HomeTownScreenProps) => {
 					alignSelf: 'center',
 					paddingHorizontal: 10,
 				}}
+				borderBottomColor={'$transparent'}
+				rounded={'$md'}
+				color={
+					rTheme.colorScheme === 'light'
+						? rTheme.theme?.gluestack.tokens.colors.light900
+						: rTheme.theme?.gluestack.tokens.colors.light100
+				}
+				backgroundColor={
+					rTheme.colorScheme === 'light'
+						? rTheme.theme?.gluestack.tokens.colors.light100
+						: rTheme.theme?.gluestack.tokens.colors.light900
+				}
 			>
-				<Input.Input
+				<InputField
 					value={search}
 					placeholder='Search...'
 					onChangeText={(text: string) => setSearch(text)}
-					borderBottomColor={'$transparent'}
-					rounded={'$md'}
 					keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-					color={
-						rTheme.colorScheme === 'light'
-							? rTheme.theme?.gluestack.tokens.colors.light900
-							: rTheme.theme?.gluestack.tokens.colors.light100
-					}
-					backgroundColor={
-						rTheme.colorScheme === 'light'
-							? rTheme.theme?.gluestack.tokens.colors.light100
-							: rTheme.theme?.gluestack.tokens.colors.light900
-					}
 				/>
 			</Input>
 		</View>
-	)
+	);
 }

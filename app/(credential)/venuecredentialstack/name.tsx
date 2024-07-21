@@ -1,5 +1,10 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Pressable } from "#/components/ui/pressable";
+import { Input } from "#/components/ui/input";
+import { Heading } from "#/components/ui/heading";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
-import { Box, Heading, Input, Pressable, Text, VStack } from '@gluestack-ui/themed'
 import { Feather } from '@expo/vector-icons'
 import { useIsFocused } from '@react-navigation/native'
 import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '#/reactive'
@@ -80,32 +85,11 @@ export default () => {
 
 	const InnerContent = () => {
 		return (
-			<Box
-				flexDirection={'row'}
-				justifyContent={'flex-end'}
-				alignItems={'center'}
-				sx={{
-					h: 90,
-					_dark: {
-						bg: '$black',
-					},
-					_light: {
-						bg: '$white',
-					},
-				}}
-				px={'$2'}
-			>
-				<Pressable disabled={!!errors.firstname || !!errors.lastname} onPress={handleSubmit(onSubmit)}>
+            <Box
+                className="flex-row justify-end items-center h-[90px]  dark:bg-black bg-white px-2">
+                <Pressable disabled={!!errors.firstname || !!errors.lastname} onPress={handleSubmit(onSubmit)}>
 					<Box
-						alignItems='center'
-						justifyContent='center'
-						sx={{
-							h: 50,
-							w: 50,
-						}}
-						rounded={'$full'}
-						bg='$primary500'
-					>
+                        className="items-center justify-center h-[50px]  w-[50px] rounded-full bg-primary-500">
 						<Feather
 							name='arrow-right'
 							size={32}
@@ -113,14 +97,14 @@ export default () => {
 						/>
 					</Box>
 				</Pressable>
-			</Box>
-		)
+            </Box>
+        );
 	}
 
 	return (
-		<Box bg='$transparent' flex={1}>
-			<Reanimated.View style={{ flex: 1, marginHorizontal: 15 }}>
-				<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$3xl'}>
+        <Box className="bg-transparent flex-1">
+            <Reanimated.View style={{ flex: 1, marginHorizontal: 15 }}>
+				<Heading className="mt-4 font-black text-3xl">
 					Enter your name
 				</Heading>
 				<VStack space={'md'} style={{ marginVertical: '10%' }}>
@@ -128,7 +112,7 @@ export default () => {
 						name='firstname'
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => (
-							<Input key={'name'} variant={'underlined'} py={'$1'} size={'lg'}>
+							<Input key={'name'} variant={'underlined'} size={'lg'} className="py-1">
 								<Input
 									ref={_firstnameRef}
 									keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
@@ -142,12 +126,12 @@ export default () => {
 									autoFocus
 									placeholder='First name'
 									inputAccessoryViewID={INPUT_ACCESSORY_VIEW_ID}
-									py={'$1'}
 									onSubmitEditing={() => _lastnameRef?.current?.focus()}
 									onBlur={onBlur}
 									blurOnSubmit={false}
 									onChangeText={onChange}
 									value={value.toLowerCase()}
+									className="py-1"
 								/>
 							</Input>
 						)}
@@ -158,7 +142,7 @@ export default () => {
 							},
 						}}
 					/>
-					<Text fontSize={'$sm'} color='$error700'>
+					<Text className="text-sm text-error-700">
 						{errors?.firstname?.message}
 					</Text>
 
@@ -166,7 +150,7 @@ export default () => {
 						name='lastname'
 						control={control}
 						render={({ field: { onChange, onBlur, value } }) => (
-							<Input key={'lname'} variant={'underlined'} py={'$1'} size={'lg'}>
+							<Input key={'lname'} variant={'underlined'} size={'lg'} className="py-1">
 								<Input
 									ref={_lastnameRef}
 									keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
@@ -179,12 +163,12 @@ export default () => {
 									numberOfLines={1}
 									placeholder='Last name'
 									inputAccessoryViewID={INPUT_ACCESSORY_VIEW_ID}
-									py={'$1'}
 									onBlur={onBlur}
 									onSubmitEditing={handleSubmit(onSubmit)}
 									blurOnSubmit={false}
 									onChangeText={onChange}
 									value={value.toLowerCase()}
+									className="py-1"
 								/>
 							</Input>
 						)}
@@ -198,7 +182,7 @@ export default () => {
 					<Text>{errors?.firstname?.message}</Text>
 				</VStack>
 			</Reanimated.View>
-			{Platform.OS === 'ios' ? (
+            {Platform.OS === 'ios' ? (
 				<InputAccessoryView nativeID={INPUT_ACCESSORY_VIEW_ID}>
 					<InnerContent />
 				</InputAccessoryView>
@@ -214,6 +198,6 @@ export default () => {
 					<InnerContent />
 				</Reanimated.View>
 			)}
-		</Box>
-	)
+        </Box>
+    );
 }

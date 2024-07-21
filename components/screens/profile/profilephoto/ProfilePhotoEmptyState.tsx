@@ -1,5 +1,7 @@
+import { Pressable } from "#/components/ui/pressable";
+import { Center } from "#/components/ui/center";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
-import { Box, Center, Pressable } from '@gluestack-ui/themed'
 import { Ionicons } from '@expo/vector-icons'
 import { AuthorizationReactiveVar, ThemeReactiveVar } from '#/reactive'
 import * as ImagePicker from 'expo-image-picker'
@@ -12,13 +14,8 @@ export default function ProfilePhotoEmptyState() {
 	const [isLoading, setLoading] = useState(false)
 
 	return (
-		<Box
-			sx={{
-				h: '100%',
-			}}
-			justifyContent={'center'}
-		>
-			<Center>
+        <Box className="h-[100%] justify-center">
+            <Center>
 				<Ionicons
 					size={40}
 					name={'person'}
@@ -29,23 +26,8 @@ export default function ProfilePhotoEmptyState() {
 					}
 				/>
 			</Center>
-			<Box
-				sx={{
-					_light: {
-						borderColor: '$light700',
-					},
-					_dark: {
-						borderColor: '$light400',
-					},
-					bottom: -15,
-					right: -15,
-				}}
-				borderWidth={'$2'}
-				rounded={'$full'}
-				alignItems={'center'}
-				justifyContent={'center'}
-				position={'absolute'}
-			>
+            <Box
+                className="border-light-700  dark:border-light-400 -bottom-15  -right-15 border-2 rounded-full items-center justify-center absolute">
 				<Ionicons
 					name='arrow-up-circle'
 					color={
@@ -60,6 +42,6 @@ export default function ProfilePhotoEmptyState() {
 					}}
 				/>
 			</Box>
-		</Box>
-	)
+        </Box>
+    );
 }

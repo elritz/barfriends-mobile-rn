@@ -1,5 +1,5 @@
+import { Button, ButtonText } from "#/components/ui/button";
 import { useReactiveVar } from '@apollo/client'
-import { Button, ButtonText } from '@gluestack-ui/themed'
 import { GET_LIVE_VENUE_TOTALS_QUERY } from '#/graphql/DM/profiling/out/index.query'
 import {
 	AuthorizationDeviceProfile,
@@ -75,18 +75,14 @@ export default function JoinVenue() {
 	}, [rAuthorizationVar, isJoined])
 
 	return (
-		<Button
-			size={'lg'}
-			w={'$full'}
-			alignItems='center'
-			justifyContent='center'
-			onPress={() => {
+        <Button
+            size={'lg'}
+            onPress={() => {
 				addPersonalJoinVenueMutation()
 			}}
-			isDisabled={isJoined}
-			rounded={'$md'}
-		>
-			<ButtonText>{JVLoading ? 'Joining' : 'Join'}</ButtonText>
-		</Button>
-	)
+            isDisabled={isJoined}
+            className="w-full items-center justify-center rounded-md">
+            <ButtonText>{JVLoading ? 'Joining' : 'Join'}</ButtonText>
+        </Button>
+    );
 }

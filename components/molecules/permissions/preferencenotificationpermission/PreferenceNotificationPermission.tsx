@@ -1,5 +1,10 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Heading } from "#/components/ui/heading";
+import { Divider } from "#/components/ui/divider";
+import { Button, ButtonText } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
-import { Box, Button, ButtonText, Divider, Heading, Text, VStack } from '@gluestack-ui/themed'
 import {
 	PermissionNotificationReactiveVar,
 	PreferencePermissionNotificationReactiveVar,
@@ -17,12 +22,12 @@ export default function PreferenceNotificationPermission() {
 	const rPermissionNotificationVar = useReactiveVar(PermissionNotificationReactiveVar)
 
 	return (
-		<AnimatePresence key={uniqueId()}>
-			{!rPermissionNotificationVar?.granted &&
+        <AnimatePresence key={uniqueId()}>
+            {!rPermissionNotificationVar?.granted &&
 				rPreferencePermissionNotificationVar?.canShowAgain &&
 				DateTime.fromISO(rPreferencePermissionNotificationVar?.dateToShowAgain.toString()) <=
 					DateTime.now() && (
-					<Box bg={'transparent'} key={uniqueId()}>
+					<Box key={uniqueId()} className="bg-transparent">
 						<MotiView
 							from={{
 								opacity: 0,
@@ -41,48 +46,42 @@ export default function PreferenceNotificationPermission() {
 								scale: 0.9,
 							}}
 						>
-							<VStack space={'md'} alignItems={'center'}>
-								<Heading textAlign={'center'} fontWeight={'$black'} fontSize={'$xl'}>
+							<VStack space={'md'} className="items-center">
+								<Heading className="text-center font-black text-xl">
 									Stay Up to Date
 								</Heading>
-								<Text textAlign={'center'} fontSize={'$md'} style={{ width: '90%' }}>
+								<Text style={{ width: '90%' }} className="text-center text-md">
 									Turn on notification to hear about deals, events, messages, friend requests.
 								</Text>
 								<Button
-									onPress={() =>
+                                    onPress={() =>
 										router.push({
 											pathname: '/(app)/permission/notifications',
 										})
 									}
-									sx={{
-										w: '85%',
-									}}
-									rounded={'$md'}
-								>
-									<ButtonText fontWeight='$bold' fontSize={'$lg'}>
+                                    className="w-[85%] rounded-md">
+									<ButtonText className="font-bold text-lg">
 										Continue
 									</ButtonText>
 								</Button>
 								<Button
-									sx={{
-										w: '90%',
-									}}
 									variant={'link'}
 									onPress={() => {
 										router.push({
 											pathname: '/(app)/modal/asks/notificationnextask',
 										})
 									}}
+									className="w-[90%]"
 								>
-									<Text fontSize={'$lg'} fontWeight={'$bold'} alignSelf='center'>
+									<Text className="text-lg font-bold self-center">
 										Not now
 									</Text>
 								</Button>
 							</VStack>
 						</MotiView>
-						<Divider my={'$2'} />
+						<Divider className="my-2" />
 					</Box>
 				)}
-		</AnimatePresence>
-	)
+        </AnimatePresence>
+    );
 }

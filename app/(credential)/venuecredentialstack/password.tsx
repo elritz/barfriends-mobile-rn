@@ -1,17 +1,11 @@
+import { VStack } from "#/components/ui/vstack";
+import { Text } from "#/components/ui/text";
+import { Pressable } from "#/components/ui/pressable";
+import { Input, InputField, InputIcon, InputSlot } from "#/components/ui/input";
+import { Heading } from "#/components/ui/heading";
+import { EyeIcon, EyeOffIcon, Icon } from "#/components/ui/icon";
+import { Box } from "#/components/ui/box";
 import { useReactiveVar } from '@apollo/client'
-import {
-	Box,
-	EyeIcon,
-	EyeOffIcon,
-	Heading,
-	Icon,
-	Input,
-	InputIcon,
-	InputSlot,
-	Pressable,
-	Text,
-	VStack,
-} from '@gluestack-ui/themed'
 import { Feather } from '@expo/vector-icons'
 import { useIsFocused } from '@react-navigation/native'
 import { CredentialPersonalProfileReactiveVar, ThemeReactiveVar } from '#/reactive'
@@ -59,7 +53,6 @@ export default function () {
 
 	const [showPassword, setShowPassword] = useState(false)
 	const handleState = () => {
-		console.log("🚀 ~ handleState ~ showState:")
 		setShowPassword(showState => {
 			return !showState
 		})
@@ -73,20 +66,7 @@ export default function () {
 	const InnerContent = () => {
 		return (
 			<Box
-				flexDirection={'row'}
-				justifyContent={'flex-end'}
-				alignItems='center'
-				sx={{
-					h: 90,
-					_dark: {
-						bg: '$black',
-					},
-					_light: {
-						bg: '$white',
-					},
-				}}
-				px={'$2'}
-			>
+				className="flex-row justify-end items-center h-[90px]  dark:bg-black bg-white px-2">
 				<View
 					style={{
 						display: 'flex',
@@ -96,21 +76,13 @@ export default function () {
 				>
 					<Pressable disabled={!!errors.password} onPress={handleSubmit(onSubmit)}>
 						<Box
-							alignItems='center'
-							justifyContent='center'
-							sx={{
-								h: 50,
-								w: 50,
-							}}
-							rounded={'$full'}
-							bg='$primary500'
-						>
+							className="items-center justify-center h-[50px]  w-[50px] rounded-full bg-primary-500">
 							<Feather name='arrow-right' size={32} color={errors?.password ? '#292524' : 'white'} />
 						</Box>
 					</Pressable>
 				</View>
 			</Box>
-		)
+		);
 	}
 
 	const textInputContainerStyle = useAnimatedStyle(
@@ -172,9 +144,9 @@ export default function () {
 	}
 
 	return (
-		<Box bg='$transparent' flex={1}>
+		<Box className="bg-transparent flex-1">
 			<Reanimated.View style={{ flex: 1, marginHorizontal: 15 }}>
-				<Heading mt={'$4'} fontWeight={'$black'} fontSize={'$2xl'}>
+				<Heading className="mt-4 font-black text-2xl">
 					Enter a password
 				</Heading>
 				<View style={{ marginVertical: '10%', width: '100%' }}>
@@ -183,42 +155,40 @@ export default function () {
 						control={control}
 						defaultValue=''
 						render={({ field: { onChange, onBlur, value } }) => {
-							return (
-								<>
-									<Input key={'password'} variant={'underlined'} py={'$1'} size={'lg'}>
-										<Input.Input
-											value={value}
-											ref={_passwordRef}
-											keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-											onChangeText={onChange}
-											onSubmitEditing={handleSubmit(onSubmit)}
-											onBlur={onBlur}
-											textContentType='newPassword'
-											blurOnSubmit={false}
-											type={showPassword ? 'text' : 'password'}
-											passwordRules={
-												'minlength: 20; required: lower; required: upper; required: digit; required: [-];'
-											}
-											autoComplete='new-password'
-											autoFocus
-											enablesReturnKeyAutomatically={false}
-											placeholder='Password'
-											returnKeyType='done'
-											autoCorrect={false}
-											inputAccessoryViewID={INPUT_ACCESSORY_VIEW_ID}
-											autoCapitalize='none'
-											numberOfLines={1}
-										/>
-										<InputSlot pr='$3' onPress={handleState}>
-											{/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
-											<InputIcon as={showPassword ? EyeIcon : EyeOffIcon} color='$primary500' />
-										</InputSlot>
-									</Input>
-									<Text fontSize={'$sm'} color='$error700'>
-										{errors?.password?.message}
-									</Text>
-								</>
-							)
+							return (<>
+								<Input key={'password'} variant={'underlined'} size={'lg'} className="py-1">
+									<InputField
+										value={value}
+										ref={_passwordRef}
+										keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+										onChangeText={onChange}
+										onSubmitEditing={handleSubmit(onSubmit)}
+										onBlur={onBlur}
+										textContentType='newPassword'
+										blurOnSubmit={false}
+										type={showPassword ? 'text' : 'password'}
+										passwordRules={
+											'minlength: 20; required: lower; required: upper; required: digit; required: [-];'
+										}
+										autoComplete='new-password'
+										autoFocus
+										enablesReturnKeyAutomatically={false}
+										placeholder='Password'
+										returnKeyType='done'
+										autoCorrect={false}
+										inputAccessoryViewID={INPUT_ACCESSORY_VIEW_ID}
+										autoCapitalize='none'
+										numberOfLines={1}
+									/>
+									<InputSlot onPress={handleState} className="pr-3">
+										{/* EyeIcon, EyeOffIcon are both imported from 'lucide-react-native' */}
+										<InputIcon as={showPassword ? EyeIcon : EyeOffIcon} className="text-primary-500" />
+									</InputSlot>
+								</Input>
+								<Text className="text-sm text-error-700">
+									{errors?.password?.message}
+								</Text>
+							</>);
 						}}
 						rules={{
 							required: {
@@ -254,5 +224,5 @@ export default function () {
 				</Reanimated.View>
 			)}
 		</Box>
-	)
+	);
 }

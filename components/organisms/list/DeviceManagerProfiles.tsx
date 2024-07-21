@@ -1,7 +1,10 @@
+import { Center } from "#/components/ui/center";
+import { Pressable } from "#/components/ui/pressable";
+import { HStack } from "#/components/ui/hstack";
+import { Button } from "#/components/ui/button";
 import { useReactiveVar } from '@apollo/client'
 import DeviceManagerProfileItemLarge from '#/components/molecules/authorization/devicemanagerprofileitem/DeviceManagerProfileItemLarge'
 import { Entypo } from '@expo/vector-icons'
-import { Button, HStack, Pressable, Center } from '@gluestack-ui/themed'
 import {
 	AuthorizationDeviceProfile,
 	ProfileType,
@@ -59,17 +62,17 @@ const DeviceManagerProfiles = () => {
 	if (loading) return null
 
 	return (
-		<Center>
-			{profiles?.length ? (
+        <Center>
+            {profiles?.length ? (
 				<>
 					{profiles?.map((item, index) => {
 						if (item.Profile?.ProfileType === ProfileType.Guest) return null
 						return (
-							<HStack key={index} h={80} alignItems='center'>
-								<Pressable key={item.id} onPress={() => switchProfile(item)}>
+                            <HStack key={index} className="h-[80px] items-center">
+                                <Pressable key={item.id} onPress={() => switchProfile(item)}>
 									<DeviceManagerProfileItemLarge item={item.Profile} loading={SWDPLoading} />
 								</Pressable>
-								<Center h={300}>
+                                <Center className="h-[300px]">
 									<Button
 										variant='link'
 										onPress={() => router.push(`/modal/devicemanager/${item.Profile?.id}`)}
@@ -88,13 +91,13 @@ const DeviceManagerProfiles = () => {
 										/>
 									</Button>
 								</Center>
-							</HStack>
-						)
+                            </HStack>
+                        );
 					})}
 				</>
 			) : null}
-		</Center>
-	)
+        </Center>
+    );
 }
 
 export default DeviceManagerProfiles

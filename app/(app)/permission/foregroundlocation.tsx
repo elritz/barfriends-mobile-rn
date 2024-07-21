@@ -1,7 +1,11 @@
+import { VStack } from "#/components/ui/vstack";
+import { Heading } from "#/components/ui/heading";
+import { Divider } from "#/components/ui/divider";
+import { Button, ButtonText } from "#/components/ui/button";
+import { Box } from "#/components/ui/box";
 // TODO: UX(handleAppStateChange) check if location permission is enabled and go somewhere with it
 import { useReactiveVar } from '@apollo/client'
 import IllustrationDynamicLocation from '#/assets/images/location/IllustrationDynamicLocation'
-import { Box, Button, Divider, Heading, ButtonText, VStack } from '@gluestack-ui/themed'
 import PermissionDetailItem from '#/components/screens/permissions/PermissionDetailItem'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { useIsFocused } from '@react-navigation/native'
@@ -158,44 +162,34 @@ export default () => {
 	})
 
 	return (
-		<Box bg={'$transparent'} style={{ flex: 1 }} mb={'$5'}>
-			<Box bg={'$transparent'} alignItems={'center'} justifyContent={'flex-start'} my={'$5'}>
+        <Box style={{ flex: 1 }} className="bg-transparent mb-5">
+            <Box className="bg-transparent items-center justify-start my-5">
 				<IllustrationDynamicLocation width={60} height={60} />
 				<Divider style={{ width: 50, marginVertical: 10 }} />
 				<Heading
-					px={'$2'}
-					fontWeight={'$black'}
-					fontSize={'$3xl'}
-					style={{
+                    style={{
 						textAlign: 'center',
 					}}
-					allowFontScaling
-					adjustsFontSizeToFit
-					numberOfLines={3}
-				>
+                    allowFontScaling
+                    adjustsFontSizeToFit
+                    numberOfLines={3}
+                    className="px-2 font-black text-3xl">
 					Allow Barfriends to Use Foreground Location
 				</Heading>
 			</Box>
-			<ScrollView>
-				<Box bg={'$transparent'} sx={{ w: wp(95) }} alignSelf='center' flex={1}>
+            <ScrollView>
+				<Box className="bg-transparent w-[undefined] self-center flex-1">
 					{details.map((item, index) => {
 						return (
-							<View key={index}>
-								<PermissionDetailItem {...item} />
-							</View>
-						)
+                            <View key={index}>
+                                <PermissionDetailItem {...item} />
+                            </View>
+                        );
 					})}
 				</Box>
 			</ScrollView>
-			<VStack
-				space={'md'}
-				w={'$full'}
-				alignItems={'center'}
-				sx={{
-					mb: insets.bottom,
-				}}
-			>
-				<Divider w={'95%'} />
+            <VStack space={'md'} className="w-full items-center mb-[undefined]">
+				<Divider className="w-[95%]" />
 				<Button
 					size={'lg'}
 					style={{
@@ -218,24 +212,19 @@ export default () => {
 					</ButtonText>
 				</Button>
 				{!started ? (
-					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
-						<ButtonText fontWeight={'$medium'}>Close</ButtonText>
+					<Button size={'lg'} onPress={() => router.back()} variant={'link'} className="w-[95%]">
+						<ButtonText className="font-medium">Close</ButtonText>
 					</Button>
 				) : (
-					<Button size={'lg'} sx={{ width: '95%' }} onPress={() => router.back()} variant={'link'}>
+					<Button size={'lg'} onPress={() => router.back()} variant={'link'} className="w-[95%]">
 						{started && (
-							<Box
-								bg={'$transparent'}
-								sx={{
-									h: 24,
-								}}
-							>
-								{<ButtonText fontWeight={'$medium'}>Auto close in {seconds}</ButtonText>}
+							<Box className="bg-transparent h-[24px]">
+								{<ButtonText className="font-medium">Auto close in {seconds}</ButtonText>}
 							</Box>
 						)}
 					</Button>
 				)}
 			</VStack>
-		</Box>
-	)
+        </Box>
+    );
 }

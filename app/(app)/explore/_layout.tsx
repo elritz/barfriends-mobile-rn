@@ -1,13 +1,15 @@
+import { VStack } from "#/components/ui/vstack";
 import { useReactiveVar } from '@apollo/client'
-import { VStack } from '@gluestack-ui/themed'
 import SearchInputResults from '#/components/molecules/search/searchinput/SearchInputResults'
 import SearchInputText from '#/components/molecules/search/searchinput/SearchInputText'
 import { ThemeReactiveVar } from '#/reactive'
 import { BlurView } from 'expo-blur'
 import { Stack } from 'expo-router'
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function _layout() {
 	const rTheme = useReactiveVar(ThemeReactiveVar)
+	const insets = useSafeAreaInsets()
 
 	return (
 		<Stack
@@ -33,21 +35,16 @@ export default function _layout() {
 										rTheme.colorScheme === 'light'
 											? rTheme.theme?.gluestack.tokens.colors.light100
 											: rTheme.theme?.gluestack.tokens.colors.light900,
+									paddingTop: insets.top,
 								}}
 								intensity={70}
 								tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
 							>
-								<VStack
-									justifyContent={'flex-start'}
-									sx={{
-										_light: { bg: '$light100' },
-										_dark: { bg: '$light900' },
-									}}
-								>
+								<VStack className="justify-start bg-light-100  dark:bg-light-900">
 									<SearchInputText />
 								</VStack>
 							</BlurView>
-						)
+						);
 					},
 				}}
 			/>
@@ -58,21 +55,17 @@ export default function _layout() {
 					headerTransparent: true,
 					header: () => {
 						return (
-							<BlurView intensity={70} tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}>
-								<VStack
-									justifyContent={'flex-start'}
-									sx={{
-										_light: { bg: '$light100' },
-										_dark: { bg: '$light900' },
-									}}
-								>
+							<BlurView style={{
+								paddingTop: insets.top,
+							}} intensity={70} tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}>
+								<VStack className="justify-start bg-light-100  dark:bg-light-900">
 									<SearchInputResults />
 								</VStack>
 							</BlurView>
-						)
+						);
 					},
 				}}
 			/>
 		</Stack>
-	)
+	);
 }
