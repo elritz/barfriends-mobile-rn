@@ -1,6 +1,6 @@
 import { View } from "#/components/ui/view";
 import { Text } from "#/components/ui/text";
-import { Button, ButtonIcon } from "#/components/ui/button";
+import { Button } from "#/components/ui/button";
 import { VStack } from "#/components/ui/vstack";
 import { HStack } from "#/components/ui/hstack";
 import { useReactiveVar } from "@apollo/client";
@@ -10,16 +10,9 @@ import {
   useDeclineFriendRequestMutation,
   useDeleteFriendRequestMutation,
 } from "#/graphql/generated";
-import { AuthorizationReactiveVar, ThemeReactiveVar } from "#/reactive";
-import { useRouter } from "expo-router";
-import {
-  CheckCircleIcon,
-  CheckIcon,
-  CloseIcon,
-  Icon,
-} from "#/components/ui/icon";
+import { AuthorizationReactiveVar } from "#/reactive";
+import { CloseIcon, Icon } from "#/components/ui/icon";
 import { Pressable } from "react-native";
-import { Spinner } from "#/components/ui/spinner";
 
 interface CondensedHorizontalFriendNotifciationProps<T> {
   item: Request | null | undefined;
@@ -29,8 +22,6 @@ export const CondensedHorizontalFriendNotifciation = <T,>({
   item,
 }: CondensedHorizontalFriendNotifciationProps<T>) => {
   const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar);
-  const rThemeVar = useReactiveVar(ThemeReactiveVar);
-  const router = useRouter();
 
   const [
     deleteFriendRequestMutation,

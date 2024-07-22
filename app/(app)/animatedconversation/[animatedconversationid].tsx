@@ -1,13 +1,10 @@
-
 import { SafeAreaView } from "#/components/ui/safe-area-view";
 import { EyeOffIcon, EyeIcon } from "#/components/ui/icon";
 import { Box } from "#/components/ui/box";
 import { Input, InputField, InputSlot, InputIcon } from "#/components/ui/input";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { SafeAreaView as RNSafeAreaView, View } from "react-native";
-import {
-  useKeyboardHandler,
-} from "react-native-keyboard-controller";
+import { useKeyboardHandler } from "react-native-keyboard-controller";
 import Reanimated, {
   useAnimatedProps,
   useAnimatedScrollHandler,
@@ -23,6 +20,7 @@ import { ThemeReactiveVar } from "#/reactive";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useCreateMessageMutation } from "#/graphql/generated";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { BlurView } from "expo-blur";
 
 const AnimatedTextInput = Reanimated.createAnimatedComponent(Box);
 
@@ -114,16 +112,17 @@ const useKeyboardAnimation = () => {
 const TEXT_INPUT_HEIGHT = 80;
 
 const contentContainerStyle = {
-  paddingBottom: TEXT_INPUT_HEIGHT + 75,
+  paddingBottom: TEXT_INPUT_HEIGHT + 95,
 };
 // const AnimatedBoxInput = Reanimated.createAnimatedComponent(Box);
-const AnimatedView = Reanimated.createAnimatedComponent(View);
+// const AnimatedView = Reanimated.createAnimatedComponent(View);
+const AnimatedBlurView = Reanimated.createAnimatedComponent(View);
 
 function AnimatedChatroom() {
   const refSafeArea = useRef<RNSafeAreaView>(null);
 
   const ref = useRef<Reanimated.ScrollView>(null);
-  const rTheme = useReactiveVar(ThemeReactiveVar)
+  const rTheme = useReactiveVar(ThemeReactiveVar);
   const { height, onScroll, inset, offset } = useKeyboardAnimation();
 
   const {
@@ -132,12 +131,13 @@ function AnimatedChatroom() {
     formState: { errors, isSubmitting, isSubmitted },
   } = useForm<FormValues>({
     defaultValues: {
-      text: '',
+      text: "",
       // text: 'Weqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqeqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqwe',
     },
-  })
+  });
 
-  const [createMessageMutation, { data, loading, error }] = useCreateMessageMutation()
+  const [createMessageMutation, { data, loading, error }] =
+    useCreateMessageMutation();
 
   const scrollToBottom = useCallback(() => {
     ref.current?.scrollToEnd({ animated: false });
@@ -146,10 +146,11 @@ function AnimatedChatroom() {
   const BoxInputStyle = useAnimatedStyle(
     () => ({
       position: "absolute",
-      minHeight: height.value < 100 ? TEXT_INPUT_HEIGHT : TEXT_INPUT_HEIGHT - 20,
+      minHeight:
+        height.value < 100 ? TEXT_INPUT_HEIGHT : TEXT_INPUT_HEIGHT - 20,
       width: "100%",
       transform: [{ translateY: -height.value }],
-      paddingHorizontal: 10,
+      // paddingHorizontal: 10,
       fontSize: 15,
     }),
     [],
@@ -165,18 +166,20 @@ function AnimatedChatroom() {
     },
   }));
 
-
-  const handleSendMessage = useCallback<SubmitHandler<FormValues>>(({ text }) => {
-    console.log("🚀 ~ handleSendMessage ~ value:", text)
-    // createMessageMutation({
-    //   variables: {
-    //     content: {
-    //       text: value,
-    //     },
-    //     conversationId: '1'
-    //   }
-    // })
-  }, [])
+  const handleSendMessage = useCallback<SubmitHandler<FormValues>>(
+    ({ text }) => {
+      console.log("🚀 ~ handleSendMessage ~ value:", text);
+      // createMessageMutation({
+      //   variables: {
+      //     content: {
+      //       text: value,
+      //     },
+      //     conversationId: '1'
+      //   }
+      // })
+    },
+    [],
+  );
 
   return (
     <View style={styles.container}>
@@ -188,7 +191,7 @@ function AnimatedChatroom() {
         // simulation of `automaticallyAdjustKeyboardInsets` behavior on RN < 0.73
         animatedProps={props}
         onScroll={onScroll}
-        contentInset={{ top: 200 }}
+        contentInset={{ top: 220 }}
         automaticallyAdjustContentInsets={false}
         contentInsetAdjustmentBehavior="never"
       >
@@ -196,36 +199,68 @@ function AnimatedChatroom() {
           <Message key={index} {...message} />
         ))}
       </Reanimated.ScrollView>
-      <AnimatedView style={[BoxInputStyle, { backgroundColor: rTheme.colorScheme === 'light' ? rTheme.theme?.gluestack.tokens.colors.light200 : rTheme.theme?.gluestack.tokens.colors.black }]}>
-        <Controller
-          control={control}
-          name='text'
-          rules={{
-            required: true,
-          }}
-          render={({ field: { onChange, onBlur, value } }) => {
-            return (
-              <SafeAreaView ref={refSafeArea} className="mb-2">
-                <Input
-                  className="border-light-300 flex-row rounded-xl items-center h-auto min-h-[40px] max-h-[150px] mt-2">
-                  <InputField
-                    value={value}
-                    onChangeText={onChange}
-                    multiline
-                    onPressIn={() => ref.current?.scrollToEnd()}
-                    className="border-0 flex-1 h-auto text-lg" />
-                  <InputSlot
-                    onPress={handleSubmit(handleSendMessage)}
-                    className="bg-primary-500 mr-2 p-1 items-center justify-center h-[25px] w-[25px] rounded-full">
-                    <FontAwesome6 name={'arrow-up'} fontSize={'$xl'} size={16} color={'#ffffff'} />
-                  </InputSlot>
-                </Input>
-              </SafeAreaView>
-            );
-          }}
-        />
-      </AnimatedView>
-    </View >
+      <AnimatedBlurView
+        style={[
+          BoxInputStyle,
+          {
+            // backgroundColor: "red",
+          },
+
+          // {
+          //   backgroundColor:
+          //     rTheme.colorScheme === "light"
+          //       ? rTheme.theme?.gluestack.tokens.colors.light200
+          //       : rTheme.theme?.gluestack.tokens.colors.black,
+          // },
+        ]}
+      >
+        <BlurView style={{ minWidth: "100%", height: "100%" }}>
+          <Controller
+            control={control}
+            name="text"
+            rules={{
+              required: true,
+            }}
+            render={({ field: { onChange, onBlur, value } }) => {
+              return (
+                <SafeAreaView ref={refSafeArea} className="">
+                  <Input className="mx-4 mb-2 mt-5 h-auto max-h-[155px] items-center rounded-3xl border-light-300">
+                    <BlurView
+                      style={{ flex: 1, height: "100%" }}
+                      className="h-auto min-h-[40px] flex-row items-center rounded-3xl"
+                      intensity={95}
+                    >
+                      <InputField
+                        value={value}
+                        variant="rounded"
+                        onChangeText={onChange}
+                        multiline
+                        style={{
+                          lineHeight: 22,
+                        }}
+                        onPressIn={() => ref.current?.scrollToEnd()}
+                        className="h-auto flex-1 border-0 text-[17px] font-medium leading-6 color-black dark:color-white"
+                      />
+                      <InputSlot
+                        onPress={handleSubmit(handleSendMessage)}
+                        className="mr-2 h-[25px] w-[25px] items-center justify-center rounded-full bg-primary-500"
+                      >
+                        <FontAwesome6
+                          name={"arrow-up"}
+                          fontSize={"$xl"}
+                          size={16}
+                          color={"#ffffff"}
+                        />
+                      </InputSlot>
+                    </BlurView>
+                  </Input>
+                </SafeAreaView>
+              );
+            }}
+          />
+        </BlurView>
+      </AnimatedBlurView>
+    </View>
   );
 }
 

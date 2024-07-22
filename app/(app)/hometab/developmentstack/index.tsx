@@ -393,6 +393,15 @@ export default () => {
     },
     {
       type: "generalinformation",
+      title: "BfsProfile Id",
+      value: rAuthorizationVar?.Profile?.bfsprofileid,
+      icon: "",
+      onPress: async () => {
+        await Clipboard.setStringAsync(String(rAuthorizationVar?.Profile?.bfsprofileid));
+      },
+    },
+    {
+      type: "generalinformation",
       title: "Expo Push Token",
       value: expoPushNotificationToken,
       icon: "",
