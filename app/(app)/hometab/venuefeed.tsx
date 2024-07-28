@@ -34,6 +34,7 @@ import { Skeleton } from "moti/skeleton";
 import { memo, useCallback, useEffect, useState } from "react";
 import { ScrollView, View } from "react-native";
 import CountryFlag from "react-native-country-flag";
+import AdvertismentHorizontal from "#/components/screens/venuesfeed/advertisments/advertismenthorizontal";
 
 export default () => {
   const router = useRouter();
@@ -112,7 +113,10 @@ export default () => {
       getNearbyVenues();
     }
   }, []);
-
+  console.log(
+    "rSearchAreaVar.searchArea.city.name",
+    rSearchAreaVar.searchArea.city.name,
+  );
   const ListheaderComponent = () => {
     return (
       <Box className="bg-transparent py-2">
@@ -122,11 +126,12 @@ export default () => {
               <CardPleaseSignup signupTextId={1} />
             </Box>
           )}
-          {rSearchAreaVar.searchArea.city.name && <SearchAreaHeader />}
-          {/* <AdvertismentHorizontal /> */}
-          {!rSearchAreaVar.searchArea.city.name && (
+          {rSearchAreaVar.searchArea.city.name ? (
+            <SearchAreaHeader />
+          ) : (
             <VenueFeedSearchAreaEmptyState />
           )}
+          {/* <AdvertismentHorizontal /> */}
         </VStack>
       </Box>
     );

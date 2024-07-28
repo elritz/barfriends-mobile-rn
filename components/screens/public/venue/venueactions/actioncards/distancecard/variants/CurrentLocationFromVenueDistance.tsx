@@ -191,23 +191,6 @@ const CurrentLocationFromVenueDistance = () => {
       ) : (
         <Box className="-mt-2 h-[100%] items-center justify-center bg-transparent">
           <>
-            {/* {friends.value > 0 && (
-              <Box
-                className={`mb-2 min-h-[70px] min-w-[70px] items-center justify-around border-b-2 border-primary-500 px-5 py-2`}
-              >
-                <Heading
-                  numberOfLines={1}
-                  className={`leading-xl tracking-0.01 text-4xl font-black text-primary-500 dark:text-white`}
-                >
-                  {friends.value}
-                </Heading>
-                <Text
-                  className={`leading-xs text-md font-black uppercase text-black dark:text-white`}
-                >
-                  {friends.value === 1 ? `Friend` : `Friends`}
-                </Text>
-              </Box>
-            )} */}
             <Heading className="leading-xs text-md text-center font-[800]">
               {metric === "km"
                 ? distance < 20

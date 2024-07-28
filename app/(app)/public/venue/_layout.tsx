@@ -3,7 +3,6 @@ import { HStack } from "#/components/ui/hstack";
 import { Button } from "#/components/ui/button";
 // TODO: FX() Settings still needs to be done
 import { useReactiveVar } from "@apollo/client";
-import { SEARCH_BAR_HEIGHT } from "#/constants/ReactNavigationConstants";
 import { Entypo, Ionicons } from "@expo/vector-icons";
 import { usePublicVenueQuery } from "#/graphql/generated";
 import {
@@ -20,8 +19,6 @@ import {
 } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { VStack } from "#/components/ui/vstack";
-import { Alert, Platform, Pressable, Share } from "react-native";
-import * as Clipboard from "expo-clipboard";
 
 export default () => {
   const NAVIGATION_BUTTON_HEIGHT = 38;
@@ -29,36 +26,8 @@ export default () => {
   const rTheme = useReactiveVar(ThemeReactiveVar);
   const rSearchAreaVar = useReactiveVar(SearchAreaReactiveVar);
   const rCurrentLocationVar = useReactiveVar(CurrentLocationReactiveVar);
-  const HEADER_HEIGHT = SEARCH_BAR_HEIGHT + 15;
-  const h = insets.top + HEADER_HEIGHT;
   const router = useRouter();
   const params = useLocalSearchParams();
-  const link = `https://barfriends.com/app/public/venue?profileid=${params.venueProfileId}`;
-  const onShare = async () => {
-    try {
-      const result = await Share.share(
-        {
-          message: "Barfriends | The nightlife app",
-          url: Platform.OS === "ios" ? link : "",
-        },
-        {
-          dialogTitle: "Join me on Barfriends",
-          subject: "Invite to Barfriends",
-        },
-      );
-      if (result.action === Share.sharedAction) {
-        if (result.activityType) {
-          // shared with activity type of result.activityType
-        } else {
-          // shared
-        }
-      } else if (result.action === Share.dismissedAction) {
-        // dismissed
-      }
-    } catch (error: any) {
-      Alert.alert(error.message);
-    }
-  };
 
   const {
     data: venueData,
@@ -159,22 +128,6 @@ export default () => {
                       >
                         <Entypo
                           name={"dots-three-vertical"}
-                          size={23}
-                          color={
-                            rTheme.colorScheme === "light"
-                              ? rTheme.theme?.gluestack.tokens.colors.light900
-                              : rTheme.theme?.gluestack.tokens.colors.light100
-                          }
-                        />
-                      </Button>
-                      <Button
-                        onPress={onShare}
-                        variant={"solid"}
-                        size={"lg"}
-                        className="self-center bg-transparent"
-                      >
-                        <Ionicons
-                          name={"share"}
                           size={23}
                           color={
                             rTheme.colorScheme === "light"

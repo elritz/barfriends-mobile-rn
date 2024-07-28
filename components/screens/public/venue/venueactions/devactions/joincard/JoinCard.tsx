@@ -60,10 +60,6 @@ export default function JoinCard() {
     },
     update: (cache, { data }) => {
       if (data?.addPersonalJoinsVenue2.__typename === "LiveVenueTotals2") {
-        console.log(
-          "🚀 ~ JoinCard ~ data.addPersonalJoinsVenue2:",
-          data.addPersonalJoinsVenue2,
-        );
         cache.modify({
           id: cache.identify(data.addPersonalJoinsVenue2),
           fields: {

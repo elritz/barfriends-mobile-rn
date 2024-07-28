@@ -152,7 +152,6 @@ export default function LeaveSection() {
           }
         });
       } else {
-        console.log("here :>> ");
         setIsJoined(false);
       }
     }

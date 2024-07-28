@@ -26,7 +26,7 @@ const afterwareLink = new ApolloLink((operation, forward) =>
 				})
 			}
 			if(refresh) {
-				console.log("🚀 ~ asyncMap ~ refresh:", refresh)
+				// console.log("🚀 ~ asyncMap ~ refresh:", refresh)
 				await secureStorageItemCreate({
 					value: refresh,
 					key: REFRESH,

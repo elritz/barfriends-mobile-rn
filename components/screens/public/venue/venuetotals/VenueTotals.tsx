@@ -5,10 +5,7 @@ import { Button } from "#/components/ui/button";
 import { Box } from "#/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
 import { Ionicons } from "@expo/vector-icons";
-import {
-  useGetLiveVenueTotalsQuery,
-  useGetLiveVenueTotalsV2Query,
-} from "#/graphql/generated";
+import { useGetLiveVenueTotalsV2Query } from "#/graphql/generated";
 import { ThemeReactiveVar } from "#/reactive";
 import { useGlobalSearchParams } from "expo-router";
 import { uniqueId } from "lodash";
@@ -22,8 +19,6 @@ type Totals = {
 
 export default function VenueTotals() {
   const params = useGlobalSearchParams();
-  const { width } = useWindowDimensions();
-  const numColumns = 3;
   const rTheme = useReactiveVar(ThemeReactiveVar);
   const [total, setTotal] = useState<Totals>({ name: "total", value: 0 });
   const [friends, setFriends] = useState<Totals>({ name: "friends", value: 0 });
