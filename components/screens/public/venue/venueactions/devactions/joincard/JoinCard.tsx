@@ -60,6 +60,10 @@ export default function JoinCard() {
     },
     update: (cache, { data }) => {
       if (data?.addPersonalJoinsVenue2.__typename === "LiveVenueTotals2") {
+        console.log(
+          "🚀 ~ JoinCard ~ data.addPersonalJoinsVenue2:",
+          data.addPersonalJoinsVenue2,
+        );
         cache.modify({
           id: cache.identify(data.addPersonalJoinsVenue2),
           fields: {
@@ -73,7 +77,6 @@ export default function JoinCard() {
               data.addPersonalJoinsVenue2.totaled
                 ? data.addPersonalJoinsVenue2.totaled
                 : 0,
-            // out: () => data.addPersonalJoinsVenue2.__typename === 'LiveVenueTotals2' && data.addPersonalJoinsVenue2.updateOut ? [data.addPersonalJoinsVenue2.updateOut] : []
             out(existingOut, { toReference }) {
               return [...existingOut, data?.addPersonalJoinsVenue2.updateOut];
             },
@@ -112,18 +115,20 @@ export default function JoinCard() {
     ) {
       if (glvtData.getLiveVenueTotalsV2.out?.length) {
         glvtData.getLiveVenueTotalsV2.out?.some((item) => {
-          if (
-            glvtData.getLiveVenueTotalsV2.__typename === "LiveVenueTotals2" &&
-            rdmData?.refreshDeviceManager.__typename ===
-              "AuthorizationDeviceProfile"
-          ) {
+          if (item.type === "JOIN") {
             if (
-              item.personalProfileId ===
-              rdmData?.refreshDeviceManager.Profile?.id
+              glvtData.getLiveVenueTotalsV2.__typename === "LiveVenueTotals2" &&
+              rdmData?.refreshDeviceManager.__typename ===
+                "AuthorizationDeviceProfile"
             ) {
-              setIsJoined(true);
-            } else {
-              setIsJoined(false);
+              if (
+                item.personalProfileId ===
+                rdmData?.refreshDeviceManager.Profile?.id
+              ) {
+                setIsJoined(true);
+              } else {
+                setIsJoined(false);
+              }
             }
           }
         });
@@ -137,9 +142,7 @@ export default function JoinCard() {
     <VStack>
       <Box className="bg-transparent">
         <Button
-          onPress={() => {
-            addPersonalJoinVenue2Mutation();
-          }}
+          onPress={() => addPersonalJoinVenue2Mutation()}
           isDisabled={JVLoading2 || isJoined}
           className="rounded-md"
         >

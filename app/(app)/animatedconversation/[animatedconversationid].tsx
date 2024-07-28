@@ -226,7 +226,7 @@ function AnimatedChatroom() {
                 <SafeAreaView ref={refSafeArea} className="">
                   <Input className="mx-4 mb-2 mt-5 h-auto max-h-[155px] items-center rounded-3xl border-light-300">
                     <BlurView
-                      style={{ flex: 1, height: "100%" }}
+                      style={{ flex: 1, height: "100%", }}
                       className="h-auto min-h-[40px] flex-row items-center rounded-3xl"
                       intensity={95}
                     >
@@ -237,6 +237,8 @@ function AnimatedChatroom() {
                         multiline
                         style={{
                           lineHeight: 22,
+                          borderRadius: 15,
+                          paddingVertical: 5
                         }}
                         onPressIn={() => ref.current?.scrollToEnd()}
                         className="h-auto flex-1 border-0 text-[17px] font-medium leading-6 color-black dark:color-white"

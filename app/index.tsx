@@ -8,9 +8,9 @@ export default function index() {
 
   //? Hometabs
   // return <Redirect href={'/brokenstate'} />
-  // return <Redirect href={'/(app)/hometab/venuefeed'} />
+  return <Redirect href={'/(app)/hometab/venuefeed'} />
   //?? Convesations
-  return <Redirect href={"/(app)/hometab/conversations"} />;
+  // return <Redirect href={"/(app)/hometab/conversations"} />;
   // return <Redirect href={{ pathname: '/(app)/conversation/[conversationid]', params: { conversationid: 'ce353001-e8d6-4175-ae25-9c37cbd742f0' } }} />
   // return <Redirect href={{ pathname: '/(app)/animatedconversation/[animatedconversationid]', params: { animatedconversationid: 'ce353001-e8d6-4175-ae25-9c37cbd742f0' } }} />
   //?? User profile
@@ -40,7 +40,11 @@ export default function index() {
   //? Public
   // return <Redirect href={`/(app)/public/personal/${personal_username_misia}`} />
   // return <Redirect href={`/(app)/public/personal/${personal_username_ritz}`} />
-  // return <Redirect href={`/(app)/public/venue/${venue_id}`} />
+  // return (
+  //   <Redirect
+  //     href={`/(app)/public/venue/cristian.tromp86`}
+  //   />
+  // );
 
   //? Broken state
   // console.log('LOAD BROKEN STATE RWHY NOT RENDER HERE:>> ',);

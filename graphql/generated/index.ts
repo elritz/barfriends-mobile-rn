@@ -9338,7 +9338,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   acceptFriendRequest: Relationship;
   addPersonalJoinsVenue2: VenueTotalsResponseUnion;
-  addPersonalTotalsVenue2: Scalars['Boolean']['output'];
+  addPersonalTotalsVenue2: VenueTotalsResponseUnion;
   addStoryPhotos: Story;
   createFriendRequest: Request;
   createGuestProfile: AuthenticationResponseUnion;
@@ -9353,7 +9353,7 @@ export type Mutation = {
   removeDeviceProfileFromDeviceManager: Scalars['Boolean']['output'];
   removeFriend: Scalars['Boolean']['output'];
   removePersonalJoinsVenue2: VenueTotalsResponseUnion;
-  removePersonalTotalsVenue2: Scalars['Boolean']['output'];
+  removePersonalTotalsVenue2: VenueTotalsResponseUnion;
   removeStoryPhotos: Story;
   sendAuthenticatorDeviceOwnerCode: CodeResponse;
   sendAuthenticatorForgotPasswordCode: CodeResponse;
@@ -9391,7 +9391,6 @@ export type MutationAddPersonalJoinsVenue2Args = {
 
 
 export type MutationAddPersonalTotalsVenue2Args = {
-  profileIdPersonal?: InputMaybe<Scalars['String']['input']>;
   profileIdVenue?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -21034,6 +21033,13 @@ export type RemoveAllJoinedTotalFromVenueMutationVariables = Exact<{
 
 export type RemoveAllJoinedTotalFromVenueMutation = { __typename?: 'Mutation', removeAllJoinedTotalFromVenue: { __typename?: 'Error', errorCode: string, message: string } | { __typename?: 'LiveVenueTotals2', id?: string | null, joined?: number | null, totaled?: number | null, out?: Array<{ __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null }> | null } };
 
+export type AddPersonalTotalsVenue2MutationVariables = Exact<{
+  profileIdVenue: Scalars['String']['input'];
+}>;
+
+
+export type AddPersonalTotalsVenue2Mutation = { __typename?: 'Mutation', addPersonalTotalsVenue2: { __typename?: 'Error', errorCode: string, message: string } | { __typename?: 'LiveVenueTotals2', id?: string | null, joined?: number | null, totaled?: number | null, updateOut?: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null } | null } };
+
 export type AddPersonalJoinsVenue2MutationVariables = Exact<{
   profileIdVenue: Scalars['String']['input'];
 }>;
@@ -21047,6 +21053,13 @@ export type RemovePersonalJoinsVenue2MutationVariables = Exact<{
 
 
 export type RemovePersonalJoinsVenue2Mutation = { __typename?: 'Mutation', removePersonalJoinsVenue2: { __typename?: 'Error', errorCode: string, message: string } | { __typename?: 'LiveVenueTotals2', id?: string | null, joined?: number | null, totaled?: number | null, updateOut?: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null } | null } };
+
+export type RemovePersonalTotalsVenue2MutationVariables = Exact<{
+  profileIdVenue: Scalars['String']['input'];
+}>;
+
+
+export type RemovePersonalTotalsVenue2Mutation = { __typename?: 'Mutation', removePersonalTotalsVenue2: { __typename?: 'Error', errorCode: string, message: string } | { __typename?: 'LiveVenueTotals2', id?: string | null, joined?: number | null, totaled?: number | null, updateOut?: { __typename?: 'Out', id: string, type: OutType, personalProfileId: string, venueProfileId: string, venueStatsId?: string | null, personalStatsId?: string | null, liveOutVenueId?: string | null, leftAt?: any | null, liveOutPersonalId?: string | null, createdAt: any, updatedAt: any, VenueStats?: { __typename?: 'VenueStats', id: string } | null, PersonalStats?: { __typename?: 'PersonalStats', id: string } | null, LiveOutVenue?: { __typename?: 'LiveOutVenue', id: string } | null, LiveOutPersonal?: { __typename?: 'LiveOutPersonal', id: string } | null } | null } };
 
 export type GetLiveVenueTotalsV2QueryVariables = Exact<{
   profileIdVenue?: InputMaybe<Scalars['String']['input']>;
@@ -23182,6 +23195,50 @@ export function useRemoveAllJoinedTotalFromVenueMutation(baseOptions?: Apollo.Mu
 export type RemoveAllJoinedTotalFromVenueMutationHookResult = ReturnType<typeof useRemoveAllJoinedTotalFromVenueMutation>;
 export type RemoveAllJoinedTotalFromVenueMutationResult = Apollo.MutationResult<RemoveAllJoinedTotalFromVenueMutation>;
 export type RemoveAllJoinedTotalFromVenueMutationOptions = Apollo.BaseMutationOptions<RemoveAllJoinedTotalFromVenueMutation, RemoveAllJoinedTotalFromVenueMutationVariables>;
+export const AddPersonalTotalsVenue2Document = gql`
+    mutation addPersonalTotalsVenue2($profileIdVenue: String!) {
+  addPersonalTotalsVenue2(profileIdVenue: $profileIdVenue) {
+    ... on Error {
+      errorCode
+      message
+    }
+    ... on LiveVenueTotals2 {
+      id
+      joined
+      totaled
+      updateOut {
+        ...OUT_FRAGMENT
+      }
+    }
+  }
+}
+    ${Out_FragmentFragmentDoc}`;
+export type AddPersonalTotalsVenue2MutationFn = Apollo.MutationFunction<AddPersonalTotalsVenue2Mutation, AddPersonalTotalsVenue2MutationVariables>;
+
+/**
+ * __useAddPersonalTotalsVenue2Mutation__
+ *
+ * To run a mutation, you first call `useAddPersonalTotalsVenue2Mutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddPersonalTotalsVenue2Mutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addPersonalTotalsVenue2Mutation, { data, loading, error }] = useAddPersonalTotalsVenue2Mutation({
+ *   variables: {
+ *      profileIdVenue: // value for 'profileIdVenue'
+ *   },
+ * });
+ */
+export function useAddPersonalTotalsVenue2Mutation(baseOptions?: Apollo.MutationHookOptions<AddPersonalTotalsVenue2Mutation, AddPersonalTotalsVenue2MutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AddPersonalTotalsVenue2Mutation, AddPersonalTotalsVenue2MutationVariables>(AddPersonalTotalsVenue2Document, options);
+      }
+export type AddPersonalTotalsVenue2MutationHookResult = ReturnType<typeof useAddPersonalTotalsVenue2Mutation>;
+export type AddPersonalTotalsVenue2MutationResult = Apollo.MutationResult<AddPersonalTotalsVenue2Mutation>;
+export type AddPersonalTotalsVenue2MutationOptions = Apollo.BaseMutationOptions<AddPersonalTotalsVenue2Mutation, AddPersonalTotalsVenue2MutationVariables>;
 export const AddPersonalJoinsVenue2Document = gql`
     mutation addPersonalJoinsVenue2($profileIdVenue: String!) {
   addPersonalJoinsVenue2(profileIdVenue: $profileIdVenue) {
@@ -23270,6 +23327,50 @@ export function useRemovePersonalJoinsVenue2Mutation(baseOptions?: Apollo.Mutati
 export type RemovePersonalJoinsVenue2MutationHookResult = ReturnType<typeof useRemovePersonalJoinsVenue2Mutation>;
 export type RemovePersonalJoinsVenue2MutationResult = Apollo.MutationResult<RemovePersonalJoinsVenue2Mutation>;
 export type RemovePersonalJoinsVenue2MutationOptions = Apollo.BaseMutationOptions<RemovePersonalJoinsVenue2Mutation, RemovePersonalJoinsVenue2MutationVariables>;
+export const RemovePersonalTotalsVenue2Document = gql`
+    mutation removePersonalTotalsVenue2($profileIdVenue: String!) {
+  removePersonalTotalsVenue2(profileIdVenue: $profileIdVenue) {
+    ... on Error {
+      errorCode
+      message
+    }
+    ... on LiveVenueTotals2 {
+      id
+      joined
+      totaled
+      updateOut {
+        ...OUT_FRAGMENT
+      }
+    }
+  }
+}
+    ${Out_FragmentFragmentDoc}`;
+export type RemovePersonalTotalsVenue2MutationFn = Apollo.MutationFunction<RemovePersonalTotalsVenue2Mutation, RemovePersonalTotalsVenue2MutationVariables>;
+
+/**
+ * __useRemovePersonalTotalsVenue2Mutation__
+ *
+ * To run a mutation, you first call `useRemovePersonalTotalsVenue2Mutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemovePersonalTotalsVenue2Mutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removePersonalTotalsVenue2Mutation, { data, loading, error }] = useRemovePersonalTotalsVenue2Mutation({
+ *   variables: {
+ *      profileIdVenue: // value for 'profileIdVenue'
+ *   },
+ * });
+ */
+export function useRemovePersonalTotalsVenue2Mutation(baseOptions?: Apollo.MutationHookOptions<RemovePersonalTotalsVenue2Mutation, RemovePersonalTotalsVenue2MutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RemovePersonalTotalsVenue2Mutation, RemovePersonalTotalsVenue2MutationVariables>(RemovePersonalTotalsVenue2Document, options);
+      }
+export type RemovePersonalTotalsVenue2MutationHookResult = ReturnType<typeof useRemovePersonalTotalsVenue2Mutation>;
+export type RemovePersonalTotalsVenue2MutationResult = Apollo.MutationResult<RemovePersonalTotalsVenue2Mutation>;
+export type RemovePersonalTotalsVenue2MutationOptions = Apollo.BaseMutationOptions<RemovePersonalTotalsVenue2Mutation, RemovePersonalTotalsVenue2MutationVariables>;
 export const GetLiveVenueTotalsV2Document = gql`
     query getLiveVenueTotalsV2($profileIdVenue: String) {
   getLiveVenueTotalsV2(profileIdVenue: $profileIdVenue) {

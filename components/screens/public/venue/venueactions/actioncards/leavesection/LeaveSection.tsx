@@ -134,18 +134,20 @@ export default function LeaveSection() {
     ) {
       if (glvtData.getLiveVenueTotalsV2.out?.length) {
         glvtData.getLiveVenueTotalsV2.out?.some((item) => {
-          if (
-            glvtData.getLiveVenueTotalsV2.__typename === "LiveVenueTotals2" &&
-            rdmData?.refreshDeviceManager.__typename ===
-              "AuthorizationDeviceProfile"
-          ) {
+          if (item.type === "JOIN") {
             if (
-              item.personalProfileId ===
-              rdmData?.refreshDeviceManager.Profile?.id
+              glvtData.getLiveVenueTotalsV2.__typename === "LiveVenueTotals2" &&
+              rdmData?.refreshDeviceManager.__typename ===
+                "AuthorizationDeviceProfile"
             ) {
-              setIsJoined(true);
-            } else {
-              setIsJoined(false);
+              if (
+                item.personalProfileId ===
+                rdmData?.refreshDeviceManager.Profile?.id
+              ) {
+                setIsJoined(true);
+              } else {
+                setIsJoined(false);
+              }
             }
           }
         });

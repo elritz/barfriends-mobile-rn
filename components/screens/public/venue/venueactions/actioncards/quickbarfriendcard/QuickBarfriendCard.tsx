@@ -109,7 +109,7 @@ export default function QuickBarfriendCard({
           />
         </Box>
         <Heading className="leading-lg mt-3 text-center text-lg font-black uppercase">
-          Add Friends
+          Fine Friends
         </Heading>
         <VStack className="flex-column mt-2 items-center justify-around"></VStack>
       </Pressable>

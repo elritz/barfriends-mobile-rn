@@ -6,7 +6,8 @@ import { HStack } from "#/components/ui/hstack";
 import { Box } from "#/components/ui/box";
 import JoinCard from "./joincard/JoinCard";
 import LeaveAllCard from "./leaveallcard/LeaveAllCard";
-import LeaveCard from "./leavecard/LeaveCard";
+import LeaveJoinCard from "./leavejoinedcard/LeaveJoinedCard";
+import LeaveTotalCard from "./leavetotalcard/LeaveTotalCard";
 import TotalCard from "./totalcard/TotalCard";
 import { useState } from "react";
 
@@ -38,7 +39,8 @@ export default function DevActions() {
             >
               <TotalCard />
               <JoinCard />
-              <LeaveCard />
+              <LeaveJoinCard />
+              <LeaveTotalCard />
               <LeaveAllCard />
             </HStack>
           </VStack>
@@ -49,7 +51,7 @@ export default function DevActions() {
             setShowDevMode(!showDevMode);
           }}
         >
-          <Text className="text-md mx-2 text-center">Dev Mode Actions</Text>
+          <Text className="text-center text-xl">Dev Mode Actions</Text>
         </Pressable>
       )}
     </VStack>

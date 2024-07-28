@@ -11,6 +11,10 @@ const CondensedVerticalFriendsNotficationsList = () => {
   if (loading || !data?.getNotifications.friendRequestNotifications?.length)
     return null;
 
+  console.log(
+    "🚀 ~ CondensedVerticalFriendsNotficationsList ~ data?.getNotifications.friendRequestNotifications:",
+    data?.getNotifications.friendRequestNotifications,
+  );
   return (
     <Box>
       <VStack className="flex-column flex-1 py-3">

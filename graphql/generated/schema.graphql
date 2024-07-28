@@ -9040,7 +9040,7 @@ input MessageWhereUniqueInput {
 type Mutation {
   acceptFriendRequest(friendRequestId: String!, notificationStatusId: String!, venueIdMetAt: String): Relationship!
   addPersonalJoinsVenue2(profileIdVenue: String): VenueTotalsResponseUnion!
-  addPersonalTotalsVenue2(profileIdPersonal: String, profileIdVenue: String): Boolean!
+  addPersonalTotalsVenue2(profileIdVenue: String): VenueTotalsResponseUnion!
   addStoryPhotos(photos: PhotoCreateManyProfileInputEnvelope): Story!
   createFriendRequest(receiversProfileId: [String!]!): Request!
   createGuestProfile: AuthenticationResponseUnion!
@@ -9061,7 +9061,7 @@ type Mutation {
   removeDeviceProfileFromDeviceManager(profileId: String!): Boolean!
   removeFriend(relationshipId: String!): Boolean!
   removePersonalJoinsVenue2(profileIdVenue: String): VenueTotalsResponseUnion!
-  removePersonalTotalsVenue2(profileIdVenue: String): Boolean!
+  removePersonalTotalsVenue2(profileIdVenue: String): VenueTotalsResponseUnion!
   removeStoryPhotos(photoId: String!): Story!
   sendAuthenticatorDeviceOwnerCode(data: CodeDataInput, where: CustomCodeWhereInput): CodeResponse!
   sendAuthenticatorForgotPasswordCode(data: CodeDataInput, where: CustomCodeWhereInput): CodeResponse!

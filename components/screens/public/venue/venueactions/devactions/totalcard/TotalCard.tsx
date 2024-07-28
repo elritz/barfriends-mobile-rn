@@ -3,136 +3,165 @@ import { Text } from "#/components/ui/text";
 import { CheckCircleIcon } from "#/components/ui/icon";
 import { Button, ButtonIcon, ButtonText } from "#/components/ui/button";
 // TODO: FN(Join a venue functionality) The join button has no ability to join a venue or track the data
-import { useReactiveVar } from '@apollo/client'
+import { useReactiveVar } from "@apollo/client";
 // import { GET_LIVE_VENUE_TOTALS_QUERY } from '#/graphql/DM/profiling/out/index.query'
 import {
-	AuthorizationDeviceProfile,
-	Profile,
-	// useAddPersonalTotalsVenueMutation,
-	useProfileLazyQuery,
-	// useRemovePersonalTotalsVenueMutation,
-} from '#/graphql/generated'
-import { AuthorizationReactiveVar } from '#/reactive'
-import { useGlobalSearchParams } from 'expo-router'
-import { useEffect, useState } from 'react'
+  AuthorizationDeviceProfile,
+  Profile,
+  useAddPersonalTotalsVenue2Mutation,
+  useGetLiveVenueTotalsV2Query,
+  useProfileLazyQuery,
+  useRefreshDeviceManagerQuery,
+  // useRemovePersonalTotalsVenueMutation,
+} from "#/graphql/generated";
+import { AuthorizationReactiveVar } from "#/reactive";
+import { useGlobalSearchParams } from "expo-router";
+import { useEffect, useState } from "react";
 
 export default function TotalCard() {
-	const params = useGlobalSearchParams()
-	const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
-	const [isTotaled, setIsTotaled] = useState(false)
+  const params = useGlobalSearchParams();
+  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar);
+  const [isTotaled, setIsTotaled] = useState(false);
 
-	// const [
-	// 	addPersonalTotalsVenueMutation,
-	// 	{ data: APTVData, loading: APTVLoading, error: APTVError },
-	// ] = useAddPersonalTotalsVenueMutation({
-	// 	variables: {
-	// 		profileIdVenue: String(params.venueProfileId),
-	// 	},
-	// 	onCompleted: async data => {
-	// 		profileQuery({
-	// 			variables: {
-	// 				where: {
-	// 					id: {
-	// 						equals: rAuthorizationVar?.Profile?.id,
-	// 					},
-	// 				},
-	// 			},
-	// 			onCompleted: data => {
-	// 				if (data.profile) {
-	// 					const profile = data.profile as Profile
-	// 					const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
+  const {
+    data: rdmData,
+    loading: rdmLoading,
+    error: rdmError,
+  } = useRefreshDeviceManagerQuery({
+    fetchPolicy: "cache-first",
+  });
 
-	// 					AuthorizationReactiveVar({
-	// 						...deviceprofile,
-	// 						Profile: profile,
-	// 					})
-	// 					const totaledToVenue: String[] | undefined =
-	// 						data?.profile?.Personal?.LiveOutPersonal?.Out.map(item => {
-	// 							return item.venueProfileId
-	// 						})
-	// 					if (totaledToVenue) {
-	// 						setIsTotaled(totaledToVenue.includes(String(params.venueProfileId)))
-	// 					}
-	// 				}
-	// 			},
-	// 		})
-	// 	},
-	// 	refetchQueries: [
-	// 		{
-	// 			query: GET_LIVE_VENUE_TOTALS_QUERY,
-	// 			variables: {
-	// 				profileIdVenue: String(params.venueProfileId),
-	// 			},
-	// 		},
-	// 	],
-	// })
+  const {
+    data: glvtData,
+    loading: glvtLoading,
+    error: glvtError,
+  } = useGetLiveVenueTotalsV2Query({
+    skip: !String(params.venueProfileId),
+    fetchPolicy: "cache-first",
+    variables: {
+      profileIdVenue: String(params.venueProfileId),
+    },
+    onCompleted: async (data) => {
+      if (data.getLiveVenueTotalsV2.__typename === "LiveVenueTotals2") {
+        data.getLiveVenueTotalsV2.out?.some((item) => {
+          if (
+            data.getLiveVenueTotalsV2.__typename === "LiveVenueTotals2" &&
+            rdmData?.refreshDeviceManager.__typename ===
+              "AuthorizationDeviceProfile"
+          ) {
+            if (
+              item.personalProfileId ===
+              rdmData?.refreshDeviceManager.Profile?.id
+            ) {
+              setIsTotaled(true);
+            }
+          }
+        });
+      }
+    },
+  });
 
-	// const [
-	// 	removePersonalTotalsVenueMutation,
-	// 	{ data: RPTVData, loading: RPTVLoading, error: RPTVError },
-	// ] = useRemovePersonalTotalsVenueMutation({
-	// 	variables: {
-	// 		profileIdVenue: String(params.venueProfileId),
-	// 	},
-	// 	onCompleted: async data => {
-	// 		profileQuery({
-	// 			variables: {
-	// 				where: {
-	// 					id: {
-	// 						equals: String(rAuthorizationVar?.Profile?.id),
-	// 					},
-	// 				},
-	// 			},
-	// 			onCompleted: data => {
-	// 				if (data.profile) {
-	// 					const profile = data.profile as Profile
-	// 					const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
+  const [
+    addPersonalTotalsVenueMutation,
+    { data: APTVData, loading: APTVLoading, error: APTVError },
+  ] = useAddPersonalTotalsVenue2Mutation({
+    variables: {
+      profileIdVenue: String(params.venueProfileId),
+    },
+    update: (cache, { data }) => {
+      if (data?.addPersonalTotalsVenue2.__typename === "LiveVenueTotals2") {
+        cache.modify({
+          id: cache.identify(data.addPersonalTotalsVenue2),
+          fields: {
+            joined: () =>
+              data.addPersonalTotalsVenue2.__typename === "LiveVenueTotals2" &&
+              data.addPersonalTotalsVenue2.joined
+                ? data.addPersonalTotalsVenue2.joined
+                : 0,
+            totaled: () =>
+              data.addPersonalTotalsVenue2.__typename === "LiveVenueTotals2" &&
+              data.addPersonalTotalsVenue2.totaled
+                ? data.addPersonalTotalsVenue2.totaled
+                : 0,
+            out(existingOut, { toReference }) {
+              return [...existingOut, data?.addPersonalTotalsVenue2.updateOut];
+            },
+          },
+        });
+      }
 
-	// 					AuthorizationReactiveVar({
-	// 						...deviceprofile,
-	// 						Profile: profile,
-	// 					})
-	// 					const totaledToVenue: String[] | undefined =
-	// 						data?.profile?.Personal?.LiveOutPersonal?.Out.map(item => {
-	// 							return item.venueProfileId
-	// 						})
-	// 					if (totaledToVenue) {
-	// 						setIsTotaled(totaledToVenue.includes(String(params.venueProfileId)))
-	// 					}
-	// 				}
-	// 			},
-	// 		})
-	// 	},
-	// 	refetchQueries: [
-	// 		{
-	// 			query: GET_LIVE_VENUE_TOTALS_QUERY,
-	// 			variables: {
-	// 				profileIdVenue: String(params.venueProfileId),
-	// 			},
-	// 		},
-	// 	],
-	// })
+      if (
+        data?.addPersonalTotalsVenue2.__typename === "LiveVenueTotals2" &&
+        rdmData?.refreshDeviceManager.__typename ===
+          "AuthorizationDeviceProfile"
+      ) {
+        if (rdmData.refreshDeviceManager.Profile?.Personal?.LiveOutPersonal) {
+          cache.modify({
+            id: cache.identify(
+              rdmData.refreshDeviceManager.Profile?.Personal?.LiveOutPersonal,
+            ),
+            fields: {
+              Out(existingOut, { toReference }) {
+                return [
+                  ...existingOut,
+                  toReference(data?.addPersonalTotalsVenue2.updateOut, true),
+                ];
+              },
+            },
+          });
+        }
+      }
+    },
+  });
 
-	const [profileQuery, { data: PData, loading: PLoading, error: PError }] = useProfileLazyQuery()
+  const [profileQuery, { data: PData, loading: PLoading, error: PError }] =
+    useProfileLazyQuery();
 
-	useEffect(() => {
-		if (rAuthorizationVar?.Profile?.Personal) {
-			const totaledToVenue = rAuthorizationVar.Profile?.Personal?.LiveOutPersonal?.Out.map(item => {
-				return item.venueProfileId
-			})
+  useEffect(() => {
+    if (
+      glvtData &&
+      glvtData.getLiveVenueTotalsV2.__typename === "LiveVenueTotals2"
+    ) {
+      if (glvtData.getLiveVenueTotalsV2.out?.length) {
+        glvtData.getLiveVenueTotalsV2.out?.some((item) => {
+          if (
+            glvtData.getLiveVenueTotalsV2.__typename === "LiveVenueTotals2" &&
+            rdmData?.refreshDeviceManager.__typename ===
+              "AuthorizationDeviceProfile"
+          ) {
+            if (
+              item.personalProfileId ===
+              rdmData?.refreshDeviceManager.Profile?.id
+            ) {
+              setIsTotaled(true);
+            } else {
+              setIsTotaled(false);
+            }
+          }
+        });
+      } else {
+        setIsTotaled(false);
+      }
+    }
+  }, [rdmData, glvtData]);
 
-			if (totaledToVenue) {
-				setIsTotaled(totaledToVenue.includes(String(params.venueProfileId)))
-			}
-		}
-	}, [])
-
-	return (
-        <VStack>
-            <Button className="bg-blue-500 rounded-md">
-				{isTotaled && <ButtonIcon as={CheckCircleIcon} size={'md'} className="mr-1 text-white" />}
-				<ButtonText className="text-white">{isTotaled ? 'Totaled' : 'Total'}</ButtonText>
-			</Button>
-        </VStack>
-    );
+  return (
+    <VStack>
+      <Button
+        onPress={() => addPersonalTotalsVenueMutation()}
+        className="rounded-md bg-blue-600"
+      >
+        {isTotaled && (
+          <ButtonIcon
+            as={CheckCircleIcon}
+            size={"md"}
+            className="mr-1 text-white"
+          />
+        )}
+        <ButtonText className="text-white">
+          {isTotaled ? "Totaled" : "Total"}
+        </ButtonText>
+      </Button>
+    </VStack>
+  );
 }
