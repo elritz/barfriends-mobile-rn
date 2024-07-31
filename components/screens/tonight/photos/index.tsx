@@ -10,6 +10,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import {
   PhotoCreateManyProfileInput,
   useAddStoryPhotosMutation,
+  useRefreshDeviceManagerQuery,
 } from "#/graphql/generated";
 import { AuthorizationReactiveVar, ThemeReactiveVar } from "#/reactive";
 import useCloudinaryImageUploading from "#/util/uploading/useCloudinaryImageUploading";
@@ -54,6 +55,14 @@ export default function Photos() {
 
   const [addPhotosMutation, { data, loading, error }] =
     useAddStoryPhotosMutation();
+
+  const {
+    data: rdmData,
+    loading: rdmLoading,
+    error: rdmError,
+  } = useRefreshDeviceManagerQuery({
+    fetchPolicy: "cache-first",
+  });
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -159,8 +168,9 @@ export default function Photos() {
       zIndex: 3,
     },
   });
+
   return (
-    <Box className="bg-transparent">
+    <Box className="bg-transparent mx-2">
       {rAuthorizationVar?.Profile?.tonightStory?.photos?.length ? (
         <Box className={` h-${containerHeight} rounded-md bg-transparent`}>
           <Animated.ScrollView
@@ -349,11 +359,14 @@ export default function Photos() {
           style={{
             borderRadius: 15,
             overflow: "hidden",
-            backgroundColor: rAuthorizationVar?.Profile?.tonightStory?.emojimood
-              ? "transparent"
-              : rTheme.colorScheme === "light"
-                ? rTheme.theme.gluestack.tokens.colors.light100
-                : rTheme.theme.gluestack.tokens.colors.light800,
+            backgroundColor:
+              rdmData?.refreshDeviceManager.__typename ===
+                "AuthorizationDeviceProfile" &&
+              rdmData?.refreshDeviceManager.Profile?.tonightStory?.emojimood
+                ? "transparent"
+                : rTheme.colorScheme === "light"
+                  ? rTheme.theme.gluestack.tokens.colors.light100
+                  : rTheme.theme.gluestack.tokens.colors.light800,
           }}
         >
           <Box style={{ height: containerHeight }} className="rounded-md">

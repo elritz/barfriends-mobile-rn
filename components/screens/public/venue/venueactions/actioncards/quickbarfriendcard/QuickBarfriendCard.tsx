@@ -86,6 +86,7 @@ export default function QuickBarfriendCard({
         alignItems: "center",
         justifyContent: "center",
       }}
+      className="rounded-lg"
     >
       <Pressable
         style={{ alignItems: "center", justifyContent: "center" }}
@@ -97,7 +98,7 @@ export default function QuickBarfriendCard({
               })
         }
       >
-        <Box className="h-16 w-16 items-center justify-center rounded-md bg-primary-400">
+        <Box className="h-16 w-16 items-center justify-center rounded-md bg-primary-500">
           <FontAwesome5
             name={"user"}
             size={30}
@@ -109,7 +110,7 @@ export default function QuickBarfriendCard({
           />
         </Box>
         <Heading className="leading-lg mt-3 text-center text-lg font-black uppercase">
-          Fine Friends
+          Find Friends
         </Heading>
         <VStack className="flex-column mt-2 items-center justify-around"></VStack>
       </Pressable>

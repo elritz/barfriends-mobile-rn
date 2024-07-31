@@ -113,14 +113,11 @@ export default () => {
       getNearbyVenues();
     }
   }, []);
-  console.log(
-    "rSearchAreaVar.searchArea.city.name",
-    rSearchAreaVar.searchArea.city.name,
-  );
+
   const ListheaderComponent = () => {
     return (
-      <Box className="bg-transparent py-2">
-        <VStack space={"md"} className="bg-transparent">
+      <Box className="py-2">
+        <VStack space={"md"}>
           {rAuthorizationVar?.Profile?.ProfileType === ProfileType.Guest && (
             <Box className="mx-2 my-2 p-5 pt-10">
               <CardPleaseSignup signupTextId={1} />

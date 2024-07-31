@@ -74,7 +74,7 @@ const PersonalScreen = () => {
 
       <VStack space={"md"} className="m-3 justify-around">
         <HStack space={"md"} className="justify-around">
-          <Box className="h-[200px] flex-1 items-center justify-center rounded-lg px-5">
+          <Box className="h-[200px] flex-1 rounded-lg bg-light-100 dark:bg-light-800">
             <QuickBarfriendCard
               color={"#ff7000"}
               showIcon={false}

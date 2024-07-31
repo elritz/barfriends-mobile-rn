@@ -20,7 +20,7 @@ export const REMOVE_STORY_PHOTOS_MUTATION = gql`
 
 export const UPDATE_STORY_EMOJIMOOD_MUTATION = gql`
 	${STORY_FRAGMENT}
-	mutation updateStoryEmojimood($emojimoodId: Int!) {
+	mutation updateStoryEmojimood($emojimoodId: Int) {
 		updateStoryEmojimood(emojimoodId: $emojimoodId) {
 			...STORY_FRAGMENT
 		}

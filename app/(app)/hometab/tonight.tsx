@@ -12,10 +12,21 @@ import useContentInsets from "#/util/hooks/useContentInsets";
 import { BlurView } from "expo-blur";
 import { LinearGradient } from "expo-linear-gradient";
 import { ScrollView } from "react-native";
+import { useEffect, useState } from "react";
+import { useRefreshDeviceManagerQuery } from "#/graphql/generated";
 
 const Wrapper = ({ children }) => {
   const rTheme = useReactiveVar(ThemeReactiveVar);
   const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar);
+
+  const {
+    data: rdmData,
+    loading: rdmLoading,
+    error: rdmError,
+  } = useRefreshDeviceManagerQuery({
+    fetchPolicy: "cache-first",
+  });
+
   return (
     <BlurView
       intensity={60}
@@ -30,11 +41,18 @@ const Wrapper = ({ children }) => {
         justifyContent: "center",
         alignItems: "center",
         overflow: "hidden",
-        backgroundColor: rAuthorizationVar?.Profile?.tonightStory?.emojimood
-          ? "transparent"
-          : rTheme.colorScheme === "light"
-            ? rTheme.theme.gluestack.tokens.colors.light100
-            : rTheme.theme.gluestack.tokens.colors.light800,
+        backgroundColor:
+          rdmData?.refreshDeviceManager.__typename ===
+            "AuthorizationDeviceProfile" &&
+          rdmData?.refreshDeviceManager.Profile?.tonightStory?.emojimood
+            ? "transparent"
+            : rTheme.colorScheme === "light"
+              ? rTheme.theme.gluestack.tokens.colors.light100
+              : rTheme.theme.gluestack.tokens.colors.light800,
+        // ? "transparent"
+        // : rTheme.colorScheme === "light"
+        //   ? rTheme.theme.gluestack.tokens.colors.light100
+        //   : rTheme.theme.gluestack.tokens.colors.light800,
       }}
       // flex={1}
       // rounded='$lg'
@@ -53,9 +71,24 @@ const Wrapper = ({ children }) => {
 export default () => {
   const contentInsets = useContentInsets();
   const rTheme = useReactiveVar(ThemeReactiveVar);
-  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar);
+  const [emojimodd, setEmojimood] = useState({});
 
-  if (rAuthorizationVar?.Profile?.ProfileType === "GUEST") {
+  const {
+    data: rdmData,
+    loading: rdmLoading,
+    error: rdmError,
+  } = useRefreshDeviceManagerQuery({
+    fetchPolicy: "cache-first",
+  });
+
+  if (rdmLoading) {
+    return null;
+  }
+
+  if (
+    rdmData?.refreshDeviceManager.__typename === "AuthorizationDeviceProfile" &&
+    rdmData?.refreshDeviceManager.Profile?.ProfileType === "GUEST"
+  ) {
     return (
       <ScrollView
         contentContainerStyle={{
@@ -68,61 +101,71 @@ export default () => {
       </ScrollView>
     );
   }
-
-  return (
-    <LinearGradient
-      style={{ flex: 1 }}
-      colors={
-        rAuthorizationVar?.Profile?.tonightStory?.emojimood?.colors.length
-          ? rAuthorizationVar?.Profile?.tonightStory?.emojimood.colors
-          : ["#0000000"]
+  useEffect(() => {
+    if (
+      rdmData?.refreshDeviceManager.__typename === "AuthorizationDeviceProfile"
+    ) {
+      if (rdmData?.refreshDeviceManager.Profile?.tonightStory?.emojimood) {
+        setEmojimood(
+          rdmData?.refreshDeviceManager.Profile?.tonightStory?.emojimood,
+        );
+      } else {
+        setEmojimood(null);
       }
-    >
+    }
+  }, [rdmData?.refreshDeviceManager]);
+  if (
+    rdmData?.refreshDeviceManager.__typename === "AuthorizationDeviceProfile"
+  ) {
+    return (
+      // <LinearGradient style={{ flex: 1 }} colors={emojimodd?[...emojimodd.colors]}>
+      <LinearGradient style={{ flex: 1 }} colors={['#fff888']}>
       <FlashList
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{
-          paddingHorizontal: 5,
-        }}
-        ListHeaderComponentStyle={{
-          marginBottom: 20,
-        }}
-        contentInset={{
-          ...contentInsets,
-        }}
-        ListHeaderComponent={() => {
-          return <Photos />;
-        }}
-        data={[
-          {
-            _typename: "addemoji",
-            item: <AddEmoji />,
-          },
-          {
-            _typename: "joinvenue",
-            item: <JoinVenue />,
-          },
-          {
-            _typename: "quickbarfriend",
-            item: (
-              <QuickBarfriendCard
-                color={rTheme.colorScheme === "light" ? "black" : "white"}
-                showIcon={false}
-                logosize={40}
-                qrcodesize={140}
-              />
-            ),
-          },
-          {
-            _typename: "invite",
-            item: <InviteCard />,
-          },
-        ]}
-        numColumns={2}
-        estimatedItemSize={200}
-        renderItem={({ index, item }) => {
-          return <Wrapper>{item.item}</Wrapper>;
-        }}
-      />
-    </LinearGradient>
-  );
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            paddingHorizontal: 5,
+          }}
+          ListHeaderComponentStyle={{
+            marginBottom: 20,
+          }}
+          contentInset={{
+            ...contentInsets,
+          }}
+          ListHeaderComponent={() => {
+            return <Photos />;
+          }}
+          data={[
+            {
+              _typename: "addemoji",
+              item: <AddEmoji />,
+            },
+            {
+              _typename: "joinvenue",
+              item: <JoinVenue />,
+            },
+            {
+              _typename: "quickbarfriend",
+              item: (
+                <QuickBarfriendCard
+                  color={rTheme.colorScheme === "light" ? "black" : "white"}
+                  showIcon={false}
+                  logosize={40}
+                  qrcodesize={140}
+                />
+              ),
+            },
+            {
+              _typename: "invite",
+              item: <InviteCard />,
+            },
+          ]}
+          numColumns={2}
+          estimatedItemSize={200}
+          renderItem={({ index, item }) => {
+            return <Wrapper>{item.item}</Wrapper>;
+          }}
+        />
+      </LinearGradient>
+    );
+  }
 };

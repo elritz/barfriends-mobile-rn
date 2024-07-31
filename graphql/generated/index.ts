@@ -9534,7 +9534,7 @@ export type MutationUpdateProfileIdentifiableInformationArgs = {
 
 
 export type MutationUpdateStoryEmojimoodArgs = {
-  emojimoodId: Scalars['Int']['input'];
+  emojimoodId?: InputMaybe<Scalars['Int']['input']>;
   storyId?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -21223,7 +21223,7 @@ export type RemoveStoryPhotosMutationVariables = Exact<{
 export type RemoveStoryPhotosMutation = { __typename?: 'Mutation', removeStoryPhotos: { __typename?: 'Story', id: string, date: any, startDate: any, createdAt: any, updatedAt?: any | null, emojimood?: { __typename?: 'Emojimood', colors: Array<string>, emoji?: string | null, emojiname?: string | null, id: string } | null, photos: Array<{ __typename?: 'Photo', active: boolean, blurhash?: string | null, createdAt: any, groupId?: string | null, height?: number | null, id: string, position?: number | null, profileId?: string | null, ratio?: string | null, storyId?: string | null, type?: PhotoType | null, updatedAt: any, url: string, width?: number | null, Group?: { __typename?: 'Group', id: string } | null, Profile?: { __typename?: 'Profile', id: string } | null, Story?: { __typename?: 'Story', id: string } | null }> } };
 
 export type UpdateStoryEmojimoodMutationVariables = Exact<{
-  emojimoodId: Scalars['Int']['input'];
+  emojimoodId?: InputMaybe<Scalars['Int']['input']>;
 }>;
 
 
@@ -24383,7 +24383,7 @@ export type RemoveStoryPhotosMutationHookResult = ReturnType<typeof useRemoveSto
 export type RemoveStoryPhotosMutationResult = Apollo.MutationResult<RemoveStoryPhotosMutation>;
 export type RemoveStoryPhotosMutationOptions = Apollo.BaseMutationOptions<RemoveStoryPhotosMutation, RemoveStoryPhotosMutationVariables>;
 export const UpdateStoryEmojimoodDocument = gql`
-    mutation updateStoryEmojimood($emojimoodId: Int!) {
+    mutation updateStoryEmojimood($emojimoodId: Int) {
   updateStoryEmojimood(emojimoodId: $emojimoodId) {
     ...STORY_FRAGMENT
   }
