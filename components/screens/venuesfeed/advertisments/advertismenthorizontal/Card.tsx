@@ -35,7 +35,7 @@ const Card = ({ product }: CardProps) => {
               <Heading
                 allowFontScaling
                 adjustsFontSizeToFit
-                className="leading-60 text-6xl font-extrabold uppercase text-[left]"
+                className="leading-60 text-6xl font-extrabold uppercase text-left"
               >
                 {product.title}
               </Heading>
@@ -95,7 +95,7 @@ const Card = ({ product }: CardProps) => {
               <Heading
                 allowFontScaling
                 adjustsFontSizeToFit
-                className="leading-60 text-6xl font-extrabold uppercase text-[left]"
+                className="leading-60 text-6xl font-extrabold uppercase text-left"
               >
                 {product.title}
               </Heading>

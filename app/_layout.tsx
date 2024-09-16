@@ -3,7 +3,6 @@
 // import { Stack } from 'expo-router';
 // import * as SplashScreen from 'expo-splash-screen';
 // import { useEffect } from 'react';
-// import 'react-native-reanimated';
 
 // import { useColorScheme } from '#/hooks/useColorScheme';
 
@@ -88,6 +87,7 @@ import useSetSearchAreaWithLocation from "#/util/hooks/searcharea/useSetSearchAr
 import { Camera } from "expo-camera/legacy";
 import * as Contacts from "expo-contacts";
 import "expo-dev-client";
+import "react-native-reanimated";
 import {
   getForegroundPermissionsAsync,
   getBackgroundPermissionsAsync,
@@ -98,8 +98,7 @@ import { Stack, useNavigationContainerRef } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import * as ScreenOrientation from "expo-screen-orientation";
 import { useEffect } from "react";
-import { Appearance, Text, View } from "react-native";
-// import 'react-native-gesture-handler'
+import { Appearance } from "react-native";
 import { KeyboardProvider } from "react-native-keyboard-controller";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import * as Sentry from "@sentry/react-native";
@@ -107,7 +106,6 @@ import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import { apolloDevToolsInit } from "react-native-apollo-devtools-client";
 import { isRunningInExpoGo } from "expo";
 import "../global.css";
-import { verifyInstallation } from "nativewind";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -352,17 +350,6 @@ function RootLayout() {
     } catch (e) {}
   };
 
-  // const eventListener = (event) => {
-  // 	if (event.type === Updates.UpdateEventType.ERROR) {
-  // 		// Handle error
-  // 	} else if (event.type === Updates.UpdateEventType.NO_UPDATE_AVAILABLE) {
-  // 		// Handle no update available
-  // 	} else if (event.type === Updates.UpdateEventType.UPDATE_AVAILABLE) {
-  // 		// Handle update available
-  // 	}
-  // };
-  // Updates.useUpdateEvents(eventListener);
-
   const setAsyncPermissions = async () => {
     const contactsPermission = await Contacts.getPermissionsAsync();
     const cameraPermission = await Camera.getCameraPermissionsAsync();
@@ -382,6 +369,7 @@ function RootLayout() {
     PermissionMediaReactiveVar(mediaLibraryPermission);
     PermissionNotificationReactiveVar(notificationPermission);
   };
+
   useEffect(() => {
     if (ref) {
       routingInstrumentation.registerNavigationContainer(ref);
@@ -399,11 +387,11 @@ function RootLayout() {
     <>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <SafeAreaProvider>
-          <KeyboardProvider statusBarTranslucent>
-            <BottomSheetModalProvider>
-              <ApolloProvider client={profilingclient}>
-                <Auth>
-                  <Theme>
+          <ApolloProvider client={profilingclient}>
+            <Auth>
+              <Theme>
+                <KeyboardProvider statusBarTranslucent>
+                  <BottomSheetModalProvider>
                     <Stack
                       initialRouteName="index"
                       screenOptions={{
@@ -432,11 +420,11 @@ function RootLayout() {
                         }}
                       />
                     </Stack>
-                  </Theme>
-                </Auth>
-              </ApolloProvider>
-            </BottomSheetModalProvider>
-          </KeyboardProvider>
+                  </BottomSheetModalProvider>
+                </KeyboardProvider>
+              </Theme>
+            </Auth>
+          </ApolloProvider>
         </SafeAreaProvider>
       </GestureHandlerRootView>
     </>

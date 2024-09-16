@@ -31,7 +31,9 @@ export default function Auth({ children }) {
       }
     },
     onError: (e) => {
-      console.log("🚀 ~ Auth REFRESH DEVICE MANAGER~ e:", e);
+      AuthorizationReactiveVar(null);
+      createGuestProfileMutation();
+      // console.log("🚀 ~ Auth REFRESH DEVICE MANAGER~ e:", e);
     },
   });
 
@@ -40,8 +42,9 @@ export default function Auth({ children }) {
     { data, loading: CGLoading, error: CGPMError },
   ] = useCreateGuestProfileMutation({
     onCompleted: async (data) => {
+      console.log("🚀 ~ onCompleted: ~ data:", data);
       if (
-        data?.createGuestProfile.__typename === "AuthorizationDeviceProfile"
+        data?.createGuestProfile?.__typename === "AuthorizationDeviceProfile"
       ) {
         const deviceProfile =
           data.createGuestProfile as AuthorizationDeviceProfile;

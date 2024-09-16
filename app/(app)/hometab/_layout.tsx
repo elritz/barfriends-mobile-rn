@@ -62,8 +62,8 @@ export default function HomeTab() {
           borderTopWidth: 0,
         },
         headerShown: true,
-        tabBarShowLabel: false,
         headerTransparent: true,
+        tabBarShowLabel: false,
         header: () => {
           return (
             <BlurView
@@ -110,16 +110,13 @@ export default function HomeTab() {
         }}
       />
       <Tabs.Screen
-        // name='messagestack'
         name="conversations"
         options={{
-          // headerShown: false,
           tabBarLabel: "conversations",
           tabBarShowLabel: false,
           tabBarIcon: ({ color, focused }: ITabColor) => (
             <MessageTab color={color} focused={focused} />
           ),
-          // headerShown: true,
           headerTransparent: true,
           header: () => {
             return (

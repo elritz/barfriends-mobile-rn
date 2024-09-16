@@ -146,6 +146,7 @@ export default () => {
         },
       },
       onCompleted(data) {
+        console.log("🚀 ~ onCompleted ~ data:", data);
         switch (data.authorizedProfiles?.__typename) {
           case "ProfilesResponse":
             if (data.authorizedProfiles?.username.length) {
@@ -314,9 +315,7 @@ export default () => {
               }}
               className="my-3 rounded-lg"
             >
-              <ButtonText className="text-lg font-black uppercase">
-                Sign up
-              </ButtonText>
+              <ButtonText className="font-boldc text-lg">Sign up</ButtonText>
             </Button>
           ) : null}
         </VStack>

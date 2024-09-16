@@ -1,3 +1,8 @@
+"""
+Indicates exactly one field must be supplied and this field must not be `null`.
+"""
+directive @oneOf on INPUT_OBJECT
+
 input AdAvgOrderByAggregateInput {
   id: SortOrder
 }
@@ -870,10 +875,10 @@ input AreaOrderByWithRelationInput {
 }
 
 type AreaResponse {
-  City: City!
-  Country: Country!
-  Geometry: Coords!
-  State: State!
+  City: City
+  Country: Country
+  Geometry: Coords
+  State: State
 }
 
 enum AreaScalarFieldEnum {
@@ -1604,7 +1609,7 @@ input Authenticators {
 type AuthorizationDeviceManager {
   Device: Device
   DeviceProfile: AuthorizationDeviceProfile
-  id: String!
+  id: String
 }
 
 type AuthorizationDeviceProfile {
@@ -1905,11 +1910,11 @@ input CityRelationFilter {
 }
 
 type CityResponseObject {
-  countryCode: String!
+  countryCode: String
   latitude: String
   longitude: String
-  name: String!
-  stateCode: String!
+  name: String
+  stateCode: String
   venuesInArea: Int
 }
 
@@ -2019,8 +2024,8 @@ input CityWhereUniqueInput {
 }
 
 type Code {
-  code: String!
-  id: ID!
+  code: String
+  id: ID
 }
 
 input CodeCountOrderByAggregateInput {
@@ -2380,7 +2385,7 @@ input ComingAreaOrderByWithRelationInput {
 }
 
 type ComingAreaResponse {
-  comingAreas: [ComingArea!]!
+  comingAreas: [ComingArea!]
   recommendedAreas: [H3Index6VenueRecommendation!]
   searchArea: Area
 }
@@ -2920,13 +2925,13 @@ input CountryRelationFilter {
 }
 
 type CountryResponseObject {
-  currency: String!
-  flag: String!
-  isoCode: String!
-  latitude: String!
-  longitude: String!
-  name: String!
-  phonecode: String!
+  currency: String
+  flag: String
+  isoCode: String
+  latitude: String
+  longitude: String
+  name: String
+  phonecode: String
 }
 
 enum CountryScalarFieldEnum {
@@ -3806,7 +3811,7 @@ input DeviceManagerCreateWithoutDeviceProfilesInput {
 }
 
 type DeviceManagerDeviceProfiles {
-  DeviceProfiles: [AuthorizationDeviceProfile!]!
+  DeviceProfiles: [AuthorizationDeviceProfile!]
 }
 
 union DeviceManagerDeviceProfilesResponseUnion = DeviceManagerDeviceProfiles | Error
@@ -4442,12 +4447,12 @@ input DeviceWhereUniqueInput {
 }
 
 type Document {
-  LegalAgreement: [LegalAgreement!]!
-  TypeOfDocument: TypeOfDocument!
-  content: String!
-  createdAt: DateTime!
-  id: ID!
-  updatedAt: DateTime!
+  LegalAgreement: [LegalAgreement!]
+  TypeOfDocument: TypeOfDocument
+  content: String
+  createdAt: DateTime
+  id: ID
+  updatedAt: DateTime
 }
 
 input DocumentAvgOrderByAggregateInput {
@@ -4844,10 +4849,10 @@ input EmailWhereUniqueInput {
 }
 
 type Emojimood {
-  colors: [String!]!
+  colors: [String!]
   emoji: String
   emojiname: String
-  id: ID!
+  id: ID
 }
 
 input EmojimoodAvgOrderByAggregateInput {
@@ -5191,14 +5196,14 @@ input EnumTypeOfDocumentWithAggregatesFilter {
 
 """Long necks, cool patterns, taller than you."""
 type Error {
-  errorCode: String!
-  message: String!
+  errorCode: String
+  message: String
 }
 
 type ExploreResponse {
   events: [Json!]
-  people: [Personal!]!
-  venues: [Venue!]!
+  people: [Personal!]
+  venues: [Venue!]
 }
 
 input FloatFieldUpdateOperationsInput {
@@ -6536,12 +6541,12 @@ input H3Index6VenueRecommendationWhereUniqueInput {
 
 interface IBaseMessageEvent {
   """Event type"""
-  eventType: MessageEventType!
+  eventType: MessageEventType
 }
 
 interface IBasePostEvent {
   """Event type"""
-  eventType: PostEventType!
+  eventType: PostEventType
 }
 
 type IdentifiableInformation {
@@ -7019,8 +7024,8 @@ input JsonWithAggregatesFilter {
 Returns the Profile latest Privacy and Terms of Service documents to the client.
 """
 type LatestPrivacyAndTermsDocumentResponse {
-  privacy: Document!
-  termsofservice: Document!
+  privacy: Document
+  termsofservice: Document
 }
 
 type LegalAgreement {
@@ -8366,7 +8371,7 @@ input LocationWhereUniqueInput {
 }
 
 type MemberConversationNotificationSetting {
-  id: ID!
+  id: ID
 }
 
 input MemberConversationNotificationSettingCountOrderByAggregateInput {
@@ -9038,12 +9043,12 @@ input MessageWhereUniqueInput {
 }
 
 type Mutation {
-  acceptFriendRequest(friendRequestId: String!, notificationStatusId: String!, venueIdMetAt: String): Relationship!
-  addPersonalJoinsVenue2(profileIdVenue: String): VenueTotalsResponseUnion!
-  addPersonalTotalsVenue2(profileIdVenue: String): VenueTotalsResponseUnion!
-  addStoryPhotos(photos: PhotoCreateManyProfileInputEnvelope): Story!
-  createFriendRequest(receiversProfileId: [String!]!): Request!
-  createGuestProfile: AuthenticationResponseUnion!
+  acceptFriendRequest(friendRequestId: String!, notificationStatusId: String!, venueIdMetAt: String): Relationship
+  addPersonalJoinsVenue2(profileIdVenue: String): VenueTotalsResponseUnion
+  addPersonalTotalsVenue2(profileIdVenue: String): VenueTotalsResponseUnion
+  addStoryPhotos(photos: PhotoCreateManyProfileInputEnvelope): Story
+  createFriendRequest(receiversProfileId: [String!]!): Request
+  createGuestProfile: AuthenticationResponseUnion
   createMessage(
     content: Json!
     conversationId: String
@@ -9051,43 +9056,43 @@ type Mutation {
     """This is a list of ProfileIds."""
     members: [String!]
   ): Message
-  createPersonalProfile(data: CreatePersonalDataInput): AuthenticationResponseUnion!
-  createVenueProfile(data: CreateVenueDataInput): ProfileResponseUnion!
-  declineFriendRequest(friendRequestId: String!, notificationStatusId: String!): Boolean!
-  deleteFriendRequest(friendRequestId: String!): Boolean!
-  qrAddFriend(dataHash: String!, qrCodeProfileId: String!): Relationship!
-  removeAllFromVenueDeveloper(profileIdVenue: String): Boolean!
-  removeAllJoinedTotalFromVenue(profileIdVenue: String): VenueTotalsResponseUnion!
-  removeDeviceProfileFromDeviceManager(profileId: String!): Boolean!
-  removeFriend(relationshipId: String!): Boolean!
-  removePersonalJoinsVenue2(profileIdVenue: String): VenueTotalsResponseUnion!
-  removePersonalTotalsVenue2(profileIdVenue: String): VenueTotalsResponseUnion!
-  removeStoryPhotos(photoId: String!): Story!
-  sendAuthenticatorDeviceOwnerCode(data: CodeDataInput, where: CustomCodeWhereInput): CodeResponse!
-  sendAuthenticatorForgotPasswordCode(data: CodeDataInput, where: CustomCodeWhereInput): CodeResponse!
-  switchDeviceProfile(profileId: String!): AuthenticationResponseUnion!
-  testNotification: Boolean!
-  updateCityRequested(cityName: String!): Boolean!
+  createPersonalProfile(data: CreatePersonalDataInput): AuthenticationResponseUnion
+  createVenueProfile(data: CreateVenueDataInput): ProfileResponseUnion
+  declineFriendRequest(friendRequestId: String!, notificationStatusId: String!): Boolean
+  deleteFriendRequest(friendRequestId: String!): Boolean
+  qrAddFriend(dataHash: String!, qrCodeProfileId: String!): Relationship
+  removeAllFromVenueDeveloper(profileIdVenue: String): Boolean
+  removeAllJoinedTotalFromVenue(profileIdVenue: String): VenueTotalsResponseUnion
+  removeDeviceProfileFromDeviceManager(profileId: String!): Boolean
+  removeFriend(relationshipId: String!): Boolean
+  removePersonalJoinsVenue2(profileIdVenue: String): VenueTotalsResponseUnion
+  removePersonalTotalsVenue2(profileIdVenue: String): VenueTotalsResponseUnion
+  removeStoryPhotos(photoId: String!): Story
+  sendAuthenticatorDeviceOwnerCode(data: CodeDataInput, where: CustomCodeWhereInput): CodeResponse
+  sendAuthenticatorForgotPasswordCode(data: CodeDataInput, where: CustomCodeWhereInput): CodeResponse
+  switchDeviceProfile(profileId: String!): AuthenticationResponseUnion
+  testNotification: Boolean
+  updateCityRequested(cityName: String!): Boolean
 
   """Update H6 coming area to be notified"""
-  updateH6ComingAreaToBeNotified(comingAreaId: String!): ComingArea!
+  updateH6ComingAreaToBeNotified(comingAreaId: String!): ComingArea
 
   """Update H6 coming area vote"""
-  updateH6ComingAreaVote(comingAreaId: String!): ComingArea!
+  updateH6ComingAreaVote(comingAreaId: String!): ComingArea
 
   """
   This function updates the upvote for a venue recommendation for a H3Index6. If the user has already upvoted, it will be set to false. If the user has not upvoted, it will be set to true.
   """
-  updateH6VenueRemmendation(venueRecommendationId: String!): H3Index6VenueRecommendation!
+  updateH6VenueRemmendation(venueRecommendationId: String!): H3Index6VenueRecommendation
   updateManyMessageNotifications(conversationId: String): Boolean
   updateOneProfile(data: ProfileUpdateInput!, where: ProfileWhereUniqueInput!): Profile
-  updatePassword(newpassword: String!, oldpassword: String!): Boolean!
-  updateProfileIdentifiableInformation(data: IdentifiableInformationUpdateInput!): ProfileResponseUnion!
-  updateProfilePrivacyTermsDocumentUpdate: Boolean!
-  updateStoryEmojimood(emojimoodId: Int, storyId: String): Story!
-  updateThemeManagerSwitchTheme(id: String!, themeId: String!): ProfileTheme!
+  updatePassword(newpassword: String!, oldpassword: String!): Boolean
+  updateProfileIdentifiableInformation(data: IdentifiableInformationUpdateInput!): ProfileResponseUnion
+  updateProfilePrivacyTermsDocumentUpdate: Boolean
+  updateStoryEmojimood(emojimoodId: Int, storyId: String): Story
+  updateThemeManagerSwitchTheme(id: String!, themeId: String!): ProfileTheme
   uploadProfilePhoto(photos: PhotoCreateManyProfileInputEnvelope): Photo
-  upsertDevicePushToken(expoToken: String, token: String, type: TokenType): Boolean!
+  upsertDevicePushToken(expoToken: String, token: String, type: TokenType): Boolean
 }
 
 input NestedBoolFilter {
@@ -9474,25 +9479,25 @@ input NestedStringWithAggregatesFilter {
 
 """When a new post is created"""
 type NewMessageEvent implements IBaseMessageEvent {
-  content: Json!
+  content: Json
 
   """Event type"""
-  eventType: MessageEventType!
+  eventType: MessageEventType
 
   """Post id"""
-  id: ID!
+  id: ID
 }
 
 """When a new post is created"""
 type NewPostEvent implements IBasePostEvent {
   """Event type"""
-  eventType: PostEventType!
+  eventType: PostEventType
 
   """Post id"""
-  id: ID!
+  id: ID
 
   """Post title"""
-  title: String!
+  title: String
 }
 
 union NotificationFriendRequestStatusResponse = Error | Relationship | Request
@@ -12578,9 +12583,9 @@ input PhotoWhereUniqueInput {
 }
 
 type PlaceType {
-  coords: Coords!
-  isoCode: String!
-  name: String!
+  coords: Coords
+  isoCode: String
+  name: String
 }
 
 type PluseCode {
@@ -12845,22 +12850,22 @@ enum PostEventType {
 union PrivacyTermsUpdateResponseUnion = Error | LatestPrivacyAndTermsDocumentResponse
 
 type Profile {
-  Credentials: Credentials!
+  Credentials: Credentials
   DetailInformation: DetailInformation
   IdentifiableInformation: IdentifiableInformation
   Personal: Personal
-  ProfileType: ProfileType!
-  Relationships: [Relationship!]!
+  ProfileType: ProfileType
+  Relationships: [Relationship!]
   ThemeManager: ThemeManager
   Venue: Venue
-  bfsprofileid: String!
-  createdAt: DateTime!
-  id: String!
+  bfsprofileid: String
+  createdAt: DateTime
+  id: String
   photos: [Photo!]
   profilePhoto: Photo
   resentSearches: SearchesService
   tonightStory: Story
-  updatedAt: DateTime!
+  updatedAt: DateTime
 }
 
 input ProfileCountOrderByAggregateInput {
@@ -13539,21 +13544,21 @@ input ProfileOrderByWithRelationInput {
 }
 
 type ProfilePersonal {
-  Credentials: Credentials!
+  Credentials: Credentials
   DetailInformation: DetailInformation
   IdentifiableInformation: IdentifiableInformation
-  Personal: Personal!
-  ProfileType: ProfileType!
-  Relationships: [Relationship!]!
+  Personal: Personal
+  ProfileType: ProfileType
+  Relationships: [Relationship!]
   ThemeManager: ThemeManager
-  bfsprofileid: String!
-  createdAt: DateTime!
-  id: String!
-  photos: [Photo!]!
+  bfsprofileid: String
+  createdAt: DateTime
+  id: String
+  photos: [Photo!]
   profilePhoto: Photo
   resentSearches: SearchesService
   tonightStory: Story
-  updatedAt: DateTime!
+  updatedAt: DateTime
 }
 
 input ProfileRelationFilter {
@@ -13597,14 +13602,14 @@ input ProfileScalarWhereWithAggregatesInput {
 }
 
 type ProfileTheme {
-  Theme: Theme!
-  ThemeManager: ThemeManager!
-  createdAt: DateTime!
-  id: ID!
-  isActive: Boolean!
-  themeId: String!
+  Theme: Theme
+  ThemeManager: ThemeManager
+  createdAt: DateTime
+  id: ID
+  isActive: Boolean
+  themeId: String
   themeManagerId: String
-  updatedAt: DateTime!
+  updatedAt: DateTime
 }
 
 input ProfileThemeCountOrderByAggregateInput {
@@ -14664,21 +14669,21 @@ input ProfileUpsertWithoutVoteInput {
 }
 
 type ProfileVenue {
-  Credentials: Credentials!
+  Credentials: Credentials
   DetailInformation: DetailInformation
   IdentifiableInformation: IdentifiableInformation
-  ProfileType: ProfileType!
-  Relationships: [Relationship!]!
+  ProfileType: ProfileType
+  Relationships: [Relationship!]
   ThemeManager: ThemeManager
   Venue: Venue
-  bfsprofileid: String!
-  createdAt: DateTime!
+  bfsprofileid: String
+  createdAt: DateTime
   distanceInM: Int
-  id: String!
-  photos: [Photo!]!
+  id: String
+  photos: [Photo!]
   profilePhoto: Photo
   tonightStory: Story
-  updatedAt: DateTime!
+  updatedAt: DateTime
 }
 
 input ProfileWhereInput {
@@ -14738,23 +14743,23 @@ input ProfileWhereUniqueInput {
 }
 
 type ProfilesResponse {
-  email: [Profile!]!
-  phone: [Profile!]!
-  username: [Profile!]!
+  email: [Profile!]
+  phone: [Profile!]
+  username: [Profile!]
 }
 
 type PublicProfilePersonal {
   DetailInformation: DetailInformation
   IdentifiableInformation: IdentifiableInformation
-  Personal: Personal!
-  ProfileType: ProfileType!
-  createdAt: DateTime!
-  friendStatus: RelationshipStatusResponse!
-  id: String!
+  Personal: Personal
+  ProfileType: ProfileType
+  createdAt: DateTime
+  friendStatus: RelationshipStatusResponse
+  id: String
   profilePhoto: Photo
   relationship: NotificationFriendRequestStatusResponse
   tonightStory: Story
-  updatedAt: DateTime!
+  updatedAt: DateTime
 }
 
 type PushToken {
@@ -14996,48 +15001,48 @@ input PushTokenWhereUniqueInput {
 }
 
 type Query {
-  H3IndexGrid(cell: String!, ringSize: Int! = 1): [String!]!
-  H3IndexLatLng(cell: String!): [Float!]!
+  H3IndexGrid(cell: String!, ringSize: Int! = 1): [String!]
+  H3IndexLatLng(cell: String!): [Float!]
   authorizedProfiles(where: AuthorizedProfilesWhereInput!): AuthorizedProfilesResponseUnion
-  checkPrivacyTermsDocumentUpdate: PrivacyTermsUpdateResponseUnion!
-  checkUsername(username: String!): Boolean!
+  checkPrivacyTermsDocumentUpdate: PrivacyTermsUpdateResponseUnion
+  checkUsername(username: String!): Boolean
   emojimood(where: EmojimoodWhereUniqueInput!): Emojimood
-  emojimoods: [Emojimood!]!
-  exploreSearch(search: String!): ExploreResponse!
+  emojimoods: [Emojimood!]
+  exploreSearch(search: String!): ExploreResponse
   findConversationByIdOrMembers(
     conversationId: String
 
     """This is a list of ProfileIds."""
     members: [String!]
   ): Conversation
-  friendsFromContacts(contact: [ContactInput!]!): String!
-  getADeviceManager: DeviceManagerDeviceProfilesResponseUnion!
-  getAllCitiesByState(countryIsoCode: String!, stateIsoCode: String!): OrganizedCityResponseObject!
-  getAllCountries: [CountryResponseObject!]!
-  getAllFriends: [Profile!]!
-  getAllStatesByCountry(countryIsoCode: String!): [StateResponseObject!]!
-  getAllThemes: [Theme!]!
+  friendsFromContacts(contact: [ContactInput!]!): String
+  getADeviceManager: DeviceManagerDeviceProfilesResponseUnion
+  getAllCitiesByState(countryIsoCode: String!, stateIsoCode: String!): OrganizedCityResponseObject
+  getAllCountries: [CountryResponseObject!]
+  getAllFriends: [Profile!]
+  getAllStatesByCountry(countryIsoCode: String!): [StateResponseObject!]
+  getAllThemes: [Theme!]
   getConversations: [Conversation!]
   getCurrentPushNotificationToken: PushToken
   getFriends: [PublicProfilePersonal!]
   getH3Index6VenueRecommendationById(id: String!, venuesProfileIds: [String!]): H3Index6VenueRecommendation
-  getInterests: [Category!]!
-  getLiveVenueTotals(profileIdVenue: String): LiveVenueTotals!
-  getLiveVenueTotalsV2(profileIdVenue: String): VenueTotalsResponseUnion!
-  getNotifications: NotificationResponse!
-  getProfileThemeManager: ThemeManager!
-  getSecureFriendQRCodeData: String!
-  loginPassword(password: String!, username: String!): Boolean!
-  privacyTermsDocuments: LatestPrivacyAndTermsDocumentResponse!
+  getInterests: [Category!]
+  getLiveVenueTotals(profileIdVenue: String): LiveVenueTotals
+  getLiveVenueTotalsV2(profileIdVenue: String): VenueTotalsResponseUnion
+  getNotifications: NotificationResponse
+  getProfileThemeManager: ThemeManager
+  getSecureFriendQRCodeData: String
+  loginPassword(password: String!, username: String!): Boolean
+  privacyTermsDocuments: LatestPrivacyAndTermsDocumentResponse
   profile(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): Profile
   profiles(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): [Profile!]
   publicProfile(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): PublicProfilePersonal
   publicVenue(currentLocationCoords: CoordsInput, cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): ProfileVenue
-  refreshDeviceManager: AuthenticationResponseUnion!
-  sendAuthenticatorDeviceOwnerCode: Boolean!
+  refreshDeviceManager: AuthenticationResponseUnion
+  sendAuthenticatorDeviceOwnerCode: Boolean
   venue(cursor: VenueWhereUniqueInput, distinct: [VenueScalarFieldEnum!], orderBy: [VenueOrderByWithRelationInput!], skip: Int, take: Int, where: VenueWhereInput): Venue
   venues(cursor: VenueWhereUniqueInput, distinct: [VenueScalarFieldEnum!], orderBy: [VenueOrderByWithRelationInput!], skip: Int, take: Int, where: VenueWhereInput): [Venue!]!
-  venuesNearby(cityName: String, countryIsoCode: String!, kRing: Int = 1, searchAreaCoords: CoordsInput!, stateIsoCode: String!): RecommendationResponseUnion!
+  venuesNearby(cityName: String, countryIsoCode: String!, kRing: Int = 1, searchAreaCoords: CoordsInput!, stateIsoCode: String!): RecommendationResponseUnion
 }
 
 enum QueryMode {
@@ -15505,15 +15510,15 @@ input RelationshipWhereUniqueInput {
 }
 
 type Request {
-  NotificationFriendRequest: [Notifications!]!
-  NotificationMessage: [Notifications!]!
-  NotificationType: String!
-  createdAt: DateTime!
-  id: ID!
-  recievers: [RequestReceiver!]!
+  NotificationFriendRequest: [Notifications!]
+  NotificationMessage: [Notifications!]
+  NotificationType: String
+  createdAt: DateTime
+  id: ID
+  recievers: [RequestReceiver!]
   senderProfile: Profile
-  senderProfileId: String!
-  updatedAt: DateTime!
+  senderProfileId: String
+  updatedAt: DateTime
 }
 
 input RequestCountOrderByAggregateInput {
@@ -15693,11 +15698,11 @@ input RequestOrderByWithRelationInput {
 }
 
 type RequestReceiver {
-  NotificationStatus: NotificationStatus!
+  NotificationStatus: NotificationStatus
   Profile: Profile
-  id: ID!
-  notificationStatusId: String!
-  profileId: String!
+  id: ID
+  notificationStatusId: String
+  profileId: String
   requestId: String
 }
 
@@ -17445,11 +17450,11 @@ input StateRelationFilter {
 }
 
 type StateResponseObject {
-  countryCode: String!
-  isoCode: String!
+  countryCode: String
+  isoCode: String
   latitude: String
   longitude: String
-  name: String!
+  name: String
 }
 
 enum StateScalarFieldEnum {
@@ -17566,13 +17571,13 @@ input StateWhereUniqueInput {
 }
 
 type Story {
-  Profile: Profile!
-  createdAt: DateTime!
-  date: DateTime!
+  Profile: Profile
+  createdAt: DateTime
+  date: DateTime
   emojimood: Emojimood
-  id: ID!
-  photos: [Photo!]!
-  startDate: DateTime!
+  id: ID
+  photos: [Photo!]
+  startDate: DateTime
   updatedAt: DateTime
 }
 
@@ -18027,10 +18032,10 @@ input StringWithAggregatesFilter {
 
 type Subscription {
   """Events related to messages"""
-  messageEvents: IBaseMessageEvent!
+  messageEvents: IBaseMessageEvent
 
   """Events related to posts"""
-  postEvents: IBasePostEvent!
+  postEvents: IBasePostEvent
 }
 
 type Tag {
@@ -18297,16 +18302,16 @@ input TagWhereUniqueInput {
 }
 
 type Theme {
-  ProfileTheme: [ProfileTheme!]!
-  createdAt: DateTime!
+  ProfileTheme: [ProfileTheme!]
+  createdAt: DateTime
   endDate: DateTime
-  id: ID!
-  mobileVersions: [String!]!
-  name: String!
+  id: ID
+  mobileVersions: [String!]
+  name: String
   startDate: DateTime
   theme: Json
-  updatedAt: DateTime!
-  webVersions: [String!]!
+  updatedAt: DateTime
+  webVersions: [String!]
 }
 
 input ThemeCountOrderByAggregateInput {
@@ -18953,7 +18958,7 @@ input UpdateManyNotificationStatusInput {
 union UpdateManyNotificationStatusUnionResponse = Error | UpdateNotificationResponse
 
 type UpdateNotificationResponse {
-  count: Int!
+  count: Int
 }
 
 input UpdateNotificationStatusInput {
@@ -18965,7 +18970,7 @@ type Venue {
   LiveOutVenue: LiveOutVenue
   Location: Location
   Profile: Profile!
-  VenueStats: VenueStats!
+  VenueStats: VenueStats
   createdAt: DateTime!
   id: ID!
   name: String
@@ -19551,7 +19556,7 @@ input VenueWhereUniqueInput {
 type VenuesNearbyResponse {
   recommendedAreas: [H3Index6VenueRecommendation!]
   searchArea: Area
-  venuesNearby: [ProfileVenue!]!
+  venuesNearby: [ProfileVenue!]
 }
 
 type Vote {

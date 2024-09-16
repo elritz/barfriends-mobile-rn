@@ -14,6 +14,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { ScrollView } from "react-native";
 import { useEffect, useState } from "react";
 import { useRefreshDeviceManagerQuery } from "#/graphql/generated";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Wrapper = ({ children }) => {
   const rTheme = useReactiveVar(ThemeReactiveVar);
@@ -71,8 +72,6 @@ const Wrapper = ({ children }) => {
 export default () => {
   const contentInsets = useContentInsets();
   const rTheme = useReactiveVar(ThemeReactiveVar);
-  const [emojimodd, setEmojimood] = useState({});
-
   const {
     data: rdmData,
     loading: rdmLoading,
@@ -91,81 +90,86 @@ export default () => {
   ) {
     return (
       <ScrollView
-        contentContainerStyle={{
-          flex: 1,
+        contentInset={{
+          ...contentInsets,
         }}
+        automaticallyAdjustContentInsets
       >
-        <Box className={` mt-${contentInsets.top} mx-2 my-2 p-5 pt-10`}>
-          <CardPleaseSignup signupTextId={1} />
-        </Box>
+        <SafeAreaView>
+          <Box className={`mx-2 my-2 p-5 pt-10`}>
+            <CardPleaseSignup signupTextId={1} />
+          </Box>
+        </SafeAreaView>
       </ScrollView>
     );
   }
-  useEffect(() => {
-    if (
-      rdmData?.refreshDeviceManager.__typename === "AuthorizationDeviceProfile"
-    ) {
-      if (rdmData?.refreshDeviceManager.Profile?.tonightStory?.emojimood) {
-        setEmojimood(
-          rdmData?.refreshDeviceManager.Profile?.tonightStory?.emojimood,
-        );
-      } else {
-        setEmojimood(null);
-      }
-    }
-  }, [rdmData?.refreshDeviceManager]);
+
   if (
     rdmData?.refreshDeviceManager.__typename === "AuthorizationDeviceProfile"
   ) {
     return (
-      // <LinearGradient style={{ flex: 1 }} colors={emojimodd?[...emojimodd.colors]}>
-      <LinearGradient style={{ flex: 1 }} colors={['#fff888']}>
-      <FlashList
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{
-            paddingHorizontal: 5,
-          }}
-          ListHeaderComponentStyle={{
-            marginBottom: 20,
-          }}
-          contentInset={{
-            ...contentInsets,
-          }}
-          ListHeaderComponent={() => {
-            return <Photos />;
-          }}
-          data={[
-            {
-              _typename: "addemoji",
-              item: <AddEmoji />,
-            },
-            {
-              _typename: "joinvenue",
-              item: <JoinVenue />,
-            },
-            {
-              _typename: "quickbarfriend",
-              item: (
-                <QuickBarfriendCard
-                  color={rTheme.colorScheme === "light" ? "black" : "white"}
-                  showIcon={false}
-                  logosize={40}
-                  qrcodesize={140}
-                />
-              ),
-            },
-            {
-              _typename: "invite",
-              item: <InviteCard />,
-            },
-          ]}
-          numColumns={2}
-          estimatedItemSize={200}
-          renderItem={({ index, item }) => {
-            return <Wrapper>{item.item}</Wrapper>;
-          }}
-        />
-      </LinearGradient>
+      <ScrollView
+        contentContainerStyle={{
+          flex: 1,
+        }}
+      >
+        <LinearGradient
+          style={{ flex: 1 }}
+          colors={
+            rdmData?.refreshDeviceManager?.Profile?.tonightStory?.emojimood
+              ?.colors.length
+              ? rdmData?.refreshDeviceManager?.Profile?.tonightStory?.emojimood
+                  .colors
+              : ["#0000000"]
+          }
+        >
+          <FlashList
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{
+              paddingHorizontal: 5,
+            }}
+            ListHeaderComponentStyle={{
+              marginBottom: 20,
+            }}
+            contentInset={{
+              ...contentInsets,
+            }}
+            ListHeaderComponent={() => {
+              return <Photos />;
+            }}
+            data={[
+              {
+                _typename: "addemoji",
+                item: <AddEmoji />,
+              },
+              {
+                _typename: "joinvenue",
+                item: <JoinVenue />,
+              },
+              {
+                _typename: "quickbarfriend",
+                item: (
+                  <QuickBarfriendCard
+                    color={rTheme.colorScheme === "light" ? "black" : "white"}
+                    showIcon={false}
+                    logosize={40}
+                    qrcodesize={140}
+                  />
+                ),
+              },
+              {
+                _typename: "invite",
+                item: <InviteCard />,
+              },
+            ]}
+            numColumns={2}
+            estimatedItemSize={200}
+            renderItem={({ index, item }) => {
+              return <Wrapper>{item.item}</Wrapper>;
+            }}
+          />
+        </LinearGradient>
+      </ScrollView>
     );
   }
 };

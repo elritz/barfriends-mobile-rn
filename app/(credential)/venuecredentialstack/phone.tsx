@@ -171,7 +171,7 @@ export default () => {
       <VStack
         className={` ${isFocused ? "flex" : "hidden"} h-[90px] flex-row content-around items-center justify-end bg-white px-2 dark:bg-black`}
       >
-        <VStack className="flex-2 flex-column flex justify-around px-2">
+        <VStack className="flex-1 flex-column flex justify-around px-2">
           <Text>
             By continuing you may receive an SMS for verification. Message and
             data rates may apply.

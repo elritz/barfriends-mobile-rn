@@ -6,9 +6,7 @@ import { secureStorageItemRead } from '#/util/hooks/local/useSecureStorage'
 const authLink = setContext(async (_, { headers }) => {
 	const authorization = await secureStorageItemRead({ key: AUTHORIZATION })
 	const refresh = await secureStorageItemRead({ key: REFRESH })
-	// console.log("🚀 ~ authLink ~ authorization:", authorization)
-	// console.log("🚀 ~ authLink ~ refresh:", refresh)
-
+	
 	const { deviceType } = await useDeviceType()
 	if(!authorization || !refresh) {
 		return {

@@ -19,7 +19,6 @@ type Props = {
 };
 
 export default function ProfilePhoto({ photo }: Props) {
-  const rTheme = useReactiveVar(ThemeReactiveVar);
   const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar);
   const [isLoading, setLoading] = useState(false);
 
@@ -79,7 +78,7 @@ export default function ProfilePhoto({ photo }: Props) {
 
   if (isLoading) {
     return (
-      <Pressable className="bg-dar h-[130px] w-[120px] items-center justify-center rounded-lg p-2 dark:bg-red-500">
+      <Pressable className="bg-dar h-[110px] w-[100px] items-center justify-center rounded-lg p-2 dark:bg-red-500">
         <ActivityIndicator size={"small"} />
       </Pressable>
     );
@@ -89,7 +88,7 @@ export default function ProfilePhoto({ photo }: Props) {
     return (
       <Pressable
         onPress={pickImage}
-        className="h-[130px] w-[120px] rounded-lg bg-light-300 p-2 dark:bg-light-800"
+        className="h-[100px] w-[100px] rounded-lg bg-light-300 p-2 dark:bg-light-800"
       >
         <ProfilePhotoEmptyState />
       </Pressable>
@@ -97,11 +96,8 @@ export default function ProfilePhoto({ photo }: Props) {
   }
 
   return (
-    <Pressable
-      onPress={pickImage}
-      className="items-center justify-center pr-2"
-    >
-      <Box className="h-[130px] w-[120px] overflow-hidden rounded-lg">
+    <Pressable onPress={pickImage} className="items-center justify-center pr-2">
+      <Box className="h-[100px] w-[100px] overflow-hidden rounded-lg">
         <Image
           source={{
             uri: photo?.url,

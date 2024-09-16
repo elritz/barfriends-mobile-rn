@@ -10,6 +10,7 @@ import CondensedVerticalFriendsNotficationsList from "#/components/organisms/lis
 const Messages = () => {
   const contentInsets = useContentInsets();
   const { data, loading, error } = useGetConversationsQuery();
+  // console.log("🚀 ~ Messages ~ data:", data);
 
   if (loading) {
     return <Text>Loading...</Text>;

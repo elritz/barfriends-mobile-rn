@@ -6,11 +6,7 @@ import { Button, ButtonText } from "#/components/ui/button";
 import { Box } from "#/components/ui/box";
 // TODO: If user is joined to the venue remove join button show joined
 import { useReactiveVar } from "@apollo/client";
-import {
-  AuthorizationDeviceProfile,
-  Profile,
-  ProfileVenue,
-} from "#/graphql/generated";
+import { ProfileVenue } from "#/graphql/generated";
 import { AuthorizationReactiveVar } from "#/reactive";
 import useGetDistance from "#/util/hooks/useDistance";
 import { useRouter } from "expo-router";
@@ -159,7 +155,7 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = ({
             numberOfLines={2}
             // underline={isPressed}
             ellipsizeMode="tail"
-            className="leading-xs text-lg font-bold text-[left] dark:color-white"
+            className="leading-xs text-left text-lg font-bold dark:color-white"
           >
             {getTitleCase(item?.IdentifiableInformation?.fullname)}
           </Heading>
@@ -167,12 +163,12 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = ({
             <Heading
               numberOfLines={2}
               ellipsizeMode="tail"
-              className="text-md leading-xs font-bold text-[left] dark:color-white"
+              className="text-md leading-xs text-left font-bold dark:color-white"
             >
               {distance} {metric}
             </Heading>
           )}
-          {showJoin && (
+          {/* {showJoin && (
             <>
               {canJoin ? (
                 <Button
@@ -208,7 +204,7 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = ({
                 </Button>
               ) : null}
             </>
-          )}
+          )} */}
         </VStack>
       </VStack>
     </Pressable>

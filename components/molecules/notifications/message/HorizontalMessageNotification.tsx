@@ -1,15 +1,18 @@
 import { VStack } from "#/components/ui/vstack";
 import { Text } from "#/components/ui/text";
 import { Pressable } from "#/components/ui/pressable";
-import { Heading } from "#/components/ui/heading";
 import { HStack } from "#/components/ui/hstack";
 import { Box } from "#/components/ui/box";
 import { useRefreshDeviceManagerQuery } from "#/graphql/generated";
 import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
+import { Heading } from "#/components/ui/heading";
+import { ThemeReactiveVar } from "#/reactive";
+import { useReactiveVar } from "@apollo/client";
 
 const HorizontalMessageNotification = ({ item }) => {
   const router = useRouter();
+  const rThemeVar = useReactiveVar(ThemeReactiveVar);
   const {
     data: rdmData,
     loading: rdmLoading,
@@ -29,62 +32,68 @@ const HorizontalMessageNotification = ({ item }) => {
           router.push({
             // pathname: `/(app)/conversation/${item.id}`,
             pathname: `/(app)/animatedconversation/${item.id}`,
+            params: {
+              name: isGroup
+                ? item.name
+                : member[0].IdentifiableInformation.fullname,
+            },
           });
         }}
-        className="h-[85px]"
+        className="h-[115px]"
       >
-        <Box className="flex-1 flex-row bg-transparent pt-2">
-          <VStack className="h-full w-[50px] items-center justify-start">
-            <Box className="h-[45px] w-[45px] items-center justify-center rounded-md bg-light-200 dark:bg-light-400">
+        <HStack space="sm" className="flex-1 flex-row pt-2">
+          <VStack className="h-full items-center justify-start">
+            <Box className="mt-2 h-[65px] w-[65px] items-center justify-center rounded-lg bg-light-200 dark:bg-light-800">
               {isGroup ? (
-                <MaterialIcons name="group" size={24} color="black" />
+                <MaterialIcons
+                  name="group"
+                  size={27}
+                  color={rThemeVar.colorScheme === "light" ? "black" : "white"}
+                />
               ) : (
-                <MaterialIcons name="person" size={24} color="black" />
+                <MaterialIcons
+                  name="person"
+                  size={24}
+                  color={rThemeVar.colorScheme === "light" ? "black" : "white"}
+                />
               )}
             </Box>
           </VStack>
-          <VStack className="mb-2 ml-1 flex-1">
-            <HStack>
-              <Box className="mr-1 flex-1 bg-transparent">
-                <Heading
-                  numberOfLines={1}
-                  lineBreakMode="tail"
-                  allowFontScaling={true}
-                  minimumFontScale={0.8}
-                  maxFontSizeMultiplier={0.25}
-                  className="leading-sm text-md text-left font-bold dark:color-white"
-                >
-                  {isGroup
-                    ? item.name
-                    : member[0].IdentifiableInformation.fullname}
-                </Heading>
-              </Box>
-              <Box className="bg-transparent">
+          <HStack
+            className="flex-1 border-light-300 dark:border-light-500"
+            style={{ borderBottomWidth: 0.25 }}
+          >
+            <VStack className="mb-2 ml-1 mr-1 flex-1 pt-2">
+              <Heading
+                numberOfLines={1}
+                lineBreakMode="tail"
+                allowFontScaling={true}
+                minimumFontScale={0.8}
+                size="2xl"
+                maxFontSizeMultiplier={0.25}
+                className="text-left font-medium capitalize dark:color-white"
+              >
+                {isGroup
+                  ? item.name
+                  : member[0].IdentifiableInformation.fullname}
+              </Heading>
+              <HStack className="flex-1 justify-between">
                 <Text
                   numberOfLines={1}
-                  lineBreakMode="tail"
-                  allowFontScaling={true}
-                  className="flex-reverse rtl:rtl text-right text-sm"
+                  textBreakStrategy={"balanced"}
+                  lineBreakMode={"tail"}
+                  size="xl"
+                  className="leading-xs flex-1 dark:color-slate-100"
                 >
-                  2024-05-01
+                  {item.Messages[0].content.message}
                 </Text>
-              </Box>
-            </HStack>
-            <HStack className="border-b-0.25 dark:border-b-light-9000 flex-1 justify-between border-b-light-800">
-              <Text
-                numberOfLines={2}
-                textBreakStrategy={"balanced"}
-                lineBreakMode={"tail"}
-                className="leading-xs flex-1 text-sm"
-              >
-                {item.Messages[0].content.message}
-              </Text>
-              <Box className="bg-transparent pt-2">
-                <Box className="z-1 mx-1 max-h-[8px] min-h-[8px] min-w-[8px] max-w-[8px] self-center rounded-full bg-primary-500" />
-              </Box>
-            </HStack>
-          </VStack>
-        </Box>
+              </HStack>
+            </VStack>
+            <Box className="mx-2 justify-center pt-2">
+              <Box className="z-1 max-h-[10px] min-h-[10px] min-w-[10px] max-w-[10px] self-center rounded-full bg-primary-500" />
+            </Box>
+          </HStack>
+        </HStack>
       </Pressable>
     );
   };

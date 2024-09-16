@@ -359,60 +359,9 @@ export const PUBLIC_PERSONAL_FRAGMENT = gql`
 						createdAt
 					}
 				}
-
 				updatedAt
 				createdAt
 			}
-			... on Relationship {
-				__typename
-				id
-				profileId
-				friendProfileId
-				RelationshipStatus
-				venueMetAt
-				updatedAt
-				createdAt
-			}
-		}
-		profilePhoto {
-			id
-			url
-			type
-			position
-			active
-			ratio
-			blurhash
-			createdAt
-			updatedAt
-		}
-
-		tonightStory {
-			id
-			date
-
-			emojimood {
-				id
-				emojiname
-				emoji
-				colors
-			}
-			Profile {
-				id
-			}
-			photos {
-				id
-				url
-				active
-				blurhash
-				ratio
-				type
-				position
-				createdAt
-				updatedAt
-			}
-			startDate
-			createdAt
-			updatedAt
 		}
 	}
 `

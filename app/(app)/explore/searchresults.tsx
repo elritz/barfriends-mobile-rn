@@ -1,13 +1,12 @@
+import { Text } from "#/components/ui/text";
 import { useReactiveVar } from "@apollo/client";
 import SearchAccounts from "#/components/screens/search/textsearchtabs/SearchAccounts";
 import SearchVenues from "#/components/screens/search/textsearchtabs/SearchVenues";
 import { ThemeReactiveVar } from "#/reactive";
 import useContentInsets from "#/util/hooks/useContentInsets";
 import { useState } from "react";
-import { Pressable, useWindowDimensions } from "react-native";
+import { View, Pressable, useWindowDimensions } from "react-native";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
-import { Text } from "react-native";
-import { View } from "react-native";
 
 const renderScene = SceneMap({
   second: SearchAccounts,
@@ -16,6 +15,7 @@ const renderScene = SceneMap({
 
 export default function searchresulttabs() {
   const contentInsets = useContentInsets();
+  const rTheme = useReactiveVar(ThemeReactiveVar);
 
   const [index, setIndex] = useState(0);
   const [routes] = useState([
@@ -41,7 +41,12 @@ export default function searchresulttabs() {
                 alignItems: "center",
                 padding: 16,
                 borderBottomWidth: 1,
-                borderBottomColor: index === i ? "black" : "transparent",
+                borderBottomColor:
+                  index === i
+                    ? rTheme.colorScheme === "light"
+                      ? "black"
+                      : "white"
+                    : "transparent",
               }}
               onPress={() => setIndex(i)}
             >
@@ -53,27 +58,6 @@ export default function searchresulttabs() {
         })}
       </View>
     );
-    // return (
-    // 	<TabBar
-    // 		{...props}
-    // 		indicatorStyle={{
-    // 			backgroundColor: rTheme.theme?.gluestack.tokens.colors.primary500,
-    // 		}}
-    // 		style={{
-    // 			flexDirection: 'row',
-    // 			backgroundColor:
-    // 				rTheme.colorScheme === 'dark'
-    // 					? rTheme.theme?.gluestack.tokens.colors.light900
-    // 					: rTheme.theme?.gluestack.tokens.colors.light50,
-    // 		}}
-    // 		renderLabel={({ route, focused, color }) => {
-    // 			return (
-    // 				<Text style={{ margin: 8, fontWeight: focused ? '800' : '500', color: 'black' }}>{route.title}</Text>
-    // 			)
-    // 		}
-    // 		}
-    // 	/>
-    // )
   };
 
   return (

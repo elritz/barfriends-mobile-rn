@@ -299,7 +299,7 @@ export default () => {
           })}
         </View>
       </ScrollView>
-      <VStack space={"md"} className="mx-2 mb-[undefined]">
+      <VStack space={"md"} className="mx-2 mb-[10]">
         <Button
           size={"md"}
           onPress={() =>

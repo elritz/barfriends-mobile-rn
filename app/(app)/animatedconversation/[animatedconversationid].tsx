@@ -17,12 +17,9 @@ import { history } from "#/components/screens/conversations/Message/data";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { useReactiveVar } from "@apollo/client";
 import { ThemeReactiveVar } from "#/reactive";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useCreateMessageMutation } from "#/graphql/generated";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { BlurView } from "expo-blur";
-
-const AnimatedTextInput = Reanimated.createAnimatedComponent(Box);
 
 const styles = StyleSheet.create({
   container: {
@@ -112,15 +109,14 @@ const useKeyboardAnimation = () => {
 const TEXT_INPUT_HEIGHT = 80;
 
 const contentContainerStyle = {
-  paddingBottom: TEXT_INPUT_HEIGHT + 95,
+  paddingBottom: TEXT_INPUT_HEIGHT + 30,
 };
 // const AnimatedBoxInput = Reanimated.createAnimatedComponent(Box);
 // const AnimatedView = Reanimated.createAnimatedComponent(View);
-const AnimatedBlurView = Reanimated.createAnimatedComponent(View);
+const AnimatedView = Reanimated.createAnimatedComponent(View);
 
 function AnimatedChatroom() {
   const refSafeArea = useRef<RNSafeAreaView>(null);
-
   const ref = useRef<Reanimated.ScrollView>(null);
   const rTheme = useReactiveVar(ThemeReactiveVar);
   const { height, onScroll, inset, offset } = useKeyboardAnimation();
@@ -132,7 +128,6 @@ function AnimatedChatroom() {
   } = useForm<FormValues>({
     defaultValues: {
       text: "",
-      // text: 'Weqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqeqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqwe',
     },
   });
 
@@ -150,8 +145,6 @@ function AnimatedChatroom() {
         height.value < 100 ? TEXT_INPUT_HEIGHT : TEXT_INPUT_HEIGHT - 20,
       width: "100%",
       transform: [{ translateY: -height.value }],
-      // paddingHorizontal: 10,
-      fontSize: 15,
     }),
     [],
   );
@@ -191,7 +184,6 @@ function AnimatedChatroom() {
         // simulation of `automaticallyAdjustKeyboardInsets` behavior on RN < 0.73
         animatedProps={props}
         onScroll={onScroll}
-        contentInset={{ top: 220 }}
         automaticallyAdjustContentInsets={false}
         contentInsetAdjustmentBehavior="never"
       >
@@ -199,22 +191,22 @@ function AnimatedChatroom() {
           <Message key={index} {...message} />
         ))}
       </Reanimated.ScrollView>
-      <AnimatedBlurView
+      <AnimatedView
         style={[
           BoxInputStyle,
           {
             // backgroundColor: "red",
           },
-
-          // {
-          //   backgroundColor:
-          //     rTheme.colorScheme === "light"
-          //       ? rTheme.theme?.gluestack.tokens.colors.light200
-          //       : rTheme.theme?.gluestack.tokens.colors.black,
-          // },
         ]}
       >
-        <BlurView style={{ minWidth: "100%", height: "100%" }}>
+        <BlurView
+          tint={
+            rTheme.colorScheme === "light"
+              ? "systemMaterialLight"
+              : "systemThickMaterialDark"
+          }
+          style={{ minWidth: "100%", height: "100%" }}
+        >
           <Controller
             control={control}
             name="text"
@@ -226,9 +218,9 @@ function AnimatedChatroom() {
                 <SafeAreaView ref={refSafeArea} className="">
                   <Input className="mx-4 mb-2 mt-5 h-auto max-h-[155px] items-center rounded-3xl border-light-300">
                     <BlurView
-                      style={{ flex: 1, height: "100%", }}
+                      style={{ flex: 1, height: "100%" }}
                       className="h-auto min-h-[40px] flex-row items-center rounded-3xl"
-                      intensity={95}
+                      intensity={98}
                     >
                       <InputField
                         value={value}
@@ -238,14 +230,14 @@ function AnimatedChatroom() {
                         style={{
                           lineHeight: 22,
                           borderRadius: 15,
-                          paddingVertical: 5
+                          paddingVertical: 5,
                         }}
                         onPressIn={() => ref.current?.scrollToEnd()}
                         className="h-auto flex-1 border-0 text-[17px] font-medium leading-6 color-black dark:color-white"
                       />
                       <InputSlot
                         onPress={handleSubmit(handleSendMessage)}
-                        className="mr-2 h-[25px] w-[25px] items-center justify-center rounded-full bg-primary-500"
+                        className="mr-2 h-[25px] w-[25px] items-center justify-center rounded-full bg-blue-500"
                       >
                         <FontAwesome6
                           name={"arrow-up"}
@@ -261,7 +253,7 @@ function AnimatedChatroom() {
             }}
           />
         </BlurView>
-      </AnimatedBlurView>
+      </AnimatedView>
     </View>
   );
 }
