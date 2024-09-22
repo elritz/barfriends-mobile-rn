@@ -202,3 +202,4 @@ yarn-error.*
 
 # @end expo-cli
 .expo/devices.json
+.expo/devices.json
