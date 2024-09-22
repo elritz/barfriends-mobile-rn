@@ -9,7 +9,7 @@ import {
   useEmojimoodsQuery,
   useRefreshDeviceManagerQuery,
 } from "#/graphql/generated";
-import { AuthorizationReactiveVar, ThemeReactiveVar } from "#/reactive";
+import { ThemeReactiveVar } from "#/reactive";
 import { FlashList } from "@shopify/flash-list";
 import { BlurView } from "expo-blur";
 import { LinearGradient } from "expo-linear-gradient";
@@ -37,7 +37,7 @@ export default () => {
     return null;
   }
 
-  if (rdmData?.refreshDeviceManager.__typename === "Error") {
+  if (rdmData?.refreshDeviceManager?.__typename === "Error") {
     <LinearGradient colors={watch("emojimood.colors") || ["#0000000"]}>
       <Box
         style={{
@@ -129,7 +129,7 @@ export default () => {
   }
 
   if (
-    rdmData?.refreshDeviceManager.__typename === "AuthorizationDeviceProfile"
+    rdmData?.refreshDeviceManager?.__typename === "AuthorizationDeviceProfile"
   ) {
     return (
       <LinearGradient colors={watch("emojimood.colors") || ["#0000000"]}>
@@ -172,7 +172,7 @@ export default () => {
                       <Pressable
                         onPress={() => {
                           if (
-                            rdmData?.refreshDeviceManager.__typename ===
+                            rdmData?.refreshDeviceManager?.__typename ===
                               "AuthorizationDeviceProfile" &&
                             rdmData?.refreshDeviceManager.Profile?.tonightStory
                               ?.emojimood?.id === item.id

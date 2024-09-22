@@ -1,9 +1,10 @@
 import type { CodegenConfig } from '@graphql-codegen/cli'
-console.log('process.env.SERVER_ENDPOINT :>> ', process.env.SERVER_ENDPOINT);
+import getLocalIPAddress from './util/helpers/getLocalIPAddress'
+
 const config: CodegenConfig = {
 	overwrite: true,
 	// schema: `http://localhost:4000/graphql`,
-	schema: `http://192.168.86.36:4000/graphql`,
+	schema: `${getLocalIPAddress()}:4000/graphql`,
 	documents: './graphql/DM/**/*.*.ts',
 	generates: {
 		'./graphql/generated/index.ts': {

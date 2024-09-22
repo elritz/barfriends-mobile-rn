@@ -8,7 +8,7 @@ import InformationJoinVenue from "#/components/molecules/information/information
 import Details from "#/components/screens/public/venue/details/Details";
 import PersonalAtVenue from "#/components/screens/public/venue/peopleatvenue/PersonalAtVenue";
 import VenueActions from "#/components/screens/public/venue/venueactions/VenueActions";
-import LeaveSection from "#/components/screens/public/venue/venueactions/actioncards/leavesection/LeaveSection";
+import LeaveSection from "#/components/molecules/activity/leavesection/LeaveSection";
 import VenueHeader from "#/components/screens/public/venue/venueheader/VenueHeader";
 import VenueTotals from "#/components/screens/public/venue/venuetotals/VenueTotals";
 import { PUBLIC_VENUE_HEADER_IMAGE_HEIGHT } from "#/constants/Layout";
@@ -37,7 +37,7 @@ export default () => {
   const rTheme = useReactiveVar(ThemeReactiveVar);
 
   const link = `https://barfriends.com/app/public/venue?username=${params.username}`;
-  
+
   const { data, loading, error } = usePublicVenueQuery({
     skip: !params.username,
     fetchPolicy: "network-only",

@@ -33,10 +33,13 @@ import Animated, {
   useDerivedValue,
   useSharedValue,
 } from "react-native-reanimated";
+import useEmojimoodTextColor from "#/hooks/useTextContrast copy";
 
 const size = 70;
 
-export default function Photos() {
+const Photos: React.FC<ActivityCardProps> = ({
+  isEmojimoodDynamic = false,
+}) => {
   const [isLoading, setLoading] = useState(false);
   const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar);
   const rTheme = useReactiveVar(ThemeReactiveVar);
@@ -47,7 +50,9 @@ export default function Photos() {
   const margin = 12;
   const DOT_SIZE = 8;
   const ITEM_WIDTH = width - margin * 2;
-
+  const textColor = useEmojimoodTextColor({
+    isEmojimoodDynamic: isEmojimoodDynamic,
+  });
   //! don't move this from here
   const activeIndex = useDerivedValue(() => {
     return Math.round(translateX.value / ITEM_WIDTH);
@@ -170,7 +175,7 @@ export default function Photos() {
   });
 
   return (
-    <Box className="bg-transparent mx-2">
+    <Box className="mx-2 bg-transparent">
       {rAuthorizationVar?.Profile?.tonightStory?.photos?.length ? (
         <Box className={` h-${containerHeight} rounded-md bg-transparent`}>
           <Animated.ScrollView
@@ -360,12 +365,12 @@ export default function Photos() {
             borderRadius: 15,
             overflow: "hidden",
             backgroundColor:
-              rdmData?.refreshDeviceManager.__typename ===
+              rdmData?.refreshDeviceManager?.__typename ===
                 "AuthorizationDeviceProfile" &&
               rdmData?.refreshDeviceManager.Profile?.tonightStory?.emojimood
                 ? "transparent"
                 : rTheme.colorScheme === "light"
-                  ? rTheme.theme.gluestack.tokens.colors.light100
+                  ? rTheme.theme.gluestack.tokens.colors.light300
                   : rTheme.theme.gluestack.tokens.colors.light800,
           }}
         >
@@ -414,8 +419,20 @@ export default function Photos() {
                   />
                 </Box>
               </Box>
-              <Heading className="text-2xl">Start tonights Story</Heading>
-              <Text className="w-3/4 text-center text-lg font-medium">
+              <Heading
+                style={{
+                  color: textColor,
+                }}
+                className="text-2xl"
+              >
+                Start tonights Story
+              </Heading>
+              <Text
+                style={{
+                  color: textColor,
+                }}
+                className="w-3/4 text-center text-lg font-medium"
+              >
                 Add photos of your fit and pick your emojimood
               </Text>
               <Button
@@ -433,4 +450,6 @@ export default function Photos() {
       )}
     </Box>
   );
-}
+};
+
+export default Photos;

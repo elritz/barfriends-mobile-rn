@@ -159,7 +159,7 @@ export default function Preferences() {
             style={{
               flex: 1,
             }}
-            className={`${AuthorizationReactiveVar()?.Profile?.ThemeManager?.ProfileTheme[0]?.Theme.id === item.item.id ? "border-primary-400" : "border-transparent"} m-3 rounded-md border-2 px-2 py-4`}
+            className={`${AuthorizationReactiveVar()?.Profile?.ThemeManager?.ProfileTheme[0]?.Theme?.id === item.item.id ? "border-primary-400" : "border-transparent"} m-3 rounded-md border-2 px-2 py-4`}
           >
             <VStack space={"md"} className="flex-row flex-wrap justify-around">
               {rTheme.colorScheme === "light" ? (

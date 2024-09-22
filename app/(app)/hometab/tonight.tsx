@@ -1,25 +1,28 @@
 import { Box } from "#/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
 import CardPleaseSignup from "#/components/molecules/asks/signuplogin";
-import InviteCard from "#/components/screens/public/venue/venueactions/actioncards/invitecard/InviteCard";
-import QuickBarfriendCard from "#/components/screens/public/venue/venueactions/actioncards/quickbarfriendcard/QuickBarfriendCard";
-import AddEmoji from "#/components/screens/tonight/activity/ask/AddEmoji/AddEmoji";
-import JoinVenue from "#/components/screens/tonight/activity/ask/JoinVenue/JoinVenue";
+import InviteCard from "#/components/molecules/activity/invitecard/InviteCard";
+import QuickBarfriendCard from "#/components/molecules/activity/quickbarfriendcard/QuickBarfriendCard";
+import AddEmoji from "#/components/molecules/activity/AddEmoji/AddEmoji";
+import JoinVenue from "#/components/molecules/activity/JoinVenue/JoinVenue";
 import Photos from "#/components/screens/tonight/photos";
 import { AuthorizationReactiveVar, ThemeReactiveVar } from "#/reactive";
 import { FlashList } from "@shopify/flash-list";
 import useContentInsets from "#/util/hooks/useContentInsets";
 import { BlurView } from "expo-blur";
-import { LinearGradient } from "expo-linear-gradient";
 import { ScrollView } from "react-native";
 import { useEffect, useState } from "react";
 import { useRefreshDeviceManagerQuery } from "#/graphql/generated";
 import { SafeAreaView } from "react-native-safe-area-context";
+import EmojimoodGradient from "#/components/screens/tonight/EmojimoodGradient";
+import useEmojimoodTextColor from "#/hooks/useTextContrast copy";
 
 const Wrapper = ({ children }) => {
   const rTheme = useReactiveVar(ThemeReactiveVar);
   const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar);
-
+  const textColor = useEmojimoodTextColor({
+    isEmojimoodDynamic: true,
+  });
   const {
     data: rdmData,
     loading: rdmLoading,
@@ -28,6 +31,7 @@ const Wrapper = ({ children }) => {
     fetchPolicy: "cache-first",
   });
 
+  console.log("🚀 ~ Wrapper ~ rTheme.colorScheme:", rTheme.colorScheme);
   return (
     <BlurView
       intensity={60}
@@ -43,26 +47,14 @@ const Wrapper = ({ children }) => {
         alignItems: "center",
         overflow: "hidden",
         backgroundColor:
-          rdmData?.refreshDeviceManager.__typename ===
+          rdmData?.refreshDeviceManager?.__typename ===
             "AuthorizationDeviceProfile" &&
           rdmData?.refreshDeviceManager.Profile?.tonightStory?.emojimood
             ? "transparent"
             : rTheme.colorScheme === "light"
-              ? rTheme.theme.gluestack.tokens.colors.light100
+              ? rTheme.theme.gluestack.tokens.colors.light300
               : rTheme.theme.gluestack.tokens.colors.light800,
-        // ? "transparent"
-        // : rTheme.colorScheme === "light"
-        //   ? rTheme.theme.gluestack.tokens.colors.light100
-        //   : rTheme.theme.gluestack.tokens.colors.light800,
       }}
-      // flex={1}
-      // rounded='$lg'
-      // justifyContent={'center'}
-      // alignItems={'center'}
-      // overflow='hidden'
-      // px={'$5'}
-      // py={'$1'}
-      // m={'$2'}
     >
       {children}
     </BlurView>
@@ -78,6 +70,12 @@ export default () => {
     error: rdmError,
   } = useRefreshDeviceManagerQuery({
     fetchPolicy: "cache-first",
+    onCompleted(data) {
+      if (
+        data.refreshDeviceManager?.__typename === "AuthorizationDeviceProfile"
+      ) {
+      }
+    },
   });
 
   if (rdmLoading) {
@@ -85,7 +83,8 @@ export default () => {
   }
 
   if (
-    rdmData?.refreshDeviceManager.__typename === "AuthorizationDeviceProfile" &&
+    rdmData?.refreshDeviceManager?.__typename ===
+      "AuthorizationDeviceProfile" &&
     rdmData?.refreshDeviceManager.Profile?.ProfileType === "GUEST"
   ) {
     return (
@@ -105,23 +104,14 @@ export default () => {
   }
 
   if (
-    rdmData?.refreshDeviceManager.__typename === "AuthorizationDeviceProfile"
+    rdmData?.refreshDeviceManager?.__typename === "AuthorizationDeviceProfile"
   ) {
     return (
-      <ScrollView
-        contentContainerStyle={{
-          flex: 1,
-        }}
-      >
-        <LinearGradient
-          style={{ flex: 1 }}
-          colors={
-            rdmData?.refreshDeviceManager?.Profile?.tonightStory?.emojimood
-              ?.colors.length
-              ? rdmData?.refreshDeviceManager?.Profile?.tonightStory?.emojimood
-                  .colors
-              : ["#0000000"]
-          }
+      <EmojimoodGradient>
+        <ScrollView
+          contentContainerStyle={{
+            flex: 1,
+          }}
         >
           <FlashList
             showsVerticalScrollIndicator={false}
@@ -135,16 +125,16 @@ export default () => {
               ...contentInsets,
             }}
             ListHeaderComponent={() => {
-              return <Photos />;
+              return <Photos isEmojimoodDynamic />;
             }}
             data={[
               {
                 _typename: "addemoji",
-                item: <AddEmoji />,
+                item: <AddEmoji isEmojimoodDynamic />,
               },
               {
                 _typename: "joinvenue",
-                item: <JoinVenue />,
+                item: <JoinVenue isEmojimoodDynamic />,
               },
               {
                 _typename: "quickbarfriend",
@@ -154,12 +144,13 @@ export default () => {
                     showIcon={false}
                     logosize={40}
                     qrcodesize={140}
+                    isEmojimoodDynamic
                   />
                 ),
               },
               {
                 _typename: "invite",
-                item: <InviteCard />,
+                item: <InviteCard isEmojimoodDynamic />,
               },
             ]}
             numColumns={2}
@@ -168,8 +159,8 @@ export default () => {
               return <Wrapper>{item.item}</Wrapper>;
             }}
           />
-        </LinearGradient>
-      </ScrollView>
+        </ScrollView>
+      </EmojimoodGradient>
     );
   }
 };

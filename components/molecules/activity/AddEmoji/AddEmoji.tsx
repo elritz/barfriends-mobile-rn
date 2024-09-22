@@ -8,10 +8,16 @@ import { ThemeReactiveVar } from "#/reactive";
 import { useRouter } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRefreshDeviceManagerQuery } from "#/graphql/generated";
+import useEmojimoodTextColor from "#/hooks/useTextContrast copy";
 
-const AddEmoji = () => {
+const AddEmoji: React.FC<ActivityCardProps> = ({
+  isEmojimoodDynamic = false,
+}) => {
   const router = useRouter();
   const rTheme = useReactiveVar(ThemeReactiveVar);
+  const textColor = useEmojimoodTextColor({
+    isEmojimoodDynamic: isEmojimoodDynamic,
+  });
   const {
     data: rdmData,
     loading: rdmLoading,
@@ -21,7 +27,7 @@ const AddEmoji = () => {
   });
 
   if (
-    rdmData?.refreshDeviceManager.__typename === "AuthorizationDeviceProfile"
+    rdmData?.refreshDeviceManager?.__typename === "AuthorizationDeviceProfile"
   ) {
     return (
       <Pressable
@@ -36,7 +42,7 @@ const AddEmoji = () => {
           paddingVertical: 10,
         }}
       >
-        <Box className="h-16 w-16 items-center justify-center rounded-md bg-amber-500">
+        <Box className="h-16 w-16 items-center justify-center rounded-lg bg-amber-500">
           {!rdmData?.refreshDeviceManager.Profile?.tonightStory?.emojimood ? (
             <MaterialIcons
               size={30}
@@ -56,10 +62,10 @@ const AddEmoji = () => {
                 alignItems: "center",
                 justifyContent: "center",
               }}
-              colors={[
-                ...rdmData?.refreshDeviceManager.Profile.tonightStory.emojimood
-                  .colors,
-              ]}
+              colors={
+                rdmData?.refreshDeviceManager?.Profile?.tonightStory.emojimood
+                  .colors as string[]
+              }
             >
               <Text>
                 {
@@ -70,7 +76,12 @@ const AddEmoji = () => {
             </LinearGradient>
           )}
         </Box>
-        <Heading className="leading-lg mt-3 text-center text-lg font-black uppercase">
+        <Heading
+          style={{
+            color: textColor,
+          }}
+          className="leading-lg mt-3 text-center text-lg font-black uppercase"
+        >
           Add an emojimood
         </Heading>
       </Pressable>

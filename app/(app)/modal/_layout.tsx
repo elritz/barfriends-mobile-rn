@@ -42,7 +42,8 @@ export default () => {
     fetchPolicy: "cache-first",
     onCompleted(data) {
       if (
-        data.refreshDeviceManager.__typename === "AuthorizationDeviceProfile" &&
+        data.refreshDeviceManager?.__typename ===
+          "AuthorizationDeviceProfile" &&
         data.refreshDeviceManager.Profile?.tonightStory?.emojimood
       ) {
         methods.setValue("emojimood", {
@@ -72,13 +73,9 @@ export default () => {
         }
       },
       update: (cache, { data }) => {
-        console.log(
-          "🚀 ~ data?.updateStoryEmojimood:",
-          data?.updateStoryEmojimood,
-        );
         if (
-          data?.updateStoryEmojimood.__typename === "Story" &&
-          rdmData?.refreshDeviceManager.__typename ===
+          data?.updateStoryEmojimood?.__typename === "Story" &&
+          rdmData?.refreshDeviceManager?.__typename ===
             "AuthorizationDeviceProfile" &&
           rdmData.refreshDeviceManager.Profile?.tonightStory
         ) {
@@ -88,7 +85,9 @@ export default () => {
             ),
             fields: {
               emojimood(existingEmojimood, { toReference }) {
-                return data?.updateStoryEmojimood.emojimood;
+                return {
+                  ...data?.updateStoryEmojimood?.emojimood,
+                };
               },
             },
           });
@@ -112,13 +111,13 @@ export default () => {
           },
           headerShown: false,
           animation: "fade",
-          presentation: "modal",
         }}
       >
         <Stack.Screen
           name={"devicemanager"}
           options={{
             headerShown: false,
+            presentation: "modal",
           }}
         />
         <Stack.Screen

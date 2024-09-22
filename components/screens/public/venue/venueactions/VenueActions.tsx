@@ -4,10 +4,10 @@ import { Box } from "#/components/ui/box";
 // TODO: UX() Item need to be updated for messageboard route
 // TODO: UX() Item need to be updated for Personal data, loading, error
 import ActionCard from "./ActionCard";
-import DistanceCard from "./actioncards/distancecard/DistanceCard";
-import InviteCard from "./actioncards/invitecard/InviteCard";
-import QuickBarfriend from "./actioncards/quickbarfriendcard/QuickBarfriendCard";
-import UberCard from "./actioncards/ubercard/UberCard";
+import DistanceCard from "../../../../molecules/activity/distancecard/DistanceCard";
+import InviteCard from "../../../../molecules/activity/invitecard/InviteCard";
+import QuickBarfriend from "../../../../molecules/activity/quickbarfriendcard/QuickBarfriendCard";
+import UberCard from "../../../../molecules/activity/ubercard/UberCard";
 import DevActions from "./devactions/DevActions";
 import { useReactiveVar } from "@apollo/client";
 import { AuthorizationReactiveVar } from "#/reactive";

@@ -15,8 +15,7 @@ const afterwareLink = new ApolloLink((operation, forward) =>
 		if (headers) {
 			const authorization = headers.get('authorization')
 			const refresh = headers.get('refresh')
-			console.log("🚀 ~ asyncMap ~ refresh:", refresh)
-			console.log("🚀 ~ asyncMap ~ authorization:", authorization)
+			// console.log("🚀 ~ asyncMap ~ refresh:", refresh)
 
 			// await secureStorageItemDelete({
 			// 	key: AUTHORIZATION,

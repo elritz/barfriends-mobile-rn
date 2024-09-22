@@ -6,7 +6,10 @@ import { Button, ButtonText } from "#/components/ui/button";
 import { Box } from "#/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { useGetSecureFriendQrCodeDataLazyQuery } from "#/graphql/generated";
+import {
+  useGetSecureFriendQrCodeDataLazyQuery,
+  useRefreshDeviceManagerQuery,
+} from "#/graphql/generated";
 import {
   AuthorizationReactiveVar,
   PermissionCameraReactiveVar,
@@ -16,11 +19,12 @@ import { useDisclose } from "#/util/hooks/useDisclose";
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { View } from "react-native";
-import QRCode from "react-native-qrcode-svg";
+import { Color } from "#/util/helpers/color";
+import useEmojimoodTextColor from "#/hooks/useTextContrast copy";
 
-const LOGO_COASTER = require("../../../../../../../assets/images/company/company_coaster.png");
+const LOGO_COASTER = require("../../../../assets/images/company/company_coaster.png");
 
-type Props = {
+type Props = ActivityCardProps & {
   qrcodesize: number;
   logosize?: number;
   showIcon?: boolean;
@@ -32,6 +36,7 @@ export default function QuickBarfriendCard({
   logosize,
   showIcon,
   color,
+  isEmojimoodDynamic = false,
 }: Props) {
   const router = useRouter();
   const rTheme = useReactiveVar(ThemeReactiveVar);
@@ -40,6 +45,17 @@ export default function QuickBarfriendCard({
   const { isOpen, onOpen, onClose } = useDisclose();
   const [dataQR, setDataQR] = useState("");
   const [retryCount, setRetryCount] = useState(0);
+  const textColor = useEmojimoodTextColor({
+    isEmojimoodDynamic: isEmojimoodDynamic,
+  });
+
+  const {
+    data: rdmData,
+    loading: rdmLoading,
+    error: rdmError,
+  } = useRefreshDeviceManagerQuery({
+    fetchPolicy: "cache-first",
+  });
 
   const [getSecureFriendCodeQrData, { data, loading, error }] =
     useGetSecureFriendQrCodeDataLazyQuery({
@@ -59,9 +75,9 @@ export default function QuickBarfriendCard({
     getSecureFriendCodeQrData();
   }, []);
 
-  if (loading) return null;
+  if (loading || rdmLoading) return null;
 
-  if (error || !dataQR) {
+  if (error || !dataQR || !rdmData) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Icon as={SlashIcon} className="h-7 w-7 text-error-500" />
@@ -78,42 +94,53 @@ export default function QuickBarfriendCard({
       </View>
     );
   }
-  return (
-    <View
-      style={{
-        flex: 1,
-        width: "100%",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-      className="rounded-lg"
-    >
-      <Pressable
-        style={{ alignItems: "center", justifyContent: "center" }}
-        onPress={() =>
-          rPermissionCamera?.granted
-            ? onOpen()
-            : router.push({
-                pathname: "/(app)/permission/camera",
-              })
-        }
+
+  if (
+    data &&
+    rdmData?.refreshDeviceManager?.__typename === "AuthorizationDeviceProfile"
+  ) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          width: "100%",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        className="rounded-lg"
       >
-        <Box className="h-16 w-16 items-center justify-center rounded-md bg-primary-500">
-          <FontAwesome5
-            name={"user"}
-            size={30}
-            color={
-              rTheme.colorScheme === "light"
-                ? rTheme.theme?.gluestack.tokens.colors.light900
-                : rTheme.theme?.gluestack.tokens.colors.light100
-            }
-          />
-        </Box>
-        <Heading className="leading-lg mt-3 text-center text-lg font-black uppercase">
-          Find Friends
-        </Heading>
-        <VStack className="flex-column mt-2 items-center justify-around"></VStack>
-      </Pressable>
-    </View>
-  );
+        <Pressable
+          style={{ alignItems: "center", justifyContent: "center" }}
+          onPress={() =>
+            rPermissionCamera?.granted
+              ? onOpen()
+              : router.push({
+                  pathname: "/(app)/permission/camera",
+                })
+          }
+        >
+          <Box className="h-16 w-16 items-center justify-center rounded-md bg-primary-500">
+            <FontAwesome5
+              name={"user"}
+              size={30}
+              color={
+                rTheme.colorScheme === "light"
+                  ? rTheme.theme?.gluestack.tokens.colors.light900
+                  : rTheme.theme?.gluestack.tokens.colors.light100
+              }
+            />
+          </Box>
+          <Heading
+            style={{
+              color: textColor,
+            }}
+            className="leading-lg mt-3 text-center text-lg font-black uppercase"
+          >
+            Find Friends
+          </Heading>
+          <VStack className="flex-column mt-2 items-center justify-around"></VStack>
+        </Pressable>
+      </View>
+    );
+  }
 }
