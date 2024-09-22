@@ -50,7 +50,7 @@ export default function DevActions() {
           </VStack>
         </Box>
       ) : (
-        <Box className="my-5 py-10">
+        <Box className="mx-5 my-5 bg-orange-600 py-10">
           <Pressable
             onPress={() => {
               setShowDevMode(!showDevMode);

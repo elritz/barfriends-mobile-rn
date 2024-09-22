@@ -1,4 +1,3 @@
-import { Text } from "#/components/ui/text";
 import { HStack } from "#/components/ui/hstack";
 import { Button, ButtonText } from "#/components/ui/button";
 import { useReactiveVar } from "@apollo/client";
@@ -13,7 +12,6 @@ import { BlurView } from "expo-blur";
 import { Stack } from "expo-router";
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { Pressable } from "#/components/ui/pressable";
 
 export type FormType = {
   emojimood: Emojimood;
@@ -142,18 +140,8 @@ export default () => {
                   <HStack className="items-center justify-between py-3 pr-2">
                     <ChevronBackArrow />
                     <HStack space="md">
-                      <Pressable
-                        onPress={() => {
-                          updateStoryEmojimoodMutation({
-                            variables: {},
-                          });
-                          methods.reset();
-                        }}
-                      >
-                        <Text className="text-lg font-bold">No mood</Text>
-                      </Pressable>
                       {methods.watch("emojimood.id") ||
-                      (rdmData?.refreshDeviceManager.__typename ===
+                      (rdmData?.refreshDeviceManager?.__typename ===
                         "AuthorizationDeviceProfile" &&
                         rdmData.refreshDeviceManager.Profile?.tonightStory
                           ?.emojimood?.id) ? (

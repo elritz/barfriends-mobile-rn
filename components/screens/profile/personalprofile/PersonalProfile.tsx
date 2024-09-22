@@ -10,7 +10,7 @@ import CardPleaseSignup from "#/components/molecules/asks/signuplogin";
 import { FriendsList } from "#/components/organisms/list/friendslist";
 import CondensedVerticalFriendsNotficationsList from "#/components/organisms/list/notifications/friends/CondensedVerticalFriendsNotficationsList";
 import QuickBarfriendCard from "#/components/molecules/activity/quickbarfriendcard/QuickBarfriendCard";
-import AddRelationship from "#/components/molecules/activity/AddRelationship/AddRelationship";
+import AddRelationship from "#/components/molecules/activity/addrelationship/AddRelationship";
 import { ProfileType } from "#/graphql/generated";
 import { AuthorizationReactiveVar } from "#/reactive";
 import { DateTime } from "luxon";

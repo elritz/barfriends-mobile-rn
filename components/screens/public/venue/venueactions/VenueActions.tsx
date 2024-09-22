@@ -44,7 +44,7 @@ const VenueActions = () => {
         }}
       >
         {process.env.EXPO_PUBLIC_NODE_ENV === "development" && (
-          <Box className="mx-2 mt-4 w-[100%] bg-transparent">
+          <Box className="mx-5 mt-4 w-[95%] bg-transparent">
             <ActionCard key={uniqueId()} numColumns={1}>
               <DevActions />
             </ActionCard>

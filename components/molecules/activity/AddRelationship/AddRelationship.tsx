@@ -42,7 +42,7 @@ const AddRelationship: React.FC<ActivityCardProps> = ({
           style={{
             color: textColor,
           }}
-          className="text-center text-lg font-black"
+          className="text-center text-lg font-black uppercase"
         >
           Add relationship
         </Heading>

@@ -9,6 +9,15 @@ import { usePublicVenueQuery } from "#/graphql/generated";
 import { SearchAreaReactiveVar } from "#/reactive";
 import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
+import { Pressable } from "#/components/ui/pressable";
+import * as Clipboard from "expo-clipboard";
+import {
+  Toast,
+  ToastDescription,
+  ToastTitle,
+  useToast,
+} from "#/components/ui/toast";
+import { CopyIcon, Icon } from "#/components/ui/icon";
 
 type DetailTitleProps = {
   title: string;
@@ -22,6 +31,31 @@ export default function Details() {
   const [showMore, setShowMore] = useState(false);
   const params = useLocalSearchParams();
   const rSearchAreaVar = useReactiveVar(SearchAreaReactiveVar);
+  const toast = useToast();
+  const [toastId, setToastId] = useState("0");
+  const handleToast = () => {
+    if (!toast.isActive(toastId)) {
+      showNewToast();
+    }
+  };
+  const showNewToast = () => {
+    const newId = Math.random().toString();
+    setToastId(newId);
+    toast.show({
+      id: newId,
+      placement: "bottom",
+      duration: 3000,
+      render: ({ id }) => {
+        const uniqueToastId = "toast-" + id;
+        return (
+          <Toast nativeID={uniqueToastId} action="muted" variant="outline">
+            <ToastTitle>Copied</ToastTitle>
+            {/* <ToastDescription></ToastDescription> */}
+          </Toast>
+        );
+      },
+    });
+  };
 
   const currentLocationCoords = rSearchAreaVar.useCurrentLocation
     ? {
@@ -56,9 +90,39 @@ export default function Details() {
       <VStack space={"lg"} className="flex-1">
         <Box className="bg-transparent">
           <DetailTitle title={"Address"} />
-          <Text className="text-xl font-medium">
-            {data?.publicVenue?.Venue?.Location?.Address?.formattedAddress}
-          </Text>
+          <Pressable
+            style={{ flexDirection: "row", alignItems: "center" }}
+            onPress={async () => {
+              handleToast();
+              await Clipboard.setStringAsync(
+                String(
+                  data?.publicVenue?.Venue?.Location?.Address?.formattedAddress,
+                ),
+              );
+            }}
+          >
+            <Text className="text-xl font-medium">
+              {data?.publicVenue?.Venue?.Location?.Address?.formattedAddress}
+            </Text>
+            <Icon as={CopyIcon} className="m-2 h-4 w-4 text-typography-500" />
+          </Pressable>
+        </Box>
+        <Box className="bg-transparent">
+          <DetailTitle title={"Website"} />
+          <Pressable
+            style={{ flexDirection: "row", alignItems: "center" }}
+            onPress={async () => {
+              handleToast();
+              await Clipboard.setStringAsync(
+                String("www.addthistothedata.com"),
+              );
+            }}
+          >
+            <Text className="text-xl font-medium">
+              www.addthistothedata.com
+            </Text>
+            <Icon as={CopyIcon} className="m-2 h-4 w-4 text-typography-500" />
+          </Pressable>
         </Box>
         <Box className="bg-transparent">
           <DetailTitle title={"Type"} />

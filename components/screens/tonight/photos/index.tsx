@@ -34,6 +34,8 @@ import Animated, {
   useSharedValue,
 } from "react-native-reanimated";
 import useEmojimoodTextColor from "#/hooks/useTextContrast copy";
+import { useFormContext } from "react-hook-form";
+import { FormType } from "#/app/(app)/modal/_layout";
 
 const size = 70;
 
@@ -53,6 +55,7 @@ const Photos: React.FC<ActivityCardProps> = ({
   const textColor = useEmojimoodTextColor({
     isEmojimoodDynamic: isEmojimoodDynamic,
   });
+
   //! don't move this from here
   const activeIndex = useDerivedValue(() => {
     return Math.round(translateX.value / ITEM_WIDTH);

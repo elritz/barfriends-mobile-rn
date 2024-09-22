@@ -213,7 +213,7 @@ export default () => {
           <VenueHeader
             key={uniqueId()}
             loading={loading}
-            photos={data.publicVenue?.photos}
+            photos={data.publicVenue?.photos || []}
           />
           <Box
             key={uniqueId()}

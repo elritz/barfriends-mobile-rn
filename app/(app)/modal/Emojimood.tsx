@@ -8,6 +8,7 @@ import Photos from "#/components/screens/tonight/photos";
 import {
   useEmojimoodsQuery,
   useRefreshDeviceManagerQuery,
+  useUpdateStoryEmojimoodMutation,
 } from "#/graphql/generated";
 import { ThemeReactiveVar } from "#/reactive";
 import { FlashList } from "@shopify/flash-list";
@@ -158,7 +159,19 @@ export default () => {
               control={control}
               render={({ field: { value, onChange, onBlur } }) => (
                 <FlashList
-                  data={data?.emojimoods}
+                  data={[
+                    {
+                      _typename: "EmojimoodRemove",
+                      id: "123123123",
+                      colors:
+                        rTheme.colorScheme === "light"
+                          ? ["#ffffff20", "#ffffff20"]
+                          : ["#00000020", "#00000020"],
+                      emoji: "❌",
+                      emojiname: "Remove",
+                    },
+                    ...data?.emojimoods,
+                  ]}
                   estimatedItemSize={50}
                   numColumns={3}
                   extraData={watch("emojimood")}
@@ -171,15 +184,25 @@ export default () => {
                     return (
                       <Pressable
                         onPress={() => {
-                          if (
-                            rdmData?.refreshDeviceManager?.__typename ===
-                              "AuthorizationDeviceProfile" &&
-                            rdmData?.refreshDeviceManager.Profile?.tonightStory
-                              ?.emojimood?.id === item.id
-                          ) {
+                          if (item.typeName === "EmojimoodRemove") {
+                            useUpdateStoryEmojimoodMutation({
+                              variables: {},
+                              onError(error, clientOptions) {
+                                console.log("error", error);
+                              },
+                            });
                             reset();
                           } else {
-                            setValue("emojimood", item);
+                            if (
+                              rdmData?.refreshDeviceManager?.__typename ===
+                                "AuthorizationDeviceProfile" &&
+                              rdmData?.refreshDeviceManager.Profile
+                                ?.tonightStory?.emojimood?.id === item.id
+                            ) {
+                              reset();
+                            } else {
+                              setValue("emojimood", item);
+                            }
                           }
                         }}
                         className="flex-1 items-center self-center bg-transparent"
@@ -191,6 +214,7 @@ export default () => {
                           intensity={60}
                           style={{
                             width: "100%",
+                            flex: 1,
                             maxWidth: "90%",
                             overflow: "hidden",
                             borderRadius: 10,
@@ -208,10 +232,9 @@ export default () => {
                               width: ITEM_WIDTH,
                               alignItems: "center",
                               justifyContent: "center",
-                              // alignSelf: "center",
                               borderWidth: 2,
                               borderColor:
-                                rdmData?.refreshDeviceManager.__typename ===
+                                rdmData?.refreshDeviceManager?.__typename ===
                                   "AuthorizationDeviceProfile" &&
                                 rdmData?.refreshDeviceManager.Profile
                                   ?.tonightStory?.emojimood?.id === item.id
@@ -220,13 +243,13 @@ export default () => {
                                     : "white"
                                   : watch("emojimood").id === item.id ||
                                       (rdmData?.refreshDeviceManager
-                                        .__typename ===
+                                        ?.__typename ===
                                         "AuthorizationDeviceProfile" &&
                                         rdmData?.refreshDeviceManager.Profile
                                           ?.tonightStory?.emojimood?.id ===
                                           item.id)
                                     ? rTheme.colorScheme === "light"
-                                      ? "black"
+                                      ? "white"
                                       : "white"
                                     : "transparent",
                             }}

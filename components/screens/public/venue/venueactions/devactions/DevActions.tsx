@@ -47,6 +47,7 @@ export default function DevActions() {
         </Box>
       ) : (
         <Pressable
+          className="text-md text-center"
           onPress={() => {
             setShowDevMode(!showDevMode);
           }}

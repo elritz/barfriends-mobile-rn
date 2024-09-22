@@ -119,10 +119,10 @@ export default function QuickBarfriendCard({
                 })
           }
         >
-          <Box className="h-16 w-16 items-center justify-center rounded-md bg-primary-500">
+          <Box className="h-16 w-16 items-center justify-center rounded-md bg-primary-300">
             <FontAwesome5
-              name={"user"}
-              size={30}
+              name={"user-alt"}
+              size={25}
               color={
                 rTheme.colorScheme === "light"
                   ? rTheme.theme?.gluestack.tokens.colors.light900
