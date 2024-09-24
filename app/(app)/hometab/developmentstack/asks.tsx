@@ -1,7 +1,7 @@
-import { VStack } from "#/components/ui/vstack";
-import { Heading } from "#/components/ui/heading";
-import { HStack } from "#/components/ui/hstack";
-import { Button, ButtonText } from "#/components/ui/button";
+import { VStack } from "#/src/components/ui/vstack";
+import { Heading } from "#/src/components/ui/heading";
+import { HStack } from "#/src/components/ui/hstack";
+import { Button, ButtonText } from "#/src/components/ui/button";
 import {
   NowPreferencePermissionInitialState,
   TomorrowPreferencePermissionInitialState,

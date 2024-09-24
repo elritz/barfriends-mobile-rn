@@ -1,13 +1,13 @@
-import { View } from "#/components/ui/view";
-import { VStack } from "#/components/ui/vstack";
-import { ScrollView } from "#/components/ui/scroll-view";
-import { Pressable } from "#/components/ui/pressable";
-import { Heading } from "#/components/ui/heading";
-import { HStack } from "#/components/ui/hstack";
-import { Divider } from "#/components/ui/divider";
-import { Button, ButtonText } from "#/components/ui/button";
-import { Box } from "#/components/ui/box";
-import { Badge, BadgeText } from "#/components/ui/badge";
+import { View } from "#/src/components/ui/view";
+import { VStack } from "#/src/components/ui/vstack";
+import { ScrollView } from "#/src/components/ui/scroll-view";
+import { Pressable } from "#/src/components/ui/pressable";
+import { Heading } from "#/src/components/ui/heading";
+import { HStack } from "#/src/components/ui/hstack";
+import { Divider } from "#/src/components/ui/divider";
+import { Button, ButtonText } from "#/src/components/ui/button";
+import { Box } from "#/src/components/ui/box";
+import { Badge, BadgeText } from "#/src/components/ui/badge";
 import {
   DaysPreferencePermissionInitialState,
   HalfMonthPreferencePermissionInitialState,
@@ -25,7 +25,7 @@ import {
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import PermissionDetailItem from "#/components/screens/permissions/PermissionDetailItem";
+import PermissionDetailItem from "#/src/views/screens/permissions/PermissionDetailItem";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 import { Controller, useForm } from "react-hook-form";
 import useTimer2 from "#/util/hooks/useTimer2";

@@ -1,10 +1,10 @@
-import { VStack } from "#/components/ui/vstack";
-import { Text } from "#/components/ui/text";
-import { Spinner } from "#/components/ui/spinner";
-import { Pressable } from "#/components/ui/pressable";
-import { HStack } from "#/components/ui/hstack";
-import { Divider } from "#/components/ui/divider";
-import { Box } from "#/components/ui/box";
+import { VStack } from "#/src/components/ui/vstack";
+import { Text } from "#/src/components/ui/text";
+import { Spinner } from "#/src/components/ui/spinner";
+import { Pressable } from "#/src/components/ui/pressable";
+import { HStack } from "#/src/components/ui/hstack";
+import { Divider } from "#/src/components/ui/divider";
+import { Box } from "#/src/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
 import {
   TomorrowPreferencePermissionInitialState,

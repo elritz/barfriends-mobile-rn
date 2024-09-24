@@ -1,6 +1,6 @@
-import { Text } from "#/components/ui/text";
-import { Center } from "#/components/ui/center";
-import { Button, ButtonText } from "#/components/ui/button";
+import { Text } from "#/src/components/ui/text";
+import { Center } from "#/src/components/ui/center";
+import { Button, ButtonText } from "#/src/components/ui/button";
 import { Form } from "./_layout";
 import { useReactiveVar } from "@apollo/client";
 import {

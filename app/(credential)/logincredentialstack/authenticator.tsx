@@ -1,9 +1,9 @@
-import { VStack } from "#/components/ui/vstack";
-import { Pressable } from "#/components/ui/pressable";
-import { Input, InputField } from "#/components/ui/input";
-import { HStack } from "#/components/ui/hstack";
-import { Button, ButtonText } from "#/components/ui/button";
-import { Box } from "#/components/ui/box";
+import { VStack } from "#/src/components/ui/vstack";
+import { Pressable } from "#/src/components/ui/pressable";
+import { Input, InputField } from "#/src/components/ui/input";
+import { HStack } from "#/src/components/ui/hstack";
+import { Button, ButtonText } from "#/src/components/ui/button";
+import { Box } from "#/src/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
 import { Entypo, Feather, Ionicons } from "@expo/vector-icons";
 import {

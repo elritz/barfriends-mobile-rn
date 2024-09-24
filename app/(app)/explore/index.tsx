@@ -1,6 +1,6 @@
-import { Text } from "#/components/ui/text";
-import { Pressable } from "#/components/ui/pressable";
-import { Box } from "#/components/ui/box";
+import { Text } from "#/src/components/ui/text";
+import { Pressable } from "#/src/components/ui/pressable";
+import { Box } from "#/src/components/ui/box";
 import { ProfileType, useProfilesQuery } from "#/graphql/generated";
 import { FlashList } from "@shopify/flash-list";
 import useContentInsets from "#/util/hooks/useContentInsets";

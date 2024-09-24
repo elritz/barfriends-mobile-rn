@@ -1,9 +1,9 @@
-import { VStack } from "#/components/ui/vstack";
-import { Text } from "#/components/ui/text";
-import { Heading } from "#/components/ui/heading";
-import { HStack } from "#/components/ui/hstack";
-import { Button, ButtonText } from "#/components/ui/button";
-import { Box } from "#/components/ui/box";
+import { VStack } from "#/src/components/ui/vstack";
+import { Text } from "#/src/components/ui/text";
+import { Heading } from "#/src/components/ui/heading";
+import { HStack } from "#/src/components/ui/hstack";
+import { Button, ButtonText } from "#/src/components/ui/button";
+import { Box } from "#/src/components/ui/box";
 import { Form } from "./_layout";
 import { useReactiveVar } from "@apollo/client";
 import { LOCAL_STORAGE_SEARCH_AREA } from "#/constants/StorageConstants";

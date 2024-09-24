@@ -1,16 +1,16 @@
-import { VStack } from "#/components/ui/vstack";
-import { Text } from "#/components/ui/text";
-import { HStack } from "#/components/ui/hstack";
-import { Heading } from "#/components/ui/heading";
-import { Box } from "#/components/ui/box";
+import { VStack } from "#/src/components/ui/vstack";
+import { Text } from "#/src/components/ui/text";
+import { HStack } from "#/src/components/ui/hstack";
+import { Heading } from "#/src/components/ui/heading";
+import { Box } from "#/src/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
-import InformationJoinVenue from "#/components/molecules/information/informationjoinvenue";
-import Details from "#/components/screens/public/venue/details/Details";
-import PersonalAtVenue from "#/components/screens/public/venue/peopleatvenue/PersonalAtVenue";
-import VenueActions from "#/components/screens/public/venue/venueactions/VenueActions";
-import LeaveSection from "#/components/molecules/activity/leavesection/LeaveSection";
-import VenueHeader from "#/components/screens/public/venue/venueheader/VenueHeader";
-import VenueTotals from "#/components/screens/public/venue/venuetotals/VenueTotals";
+import InformationJoinVenue from "#/src/components/molecules/information/informationjoinvenue";
+import Details from "#/src/views/screens/public/venue/details/Details";
+import PersonalAtVenue from "#/src/views/screens/public/venue/peopleatvenue/PersonalAtVenue";
+import VenueActions from "#/src/views/screens/public/venue/venueactions/VenueActions";
+import LeaveSection from "#/src/components/molecules/activity/leavesection/LeaveSection";
+import VenueHeader from "#/src/views/screens/public/venue/venueheader/VenueHeader";
+import VenueTotals from "#/src/views/screens/public/venue/venuetotals/VenueTotals";
 import { PUBLIC_VENUE_HEADER_IMAGE_HEIGHT } from "#/constants/Layout";
 import { usePublicVenueQuery } from "#/graphql/generated";
 import {

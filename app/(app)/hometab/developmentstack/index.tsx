@@ -1,11 +1,11 @@
-import { VStack } from "#/components/ui/vstack";
-import { Text } from "#/components/ui/text";
-import { Spinner } from "#/components/ui/spinner";
-import { Pressable } from "#/components/ui/pressable";
-import { Heading } from "#/components/ui/heading";
-import { HStack } from "#/components/ui/hstack";
-import { Divider } from "#/components/ui/divider";
-import { Box } from "#/components/ui/box";
+import { VStack } from "#/src/components/ui/vstack";
+import { Text } from "#/src/components/ui/text";
+import { Spinner } from "#/src/components/ui/spinner";
+import { Pressable } from "#/src/components/ui/pressable";
+import { Heading } from "#/src/components/ui/heading";
+import { HStack } from "#/src/components/ui/hstack";
+import { Divider } from "#/src/components/ui/divider";
+import { Box } from "#/src/components/ui/box";
 // TODO: FN(Change theme functionality with database and local storage save)
 import { useReactiveVar } from "@apollo/client";
 import { InitialStateSearchArea } from "#/constants/Preferences";
@@ -397,7 +397,9 @@ export default () => {
       value: rAuthorizationVar?.Profile?.bfsprofileid,
       icon: "",
       onPress: async () => {
-        await Clipboard.setStringAsync(String(rAuthorizationVar?.Profile?.bfsprofileid));
+        await Clipboard.setStringAsync(
+          String(rAuthorizationVar?.Profile?.bfsprofileid),
+        );
       },
     },
     {

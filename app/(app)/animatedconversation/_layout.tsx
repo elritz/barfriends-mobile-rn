@@ -1,13 +1,13 @@
-import { Box } from "#/components/ui/box";
-import { Heading } from "#/components/ui/heading";
-import { Button, ButtonText } from "#/components/ui/button";
-import ChevronBackArrow from "#/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow";
+import { Box } from "#/src/components/ui/box";
+import { Heading } from "#/src/components/ui/heading";
+import { Button, ButtonText } from "#/src/components/ui/button";
+import ChevronBackArrow from "#/src/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow";
 import {
   Stack,
   useGlobalSearchParams,
   useLocalSearchParams,
 } from "expo-router";
-import { HStack } from "#/components/ui/hstack";
+import { HStack } from "#/src/components/ui/hstack";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default () => {
@@ -21,7 +21,7 @@ export default () => {
         headerShown: true,
         header: () => {
           return (
-            <Box className="flex-row justify-between bg-light-100 dark:bg-light-900 pt-2">
+            <Box className="flex-row justify-between bg-light-100 pt-2 dark:bg-light-900">
               <HStack
                 style={{ paddingTop: insets.top }}
                 className="flex-1 items-center justify-between py-2"
@@ -29,7 +29,11 @@ export default () => {
                 <HStack className="flex-1 items-center justify-start">
                   <ChevronBackArrow />
                   <Box className="ml-2 mr-3 flex-1">
-                    <Heading allowFontScaling numberOfLines={1} className="capitalize">
+                    <Heading
+                      allowFontScaling
+                      numberOfLines={1}
+                      className="capitalize"
+                    >
                       {lp.name}
                     </Heading>
                   </Box>

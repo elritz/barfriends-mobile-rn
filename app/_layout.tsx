@@ -40,8 +40,8 @@ import "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { ApolloProvider, useReactiveVar } from "@apollo/client";
-import Auth from "#/components/layouts/Auth";
-import Theme from "#/components/layouts/Theme";
+import Auth from "#/src/components/layouts/Auth";
+import Theme from "#/src/components/layouts/Theme";
 import {
   NowPreferencePermissionInitialState,
   InitialStateJoiningInformationPreferencePermission,
@@ -444,7 +444,7 @@ export default Sentry.wrap(RootLayout);
 // import { useEffect, useLayoutEffect, useState } from "react";
 // import { GluestackUIProvider, Text, Box } from "@gluestack-ui/themed";
 // // import { config } from "@gluestack-ui/config";
-// import { useColorScheme } from "#/components/useColorScheme";
+// import { useColorScheme } from "#/src/components/useColorScheme";
 // import { Slot } from "expo-router";
 // import { config } from '../config/gluestack-ui.config';
 // export {

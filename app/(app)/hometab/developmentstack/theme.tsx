@@ -1,10 +1,10 @@
-import { VStack } from "#/components/ui/vstack";
-import { Pressable } from "#/components/ui/pressable";
-import { Heading } from "#/components/ui/heading";
-import { HStack } from "#/components/ui/hstack";
-import { Divider } from "#/components/ui/divider";
-import { Button, ButtonText } from "#/components/ui/button";
-import { Box } from "#/components/ui/box";
+import { VStack } from "#/src/components/ui/vstack";
+import { Pressable } from "#/src/components/ui/pressable";
+import { Heading } from "#/src/components/ui/heading";
+import { HStack } from "#/src/components/ui/hstack";
+import { Divider } from "#/src/components/ui/divider";
+import { Button, ButtonText } from "#/src/components/ui/button";
+import { Box } from "#/src/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
 import {
   HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,

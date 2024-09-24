@@ -21,7 +21,7 @@ module.exports = function (api) {
             "#/ctypes": "./types",
             "#/assets": "./assets",
             "#/util": "./util",
-            "#/components": "./components",
+            "#/src/components": "./components",
             "#/helpers": "./helpers",
             "#/screens": "./screens",
             "#/graphql": "./graphql/",
@@ -32,6 +32,13 @@ module.exports = function (api) {
           },
           extensions: [".js", ".jsx", ".ts", ".tsx"],
         },
+        [
+          "formatjs",
+          {
+            idInterpolationPattern: "[sha512:contenthash:base64:6]",
+            ast: true,
+          },
+        ],
         "react-native-reanimated/plugin",
       ],
     ],

@@ -1,12 +1,12 @@
-import { Text } from "#/components/ui/text";
-import { Heading } from "#/components/ui/heading";
-import { Box } from "#/components/ui/box";
-import HorizontalMessageNotification from "#/components/molecules/notifications/message/HorizontalMessageNotification";
+import { Text } from "#/src/components/ui/text";
+import { Heading } from "#/src/components/ui/heading";
+import { Box } from "#/src/components/ui/box";
+import HorizontalMessageNotification from "#/src/components/molecules/notifications/message/HorizontalMessageNotification";
 import { useGetConversationsQuery } from "#/graphql/generated";
 import { FlashList } from "@shopify/flash-list";
 import useContentInsets from "#/util/hooks/useContentInsets";
 import { View } from "react-native";
-import CondensedVerticalFriendsNotficationsList from "#/components/organisms/list/notifications/friends/CondensedVerticalFriendsNotficationsList";
+import CondensedVerticalFriendsNotficationsList from "#/src/components/organisms/list/notifications/friends/CondensedVerticalFriendsNotficationsList";
 const Messages = () => {
   const contentInsets = useContentInsets();
   const { data, loading, error } = useGetConversationsQuery();

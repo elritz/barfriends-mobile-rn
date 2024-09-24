@@ -1,18 +1,17 @@
-
-import { Box } from "#/components/ui/box";
-import { Text } from "#/components/ui/text";
-import { Heading } from "#/components/ui/heading";
-import { Button, ButtonText } from "#/components/ui/button";
-import ChevronBackArrow from '#/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow'
-import { BlurView } from 'expo-blur'
-import { Stack, router } from 'expo-router'
+import { Box } from "#/src/components/ui/box";
+import { Text } from "#/src/components/ui/text";
+import { Heading } from "#/src/components/ui/heading";
+import { Button, ButtonText } from "#/src/components/ui/button";
+import ChevronBackArrow from "#/src/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow";
+import { BlurView } from "expo-blur";
+import { Stack, router } from "expo-router";
 
 export default () => {
   return (
     <Stack
-      initialRouteName='hometab'
+      initialRouteName="hometab"
       screenOptions={{
-        animation: 'slide_from_right',
+        animation: "slide_from_right",
         headerShown: true,
         headerBackground: () => {
           return <Box className="flex-1 rounded-none" />;
@@ -24,25 +23,23 @@ export default () => {
         headerRight: () => {
           return (
             <Button
-              size='xs'
+              size="xs"
               onPress={() => {
-                console.log('FRIENDS')
+                console.log("FRIENDS");
               }}
             >
-              <ButtonText className="font-medium">
-                Barfriend
-              </ButtonText>
+              <ButtonText className="font-medium">Barfriend</ButtonText>
             </Button>
           );
-        }
+        },
       }}
     >
       <Stack.Screen
-        name={'[conversationid]'}
+        name={"[conversationid]"}
         options={{
-          animation: 'fade',
+          animation: "fade",
         }}
       />
     </Stack>
   );
-}
+};

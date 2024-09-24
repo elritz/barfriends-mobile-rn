@@ -1,7 +1,7 @@
-import { VStack } from "#/components/ui/vstack";
-import { Text } from "#/components/ui/text";
-import { Box } from "#/components/ui/box";
-import ChevronBackArrow from "#/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow";
+import { VStack } from "#/src/components/ui/vstack";
+import { Text } from "#/src/components/ui/text";
+import { Box } from "#/src/components/ui/box";
+import ChevronBackArrow from "#/src/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow";
 import { SEARCH_BAR_HEIGHT } from "#/constants/ReactNavigationConstants";
 import { Stack } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";

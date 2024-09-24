@@ -1,7 +1,12 @@
-import { SafeAreaView } from "#/components/ui/safe-area-view";
-import { EyeOffIcon, EyeIcon } from "#/components/ui/icon";
-import { Box } from "#/components/ui/box";
-import { Input, InputField, InputSlot, InputIcon } from "#/components/ui/input";
+import { SafeAreaView } from "#/src/components/ui/safe-area-view";
+import { EyeOffIcon, EyeIcon } from "#/src/components/ui/icon";
+import { Box } from "#/src/components/ui/box";
+import {
+  Input,
+  InputField,
+  InputSlot,
+  InputIcon,
+} from "#/src/components/ui/input";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { SafeAreaView as RNSafeAreaView, View } from "react-native";
 import { useKeyboardHandler } from "react-native-keyboard-controller";
@@ -12,8 +17,8 @@ import Reanimated, {
   useSharedValue,
 } from "react-native-reanimated";
 import { StyleSheet } from "react-native";
-import Message from "#/components/screens/conversations/Message";
-import { history } from "#/components/screens/conversations/Message/data";
+import Message from "#/src/views/screens/conversations/Message";
+import { history } from "#/src/views/screens/conversations/Message/data";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { useReactiveVar } from "@apollo/client";
 import { ThemeReactiveVar } from "#/reactive";

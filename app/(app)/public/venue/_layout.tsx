@@ -1,6 +1,6 @@
-import { Text } from "#/components/ui/text";
-import { HStack } from "#/components/ui/hstack";
-import { Button } from "#/components/ui/button";
+import { Text } from "#/src/components/ui/text";
+import { HStack } from "#/src/components/ui/hstack";
+import { Button } from "#/src/components/ui/button";
 // TODO: FX() Settings still needs to be done
 import { useReactiveVar } from "@apollo/client";
 import { Entypo, Ionicons } from "@expo/vector-icons";
@@ -18,7 +18,7 @@ import {
   router as xRouter,
 } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { VStack } from "#/components/ui/vstack";
+import { VStack } from "#/src/components/ui/vstack";
 
 export default () => {
   const NAVIGATION_BUTTON_HEIGHT = 38;

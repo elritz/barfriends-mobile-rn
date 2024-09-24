@@ -1,11 +1,11 @@
-import { Box } from "#/components/ui/box";
+import { Box } from "#/src/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
-import CardPleaseSignup from "#/components/molecules/asks/signuplogin";
-import InviteCard from "#/components/molecules/activity/invitecard/InviteCard";
-import QuickBarfriendCard from "#/components/molecules/activity/quickbarfriendcard/QuickBarfriendCard";
-import AddEmoji from "#/components/molecules/activity/addemoji/AddEmoji";
-import JoinVenue from "#/components/molecules/activity/joinvenue/JoinVenue";
-import Photos from "#/components/screens/tonight/photos";
+import CardPleaseSignup from "#/src/components/molecules/asks/signuplogin";
+import InviteCard from "#/src/components/molecules/activity/invitecard/InviteCard";
+import QuickBarfriendCard from "#/src/components/molecules/activity/quickbarfriendcard/QuickBarfriendCard";
+import AddEmoji from "#/src/components/molecules/activity/addemoji/AddEmoji";
+import JoinVenue from "#/src/components/molecules/activity/joinvenue/JoinVenue";
+import Photos from "#/src/views/screens/tonight/photos";
 import { AuthorizationReactiveVar, ThemeReactiveVar } from "#/reactive";
 import { FlashList } from "@shopify/flash-list";
 import useContentInsets from "#/util/hooks/useContentInsets";
@@ -14,7 +14,7 @@ import { ScrollView } from "react-native";
 import { useEffect, useState } from "react";
 import { useRefreshDeviceManagerQuery } from "#/graphql/generated";
 import { SafeAreaView } from "react-native-safe-area-context";
-import EmojimoodGradient from "#/components/screens/tonight/EmojimoodGradient";
+import EmojimoodGradient from "#/src/views/screens/tonight/EmojimoodGradient";
 import useEmojimoodTextColor from "#/hooks/useTextContrast copy";
 
 const Wrapper = ({ children }) => {
@@ -31,7 +31,6 @@ const Wrapper = ({ children }) => {
     fetchPolicy: "cache-first",
   });
 
-  console.log("🚀 ~ Wrapper ~ rTheme.colorScheme:", rTheme.colorScheme);
   return (
     <BlurView
       intensity={60}

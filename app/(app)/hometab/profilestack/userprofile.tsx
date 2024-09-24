@@ -1,9 +1,9 @@
-import { Box } from "#/components/ui/box";
+import { Box } from "#/src/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
-import CardPleaseSignup from "#/components/molecules/asks/signuplogin";
-import PreferenceNotificationPermission from "#/components/molecules/permissions/preferencenotificationpermission/PreferenceNotificationPermission";
-import PersonalScreen from "#/components/screens/profile/personalprofile/PersonalProfile";
-import VenueScreen from "#/components/screens/profile/venueprofile/VenueProfile";
+import CardPleaseSignup from "#/src/components/molecules/asks/signuplogin";
+import PreferenceNotificationPermission from "#/src/components/molecules/permissions/preferencenotificationpermission/PreferenceNotificationPermission";
+import PersonalScreen from "#/src/views/screens/profile/personalprofile/PersonalProfile";
+import VenueScreen from "#/src/views/screens/profile/venueprofile/VenueProfile";
 import {
   ProfileType,
   useGetNotificationsLazyQuery, // useGetNotificationsLazyQuery

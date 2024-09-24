@@ -1,10 +1,10 @@
-import { VStack } from "#/components/ui/vstack";
-import { Text } from "#/components/ui/text";
-import { HStack } from "#/components/ui/hstack";
-import { Button } from "#/components/ui/button";
+import { VStack } from "#/src/components/ui/vstack";
+import { Text } from "#/src/components/ui/text";
+import { HStack } from "#/src/components/ui/hstack";
+import { Button } from "#/src/components/ui/button";
 // TODO: FX() Settings still needs to be done
 import { useReactiveVar } from "@apollo/client";
-import SearchInput from "#/components/molecules/search/searchinput/SearchInput";
+import SearchInput from "#/src/components/molecules/search/searchinput/SearchInput";
 import { SEARCH_BAR_HEIGHT } from "#/constants/ReactNavigationConstants";
 import { Ionicons, Entypo } from "@expo/vector-icons";
 import { ThemeReactiveVar } from "#/reactive";

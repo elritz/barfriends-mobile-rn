@@ -1,5 +1,5 @@
-import { Text } from "#/components/ui/text";
-import { Button, ButtonText } from "#/components/ui/button";
+import { Text } from "#/src/components/ui/text";
+import { Button, ButtonText } from "#/src/components/ui/button";
 import { Form } from "./_layout";
 import { useReactiveVar } from "@apollo/client";
 import {
@@ -15,7 +15,7 @@ import { Skeleton } from "moti/skeleton";
 import { memo, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { View } from "react-native";
-import { Box } from "#/components/ui/box";
+import { Box } from "#/src/components/ui/box";
 
 export default function SearchCountry() {
   const router = useRouter();

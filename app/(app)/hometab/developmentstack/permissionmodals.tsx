@@ -1,7 +1,7 @@
-import { Pressable } from "#/components/ui/pressable";
-import { Heading } from "#/components/ui/heading";
-import { HStack } from "#/components/ui/hstack";
-import { Divider } from "#/components/ui/divider";
+import { Pressable } from "#/src/components/ui/pressable";
+import { Heading } from "#/src/components/ui/heading";
+import { HStack } from "#/src/components/ui/hstack";
+import { Divider } from "#/src/components/ui/divider";
 import { FlashList } from "@shopify/flash-list";
 import { useRouter } from "expo-router";
 

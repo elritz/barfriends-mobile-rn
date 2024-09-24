@@ -1,9 +1,9 @@
-import { VStack } from "#/components/ui/vstack";
-import { Text } from "#/components/ui/text";
-import { Pressable } from "#/components/ui/pressable";
-import { Heading } from "#/components/ui/heading";
-import { Button, ButtonText } from "#/components/ui/button";
-import { Box } from "#/components/ui/box";
+import { VStack } from "#/src/components/ui/vstack";
+import { Text } from "#/src/components/ui/text";
+import { Pressable } from "#/src/components/ui/pressable";
+import { Heading } from "#/src/components/ui/heading";
+import { Button, ButtonText } from "#/src/components/ui/button";
+import { Box } from "#/src/components/ui/box";
 // TODO: FN(onPress(Resend Code)) - ln:162 -- when the user presses resend code need to resend and keep track of how many times
 import { useReactiveVar } from "@apollo/client";
 import { Feather } from "@expo/vector-icons";

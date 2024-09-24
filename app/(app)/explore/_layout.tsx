@@ -1,7 +1,7 @@
-import { VStack } from "#/components/ui/vstack";
+import { VStack } from "#/src/components/ui/vstack";
 import { useReactiveVar } from "@apollo/client";
-import SearchInputResults from "#/components/molecules/search/searchinput/SearchInputResults";
-import SearchInputText from "#/components/molecules/search/searchinput/SearchInputText";
+import SearchInputResults from "#/src/components/molecules/search/searchinput/SearchInputResults";
+import SearchInputText from "#/src/components/molecules/search/searchinput/SearchInputText";
 import { ThemeReactiveVar } from "#/reactive";
 import { BlurView } from "expo-blur";
 import { Stack } from "expo-router";

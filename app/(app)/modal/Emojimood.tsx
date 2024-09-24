@@ -1,10 +1,10 @@
-import { Text } from "#/components/ui/text";
-import { Pressable } from "#/components/ui/pressable";
-import { Heading } from "#/components/ui/heading";
-import { Box } from "#/components/ui/box";
+import { Text } from "#/src/components/ui/text";
+import { Pressable } from "#/src/components/ui/pressable";
+import { Heading } from "#/src/components/ui/heading";
+import { Box } from "#/src/components/ui/box";
 import { FormType } from "./_layout";
 import { useReactiveVar } from "@apollo/client";
-import Photos from "#/components/screens/tonight/photos";
+import Photos from "#/src/views/screens/tonight/photos";
 import {
   useEmojimoodsQuery,
   useRefreshDeviceManagerQuery,

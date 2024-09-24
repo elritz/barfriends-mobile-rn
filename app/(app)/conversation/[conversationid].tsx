@@ -1,19 +1,30 @@
-import { Image } from "#/components/ui/image";
-import { Box } from "#/components/ui/box";
-import { View, Text, Dimensions, StyleSheet } from 'react-native'
-import React, { useCallback, useRef, useState } from 'react'
-import { useLocalSearchParams } from 'expo-router'
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
-import { Platform, KeyboardAvoidingView } from 'react-native';
-import { GiftedChat, IMessage } from 'react-native-gifted-chat';
-import { ResizeMode, Video } from 'expo-av';
-import { KeyboardAwareScrollView, KeyboardGestureArea, useKeyboardHandler } from 'react-native-keyboard-controller'
-import Reanimated, { useAnimatedProps, useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
-import { TextInput } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
-import Animated from 'react-native-reanimated'
+import { Image } from "#/src/components/ui/image";
+import { Box } from "#/src/components/ui/box";
+import { View, Text, Dimensions, StyleSheet } from "react-native";
+import React, { useCallback, useRef, useState } from "react";
+import { useLocalSearchParams } from "expo-router";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
+import { Platform, KeyboardAvoidingView } from "react-native";
+import { GiftedChat, IMessage } from "react-native-gifted-chat";
+import { ResizeMode, Video } from "expo-av";
+import {
+  KeyboardAwareScrollView,
+  KeyboardGestureArea,
+  useKeyboardHandler,
+} from "react-native-keyboard-controller";
+import Reanimated, {
+  useAnimatedProps,
+  useAnimatedStyle,
+  useSharedValue,
+} from "react-native-reanimated";
+import { TextInput } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import Animated from "react-native-reanimated";
 
-const { width } = Dimensions.get('window');
+const { width } = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
     justifyContent: "flex-end",
@@ -56,7 +67,6 @@ const useKeyboardAnimation = () => {
   return { height, progress };
 };
 
-
 const getVimeoId = (url: string) => {
   const regExp = /^.*(vimeo\.com\/)([0-9]*).*/;
   const match = url.match(regExp);
@@ -66,7 +76,8 @@ const getVimeoId = (url: string) => {
   return null;
 };
 const getYouTubeId = (url) => {
-  const regExp = /^.*(youtu\.be\/|youtube\.com\/(watch\?v=|embed\/|v\/|.*[?&]v=))([^#&?]*).*/;
+  const regExp =
+    /^.*(youtu\.be\/|youtube\.com\/(watch\?v=|embed\/|v\/|.*[?&]v=))([^#&?]*).*/;
   const match = url.match(regExp);
   if (match && match[3].length === 11) {
     return match[3];
@@ -76,10 +87,17 @@ const getYouTubeId = (url) => {
 
 export default function conversation() {
   const [interpolator, setInterpolator] = useState<"ios" | "linear">("linear");
-  const [messages, setMessages] = useState<{ _id: number; text: string; createdAt: Date; user: { _id: number; name: string; avatar: string; }; }[]>([]);
+  const [messages, setMessages] = useState<
+    {
+      _id: number;
+      text: string;
+      createdAt: Date;
+      user: { _id: number; name: string; avatar: string };
+    }[]
+  >([]);
   const _scrollRef = useRef<Reanimated.FlatList<IMessage>>(null);
   const { height, onScroll, inset, offset } = useKeyboardAnimation();
-  const insets = useSafeAreaInsets()
+  const insets = useSafeAreaInsets();
   const TEXT_INPUT_HEIGHT = 50;
 
   const contentContainerStyle = {
@@ -90,8 +108,6 @@ export default function conversation() {
     _scrollRef.current?.scrollToEnd({ animated: false });
   }, []);
 
-
-
   const onSend = (newMessages = []) => {
     setMessages(GiftedChat.append(messages, newMessages));
   };
@@ -100,116 +116,124 @@ export default function conversation() {
     setMessages([
       {
         _id: 2,
-        text: 'Hello other develop developer',
+        text: "Hello other develop developer",
         createdAt: new Date(),
         user: {
           _id: 1,
-          name: 'React Native',
-          avatar: 'https://plus.unsplash.com/premium_photo-1676637000058-96549206fe71?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          name: "React Native",
+          avatar:
+            "https://plus.unsplash.com/premium_photo-1676637000058-96549206fe71?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         },
       },
       {
         _id: 3,
-        text: 'Hello developer',
+        text: "Hello developer",
         createdAt: new Date(),
         user: {
           _id: 2,
-          name: 'React Native',
-          avatar: 'https://plus.unsplash.com/premium_photo-1676637000058-96549206fe71?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          name: "React Native",
+          avatar:
+            "https://plus.unsplash.com/premium_photo-1676637000058-96549206fe71?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         },
       },
       {
         _id: 1,
-        text: 'Hello developer',
+        text: "Hello developer",
         createdAt: new Date(),
         user: {
           _id: 2,
-          name: 'GiftedChat',
-          avatar: 'https://placeimg.com/140/140/any',
+          name: "GiftedChat",
+          avatar: "https://placeimg.com/140/140/any",
         },
-        video: 'https://www.youtube.com/watch?v=dL7nZC9FQOQ&ab_channel=BlacktailStudio',
+        video:
+          "https://www.youtube.com/watch?v=dL7nZC9FQOQ&ab_channel=BlacktailStudio",
       },
       {
         _id: 4,
-        text: 'Hello developer',
+        text: "Hello developer",
         createdAt: new Date(),
         user: {
           _id: 2,
-          name: 'GiftedChat',
-          avatar: 'https://placeimg.com/140/140/any',
+          name: "GiftedChat",
+          avatar: "https://placeimg.com/140/140/any",
         },
-        video: 'https://www.youtube.com/watch?v=dL7nZC9FQOQ&ab_channel=BlacktailStudio',
+        video:
+          "https://www.youtube.com/watch?v=dL7nZC9FQOQ&ab_channel=BlacktailStudio",
       },
       {
         _id: 5,
-        text: 'Hello developer',
+        text: "Hello developer",
         createdAt: new Date(),
         user: {
           _id: 1,
-          name: 'GiftedChat',
-          avatar: 'https://placeimg.com/140/140/any',
+          name: "GiftedChat",
+          avatar: "https://placeimg.com/140/140/any",
         },
-        video: 'https://www.youtube.com/watch?v=dL7nZC9FQOQ&ab_channel=BlacktailStudio',
+        video:
+          "https://www.youtube.com/watch?v=dL7nZC9FQOQ&ab_channel=BlacktailStudio",
       },
       {
         _id: 6,
-        text: 'Hello developer',
+        text: "Hello developer",
         createdAt: new Date(),
         user: {
           _id: 1,
-          name: 'GiftedChat',
-          avatar: 'https://placeimg.com/140/140/any',
+          name: "GiftedChat",
+          avatar: "https://placeimg.com/140/140/any",
         },
-        video: 'https://www.youtube.com/watch?v=dL7nZC9FQOQ&ab_channel=BlacktailStudio',
+        video:
+          "https://www.youtube.com/watch?v=dL7nZC9FQOQ&ab_channel=BlacktailStudio",
       },
       {
         _id: 7,
-        text: 'Hello developer',
+        text: "Hello developer",
         createdAt: new Date(),
         user: {
           _id: 1,
-          name: 'GiftedChat',
-          avatar: 'https://placeimg.com/140/140/any',
+          name: "GiftedChat",
+          avatar: "https://placeimg.com/140/140/any",
         },
-        video: 'https://www.youtube.com/watch?v=dL7nZC9FQOQ&ab_channel=BlacktailStudio',
+        video:
+          "https://www.youtube.com/watch?v=dL7nZC9FQOQ&ab_channel=BlacktailStudio",
       },
     ]);
   }, []);
 
-
   const renderMessageVideo = (props: any) => {
     const { currentMessage } = props;
-    if (currentMessage.video.includes('youtube')) {
-      if (Platform.OS === 'web') {
-        return null
+    if (currentMessage.video.includes("youtube")) {
+      if (Platform.OS === "web") {
+        return null;
       }
       return (
-        <Box className={` w-${width / 1.5} m-2 h-[150px] rounded-md `}>
+        <Box className={` w-${width / 1.5} m-2 h-[150px] rounded-md`}>
           <Image
-            alt='youtube video thumbnail'
+            alt="youtube video thumbnail"
             source={{
               uri: `https://img.youtube.com/vi/${getYouTubeId(
-                currentMessage!.video!
+                currentMessage!.video!,
               )}/sddefault.jpg`,
             }}
-            className="rounded-lg w-[100%] h-[100%]" />
+            className="h-[100%] w-[100%] rounded-lg"
+          />
         </Box>
       );
     }
-    if (currentMessage.video.includes('vimeo')) {
-      if (Platform.OS === 'web') {
-        return null
+    if (currentMessage.video.includes("vimeo")) {
+      if (Platform.OS === "web") {
+        return null;
       }
       return (
-        <Box className={` w-${width / 1.5} m-2 h-[150px] rounded-md `}>
+        <Box className={` w-${width / 1.5} m-2 h-[150px] rounded-md`}>
           <Image
-            alt='youtube video thumbnail'
+            alt="youtube video thumbnail"
             source={{
               uri: `https://player.vimeo.com/video/${getVimeoId(
-                currentMessage!.video!
+                currentMessage!.video!,
               )}`,
             }}
-            className="rounded-lg w-[100%] h-[100%]" />
+            className="h-[100%] w-[100%] rounded-lg"
+          />
         </Box>
       );
     }
@@ -222,16 +246,19 @@ export default function conversation() {
           margin: 13,
           borderRadius: 13,
         }}
-        resizeMode={ResizeMode.COVER} />
+        resizeMode={ResizeMode.COVER}
+      />
     );
   };
 
   return (
-    <SafeAreaView style={{
-      backgroundColor: 'white',
-      flex: 1,
-      width: '100%',
-    }}>
+    <SafeAreaView
+      style={{
+        backgroundColor: "white",
+        flex: 1,
+        width: "100%",
+      }}
+    >
       <GiftedChat
         showUserAvatar={false}
         showAvatarForEveryMessage={false}
@@ -246,7 +273,7 @@ export default function conversation() {
           _id: 1, // ID of the sender
         }}
       />
-      {Platform.OS === 'android' && <KeyboardAvoidingView behavior="padding" />}
+      {Platform.OS === "android" && <KeyboardAvoidingView behavior="padding" />}
     </SafeAreaView>
   );
 }

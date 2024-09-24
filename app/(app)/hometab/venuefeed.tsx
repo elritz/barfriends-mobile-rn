@@ -1,15 +1,15 @@
-import { ArrowRightIcon } from "#/components/ui/icon";
-import { Button, ButtonText, ButtonIcon } from "#/components/ui/button";
-import { Heading } from "#/components/ui/heading";
-import { HStack } from "#/components/ui/hstack";
-import { Pressable } from "#/components/ui/pressable";
-import { Text } from "#/components/ui/text";
-import { VStack } from "#/components/ui/vstack";
-import { Box } from "#/components/ui/box";
+import { ArrowRightIcon } from "#/src/components/ui/icon";
+import { Button, ButtonText, ButtonIcon } from "#/src/components/ui/button";
+import { Heading } from "#/src/components/ui/heading";
+import { HStack } from "#/src/components/ui/hstack";
+import { Pressable } from "#/src/components/ui/pressable";
+import { Text } from "#/src/components/ui/text";
+import { VStack } from "#/src/components/ui/vstack";
+import { Box } from "#/src/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
-import CardPleaseSignup from "#/components/molecules/asks/signuplogin";
-import SearchAreaHeader from "#/components/screens/venuesfeed/SearchAreaHeader";
-import MemoizedVerticalVenueFeedVenueItem from "#/components/screens/venuesfeed/VerticalVenueFeedVenueItem";
+import CardPleaseSignup from "#/src/components/molecules/asks/signuplogin";
+import SearchAreaHeader from "#/src/views/screens/venuesfeed/SearchAreaHeader";
+import MemoizedVerticalVenueFeedVenueItem from "#/src/views/screens/venuesfeed/VerticalVenueFeedVenueItem";
 import { Ionicons } from "@expo/vector-icons";
 import {
   ProfileType,

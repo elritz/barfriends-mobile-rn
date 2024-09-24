@@ -1,13 +1,13 @@
-import { VStack } from "#/components/ui/vstack";
-import { Text } from "#/components/ui/text";
-import { Heading } from "#/components/ui/heading";
-import { HStack } from "#/components/ui/hstack";
-import { Divider } from "#/components/ui/divider";
-import { Button, ButtonText } from "#/components/ui/button";
-import { Box } from "#/components/ui/box";
+import { VStack } from "#/src/components/ui/vstack";
+import { Text } from "#/src/components/ui/text";
+import { Heading } from "#/src/components/ui/heading";
+import { HStack } from "#/src/components/ui/hstack";
+import { Divider } from "#/src/components/ui/divider";
+import { Button, ButtonText } from "#/src/components/ui/button";
+import { Box } from "#/src/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
-import LocationPermissionItemEmptyState from "#/components/organisms/list/searchareafiltering/LocationPermissionItemEmptyState";
-import SearchAreaLocationPermissionItem from "#/components/organisms/list/searchareafiltering/SearchAreaLocationPermissionItem";
+import LocationPermissionItemEmptyState from "#/src/components/organisms/list/searchareafiltering/LocationPermissionItemEmptyState";
+import SearchAreaLocationPermissionItem from "#/src/components/organisms/list/searchareafiltering/SearchAreaLocationPermissionItem";
 import { LOCAL_STORAGE_SEARCH_AREA } from "#/constants/StorageConstants";
 import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -214,7 +214,9 @@ export default () => {
                     }}
                     className="rounded-lg"
                   >
-                    <ButtonText className="color-white">Find new area</ButtonText>
+                    <ButtonText className="color-white">
+                      Find new area
+                    </ButtonText>
                     <Ionicons
                       color={
                         rTheme.colorScheme === "light"

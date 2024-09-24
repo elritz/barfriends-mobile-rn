@@ -1,14 +1,14 @@
-import { Center } from "#/components/ui/center";
-import { VStack } from "#/components/ui/vstack";
-import { Pressable } from "#/components/ui/pressable";
-import { HStack } from "#/components/ui/hstack";
-import { Button, ButtonText, ButtonIcon } from "#/components/ui/button";
-import { Box } from "#/components/ui/box";
+import { Center } from "#/src/components/ui/center";
+import { VStack } from "#/src/components/ui/vstack";
+import { Pressable } from "#/src/components/ui/pressable";
+import { HStack } from "#/src/components/ui/hstack";
+import { Button, ButtonText, ButtonIcon } from "#/src/components/ui/button";
+import { Box } from "#/src/components/ui/box";
 // TODO: FN(What functionality was suppose to be here)
 import { useReactiveVar } from "@apollo/client";
-import ChevronBackArrow from "#/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow";
-import WithDeviceProfiles from "#/components/molecules/asks/signinup";
-import DeviceManagerProfileItemLarge from "#/components/molecules/authorization/devicemanagerprofileitem/DeviceManagerProfileItemLarge";
+import ChevronBackArrow from "#/src/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow";
+import WithDeviceProfiles from "#/src/components/molecules/asks/signinup";
+import DeviceManagerProfileItemLarge from "#/src/components/molecules/authorization/devicemanagerprofileitem/DeviceManagerProfileItemLarge";
 import { Entypo, Ionicons } from "@expo/vector-icons";
 import {
   AuthorizationDeviceProfile,

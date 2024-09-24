@@ -1,4 +1,4 @@
-import { Heading } from "#/components/ui/heading";
+import { Heading } from "#/src/components/ui/heading";
 import { FlashList } from "@shopify/flash-list";
 import * as MediaLibrary from "expo-media-library";
 import { useState } from "react";

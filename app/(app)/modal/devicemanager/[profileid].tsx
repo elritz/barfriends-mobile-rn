@@ -1,8 +1,8 @@
-import { Text } from "#/components/ui/text";
-import { Heading } from "#/components/ui/heading";
-import { VStack } from "#/components/ui/vstack";
-import { Pressable } from "#/components/ui/pressable";
-import { Box } from "#/components/ui/box";
+import { Text } from "#/src/components/ui/text";
+import { Heading } from "#/src/components/ui/heading";
+import { VStack } from "#/src/components/ui/vstack";
+import { Pressable } from "#/src/components/ui/pressable";
+import { Box } from "#/src/components/ui/box";
 import {
   AuthorizationDeviceProfile,
   useRemoveDeviceProfileFromDeviceManagerMutation,
