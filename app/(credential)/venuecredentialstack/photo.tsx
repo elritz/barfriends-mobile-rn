@@ -14,7 +14,7 @@ import {
   ThemeReactiveVar,
 } from "#/reactive";
 import { FlashList } from "@shopify/flash-list";
-import useCloudinaryImageUploading from "#/util/uploading/useCloudinaryImageUploading";
+import useCloudinaryImageUploading from "#/src/util/uploading/useCloudinaryImageUploading";
 import * as ImagePicker from "expo-image-picker";
 import * as MediaLibrary from "expo-media-library";
 import { useRouter } from "expo-router";

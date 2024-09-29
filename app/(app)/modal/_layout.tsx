@@ -77,6 +77,8 @@ export default () => {
             "AuthorizationDeviceProfile" &&
           rdmData.refreshDeviceManager.Profile?.tonightStory
         ) {
+          console.log("CACHE: ", data?.updateStoryEmojimood?.emojimood);
+
           cache.modify({
             id: cache.identify(
               rdmData.refreshDeviceManager.Profile?.tonightStory,

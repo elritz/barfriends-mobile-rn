@@ -1,6 +1,6 @@
 import { useRefreshDeviceManagerQuery } from "#/graphql/generated";
 import { ThemeReactiveVar } from "#/reactive";
-import { Color } from "#/util/helpers/color";
+import { Color } from "#/src/util/helpers/color";
 import { useReactiveVar } from "@apollo/client";
 import { useMemo } from "react";
 

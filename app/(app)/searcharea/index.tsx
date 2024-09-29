@@ -8,11 +8,11 @@ import { Box } from "#/src/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
 import LocationPermissionItemEmptyState from "#/src/components/organisms/list/searchareafiltering/LocationPermissionItemEmptyState";
 import SearchAreaLocationPermissionItem from "#/src/components/organisms/list/searchareafiltering/SearchAreaLocationPermissionItem";
-import { LOCAL_STORAGE_SEARCH_AREA } from "#/constants/StorageConstants";
+import { LOCAL_STORAGE_SEARCH_AREA } from "#/src/constants/StorageConstants";
 import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SearchAreaReactiveVar, ThemeReactiveVar } from "#/reactive";
-import useContentInsets from "#/util/hooks/useContentInsets";
+import useContentInsets from "#/src/util/hooks/useContentInsets";
 import { useRouter } from "expo-router";
 import { ScrollView } from "react-native";
 

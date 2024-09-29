@@ -12,7 +12,7 @@ import {
   CredentialPersonalProfileReactiveVar,
   ThemeReactiveVar,
 } from "#/reactive";
-import useTimer2 from "#/util/hooks/useTimer2";
+import useTimer2 from "#/src/util/hooks/useTimer2";
 import {
   useGlobalSearchParams,
   useLocalSearchParams,

@@ -1,11 +1,8 @@
-import { Box } from "#/src/components/ui/box";
 import { Text } from "#/src/components/ui/text";
-import { Heading } from "#/src/components/ui/heading";
-import { Button, ButtonText } from "#/src/components/ui/button";
-import ChevronBackArrow from "#/src/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow";
+import { Button } from "#/src/components/ui/button";
 import { Stack, router } from "expo-router";
 
-export default () => {
+const Layout = () => {
   return (
     <Stack
       initialRouteName="hometab"
@@ -85,3 +82,7 @@ export default () => {
     </Stack>
   );
 };
+
+Layout.displayName = "Layout";
+
+export default Layout;

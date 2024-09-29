@@ -1,15 +1,15 @@
-import { AUTHORIZATION } from "#/constants/StorageConstants";
+import { AUTHORIZATION } from "#/src/constants/StorageConstants";
 import {
   AuthorizationDeviceProfile,
   useCreateGuestProfileMutation,
   useRefreshDeviceManagerLazyQuery,
 } from "#/graphql/generated";
 import { AuthorizationReactiveVar } from "#/reactive";
-import { AuthorizationDecoded } from "#/util/hooks/auth/useCheckLocalStorageForAuthorizationToken";
+import { AuthorizationDecoded } from "#/src/util/hooks/auth/useCheckLocalStorageForAuthorizationToken";
 import {
   secureStorageItemDelete,
   secureStorageItemRead,
-} from "#/util/hooks/local/useSecureStorage";
+} from "#/src/util/hooks/local/useSecureStorage";
 import { useCallback, useEffect } from "react";
 
 export default function Auth({ children }) {

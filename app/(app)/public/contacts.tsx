@@ -6,12 +6,12 @@ import { Divider } from "#/src/components/ui/divider";
 import { Button, ButtonText } from "#/src/components/ui/button";
 import { Box } from "#/src/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
-import { APP_STORE_URL_LINK } from "#/constants/App";
+import { APP_STORE_URL_LINK } from "#/src/constants/App";
 import {
   HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
   HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
   SEARCH_BAR_HEIGHT,
-} from "#/constants/ReactNavigationConstants";
+} from "#/src/constants/ReactNavigationConstants";
 import {
   ContactsReactiveVar,
   PermissionContactsReactiveVar,

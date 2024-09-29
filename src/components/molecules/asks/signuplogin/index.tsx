@@ -5,7 +5,7 @@ import { Button, ButtonText } from "#/src/components/ui/button";
 import { Text } from "#/src/components/ui/text";
 import { VStack } from "#/src/components/ui/vstack";
 import DeviceManagerProfiles from "#/src/components/organisms/list/DeviceManagerProfiles";
-import GetSignInUpText from "#/util/helpers/data/SignupinText";
+import GetSignInUpText from "#/src/util/helpers/data/SignupinText";
 import { router, useRouter } from "expo-router";
 
 const text = GetSignInUpText();

@@ -6,16 +6,16 @@ import { Box } from "#/src/components/ui/box";
 // TODO: UX(handleAppStateChange) check if location permission is enabled and go somewhere with it
 import { useReactiveVar } from "@apollo/client";
 import IllustrationDynamicLocation from "#/assets/images/location/IllustrationDynamicLocation";
-import PermissionDetailItem from "#/src/views/screens/permissions/PermissionDetailItem";
+import PermissionDetailItem from "#/src/view/screens/permissions/PermissionDetailItem";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useIsFocused } from "@react-navigation/native";
 import {
   PermissionForegroundLocationReactiveVar,
   ThemeReactiveVar,
 } from "#/reactive";
-import { capitalizeFirstLetter } from "#/util/helpers/capitalizeFirstLetter";
-import useSetSearchAreaWithLocation from "#/util/hooks/searcharea/useSetSearchAreaWithLocation";
-import useTimer2 from "#/util/hooks/useTimer2";
+import { capitalizeFirstLetter } from "#/src/util/helpers/capitalizeFirstLetter";
+import useSetSearchAreaWithLocation from "#/src/util/hooks/searcharea/useSetSearchAreaWithLocation";
+import useTimer2 from "#/src/util/hooks/useTimer2";
 import * as IntentLauncher from "expo-intent-launcher";
 import * as Linking from "expo-linking";
 import * as Location from "expo-location";

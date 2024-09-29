@@ -2,15 +2,15 @@ var config = (() => {
   // gluestack-ui.config.json
   var tailwind = {
     config: "tailwind.config.js",
-    css: "global.css"
+    css: "global.css",
   };
   var app = {
     entry: "app/_layout.tsx",
-    components: "components/ui"
+    components: "./src/components/ui",
   };
   var gluestack_ui_config_default = {
     tailwind,
-    app
+    app,
   };
 })();
 module.exports = config;

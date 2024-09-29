@@ -8,8 +8,8 @@ import { VStack } from "#/src/components/ui/vstack";
 import { Box } from "#/src/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
 import CardPleaseSignup from "#/src/components/molecules/asks/signuplogin";
-import SearchAreaHeader from "#/src/views/screens/venuesfeed/SearchAreaHeader";
-import MemoizedVerticalVenueFeedVenueItem from "#/src/views/screens/venuesfeed/VerticalVenueFeedVenueItem";
+import SearchAreaHeader from "#/src/view/screens/venuesfeed/SearchAreaHeader";
+import MemoizedVerticalVenueFeedVenueItem from "#/src/view/screens/venuesfeed/VerticalVenueFeedVenueItem";
 import { Ionicons } from "@expo/vector-icons";
 import {
   ProfileType,
@@ -26,8 +26,8 @@ import {
   ThemeReactiveVar,
 } from "#/reactive";
 import { FlashList, MasonryFlashList } from "@shopify/flash-list";
-import useSetSearchAreaWithLocation from "#/util/hooks/searcharea/useSetSearchAreaWithLocation";
-import useContentInsets from "#/util/hooks/useContentInsets";
+import useSetSearchAreaWithLocation from "#/src/util/hooks/searcharea/useSetSearchAreaWithLocation";
+import useContentInsets from "#/src/util/hooks/useContentInsets";
 import { useRouter } from "expo-router";
 import { Skeleton } from "moti/skeleton";
 import { memo, useCallback, useEffect, useState } from "react";

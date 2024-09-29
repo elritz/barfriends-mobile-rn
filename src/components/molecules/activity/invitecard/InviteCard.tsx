@@ -8,7 +8,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { PermissionContactsReactiveVar, ThemeReactiveVar } from "#/reactive";
 import { useRouter } from "expo-router";
 import { useRefreshDeviceManagerQuery } from "#/graphql/generated";
-import { Color } from "#/util/helpers/color";
+import { Color } from "#/src/util/helpers/color";
 import useEmojimoodTextColor from "#/hooks/useTextContrast copy";
 
 const InviteCard: React.FC<ActivityCardProps> = ({

@@ -6,7 +6,7 @@ import { ThemeReactiveVar } from "#/reactive";
 import { useRouter } from "expo-router";
 import { Pressable } from "react-native";
 import { useRefreshDeviceManagerQuery } from "#/graphql/generated";
-import { Color } from "#/util/helpers/color";
+import { Color } from "#/src/util/helpers/color";
 import useEmojimoodTextColor from "#/hooks/useTextContrast copy";
 
 const JoinVenue: React.FC<ActivityCardProps> = ({

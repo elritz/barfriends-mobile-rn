@@ -5,16 +5,16 @@ import InviteCard from "#/src/components/molecules/activity/invitecard/InviteCar
 import QuickBarfriendCard from "#/src/components/molecules/activity/quickbarfriendcard/QuickBarfriendCard";
 import AddEmoji from "#/src/components/molecules/activity/addemoji/AddEmoji";
 import JoinVenue from "#/src/components/molecules/activity/joinvenue/JoinVenue";
-import Photos from "#/src/views/screens/tonight/photos";
+import Photos from "#/src/view/screens/tonight/photos";
 import { AuthorizationReactiveVar, ThemeReactiveVar } from "#/reactive";
 import { FlashList } from "@shopify/flash-list";
-import useContentInsets from "#/util/hooks/useContentInsets";
+import useContentInsets from "#/src/util/hooks/useContentInsets";
 import { BlurView } from "expo-blur";
 import { ScrollView } from "react-native";
 import { useEffect, useState } from "react";
 import { useRefreshDeviceManagerQuery } from "#/graphql/generated";
 import { SafeAreaView } from "react-native-safe-area-context";
-import EmojimoodGradient from "#/src/views/screens/tonight/EmojimoodGradient";
+import EmojimoodGradient from "#/src/view/screens/tonight/EmojimoodGradient";
 import useEmojimoodTextColor from "#/hooks/useTextContrast copy";
 
 const Wrapper = ({ children }) => {
@@ -60,7 +60,7 @@ const Wrapper = ({ children }) => {
   );
 };
 
-export default () => {
+const Tonight = () => {
   const contentInsets = useContentInsets();
   const rTheme = useReactiveVar(ThemeReactiveVar);
   const {
@@ -163,3 +163,5 @@ export default () => {
     );
   }
 };
+
+export default Tonight;

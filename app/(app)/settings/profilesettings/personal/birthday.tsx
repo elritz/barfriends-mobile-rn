@@ -9,8 +9,8 @@ import {
   useUpdateOneProfileMutation,
 } from "#/graphql/generated";
 import { AuthorizationReactiveVar } from "#/reactive";
-import { calcDateDiffFromNow } from "#/util/helpers/luxon";
-import { secureStorageItemCreate } from "#/util/hooks/local/useSecureStorage";
+import { calcDateDiffFromNow } from "#/src/util/helpers/luxon";
+import { secureStorageItemCreate } from "#/src/util/hooks/local/useSecureStorage";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";

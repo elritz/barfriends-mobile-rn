@@ -2,8 +2,8 @@ import { Box } from "#/src/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
 import CardPleaseSignup from "#/src/components/molecules/asks/signuplogin";
 import PreferenceNotificationPermission from "#/src/components/molecules/permissions/preferencenotificationpermission/PreferenceNotificationPermission";
-import PersonalScreen from "#/src/views/screens/profile/personalprofile/PersonalProfile";
-import VenueScreen from "#/src/views/screens/profile/venueprofile/VenueProfile";
+import PersonalScreen from "#/src/view/screens/profile/personalprofile/PersonalProfile";
+import VenueScreen from "#/src/view/screens/profile/venueprofile/VenueProfile";
 import {
   ProfileType,
   useGetNotificationsLazyQuery, // useGetNotificationsLazyQuery
@@ -13,7 +13,7 @@ import {
   PreferencePermissionNotificationReactiveVar,
 } from "#/reactive";
 import { FlashList } from "@shopify/flash-list";
-import useContentInsets from "#/util/hooks/useContentInsets";
+import useContentInsets from "#/src/util/hooks/useContentInsets";
 import { useCallback, useEffect, useState } from "react";
 import { RefreshControl, Button } from "react-native";
 

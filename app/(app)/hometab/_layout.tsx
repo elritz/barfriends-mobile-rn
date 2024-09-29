@@ -13,7 +13,7 @@ import VenueFeedTab from "#/src/components/molecules/tabbaricons/hometabicons/ve
 import {
   HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
   HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
-} from "#/constants/ReactNavigationConstants";
+} from "#/src/constants/ReactNavigationConstants";
 import { ITabColor } from "#/ctypes/app";
 import { MaterialIcons } from "@expo/vector-icons";
 import { TermsServiceReactiveVar, ThemeReactiveVar } from "#/reactive";
@@ -37,13 +37,12 @@ export default function HomeTab() {
         pathname: "/(information)/updatelatestprivacytermsservice",
       });
     }
-  }, []);
+  }, [rTermsServiceVar.update, router]);
 
   return (
     <Tabs
       initialRouteName="venuefeed"
       screenOptions={{
-        // tabBarBackground: () => <Box style={[StyleSheet.absoluteFill]} />,
         tabBarBackground: () => (
           <BlurView
             tint={rTheme.colorScheme === "light" ? "light" : "dark"}
@@ -51,6 +50,7 @@ export default function HomeTab() {
             style={[StyleSheet.absoluteFill]}
           />
         ),
+        tabBarActiveTintColor: "black",
         tabBarStyle: {
           height:
             insets.bottom !== 0

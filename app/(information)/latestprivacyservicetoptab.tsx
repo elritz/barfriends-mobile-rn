@@ -1,7 +1,7 @@
 import { Text } from "#/src/components/ui/text";
 import { useReactiveVar } from "@apollo/client";
-import Privacy from "#/src/views/screens/information/privacyserviceterms/Privacy";
-import Service from "#/src/views/screens/information/privacyserviceterms/Service";
+import Privacy from "#/src/view/screens/information/privacyserviceterms/Privacy";
+import Service from "#/src/view/screens/information/privacyserviceterms/Service";
 import { ThemeReactiveVar } from "#/reactive";
 import { useState } from "react";
 import { View, Pressable, useWindowDimensions } from "react-native";

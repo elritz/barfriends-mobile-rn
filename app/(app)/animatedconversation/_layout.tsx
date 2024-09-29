@@ -2,15 +2,11 @@ import { Box } from "#/src/components/ui/box";
 import { Heading } from "#/src/components/ui/heading";
 import { Button, ButtonText } from "#/src/components/ui/button";
 import ChevronBackArrow from "#/src/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow";
-import {
-  Stack,
-  useGlobalSearchParams,
-  useLocalSearchParams,
-} from "expo-router";
+import { Stack, useLocalSearchParams } from "expo-router";
 import { HStack } from "#/src/components/ui/hstack";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-export default () => {
+const AnimatedConversationLayout = () => {
   const insets = useSafeAreaInsets();
   const lp = useLocalSearchParams();
   console.log("🚀 ~ localParams 2222:", lp);
@@ -85,3 +81,5 @@ export default () => {
     </Stack>
   );
 };
+
+export default AnimatedConversationLayout;

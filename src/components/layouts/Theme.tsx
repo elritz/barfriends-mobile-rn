@@ -1,12 +1,12 @@
 import { GluestackUIProvider } from "#/src/components/ui/gluestack-ui-provider";
 import { useReactiveVar } from "@apollo/client";
-import AnimatedSplashScreen from "#/src/views/screens/splash/AnimatedSplashScreen";
-import { LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME } from "#/constants/StorageConstants";
+import AnimatedSplashScreen from "#/src/view/screens/splash/AnimatedSplashScreen";
+import { LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME } from "#/src/constants/StorageConstants";
 import { LocalStoragePreferenceThemeType } from "#/ctypes/preferences";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ThemeProvider as ReactNavigationThemeProvider } from "@react-navigation/native";
 import { ThemeReactiveVar } from "#/reactive";
-import { useToggleTheme } from "#/util/hooks/theme/useToggleTheme";
+import { useToggleTheme } from "#/src/util/hooks/theme/useToggleTheme";
 import { useCallback, useEffect, useRef } from "react";
 import { AppState, Appearance, StatusBar } from "react-native";
 import "#/global.css";

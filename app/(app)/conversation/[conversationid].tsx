@@ -1,8 +1,7 @@
 import { Image } from "#/src/components/ui/image";
 import { Box } from "#/src/components/ui/box";
-import { View, Text, Dimensions, StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import React, { useCallback, useRef, useState } from "react";
-import { useLocalSearchParams } from "expo-router";
 import {
   SafeAreaView,
   useSafeAreaInsets,
@@ -10,41 +9,11 @@ import {
 import { Platform, KeyboardAvoidingView } from "react-native";
 import { GiftedChat, IMessage } from "react-native-gifted-chat";
 import { ResizeMode, Video } from "expo-av";
-import {
-  KeyboardAwareScrollView,
-  KeyboardGestureArea,
-  useKeyboardHandler,
-} from "react-native-keyboard-controller";
-import Reanimated, {
-  useAnimatedProps,
-  useAnimatedStyle,
-  useSharedValue,
-} from "react-native-reanimated";
-import { TextInput } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import Animated from "react-native-reanimated";
+import { useKeyboardHandler } from "react-native-keyboard-controller";
+import Reanimated, { useSharedValue } from "react-native-reanimated";
 
 const { width } = Dimensions.get("window");
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: "flex-end",
-    flex: 1,
-  },
-  header: {
-    color: "black",
-    marginRight: 12,
-  },
-  inverted: {
-    transform: [
-      {
-        rotate: "180deg",
-      },
-    ],
-  },
-  content: {
-    flex: 1,
-  },
-});
+
 const useKeyboardAnimation = () => {
   const progress = useSharedValue(0);
   const height = useSharedValue(0);
@@ -85,7 +54,7 @@ const getYouTubeId = (url) => {
   return null;
 };
 
-export default function conversation() {
+export default function Conversation() {
   const [interpolator, setInterpolator] = useState<"ios" | "linear">("linear");
   const [messages, setMessages] = useState<
     {
@@ -93,6 +62,7 @@ export default function conversation() {
       text: string;
       createdAt: Date;
       user: { _id: number; name: string; avatar: string };
+      video?: string;
     }[]
   >([]);
   const _scrollRef = useRef<Reanimated.FlatList<IMessage>>(null);

@@ -3,7 +3,7 @@ import { Pressable } from "#/src/components/ui/pressable";
 import { Box } from "#/src/components/ui/box";
 import { ProfileType, useProfilesQuery } from "#/graphql/generated";
 import { FlashList } from "@shopify/flash-list";
-import useContentInsets from "#/util/hooks/useContentInsets";
+import useContentInsets from "#/src/util/hooks/useContentInsets";
 import { useRouter } from "expo-router";
 import { Image } from "react-native";
 import { View, useWindowDimensions } from "react-native";

@@ -1,10 +1,10 @@
 import { Text } from "#/src/components/ui/text";
 import { Heading } from "#/src/components/ui/heading";
 import { Box } from "#/src/components/ui/box";
-import MemoizedVerticalVenueFeedVenueItem from "#/src/views/screens/venuesfeed/VerticalVenueFeedVenueItem";
+import MemoizedVerticalVenueFeedVenueItem from "#/src/view/screens/venuesfeed/VerticalVenueFeedVenueItem";
 import { useGetH3Index6VenueRecommendationByIdQuery } from "#/graphql/generated";
 import { MasonryFlashList } from "@shopify/flash-list";
-import useContentInsets from "#/util/hooks/useContentInsets";
+import useContentInsets from "#/src/util/hooks/useContentInsets";
 import { useLocalSearchParams } from "expo-router";
 
 export default function SearchH3Recommendation() {

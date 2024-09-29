@@ -4,7 +4,7 @@ import { useReactiveVar } from "@apollo/client";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { ThemeReactiveVar } from "#/reactive";
 import { useRefreshDeviceManagerQuery } from "#/graphql/generated";
-import { Color } from "#/util/helpers/color";
+import { Color } from "#/src/util/helpers/color";
 import useEmojimoodTextColor from "#/hooks/useTextContrast copy";
 
 const AddRelationship: React.FC<ActivityCardProps> = ({

@@ -9,7 +9,7 @@ import { useReactiveVar } from "@apollo/client";
 import { useGetInterestsQuery } from "#/graphql/generated";
 import { AuthorizationReactiveVar, ThemeReactiveVar } from "#/reactive";
 import { FlashList } from "@shopify/flash-list";
-import useRandomNumber from "#/util/hooks/useRandomNumber";
+import useRandomNumber from "#/src/util/hooks/useRandomNumber";
 import { Skeleton } from "moti/skeleton";
 import { useEffect, useState } from "react";
 import { View } from "react-native";

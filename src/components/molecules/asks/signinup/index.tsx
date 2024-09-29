@@ -3,7 +3,7 @@ import { Text } from "#/src/components/ui/text";
 import { Divider } from "#/src/components/ui/divider";
 import { Button, ButtonText } from "#/src/components/ui/button";
 import { Box } from "#/src/components/ui/box";
-import GetSignInUpText from "#/util/helpers/data/SignupinText";
+import GetSignInUpText from "#/src/util/helpers/data/SignupinText";
 import { useRouter } from "expo-router";
 
 export default () => {

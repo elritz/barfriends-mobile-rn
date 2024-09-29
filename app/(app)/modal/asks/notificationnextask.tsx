@@ -12,8 +12,8 @@ import {
   DaysPreferencePermissionInitialState,
   HalfMonthPreferencePermissionInitialState,
   MonthsPreferencePermissionInitialState,
-} from "#/constants/Preferences";
-import { LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS } from "#/constants/StorageConstants";
+} from "#/src/constants/Preferences";
+import { LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS } from "#/src/constants/StorageConstants";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useReactiveVar } from "@apollo/client";
 import { LocalStoragePreferenceAskNotificationPermissionType } from "#/ctypes/preferences";
@@ -25,10 +25,10 @@ import {
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import PermissionDetailItem from "#/src/views/screens/permissions/PermissionDetailItem";
+import PermissionDetailItem from "#/src/view/screens/permissions/PermissionDetailItem";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 import { Controller, useForm } from "react-hook-form";
-import useTimer2 from "#/util/hooks/useTimer2";
+import useTimer2 from "#/src/util/hooks/useTimer2";
 import { DateTime } from "luxon";
 
 export default () => {

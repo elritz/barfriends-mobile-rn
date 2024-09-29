@@ -6,7 +6,7 @@ import { Button, ButtonText } from "#/src/components/ui/button";
 import { Box } from "#/src/components/ui/box";
 import { Form } from "./_layout";
 import { useReactiveVar } from "@apollo/client";
-import { LOCAL_STORAGE_SEARCH_AREA } from "#/constants/StorageConstants";
+import { LOCAL_STORAGE_SEARCH_AREA } from "#/src/constants/StorageConstants";
 import { LocalStoragePreferenceSearchAreaType } from "#/ctypes/preferences";
 import {
   CityResponseObject,
@@ -15,7 +15,7 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SearchAreaReactiveVar, ThemeReactiveVar } from "#/reactive";
 import { FlashList } from "@shopify/flash-list";
-import useContentInsets from "#/util/hooks/useContentInsets";
+import useContentInsets from "#/src/util/hooks/useContentInsets";
 import { useRouter, useGlobalSearchParams } from "expo-router";
 import { filter, uniqueId } from "lodash";
 import { Skeleton } from "moti/skeleton";

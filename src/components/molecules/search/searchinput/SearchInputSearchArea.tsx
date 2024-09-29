@@ -11,7 +11,7 @@ import ChevronBackArrow from "#/src/components/atoms/buttons/goback/ChevronBackA
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { ThemeReactiveVar } from "#/reactive";
-import useDebounce from "#/util/hooks/useDebounce";
+import useDebounce from "#/src/util/hooks/useDebounce";
 import { useRouter } from "expo-router";
 import { useCallback, useMemo, useRef } from "react";
 import { Controller, useForm } from "react-hook-form";

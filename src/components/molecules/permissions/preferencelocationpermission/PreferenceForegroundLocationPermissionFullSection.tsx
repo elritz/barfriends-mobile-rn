@@ -7,7 +7,7 @@ import { Button } from "#/src/components/ui/button";
 import { Box } from "#/src/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
 import ForegroundLocationNextAskModal from "#/src/components/molecules/asks/permissions/foregroundlocationnextask";
-import { LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION } from "#/constants/StorageConstants";
+import { LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION } from "#/src/constants/StorageConstants";
 import { LocalStoragePreferenceAskForegroundLocationPermissionType } from "#/ctypes/preferences";
 import { EvilIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -15,8 +15,8 @@ import {
   PermissionForegroundLocationReactiveVar,
   PreferenceForegroundLocationPermissionReactiveVar,
 } from "#/reactive";
-import { TomorrowPreferencePermissionInitialState } from "#/constants/Preferences";
-import { useDisclose } from "#/util/hooks/useDisclose";
+import { TomorrowPreferencePermissionInitialState } from "#/src/constants/Preferences";
+import { useDisclose } from "#/src/util/hooks/useDisclose";
 import { useRouter } from "expo-router";
 import { uniqueId } from "lodash";
 import { DateTime } from "luxon";

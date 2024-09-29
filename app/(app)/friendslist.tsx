@@ -3,7 +3,6 @@ import { Text } from "#/src/components/ui/text";
 import { Button, ButtonIcon } from "#/src/components/ui/button";
 import { AddIcon } from "#/src/components/ui/icon";
 import { useReactiveVar } from "@apollo/client";
-import { Ionicons } from "@expo/vector-icons";
 import { ThemeReactiveVar } from "#/reactive";
 import { ScrollView } from "react-native";
 

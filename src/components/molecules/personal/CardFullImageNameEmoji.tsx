@@ -2,7 +2,6 @@ import { Text } from "#/src/components/ui/text";
 import { Pressable } from "#/src/components/ui/pressable";
 import { Box } from "#/src/components/ui/box";
 import { Relationship } from "#/graphql/generated";
-import { capitalizeFirstLetter } from "#/util/helpers/capitalizeFirstLetter";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";

@@ -12,8 +12,8 @@ import {
   CredentialPersonalProfileReactiveVar,
   ThemeReactiveVar,
 } from "#/reactive";
-import useContentInsets from "#/util/hooks/useContentInsets";
-import useTimer from "#/util/hooks/useTimer2";
+import useContentInsets from "#/src/util/hooks/useContentInsets";
+import useTimer from "#/src/util/hooks/useTimer2";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Controller, useForm, ValidateResult } from "react-hook-form";

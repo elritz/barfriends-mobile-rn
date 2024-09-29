@@ -12,7 +12,7 @@ import {
   CredentialPersonalProfileReactiveVar,
   ThemeReactiveVar,
 } from "#/reactive";
-import useContentInsets from "#/util/hooks/useContentInsets";
+import useContentInsets from "#/src/util/hooks/useContentInsets";
 import { useRouter } from "expo-router";
 import { useEffect, useRef } from "react";
 import { Controller, useForm } from "react-hook-form";

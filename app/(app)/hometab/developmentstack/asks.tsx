@@ -5,12 +5,12 @@ import { Button, ButtonText } from "#/src/components/ui/button";
 import {
   NowPreferencePermissionInitialState,
   TomorrowPreferencePermissionInitialState,
-} from "#/constants/Preferences";
+} from "#/src/constants/Preferences";
 import {
   LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
   LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION,
   LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS,
-} from "#/constants/StorageConstants";
+} from "#/src/constants/StorageConstants";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   PreferenceBackgroundLocationPermissionReactiveVar,

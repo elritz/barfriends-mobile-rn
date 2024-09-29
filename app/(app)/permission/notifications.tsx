@@ -6,7 +6,7 @@ import { Button, ButtonText } from "#/src/components/ui/button";
 import { Box } from "#/src/components/ui/box";
 // TODO: UX(handleAppStateChange) check if location permission is enabled and go somewhere with it
 import { useReactiveVar } from "@apollo/client";
-import PermissionDetailItem from "#/src/views/screens/permissions/PermissionDetailItem";
+import PermissionDetailItem from "#/src/view/screens/permissions/PermissionDetailItem";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import {
   TokenType,
@@ -18,8 +18,8 @@ import {
   PermissionNotificationReactiveVar,
   ThemeReactiveVar,
 } from "#/reactive";
-import { capitalizeFirstLetter } from "#/util/helpers/capitalizeFirstLetter";
-import useTimer2 from "#/util/hooks/useTimer2";
+import { capitalizeFirstLetter } from "#/src/util/helpers/capitalizeFirstLetter";
+import useTimer2 from "#/src/util/hooks/useTimer2";
 import * as Application from "expo-application";
 import Constants from "expo-constants";
 import * as Device from "expo-device";

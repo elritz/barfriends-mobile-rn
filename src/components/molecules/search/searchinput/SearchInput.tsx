@@ -6,7 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { useExploreSearchLazyQuery } from "#/graphql/generated";
 import { ThemeReactiveVar } from "#/reactive";
-import useDebounce from "#/util/hooks/useDebounce";
+import useDebounce from "#/src/util/hooks/useDebounce";
 import { useGlobalSearchParams, useRouter, useSegments } from "expo-router";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";

@@ -4,7 +4,7 @@ import { useReactiveVar } from "@apollo/client";
 import ChevronBackArrow from "#/src/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow";
 import SearchInput from "#/src/components/molecules/search/searchinput/SearchInput";
 import SearchInputSearchArea from "#/src/components/molecules/search/searchinput/SearchInputSearchArea";
-import { SEARCH_BAR_HEIGHT } from "#/constants/ReactNavigationConstants";
+import { SEARCH_BAR_HEIGHT } from "#/src/constants/ReactNavigationConstants";
 import { PlaceType } from "#/ctypes/preferences";
 import { SearchAreaReactiveVar, ThemeReactiveVar } from "#/reactive";
 import { Stack } from "expo-router";

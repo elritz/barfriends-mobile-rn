@@ -1,4 +1,5 @@
 import { Redirect } from "expo-router";
+import { View, Text } from "react-native";
 export default function index() {
   const personal_username_misia = "misia";
   // const device_manager_profile_id = 'e90675d1-009f-4ca8-9d76-f163a885189f'
@@ -6,9 +7,9 @@ export default function index() {
   const device_manager_profile_id = "e90675d1-009f-4ca8-9d76-f163a885189f";
 
   //? Hometabs
-  // return <Redirect href={'/brokenstate'} />
-  // return <Redirect href={"/(app)/hometab/venuefeed"} />;
-  return <Redirect href={"/(app)/hometab/tonight"} />;
+  // return <Redirect href={"/brokenstate"} />;
+  return <Redirect href={"/(app)/hometab/venuefeed"} />;
+  // return <Redirect href={"/(app)/hometab/tonight"} />;
   //?? Convesations
   // return <Redirect href={"/(app)/hometab/conversations"} />;
   // return <Redirect href={{ pathname: '/(app)/conversation/[conversationid]', params: { conversationid: 'ce353001-e8d6-4175-ae25-9c37cbd742f0' } }} />
@@ -52,10 +53,10 @@ export default function index() {
   // );
 
   //? Broken state
-  // console.log('LOAD BROKEN STATE RWHY NOT RENDER HERE:>> ',);
+  // console.log("LOAD BROKEN STATE RWHY NOT RENDER HERE:>> ");
   // return (
-  // 	<View style={{ flex: 1, backgroundColor: 'red' }}>
-  // 		<Text>HEllo Workd</Text>
-  // 	</View>
-  // )
+  //   <View style={{ flex: 1, backgroundColor: "blue" }}>
+  //     <Text>HEllo Workd</Text>
+  //   </View>
+  // );
 }

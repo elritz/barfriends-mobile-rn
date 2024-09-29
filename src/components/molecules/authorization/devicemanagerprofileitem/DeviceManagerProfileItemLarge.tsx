@@ -5,7 +5,7 @@ import { Center } from "#/src/components/ui/center";
 import { Box } from "#/src/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import { Maybe, Profile } from "#/graphql/generated";
+import { Profile } from "#/graphql/generated";
 import { AuthorizationReactiveVar, ThemeReactiveVar } from "#/reactive";
 import { View } from "react-native";
 

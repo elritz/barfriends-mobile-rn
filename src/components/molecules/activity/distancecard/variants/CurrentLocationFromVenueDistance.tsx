@@ -18,8 +18,8 @@ import {
   SearchAreaReactiveVar,
   ThemeReactiveVar,
 } from "#/reactive";
-import { useDisclose } from "#/util/hooks/useDisclose";
-import useGetDistance from "#/util/hooks/useDistance";
+import { useDisclose } from "#/src/util/hooks/useDisclose";
+import useGetDistance from "#/src/util/hooks/useDistance";
 import { useLocalSearchParams } from "expo-router";
 import { uniqueId } from "lodash";
 import { MotiView } from "moti";

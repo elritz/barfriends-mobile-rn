@@ -4,7 +4,7 @@ import { Heading } from "#/src/components/ui/heading";
 import { Box } from "#/src/components/ui/box";
 import { FormType } from "./_layout";
 import { useReactiveVar } from "@apollo/client";
-import Photos from "#/src/views/screens/tonight/photos";
+import Photos from "#/src/view/screens/tonight/photos";
 import {
   useEmojimoodsQuery,
   useRefreshDeviceManagerQuery,
@@ -162,7 +162,7 @@ export default () => {
                   data={[
                     {
                       _typename: "EmojimoodRemove",
-                      id: "123123123",
+                      id: "1",
                       colors:
                         rTheme.colorScheme === "light"
                           ? ["#ffffff20", "#ffffff20"]

@@ -4,7 +4,6 @@ import profilingclient from "#/graphql/apollo/profiling/profiling-apollo-server"
 import { NormalizedCacheObject } from "@apollo/client";
 import { ArgType } from "reactotron-core-client"; // Add this import
 
-
 function getNestedCacheValue(keyPath: string): any {
   // Extract the entire cache
   const cache: NormalizedCacheObject = profilingclient.cache.extract();
@@ -33,17 +32,15 @@ function getNestedCacheValue(keyPath: string): any {
 Reactotron.setAsyncStorageHandler(AsyncStorage)
   .configure({}) // controls connection & communication settings
   .useReactNative() // add all built-in react native plugins
-  .connect() // let's connect!
+  .connect(); // let's connect!
 
-  
-Reactotron
-.onCustomCommand({
+Reactotron.onCustomCommand({
   title: "Extract Apollo Client Cache by Key",
   description: "Retrieves a specific key from the Apollo Client cache",
   command: "extractApolloCacheByKey",
   args: [{ name: "key", type: ArgType.String }],
   handler: (args) => {
-    console.log("🚀 ~ args:", args)
+    console.log("🚀 ~ args:", args);
     const { key } = args ?? {};
     if (key) {
       const findValue = getNestedCacheValue(key);
@@ -63,18 +60,17 @@ Reactotron
       Reactotron.log("Could not extract cache value. No key provided.");
     }
   },
-})
+});
 
-Reactotron
-  .onCustomCommand({
-    title: "Extract Apollo Client Cache",
-    description: "Gets the updated InMemory cache from Apollo Client",
-    command: "extractApolloCache",
-    handler: () => {
-      Reactotron.display({
-        name: "Apollo Cache",
-        preview: "Cache Snapshot",
-        value: profilingclient.cache.extract(),
-      });
-    },
-  })
+Reactotron.onCustomCommand({
+  title: "Extract Apollo Client Cache",
+  description: "Gets the updated InMemory cache from Apollo Client",
+  command: "extractApolloCache",
+  handler: () => {
+    Reactotron.display({
+      name: "Apollo Cache",
+      preview: "Cache Snapshot",
+      value: profilingclient.cache.extract(),
+    });
+  },
+});

@@ -6,7 +6,7 @@ import { Box } from "#/src/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
 import { Ionicons } from "@expo/vector-icons";
 import { ThemeReactiveVar } from "#/reactive";
-import { useToggleTheme } from "#/util/hooks/theme/useToggleTheme";
+import { useToggleTheme } from "#/src/util/hooks/theme/useToggleTheme";
 import { router } from "expo-router";
 
 export default () => {

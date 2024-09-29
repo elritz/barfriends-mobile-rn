@@ -1,45 +1,8 @@
-// import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-// import { useFonts } from 'expo-font';
-// import { Stack } from 'expo-router';
-// import * as SplashScreen from 'expo-splash-screen';
-// import { useEffect } from 'react';
-
-// import { useColorScheme } from '#/hooks/useColorScheme';
-
-// // Prevent the splash screen from auto-hiding before asset loading is complete.
-// SplashScreen.preventAutoHideAsync();
-
-// export default function RootLayout() {
-// 	const colorScheme = useColorScheme();
-// 	const [loaded] = useFonts({
-// 		SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-// 	});
-
-// 	useEffect(() => {
-// 		if (loaded) {
-// 			SplashScreen.hideAsync();
-// 		}
-// 	}, [loaded]);
-
-// 	if (!loaded) {
-// 		return null;
-// 	}
-
-// 	return (
-// 		<ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-// 			<Stack>
-// 				<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-// 				<Stack.Screen name="+not-found" />
-// 			</Stack>
-// 		</ThemeProvider>
-// 	);
-// }
-
 //TODO: Add notfication listener
 import "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
-import { ApolloProvider, useReactiveVar } from "@apollo/client";
+import { ApolloProvider } from "@apollo/client";
 import Auth from "#/src/components/layouts/Auth";
 import Theme from "#/src/components/layouts/Theme";
 import {
@@ -47,7 +10,7 @@ import {
   InitialStateJoiningInformationPreferencePermission,
   InitialStateSearchArea,
   InitialStatePreferenceSystemsOfUnits,
-} from "#/constants/Preferences";
+} from "#/src/constants/Preferences";
 import {
   LOCAL_STORAGE_SEARCH_AREA,
   LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME,
@@ -56,7 +19,7 @@ import {
   LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION,
   LOCAL_STORAGE_PREFERENCE_SYSTEM_OF_UNITS,
   LOCAL_STORAGE_INFORMATION_JOIN_VENUE,
-} from "#/constants/StorageConstants";
+} from "#/src/constants/StorageConstants";
 import {
   LocalStoragePreferenceSearchAreaType,
   LocalStoragePreferenceThemeType,
@@ -83,7 +46,7 @@ import {
   PermissionNotificationReactiveVar,
   InformationJoinVenueReactiveVar,
 } from "#/reactive";
-import useSetSearchAreaWithLocation from "#/util/hooks/searcharea/useSetSearchAreaWithLocation";
+// import useSetSearchAreaWithLocation from "#/src/util/hooks/searcharea/useSetSearchAreaWithLocation";
 import { Camera } from "expo-camera/legacy";
 import * as Contacts from "expo-contacts";
 import "expo-dev-client";
@@ -105,7 +68,7 @@ import * as Sentry from "@sentry/react-native";
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import { apolloDevToolsInit } from "react-native-apollo-devtools-client";
 import { isRunningInExpoGo } from "expo";
-import "../global.css";
+import "../";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -207,7 +170,7 @@ function RootLayout() {
         );
 
         if (values && values.useCurrentLocation) {
-          await useSetSearchAreaWithLocation();
+          // await useSetSearchAreaWithLocation();
         } else {
           SearchAreaReactiveVar({
             ...values,
@@ -384,119 +347,49 @@ function RootLayout() {
   }, []);
 
   return (
-    <>
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <SafeAreaProvider>
-          <ApolloProvider client={profilingclient}>
-            <Auth>
-              <Theme>
-                <KeyboardProvider statusBarTranslucent>
-                  <BottomSheetModalProvider>
-                    <Stack
-                      initialRouteName="index"
-                      screenOptions={{
-                        headerShown: false,
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaProvider>
+        <ApolloProvider client={profilingclient}>
+          <Auth>
+            <Theme>
+              <KeyboardProvider statusBarTranslucent>
+                <BottomSheetModalProvider>
+                  <Stack
+                    initialRouteName="index"
+                    screenOptions={{
+                      headerShown: false,
+                    }}
+                  >
+                    <Stack.Screen name="index" />
+                    <Stack.Screen
+                      name="(app)"
+                      options={{
+                        animation: "fade",
                       }}
-                    >
-                      <Stack.Screen name="index" />
-                      <Stack.Screen
-                        name="(app)"
-                        options={{
-                          animation: "fade",
-                        }}
-                      />
-                      <Stack.Screen
-                        name="(information)"
-                        options={{
-                          presentation: "modal",
-                          fullScreenGestureEnabled: false,
-                          gestureEnabled: false,
-                        }}
-                      />
-                      <Stack.Screen
-                        name="(credential)"
-                        options={{
-                          animation: "fade",
-                        }}
-                      />
-                    </Stack>
-                  </BottomSheetModalProvider>
-                </KeyboardProvider>
-              </Theme>
-            </Auth>
-          </ApolloProvider>
-        </SafeAreaProvider>
-      </GestureHandlerRootView>
-    </>
+                    />
+                    <Stack.Screen
+                      name="(information)"
+                      options={{
+                        presentation: "modal",
+                        fullScreenGestureEnabled: false,
+                        gestureEnabled: false,
+                      }}
+                    />
+                    <Stack.Screen
+                      name="(credential)"
+                      options={{
+                        animation: "fade",
+                      }}
+                    />
+                  </Stack>
+                </BottomSheetModalProvider>
+              </KeyboardProvider>
+            </Theme>
+          </Auth>
+        </ApolloProvider>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }
 
 export default Sentry.wrap(RootLayout);
-
-// import FontAwesome from "@expo/vector-icons/FontAwesome";
-// import {
-//   DarkTheme,
-//   DefaultTheme,
-//   ThemeProvider,
-// } from "@react-navigation/native";
-// import { useFonts } from "expo-font";
-// import * as SplashScreen from "expo-splash-screen";
-// import { useEffect, useLayoutEffect, useState } from "react";
-// import { GluestackUIProvider, Text, Box } from "@gluestack-ui/themed";
-// // import { config } from "@gluestack-ui/config";
-// import { useColorScheme } from "#/src/components/useColorScheme";
-// import { Slot } from "expo-router";
-// import { config } from '../config/gluestack-ui.config';
-// export {
-//   // Catch any errors thrown by the Layout component.
-//   ErrorBoundary,
-// } from "expo-router";
-
-// // export const unstable_settings = {
-// //   // Ensure that reloading on `/modal` keeps a back button present.
-// //   initialRouteName: "gluestack",
-// // };
-
-// // Prevent the splash screen from auto-hiding before asset loading is complete.
-// SplashScreen.preventAutoHideAsync();
-
-// export default function RootLayout() {
-//   const [loaded, error] = useFonts({
-//     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
-//     ...FontAwesome.font,
-//   });
-
-//   const [styleLoaded, setStyleLoaded] = useState(false);
-//   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
-//   useEffect(() => {
-//     if (error) throw error;
-//   }, [error]);
-
-//   useEffect(() => {
-//     if (loaded) {
-//       SplashScreen.hideAsync();
-//     }
-//   }, [loaded]);
-
-//   // useLayoutEffect(() => {
-//   //   setStyleLoaded(true);
-//   // }, [styleLoaded]);
-
-//   // if (!loaded || !styleLoaded) {
-//   //   return null;
-//   // }
-
-//   return <RootLayoutNav />;
-// }
-
-// function RootLayoutNav() {
-//   const colorScheme = useColorScheme();
-
-//   return (
-//     <GluestackUIProvider config={config}>
-//       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-//         <Slot />
-//       </ThemeProvider>
-//     </GluestackUIProvider>
-//   );
-// }

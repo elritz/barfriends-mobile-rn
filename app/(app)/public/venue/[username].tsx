@@ -5,13 +5,13 @@ import { Heading } from "#/src/components/ui/heading";
 import { Box } from "#/src/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
 import InformationJoinVenue from "#/src/components/molecules/information/informationjoinvenue";
-import Details from "#/src/views/screens/public/venue/details/Details";
-import PersonalAtVenue from "#/src/views/screens/public/venue/peopleatvenue/PersonalAtVenue";
-import VenueActions from "#/src/views/screens/public/venue/venueactions/VenueActions";
+import Details from "#/src/view/screens/public/venue/details/Details";
+import PersonalAtVenue from "#/src/view/screens/public/venue/peopleatvenue/PersonalAtVenue";
+import VenueActions from "#/src/view/screens/public/venue/venueactions/VenueActions";
 import LeaveSection from "#/src/components/molecules/activity/leavesection/LeaveSection";
-import VenueHeader from "#/src/views/screens/public/venue/venueheader/VenueHeader";
-import VenueTotals from "#/src/views/screens/public/venue/venuetotals/VenueTotals";
-import { PUBLIC_VENUE_HEADER_IMAGE_HEIGHT } from "#/constants/Layout";
+import VenueHeader from "#/src/view/screens/public/venue/venueheader/VenueHeader";
+import VenueTotals from "#/src/view/screens/public/venue/venuetotals/VenueTotals";
+import { PUBLIC_VENUE_HEADER_IMAGE_HEIGHT } from "#/src/constants/Layout";
 import { usePublicVenueQuery } from "#/graphql/generated";
 import {
   CurrentLocationReactiveVar,
@@ -19,7 +19,7 @@ import {
   ThemeReactiveVar,
 } from "#/reactive";
 import { FlashList } from "@shopify/flash-list";
-import useContentInsets from "#/util/hooks/useContentInsets";
+import useContentInsets from "#/src/util/hooks/useContentInsets";
 import { useLocalSearchParams } from "expo-router";
 import { uniqueId } from "lodash";
 import { Skeleton } from "moti/skeleton";

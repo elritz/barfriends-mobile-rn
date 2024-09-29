@@ -1,9 +1,9 @@
 import { Text } from "#/src/components/ui/text";
 import { useReactiveVar } from "@apollo/client";
-import SearchAccounts from "#/src/views/screens/search/textsearchtabs/SearchAccounts";
-import SearchVenues from "#/src/views/screens/search/textsearchtabs/SearchVenues";
+import SearchAccounts from "#/src/view/screens/search/textsearchtabs/SearchAccounts";
+import SearchVenues from "#/src/view/screens/search/textsearchtabs/SearchVenues";
 import { ThemeReactiveVar } from "#/reactive";
-import useContentInsets from "#/util/hooks/useContentInsets";
+import useContentInsets from "#/src/util/hooks/useContentInsets";
 import { useState } from "react";
 import { View, Pressable, useWindowDimensions } from "react-native";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";

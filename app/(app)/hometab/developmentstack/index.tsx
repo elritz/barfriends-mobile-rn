@@ -8,16 +8,16 @@ import { Divider } from "#/src/components/ui/divider";
 import { Box } from "#/src/components/ui/box";
 // TODO: FN(Change theme functionality with database and local storage save)
 import { useReactiveVar } from "@apollo/client";
-import { InitialStateSearchArea } from "#/constants/Preferences";
+import { InitialStateSearchArea } from "#/src/constants/Preferences";
 import {
   AUTHORIZATION,
   LOCAL_STORAGE_SEARCH_AREA,
   LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME,
-} from "#/constants/StorageConstants";
+} from "#/src/constants/StorageConstants";
 import {
   DEVELOPMENT_FOREGROUND_LOCATION_TASK_NAME,
   DEVELOPMENT_BACKGROUND_LOCATION_TASK_NAME,
-} from "#/constants/TaskManagerConstants";
+} from "#/src/constants/TaskManagerConstants";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import { useRefreshDeviceManagerQuery } from "#/graphql/generated";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -29,7 +29,7 @@ import {
 import {
   secureStorageItemDelete,
   secureStorageItemRead,
-} from "#/util/hooks/local/useSecureStorage";
+} from "#/src/util/hooks/local/useSecureStorage";
 import * as Application from "expo-application";
 import * as Clipboard from "expo-clipboard";
 import Constants from "expo-constants";

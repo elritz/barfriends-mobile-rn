@@ -9,7 +9,7 @@ import {
 } from "#/graphql/generated";
 import { ThemeReactiveVar } from "#/reactive";
 import { FlashList } from "@shopify/flash-list";
-import useContentInsets from "#/util/hooks/useContentInsets";
+import useContentInsets from "#/src/util/hooks/useContentInsets";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { filter } from "lodash";
 import { Skeleton } from "moti/skeleton";

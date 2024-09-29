@@ -9,7 +9,7 @@ import { useReactiveVar } from "@apollo/client";
 import {
   HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
   HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
-} from "#/constants/ReactNavigationConstants";
+} from "#/src/constants/ReactNavigationConstants";
 import {
   AuthorizationDeviceProfile,
   useGetAllThemesQuery,
@@ -18,8 +18,8 @@ import {
 } from "#/graphql/generated";
 import { AuthorizationReactiveVar, ThemeReactiveVar } from "#/reactive";
 import { FlashList, ListRenderItem } from "@shopify/flash-list";
-import { useToggleTheme } from "#/util/hooks/theme/useToggleTheme";
-import useContentInsets from "#/util/hooks/useContentInsets";
+import { useToggleTheme } from "#/src/util/hooks/theme/useToggleTheme";
+import useContentInsets from "#/src/util/hooks/useContentInsets";
 import { router } from "expo-router";
 import { useCallback } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";

@@ -9,12 +9,12 @@ import { useReactiveVar } from "@apollo/client";
 import {
   TomorrowPreferencePermissionInitialState,
   NowPreferencePermissionInitialState,
-} from "#/constants/Preferences";
+} from "#/src/constants/Preferences";
 import {
   LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
   LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION,
   LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS,
-} from "#/constants/StorageConstants";
+} from "#/src/constants/StorageConstants";
 import { Ionicons, Feather } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {

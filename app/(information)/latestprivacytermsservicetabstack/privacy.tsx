@@ -1,6 +1,6 @@
 import { Box } from "#/src/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
-import TermsLoadingState from "#/src/views/screens/settings/TermsLoadingState";
+import TermsLoadingState from "#/src/view/screens/settings/TermsLoadingState";
 import { usePrivacyTermsDocumentsQuery } from "#/graphql/generated";
 import { ThemeReactiveVar } from "#/reactive";
 import { SafeAreaView, ScrollView } from "react-native";

@@ -8,7 +8,7 @@ import { Box } from "#/src/components/ui/box";
 import { Badge, BadgeText } from "#/src/components/ui/badge";
 import { View } from "#/src/components/ui/view";
 import { useReactiveVar } from "@apollo/client";
-import Photos from "#/src/views/screens/public/personal/photos";
+import Photos from "#/src/view/screens/public/personal/photos";
 import { Feather, FontAwesome, Ionicons } from "@expo/vector-icons";
 import {
   BottomSheetModal,
@@ -25,8 +25,8 @@ import {
 } from "#/graphql/generated";
 import { AuthorizationReactiveVar, ThemeReactiveVar } from "#/reactive";
 import { FlashList } from "@shopify/flash-list";
-import { generateRandomBlurhash } from "#/util/helpers/generateBlurhash";
-import useContentInsets from "#/util/hooks/useContentInsets";
+import { generateRandomBlurhash } from "#/src/util/helpers/generateBlurhash";
+import useContentInsets from "#/src/util/hooks/useContentInsets";
 import { BlurView } from "expo-blur";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";

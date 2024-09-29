@@ -6,14 +6,14 @@ import { Button, ButtonText } from "#/src/components/ui/button";
 import { Box } from "#/src/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
 import IllustrationDynamicMedia from "#/assets/images/media/IllustrationDynamicMedia";
-import PermissionDetailItem from "#/src/views/screens/permissions/PermissionDetailItem";
+import PermissionDetailItem from "#/src/view/screens/permissions/PermissionDetailItem";
 import {
   Ionicons,
   MaterialCommunityIcons,
   MaterialIcons,
 } from "@expo/vector-icons";
 import { PermissionMediaReactiveVar, ThemeReactiveVar } from "#/reactive";
-import useTimer2 from "#/util/hooks/useTimer2";
+import useTimer2 from "#/src/util/hooks/useTimer2";
 import * as IntentLauncher from "expo-intent-launcher";
 import * as Linking from "expo-linking";
 import * as MediaLibrary from "expo-media-library";

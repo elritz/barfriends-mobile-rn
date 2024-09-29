@@ -1,11 +1,11 @@
 // TODO FN(How can i set the profile here, currently only getting Profile.id)
 import { ApolloLink } from '@apollo/client'
 import { asyncMap } from '@apollo/client/utilities'
-import { AUTHORIZATION, REFRESH } from '#/constants/StorageConstants'
+import { AUTHORIZATION, REFRESH } from '#/src/constants/StorageConstants'
 import {
 	secureStorageItemCreate,
 	secureStorageItemDelete,
-} from '#/util/hooks/local/useSecureStorage'
+} from '#/src/util/hooks/local/useSecureStorage'
 
 const afterwareLink = new ApolloLink((operation, forward) =>
 	asyncMap(forward(operation), async response => {

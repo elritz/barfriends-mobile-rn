@@ -15,11 +15,11 @@ import {
   PermissionCameraReactiveVar,
   ThemeReactiveVar,
 } from "#/reactive";
-import { useDisclose } from "#/util/hooks/useDisclose";
+import { useDisclose } from "#/src/util/hooks/useDisclose";
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { View } from "react-native";
-import { Color } from "#/util/helpers/color";
+import { Color } from "#/src/util/helpers/color";
 import useEmojimoodTextColor from "#/hooks/useTextContrast copy";
 
 // const LOGO_COASTER = require("../../../../../../assets/images/company/company_coaster.png");

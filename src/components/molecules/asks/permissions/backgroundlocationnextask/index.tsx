@@ -9,8 +9,8 @@ import { Divider } from "#/src/components/ui/divider";
 import { Center } from "#/src/components/ui/center";
 import { Button, ButtonText } from "#/src/components/ui/button";
 import { useReactiveVar } from "@apollo/client";
-import { LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION } from "#/constants/StorageConstants";
-import { TomorrowPreferencePermissionInitialState } from "#/constants/Preferences";
+import { LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION } from "#/src/constants/StorageConstants";
+import { TomorrowPreferencePermissionInitialState } from "#/src/constants/Preferences";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   PreferenceBackgroundLocationPermissionReactiveVar,
