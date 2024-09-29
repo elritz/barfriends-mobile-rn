@@ -68,7 +68,7 @@ import * as Sentry from "@sentry/react-native";
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import { apolloDevToolsInit } from "react-native-apollo-devtools-client";
 import { isRunningInExpoGo } from "expo";
-import "../";
+import "../global.css";
 
 export {
   // Catch any errors thrown by the Layout component.
