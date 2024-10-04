@@ -1,6 +1,6 @@
 import { ThemeObject } from '../../../assets/theme/default'
 import { defaulttheme } from '#/assets/theme/default'
-import { ThemeColorSchemeOptionsType } from '#/ctypes/preferences'
+import { ThemeColorSchemeOptionsType } from '#/types/preferences'
 import { createConfig } from '@gluestack-ui/themed'
 import { config as defaultConfig } from '@gluestack-ui/config'
 import { AuthorizationReactiveVar, IBFSTheme, ThemeReactiveVar } from '#/reactive'

@@ -14,7 +14,7 @@ import {
   HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
   HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
 } from "#/src/constants/ReactNavigationConstants";
-import { ITabColor } from "#/ctypes/app";
+import { ITabColor } from "#/types/app";
 import { MaterialIcons } from "@expo/vector-icons";
 import { TermsServiceReactiveVar, ThemeReactiveVar } from "#/reactive";
 import { BlurView } from "expo-blur";

@@ -13,7 +13,7 @@ import { Button } from "#/src/components/ui/button";
 import { useReactiveVar } from "@apollo/client";
 import { DaysPreferencePermissionInitialState } from "#/src/constants/Preferences";
 import { LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION } from "#/src/constants/StorageConstants";
-import { LocalStoragePreferenceAskForegroundLocationPermissionType } from "#/ctypes/preferences";
+import { LocalStoragePreferenceAskForegroundLocationPermissionType } from "#/types/preferences";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { PreferenceForegroundLocationPermissionReactiveVar } from "#/reactive";
 import { useRouter } from "expo-router";

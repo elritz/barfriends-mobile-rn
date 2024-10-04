@@ -2,15 +2,15 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
       "#/*": ["*"],
+      "#/src": ["./src"],
       "#/app/*": ["./app/*"],
-      "#/preferences": ["types/preferences"],
-      "#/ctypes/*": ["types/*"],
+      "#/types/*": ["./types/*"],
       "#/assets/*": ["assets/*"],
       "#/graphql/*": ["graphql/*"],
-      "#/reactive": ["reactive/index.tsx"],
+      "#/reactive": ["./src/state/reactive/index.tsx"],
       "#/gluestack": ["gluestack-ui.config"]
     }
   },

@@ -42,7 +42,7 @@ const AddEmoji: React.FC<ActivityCardProps> = ({
           paddingVertical: 10,
         }}
       >
-        <Box className="h-16 w-16 items-center justify-center rounded-lg bg-red-400">
+        <Box className="h-16 w-16 items-center justify-center rounded-lg bg-amber-300">
           {!rdmData?.refreshDeviceManager.Profile?.tonightStory?.emojimood ? (
             <MaterialIcons
               size={30}

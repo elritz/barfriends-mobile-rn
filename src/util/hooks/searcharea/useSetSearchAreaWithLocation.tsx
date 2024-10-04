@@ -1,5 +1,5 @@
 import { LOCAL_STORAGE_SEARCH_AREA } from "#/src/constants/StorageConstants";
-import { LocalStoragePreferenceSearchAreaType } from "#/ctypes/preferences";
+import { LocalStoragePreferenceSearchAreaType } from "#/types/preferences";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   CurrentLocationReactiveVar,

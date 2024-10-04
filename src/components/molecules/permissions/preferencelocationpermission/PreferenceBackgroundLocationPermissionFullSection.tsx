@@ -10,7 +10,7 @@ import { useReactiveVar } from "@apollo/client";
 import BackgroundLocationNextAsk from "#/src/components/molecules/asks/permissions/backgroundlocationnextask";
 import { TomorrowPreferencePermissionInitialState } from "#/src/constants/Preferences";
 import { LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION } from "#/src/constants/StorageConstants";
-import { LocalStoragePreferenceAskBackgroundLocationPermissionType } from "#/ctypes/preferences";
+import { LocalStoragePreferenceAskBackgroundLocationPermissionType } from "#/types/preferences";
 import { EvilIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {

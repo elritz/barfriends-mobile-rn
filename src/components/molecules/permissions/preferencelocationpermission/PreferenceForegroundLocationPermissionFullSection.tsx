@@ -8,7 +8,7 @@ import { Box } from "#/src/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
 import ForegroundLocationNextAskModal from "#/src/components/molecules/asks/permissions/foregroundlocationnextask";
 import { LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION } from "#/src/constants/StorageConstants";
-import { LocalStoragePreferenceAskForegroundLocationPermissionType } from "#/ctypes/preferences";
+import { LocalStoragePreferenceAskForegroundLocationPermissionType } from "#/types/preferences";
 import { EvilIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {

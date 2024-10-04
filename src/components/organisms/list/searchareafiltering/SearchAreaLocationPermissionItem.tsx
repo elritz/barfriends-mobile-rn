@@ -5,7 +5,7 @@ import { Box } from "#/src/components/ui/box";
 // TODO: UX() location icon when searchArea is using Currently Location over preset
 import { useReactiveVar } from "@apollo/client";
 import { LOCAL_STORAGE_SEARCH_AREA } from "#/src/constants/StorageConstants";
-import { LocalStoragePreferenceSearchAreaType } from "#/ctypes/preferences";
+import { LocalStoragePreferenceSearchAreaType } from "#/types/preferences";
 import { FontAwesome5 } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {

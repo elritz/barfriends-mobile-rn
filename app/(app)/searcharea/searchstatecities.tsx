@@ -7,7 +7,7 @@ import { Box } from "#/src/components/ui/box";
 import { Form } from "./_layout";
 import { useReactiveVar } from "@apollo/client";
 import { LOCAL_STORAGE_SEARCH_AREA } from "#/src/constants/StorageConstants";
-import { LocalStoragePreferenceSearchAreaType } from "#/ctypes/preferences";
+import { LocalStoragePreferenceSearchAreaType } from "#/types/preferences";
 import {
   CityResponseObject,
   useGetAllCitiesByStateQuery,

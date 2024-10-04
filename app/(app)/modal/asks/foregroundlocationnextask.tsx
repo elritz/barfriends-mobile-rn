@@ -16,7 +16,7 @@ import {
 import { LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION } from "#/src/constants/StorageConstants";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useReactiveVar } from "@apollo/client";
-import { LocalStoragePreferenceAskForegroundLocationPermissionType } from "#/ctypes/preferences";
+import { LocalStoragePreferenceAskForegroundLocationPermissionType } from "#/types/preferences";
 import {
   PreferenceForegroundLocationPermissionReactiveVar,
   PreferencePermissionNotificationReactiveVar,

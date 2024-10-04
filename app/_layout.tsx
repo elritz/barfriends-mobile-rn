@@ -27,7 +27,7 @@ import {
   LocalStoragePreferenceAskBackgroundLocationPermissionType,
   LocalStoragePreferenceSystemsOfUnitsType,
   LocalStorageInformationJoinVenueType,
-} from "#/ctypes/preferences";
+} from "#/types/preferences";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import profilingclient from "#/graphql/apollo/profiling/profiling-apollo-server";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -68,7 +68,7 @@ import * as Sentry from "@sentry/react-native";
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import { apolloDevToolsInit } from "react-native-apollo-devtools-client";
 import { isRunningInExpoGo } from "expo";
-import "../global.css";
+// import "../global.css";
 
 export {
   // Catch any errors thrown by the Layout component.

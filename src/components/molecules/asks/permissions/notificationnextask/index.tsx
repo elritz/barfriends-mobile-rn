@@ -18,7 +18,7 @@ import { Button } from "#/src/components/ui/button";
 import { useReactiveVar } from "@apollo/client";
 import { DaysPreferencePermissionInitialState } from "#/src/constants/Preferences";
 import { LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS } from "#/src/constants/StorageConstants";
-import { LocalStoragePreferenceAskNotificationPermissionType } from "#/ctypes/preferences";
+import { LocalStoragePreferenceAskNotificationPermissionType } from "#/types/preferences";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { PreferencePermissionNotificationReactiveVar } from "#/reactive";
 import { useRouter } from "expo-router";

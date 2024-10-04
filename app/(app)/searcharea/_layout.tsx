@@ -5,7 +5,7 @@ import ChevronBackArrow from "#/src/components/atoms/buttons/goback/ChevronBackA
 import SearchInput from "#/src/components/molecules/search/searchinput/SearchInput";
 import SearchInputSearchArea from "#/src/components/molecules/search/searchinput/SearchInputSearchArea";
 import { SEARCH_BAR_HEIGHT } from "#/src/constants/ReactNavigationConstants";
-import { PlaceType } from "#/ctypes/preferences";
+import { PlaceType } from "#/types/preferences";
 import { SearchAreaReactiveVar, ThemeReactiveVar } from "#/reactive";
 import { Stack } from "expo-router";
 import { FormProvider, useForm } from "react-hook-form";

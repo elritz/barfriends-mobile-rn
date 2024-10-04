@@ -17,10 +17,9 @@ module.exports = function (api) {
           alias: {
             "#/": ".",
             "#/app": "./app",
-            "#/preferences": "./types",
-            "#/ctypes": "./types",
+            "#/types": "./types",
             "#/assets": "./assets",
-            "#/reactive": "./reactive/index.tsx",
+            "#/reactive": "./src/state/reactive/index.tsx",
             "#/gluestack": "./gluestack-ui.config",
           },
           extensions: [".js", ".jsx", ".ts", ".tsx"],

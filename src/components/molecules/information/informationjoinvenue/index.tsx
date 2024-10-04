@@ -8,7 +8,7 @@ import { Box } from "#/src/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
 import { TomorrowPreferencePermissionInitialState } from "#/src/constants/Preferences";
 import { LOCAL_STORAGE_INFORMATION_JOIN_VENUE } from "#/src/constants/StorageConstants";
-import { DefaultPreferenceToPermissionType } from "#/ctypes/preferences";
+import { DefaultPreferenceToPermissionType } from "#/types/preferences";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { InformationJoinVenueReactiveVar } from "#/reactive";
 import { uniqueId } from "lodash";

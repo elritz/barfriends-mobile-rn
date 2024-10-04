@@ -3,7 +3,7 @@ import { Pressable } from "#/src/components/ui/pressable";
 import { HStack } from "#/src/components/ui/hstack";
 import { useReactiveVar } from "@apollo/client";
 import { LOCAL_STORAGE_SEARCH_AREA } from "#/src/constants/StorageConstants";
-import { LocalStoragePreferenceSearchAreaType } from "#/ctypes/preferences";
+import { LocalStoragePreferenceSearchAreaType } from "#/types/preferences";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   PermissionForegroundLocationReactiveVar,

@@ -1,4 +1,4 @@
-import { TermsServiceType } from '#/ctypes/app'
+import { TermsServiceType } from '#/types/app'
 import {
 	DefaultPreferenceToPermissionType,
 	LocalStorageInformationJoinVenueType,
@@ -8,7 +8,7 @@ import {
 	LocationType,
 	ServerNetworkType,
 	SystemsOfUnits,
-} from '#/ctypes/preferences'
+} from '#/types/preferences'
 import { Contact } from 'expo-contacts'
 import {
 	Accuracy,

@@ -35,7 +35,7 @@ const InviteCard: React.FC<ActivityCardProps> = ({
     return (
       <VStack className="mb-2 w-full flex-1 justify-between">
         <VStack className="mt-4 w-full items-start">
-          <Box className="h-8 w-8 items-center justify-center rounded-md bg-red-400">
+          <Box className="h-8 w-8 items-center justify-center rounded-md bg-red-300">
             <Ionicons
               name="people"
               size={23}
