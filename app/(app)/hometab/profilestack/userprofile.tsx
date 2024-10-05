@@ -43,7 +43,7 @@ export default () => {
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     getNotificationQuery();
-  }, []);
+  }, [getNotificationQuery]);
 
   // if (GNLoading) return null
 

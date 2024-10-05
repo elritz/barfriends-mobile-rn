@@ -18,7 +18,7 @@ import {
 } from "#/reactive";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { DefaultPreferenceToPermissionType } from "#/preferences";
+import { DefaultPreferenceToPermissionType } from "#/types/preferences";
 
 const BackgroundLocationNextAsk = () => {
   const router = useRouter();

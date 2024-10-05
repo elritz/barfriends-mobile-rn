@@ -4,12 +4,12 @@ import { Heading } from "#/src/components/ui/heading";
 import { HStack } from "#/src/components/ui/hstack";
 import { Button, ButtonText } from "#/src/components/ui/button";
 import { useReactiveVar } from "@apollo/client";
-import SearchInputVenueFeedDisabled from "#/src/components/molecules/search/searchinput/SearchInputVenueFeedDisabled";
-import DevelopmentTab from "#/src/components/molecules/tabbaricons/hometabicons/developmenttab";
-import MessageTab from "#/src/components/molecules/tabbaricons/hometabicons/messagestab";
-import ProfileTab from "#/src/components/molecules/tabbaricons/hometabicons/profiletab";
-import TonightTab from "#/src/components/molecules/tabbaricons/hometabicons/tonighttab";
-import VenueFeedTab from "#/src/components/molecules/tabbaricons/hometabicons/venuefeedtab";
+import SearchInputVenueFeedDisabled from "#/src/components/molecules/searchinput/SearchInputVenueFeedDisabled";
+import DevelopmentTab from "#/src/components/molecules/hometabicons/developmenttab";
+import MessageTab from "#/src/components/molecules/hometabicons/messagestab";
+import ProfileTab from "#/src/components/molecules/hometabicons/profiletab";
+import TonightTab from "#/src/components/molecules/hometabicons/tonighttab";
+import VenueFeedTab from "#/src/components/molecules/hometabicons/venuefeedtab";
 import {
   HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
   HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,

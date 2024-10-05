@@ -1,7 +1,7 @@
 import { HStack } from "#/src/components/ui/hstack";
 import { Button, ButtonText } from "#/src/components/ui/button";
 import { useReactiveVar } from "@apollo/client";
-import ChevronBackArrow from "#/src/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow";
+import ChevronBackArrow from "#/src/components/atoms/ChevronBackArrow";
 import {
   Emojimood,
   useRefreshDeviceManagerQuery,

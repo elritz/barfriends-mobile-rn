@@ -1,5 +1,5 @@
 import LogoTransparent from "#/assets/images/company/LogoTransparent";
-import ChevronBackArrow from "#/src/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow";
+import ChevronBackArrow from "#/src/components/atoms/ChevronBackArrow";
 import { Stack } from "expo-router";
 
 export default () => {

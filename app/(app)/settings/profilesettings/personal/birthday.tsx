@@ -2,7 +2,7 @@ import { Text } from "#/src/components/ui/text";
 import { Button } from "#/src/components/ui/button";
 import { Box } from "#/src/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
-import DatePicker from "#/src/components/atoms/inputs/DatePicker";
+import DatePicker from "#/src/components/atoms/DatePicker";
 import {
   AuthorizationDeviceProfile,
   Profile,

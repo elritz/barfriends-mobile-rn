@@ -2,7 +2,7 @@ import { Box } from "#/src/components/ui/box";
 import { Text } from "#/src/components/ui/text";
 import { Heading } from "#/src/components/ui/heading";
 import { Button, ButtonText } from "#/src/components/ui/button";
-import ChevronBackArrow from "#/src/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow";
+import ChevronBackArrow from "#/src/components/atoms/ChevronBackArrow";
 import { BlurView } from "expo-blur";
 import { Stack, router } from "expo-router";
 

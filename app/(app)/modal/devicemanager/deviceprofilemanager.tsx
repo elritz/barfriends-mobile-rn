@@ -6,7 +6,7 @@ import { Button, ButtonText, ButtonIcon } from "#/src/components/ui/button";
 import { Box } from "#/src/components/ui/box";
 // TODO: FN(What functionality was suppose to be here)
 import { useReactiveVar } from "@apollo/client";
-import ChevronBackArrow from "#/src/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow";
+import ChevronBackArrow from "#/src/components/atoms/ChevronBackArrow";
 import WithDeviceProfiles from "#/src/components/molecules/asks/signinup";
 import DeviceManagerProfileItemLarge from "#/src/components/molecules/authorization/devicemanagerprofileitem/DeviceManagerProfileItemLarge";
 import { Entypo, Ionicons } from "@expo/vector-icons";

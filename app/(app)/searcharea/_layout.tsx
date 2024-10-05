@@ -1,9 +1,9 @@
 import { VStack } from "#/src/components/ui/vstack";
 import { Box } from "#/src/components/ui/box";
 import { useReactiveVar } from "@apollo/client";
-import ChevronBackArrow from "#/src/components/atoms/buttons/goback/ChevronBackArrow/ChevronBackArrow";
-import SearchInput from "#/src/components/molecules/search/searchinput/SearchInput";
-import SearchInputSearchArea from "#/src/components/molecules/search/searchinput/SearchInputSearchArea";
+import ChevronBackArrow from "#/src/components/atoms/ChevronBackArrow";
+import SearchInput from "#/src/components/molecules/searchinput/SearchInput";
+import SearchInputSearchArea from "#/src/components/molecules/searchinput/SearchInputSearchArea";
 import { SEARCH_BAR_HEIGHT } from "#/src/constants/ReactNavigationConstants";
 import { PlaceType } from "#/types/preferences";
 import { SearchAreaReactiveVar, ThemeReactiveVar } from "#/reactive";

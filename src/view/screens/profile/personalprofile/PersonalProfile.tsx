@@ -8,7 +8,6 @@ import ProfilePhoto from "../profilephoto";
 import { useReactiveVar } from "@apollo/client";
 import CardPleaseSignup from "#/src/components/molecules/asks/signuplogin";
 import { FriendsList } from "#/src/components/organisms/list/friendslist";
-import CondensedVerticalFriendsNotficationsList from "#/src/components/organisms/list/notifications/friends/CondensedVerticalFriendsNotficationsList";
 import QuickBarfriendCard from "#/src/components/molecules/activity/quickbarfriendcard/QuickBarfriendCard";
 import AddRelationship from "#/src/components/molecules/activity/addrelationship/AddRelationship";
 import { ProfileType } from "#/graphql/generated";
@@ -30,7 +29,7 @@ const PersonalScreen = () => {
     <Box className="bg-transparent">
       <HStack space={"md"} className="mx-3 my-[20px] items-start">
         <ProfilePhoto photo={rAuthorizationVar?.Profile?.profilePhoto} />
-        <VStack space="sm" className="flex-1 pr-2">
+        <VStack space="sm" className="flex-1 bg-green-900 pr-2">
           <VStack space="sm" className="mt-3">
             <View>
               <VStack space="sm" className="">
