@@ -1,6 +1,6 @@
 import { Text } from "#/src/components/ui/text";
 import { Box } from "#/src/components/ui/box";
-import HorizontalMessageNotification from "#/src/components/molecules/notifications/messagenotification/HorizontalMessageNotification";
+import HorizontalMessageNotification from "#/src/components/molecules/notifications/message/HorizontalMessageNotification";
 import { useGetConversationsQuery } from "#/graphql/generated";
 import { FlashList } from "@shopify/flash-list";
 import useContentInsets from "#/src/util/hooks/useContentInsets";

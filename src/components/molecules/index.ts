@@ -10,7 +10,7 @@ export * from './modals/cancelfriendnotioficationmodal/CancelFriendNotificationM
 export * from './modals/relationshipmodal/RelationshipModal'
 export * from './modals/signupaskmodal'
 export * from './notifications/friendnotification/CondensedHorizontalFriendNotifciation'
-export * from './notifications/messagenotification/HorizontalMessageNotification'
+export * from './notifications/message/HorizontalMessageNotification'
 export * from './permissions/preferencelocationpermission/PreferenceBackgroundLocationPermissionFullSection'
 export * from './permissions/preferencelocationpermission/PreferenceForegroundLocationPermissionFullSection'
 export * from './permissions/preferencemediapermission/MediaPermissionFullSection'

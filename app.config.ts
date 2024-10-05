@@ -141,8 +141,34 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
       associatedDomains: [`applinks:${context.config.name}.com`],
       bundleIdentifier: `com.${context.config.name}.${process.env.NODE_ENV}`,
       supportsTablet: false,
+      entitlements: {
+        'com.apple.security.application-groups': 'group.app.barfriends',
+      },
       infoPlist: configInfoPlist(),
       icon: `./assets/images/icon/icon.png`,
+      privacyManifests: {
+        NSPrivacyAccessedAPITypes: [
+          {
+            NSPrivacyAccessedAPIType:
+              'NSPrivacyAccessedAPICategoryFileTimestamp',
+            NSPrivacyAccessedAPITypeReasons: ['C617.1', '3B52.1', '0A2A.1'],
+          },
+          {
+            NSPrivacyAccessedAPIType: 'NSPrivacyAccessedAPICategoryDiskSpace',
+            NSPrivacyAccessedAPITypeReasons: ['E174.1', '85F4.1'],
+          },
+          {
+            NSPrivacyAccessedAPIType:
+              'NSPrivacyAccessedAPICategorySystemBootTime',
+            NSPrivacyAccessedAPITypeReasons: ['35F9.1'],
+          },
+          {
+            NSPrivacyAccessedAPIType:
+              'NSPrivacyAccessedAPICategoryUserDefaults',
+            NSPrivacyAccessedAPITypeReasons: ['CA92.1', '1C8F.1'],
+          },
+        ],
+      },
     };
   }
 
