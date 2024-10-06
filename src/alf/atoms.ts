@@ -1,7 +1,7 @@
 import {Platform, StyleSheet, ViewStyle} from 'react-native'
 
-import * as tokens from '#/alf/tokens'
-import {native, web} from '#/alf/util/platform'
+import * as tokens from '#/src/alf/tokens'
+import {native, web} from '#/src/alf/util/platform'
 
 export const atoms = {
   debug: {

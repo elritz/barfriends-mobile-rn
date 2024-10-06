@@ -1,6 +1,6 @@
 # Logger
 
-Simple logger for Bluesky. Supports log levels, debug contexts, and separate
+Simple logger for Barfriends. Supports log levels, debug contexts, and separate
 transports for production, dev, and test mode.
 
 ## At a Glance
@@ -33,7 +33,7 @@ noisy in dev, simply set it to a higher level, such as `warn`.
 ## Usage
 
 ```typescript
-import { logger } from '#/logger';
+import {logger} from '#/logger'
 ```
 
 ### `logger.error`
@@ -47,7 +47,7 @@ breadcrumb](https://docs.sentry.io/platforms/react-native/enriching-events/bread
 try {
   // some async code
 } catch (e) {
-  logger.error(e, { ...metadata });
+  logger.error(e, {...metadata})
 }
 ```
 
@@ -74,7 +74,7 @@ Debug level is really only intended for local development. Use this instead of
 `console.log`.
 
 ```typescript
-logger.debug(message, { ...metadata });
+logger.debug(message, {...metadata})
 ```
 
 Inspired by [debug](https://www.npmjs.com/package/debug), when writing debug
@@ -90,7 +90,7 @@ the `logger` at `logger.DebugContext`.
 For example, a debug log like this:
 
 ```typescript
-logger.debug(message, {}, logger.DebugContext.composer);
+logger.debug(message, {}, logger.DebugContext.composer)
 ```
 
 Would be logged to the console in dev mode if `EXPO_PUBLIC_LOG_LEVEL=debug`, _or_ if you

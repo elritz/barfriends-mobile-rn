@@ -1,4 +1,4 @@
-import type {ConsoleTransportEntry} from '#/logger'
+import type {ConsoleTransportEntry} from '#/src/logger'
 
 let entries: ConsoleTransportEntry[] = []
 

@@ -1,7 +1,7 @@
 import {useFonts as defaultUseFonts} from 'expo-font'
 
-import {isWeb} from '#/platform/detection'
-import {Device, device} from '#/storage'
+import {isWeb} from '#/src/platform/detection'
+import {Device, device} from '#/src/storage'
 
 const FAMILIES = `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Liberation Sans", Helvetica, Arial, sans-serif`
 

@@ -15015,6 +15015,7 @@ type Query {
     """This is a list of ProfileIds."""
     members: [String!]
   ): Conversation
+  friendSearch(search: String!): [Personal!]
   friendsFromContacts(contact: [ContactInput!]!): String
   getADeviceManager: DeviceManagerDeviceProfilesResponseUnion
   getAllCitiesByState(countryIsoCode: String!, stateIsoCode: String!): OrganizedCityResponseObject

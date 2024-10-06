@@ -23,10 +23,6 @@ export default function SearchAreaHeader() {
     return <VenueFeedSearchAreaEmptyState />
   }
 
-  console.log(
-    '🚀 ~ SearchAreaHeader ~ rSearchAreaVar.searchArea.city.name:',
-    rSearchAreaVar,
-  )
   return (
     <Pressable onPress={() => _press()} style={{flex: 1}}>
       <HStack space={'md'} className="items-center justify-between px-3">
