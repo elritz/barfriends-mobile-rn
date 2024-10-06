@@ -176,8 +176,18 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
     return {
       package: `com.${context.config.name}.${process.env.NODE_ENV}`,
       backgroundColor: "#0D0D0D",
+      splash: {
+        backgroundColor: "#ffffff",
+        image: `./assets/images/splash/splash.${process.env.NODE_ENV}.light.png`,
+        dark: {
+          backgroundColor: "#0D0D0D",
+          image: `./assets/images/splash/splash.${process.env.NODE_ENV}.dark.png
+        }
+      },
       adaptiveIcon: {
         foregroundImage: "./assets/images/adaptive-icon.png",
+        backgroundColor: "#0D0D0D",
+        backgroundImage: "./assets/images/background-image.png",
       },
       // googleServicesFile: "./google-services.json",
       config: {
