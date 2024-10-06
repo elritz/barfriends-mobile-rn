@@ -1,57 +1,58 @@
-import { Button } from "#/src/components/ui/button";
-import { Heading } from "#/src/components/ui/heading";
-import { Text } from "#/src/components/ui/text";
-import { Box } from "#/src/components/ui/box";
+import {Button} from '#/src/components/ui/button'
+import {Heading} from '#/src/components/ui/heading'
+import {Text} from '#/src/components/ui/text'
+import {Box} from '#/src/components/ui/box'
 // TODO: FN(When a useris joined to a venue action must be different) ln:32
-import JoinCard from "../../joincard/JoinCard";
-import SignupCard from "../../signupcard/SignupCard";
-import { useReactiveVar } from "@apollo/client";
-import { MaterialIcons } from "@expo/vector-icons";
+
+import SignupCard from '../../signupcard/SignupCard'
+import {useReactiveVar} from '@apollo/client'
+import {MaterialIcons} from '@expo/vector-icons'
 import {
   useGetLiveVenueTotalsV2Query,
   usePublicVenueQuery,
-} from "#/graphql/generated";
-import { useIsFocused } from "@react-navigation/native";
+} from '#/graphql/generated'
+import {useIsFocused} from '@react-navigation/native'
 import {
   AuthorizationReactiveVar,
   CurrentLocationReactiveVar,
   SearchAreaReactiveVar,
   ThemeReactiveVar,
-} from "#/reactive";
-import { useDisclose } from "#/src/util/hooks/useDisclose";
-import useGetDistance from "#/src/util/hooks/useDistance";
-import { useLocalSearchParams } from "expo-router";
-import { uniqueId } from "lodash";
-import { MotiView } from "moti";
-import { useEffect, useState } from "react";
-import { AppState, StyleSheet } from "react-native";
-import { Easing } from "react-native-reanimated";
+} from '#/reactive'
+import {useDisclose} from '#/src/util/hooks/useDisclose'
+import useGetDistance from '#/src/util/hooks/useDistance'
+import {useLocalSearchParams} from 'expo-router'
+import {uniqueId} from 'lodash'
+import {MotiView} from 'moti'
+import {useEffect, useState} from 'react'
+import {AppState, StyleSheet} from 'react-native'
+import {Easing} from 'react-native-reanimated'
+import JoinCard from '#/src/view/screens/public/venue/venueactions/devactions/joincard/JoinCard'
 
-const size = 50;
+const size = 50
 
 const CurrentLocationFromVenueDistance = () => {
-  const params = useLocalSearchParams();
-  const isFocused = useIsFocused();
-  const rTheme = useReactiveVar(ThemeReactiveVar);
-  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar);
-  const rCurrentLocationVar = useReactiveVar(CurrentLocationReactiveVar);
-  const rSearchAreaVar = useReactiveVar(SearchAreaReactiveVar);
-  const [appState, setAppState] = useState(AppState.currentState);
-  const { refreshLocation, canJoin, distance, distanceInM, isLoading, metric } =
-    useGetDistance();
+  const params = useLocalSearchParams()
+  const isFocused = useIsFocused()
+  const rTheme = useReactiveVar(ThemeReactiveVar)
+  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
+  const rCurrentLocationVar = useReactiveVar(CurrentLocationReactiveVar)
+  const rSearchAreaVar = useReactiveVar(SearchAreaReactiveVar)
+  const [appState, setAppState] = useState(AppState.currentState)
+  const {refreshLocation, canJoin, distance, distanceInM, isLoading, metric} =
+    useGetDistance()
 
-  const [friends, setFriends] = useState({ value: 0 });
+  const [friends, setFriends] = useState({value: 0})
 
   const {
     isOpen: isForegroundLocationOn,
     onOpen: onOpenForegroundLocationOn,
     onClose: onCloseForegroundLocationOn,
     onToggle: onToggleForegroundLocationOn,
-  } = useDisclose();
+  } = useDisclose()
 
-  const { data, loading, error } = usePublicVenueQuery({
+  const {data, loading, error} = usePublicVenueQuery({
     skip: !params.username,
-    fetchPolicy: "cache-first",
+    fetchPolicy: 'cache-first',
     variables: {
       where: {
         IdentifiableInformation: {
@@ -69,13 +70,13 @@ const CurrentLocationFromVenueDistance = () => {
           : Number(rSearchAreaVar?.searchArea.coords.longitude),
       },
     },
-    onCompleted: async (data) => {
+    onCompleted: async data => {
       await refreshLocation({
         vlat: data.publicVenue?.Venue?.Location?.Geometry?.latitude,
         vlng: data.publicVenue?.Venue?.Location?.Geometry?.longitude,
-      });
+      })
     },
-  });
+  })
 
   const {
     data: d,
@@ -86,41 +87,41 @@ const CurrentLocationFromVenueDistance = () => {
     variables: {
       profileIdVenue: String(params.venueProfileId),
     },
-    onCompleted: async (data) => {
-      if (data.getLiveVenueTotalsV2.__typename === "LiveVenueTotals2") {
+    onCompleted: async data => {
+      if (data.getLiveVenueTotalsV2.__typename === 'LiveVenueTotals2') {
         setFriends({
           value: 1,
-        });
+        })
       }
     },
-  });
+  })
 
   useEffect(() => {
     if (rSearchAreaVar.useCurrentLocation) {
       if (
-        AppState.currentState === "active" &&
+        AppState.currentState === 'active' &&
         isFocused &&
         distance &&
         !isForegroundLocationOn
       ) {
-        if (metric === "m" && distance < 50) {
-          onToggleForegroundLocationOn();
+        if (metric === 'm' && distance < 50) {
+          onToggleForegroundLocationOn()
         }
       } else {
-        onToggleForegroundLocationOn();
+        onToggleForegroundLocationOn()
         // unregisterForegroundFetchAsync()
       }
     }
-  }, [appState, isFocused]);
+  }, [appState, isFocused])
 
   const styles = StyleSheet.create({
     dot: {
       height: size,
       width: size,
       borderRadius: size / 2,
-      backgroundColor: "#FF7000",
+      backgroundColor: '#FF7000',
     },
-  });
+  })
 
   const LoadingAnimationLocation = () => {
     return (
@@ -128,14 +129,13 @@ const CurrentLocationFromVenueDistance = () => {
         style={[
           styles.dot,
           {
-            marginLeft: "50%",
-            transform: [{ translateX: -size / 2 }],
-            alignContent: "center",
-            justifyContent: "center",
+            marginLeft: '50%',
+            transform: [{translateX: -size / 2}],
+            alignContent: 'center',
+            justifyContent: 'center',
           },
         ]}
-        className="bg-transparent"
-      >
+        className="bg-transparent">
         {[...Array(3).keys()].map((item, index) => {
           return (
             <MotiView
@@ -150,7 +150,7 @@ const CurrentLocationFromVenueDistance = () => {
                 scale: 2,
               }}
               transition={{
-                type: "timing",
+                type: 'timing',
                 duration: 2000,
                 easing: Easing.out(Easing.ease),
                 loop: true,
@@ -158,31 +158,31 @@ const CurrentLocationFromVenueDistance = () => {
                 delay: index * 400,
               }}
             />
-          );
+          )
         })}
         <MaterialIcons
-          style={{ alignSelf: "center" }}
+          style={{alignSelf: 'center'}}
           size={30}
           name="location-pin"
           color={
-            rTheme.colorScheme === "light"
+            rTheme.colorScheme === 'light'
               ? rTheme.theme?.gluestack.tokens.colors.light200
               : rTheme.theme?.gluestack.tokens.colors.light100
           }
         />
       </Box>
-    );
-  };
+    )
+  }
 
   if (isLoading || loading || !data) {
-    return <LoadingAnimationLocation />;
+    return <LoadingAnimationLocation />
   }
 
   return (
     <>
       {canJoin ? (
         <>
-          {rAuthorizationVar?.Profile?.ProfileType !== "GUEST" ? (
+          {rAuthorizationVar?.Profile?.ProfileType !== 'GUEST' ? (
             <JoinCard />
           ) : (
             <SignupCard />
@@ -192,7 +192,7 @@ const CurrentLocationFromVenueDistance = () => {
         <Box className="-mt-2 h-[100%] items-center justify-center bg-transparent">
           <>
             <Heading className="leading-xs text-md text-center font-[800]">
-              {metric === "km"
+              {metric === 'km'
                 ? distance < 20
                   ? `In your area`
                   : `Pretty distant `
@@ -211,21 +211,20 @@ const CurrentLocationFromVenueDistance = () => {
           </>
           <Button
             variant="link"
-            size={"xs"}
+            size={'xs'}
             onPress={async () =>
               await refreshLocation({
                 vlat: data.publicVenue?.Venue?.Location?.Geometry?.latitude,
                 vlng: data.publicVenue?.Venue?.Location?.Geometry?.longitude,
               })
             }
-            className="absolute bottom-1 mb-2 self-center"
-          >
+            className="absolute bottom-1 mb-2 self-center">
             <Text>Tap to refresh</Text>
           </Button>
         </Box>
       )}
     </>
-  );
-};
+  )
+}
 
-export default CurrentLocationFromVenueDistance;
+export default CurrentLocationFromVenueDistance

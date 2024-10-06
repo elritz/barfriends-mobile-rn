@@ -1,5 +1,5 @@
 import type { CodegenConfig } from '@graphql-codegen/cli'
-import getLocalIPAddress from './util/helpers/getLocalIPAddress'
+import getLocalIPAddress from './src/util/helpers/getLocalIPAddress'
 
 const config: CodegenConfig = {
 	overwrite: true,

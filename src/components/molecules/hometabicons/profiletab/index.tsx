@@ -1,23 +1,24 @@
-import { Box } from "#/src/components/ui/box";
-import { useReactiveVar } from "@apollo/client";
-import CompanyCoasterLogoDynamic from "#/assets/images/company/CompanyCoasterLogoDynamic";
-import CompanyCoasterLogoDynamicInverse from "#/assets/images/company/CompanyCoasterLogoDynamicInverse";
-import CompanyCoasterLogoDynamicOutline from "#/assets/images/company/CompanyCoasterLogoDynamicOutline";
-import TabBarIcon, { TabProps } from "#/src/components/atoms/TabBarIcon";
+import {Box} from '#/src/components/ui/box'
+import {useReactiveVar} from '@apollo/client'
+import CompanyCoasterLogoDynamic from '#/assets/images/company/CompanyCoasterLogoDynamic'
+import CompanyCoasterLogoDynamicInverse from '#/assets/images/company/CompanyCoasterLogoDynamicInverse'
+import CompanyCoasterLogoDynamicOutline from '#/assets/images/company/CompanyCoasterLogoDynamicOutline'
+import TabBarIcon, {TabProps} from '#/src/components/atoms/TabBarIcon'
 // import { useGetNotificationsQuery } from '#/graphql/generated'
-import { AuthorizationReactiveVar, ThemeReactiveVar } from "#/reactive";
-import * as Haptics from "expo-haptics";
-import { Link, useRouter } from "expo-router";
-import { useState } from "react";
-import { Image } from "react-native";
+import {AuthorizationReactiveVar, ThemeReactiveVar} from '#/reactive'
+import * as Haptics from 'expo-haptics'
+import {Link, useRouter} from 'expo-router'
+import {useState} from 'react'
+import {Image} from 'react-native'
+import React from 'react'
 
-const HEIGHT = 22;
+const HEIGHT = 22
 
 const ProfileTab = (props: TabProps) => {
-  const router = useRouter();
-  const rTheme = useReactiveVar(ThemeReactiveVar);
-  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar);
-  const [numNotification, setNumNotifications] = useState(0);
+  const router = useRouter()
+  const rTheme = useReactiveVar(ThemeReactiveVar)
+  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
+  const [numNotification, setNumNotifications] = useState(0)
 
   // const {
   // 	data: GNData,
@@ -40,15 +41,15 @@ const ProfileTab = (props: TabProps) => {
   // })
 
   const onLongPressProfileIcon = async () => {
-    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium)
     router.push({
-      pathname: "/(app)/modal/devicemanager/deviceprofilemanager",
-    });
-  };
+      pathname: '/(app)/modal/devicemanager/deviceprofilemanager',
+    })
+  }
 
   if (
     !rAuthorizationVar ||
-    rAuthorizationVar?.Profile?.ProfileType === "GUEST"
+    rAuthorizationVar?.Profile?.ProfileType === 'GUEST'
   ) {
     return (
       <>
@@ -64,7 +65,7 @@ const ProfileTab = (props: TabProps) => {
               <CompanyCoasterLogoDynamic
                 width={HEIGHT}
                 height={HEIGHT}
-                iconColor={rTheme.colorScheme === "dark" ? "black" : "white"}
+                iconColor={rTheme.colorScheme === 'dark' ? 'black' : 'white'}
                 backgroundColor={props.color}
               />
             ) : (
@@ -73,9 +74,9 @@ const ProfileTab = (props: TabProps) => {
                 height={HEIGHT}
                 backgroundColor={
                   !props.focused
-                    ? rTheme.colorScheme === "dark"
-                      ? "white"
-                      : "black"
+                    ? rTheme.colorScheme === 'dark'
+                      ? 'white'
+                      : 'black'
                     : props.color
                 }
               />
@@ -84,11 +85,11 @@ const ProfileTab = (props: TabProps) => {
         />
         {
           <Box
-            className={` ${false ? "bg-red-500" : "bg-transparent"} h-[4.25px] w-[4.25px] rounded-full`}
+            className={` ${false ? 'bg-red-500' : 'bg-transparent'} h-[4.25px] w-[4.25px] rounded-full`}
           />
         }
       </>
-    );
+    )
   }
 
   return (
@@ -96,15 +97,15 @@ const ProfileTab = (props: TabProps) => {
       <TabBarIcon
         onPress={() => {
           router.navigate({
-            pathname: "/(app)/hometab/profilestack/userprofile",
-          });
+            pathname: '/(app)/hometab/profilestack/userprofile',
+          })
         }}
         onLongPress={() => onLongPressProfileIcon()}
         icon={
           <>
             {rAuthorizationVar?.Profile?.photos?.length ? (
               <Image
-                source={{ uri: rAuthorizationVar.Profile.photos[0].url }}
+                source={{uri: rAuthorizationVar.Profile.photos[0].url}}
                 style={{
                   width: HEIGHT,
                   height: HEIGHT,
@@ -120,7 +121,7 @@ const ProfileTab = (props: TabProps) => {
                     width={HEIGHT}
                     height={HEIGHT}
                     backgroundColor={
-                      rTheme.colorScheme === "dark" ? "white" : "black"
+                      rTheme.colorScheme === 'dark' ? 'white' : 'black'
                     }
                   />
                 ) : (
@@ -137,11 +138,11 @@ const ProfileTab = (props: TabProps) => {
       />
       {
         <Box
-          className={` ${false ? "bg-red-500" : "bg-transparent"} h-[4.25px] w-[4.25px] rounded-full`}
+          className={` ${false ? 'bg-red-500' : 'bg-transparent'} h-[4.25px] w-[4.25px] rounded-full`}
         />
       }
     </>
-  );
-};
+  )
+}
 
-export default ProfileTab;
+export default ProfileTab

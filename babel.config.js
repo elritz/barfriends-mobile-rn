@@ -1,27 +1,24 @@
 module.exports = function (api) {
   api.cache(true)
+  const isTestEnv = process.env.NODE_ENV === 'test'
   return {
     presets: [
       [
         'babel-preset-expo',
         {
+          jsxImportSource: 'nativewind',
           lazyImports: true,
-          native: {
-            // Disable ESM -> CJS compilation because Metro takes care of it.
-            // However, we need it in Jest tests since those run without Metro.
-            disableImportExportTransform: !isTestEnv,
-          },
+          // native: {
+          //   // Disable ESM -> CJS compilation because Metro takes care of it.
+          //   // However, we need it in Jest tests since those run without Metro.
+          //   disableImportExportTransform: !isTestEnv,
+          // },
         },
       ],
+      'nativewind/babel',
     ],
     plugins: [
       'macros',
-      [
-        'babel-plugin-react-compiler',
-        {
-          runtimeModule: 'react-compiler-runtime',
-        },
-      ],
       [
         'module-resolver',
         {

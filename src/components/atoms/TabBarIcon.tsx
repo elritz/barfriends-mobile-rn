@@ -1,24 +1,24 @@
-import { MotiPressable } from "moti/interactions";
-import { useMemo } from "react";
-import { View } from "react-native";
+import {MotiPressable} from 'moti/interactions'
+import {useMemo} from 'react'
+import {View} from 'react-native'
 
 interface OuterViewStyleProps {
-  height?: number;
-  width?: number;
+  height?: number
+  width?: number
 }
 
 export interface TabBarIconProps {
-  value?: number;
-  icon?: React.ReactNode;
-  badge?: React.ReactNode;
-  containerStyle?: OuterViewStyleProps;
-  onPress?: () => void;
-  onLongPress?: () => void;
+  value?: number
+  icon?: React.ReactNode
+  badge?: React.ReactNode
+  containerStyle?: OuterViewStyleProps
+  onPress?: () => void
+  onLongPress?: () => void
 }
 
 export interface TabProps {
-  color: string;
-  focused: boolean;
+  color: string
+  focused: boolean
 }
 
 const TabBarIcon = ({
@@ -31,11 +31,10 @@ const TabBarIcon = ({
   <View
     style={{
       height: 45,
-      width: containerStyle?.width || "100%",
-      alignItems: "center",
-      justifyContent: "center",
-    }}
-  >
+      width: containerStyle?.width || '100%',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}>
     {/* {badge} */}
     {/* <MotiPressable
 			animate={useMemo(
@@ -56,6 +55,6 @@ const TabBarIcon = ({
     {icon}
     {/* </MotiPressable> */}
   </View>
-);
+)
 
-export default TabBarIcon;
+export default TabBarIcon

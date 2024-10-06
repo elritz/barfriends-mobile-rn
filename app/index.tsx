@@ -1,14 +1,15 @@
-import { Redirect } from "expo-router";
-import { View, Text } from "react-native";
+import {Redirect} from 'expo-router'
+import {Text, View} from 'react-native'
+
 export default function index() {
-  const personal_username_misia = "misia";
+  const personal_username_misia = 'misia'
   // const device_manager_profile_id = 'e90675d1-009f-4ca8-9d76-f163a885189f'
-  const personal_username_ritz = "ritz";
-  const device_manager_profile_id = "e90675d1-009f-4ca8-9d76-f163a885189f";
+  const personal_username_ritz = 'ritz'
+  const device_manager_profile_id = 'e90675d1-009f-4ca8-9d76-f163a885189f'
 
   //? Hometabs
   // return <Redirect href={"/brokenstate"} />;
-  return <Redirect href={"/(app)/hometab/venuefeed"} />;
+  return <Redirect href={'/(app)/hometab/venuefeed'} />
   // return <Redirect href={"/(app)/hometab/tonight"} />;
   //?? Convesations
   // return <Redirect href={"/(app)/hometab/conversations"} />;
@@ -55,8 +56,8 @@ export default function index() {
   //? Broken state
   // console.log("LOAD BROKEN STATE RWHY NOT RENDER HERE:>> ");
   // return (
-  //   <View style={{ flex: 1, backgroundColor: "blue" }}>
+  //   <View style={{flex: 1, backgroundColor: 'blue'}}>
   //     <Text>HEllo Workd</Text>
   //   </View>
-  // );
+  // )
 }
