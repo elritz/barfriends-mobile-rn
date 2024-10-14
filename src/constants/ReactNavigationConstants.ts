@@ -1,0 +1,9 @@
+export const HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS = 100
+export const HOME_TAB_BOTTOM_NAVIGATION_HEIGHT = 70
+
+export const SEARCH_BAR_HEIGHT = 45
+export const HOME_TAB_TOP_NAIGATION_HEIGHT = 105
+
+export const TOP_TAB_BAR_HEIGHT: number = 50
+export const TOP_SEARCH_INPUT_HEIGHT: number = 50
+export const TOP_SEARCH_INPUT_PADDING_BOTTOM: number = 8

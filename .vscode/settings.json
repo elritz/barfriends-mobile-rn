@@ -1,0 +1,41 @@
+{
+  "workbench.colorCustomizations": {
+    "workbench.preferredLightColorTheme": "Github Light",
+    "workbench.preferredDarkColorTheme": "Default Dark+",
+    "editor.selectionBackground": "#7f3700",
+    "editor.selectionHighlightBackground": "#7f3700",
+    "terminal.selectionBackground": "#7f3700",
+    "activityBar.activeBackground": "#ff6433",
+    "activityBar.background": "#ff6433",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#00ff3d",
+    "activityBarBadge.foreground": "#15202b",
+    "commandCenter.border": "#e7e7e799",
+    "sash.hoverBorder": "#ff6433",
+    "statusBar.background": "#ff3d00",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#ff6433",
+    "statusBarItem.remoteBackground": "#ff3d00",
+    "statusBarItem.remoteForeground": "#e7e7e7",
+    "titleBar.activeBackground": "#ff3d00",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#ff3d0099",
+    "titleBar.inactiveForeground": "#e7e7e799"
+  },
+  "search.useIgnoreFiles": false,
+  "search.exclude": {
+    "": true,
+    "**/.expo": true,
+    "android/*": true,
+    "ios/*": true,
+    "yarn.lock": true,
+    "yarn-error.log": true
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "dotenv.enableAutocloaking": false,
+  "git.ignoreLimitWarning": true,
+  "tailwindCSS.experimental.classRegex": [
+    ["tva\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ]
+}
