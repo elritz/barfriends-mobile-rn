@@ -103,9 +103,9 @@ const Tokens: React.FC = () => {
         ItemSeparatorComponent={() => <Divider className="my-5" />}
         renderItem={({item}) => {
           return (
-            <VStack className="bg-red-900 flex-1 justify-between py-4 px-2">
+            <VStack className="flex-1 justify-between py-4 px-2">
               <HStack className=" justify-between pb-3">
-                <Heading className="text-lg capitalize">{item.title}</Heading>
+                <Heading className="text-2xl capitalize">{item.title}</Heading>
                 <HStack
                   space="3xl"
                   className="items-center justify-between mr-3">

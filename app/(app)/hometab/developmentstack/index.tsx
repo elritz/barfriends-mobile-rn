@@ -600,10 +600,10 @@ export default () => {
         }),
     },
     {
-      name: 'preferences',
+      name: 'state',
       onPress: () =>
         router.push({
-          pathname: '/(app)/hometab/developmentstack/permissionmodals',
+          pathname: '/(app)/hometab/developmentstack/state',
         }),
     },
     {

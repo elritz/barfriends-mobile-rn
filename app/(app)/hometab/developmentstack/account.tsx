@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {View, Text, Pressable, SectionList} from 'react-native'
 import * as Clipboard from 'expo-clipboard'
 import {Feather} from '@expo/vector-icons'
@@ -66,39 +66,6 @@ const Account: React.FC = () => {
     }
   }
 
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-    client,
-  } = useRefreshDeviceManagerQuery({
-    fetchPolicy: 'network-only',
-    onCompleted: data => {
-      if (
-        data?.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile'
-      ) {
-        const profileDatail = MapData(data.refreshDeviceManager.Profile)
-        const detailDatail = MapData(
-          data.refreshDeviceManager.Profile?.DetailInformation,
-        )
-        const identifiableData = MapData(
-          data.refreshDeviceManager.Profile?.IdentifiableInformation,
-        )
-        const personalData = MapData(
-          data.refreshDeviceManager.Profile?.Personal,
-        )
-
-        const sections = [
-          profileDatail,
-          detailDatail,
-          identifiableData,
-          personalData,
-        ]
-
-        setSections(sections)
-      }
-    },
-  })
   const [refreshDeviceManagerQuery, {data, loading}] =
     useRefreshDeviceManagerLazyQuery({
       fetchPolicy: 'network-only',
@@ -107,28 +74,47 @@ const Account: React.FC = () => {
           data?.refreshDeviceManager?.__typename ===
           'AuthorizationDeviceProfile'
         ) {
-          const profileDatail = MapData(data.refreshDeviceManager.Profile)
-          const detailDatail = MapData(
-            data.refreshDeviceManager.Profile?.DetailInformation,
-          )
-          const identifiableData = MapData(
-            data.refreshDeviceManager.Profile?.IdentifiableInformation,
-          )
-          const personalData = MapData(
-            data.refreshDeviceManager.Profile?.Personal,
-          )
+          const sections: Section[] = []
 
-          const sections = [
-            profileDatail,
-            detailDatail,
-            identifiableData,
-            personalData,
-          ]
+          if (data.refreshDeviceManager?.Profile) {
+            const profileDatail = MapData(data.refreshDeviceManager.Profile)
+            sections.push(profileDatail)
+          }
+          if (data.refreshDeviceManager.Profile?.DetailInformation) {
+            const detailDatail = MapData(
+              data.refreshDeviceManager.Profile?.DetailInformation,
+            )
+            sections.push(detailDatail)
+          }
+          if (data.refreshDeviceManager.Profile?.IdentifiableInformation) {
+            const identifiableData = MapData(
+              data.refreshDeviceManager.Profile?.IdentifiableInformation,
+            )
+            sections.push(identifiableData)
+          }
+          if (data.refreshDeviceManager.Profile?.Personal) {
+            const personalData = MapData(
+              data.refreshDeviceManager.Profile?.Personal,
+            )
+            sections.push(personalData)
+          }
 
           setSections(sections)
         }
       },
     })
+
+  useEffect(() => {
+    refreshDeviceManagerQuery()
+  }, [])
+
+  if (!data || loading) {
+    return (
+      <Box className="flex-1">
+        <Heading>No Account</Heading>
+      </Box>
+    )
+  }
 
   return (
     <Box className="flex-1">

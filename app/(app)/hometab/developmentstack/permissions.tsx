@@ -1,88 +1,89 @@
-import { Pressable } from "#/src/components/ui/pressable";
-import { Heading } from "#/src/components/ui/heading";
-import { HStack } from "#/src/components/ui/hstack";
-import { Divider } from "#/src/components/ui/divider";
-import { FlashList } from "@shopify/flash-list";
-import { useRouter } from "expo-router";
+import {Pressable} from '#/src/components/ui/pressable'
+import {Heading} from '#/src/components/ui/heading'
+import {HStack} from '#/src/components/ui/hstack'
+import {Divider} from '#/src/components/ui/divider'
+import {FlashList} from '@shopify/flash-list'
+import {useRouter} from 'expo-router'
 
 export default function Preferences() {
-  const router = useRouter();
-  const ITEM_HEIGHT = 65;
+  const router = useRouter()
+  const ITEM_HEIGHT = 85
   return (
     <FlashList
-      estimatedItemSize={65}
+      estimatedItemSize={ITEM_HEIGHT}
       data={[
         {
-          name: "Foreground Location",
+          name: 'Foreground Location',
           route: () => {
             router.push({
-              pathname: "/(app)/permission/foregroundlocation",
-            });
+              pathname: '/(app)/permission/foregroundlocation',
+            })
           },
         },
         {
-          name: "Background Location",
+          name: 'Background Location',
           route: () => {
             router.push({
-              pathname: "/(app)/permission/backgroundlocation",
-            });
+              pathname: '/(app)/permission/backgroundlocation',
+            })
           },
         },
         {
-          name: "Contacts",
+          name: 'Contacts',
           route: () => {
             router.push({
-              pathname: "/(app)/permission/contacts",
-            });
+              pathname: '/(app)/permission/contacts',
+            })
           },
         },
         {
-          name: "Notifications",
+          name: 'Notifications',
           route: () => {
             router.push({
-              pathname: "/(app)/permission/notifications",
-            });
+              pathname: '/(app)/permission/notifications',
+            })
           },
         },
         {
-          name: "Media Library",
+          name: 'Media Library',
           route: () => {
             router.push({
-              pathname: "/(app)/permission/medialibrary",
-            });
+              pathname: '/(app)/permission/medialibrary',
+            })
           },
         },
         {
-          name: "Camera",
+          name: 'Camera',
           route: () => {
             router.push({
-              pathname: "/(app)/permission/camera",
-            });
+              pathname: '/(app)/permission/camera',
+            })
           },
         },
         {
-          name: "Microphone",
+          name: 'Microphone',
           route: () => {
             router.push({
-              pathname: "/(app)/permission/microphone",
-            });
+              pathname: '/(app)/permission/microphone',
+            })
           },
         },
       ]}
-      keyExtractor={(i) => i.name}
+      keyExtractor={i => i.name}
       numColumns={1}
-      contentInset={{ top: 10 }}
-      renderItem={({ item }) => {
+      contentInset={{top: 10}}
+      ItemSeparatorComponent={() => <Divider />}
+      renderItem={({item}) => {
         return (
           <Pressable onPressIn={item.route}>
-            <Divider />
-            <HStack className={`h-[${ITEM_HEIGHT}px] flex-1 items-center`}>
+            <HStack
+              style={{height: ITEM_HEIGHT}}
+              className={` flex-1 items-center`}>
               <Heading className="text-md px-4">{item.name}</Heading>
             </HStack>
-            <Divider />
           </Pressable>
-        );
+        )
       }}
     />
-  );
+  )
 }

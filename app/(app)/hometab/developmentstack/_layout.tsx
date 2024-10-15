@@ -103,11 +103,20 @@ export default () => {
         }}
       />
       <Stack.Screen
-        name={'preferences'}
+        name={'notifications'}
         options={{
           headerBackground: () => <></>,
           headerShown: true,
-          title: 'Preferences',
+          title: 'Notifications',
+          headerLeft: () => <ChevronBackArrow />,
+        }}
+      />
+      <Stack.Screen
+        name={'state'}
+        options={{
+          headerBackground: () => <></>,
+          headerShown: true,
+          title: 'State',
           headerLeft: () => <ChevronBackArrow />,
         }}
       />
