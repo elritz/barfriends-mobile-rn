@@ -31,15 +31,11 @@ export default () => {
     data: rdmData,
     loading: rdmLoading,
     error: rdmError,
-  } = useRefreshDeviceManagerQuery({
-    fetchPolicy: 'cache-first',
-  })
+  } = useRefreshDeviceManagerQuery({})
 
   useEffect(() => {
     getNotificationQuery()
   }, [])
-  console.log('🚀 ~ rdmLoading:', rdmLoading)
-  console.log('🚀 ~ GNLoading:', GNLoading)
 
   if (rdmLoading || GNLoading) return null
 
@@ -119,7 +115,6 @@ export default () => {
       return null
     }
   }
-  console.log('🚀 ~ here:')
 
   return (
     <FlashList

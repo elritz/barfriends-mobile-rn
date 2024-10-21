@@ -61,7 +61,7 @@ export default () => {
     loading: rdmLoading,
     error: rdmError,
   } = useRefreshDeviceManagerQuery({
-    fetchPolicy: 'cache-first',
+    fetchPolicy: 'cache-and-network',
   })
 
   const [venuesNearbyQuery, {data, loading, error}] = useVenuesNearbyLazyQuery({

@@ -138,10 +138,7 @@ function RootLayout() {
         const values: LocalStorageInformationJoinVenueType = JSON.parse(
           getInformationJoinVenue,
         )
-        console.log(
-          '🚀 ~ setAsyncPreferencesLocalStorageData ~ values:',
-          values,
-        )
+
         InformationJoinVenueReactiveVar({
           ...values,
         })
@@ -149,10 +146,6 @@ function RootLayout() {
         const newJoinVenueInformation = JSON.stringify({
           ...InitialStateJoiningInformationPreferencePermission,
         } as LocalStorageInformationJoinVenueType)
-        console.log(
-          '🚀 ~ setAsyncPreferencesLocalStorageData ~ newJoinVenueInformation:',
-          newJoinVenueInformation,
-        )
 
         await AsyncStorage.setItem(
           LOCAL_STORAGE_INFORMATION_JOIN_VENUE,

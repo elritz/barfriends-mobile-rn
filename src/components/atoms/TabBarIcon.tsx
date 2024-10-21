@@ -1,6 +1,6 @@
 import {MotiPressable} from 'moti/interactions'
 import {useMemo} from 'react'
-import {View} from 'react-native'
+import {Pressable, View} from 'react-native'
 
 interface OuterViewStyleProps {
   height?: number

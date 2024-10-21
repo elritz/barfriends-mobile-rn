@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import {View, Pressable} from 'react-native'
 import * as Clipboard from 'expo-clipboard'
-import {secureStorageItemRead} from '#/src/util/hooks/local/useSecureStorage'
 import {
-  AUTHORIZATION,
-  LOCAL_STORAGE_SEARCH_AREA,
-} from '#/src/constants/StorageConstants'
+  secureStorageItemDelete,
+  secureStorageItemRead,
+} from '#/src/util/hooks/local/useSecureStorage'
+import {AUTHORIZATION} from '#/src/constants/StorageConstants'
 import {FlashList} from '@shopify/flash-list'
 import {Feather} from '@expo/vector-icons'
 import {Divider} from '#/src/components/ui/divider'
@@ -13,15 +13,13 @@ import {VStack} from '#/src/components/ui/vstack'
 import {Text} from '#/src/components/ui/text'
 import {Heading} from '#/src/components/ui/heading'
 import {HStack} from '#/src/components/ui/hstack'
-import {SearchAreaReactiveVar, ThemeReactiveVar} from '#/src/state/reactive'
+import {ThemeReactiveVar} from '#/src/state/reactive'
 import {useReactiveVar} from '@apollo/client'
 import {Box} from '#/src/components/ui/box'
 import {useRefreshDeviceManagerQuery} from '#/graphql/generated'
 import * as Application from 'expo-application'
 import * as Notifications from 'expo-notifications'
 import Constants from 'expo-constants'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import {InitialStateSearchArea} from '#/src/constants/Preferences'
 
 const Tokens: React.FC = () => {
   const [atoken, setAToken] = useState('')
@@ -71,9 +69,13 @@ const Tokens: React.FC = () => {
       value: atoken,
       onPressCopy: async () => {
         await Clipboard.setStringAsync(atoken)
+        console.log('Authorization token copied')
       },
       onPressDelete: async () => {
-        await AsyncStorage.removeItem(AUTHORIZATION)
+        await secureStorageItemDelete({
+          key: AUTHORIZATION,
+        }),
+          console.log('Authorization token deleted')
       },
     },
     {
@@ -81,6 +83,7 @@ const Tokens: React.FC = () => {
       value: expoPushNotificationToken,
       onPressCopy: async () => {
         await Clipboard.setStringAsync(expoPushNotificationToken)
+        console.log('Expo Push Notification copied')
       },
       onPressDelete: null,
     },

@@ -54,12 +54,6 @@ const ProfileTab = (props: TabProps) => {
     return (
       <>
         <TabBarIcon
-          // onPress={() => {
-          // 	router.navigate({
-          // 		pathname: '/(app)/hometab/profilestack/personalprofile',
-          // 	})
-          // }}
-          onLongPress={() => onLongPressProfileIcon()}
           icon={
             props.focused ? (
               <CompanyCoasterLogoDynamic

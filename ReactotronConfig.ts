@@ -45,7 +45,6 @@ Reactotron.onCustomCommand({
   command: "extractApolloCacheByKey",
   args: [{ name: "key", type: ArgType.String }],
   handler: (args) => {
-    console.log("🚀 ~ args:", args);
     const { key } = args ?? {};
     if (key) {
       const findValue = getNestedCacheValue(key);

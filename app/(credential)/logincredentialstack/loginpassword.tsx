@@ -1,135 +1,133 @@
-import { VStack } from "#/src/components/ui/vstack";
-import { Text } from "#/src/components/ui/text";
-import { Spinner } from "#/src/components/ui/spinner";
-import { Pressable } from "#/src/components/ui/pressable";
+import {VStack} from '#/src/components/ui/vstack'
+import {Text} from '#/src/components/ui/text'
+import {Spinner} from '#/src/components/ui/spinner'
+import {Pressable} from '#/src/components/ui/pressable'
 import {
   Input,
   InputField,
   InputIcon,
   InputSlot,
-} from "#/src/components/ui/input";
-import { HStack } from "#/src/components/ui/hstack";
-import { EyeIcon, EyeOffIcon, Icon } from "#/src/components/ui/icon";
-import { Box } from "#/src/components/ui/box";
-import { useReactiveVar } from "@apollo/client";
-import { Feather } from "@expo/vector-icons";
+} from '#/src/components/ui/input'
+import {HStack} from '#/src/components/ui/hstack'
+import {EyeIcon, EyeOffIcon, Icon} from '#/src/components/ui/icon'
+import {Box} from '#/src/components/ui/box'
+import {useReactiveVar} from '@apollo/client'
+import {Feather} from '@expo/vector-icons'
 import {
   AuthorizationDeviceProfile,
   useLoginPasswordLazyQuery,
   useSwitchDeviceProfileMutation,
-} from "#/graphql/generated";
-import { useIsFocused } from "@react-navigation/native";
-import { AuthorizationReactiveVar, ThemeReactiveVar } from "#/reactive";
-import { useLocalSearchParams, useRouter } from "expo-router";
-import { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
-import {
-  InputAccessoryView,
-  Platform,
-  KeyboardAvoidingView,
-} from "react-native";
-import { useReanimatedKeyboardAnimation } from "react-native-keyboard-controller";
+} from '#/graphql/generated'
+import {useIsFocused} from '@react-navigation/native'
+import {AuthorizationReactiveVar, ThemeReactiveVar} from '#/reactive'
+import {useLocalSearchParams, useRouter} from 'expo-router'
+import {useState} from 'react'
+import {Controller, useForm} from 'react-hook-form'
+import {InputAccessoryView, Platform, KeyboardAvoidingView} from 'react-native'
+import {useReanimatedKeyboardAnimation} from 'react-native-keyboard-controller'
 import Reanimated, {
   useAnimatedStyle,
   useDerivedValue,
-} from "react-native-reanimated";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+} from 'react-native-reanimated'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
 
-import { View } from "react-native";
+import {View} from 'react-native'
 
 export default () => {
-  const INPUT_ACCESSORY_VIEW_ID = "lp-21565434tw";
-  const router = useRouter();
-  const params = useLocalSearchParams();
-  const rTheme = useReactiveVar(ThemeReactiveVar);
-  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const INPUT_ACCESSORY_VIEW_ID = 'lp-21565434tw'
+  const router = useRouter()
+  const params = useLocalSearchParams()
+  const rTheme = useReactiveVar(ThemeReactiveVar)
+  const [showPassword, setShowPassword] = useState<boolean>(false)
 
-  const isFocused = useIsFocused();
-  const { bottom } = useSafeAreaInsets();
-  const { height: platform } = useReanimatedKeyboardAnimation();
-  const INPUT_CONTAINER_HEIGHT = 90;
+  const isFocused = useIsFocused()
+  const {bottom} = useSafeAreaInsets()
+  const {height: platform} = useReanimatedKeyboardAnimation()
+  const INPUT_CONTAINER_HEIGHT = 90
 
   const handleShowPassword = () => {
-    setShowPassword((showState) => {
-      return !showState;
-    });
-  };
+    setShowPassword(showState => {
+      return !showState
+    })
+  }
 
-  const height = useDerivedValue(() => platform.value, [isFocused]);
+  const height = useDerivedValue(() => platform.value, [isFocused])
 
   const textInputContainerStyle = useAnimatedStyle(
     () => ({
-      width: "100%",
-      position: "absolute",
+      width: '100%',
+      position: 'absolute',
       bottom: 0,
       paddingBottom: bottom,
       height: INPUT_CONTAINER_HEIGHT,
-      transform: [{ translateY: height.value }],
+      transform: [{translateY: height.value}],
     }),
     [],
-  );
+  )
 
   const {
     control,
     handleSubmit,
     setError,
-    formState: { errors },
+    formState: {errors},
   } = useForm({
-    mode: "onChange",
-    reValidateMode: "onChange",
+    mode: 'onChange',
+    reValidateMode: 'onChange',
     defaultValues: {
-      password: "",
+      password: '',
     },
     resolver: undefined,
     context: undefined,
-    criteriaMode: "firstError",
+    criteriaMode: 'firstError',
     shouldFocusError: true,
     shouldUnregister: true,
-  });
+  })
 
   const [
     switchDeviceProfileMutation,
-    { data: SDPData, loading: SDPLoading, error: SDPError },
+    {data: SDPData, loading: SDPLoading, error: SDPError},
   ] = useSwitchDeviceProfileMutation({
-    onCompleted: (data) => {
-      console.log("🚀 ~ data.switchDeviceProfile:", data.switchDeviceProfile);
-      if (data.switchDeviceProfile.__typename == "Error") {
-        setError("password", {
-          type: "validate",
-          message: "Incorrect password",
-        });
+    onCompleted: data => {
+      console.log('🚀 ~ data.switchDeviceProfile:', data.switchDeviceProfile)
+      if (data.switchDeviceProfile?.__typename == 'Error') {
+        setError('password', {
+          type: 'validate',
+          message: 'Incorrect password',
+        })
       }
 
-      if (data.switchDeviceProfile.__typename == "AuthorizationDeviceProfile") {
+      if (
+        data.switchDeviceProfile?.__typename == 'AuthorizationDeviceProfile'
+      ) {
         const deviceManager =
-          data.switchDeviceProfile as AuthorizationDeviceProfile;
-        AuthorizationReactiveVar(deviceManager);
+          data.switchDeviceProfile as AuthorizationDeviceProfile
+        AuthorizationReactiveVar(deviceManager)
         router.push({
-          pathname: "/(app)/hometab/venuefeed",
-        });
+          pathname: '/(app)/hometab/venuefeed',
+        })
       }
     },
-  });
+  })
 
   const [
     loginPasswordQuery,
-    { data: LPData, loading: LPLoading, error: LPError },
+    {data: LPData, loading: LPLoading, error: LPError},
   ] = useLoginPasswordLazyQuery({
-    onCompleted: (data) => {
+    onCompleted: data => {
       if (!data.loginPassword) {
-        setError("password", {
-          type: "validate",
-          message: "Incorrect password",
-        });
+        setError('password', {
+          type: 'validate',
+          message: 'Incorrect password',
+        })
       } else {
         switchDeviceProfileMutation({
           variables: {
             profileId: String(params.profileid),
           },
-        });
+        })
       }
     },
-  });
+  })
 
   const onSubmit = async (data: any) => {
     loginPasswordQuery({
@@ -137,66 +135,63 @@ export default () => {
         username: String(params.username),
         password: data.password,
       },
-    });
-  };
+    })
+  }
 
   const InnerContent = () => {
     return (
       <Box
-        className={` ${isFocused ? "flex" : "hidden"} h-[80px] flex-row content-around items-center justify-end rounded-none bg-white px-2 dark:bg-black`}
-      >
+        className={` ${isFocused ? 'flex' : 'hidden'} h-[80px] flex-row content-around items-center justify-end rounded-none bg-white px-2 dark:bg-black`}>
         <HStack className="flex-row justify-around">
           <Pressable onPress={handleSubmit(onSubmit)}>
             <Box className="h-[50px] w-[50px] items-center justify-center rounded-full bg-primary-500">
               <Feather
                 name="arrow-right"
                 size={32}
-                color={errors?.password ? "#292524" : "white"}
+                color={errors?.password ? '#292524' : 'white'}
               />
             </Box>
           </Pressable>
         </HStack>
       </Box>
-    );
-  };
+    )
+  }
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={{
         flex: 1,
-        height: "auto",
-        flexDirection: "column",
-        marginHorizontal: "5%",
-      }}
-    >
-      <Reanimated.View style={{ flex: 1 }}>
+        height: 'auto',
+        flexDirection: 'column',
+        marginHorizontal: '5%',
+      }}>
+      <Reanimated.View style={{flex: 1}}>
         <VStack className="mt-12 h-[110px]">
           <Controller
             name="password"
             control={control}
             defaultValue=""
-            render={({ field: { onChange, onBlur, value } }) => {
+            render={({field: {onChange, onBlur, value}}) => {
               return (
                 <Input
-                  variant={"underlined"}
+                  variant={'underlined'}
                   size="lg"
-                  className="items-center"
-                >
+                  className="items-center">
                   <InputField
                     keyboardAppearance={
-                      rTheme.colorScheme === "light" ? "light" : "dark"
+                      rTheme.colorScheme === 'light' ? 'light' : 'dark'
                     }
                     value={value}
                     placeholder="Password"
-                    type={showPassword ? "text" : "password"}
+                    type={showPassword ? 'text' : 'password'}
                     secureTextEntry={!showPassword}
-                    onChangeText={(value) => onChange(value)}
+                    onChangeText={value => onChange(value)}
                     onSubmitEditing={handleSubmit(onSubmit)}
                     onBlur={onBlur}
                     textContentType="password"
                     blurOnSubmit={false}
-                    autoComplete={"password"}
+                    autoComplete={'password'}
                     autoFocus
                     returnKeyType="done"
                     autoCorrect={false}
@@ -208,27 +203,26 @@ export default () => {
                   <InputSlot
                     hitSlop={15}
                     onPress={handleShowPassword}
-                    className="pr-3"
-                  >
+                    className="pr-3">
                     {showPassword ? (
                       <Icon
                         as={EyeIcon}
-                        size={"xl"}
+                        size={'xl'}
                         className="text-primary-500"
                       />
                     ) : (
                       <Icon
                         as={EyeOffIcon}
-                        size={"xl"}
+                        size={'xl'}
                         className="text-primary-500"
                       />
                     )}
                   </InputSlot>
                   {LPLoading && (
-                    <Spinner size="small" accessibilityLabel={"Loading..."} />
+                    <Spinner size="small" accessibilityLabel={'Loading...'} />
                   )}
                 </Input>
-              );
+              )
             }}
           />
           <Text className="text-error-500">
@@ -238,7 +232,7 @@ export default () => {
           </Text>
         </VStack>
       </Reanimated.View>
-      {Platform.OS === "ios" ? (
+      {Platform.OS === 'ios' ? (
         <InputAccessoryView nativeID={INPUT_ACCESSORY_VIEW_ID}>
           <InnerContent />
         </InputAccessoryView>
@@ -249,11 +243,10 @@ export default () => {
               height: INPUT_CONTAINER_HEIGHT,
             },
             textInputContainerStyle,
-          ]}
-        >
+          ]}>
           <InnerContent />
         </Reanimated.View>
       )}
     </KeyboardAvoidingView>
-  );
-};
+  )
+}
