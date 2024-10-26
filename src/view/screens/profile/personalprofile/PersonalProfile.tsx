@@ -20,16 +20,15 @@ const PersonalScreen = () => {
 
   if (rAuthorizationVar?.Profile?.ProfileType === ProfileType.Guest) {
     return (
-      <Box className="mx-3 flex-1 bg-red-900">
+      <Box className="mx-3 flex-1">
         <CardPleaseSignup signupTextId={4} />
       </Box>
     )
   }
 
   return (
-    <Box className="bg-transparent">
+    <Box>
       <HStack space={'md'} className="mx-3 my-[20px] items-start">
-        {/* <ProfilePhoto photo={rAuthorizationVar?.Profile?.profilePhoto} /> */}
         <VStack space="sm" className="flex-1  pr-2">
           <VStack space="sm" className="mt-3">
             <View>

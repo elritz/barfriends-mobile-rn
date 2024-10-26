@@ -17,9 +17,7 @@ const HorizontalMessageNotification = ({item}) => {
     data: rdmData,
     loading: rdmLoading,
     error: rdmError,
-  } = useRefreshDeviceManagerQuery({
-    fetchPolicy: 'cache-first',
-  })
+  } = useRefreshDeviceManagerQuery({})
 
   const ChatContainer = ({isGroup, item}) => {
     const member = item.Members.filter(

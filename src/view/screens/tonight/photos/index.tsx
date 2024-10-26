@@ -61,9 +61,7 @@ const Photos: React.FC<ActivityCardProps> = ({isEmojimoodDynamic = false}) => {
     data: rdmData,
     loading: rdmLoading,
     error: rdmError,
-  } = useRefreshDeviceManagerQuery({
-    fetchPolicy: 'cache-first',
-  })
+  } = useRefreshDeviceManagerQuery()
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library

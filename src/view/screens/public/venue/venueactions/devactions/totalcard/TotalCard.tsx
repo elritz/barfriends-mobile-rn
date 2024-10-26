@@ -27,9 +27,7 @@ export default function TotalCard() {
     data: rdmData,
     loading: rdmLoading,
     error: rdmError,
-  } = useRefreshDeviceManagerQuery({
-    fetchPolicy: 'cache-first',
-  })
+  } = useRefreshDeviceManagerQuery()
 
   const {
     data: glvtData,

@@ -21,15 +21,8 @@ const Messages = () => {
       <FlashList
         data={data?.getConversations}
         showsVerticalScrollIndicator={false}
-        ListHeaderComponent={() => {
-          return (
-            <View>
-              <CondensedVerticalFriendsNotficationsList />
-            </View>
-          )
-        }}
         refreshing={loading}
-        estimatedItemSize={75}
+        estimatedItemSize={65}
         contentInset={{
           ...contentInsets,
         }}

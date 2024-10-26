@@ -22,9 +22,7 @@ const AddEmoji: React.FC<ActivityCardProps> = ({
     data: rdmData,
     loading: rdmLoading,
     error: rdmError,
-  } = useRefreshDeviceManagerQuery({
-    fetchPolicy: 'cache-first',
-  })
+  } = useRefreshDeviceManagerQuery()
 
   if (
     rdmData?.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile'

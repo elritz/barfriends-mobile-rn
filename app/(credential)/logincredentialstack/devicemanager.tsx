@@ -122,10 +122,11 @@ export default () => {
                 disabled={loading || SWDPLoading}
                 key={item.id}
                 onPress={() => _press(item)}>
-                <DeviceManagerProfileItemLarge
+                <Text>Need to figure out the profile {item.id}</Text>
+                {/* <DeviceManagerProfileItemLarge
                   item={item}
                   loading={SWDPLoading}
-                />
+                /> */}
               </Pressable>
             )
           })}

@@ -49,7 +49,6 @@ export default () => {
                     space={'md'}
                     className="flex-1 items-center justify-start">
                     <Button
-                      // bg={rTheme.colorScheme === 'light' ? '$light50' : '$light900'}
                       variant="link"
                       onPress={() => {
                         router.canGoBack()
@@ -58,7 +57,9 @@ export default () => {
                               pathname: '/(app)/hometab/venuefeed',
                             })
                       }}
-                      className={` height-${NAVIGATION_BUTTON_HEIGHT} rounded-full`}>
+                      style={{
+                        height: NAVIGATION_BUTTON_HEIGHT,
+                      }}>
                       <Ionicons
                         name="chevron-back-outline"
                         size={30}
@@ -78,14 +79,16 @@ export default () => {
                       variant="link"
                       onPress={() =>
                         router.push({
-                          pathname: '/(app)/public/personal/settings',
+                          pathname: '/(app)/public/personal/[username]',
                           params: {
                             username: 'test',
                           },
                         })
                       }
                       size="xs"
-                      className={` height-${NAVIGATION_BUTTON_HEIGHT} rounded-full`}>
+                      style={{
+                        height: NAVIGATION_BUTTON_HEIGHT,
+                      }}>
                       <Entypo
                         name={'dots-three-vertical'}
                         size={23}
@@ -116,7 +119,7 @@ export default () => {
               <Button
                 onPress={() => router.back()}
                 size="xs"
-                className={` ${rTheme.colorScheme === 'light' ? 'bg-light-50' : 'bg-light-900'} my-2 mr-2 rounded-full`}>
+                className={`${rTheme.colorScheme === 'light' ? 'bg-light-50' : 'bg-light-900'} my-2 mr-2 rounded-full`}>
                 <Ionicons name="chevron-back-outline" size={30} />
               </Button>
             </HStack>
@@ -131,7 +134,7 @@ export default () => {
           header: () => {
             return (
               <VStack
-                className={` h-${h} justify-end bg-light-100 pb-2 pt-[2] dark:bg-light-900`}>
+                className={`h-${h} justify-end bg-light-100 pb-2 pt-[2] dark:bg-light-900`}>
                 <SearchInput />
               </VStack>
             )

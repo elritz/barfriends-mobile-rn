@@ -39,7 +39,7 @@ export default function Preferences() {
       renderItem={({item}) => {
         return (
           <Pressable onPressIn={item.onPress} className="px-4 py-3">
-            <VStack className={`flex-1 justify-between`} space="sm">
+            <VStack className="flex-1 justify-between" space="sm">
               <HStack>
                 <VStack className="flex-1">
                   <Heading className="text-2xl capitalize">{item.name}</Heading>

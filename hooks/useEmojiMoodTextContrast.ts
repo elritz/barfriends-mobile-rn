@@ -10,9 +10,7 @@ const useEmojimoodTextColor = (props: { isEmojimoodDynamic: boolean }) => {
     data: rdmData,
     loading: rdmLoading,
     error: rdmError,
-  } = useRefreshDeviceManagerQuery({
-    fetchPolicy: "cache-first",
-  });
+  } = useRefreshDeviceManagerQuery();
 
   return useMemo(() => {
     if (

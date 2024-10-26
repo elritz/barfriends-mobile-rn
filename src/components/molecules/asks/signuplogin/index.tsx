@@ -4,7 +4,6 @@ import {Pressable} from '#/src/components/ui/pressable'
 import {Button, ButtonText} from '#/src/components/ui/button'
 import {Text} from '#/src/components/ui/text'
 import {VStack} from '#/src/components/ui/vstack'
-import DeviceManagerProfiles from '#/src/components/organisms/list/DeviceManagerProfiles'
 import GetSignInUpText from '#/src/util/helpers/data/SignupinText'
 import {router, useRouter} from 'expo-router'
 
@@ -65,7 +64,6 @@ export default (props: Props) => {
           <Text className="self-center text-lg font-bold">Log in</Text>
         </Button>
       </VStack>
-      <DeviceManagerProfiles />
     </VStack>
   )
 }

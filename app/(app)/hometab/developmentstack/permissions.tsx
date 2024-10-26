@@ -78,7 +78,7 @@ export default function Preferences() {
           <Pressable onPressIn={item.route}>
             <HStack
               style={{height: ITEM_HEIGHT}}
-              className={` flex-1 items-center`}>
+              className="flex-1 items-center">
               <Heading className="text-md px-4">{item.name}</Heading>
             </HStack>
           </Pressable>

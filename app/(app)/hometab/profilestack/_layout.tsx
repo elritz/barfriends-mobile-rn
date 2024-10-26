@@ -11,116 +11,28 @@ import {Stack, useRouter} from 'expo-router'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {ProfileType, useRefreshDeviceManagerQuery} from '#/graphql/generated'
 import {memo} from 'react'
-
-const HeaderWrapper = memo(({children}) => {
-  const insets = useSafeAreaInsets()
-  return (
-    <VStack style={{paddingTop: insets.top}} className="mt-[5]">
-      <HStack className="mx-2 justify-between pb-2">
-        <Box className="flex-1 justify-center">{children}</Box>
-      </HStack>
-    </VStack>
-  )
-})
-
-const ProfileHeader = () => {
-  const router = useRouter()
-  const insets = useSafeAreaInsets()
-  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
-  const rTheme = useReactiveVar(ThemeReactiveVar)
-
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-  } = useRefreshDeviceManagerQuery({
-    fetchPolicy: 'cache-and-network',
-  })
-
-  if (rdmLoading) {
-    return (
-      <HeaderWrapper>
-        <Heading className="text-xl font-black">Barfriends</Heading>
-      </HeaderWrapper>
-    )
-  }
-
-  if (
-    rdmData?.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile'
-  ) {
-    return (
-      <>
-        {rdmData.refreshDeviceManager.Profile?.ProfileType ===
-        ProfileType.Personal ? (
-          <HeaderWrapper>
-            <Button
-              variant="link"
-              onPress={async () => {
-                await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
-                router.push({
-                  pathname: `/(app)/modal/devicemanager/deviceprofilemanager`,
-                })
-              }}>
-              <HStack
-                space={'md'}
-                className="ml-2 flex-1 items-center justify-start">
-                <ButtonText
-                  adjustsFontSizeToFit
-                  ellipsizeMode={'tail'}
-                  className="max-w-[195px] text-xl text-black dark:text-white">
-                  {
-                    rAuthorizationVar?.Profile?.IdentifiableInformation
-                      ?.username
-                  }
-                </ButtonText>
-                <Ionicons
-                  name={'chevron-down'}
-                  size={26}
-                  color={
-                    rTheme.colorScheme === 'light'
-                      ? rTheme.theme?.gluestack.tokens.colors.light900
-                      : rTheme.theme?.gluestack.tokens.colors.light100
-                  }
-                  style={{
-                    marginLeft: -10,
-                  }}
-                />
-              </HStack>
-            </Button>
-            <Button
-              variant="link"
-              onPress={() =>
-                router.push({
-                  pathname: '/(app)/settings',
-                })
-              }>
-              <MaterialCommunityIcons
-                name={'dots-horizontal'}
-                size={30}
-                color={
-                  rTheme.colorScheme === 'light'
-                    ? rTheme.theme?.gluestack.tokens.colors.light900
-                    : rTheme.theme?.gluestack.tokens.colors.light100
-                }
-              />
-            </Button>
-          </HeaderWrapper>
-        ) : (
-          <HeaderWrapper>
-            <Heading className="text-xl font-black">Barfriends</Heading>
-          </HeaderWrapper>
-        )}
-      </>
-    )
-  }
-}
+import ProfileHeader from '#/src/view/screens/profile/personalprofile/ProfileHeader'
+import {Text} from '#/src/components/ui/text'
 
 export default function _layout() {
+  const router = useRouter()
   const rTheme = useReactiveVar(ThemeReactiveVar)
+  const insets = useSafeAreaInsets()
+  const onPress = async () => {
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
+    router.push({
+      pathname: `/(app)/modal/devicemanager/deviceprofilemanager`,
+    })
+  }
+  const {data: rdmData, loading: rdmLoading} = useRefreshDeviceManagerQuery()
+
+  if (rdmLoading) {
+    return null
+  }
+
   return (
     <Stack
       screenOptions={{
-        // gestureEnabled: false,
         headerTransparent: false,
         headerShown: true,
         headerStyle: {
@@ -129,9 +41,87 @@ export default function _layout() {
               ? rTheme.theme?.gluestack.tokens.colors.light100
               : rTheme.theme?.gluestack.tokens.colors.light900,
         },
-        header: () => <ProfileHeader />,
       }}>
-      <Stack.Screen name={'personalprofile'} />
+      <Stack.Screen
+        name={'personalprofile'}
+        options={{
+          header: () => {
+            if (
+              rdmData?.refreshDeviceManager?.__typename ===
+              'AuthorizationDeviceProfile'
+            ) {
+              if (
+                rdmData?.refreshDeviceManager.Profile?.ProfileType ===
+                ProfileType.Personal
+              ) {
+                return (
+                  <VStack style={{marginTop: insets.top}} className="mt-5">
+                    <HStack className="mx-2 justify-between pb-2">
+                      <Box className="flex-1 justify-center">
+                        <Button
+                          className="ml-2 flex-1 items-center justify-start"
+                          variant="link"
+                          onPress={onPress}>
+                          <Text className="max-w-[195px] text-2xl text-black dark:text-white text-ellipsis">
+                            {
+                              rdmData?.refreshDeviceManager.Profile
+                                .IdentifiableInformation?.username
+                            }
+                          </Text>
+                          <Ionicons
+                            name={'chevron-down'}
+                            size={26}
+                            color={
+                              rTheme.colorScheme === 'light'
+                                ? rTheme.theme?.gluestack.tokens.colors.light900
+                                : rTheme.theme?.gluestack.tokens.colors.light100
+                            }
+                            style={
+                              {
+                                // marginLeft: -10,
+                              }
+                            }
+                          />
+                        </Button>
+                      </Box>
+                      <Button
+                        variant="link"
+                        onPress={() =>
+                          router.push({
+                            pathname: '/(app)/settings',
+                          })
+                        }>
+                        <MaterialCommunityIcons
+                          name={'dots-horizontal'}
+                          size={30}
+                          color={
+                            rTheme.colorScheme === 'light'
+                              ? rTheme.theme?.gluestack.tokens.colors.light900
+                              : rTheme.theme?.gluestack.tokens.colors.light100
+                          }
+                        />
+                      </Button>
+                    </HStack>
+                  </VStack>
+                )
+              }
+
+              return (
+                <>
+                  <VStack style={{marginTop: insets.top}} className="mt-[5]">
+                    <HStack className="mx-2 justify-between pb-2">
+                      <Heading className="font-extrabold text-3xl">
+                        Barfriends
+                      </Heading>
+                    </HStack>
+                  </VStack>
+                </>
+              )
+            }
+          },
+        }}
+      />
+      <Stack.Screen name={'venueprofile'} />
     </Stack>
   )
 }

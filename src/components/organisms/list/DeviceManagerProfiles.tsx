@@ -2,8 +2,8 @@ import {Center} from '#/src/components/ui/center'
 import {Pressable} from '#/src/components/ui/pressable'
 import {HStack} from '#/src/components/ui/hstack'
 import {Button} from '#/src/components/ui/button'
+import {Text} from '#/src/components/ui/text'
 import {useReactiveVar} from '@apollo/client'
-import DeviceManagerProfileItemLarge from '#/src/components/molecules/authorization/devicemanagerprofileitem/DeviceManagerProfileItemLarge'
 import {Entypo} from '@expo/vector-icons'
 import {
   AuthorizationDeviceProfile,
@@ -74,14 +74,15 @@ const DeviceManagerProfiles = () => {
             if (item.Profile?.ProfileType === ProfileType.Guest) return null
             return (
               <HStack key={index} className="h-[80px] items-center">
-                <Pressable
-                  className="bg-red-400"
-                  key={item.id}
-                  onPress={() => switchProfile(item)}>
-                  <DeviceManagerProfileItemLarge
+                <Pressable key={item.id} onPress={() => switchProfile(item)}>
+                  <Text>{item.Profile?.name}</Text>
+                  {/* <DeviceManagerProfileItemLarge
                     item={item.Profile}
                     loading={SWDPLoading}
-                  />
+                  {/* <DeviceManagerProfileItemLarge
+                    item={item.Profile}
+                    loading={SWDPLoading}
+                  /> */}
                 </Pressable>
                 <Center className="h-[300px]">
                   <Button

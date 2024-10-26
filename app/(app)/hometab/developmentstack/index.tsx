@@ -118,7 +118,6 @@ export default () => {
     client,
   } = useRefreshDeviceManagerQuery({
     fetchPolicy: 'network-only',
-    // fetchPolicy: 'cache-first',
   })
 
   // const appStateHandleBackgroundLocation = async nextAppState => {
@@ -427,7 +426,7 @@ export default () => {
       case 'setting':
         return (
           <Pressable key={index} onPress={item.onPress} className="mx-3">
-            <Box className={`h-[${ITEM_HEIGHT}px] justify-between`}>
+            <Box style={{height: ITEM_HEIGHT}} className="justify-between">
               <Divider />
               <HStack space={'md'} className="items-center px-2">
                 <Ionicons
@@ -448,7 +447,7 @@ export default () => {
       case 'token':
         return (
           <Pressable key={index} onPress={item.onPress} className="mx-3">
-            <Box className={`h-[${ITEM_HEIGHT}] justify-between`}>
+            <Box style={{height: ITEM_HEIGHT}} className="justify-between">
               <Divider />
               <HStack
                 space={'md'}
@@ -503,7 +502,7 @@ export default () => {
       case 'test':
         return (
           <Pressable onPress={item.onPress} className="mx-3">
-            <VStack className={`h-[${ITEM_HEIGHT}px] justify-around`}>
+            <VStack style={{height: ITEM_HEIGHT}} className="justify-around">
               <Divider />
               <Heading className="text-lg max-w-[80%] font-black capitalize ">
                 {item.title}

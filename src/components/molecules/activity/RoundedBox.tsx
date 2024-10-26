@@ -14,9 +14,7 @@ const RoundedBox = ({children}) => {
     data: rdmData,
     loading: rdmLoading,
     error: rdmError,
-  } = useRefreshDeviceManagerQuery({
-    fetchPolicy: 'cache-first',
-  })
+  } = useRefreshDeviceManagerQuery()
 
   return (
     <BlurView

@@ -19,7 +19,6 @@ export type FormType = {
 }
 
 export default () => {
-  const [updatedEmojimoodSuccess, setUpdateEmojimoodSuccess] = useState(false)
   const rTheme = useReactiveVar(ThemeReactiveVar)
 
   const methods = useForm<FormType>({
@@ -38,7 +37,6 @@ export default () => {
     loading: rdmLoading,
     error: rdmError,
   } = useRefreshDeviceManagerQuery({
-    fetchPolicy: 'cache-first',
     onCompleted(data) {
       if (
         data.refreshDeviceManager?.__typename ===
@@ -61,16 +59,6 @@ export default () => {
 
   const [updateStoryEmojimoodMutation, {data, loading, error}] =
     useUpdateStoryEmojimoodMutation({
-      onCompleted: data => {
-        if (data.updateStoryEmojimood) {
-          setUpdateEmojimoodSuccess(true)
-          setTimeout(() => {
-            setUpdateEmojimoodSuccess(false)
-          }, 1500)
-        } else {
-          setUpdateEmojimoodSuccess(false)
-        }
-      },
       update: (cache, {data}) => {
         if (
           data?.updateStoryEmojimood?.__typename === 'Story' &&
@@ -78,8 +66,6 @@ export default () => {
             'AuthorizationDeviceProfile' &&
           rdmData.refreshDeviceManager.Profile?.tonightStory
         ) {
-          console.log('CACHE: ', data?.updateStoryEmojimood?.emojimood)
-
           cache.modify({
             id: cache.identify(
               rdmData.refreshDeviceManager.Profile?.tonightStory,
@@ -92,10 +78,6 @@ export default () => {
               },
             },
           })
-          setUpdateEmojimoodSuccess(true)
-          setTimeout(() => {
-            setUpdateEmojimoodSuccess(false)
-          }, 1500)
         }
       },
     })
@@ -152,7 +134,7 @@ export default () => {
                           ?.emojimood?.id) ? (
                         <Button
                           size="xs"
-                          disabled={loading || updatedEmojimoodSuccess}
+                          disabled={loading}
                           onPress={() => {
                             updateStoryEmojimoodMutation({
                               variables: {
@@ -162,13 +144,9 @@ export default () => {
                               },
                             })
                           }}
-                          className={` ${updatedEmojimoodSuccess ? 'dark:bg-green-500' : loading ? 'dark:bg-gray-500' : 'dark:bg-blue-600'} ${updatedEmojimoodSuccess ? 'bg-green-500' : loading ? 'bg-gray-500' : 'bg-blue-600'} rounded-full`}>
+                          className="dark:bg-green-500">
                           <ButtonText className="text-sm font-bold">
-                            {loading
-                              ? 'Updating'
-                              : updatedEmojimoodSuccess
-                                ? 'Updated'
-                                : 'Update'}
+                            {loading ? 'Updating' : 'Update'}
                           </ButtonText>
                         </Button>
                       ) : null}

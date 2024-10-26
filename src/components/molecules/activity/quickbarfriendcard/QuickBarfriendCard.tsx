@@ -54,9 +54,7 @@ export default function QuickBarfriendCard({
     data: rdmData,
     loading: rdmLoading,
     error: rdmError,
-  } = useRefreshDeviceManagerQuery({
-    fetchPolicy: 'cache-first',
-  })
+  } = useRefreshDeviceManagerQuery()
 
   const [getSecureFriendCodeQrData, {data, loading, error}] =
     useGetSecureFriendQrCodeDataLazyQuery({

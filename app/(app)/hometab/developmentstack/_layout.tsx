@@ -16,9 +16,7 @@ export default () => {
     data: rdmData,
     loading: rdmLoading,
     error: rdmError,
-  } = useRefreshDeviceManagerQuery({
-    fetchPolicy: 'cache-first',
-  })
+  } = useRefreshDeviceManagerQuery()
 
   if (rdmLoading) return null
 
@@ -51,8 +49,9 @@ export default () => {
               <VStack
                 style={{
                   paddingTop: insets.top,
+                  height: h,
                 }}
-                className={` h-${h} justify-end bg-light-100 pb-2 pt-[10] dark:bg-light-900`}>
+                className="h-${h} justify-end bg-light-100 pb-2 pt-[10] dark:bg-light-900">
                 <HeaderComponent />
                 <Box className="bg-transparent">
                   <Text

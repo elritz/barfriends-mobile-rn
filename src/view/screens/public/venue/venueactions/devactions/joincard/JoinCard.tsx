@@ -17,9 +17,7 @@ export default function JoinCard() {
     data: rdmData,
     loading: rdmLoading,
     error: rdmError,
-  } = useRefreshDeviceManagerQuery({
-    fetchPolicy: 'cache-first',
-  })
+  } = useRefreshDeviceManagerQuery()
 
   const {
     data: glvtData,
@@ -82,7 +80,7 @@ export default function JoinCard() {
 
       if (
         data?.addPersonalJoinsVenue2?.__typename === 'LiveVenueTotals2' &&
-        rdmData?.refreshDeviceManager.__typename ===
+        rdmData?.refreshDeviceManager?.__typename ===
           'AuthorizationDeviceProfile'
       ) {
         if (rdmData.refreshDeviceManager.Profile?.Personal?.LiveOutPersonal) {

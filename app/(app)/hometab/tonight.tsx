@@ -11,7 +11,6 @@ import {FlashList} from '@shopify/flash-list'
 import useContentInsets from '#/src/util/hooks/useContentInsets'
 import {ScrollView} from 'react-native'
 import {useRefreshDeviceManagerQuery} from '#/graphql/generated'
-import {SafeAreaView} from 'react-native-safe-area-context'
 import EmojimoodGradient from '#/src/view/screens/tonight/EmojimoodGradient'
 import RoundedBox from '#/src/components/molecules/activity/RoundedBox'
 
@@ -23,7 +22,6 @@ const Tonight = () => {
     loading: rdmLoading,
     error: rdmError,
   } = useRefreshDeviceManagerQuery({
-    fetchPolicy: 'cache-first',
     onCompleted(data) {
       if (
         data.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile'
@@ -47,11 +45,9 @@ const Tonight = () => {
           ...contentInsets,
         }}
         automaticallyAdjustContentInsets>
-        <SafeAreaView>
-          <Box className={`mx-2 my-2 p-5 pt-10`}>
-            <CardPleaseSignup signupTextId={1} />
-          </Box>
-        </SafeAreaView>
+        <Box className="mx-2 my-2 p-5 pt-10">
+          <CardPleaseSignup signupTextId={1} />
+        </Box>
       </ScrollView>
     )
   }

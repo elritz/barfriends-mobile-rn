@@ -1,20 +1,20 @@
-import { VStack } from "#/src/components/ui/vstack";
-import { Box } from "#/src/components/ui/box";
-import { CondensedHorizontalFriendNotifciation } from "#/src/components/molecules";
-import { useGetNotificationsQuery } from "#/graphql/generated";
+import {VStack} from '#/src/components/ui/vstack'
+import {Box} from '#/src/components/ui/box'
+import {CondensedHorizontalFriendNotifciation} from '#/src/components/molecules'
+import {useGetNotificationsQuery} from '#/graphql/generated'
 
 const CondensedVerticalFriendsNotficationsList = () => {
-  const { data, loading, error } = useGetNotificationsQuery({
-    nextFetchPolicy: "cache-first",
-  });
+  const {data, loading, error} = useGetNotificationsQuery({
+    nextFetchPolicy: 'cache-first',
+  })
 
-  if (loading || !data?.getNotifications.friendRequestNotifications?.length)
-    return null;
+  if (loading || !data?.getNotifications?.friendRequestNotifications?.length)
+    return null
 
   console.log(
-    "🚀 ~ CondensedVerticalFriendsNotficationsList ~ data?.getNotifications.friendRequestNotifications:",
+    '🚀 ~ CondensedVerticalFriendsNotficationsList ~ data?.getNotifications.friendRequestNotifications:',
     data?.getNotifications.friendRequestNotifications,
-  );
+  )
   return (
     <Box>
       <VStack className="flex-column flex-1 py-3">
@@ -22,12 +22,12 @@ const CondensedVerticalFriendsNotficationsList = () => {
           (item, index) => {
             return (
               <CondensedHorizontalFriendNotifciation item={item} key={index} />
-            );
+            )
           },
         )}
       </VStack>
     </Box>
-  );
-};
+  )
+}
 
-export default CondensedVerticalFriendsNotficationsList;
+export default CondensedVerticalFriendsNotficationsList

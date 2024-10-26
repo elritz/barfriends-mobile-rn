@@ -14,7 +14,6 @@ import {
   AuthorizationDeviceProfile,
   useGetAllThemesQuery,
   useRefreshDeviceManagerLazyQuery,
-  useRefreshDeviceManagerMutation,
   useUpdateThemeManagerSwitchThemeMutation,
 } from '#/graphql/generated'
 import {AuthorizationReactiveVar, ThemeReactiveVar} from '#/reactive'
@@ -143,7 +142,6 @@ export default function Preferences() {
     ({item, index}) => {
       if (!item?.item) return null
       const gluestack = item.item.theme.gluestack
-      const reactnavigation = item.item.theme.reactnavigation
       return (
         <Pressable
           onPress={() => {
@@ -158,8 +156,13 @@ export default function Preferences() {
             key={item.item.id}
             style={{
               flex: 1,
+              borderColor:
+                AuthorizationReactiveVar()?.Profile?.ThemeManager
+                  ?.ProfileTheme[0]?.Theme?.id === item.item.id
+                  ? rTheme.theme?.gluestack.tokens.colors.primary500
+                  : rTheme.theme?.gluestack.tokens.colors.light900,
             }}
-            className={`${AuthorizationReactiveVar()?.Profile?.ThemeManager?.ProfileTheme[0]?.Theme?.id === item.item.id ? 'border-primary-400' : 'border-transparent'} m-3 rounded-md border-2 px-2 py-4`}>
+            className="m-3 rounded-md border-2 px-2 py-4">
             <VStack space={'md'} className="flex-row flex-wrap justify-around">
               {rTheme.colorScheme === 'light' ? (
                 <>
@@ -235,23 +238,47 @@ export default function Preferences() {
               onPress={async () => {
                 await setTheme({colorScheme: 'light'})
               }}
-              className={` ${rTheme.localStorageColorScheme === 'light' ? 'border-primary-300' : 'border-transparent'} flex-1 border-2 bg-light-50`}>
+              style={{
+                borderColor:
+                  rTheme.localStorageColorScheme === 'light'
+                    ? rTheme.theme?.gluestack.tokens.colors.primary500
+                    : 'transparent',
+              }}
+              className="flex-1 border-2 bg-light-50">
               <ButtonText className="text-black">Light</ButtonText>
             </Button>
             <Button
               onPress={async () => {
                 await setTheme({colorScheme: 'dark'})
               }}
-              className={` ${rTheme.localStorageColorScheme === 'dark' ? 'border-primary-300' : 'border-transparent'} flex-1 border-2 bg-light-800`}>
+              style={{
+                borderColor:
+                  rTheme.localStorageColorScheme === 'dark'
+                    ? rTheme.theme?.gluestack.tokens.colors.primary500
+                    : 'transparent',
+              }}
+              className="flex-1 border-2 bg-light-800">
               <ButtonText className="text-white">Dark</ButtonText>
             </Button>
             <Button
               onPress={async () => {
                 await setTheme({colorScheme: 'system'})
               }}
-              className={` ${rTheme.localStorageColorScheme === 'system' ? 'border-primary-300' : 'border-transparent'} ${rTheme.colorScheme === 'light' ? 'bg-light-100' : 'bg-light-800'} flex-1 border-2`}>
+              style={{
+                borderColor:
+                  rTheme.localStorageColorScheme === 'system'
+                    ? rTheme.theme?.gluestack.tokens.colors.primary500
+                    : 'transparent',
+                backgroundColor:
+                  rTheme.colorScheme === 'light'
+                    ? rTheme.theme.gluestack.tokens.colors.light100
+                    : rTheme.theme.gluestack.tokens.colors.light800,
+              }}
+              className="flex-1 border-2 bg-light-50">
               <ButtonText
-                className={` ${rTheme.colorScheme === 'light' ? 'text-black' : 'text-white'} `}>
+                style={{
+                  color: rTheme.colorScheme === 'light' ? 'black' : 'white',
+                }}>
                 System
               </ButtonText>
             </Button>

@@ -206,7 +206,7 @@ function AnimatedChatroom() {
             }}
             render={({field: {onChange, onBlur, value}}) => {
               return (
-                <SafeAreaView ref={refSafeArea} className="">
+                <SafeAreaView ref={refSafeArea}>
                   <Input className="mx-4 mb-2 mt-5 h-auto max-h-[155px] items-center rounded-3xl border-light-300">
                     <BlurView
                       style={{flex: 1, height: '100%'}}
