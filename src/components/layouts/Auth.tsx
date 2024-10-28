@@ -1,62 +1,63 @@
-import { AUTHORIZATION } from "#/src/constants/StorageConstants";
+import {useCallback, useEffect} from 'react'
+
 import {
   AuthorizationDeviceProfile,
   useCreateGuestProfileMutation,
   useRefreshDeviceManagerLazyQuery,
-} from "#/graphql/generated";
-import { AuthorizationReactiveVar } from "#/reactive";
-import { AuthorizationDecoded } from "#/src/util/hooks/auth/useCheckLocalStorageForAuthorizationToken";
+} from '#/graphql/generated'
+import {AuthorizationReactiveVar} from '#/reactive'
+import {AUTHORIZATION} from '#/src/constants/StorageConstants'
+import {AuthorizationDecoded} from '#/src/util/hooks/auth/useCheckLocalStorageForAuthorizationToken'
 import {
   secureStorageItemDelete,
   secureStorageItemRead,
-} from "#/src/util/hooks/local/useSecureStorage";
-import { useCallback, useEffect } from "react";
+} from '#/src/util/hooks/local/useSecureStorage'
 
-export default function Auth({ children }) {
+export default function Auth({children}) {
   const [
     refreshDeviceManagerQuery,
-    { data: RDMData, loading: RDMLoading, error: RDMError },
+    {data: RDMData, loading: RDMLoading, error: RDMError},
   ] = useRefreshDeviceManagerLazyQuery({
-    fetchPolicy: "network-only",
-    onCompleted: (data) => {
+    fetchPolicy: 'network-only',
+    onCompleted: data => {
       if (
-        data.refreshDeviceManager?.__typename === "AuthorizationDeviceProfile"
+        data.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile'
       ) {
         const deviceProfile =
-          data.refreshDeviceManager as AuthorizationDeviceProfile;
+          data.refreshDeviceManager as AuthorizationDeviceProfile
 
-        AuthorizationReactiveVar(deviceProfile);
+        AuthorizationReactiveVar(deviceProfile)
       }
-      if (data.refreshDeviceManager?.__typename === "Error") {
+      if (data.refreshDeviceManager?.__typename === 'Error') {
       }
     },
-    onError: (e) => {
-      AuthorizationReactiveVar(null);
-      createGuestProfileMutation();
+    onError: e => {
+      AuthorizationReactiveVar(null)
+      createGuestProfileMutation()
       // console.log("🚀 ~ Auth REFRESH DEVICE MANAGER~ e:", e);
     },
-  });
+  })
 
   const [
     createGuestProfileMutation,
-    { data, loading: CGLoading, error: CGPMError },
+    {data, loading: CGLoading, error: CGPMError},
   ] = useCreateGuestProfileMutation({
-    onCompleted: async (data) => {
-      console.log("🚀 ~ onCompleted: ~ data:", data);
+    onCompleted: async data => {
+      console.log('🚀 ~ onCompleted: ~ data:', data)
       if (
-        data?.createGuestProfile?.__typename === "AuthorizationDeviceProfile"
+        data?.createGuestProfile?.__typename === 'AuthorizationDeviceProfile'
       ) {
         const deviceProfile =
-          data.createGuestProfile as AuthorizationDeviceProfile;
+          data.createGuestProfile as AuthorizationDeviceProfile
         if (deviceProfile) {
-          AuthorizationReactiveVar(deviceProfile);
+          AuthorizationReactiveVar(deviceProfile)
         }
       }
     },
-    onError: (e) => {
-      console.log("🚀 ~ Auth ~ e CREATE GUEST:", e.name);
+    onError: e => {
+      console.log('🚀 ~ Auth ~ e CREATE GUEST:', e.name)
     },
-  });
+  })
 
   const applicationAuthorization = useCallback(async () => {
     // await secureStorageItemDelete({
@@ -70,22 +71,22 @@ export default function Auth({ children }) {
     const getAuthorization = (await secureStorageItemRead({
       key: AUTHORIZATION,
       decode: true,
-    })) as AuthorizationDecoded;
+    })) as AuthorizationDecoded
 
     if (!getAuthorization) {
-      createGuestProfileMutation();
+      createGuestProfileMutation()
     } else {
-      refreshDeviceManagerQuery();
+      refreshDeviceManagerQuery()
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
-    applicationAuthorization();
-  }, []);
+    applicationAuthorization()
+  }, [])
 
   if (RDMLoading || CGLoading) {
-    return null;
+    return null
   }
 
-  return <>{children}</>;
+  return <>{children}</>
 }

@@ -14,12 +14,12 @@ For example, using our `device` store looks like this, since it's scoped to the
 device (the most base level scope):
 
 ```typescript
-import { device } from '#/storage';
+import {device} from '#/storage'
 
-device.set(['foobar'], true);
-device.get(['foobar']);
-device.remove(['foobar']);
-device.removeMany([], ['foobar']);
+device.set(['foobar'], true)
+device.get(['foobar'])
+device.remove(['foobar'])
+device.removeMany([], ['foobar'])
 ```
 
 ## TypeScript
@@ -35,27 +35,18 @@ case, storage instances are created with type-guards, like this:
 
 ```typescript
 type AccountSchema = {
-  language: `${string}-${string}`;
-};
+  language: `${string}-${string}`
+}
 
-type DID = `did:${string}`;
+type DID = `did:${string}`
 
-const account = new Storage<
-  [DID],
-  AccountSchema
->({
+const account = new Storage<[DID], AccountSchema>({
   id: 'account',
-});
+})
 
-account.set(
-  ['did:plc:abc', 'language'],
-  'en-US',
-);
+account.set(['did:plc:abc', 'language'], 'en-US')
 
-const language = account.get([
-  'did:plc:abc',
-  'language',
-]);
+const language = account.get(['did:plc:abc', 'language'])
 ```
 
 Here, if `['did:plc:abc']` is not supplied along with the key of

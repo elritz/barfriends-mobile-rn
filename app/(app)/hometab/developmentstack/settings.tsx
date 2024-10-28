@@ -1,15 +1,16 @@
+import React from 'react'
+import {StyleSheet, Text, View} from 'react-native'
+import {useReactiveVar} from '@apollo/client'
+import {Feather} from '@expo/vector-icons'
+import {FlashList} from '@shopify/flash-list'
+
 import {Box} from '#/src/components/ui/box'
+import {Divider} from '#/src/components/ui/divider'
 import {Heading} from '#/src/components/ui/heading'
 import {HStack} from '#/src/components/ui/hstack'
 import {Pressable} from '#/src/components/ui/pressable'
 import {VStack} from '#/src/components/ui/vstack'
 import {ThemeReactiveVar} from '#/src/state/reactive'
-import {useReactiveVar} from '@apollo/client'
-import {Feather} from '@expo/vector-icons'
-import {Divider} from '#/src/components/ui/divider'
-import {FlashList} from '@shopify/flash-list'
-import React from 'react'
-import {View, Text, StyleSheet} from 'react-native'
 
 const Settings: React.FC = () => {
   const rTheme = useReactiveVar(ThemeReactiveVar)
@@ -23,7 +24,10 @@ const Settings: React.FC = () => {
         ItemSeparatorComponent={() => <Divider className="my-5" />}
         renderItem={({item}) => {
           return (
-            <Pressable onPress={item.onPress} className="mx-3 ">
+            <Pressable
+              accessibilityRole="button"
+              onPress={item.onPress}
+              className="mx-3 ">
               <VStack className="">
                 <Heading className="text-lg">{item.title}</Heading>
                 <HStack className="items-center justify-between  py-4">

@@ -1,62 +1,43 @@
-import { Text } from "#/src/components/ui/text";
-import { Pressable } from "#/src/components/ui/pressable";
-import { Input, InputField } from "#/src/components/ui/input";
-import { HStack } from "#/src/components/ui/hstack";
-import { useReactiveVar } from "@apollo/client";
-import { Ionicons } from "@expo/vector-icons";
-import { AntDesign } from "@expo/vector-icons";
-import { ThemeReactiveVar } from "#/reactive";
-import {
-  useGlobalSearchParams,
-  useRouter,
-  useSegments,
-  router as _Router,
-} from "expo-router";
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
-import { Controller, useForm } from "react-hook-form";
-import { TextInput } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import {router as _Router, useRouter, useSegments} from 'expo-router'
+import {useReactiveVar} from '@apollo/client'
+import {Ionicons} from '@expo/vector-icons'
+
+import {ThemeReactiveVar} from '#/reactive'
+import {HStack} from '#/src/components/ui/hstack'
+import {Input} from '#/src/components/ui/input'
+import {Pressable} from '#/src/components/ui/pressable'
+import {Text} from '#/src/components/ui/text'
 
 type Props = {
-  placeholder?: string;
-};
+  placeholder?: string
+}
 
 const SearchInputVenueFeedDisabled = (props: Props) => {
-  const insets = useSafeAreaInsets();
-  const rTheme = useReactiveVar(ThemeReactiveVar);
-  const router = useRouter();
-  const segments: string[] = useSegments();
-  const [showBack, setShowBack] = useState(false);
-
+  const rTheme = useReactiveVar(ThemeReactiveVar)
+  const router = useRouter()
+  const segments: string[] = useSegments()
   return (
     <HStack className="relative mt-[10] flex-1">
       <Pressable
+        accessibilityRole="button"
         onPressIn={() => {
-          if (segments.includes("hometab")) {
+          if (segments.includes('hometab')) {
             router.push({
-              pathname: "/(app)/explore/searchtext",
+              pathname: '/(app)/explore/searchtext',
               params: {
-                searchtext: "",
+                searchtext: '',
               },
-            });
+            })
           }
         }}
-        className="relative flex-1 pb-2"
-      >
+        className="relative flex-1 pb-2">
         <Input
           variant="rounded"
           isReadOnly={true}
-          className={` ${rTheme.colorScheme === "light" ? rTheme.theme?.gluestack.tokens.colors.light100 : rTheme.theme?.gluestack.tokens.colors.light900} ${!showBack ? "ml-2" : "ml-0"} mr-2 flex-1 items-center justify-center`}
-        >
+          className={` ${rTheme.colorScheme === 'light' ? rTheme.theme?.gluestack.tokens.colors.light100 : rTheme.theme?.gluestack.tokens.colors.light900} 'ml-2' mr-2 flex-1 items-center justify-center`}>
           <Ionicons
             color={
-              rTheme.colorScheme === "light"
+              rTheme.colorScheme === 'light'
                 ? rTheme.theme?.gluestack.tokens.colors.light700
                 : rTheme.theme?.gluestack.tokens.colors.light100
             }
@@ -70,7 +51,7 @@ const SearchInputVenueFeedDisabled = (props: Props) => {
         </Input>
       </Pressable>
     </HStack>
-  );
-};
+  )
+}
 
-export default SearchInputVenueFeedDisabled;
+export default SearchInputVenueFeedDisabled

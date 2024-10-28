@@ -1,19 +1,20 @@
-import {Input, InputField} from '#/src/components/ui/input'
-import {HStack} from '#/src/components/ui/hstack'
-import {useReactiveVar} from '@apollo/client'
-import {Ionicons} from '@expo/vector-icons'
-import {AntDesign} from '@expo/vector-icons'
-import {ThemeReactiveVar} from '#/reactive'
+import {useCallback, useEffect, useLayoutEffect, useRef, useState} from 'react'
+import {TextInput} from 'react-native'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {
+  router as _Router,
   useGlobalSearchParams,
   useRouter,
   useSegments,
-  router as _Router,
 } from 'expo-router'
-import {useCallback, useEffect, useLayoutEffect, useRef, useState} from 'react'
+import {useReactiveVar} from '@apollo/client'
+import {Ionicons} from '@expo/vector-icons'
+import {AntDesign} from '@expo/vector-icons'
 import {Controller, useForm} from 'react-hook-form'
-import {TextInput} from 'react-native'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
+
+import {ThemeReactiveVar} from '#/reactive'
+import {HStack} from '#/src/components/ui/hstack'
+import {Input, InputField} from '#/src/components/ui/input'
 
 type Props = {
   placeholder?: string
@@ -59,10 +60,10 @@ const SearchInputVenueFeed = (props: Props) => {
           _inputRef.current?.focus()
         }
         if (
-          segments.includes('searcharea') &&
-          segments.includes(
-            'searchcountry' || 'searchstate' || 'searchstatecities',
-          )
+          (segments.includes('searcharea') &&
+            segments.includes('searchcountry')) ||
+          segments.includes('searchstate') ||
+          segments.includes('searchstatecities')
         ) {
           _inputRef.current?.focus()
         }
@@ -86,7 +87,7 @@ const SearchInputVenueFeed = (props: Props) => {
     })
   }, [])
 
-  const handleSearchSubmitEditting = data => {
+  const handleSearchSubmitEditting = (data: {searchtext: any}) => {
     if (segments.includes('searchresults')) {
       router.push({
         pathname: '/(app)/explore/searchresults',
@@ -119,6 +120,7 @@ const SearchInputVenueFeed = (props: Props) => {
         name="searchtext"
         render={({field: {value, onChange}}) => (
           <Input
+            ref={_inputRef}
             variant="rounded"
             className={` ${rTheme.colorScheme === 'light' ? rTheme.theme?.gluestack.tokens.colors.light100 : rTheme.theme?.gluestack.tokens.colors.light900} ${!showBack ? 'ml-2' : 'ml-0'} mr-2 flex-1 items-center`}>
             <Ionicons
@@ -136,8 +138,7 @@ const SearchInputVenueFeed = (props: Props) => {
 
             <InputField
               hitSlop={{top: 12, bottom: 12, left: 0, right: 15}}
-              isReadOnly={!showBack}
-              ref={_inputRef}
+              readOnly={!showBack}
               // autoFocus={autoFucus}
               placeholderTextColor={
                 rTheme.colorScheme === 'light'

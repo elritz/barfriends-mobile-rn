@@ -1,25 +1,26 @@
 import React, {useEffect, useState} from 'react'
-import {View, Pressable} from 'react-native'
+import {Pressable, View} from 'react-native'
+import * as Application from 'expo-application'
 import * as Clipboard from 'expo-clipboard'
+import Constants from 'expo-constants'
+import * as Notifications from 'expo-notifications'
+import {useReactiveVar} from '@apollo/client'
+import {Feather} from '@expo/vector-icons'
+import {FlashList} from '@shopify/flash-list'
+
+import {useRefreshDeviceManagerQuery} from '#/graphql/generated'
+import {Box} from '#/src/components/ui/box'
+import {Divider} from '#/src/components/ui/divider'
+import {Heading} from '#/src/components/ui/heading'
+import {HStack} from '#/src/components/ui/hstack'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
+import {AUTHORIZATION} from '#/src/constants/StorageConstants'
+import {ThemeReactiveVar} from '#/src/state/reactive'
 import {
   secureStorageItemDelete,
   secureStorageItemRead,
 } from '#/src/util/hooks/local/useSecureStorage'
-import {AUTHORIZATION} from '#/src/constants/StorageConstants'
-import {FlashList} from '@shopify/flash-list'
-import {Feather} from '@expo/vector-icons'
-import {Divider} from '#/src/components/ui/divider'
-import {VStack} from '#/src/components/ui/vstack'
-import {Text} from '#/src/components/ui/text'
-import {Heading} from '#/src/components/ui/heading'
-import {HStack} from '#/src/components/ui/hstack'
-import {ThemeReactiveVar} from '#/src/state/reactive'
-import {useReactiveVar} from '@apollo/client'
-import {Box} from '#/src/components/ui/box'
-import {useRefreshDeviceManagerQuery} from '#/graphql/generated'
-import * as Application from 'expo-application'
-import * as Notifications from 'expo-notifications'
-import Constants from 'expo-constants'
 
 const Tokens: React.FC = () => {
   const [atoken, setAToken] = useState('')
@@ -112,14 +113,18 @@ const Tokens: React.FC = () => {
                 <HStack
                   space="3xl"
                   className="items-center justify-between mr-3">
-                  <Pressable onPress={item.onPressDelete}>
+                  <Pressable
+                    accessibilityRole="button"
+                    onPress={item.onPressDelete}>
                     <Feather
                       color={rTheme.theme?.gluestack.tokens.colors.red500}
                       size={25}
                       name="trash"
                     />
                   </Pressable>
-                  <Pressable onPress={item.onPressCopy}>
+                  <Pressable
+                    accessibilityRole="button"
+                    onPress={item.onPressCopy}>
                     <Feather
                       color={rTheme.theme?.gluestack.tokens.colors.primary500}
                       size={25}

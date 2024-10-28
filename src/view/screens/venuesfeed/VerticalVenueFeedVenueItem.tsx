@@ -1,19 +1,17 @@
-import {VStack} from '#/src/components/ui/vstack'
-import {Text} from '#/src/components/ui/text'
-import {Pressable} from '#/src/components/ui/pressable'
-import {Heading} from '#/src/components/ui/heading'
-import {Button, ButtonText} from '#/src/components/ui/button'
-import {Box} from '#/src/components/ui/box'
-// TODO: If user is joined to the venue remove join button show joined
-import {useReactiveVar} from '@apollo/client'
-import {ProfileVenue} from '#/graphql/generated'
-import {AuthorizationReactiveVar} from '#/reactive'
-import useGetDistance from '#/src/util/hooks/useDistance'
-import {useRouter} from 'expo-router'
-import {useEffect, useState, memo, useCallback} from 'react'
+import {memo, useCallback, useEffect, useState} from 'react'
 import {Image} from 'react-native'
 import {StyleSheet} from 'react-native'
 import {Blurhash} from 'react-native-blurhash'
+import {useRouter} from 'expo-router'
+// TODO: If user is joined to the venue remove join button show joined
+import {useReactiveVar} from '@apollo/client'
+
+import {ProfileVenue, useRefreshDeviceManagerQuery} from '#/graphql/generated'
+import {AuthorizationReactiveVar} from '#/reactive'
+import {Box} from '#/src/components/ui/box'
+import {Heading} from '#/src/components/ui/heading'
+import {Pressable} from '#/src/components/ui/pressable'
+import {VStack} from '#/src/components/ui/vstack'
 
 type Props = {
   item: Partial<ProfileVenue | null | undefined>
@@ -23,68 +21,68 @@ type Props = {
 }
 
 const VerticalVenueFeedVenueItem: React.FC<Props> = ({
-  showJoin = true,
   showDistance = true,
-  item,
+  item: venueProfile,
 }: Props) => {
   const router = useRouter()
   const [hideBlur, setHideBlur] = useState(false)
   const [distance, setDistance] = useState(0)
   const [metric, setMetric] = useState('m')
-  const [loadingDistance, setLoadingDistance] = useState(false)
-  const [canJoin, setCanJoin] = useState(false)
+  const [_, setLoadingDistance] = useState(false)
+  const [__, setCanJoin] = useState(false)
   const [isJoined, setIsJoined] = useState(false)
   const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 
-  const {refreshLocation} = useGetDistance()
-
-  const setDist = useCallback(
-    ({distanceInM}) => {
-      setLoadingDistance(true)
-      if (distanceInM) {
-        if (distanceInM > 1000) {
-          const val = parseInt((distanceInM / 1000).toFixed(1))
-          setDistance(val)
-          setMetric('km')
-          setCanJoin(false)
-        } else {
-          setDistance(distanceInM)
-          setMetric('m')
-          if (distanceInM < 25) {
-            setCanJoin(true)
-          }
+  const setDist = useCallback(({distanceInM}: {distanceInM: number}) => {
+    setLoadingDistance(true)
+    if (distanceInM) {
+      if (distanceInM > 1000) {
+        const val = parseInt((distanceInM / 1000).toFixed(1))
+        setDistance(val)
+        setMetric('km')
+        setCanJoin(false)
+      } else {
+        setDistance(distanceInM)
+        setMetric('m')
+        if (distanceInM < 25) {
+          setCanJoin(true)
         }
       }
-      setTimeout(() => {
-        setLoadingDistance(false)
-      }, 1000)
-    },
-    [distance],
-  )
-
-  useEffect(() => {
-    if (item?.distanceInM) {
-      setDist({distanceInM: item?.distanceInM})
     }
-  }, [item?.distanceInM])
+    setTimeout(() => {
+      setLoadingDistance(false)
+    }, 1000)
+  }, [])
 
-  useEffect(() => {
-    if (rAuthorizationVar?.Profile?.Personal) {
+  const {} = useRefreshDeviceManagerQuery({
+    onCompleted(data) {
       if (
-        rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out.some(
-          item => item.venueProfileId === item?.id,
-        )
+        data.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile'
       ) {
-        setIsJoined(true)
+        if (
+          data.refreshDeviceManager?.Profile?.Personal?.LiveOutPersonal?.Out.some(
+            item => venueProfile?.venueProfileId === item?.id,
+          )
+        ) {
+          setIsJoined(true)
+        }
       }
-    }
-  }, [rAuthorizationVar, isJoined])
+    },
+  })
 
-  const getTitleCase = str => {
+  useEffect(() => {
+    if (venueProfile?.distanceInM) {
+      setDist({distanceInM: venueProfile?.distanceInM})
+    }
+  }, [setDist, venueProfile?.distanceInM])
+
+  useEffect(() => {}, [rAuthorizationVar, isJoined])
+
+  const getTitleCase = (str: string) => {
     const titleCase = str
       .toLowerCase()
       .split(' ')
-      .map(word => {
+      .map((word: string) => {
         return word.charAt(0).toUpperCase() + word.slice(1)
       })
       .join(' ')
@@ -94,23 +92,19 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = ({
 
   const _press = () => {
     router.push({
-      pathname: `/(app)/public/venue/${item?.IdentifiableInformation?.username}`,
+      pathname: `/(app)/public/venue/[username]`,
       params: {
-        venueProfileId: String(item?.id),
-        distanceInM: Number(item?.distanceInM),
-        latitude: Number(item?.Venue?.Location?.Geometry?.latitude),
-        longitude: Number(item?.Venue?.Location?.Geometry?.longitude),
+        username: String(venueProfile?.IdentifiableInformation?.username),
+        venueProfileId: String(venueProfile?.id),
+        distanceInM: Number(venueProfile?.distanceInM),
+        latitude: Number(venueProfile?.Venue?.Location?.Geometry?.latitude),
+        longitude: Number(venueProfile?.Venue?.Location?.Geometry?.longitude),
       },
     })
   }
 
-  // const _pressLeave = () => {
-  // 	isJoined ? removePersonalJoinsVenueMutation() : addPersonalJoinVenueMutation()
-  // }
-
   return (
-    // <Pressable disabled={JVLoading || RPJVLoading} onPress={() => _press()}>
-    <Pressable onPress={() => _press()}>
+    <Pressable accessibilityRole="button" onPress={() => _press()}>
       <VStack
         space={'md'}
         style={{
@@ -124,7 +118,8 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = ({
           }}
           className="bg-transparent">
           <Image
-            source={{uri: item?.photos?.[0]?.url}}
+            accessibilityIgnoresInvertColors
+            source={{uri: venueProfile?.photos?.[0]?.url}}
             resizeMode="cover"
             onLoadEnd={() => setHideBlur(true)}
             style={{
@@ -134,9 +129,9 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = ({
           />
           {!hideBlur && (
             <>
-              {item?.photos?.[0]?.blurhash && (
+              {venueProfile?.photos?.[0]?.blurhash && (
                 <Blurhash
-                  blurhash={String(item.photos[0].blurhash)}
+                  blurhash={String(venueProfile.photos[0].blurhash)}
                   style={{
                     flex: 1,
                     borderRadius: 10,
@@ -154,7 +149,9 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = ({
             // underline={isPressed}
             ellipsizeMode="tail"
             className="leading-xs text-left text-lg font-bold dark:color-white">
-            {getTitleCase(item?.IdentifiableInformation?.fullname)}
+            {getTitleCase(
+              venueProfile?.IdentifiableInformation?.fullname ?? '',
+            )}
           </Heading>
           {showDistance && (
             <Heading
@@ -164,43 +161,6 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = ({
               {distance} {metric}
             </Heading>
           )}
-          {/* {showJoin && (
-            <>
-              {canJoin ? (
-                <Button
-                  variant={isJoined ? "outline" : "solid"}
-                  onPress={() => _pressLeave()}
-                  size="sm"
-                  className={` ${isJoined ? "bg-transparent" : "bg-primary-500"} w-auto rounded-md`}
-                >
-                  {JVLoading || RPJVLoading ? (
-                    <ButtonText>{isJoined ? "Leaving" : "Joining"}</ButtonText>
-                  ) : (
-                    <ButtonText>{isJoined ? "Leave" : "Join"}</ButtonText>
-                  )}
-                </Button>
-              ) : metric === "m" && distance < 100 ? (
-                <Button
-                  variant={"link"}
-                  isDisabled={loadingDistance}
-                  onPress={async () => {
-                    setLoadingDistance(true);
-                    const { distanceInM } = await refreshLocation({
-                      vlat: item?.Venue?.Location?.Geometry?.latitude,
-                      vlng: item?.Venue?.Location?.Geometry?.longitude,
-                    });
-                    setLoadingDistance(false);
-                    setDist({ distanceInM });
-                  }}
-                  className="rounded-md dark:color-white"
-                >
-                  <ButtonText className="dark:color-white">
-                    Refresh distance
-                  </ButtonText>
-                </Button>
-              ) : null}
-            </>
-          )} */}
         </VStack>
       </VStack>
     </Pressable>

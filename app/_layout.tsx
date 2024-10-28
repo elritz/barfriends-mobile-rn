@@ -1,78 +1,66 @@
 //TODO: Add notfication listener
 import 'react-native-gesture-handler'
-import {GestureHandlerRootView} from 'react-native-gesture-handler'
-
-import {ApolloProvider} from '@apollo/client'
-import Auth from '#/src/components/layouts/Auth'
-import Theme from '#/src/components/layouts/Theme'
-import {
-  NowPreferencePermissionInitialState,
-  InitialStateJoiningInformationPreferencePermission,
-  InitialStateSearchArea,
-  InitialStatePreferenceSystemsOfUnits,
-} from '#/src/constants/Preferences'
-import {
-  LOCAL_STORAGE_SEARCH_AREA,
-  LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME,
-  LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS,
-  LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
-  LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION,
-  LOCAL_STORAGE_PREFERENCE_SYSTEM_OF_UNITS,
-  LOCAL_STORAGE_INFORMATION_JOIN_VENUE,
-} from '#/src/constants/StorageConstants'
-import {
-  LocalStoragePreferenceSearchAreaType,
-  LocalStoragePreferenceThemeType,
-  LocalStoragePreferenceAskNotificationPermissionType,
-  LocalStoragePreferenceAskBackgroundLocationPermissionType,
-  LocalStoragePreferenceSystemsOfUnitsType,
-  LocalStorageInformationJoinVenueType,
-} from '#/types/preferences'
-import {BottomSheetModalProvider} from '@gorhom/bottom-sheet'
-import profilingclient from '#/graphql/apollo/profiling/profiling-apollo-server'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import {
-  SearchAreaReactiveVar,
-  ThemeReactiveVar,
-  PreferencePermissionNotificationReactiveVar,
-  PreferenceForegroundLocationPermissionReactiveVar,
-  PreferenceSystemsOfUnitsReactiveVar,
-  PermissionContactsReactiveVar,
-  PermissionCameraReactiveVar,
-  PermissionMicrophoneReactiveVar,
-  PermissionForegroundLocationReactiveVar,
-  PermissionBackgroundLocationReactiveVar,
-  PermissionMediaReactiveVar,
-  PermissionNotificationReactiveVar,
-  InformationJoinVenueReactiveVar,
-} from '#/reactive'
-// import useSetSearchAreaWithLocation from "#/src/util/hooks/searcharea/useSetSearchAreaWithLocation";
-import {Camera} from 'expo-camera/legacy'
-import * as Contacts from 'expo-contacts'
 import 'expo-dev-client'
 import 'react-native-reanimated'
+
+import {useEffect} from 'react'
+import {Appearance} from 'react-native'
+import {apolloDevToolsInit} from 'react-native-apollo-devtools-client'
+import {GestureHandlerRootView} from 'react-native-gesture-handler'
+import {KeyboardProvider} from 'react-native-keyboard-controller'
+import {SafeAreaProvider} from 'react-native-safe-area-context'
+import {isRunningInExpoGo} from 'expo'
+import {Camera} from 'expo-camera/legacy'
+import * as Contacts from 'expo-contacts'
 import {
-  getForegroundPermissionsAsync,
   getBackgroundPermissionsAsync,
+  getForegroundPermissionsAsync,
 } from 'expo-location'
 import {getPermissionsAsync as getMediaPermissionAsync} from 'expo-media-library'
 import {getPermissionsAsync as getNotificiationPermissionAsync} from 'expo-notifications'
 import {Stack, useNavigationContainerRef} from 'expo-router'
-import * as SplashScreen from 'expo-splash-screen'
 import * as ScreenOrientation from 'expo-screen-orientation'
-import {useEffect} from 'react'
-import {Appearance} from 'react-native'
-import {KeyboardProvider} from 'react-native-keyboard-controller'
-import {SafeAreaProvider} from 'react-native-safe-area-context'
+import * as SplashScreen from 'expo-splash-screen'
+import {ApolloProvider} from '@apollo/client'
+import {loadDevMessages, loadErrorMessages} from '@apollo/client/dev'
+import {BottomSheetModalProvider} from '@gorhom/bottom-sheet'
 import * as Sentry from '@sentry/react-native'
-import {loadErrorMessages, loadDevMessages} from '@apollo/client/dev'
-import {apolloDevToolsInit} from 'react-native-apollo-devtools-client'
-import {isRunningInExpoGo} from 'expo'
+
+import profilingclient from '#/graphql/apollo/profiling/profiling-apollo-server'
+import {
+  InformationJoinVenueReactiveVar,
+  PermissionsPreferencesReactiveVar,
+  PermissionsReactiveVar,
+  PreferenceSystemsOfUnitsReactiveVar,
+  SearchAreaReactiveVar,
+  ThemeReactiveVar,
+} from '#/reactive'
+import Auth from '#/src/components/layouts/Auth'
+import Theme from '#/src/components/layouts/Theme'
+import {
+  InitialStatePreferenceSystemsOfUnits,
+  InitialStateSearchArea,
+  NowPreferencePermissionInitialState,
+} from '#/src/constants/Preferences'
+import {
+  LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
+  LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION,
+  LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS,
+  LOCAL_STORAGE_PREFERENCE_SYSTEM_OF_UNITS,
+  LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME,
+  LOCAL_STORAGE_SEARCH_AREA,
+} from '#/src/constants/StorageConstants'
+import {storage} from '#/src/storage/mmkv'
+import {
+  LocalStoragePreferenceAskBackgroundLocationPermissionType,
+  LocalStoragePreferenceAskNotificationPermissionType,
+  LocalStoragePreferenceSearchAreaType,
+  LocalStoragePreferenceSystemsOfUnitsType,
+  LocalStoragePreferenceThemeType,
+} from '#/types/preferences'
+export {ErrorBoundary} from 'expo-router'
+
 import '#/global.css'
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from 'expo-router'
 
 // export const unstable_settings = {
 // 	// Ensure that reloading on `/modal` keeps a back button present.
@@ -123,48 +111,14 @@ function RootLayout() {
 
   const setAsyncPreferencesLocalStorageData = async () => {
     try {
-      // await AsyncStorage.removeItem(LOCAL_STORAGE_SEARCH_AREA)
-      // await AsyncStorage.removeItem(LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS)
-      // await AsyncStorage.removeItem(LOCAL_STORAGE_PREFERENCE_SYSTEM_OF_UNITS)
-      // await AsyncStorage.removeItem(LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION)
-      // await AsyncStorage.removeItem(LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION)
-
-      // INFORMATION JOIN VENUE PROMPT ~ START
-      const getInformationJoinVenue = await AsyncStorage.getItem(
-        LOCAL_STORAGE_INFORMATION_JOIN_VENUE,
-      )
-
-      if (getInformationJoinVenue !== null) {
-        const values: LocalStorageInformationJoinVenueType = JSON.parse(
-          getInformationJoinVenue,
-        )
-
-        InformationJoinVenueReactiveVar({
-          ...values,
-        })
-      } else {
-        const newJoinVenueInformation = JSON.stringify({
-          ...InitialStateJoiningInformationPreferencePermission,
-        } as LocalStorageInformationJoinVenueType)
-
-        await AsyncStorage.setItem(
-          LOCAL_STORAGE_INFORMATION_JOIN_VENUE,
-          newJoinVenueInformation,
-        )
-      }
-      // INFORMATION JOIN VENUE PROMPT ~ END
-
       // SEARCHAREA_PREFERENCE ~ START
-      const getLocalStorageSearchArea = await AsyncStorage.getItem(
+      const getLocalStorageSearchArea = storage.getString(
         LOCAL_STORAGE_SEARCH_AREA,
       )
 
       const foregroundLocationPermission = await getForegroundPermissionsAsync()
 
-      if (
-        getLocalStorageSearchArea !== null &&
-        foregroundLocationPermission.granted
-      ) {
+      if (getLocalStorageSearchArea && foregroundLocationPermission.granted) {
         const values: LocalStoragePreferenceSearchAreaType = JSON.parse(
           getLocalStorageSearchArea,
         )
@@ -180,15 +134,12 @@ function RootLayout() {
           ...InitialStateSearchArea,
         } as LocalStoragePreferenceSearchAreaType)
 
-        await AsyncStorage.setItem(
-          LOCAL_STORAGE_SEARCH_AREA,
-          newSearchAreaValue,
-        )
+        storage.set(LOCAL_STORAGE_SEARCH_AREA, newSearchAreaValue)
       }
       // SEARCHAREA_PREFERENCE ~ END
 
       // THEME_PREFERENCE ~ START
-      const getLocalStorageTheme = await AsyncStorage.getItem(
+      const getLocalStorageTheme = storage.getString(
         LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME,
       )
 
@@ -197,7 +148,7 @@ function RootLayout() {
           colorScheme: 'system',
         } as LocalStoragePreferenceThemeType)
 
-        await AsyncStorage.setItem(
+        storage.set(
           LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME,
           initialThemeColorSchemeState,
         )
@@ -229,29 +180,31 @@ function RootLayout() {
 
       // NOTIFICATION_PREFERENCE ~ START
       const getLocalStorageNotificationPermissionsPreference =
-        await AsyncStorage.getItem(LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS)
+        storage.getString(LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS)
 
       if (!getLocalStorageNotificationPermissionsPreference) {
-        await AsyncStorage.setItem(
+        storage.set(
           LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS,
           JSON.stringify(NowPreferencePermissionInitialState),
         )
       } else {
-        // using local_storage values set the correct information
         const values: LocalStoragePreferenceAskNotificationPermissionType =
           JSON.parse(getLocalStorageNotificationPermissionsPreference)
-        PreferencePermissionNotificationReactiveVar({
-          ...values,
+        PermissionsPreferencesReactiveVar({
+          ...PermissionsPreferencesReactiveVar(),
+          notifications: {
+            ...values,
+          },
         })
       }
       // NOTIFICATION_PREFERENCE ~ END
 
       // BACKGROUNDLOCATION_PREFERENCE ~ START
       const getLocalStoragePreferenceBackgroundLocationPreference =
-        await AsyncStorage.getItem(LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION)
+        storage.getString(LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION)
 
       if (!getLocalStoragePreferenceBackgroundLocationPreference) {
-        await AsyncStorage.setItem(
+        storage.set(
           LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
           JSON.stringify(NowPreferencePermissionInitialState),
         )
@@ -268,30 +221,32 @@ function RootLayout() {
 
       // FOREGROUNDLOCATION_PREFERENCE ~ START
       const getLocalStoragePreferenceForegroundLocationPreference =
-        await AsyncStorage.getItem(LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION)
+        storage.getString(LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION)
 
       if (!getLocalStoragePreferenceForegroundLocationPreference) {
-        await AsyncStorage.setItem(
+        storage.set(
           LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION,
           JSON.stringify(NowPreferencePermissionInitialState),
         )
       } else {
         const values: LocalStoragePreferenceAskBackgroundLocationPermissionType =
           JSON.parse(getLocalStoragePreferenceForegroundLocationPreference)
-
-        PreferenceForegroundLocationPermissionReactiveVar({
-          ...values,
+        PermissionsPreferencesReactiveVar({
+          ...PermissionsPreferencesReactiveVar(),
+          locationForeground: {
+            ...values,
+          },
         })
       }
       // FOREGROUNDLOCATION_PREFERENCE ~ END
 
       // SYSTEM_OF_UNITS_PREFERENCE ~ START
-      const getLocalStorageSystemOfUnitsPreference = await AsyncStorage.getItem(
+      const getLocalStorageSystemOfUnitsPreference = storage.getString(
         LOCAL_STORAGE_PREFERENCE_SYSTEM_OF_UNITS,
       )
 
       if (!getLocalStorageSystemOfUnitsPreference) {
-        await AsyncStorage.setItem(
+        storage.set(
           LOCAL_STORAGE_PREFERENCE_SYSTEM_OF_UNITS,
           JSON.stringify(InitialStatePreferenceSystemsOfUnits),
         )
@@ -311,20 +266,20 @@ function RootLayout() {
   const setAsyncPermissions = async () => {
     const contactsPermission = await Contacts.getPermissionsAsync()
     const cameraPermission = await Camera.getCameraPermissionsAsync()
-    const microphonePermission = await Camera.getMicrophonePermissionsAsync()
     const foregroundLocationPermission = await getForegroundPermissionsAsync()
 
     const backgroundLocationPermission = await getBackgroundPermissionsAsync()
     const mediaLibraryPermission = await getMediaPermissionAsync()
     const notificationPermission = await getNotificiationPermissionAsync()
 
-    PermissionContactsReactiveVar(contactsPermission)
-    PermissionCameraReactiveVar(cameraPermission)
-    PermissionMicrophoneReactiveVar(microphonePermission)
-    PermissionForegroundLocationReactiveVar(foregroundLocationPermission)
-    PermissionBackgroundLocationReactiveVar(backgroundLocationPermission)
-    PermissionMediaReactiveVar(mediaLibraryPermission)
-    PermissionNotificationReactiveVar(notificationPermission)
+    PermissionsReactiveVar({
+      contacts: contactsPermission,
+      camera: cameraPermission,
+      locationForeground: foregroundLocationPermission,
+      locationBackground: backgroundLocationPermission,
+      medialibrary: mediaLibraryPermission,
+      notifications: notificationPermission,
+    })
   }
 
   useEffect(() => {

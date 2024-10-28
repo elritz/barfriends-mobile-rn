@@ -1,9 +1,10 @@
-import {Pressable} from '#/src/components/ui/pressable'
+import {useRouter} from 'expo-router'
+import {FlashList} from '@shopify/flash-list'
+
+import {Divider} from '#/src/components/ui/divider'
 import {Heading} from '#/src/components/ui/heading'
 import {HStack} from '#/src/components/ui/hstack'
-import {Divider} from '#/src/components/ui/divider'
-import {FlashList} from '@shopify/flash-list'
-import {useRouter} from 'expo-router'
+import {Pressable} from '#/src/components/ui/pressable'
 
 export default function Preferences() {
   const router = useRouter()
@@ -75,7 +76,7 @@ export default function Preferences() {
       ItemSeparatorComponent={() => <Divider />}
       renderItem={({item}) => {
         return (
-          <Pressable onPressIn={item.route}>
+          <Pressable accessibilityRole="button" onPressIn={item.route}>
             <HStack
               style={{height: ITEM_HEIGHT}}
               className="flex-1 items-center">

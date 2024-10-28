@@ -1,16 +1,17 @@
-import {Text} from '#/src/components/ui/text'
-import {Heading} from '#/src/components/ui/heading'
-import {VStack} from '#/src/components/ui/vstack'
-import {Pressable} from '#/src/components/ui/pressable'
-import {Box} from '#/src/components/ui/box'
+import {SafeAreaView, ScrollView} from 'react-native'
+import {useGlobalSearchParams, useRouter} from 'expo-router'
+
 import {
   AuthorizationDeviceProfile,
   useRemoveDeviceProfileFromDeviceManagerMutation,
   useSwitchDeviceProfileMutation,
 } from '#/graphql/generated'
 import {AuthorizationReactiveVar} from '#/reactive'
-import {useGlobalSearchParams, useRouter} from 'expo-router'
-import {SafeAreaView, ScrollView} from 'react-native'
+import {Box} from '#/src/components/ui/box'
+import {Heading} from '#/src/components/ui/heading'
+import {Pressable} from '#/src/components/ui/pressable'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
 
 export default () => {
   const router = useRouter()
@@ -79,7 +80,7 @@ export default () => {
   ]
 
   const RoundedListItem = ({children, ...props}) => (
-    <Pressable onPress={props.onPress}>
+    <Pressable accessibilityRole="button" onPress={props.onPress}>
       <Box className="flex-column h-[50px] items-start px-2 py-3">
         {children}
       </Box>

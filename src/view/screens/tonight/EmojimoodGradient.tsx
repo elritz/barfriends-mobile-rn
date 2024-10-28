@@ -1,13 +1,10 @@
-import {useRefreshDeviceManagerQuery} from '#/graphql/generated'
-import {LinearGradient} from 'expo-linear-gradient'
 import React, {ReactNode} from 'react'
+import {LinearGradient} from 'expo-linear-gradient'
+
+import {useRefreshDeviceManagerQuery} from '#/graphql/generated'
 
 const EmojimoodGradient = ({children}: {children: ReactNode}) => {
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-  } = useRefreshDeviceManagerQuery()
+  const {data: rdmData} = useRefreshDeviceManagerQuery()
 
   if (
     rdmData?.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile'

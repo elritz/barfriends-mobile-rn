@@ -1,15 +1,16 @@
-import {Pressable} from '#/src/components/ui/pressable'
+import * as Clipboard from 'expo-clipboard'
+import {useRouter} from 'expo-router'
+import {useReactiveVar} from '@apollo/client'
+import {Feather} from '@expo/vector-icons'
+import {FlashList} from '@shopify/flash-list'
+
+import {Divider} from '#/src/components/ui/divider'
 import {Heading} from '#/src/components/ui/heading'
 import {HStack} from '#/src/components/ui/hstack'
-import {Divider} from '#/src/components/ui/divider'
-import {FlashList} from '@shopify/flash-list'
-import {useRouter} from 'expo-router'
-import * as Clipboard from 'expo-clipboard'
-import {VStack} from '#/src/components/ui/vstack'
+import {Pressable} from '#/src/components/ui/pressable'
 import {Text} from '#/src/components/ui/text/'
-import {Feather} from '@expo/vector-icons'
+import {VStack} from '#/src/components/ui/vstack'
 import {ThemeReactiveVar} from '#/src/state/reactive'
-import {useReactiveVar} from '@apollo/client'
 
 export default function Preferences() {
   const rTheme = useReactiveVar(ThemeReactiveVar)
@@ -38,7 +39,10 @@ export default function Preferences() {
       ItemSeparatorComponent={() => <Divider />}
       renderItem={({item}) => {
         return (
-          <Pressable onPressIn={item.onPress} className="px-4 py-3">
+          <Pressable
+            accessibilityRole="button"
+            onPressIn={item.onPress}
+            className="px-4 py-3">
             <VStack className="flex-1 justify-between" space="sm">
               <HStack>
                 <VStack className="flex-1">

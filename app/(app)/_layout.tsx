@@ -1,6 +1,7 @@
-import {Text} from '#/src/components/ui/text'
+import {router, Stack} from 'expo-router'
+
 import {Button} from '#/src/components/ui/button'
-import {Stack, router} from 'expo-router'
+import {Text} from '#/src/components/ui/text'
 
 const Layout = () => {
   return (

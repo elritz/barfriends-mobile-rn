@@ -1,99 +1,100 @@
-import { Input, InputField } from "#/src/components/ui/input";
-import { CloseIcon } from "#/src/components/ui/icon";
-import { VStack } from "#/src/components/ui/vstack";
-import { HStack } from "#/src/components/ui/hstack";
-import { Pressable } from "#/src/components/ui/pressable";
-import { Text } from "#/src/components/ui/text";
-import { Button, ButtonText, ButtonIcon } from "#/src/components/ui/button";
-import { useReactiveVar } from "@apollo/client";
-import ContactItem from "#/src/view/screens/conversations/ContactItem";
-import { ThemeReactiveVar } from "#/reactive";
-import { FlashList } from "@shopify/flash-list";
-import useContentInsets from "#/src/util/hooks/useContentInsets";
-import useDebounce from "#/src/util/hooks/useDebounce";
-import Fuse from "fuse.js";
-import { useMemo, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import {useMemo, useState} from 'react'
+import {useReactiveVar} from '@apollo/client'
+import {FlashList} from '@shopify/flash-list'
+import Fuse from 'fuse.js'
+import {Controller, useForm} from 'react-hook-form'
+
+import {ThemeReactiveVar} from '#/reactive'
+import {Button, ButtonIcon, ButtonText} from '#/src/components/ui/button'
+import {HStack} from '#/src/components/ui/hstack'
+import {CloseIcon} from '#/src/components/ui/icon'
+import {Input, InputField} from '#/src/components/ui/input'
+import {Pressable} from '#/src/components/ui/pressable'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
+import useContentInsets from '#/src/util/hooks/useContentInsets'
+import useDebounce from '#/src/util/hooks/useDebounce'
+import ContactItem from '#/src/view/screens/conversations/ContactItem'
 
 const contactslist = [
-  { key: "1", value: "mobiles", disabled: true },
-  { key: "2", value: "appliances" },
-  { key: "3", value: "cameras" },
-  { key: "4", value: "computers", disabled: true },
-  { key: "5", value: "vegetables" },
-  { key: "6", value: "diary Products" },
-  { key: "7", value: "drinks" },
-  { key: "5", value: "vegetables" },
-  { key: "126", value: "diary Products" },
-  { key: "12w7", value: "Drinks" },
-  { key: "125", value: "Vegetables" },
-  { key: "12w6", value: "Diary Products" },
-  { key: "12w7", value: "Drinks" },
-  { key: "12e5", value: "Vegetables" },
-  { key: "12w6", value: "Diary Products" },
-  { key: "127", value: "Drinks" },
-  { key: "12w5", value: "Vegetables" },
-  { key: "12w6", value: "Diary Products" },
-  { key: "12w7", value: "Drinks" },
-];
+  {key: '1', value: 'mobiles', disabled: true},
+  {key: '2', value: 'appliances'},
+  {key: '3', value: 'cameras'},
+  {key: '4', value: 'computers', disabled: true},
+  {key: '5', value: 'vegetables'},
+  {key: '6', value: 'diary Products'},
+  {key: '7', value: 'drinks'},
+  {key: '5', value: 'vegetables'},
+  {key: '126', value: 'diary Products'},
+  {key: '12w7', value: 'Drinks'},
+  {key: '125', value: 'Vegetables'},
+  {key: '12w6', value: 'Diary Products'},
+  {key: '12w7', value: 'Drinks'},
+  {key: '12e5', value: 'Vegetables'},
+  {key: '12w6', value: 'Diary Products'},
+  {key: '127', value: 'Drinks'},
+  {key: '12w5', value: 'Vegetables'},
+  {key: '12w6', value: 'Diary Products'},
+  {key: '12w7', value: 'Drinks'},
+]
 
 export default function NewConversation() {
-  const rTheme = useReactiveVar(ThemeReactiveVar);
-  const insets = useContentInsets();
+  const rTheme = useReactiveVar(ThemeReactiveVar)
+  const insets = useContentInsets()
 
-  const [searchFilterIsLoading, setSearchFilterIsLoading] = useState(true);
-  const [selected, setSelected] = useState([]);
-  const [filteredContacts, setFilteredContacts] = useState([]);
+  const [searchFilterIsLoading, setSearchFilterIsLoading] = useState(true)
+  const [selected, setSelected] = useState([])
+  const [filteredContacts, setFilteredContacts] = useState([])
   const [contacts, setContacts] = useState(
     contactslist.sort((a, b) => {
-      const nameA = a.value.toLowerCase();
-      const nameB = b.value.toLowerCase();
+      const nameA = a.value.toLowerCase()
+      const nameB = b.value.toLowerCase()
 
-      if (nameA < nameB) return -1;
-      if (nameA > nameB) return 1;
-      return 0;
+      if (nameA < nameB) return -1
+      if (nameA > nameB) return 1
+      return 0
     }),
-  );
+  )
 
   const options = {
-    keys: ["value"],
-  };
+    keys: ['value'],
+  }
 
-  const fuse = new Fuse(contacts, options);
+  const fuse = new Fuse(contacts, options)
 
-  const { control, setValue, handleSubmit, watch } = useForm({
+  const {control, setValue, handleSubmit, watch} = useForm({
     defaultValues: {
       selected: selected,
-      searchtext: "",
+      searchtext: '',
     },
-    mode: "onChange",
-    reValidateMode: "onChange",
+    mode: 'onChange',
+    reValidateMode: 'onChange',
     resolver: undefined,
     context: undefined,
-    criteriaMode: "firstError",
+    criteriaMode: 'firstError',
     shouldFocusError: true,
     shouldUnregister: true,
-  });
+  })
 
   type onPressProps = {
-    listType: "contacts" | "selected" | "searchresult";
-    item: any;
-  };
+    listType: 'contacts' | 'selected' | 'searchresult'
+    item: any
+  }
 
-  const _pressItemFromList = ({ listType, item }: onPressProps) => {
+  const _pressItemFromList = ({listType, item}: onPressProps) => {
     switch (listType) {
-      case "searchresult":
-        const indexToRemoveContacts = contacts.indexOf(item.item);
-        const indexToRemoveFiltered = filteredContacts.indexOf(item);
+      case 'searchresult':
+        const indexToRemoveContacts = contacts.indexOf(item.item)
+        const indexToRemoveFiltered = filteredContacts.indexOf(item)
 
         if (indexToRemoveFiltered !== -1) {
           const filteredSorted = [
             ...filteredContacts.slice(0, indexToRemoveFiltered),
             ...filteredContacts.slice(indexToRemoveFiltered + 1),
-          ];
-          setFilteredContacts(filteredSorted);
+          ]
+          setFilteredContacts(filteredSorted)
 
-          setSelected((prev) => [...prev, item.item]);
+          setSelected(prev => [...prev, item.item])
         }
 
         if (indexToRemoveContacts !== -1) {
@@ -101,112 +102,110 @@ export default function NewConversation() {
             ...contacts.slice(0, indexToRemoveContacts),
             ...contacts.slice(indexToRemoveContacts + 1),
           ].sort((a, b) => {
-            const nameA = a.value.toLowerCase();
-            const nameB = b.value.toLowerCase();
+            const nameA = a.value.toLowerCase()
+            const nameB = b.value.toLowerCase()
 
-            if (nameA < nameB) return -1;
-            if (nameA > nameB) return 1;
-            return 0;
-          });
-          setContacts(sorted);
+            if (nameA < nameB) return -1
+            if (nameA > nameB) return 1
+            return 0
+          })
+          setContacts(sorted)
         }
-        return;
-      case "contacts":
-        const indexToRemove = contacts.indexOf(item);
+        return
+      case 'contacts':
+        const indexToRemove = contacts.indexOf(item)
         if (indexToRemove !== -1) {
           const sorted = [
             ...contacts.slice(0, indexToRemove),
             ...contacts.slice(indexToRemove + 1),
           ].sort((a, b) => {
-            const nameA = a.value.toLowerCase();
-            const nameB = b.value.toLowerCase();
+            const nameA = a.value.toLowerCase()
+            const nameB = b.value.toLowerCase()
 
-            if (nameA < nameB) return -1;
-            if (nameA > nameB) return 1;
-            return 0;
-          });
-          setContacts(sorted);
-          setSelected((prev) => [...prev, item]);
+            if (nameA < nameB) return -1
+            if (nameA > nameB) return 1
+            return 0
+          })
+          setContacts(sorted)
+          setSelected(prev => [...prev, item])
         }
-        return;
-      case "selected":
-        const selectedItemIndex = selected.indexOf(item);
+        return
+      case 'selected':
+        const selectedItemIndex = selected.indexOf(item)
         if (selectedItemIndex !== -1) {
           setSelected([
             ...selected.slice(0, selectedItemIndex),
             ...selected.slice(selectedItemIndex + 1),
-          ]);
-          setContacts((prev) =>
+          ])
+          setContacts(prev =>
             [...prev, item].sort((a, b) => {
-              const nameA = a.value.toLowerCase();
-              const nameB = b.value.toLowerCase();
+              const nameA = a.value.toLowerCase()
+              const nameB = b.value.toLowerCase()
 
-              if (nameA < nameB) return -1;
-              if (nameA > nameB) return 1;
-              return 0;
+              if (nameA < nameB) return -1
+              if (nameA > nameB) return 1
+              return 0
             }),
-          );
+          )
         } else {
-          setContacts((prev) =>
+          setContacts(prev =>
             [...prev, item].sort((a, b) => {
               // Use the 'name' property for comparison
-              const nameA = a.value.toLowerCase();
-              const nameB = b.value.toLowerCase();
+              const nameA = a.value.toLowerCase()
+              const nameB = b.value.toLowerCase()
 
-              if (nameA < nameB) return -1;
-              if (nameA > nameB) return 1;
-              return 0;
+              if (nameA < nameB) return -1
+              if (nameA > nameB) return 1
+              return 0
             }),
-          );
+          )
         }
 
-        break;
+        break
     }
-  };
+  }
 
-  const debouncedSearchResults = useDebounce(watch().searchtext, 400);
+  const debouncedSearchResults = useDebounce(watch().searchtext, 400)
 
-  const searchFilterFunction = (text) => {
-    setSearchFilterIsLoading(true);
+  const searchFilterFunction = text => {
+    setSearchFilterIsLoading(true)
     if (text) {
-      const result = fuse.search(text);
+      const result = fuse.search(text)
 
-      setFilteredContacts(result);
+      setFilteredContacts(result)
     } else {
-      setFilteredContacts([]);
+      setFilteredContacts([])
     }
-    setSearchFilterIsLoading(false);
-  };
+    setSearchFilterIsLoading(false)
+  }
 
   useMemo(() => {
     if (watch().searchtext) {
     }
-    searchFilterFunction(watch().searchtext);
-  }, [debouncedSearchResults]);
+    searchFilterFunction(watch().searchtext)
+  }, [debouncedSearchResults])
 
   return (
     <>
       <Input
         variant="underlined"
-        className="mt-10 h-auto flex-row items-start border-0 border-light-400 px-4 dark:border-light-700"
-      >
+        className="mt-10 h-auto flex-row items-start border-0 border-light-400 px-4 dark:border-light-700">
         <VStack className="flex-1">
           <Controller
             control={control}
             name="selected"
-            render={({ field: { value, onChange } }) => (
+            render={({field: {value, onChange}}) => (
               <HStack space="sm" className="mx-2 mt-1 flex-wrap">
-                {selected.map((item) => (
+                {selected.map(item => (
                   <Button
                     onPress={() => {
                       _pressItemFromList({
-                        listType: "selected",
+                        listType: 'selected',
                         item,
-                      });
+                      })
                     }}
                     size="xs"
-                    className="my-1 h-7 self-center bg-light-200 px-2 dark:bg-light-700"
-                  >
+                    className="my-1 h-7 self-center bg-light-200 px-2 dark:bg-light-700">
                     <ButtonText className="tracking-lg text-sm font-normal capitalize text-primary-500 dark:text-primary-500">
                       {item.value}
                     </ButtonText>
@@ -218,7 +217,7 @@ export default function NewConversation() {
           <Controller
             control={control}
             name="searchtext"
-            render={({ field: { value, onChange } }) => (
+            render={({field: {value, onChange}}) => (
               <HStack className="mt-2 items-center justify-between">
                 <Text className="text-sm">To:</Text>
                 <InputField
@@ -228,12 +227,12 @@ export default function NewConversation() {
                   className="m-2 w-[100%] border-0 py-1 pr-2"
                   underlineColorAndroid="transparent"
                   keyboardAppearance={
-                    rTheme.colorScheme === "light" ? "light" : "dark"
+                    rTheme.colorScheme === 'light' ? 'light' : 'dark'
                   }
                   value={value}
                   onChangeText={onChange}
                   onSubmitEditing={() => {
-                    console.log("submitting");
+                    console.log('submitting')
                   }}
                   blurOnSubmit={false}
                 />
@@ -248,10 +247,9 @@ export default function NewConversation() {
                     }}
                     variant="link"
                     onPress={() => {
-                      setValue("searchtext", "");
+                      setValue('searchtext', '')
                     }}
-                    className="h-5 w-5 rounded-full border border-primary-500 px-0"
-                  >
+                    className="h-5 w-5 rounded-full border border-primary-500 px-0">
                     <ButtonIcon as={CloseIcon} />
                   </Button>
                 )}
@@ -268,19 +266,19 @@ export default function NewConversation() {
           contentInset={{
             bottom: insets.bottom,
           }}
-          renderItem={({ item, index }) => {
+          renderItem={({item, index}) => {
             return (
               <Pressable
+                accessibilityRole="button"
                 onPress={() => {
                   _pressItemFromList({
-                    listType: "searchresult",
+                    listType: 'searchresult',
                     item,
-                  });
-                }}
-              >
+                  })
+                }}>
                 <ContactItem index={index} item={item.item} />
               </Pressable>
-            );
+            )
           }}
         />
       ) : (
@@ -291,22 +289,22 @@ export default function NewConversation() {
           contentInset={{
             bottom: insets.bottom,
           }}
-          renderItem={({ item, index }) => {
+          renderItem={({item, index}) => {
             return (
               <Pressable
+                accessibilityRole="button"
                 onPress={() => {
                   _pressItemFromList({
-                    listType: "contacts",
+                    listType: 'contacts',
                     item,
-                  });
-                }}
-              >
+                  })
+                }}>
                 <ContactItem index={index} item={item} />
               </Pressable>
-            );
+            )
           }}
         />
       )}
     </>
-  );
+  )
 }

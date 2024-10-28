@@ -1,15 +1,9 @@
-import {VStack} from '#/src/components/ui/vstack'
-import {Pressable} from '#/src/components/ui/pressable'
-import {Heading} from '#/src/components/ui/heading'
-import {HStack} from '#/src/components/ui/hstack'
-import {Divider} from '#/src/components/ui/divider'
-import {Button, ButtonText} from '#/src/components/ui/button'
-import {Box} from '#/src/components/ui/box'
+import {useCallback} from 'react'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import {router} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
-import {
-  HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
-  HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
-} from '#/src/constants/ReactNavigationConstants'
+import {FlashList, ListRenderItem} from '@shopify/flash-list'
+
 import {
   AuthorizationDeviceProfile,
   useGetAllThemesQuery,
@@ -17,12 +11,19 @@ import {
   useUpdateThemeManagerSwitchThemeMutation,
 } from '#/graphql/generated'
 import {AuthorizationReactiveVar, ThemeReactiveVar} from '#/reactive'
-import {FlashList, ListRenderItem} from '@shopify/flash-list'
+import {Box} from '#/src/components/ui/box'
+import {Button, ButtonText} from '#/src/components/ui/button'
+import {Divider} from '#/src/components/ui/divider'
+import {Heading} from '#/src/components/ui/heading'
+import {HStack} from '#/src/components/ui/hstack'
+import {Pressable} from '#/src/components/ui/pressable'
+import {VStack} from '#/src/components/ui/vstack'
+import {
+  HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
+  HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
+} from '#/src/constants/ReactNavigationConstants'
 import {useToggleTheme} from '#/src/util/hooks/theme/useToggleTheme'
 import useContentInsets from '#/src/util/hooks/useContentInsets'
-import {router} from 'expo-router'
-import {useCallback} from 'react'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
 
 type Gluestack = {
   primary0: string
@@ -144,6 +145,7 @@ export default function Preferences() {
       const gluestack = item.item.theme.gluestack
       return (
         <Pressable
+          accessibilityRole="button"
           onPress={() => {
             updateSwitchTheme({
               variables: {

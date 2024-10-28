@@ -16,8 +16,8 @@ import ImageResizer from '@bam.tech/react-native-image-resizer'
 import {Buffer} from 'buffer'
 import RNFetchBlob from 'rn-fetch-blob'
 
-import {logger} from '#/logger'
 import {isAndroid, isIOS} from 'platform/detection'
+import {logger} from '#/logger'
 import {Dimensions} from './types'
 
 export async function compressIfNeeded(

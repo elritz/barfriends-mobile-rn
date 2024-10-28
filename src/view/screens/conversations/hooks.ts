@@ -1,16 +1,16 @@
-import { Platform } from "react-native";
-import { useKeyboardHandler } from "react-native-keyboard-controller";
-import { Easing, useSharedValue, withTiming } from "react-native-reanimated";
+import {Platform} from 'react-native'
+import {useKeyboardHandler} from 'react-native-keyboard-controller'
+import {Easing, useSharedValue, withTiming} from 'react-native-reanimated'
 
-const isAndroid = Platform.OS === "android";
+const isAndroid = Platform.OS === 'android'
 
 export const useTelegramTransitions = () => {
-  const height = useSharedValue(0);
+  const height = useSharedValue(0)
 
   useKeyboardHandler(
     {
-      onStart: (e) => {
-        "worklet";
+      onStart: e => {
+        'worklet'
 
         if (isAndroid) {
           // on Android Telegram is not using androidx.core values and uses custom interpolation
@@ -24,18 +24,18 @@ export const useTelegramTransitions = () => {
               0.27920937042459737,
               0.91025390625,
             ),
-          });
+          })
         } else {
           // on iOS Telegram simply moves TextInput synchronously with the content
           // to achieve such behavior we are instantly change `height.value` to keyboard
           // final frame - iOS will schedule layout animation and it will move the content
           // altogether with the keyboard
-          height.value = -e.height;
+          height.value = -e.height
         }
       },
     },
     [],
-  );
+  )
 
-  return { height };
-};
+  return {height}
+}

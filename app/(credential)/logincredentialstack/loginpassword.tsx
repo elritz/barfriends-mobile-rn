@@ -1,37 +1,31 @@
-import {VStack} from '#/src/components/ui/vstack'
-import {Text} from '#/src/components/ui/text'
-import {Spinner} from '#/src/components/ui/spinner'
-import {Pressable} from '#/src/components/ui/pressable'
-import {
-  Input,
-  InputField,
-  InputIcon,
-  InputSlot,
-} from '#/src/components/ui/input'
-import {HStack} from '#/src/components/ui/hstack'
-import {EyeIcon, EyeOffIcon, Icon} from '#/src/components/ui/icon'
-import {Box} from '#/src/components/ui/box'
-import {useReactiveVar} from '@apollo/client'
-import {Feather} from '@expo/vector-icons'
-import {
-  AuthorizationDeviceProfile,
-  useLoginPasswordLazyQuery,
-  useSwitchDeviceProfileMutation,
-} from '#/graphql/generated'
-import {useIsFocused} from '@react-navigation/native'
-import {AuthorizationReactiveVar, ThemeReactiveVar} from '#/reactive'
-import {useLocalSearchParams, useRouter} from 'expo-router'
 import {useState} from 'react'
-import {Controller, useForm} from 'react-hook-form'
-import {InputAccessoryView, Platform, KeyboardAvoidingView} from 'react-native'
+import {InputAccessoryView, KeyboardAvoidingView, Platform} from 'react-native'
 import {useReanimatedKeyboardAnimation} from 'react-native-keyboard-controller'
 import Reanimated, {
   useAnimatedStyle,
   useDerivedValue,
 } from 'react-native-reanimated'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import {useLocalSearchParams, useRouter} from 'expo-router'
+import {useReactiveVar} from '@apollo/client'
+import {Feather} from '@expo/vector-icons'
+import {useIsFocused} from '@react-navigation/native'
+import {Controller, useForm} from 'react-hook-form'
 
-import {View} from 'react-native'
+import {
+  AuthorizationDeviceProfile,
+  useLoginPasswordLazyQuery,
+  useSwitchDeviceProfileMutation,
+} from '#/graphql/generated'
+import {AuthorizationReactiveVar, ThemeReactiveVar} from '#/reactive'
+import {Box} from '#/src/components/ui/box'
+import {HStack} from '#/src/components/ui/hstack'
+import {EyeIcon, EyeOffIcon, Icon} from '#/src/components/ui/icon'
+import {Input, InputField, InputSlot} from '#/src/components/ui/input'
+import {Pressable} from '#/src/components/ui/pressable'
+import {Spinner} from '#/src/components/ui/spinner'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
 
 export default () => {
   const INPUT_ACCESSORY_VIEW_ID = 'lp-21565434tw'
@@ -83,13 +77,9 @@ export default () => {
     shouldUnregister: true,
   })
 
-  const [
-    switchDeviceProfileMutation,
-    {data: SDPData, loading: SDPLoading, error: SDPError},
-  ] = useSwitchDeviceProfileMutation({
+  const [switchDeviceProfileMutation] = useSwitchDeviceProfileMutation({
     onCompleted: data => {
-      console.log('🚀 ~ data.switchDeviceProfile:', data.switchDeviceProfile)
-      if (data.switchDeviceProfile?.__typename == 'Error') {
+      if (data.switchDeviceProfile?.__typename === 'Error') {
         setError('password', {
           type: 'validate',
           message: 'Incorrect password',
@@ -97,7 +87,7 @@ export default () => {
       }
 
       if (
-        data.switchDeviceProfile?.__typename == 'AuthorizationDeviceProfile'
+        data.switchDeviceProfile?.__typename === 'AuthorizationDeviceProfile'
       ) {
         const deviceManager =
           data.switchDeviceProfile as AuthorizationDeviceProfile
@@ -109,10 +99,7 @@ export default () => {
     },
   })
 
-  const [
-    loginPasswordQuery,
-    {data: LPData, loading: LPLoading, error: LPError},
-  ] = useLoginPasswordLazyQuery({
+  const [loginPasswordQuery, {loading: LPLoading}] = useLoginPasswordLazyQuery({
     onCompleted: data => {
       if (!data.loginPassword) {
         setError('password', {
@@ -143,7 +130,9 @@ export default () => {
       <Box
         className={` ${isFocused ? 'flex' : 'hidden'} h-[80px] flex-row content-around items-center justify-end rounded-none bg-white px-2 dark:bg-black`}>
         <HStack className="flex-row justify-around">
-          <Pressable onPress={handleSubmit(onSubmit)}>
+          <Pressable
+            accessibilityRole="button"
+            onPress={handleSubmit(onSubmit)}>
             <Box className="h-[50px] w-[50px] items-center justify-center rounded-full bg-primary-500">
               <Feather
                 name="arrow-right"

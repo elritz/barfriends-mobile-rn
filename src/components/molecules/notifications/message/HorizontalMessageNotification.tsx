@@ -1,14 +1,15 @@
-import {VStack} from '#/src/components/ui/vstack'
-import {Text} from '#/src/components/ui/text'
-import {Pressable} from '#/src/components/ui/pressable'
-import {HStack} from '#/src/components/ui/hstack'
-import {Box} from '#/src/components/ui/box'
-import {useRefreshDeviceManagerQuery} from '#/graphql/generated'
 import {useRouter} from 'expo-router'
-import {MaterialIcons} from '@expo/vector-icons'
-import {Heading} from '#/src/components/ui/heading'
-import {ThemeReactiveVar} from '#/reactive'
 import {useReactiveVar} from '@apollo/client'
+import {MaterialIcons} from '@expo/vector-icons'
+
+import {useRefreshDeviceManagerQuery} from '#/graphql/generated'
+import {ThemeReactiveVar} from '#/reactive'
+import {Box} from '#/src/components/ui/box'
+import {Heading} from '#/src/components/ui/heading'
+import {HStack} from '#/src/components/ui/hstack'
+import {Pressable} from '#/src/components/ui/pressable'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
 
 const HorizontalMessageNotification = ({item}) => {
   const router = useRouter()
@@ -26,6 +27,7 @@ const HorizontalMessageNotification = ({item}) => {
 
     return (
       <Pressable
+        accessibilityRole="button"
         onPress={() => {
           router.push({
             // pathname: `/(app)/conversation/${item.id}`,

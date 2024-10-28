@@ -1,38 +1,36 @@
-import { Text } from "#/src/components/ui/text";
-import { Modal } from "#/src/components/ui/modal";
-import { Center } from "#/src/components/ui/center";
-import { Button } from "#/src/components/ui/button";
-import { Box } from "#/src/components/ui/box";
-import { useReactiveVar } from "@apollo/client";
+import {useEffect, useState} from 'react'
+import {StyleSheet} from 'react-native'
+import QRCode from 'react-native-qrcode-svg'
+import {BarCodeScanner} from 'expo-barcode-scanner'
+import * as Haptics from 'expo-haptics'
+import {useReactiveVar} from '@apollo/client'
+
 import {
   useGetSecureFriendQrCodeDataQuery,
   useQrAddFriendMutation,
-} from "#/graphql/generated";
-import {
-  AuthorizationReactiveVar,
-  PermissionCameraReactiveVar,
-} from "#/reactive";
-import { BarCodeScanner } from "expo-barcode-scanner";
-import * as Haptics from "expo-haptics";
-import { useEffect, useState } from "react";
-import { StyleSheet } from "react-native";
-import QRCode from "react-native-qrcode-svg";
+} from '#/graphql/generated'
+import {AuthorizationReactiveVar, PermissionCameraReactiveVar} from '#/reactive'
+import {Box} from '#/src/components/ui/box'
+import {Button} from '#/src/components/ui/button'
+import {Center} from '#/src/components/ui/center'
+import {Modal} from '#/src/components/ui/modal'
+import {Text} from '#/src/components/ui/text'
 
 // const LOGO_COASTER = require("../../../../../../assets/images/company/company_coaster.png");
 
-const CameraModal = ({ isOpen, onOpen, onClose }) => {
-  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar);
-  const rPermissionCamera = useReactiveVar(PermissionCameraReactiveVar);
-  const [hasPermission, setHasPermission] = useState<boolean | null>(null);
-  const [scanned, setScanned] = useState(false);
-  const [dataQR, setDataQR] = useState("");
+const CameraModal = ({isOpen, onOpen, onClose}) => {
+  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
+  const rPermissionCamera = useReactiveVar(PermissionCameraReactiveVar)
+  const [hasPermission, setHasPermission] = useState<boolean | null>(null)
+  const [scanned, setScanned] = useState(false)
+  const [dataQR, setDataQR] = useState('')
 
   useEffect(() => {
-    const getBarCodeScannerPermissions = async () => {
-      const { status } = await BarCodeScanner.requestPermissionsAsync();
+    const getBarCodeScannerPerm = async () => {
+      const {status} = await BarCodeScanner.requestPermissionsAsync()
 
-      setHasPermission(status === "granted");
-    };
+      setHasPermission(status === 'granted')
+    }
     // ;(async () => {
     // 	const digest = await Crypto.digestStringAsync(
     // 		Crypto.CryptoDigestAlgorithm.SHA256,
@@ -40,52 +38,51 @@ const CameraModal = ({ isOpen, onOpen, onClose }) => {
     // 	)
     // 	/* Some crypto operation... */
     // })()
-    getBarCodeScannerPermissions();
-  }, []);
+    getBarCodeScannerPerm()
+  }, [])
 
   const {
     data: dataGSFQRCD,
     loading: loadingGSFQRCD,
     error: errorGSFQRCD,
   } = useGetSecureFriendQrCodeDataQuery({
-    onCompleted: (data) => {
+    onCompleted: data => {
       const dataQRString = JSON.stringify({
         dataHash: data.getSecureFriendQRCodeData,
         qrCodeProfileId: rAuthorizationVar?.Profile?.id,
-      });
-      setDataQR(dataQRString);
+      })
+      setDataQR(dataQRString)
     },
-  });
+  })
 
-  const [QRAddFriendMutation, { data, loading, error }] =
-    useQrAddFriendMutation({
-      onCompleted: async (data) => {
-        onClose();
-      },
-    });
+  const [QRAddFriendMutation, {data, loading, error}] = useQrAddFriendMutation({
+    onCompleted: async data => {
+      onClose()
+    },
+  })
 
-  const handleBarCodeScanned = async ({ type, data }) => {
-    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
-    const dataParsed = JSON.parse(data);
+  const handleBarCodeScanned = async ({type, data}) => {
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
+    const dataParsed = JSON.parse(data)
 
     QRAddFriendMutation({
       variables: {
         qrCodeProfileId: dataParsed.qrCodeProfileId,
         dataHash: dataParsed.dataHash,
       },
-    });
+    })
 
-    setScanned(true);
+    setScanned(true)
     setTimeout(async () => {
       setScanned(false),
         onClose(),
-        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    }, 1000);
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+    }, 1000)
 
     // alert(`Bar code with type ${type} and data ${data} has been scanned!`)
-  };
+  }
 
-  if (loadingGSFQRCD || !dataGSFQRCD) return null;
+  if (loadingGSFQRCD || !dataGSFQRCD) return null
 
   return (
     <Center>
@@ -131,7 +128,7 @@ const CameraModal = ({ isOpen, onOpen, onClose }) => {
 				</Modal.Content>
 			</Modal> */}
     </Center>
-  );
-};
+  )
+}
 
-export default CameraModal;
+export default CameraModal

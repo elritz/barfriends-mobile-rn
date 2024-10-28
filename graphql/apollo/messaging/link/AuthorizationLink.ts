@@ -1,21 +1,22 @@
-import { setContext } from '@apollo/client/link/context'
-import { BARFRIENDS, AUTHORIZATION } from '#/src/constants/StorageConstants'
-import { useDeviceType } from '#/src/util/hooks/device/useDeviceType'
-import { secureStorageItemRead } from '#/src/util/hooks/local/useSecureStorage'
+import {setContext} from '@apollo/client/link/context'
 
-const authLink = setContext(async (_, { headers }) => {
-	const authorization = await secureStorageItemRead({ key: AUTHORIZATION })
+import {AUTHORIZATION, BARFRIENDS} from '#/src/constants/StorageConstants'
+import {useDeviceType} from '#/src/util/hooks/device/useDeviceType'
+import {secureStorageItemRead} from '#/src/util/hooks/local/useSecureStorage'
 
-	const { deviceType } = await useDeviceType()
+const authLink = setContext(async (_, {headers}) => {
+  const authorization = await secureStorageItemRead({key: AUTHORIZATION})
 
-	return {
-		headers: {
-			...headers,
-			authorization: authorization ? authorization : '',
-			deviceType,
-			appType: BARFRIENDS,
-		},
-	}
+  const {deviceType} = await useDeviceType()
+
+  return {
+    headers: {
+      ...headers,
+      authorization: authorization ? authorization : '',
+      deviceType,
+      appType: BARFRIENDS,
+    },
+  }
 })
 
 export default authLink

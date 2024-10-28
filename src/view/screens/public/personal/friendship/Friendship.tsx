@@ -1,11 +1,8 @@
-import { Box } from "#/src/components/ui/box";
-import { useReactiveVar } from "@apollo/client";
-import { Ionicons } from "@expo/vector-icons";
-import { AuthorizationReactiveVar } from "#/reactive";
+import {Ionicons} from '@expo/vector-icons'
+
+import {Box} from '#/src/components/ui/box'
 
 export default function Friendship() {
-  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar);
-
   // const {
   // 	data: GRFRSData,
   // 	loading: GRFRSLoading,
@@ -49,8 +46,8 @@ export default function Friendship() {
 
   return (
     <Box className="flex-1 items-center rounded-xl bg-[light.50] p-3 dark:bg-[light.800]">
-      <Ionicons size={24} name={"person"} />
+      <Ionicons size={24} name={'person'} />
       {/* <Friends /> */}
     </Box>
-  );
+  )
 }

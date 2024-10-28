@@ -1,11 +1,11 @@
 import {
+  Entypo,
   FontAwesome,
   Ionicons,
-  Entypo,
-  SimpleLineIcons,
-  MaterialIcons,
   MaterialCommunityIcons,
-} from '@expo/vector-icons';
+  MaterialIcons,
+  SimpleLineIcons,
+} from '@expo/vector-icons'
 
 export default [
   FontAwesome.font,
@@ -14,4 +14,4 @@ export default [
   SimpleLineIcons.font,
   MaterialIcons.font,
   MaterialCommunityIcons.font,
-];
+]

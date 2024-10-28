@@ -1,8 +1,9 @@
 import {useReactiveVar} from '@apollo/client'
+import {MaterialCommunityIcons} from '@expo/vector-icons'
+
+import {ThemeReactiveVar} from '#/reactive'
 import TabBarIcon from '#/src/components/atoms/TabBarIcon'
 import {TabProps} from '#/src/components/atoms/TabBarIcon'
-import {MaterialCommunityIcons} from '@expo/vector-icons'
-import {ThemeReactiveVar} from '#/reactive'
 
 const DevelopmentTab = (props: TabProps) => {
   const rTheme = useReactiveVar(ThemeReactiveVar)

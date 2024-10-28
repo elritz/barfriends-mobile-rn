@@ -1,4 +1,15 @@
-import { TermsServiceType } from "#/types/app";
+import {Contact} from 'expo-contacts'
+import {
+  Accuracy,
+  LocationPermissionResponse,
+  PermissionResponse,
+  PermissionStatus,
+} from 'expo-location'
+import {NetworkState, NetworkStateType} from 'expo-network'
+import {NotificationPermissionsStatus} from 'expo-notifications'
+import {DateTime} from 'luxon'
+
+import {TermsServiceType} from '#/types/app'
 import {
   DefaultPreferenceToPermissionType,
   LocalStorageInformationJoinVenueType,
@@ -8,17 +19,7 @@ import {
   LocationType,
   ServerNetworkType,
   SystemsOfUnits,
-} from "#/types/preferences";
-import { Contact } from "expo-contacts";
-import {
-  Accuracy,
-  LocationPermissionResponse,
-  PermissionResponse,
-  PermissionStatus,
-} from "expo-location";
-import { NetworkState, NetworkStateType } from "expo-network";
-import { NotificationPermissionsStatus } from "expo-notifications";
-import { DateTime } from "luxon";
+} from '#/types/preferences'
 
 export const NowPreferencePermissionInitialState: DefaultPreferenceToPermissionType =
   {
@@ -26,46 +27,46 @@ export const NowPreferencePermissionInitialState: DefaultPreferenceToPermissionT
     dateToShowAgain: DateTime.now(),
     numberOfTimesDismissed: 0,
     canShowAgain: true,
-  };
+  }
 
 export const TomorrowPreferencePermissionInitialState: DefaultPreferenceToPermissionType =
   {
     dateLastShown: DateTime.now(),
-    dateToShowAgain: DateTime.now().plus({ days: 1 }),
+    dateToShowAgain: DateTime.now().plus({days: 1}),
     numberOfTimesDismissed: 0,
     canShowAgain: true,
-  };
+  }
 
 export const DaysPreferencePermissionInitialState: DefaultPreferenceToPermissionType =
   {
     dateLastShown: DateTime.now(),
-    dateToShowAgain: DateTime.now().plus({ days: 5 }),
+    dateToShowAgain: DateTime.now().plus({days: 5}),
     numberOfTimesDismissed: 0,
     canShowAgain: true,
-  };
+  }
 
 export const HalfMonthPreferencePermissionInitialState: DefaultPreferenceToPermissionType =
   {
     dateLastShown: DateTime.now(),
-    dateToShowAgain: DateTime.now().plus({ days: 15 }),
+    dateToShowAgain: DateTime.now().plus({days: 15}),
     numberOfTimesDismissed: 0,
     canShowAgain: true,
-  };
+  }
 export const MonthsPreferencePermissionInitialState: DefaultPreferenceToPermissionType =
   {
     dateLastShown: DateTime.now(),
-    dateToShowAgain: DateTime.now().plus({ months: 1 }),
+    dateToShowAgain: DateTime.now().plus({months: 1}),
     numberOfTimesDismissed: 0,
     canShowAgain: true,
-  };
+  }
 
 export const InitialStateJoiningInformationPreferencePermission: LocalStorageInformationJoinVenueType =
   {
     dateLastShown: DateTime.now(),
-    dateToShowAgain: DateTime.now().plus({ days: 5 }),
+    dateToShowAgain: DateTime.now().plus({days: 5}),
     numberOfTimesDismissed: 0,
     canShowAgain: true,
-  };
+  }
 
 export const InitialStateSearchArea: LocalStoragePreferenceSearchAreaType = {
   useCurrentLocation: false,
@@ -75,24 +76,24 @@ export const InitialStateSearchArea: LocalStoragePreferenceSearchAreaType = {
         latitude: 0,
         longitude: 0,
       },
-      isoCode: "",
-      name: "",
+      isoCode: '',
+      name: '',
     },
     state: {
       coords: {
         latitude: 0,
         longitude: 0,
       },
-      isoCode: "",
-      name: "",
+      isoCode: '',
+      name: '',
     },
     city: {
       coords: {
         latitude: 0,
         longitude: 0,
       },
-      isoCode: "",
-      name: "",
+      isoCode: '',
+      name: '',
     },
     coords: {
       latitude: 0,
@@ -103,12 +104,12 @@ export const InitialStateSearchArea: LocalStoragePreferenceSearchAreaType = {
     value: 1,
     distance: 30,
   },
-};
+}
 
 export const InitialStatePreferenceThemeColorScheme: LocalStoragePreferenceThemeType =
   {
-    colorScheme: "system",
-  };
+    colorScheme: 'system',
+  }
 
 export const InitialStatePreferenceSystemsOfUnits: LocalStoragePreferenceSystemsOfUnitsType =
   {
@@ -117,11 +118,11 @@ export const InitialStatePreferenceSystemsOfUnits: LocalStoragePreferenceSystems
     dateToShowAgain: DateTime.now(),
     dateLastShown: DateTime.now(),
     system: SystemsOfUnits.Metric,
-  };
+  }
 
 export const InitialStateTermsService: TermsServiceType = {
   update: false,
-};
+}
 
 export const InitialStateLocation: LocationType = {
   watchPosition: {
@@ -142,6 +143,7 @@ export const InitialStateLocation: LocationType = {
     timestamp: 0,
   },
   reverseGeocoded: {
+    formattedAddress: null,
     city: null,
     country: null,
     district: null,
@@ -154,68 +156,68 @@ export const InitialStateLocation: LocationType = {
     subregion: null,
     timezone: null,
   },
-};
+}
 
 export const InitialStateDeviceNetwork: NetworkState = {
   isConnected: true,
   isInternetReachable: true,
   type: NetworkStateType.CELLULAR,
-};
+}
 
 export const InitialStateServerNetwork: ServerNetworkType = {
   isConnected: true,
-};
+}
 
 export const InitialStatePermissionCamera: PermissionResponse = {
   canAskAgain: false,
-  expires: "never",
+  expires: 'never',
   granted: false,
   status: PermissionStatus.UNDETERMINED,
-};
+}
 
 export const InitialStatePermissionContacts: PermissionResponse = {
   canAskAgain: false,
-  expires: "never",
+  expires: 'never',
   granted: false,
   status: PermissionStatus.UNDETERMINED,
-};
+}
 
-export const InitialStateContacts: Contact[] | null = [];
+export const InitialStateContacts: Contact[] | null = []
 
 export const InitialStateForegroundLocationPermission: LocationPermissionResponse =
   {
     canAskAgain: false,
-    expires: "never",
+    expires: 'never',
     granted: false,
     status: PermissionStatus.UNDETERMINED,
-  };
+  }
 
 export const InitialStateBackgroundLocationPermission: LocationPermissionResponse =
   {
     canAskAgain: false,
-    expires: "never",
+    expires: 'never',
     granted: false,
     status: PermissionStatus.UNDETERMINED,
-  };
+  }
 
 export const InitialStatePermissionMedia: PermissionResponse = {
   canAskAgain: false,
-  expires: "never",
+  expires: 'never',
   granted: false,
   status: PermissionStatus.UNDETERMINED,
-};
+}
 
 export const InitialStatePermissionMicrophone: PermissionResponse = {
   canAskAgain: false,
-  expires: "never",
+  expires: 'never',
   granted: false,
   status: PermissionStatus.UNDETERMINED,
-};
+}
 
 export const InitialStatePermissionNotifications: NotificationPermissionsStatus =
   {
     canAskAgain: false,
-    expires: "never",
+    expires: 'never',
     granted: false,
     status: PermissionStatus.UNDETERMINED,
     ios: {
@@ -232,32 +234,32 @@ export const InitialStatePermissionNotifications: NotificationPermissionsStatus 
       providesAppNotificationSettings: true,
       status: 3,
     },
-  };
+  }
 
 export const InitalStateStorage = {
   information: {
     joinvenue: {
-      name: "Information Join Venue",
+      name: 'Information Join Venue',
       ...InitialStateJoiningInformationPreferencePermission,
     },
   },
   preferences: {
-    searcharea: { name: "Preference Search Area", ...InitialStateSearchArea },
+    searcharea: {name: 'Preference Search Area', ...InitialStateSearchArea},
     theme: {
-      name: "Preference Theme Scheme",
+      name: 'Preference Theme Scheme',
       ...InitialStatePreferenceThemeColorScheme,
     },
     notification: {
-      name: "Preference Notifications",
+      name: 'Preference Notifications',
       ...NowPreferencePermissionInitialState,
     },
-    locationbackground: "Preference Location Background",
+    locationbackground: 'Preference Location Background',
     ...NowPreferencePermissionInitialState,
-    locationforground: "Preference Location Foreground",
+    locationforground: 'Preference Location Foreground',
     ...NowPreferencePermissionInitialState,
     systemunits: {
-      name: "Preference System Units",
+      name: 'Preference System Units',
       ...InitialStatePreferenceSystemsOfUnits,
     },
   },
-};
+}

@@ -1,21 +1,19 @@
-import PreferenceNotificationPermission from '#/src/components/molecules/permissions/preferencenotificationpermission/PreferenceNotificationPermission'
+import {useEffect} from 'react'
+import {View} from 'react-native'
+import {FlashList} from '@shopify/flash-list'
+import {DateTime} from 'luxon'
+
 import {
   ProfileType,
   useGetNotificationsLazyQuery,
   useRefreshDeviceManagerQuery, // useGetNotificationsLazyQuery
 } from '#/graphql/generated'
-import {FlashList} from '@shopify/flash-list'
-import useContentInsets from '#/src/util/hooks/useContentInsets'
-import {useEffect} from 'react'
-import {View} from 'react-native'
-import AddRelationship from '#/src/components/molecules/activity/addrelationship/AddRelationship'
-import {FriendsList} from '#/src/components/organisms/list/friendslist'
 import {Box} from '#/src/components/ui/box'
-import {HStack} from '#/src/components/ui/hstack'
-import {VStack} from '#/src/components/ui/vstack'
 import {Heading} from '#/src/components/ui/heading'
-import {DateTime} from 'luxon'
+import {HStack} from '#/src/components/ui/hstack'
 import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
+import useContentInsets from '#/src/util/hooks/useContentInsets'
 import ProfilePhoto from '#/src/view/screens/profile/profilephoto'
 
 export default () => {
@@ -128,7 +126,6 @@ export default () => {
       ListHeaderComponent={() => {
         return (
           <View>
-            <PreferenceNotificationPermission />
             <Box className="bg-transparent">
               <VStack space={'md'} className="justify-around">
                 <DetailInformation />

@@ -1,29 +1,29 @@
+import {useEffect} from 'react'
+import {View} from 'react-native'
+import {Image} from 'expo-image'
+import {useRouter} from 'expo-router'
+import {useReactiveVar} from '@apollo/client'
+import {FontAwesome5} from '@expo/vector-icons'
+import {FlashList} from '@shopify/flash-list'
+import {DateTime} from 'luxon'
+
 import {
   ProfileType,
   useGetNotificationsLazyQuery,
   useRefreshDeviceManagerQuery, // useGetNotificationsLazyQuery
-  NotificationType, // Add this import
 } from '#/graphql/generated'
-import {FlashList} from '@shopify/flash-list'
-import useContentInsets from '#/src/util/hooks/useContentInsets'
-import {useEffect} from 'react'
-import {View} from 'react-native'
-import {Box} from '#/src/components/ui/box'
-import {HStack} from '#/src/components/ui/hstack'
-import {VStack} from '#/src/components/ui/vstack'
-import {Heading} from '#/src/components/ui/heading'
-import {DateTime} from 'luxon'
-import {Text} from '#/src/components/ui/text'
-import ProfilePhoto from '#/src/view/screens/profile/profilephoto'
-import {Image} from 'expo-image'
-import {Pressable} from '#/src/components/ui/pressable'
-import {useRouter} from 'expo-router'
-import {FontAwesome5} from '@expo/vector-icons'
-import {useReactiveVar} from '@apollo/client'
-import {ThemeReactiveVar} from '#/src/state/reactive'
-import {SafeAreaView} from 'react-native-safe-area-context'
-import CondensedVerticalFriendsNotficationsList from '#/src/components/organisms/list/notifications/friends/CondensedVerticalFriendsNotficationsList'
+import SignupLoginCard from '#/src/components/molecules/asks/signuplogin'
 import {CondensedHorizontalFriendNotifciation} from '#/src/components/molecules/notifications/friendnotification/CondensedHorizontalFriendNotifciation'
+import DeviceManagerProfiles from '#/src/components/organisms/list/DeviceManagerProfiles'
+import {Box} from '#/src/components/ui/box'
+import {Heading} from '#/src/components/ui/heading'
+import {HStack} from '#/src/components/ui/hstack'
+import {Pressable} from '#/src/components/ui/pressable'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
+import {ThemeReactiveVar} from '#/src/state/reactive'
+import useContentInsets from '#/src/util/hooks/useContentInsets'
+import ProfilePhoto from '#/src/view/screens/profile/profilephoto'
 
 const PersonalProfilePhoto = () => {
   const {
@@ -140,6 +140,38 @@ export default () => {
 
   if (rdmLoading || GNLoading) return null
 
+  const ListheaderComponent = () => {
+    const SignUpWidget = () => {
+      if (rdmLoading || !rdmData) {
+        return null
+      }
+
+      switch (rdmData?.refreshDeviceManager?.__typename) {
+        case 'AuthorizationDeviceProfile':
+          if (
+            rdmData?.refreshDeviceManager.Profile?.ProfileType ===
+            ProfileType.Guest
+          ) {
+            return (
+              <Box className="mx-2 my-2 p-5 pt-10">
+                <SignupLoginCard signupTextId={1} />
+                <DeviceManagerProfiles />
+              </Box>
+            )
+          }
+          return null
+      }
+    }
+
+    return (
+      <Box className="py-2">
+        <VStack space={'md'}>
+          <SignUpWidget />
+        </VStack>
+      </Box>
+    )
+  }
+
   if (
     rdmData?.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile'
   ) {
@@ -168,6 +200,7 @@ export default () => {
             return (
               <VStack space={'md'} className="justify-around">
                 <DetailInformation />
+                <ListheaderComponent />
               </VStack>
             )
           }}
@@ -183,6 +216,7 @@ export default () => {
             }
             return (
               <Pressable
+                accessibilityRole="button"
                 key={item.id}
                 className="flex-1 rounded-md"
                 onPress={() => {
@@ -227,11 +261,11 @@ export default () => {
                     )}
                   </Box>
                   <VStack className=" w-[100%] mt-2">
-                    <Text className="  text-white">
+                    <Text className="">
                       {item.friendProfile?.IdentifiableInformation?.username ??
                         'Christian'}
                     </Text>
-                    <Text className="  text-white">
+                    <Text className="">
                       @
                       {item.friendProfile?.IdentifiableInformation?.username ??
                         'Christian'}

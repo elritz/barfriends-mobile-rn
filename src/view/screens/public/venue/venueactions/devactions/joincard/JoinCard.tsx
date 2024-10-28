@@ -1,29 +1,22 @@
-import {VStack} from '#/src/components/ui/vstack'
-import {CheckCircleIcon} from '#/src/components/ui/icon'
-import {Button, ButtonText, ButtonIcon} from '#/src/components/ui/button'
-import {Box} from '#/src/components/ui/box'
+import {useEffect, useState} from 'react'
+import {useLocalSearchParams} from 'expo-router'
+
 import {
   useAddPersonalJoinsVenue2Mutation,
   useGetLiveVenueTotalsV2Query,
   useRefreshDeviceManagerQuery,
 } from '#/graphql/generated'
-import {useLocalSearchParams} from 'expo-router'
-import {useEffect, useState} from 'react'
+import {Box} from '#/src/components/ui/box'
+import {Button, ButtonIcon, ButtonText} from '#/src/components/ui/button'
+import {CheckCircleIcon} from '#/src/components/ui/icon'
+import {VStack} from '#/src/components/ui/vstack'
 
 export default function JoinCard() {
   const params = useLocalSearchParams()
   const [isJoined, setIsJoined] = useState(false)
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-  } = useRefreshDeviceManagerQuery()
+  const {data: rdmData} = useRefreshDeviceManagerQuery()
 
-  const {
-    data: glvtData,
-    loading: glvtLoading,
-    error: glvtError,
-  } = useGetLiveVenueTotalsV2Query({
+  const {data: glvtData} = useGetLiveVenueTotalsV2Query({
     skip: !String(params.venueProfileId),
     fetchPolicy: 'cache-first',
     variables: {
@@ -49,58 +42,56 @@ export default function JoinCard() {
     },
   })
 
-  const [
-    addPersonalJoinVenue2Mutation,
-    {data: JVData2, loading: JVLoading2, error: JVError2},
-  ] = useAddPersonalJoinsVenue2Mutation({
-    variables: {
-      profileIdVenue: String(params.venueProfileId),
-    },
-    update: (cache, {data}) => {
-      if (data?.addPersonalJoinsVenue2?.__typename === 'LiveVenueTotals2') {
-        cache.modify({
-          id: cache.identify(data.addPersonalJoinsVenue2),
-          fields: {
-            joined: () =>
-              data.addPersonalJoinsVenue2?.__typename === 'LiveVenueTotals2' &&
-              data.addPersonalJoinsVenue2.joined
-                ? data.addPersonalJoinsVenue2.joined
-                : 0,
-            totaled: () =>
-              data.addPersonalJoinsVenue2?.__typename === 'LiveVenueTotals2' &&
-              data.addPersonalJoinsVenue2.totaled
-                ? data.addPersonalJoinsVenue2.totaled
-                : 0,
-            out(existingOut, {toReference}) {
-              return [...existingOut, data?.addPersonalJoinsVenue2?.updateOut]
-            },
-          },
-        })
-      }
-
-      if (
-        data?.addPersonalJoinsVenue2?.__typename === 'LiveVenueTotals2' &&
-        rdmData?.refreshDeviceManager?.__typename ===
-          'AuthorizationDeviceProfile'
-      ) {
-        if (rdmData.refreshDeviceManager.Profile?.Personal?.LiveOutPersonal) {
+  const [addPersonalJoinVenue2Mutation, {loading: JVLoading2}] =
+    useAddPersonalJoinsVenue2Mutation({
+      variables: {
+        profileIdVenue: String(params.venueProfileId),
+      },
+      update: (cache, {data}) => {
+        if (data?.addPersonalJoinsVenue2?.__typename === 'LiveVenueTotals2') {
           cache.modify({
-            id: cache.identify(
-              rdmData.refreshDeviceManager.Profile?.Personal?.LiveOutPersonal,
-            ),
+            id: cache.identify(data.addPersonalJoinsVenue2),
             fields: {
-              Out(existingOut, {toReference}) {
-                return [
-                  ...existingOut,
-                  toReference(data?.addPersonalJoinsVenue2?.updateOut, true),
-                ]
+              joined: () =>
+                data.addPersonalJoinsVenue2?.__typename ===
+                  'LiveVenueTotals2' && data.addPersonalJoinsVenue2.joined
+                  ? data.addPersonalJoinsVenue2.joined
+                  : 0,
+              totaled: () =>
+                data.addPersonalJoinsVenue2?.__typename ===
+                  'LiveVenueTotals2' && data.addPersonalJoinsVenue2.totaled
+                  ? data.addPersonalJoinsVenue2.totaled
+                  : 0,
+              out(existingOut) {
+                return [...existingOut, data?.addPersonalJoinsVenue2?.updateOut]
               },
             },
           })
         }
-      }
-    },
-  })
+
+        if (
+          data?.addPersonalJoinsVenue2?.__typename === 'LiveVenueTotals2' &&
+          rdmData?.refreshDeviceManager?.__typename ===
+            'AuthorizationDeviceProfile'
+        ) {
+          if (rdmData.refreshDeviceManager.Profile?.Personal?.LiveOutPersonal) {
+            cache.modify({
+              id: cache.identify(
+                rdmData.refreshDeviceManager.Profile?.Personal?.LiveOutPersonal,
+              ),
+              fields: {
+                Out(existingOut, {toReference}) {
+                  return [
+                    ...existingOut,
+                    toReference(data?.addPersonalJoinsVenue2?.updateOut, true),
+                  ]
+                },
+              },
+            })
+          }
+        }
+      },
+    })
 
   useEffect(() => {
     if (
@@ -113,7 +104,7 @@ export default function JoinCard() {
             if (
               glvtData.getLiveVenueTotalsV2?.__typename ===
                 'LiveVenueTotals2' &&
-              rdmData?.refreshDeviceManager.__typename ===
+              rdmData?.refreshDeviceManager?.__typename ===
                 'AuthorizationDeviceProfile'
             ) {
               if (

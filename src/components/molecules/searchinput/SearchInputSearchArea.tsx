@@ -1,22 +1,23 @@
-import {Pressable} from '#/src/components/ui/pressable'
+import {useCallback, useMemo, useRef} from 'react'
+import {TextInput} from 'react-native'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import {useRouter} from 'expo-router'
+import {useReactiveVar} from '@apollo/client'
+import {Ionicons} from '@expo/vector-icons'
+import {AntDesign} from '@expo/vector-icons'
+import {Controller, useForm} from 'react-hook-form'
+
+import {ThemeReactiveVar} from '#/reactive'
+import ChevronBackArrow from '#/src/components/atoms/ChevronBackArrow'
+import {HStack} from '#/src/components/ui/hstack'
 import {
   Input,
   InputField,
   InputIcon,
   InputSlot,
 } from '#/src/components/ui/input'
-import {HStack} from '#/src/components/ui/hstack'
-import {useReactiveVar} from '@apollo/client'
-import ChevronBackArrow from '#/src/components/atoms/ChevronBackArrow'
-import {Ionicons} from '@expo/vector-icons'
-import {AntDesign} from '@expo/vector-icons'
-import {ThemeReactiveVar} from '#/reactive'
+import {Pressable} from '#/src/components/ui/pressable'
 import useDebounce from '#/src/util/hooks/useDebounce'
-import {useRouter} from 'expo-router'
-import {useCallback, useMemo, useRef} from 'react'
-import {Controller, useForm} from 'react-hook-form'
-import {TextInput} from 'react-native'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
 
 type Props = {
   placeholder?: string
@@ -24,7 +25,7 @@ type Props = {
 
 const SearchInputSearchArea = (props: Props) => {
   const insets = useSafeAreaInsets()
-  const _inputRef = useRef<TextInput | undefined>()
+  const _inputRef = useRef<TextInput | null>(null)
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const router = useRouter()
 
@@ -58,7 +59,7 @@ const SearchInputSearchArea = (props: Props) => {
     })
   }, [])
 
-  const handleSearchSubmitEditting = data => {
+  const handleSearchSubmitEditting = (data: {searchtext: any}) => {
     router.setParams({
       searchtext: data.searchtext,
     })
@@ -80,6 +81,7 @@ const SearchInputSearchArea = (props: Props) => {
         name="searchtext"
         render={({field: {value, onChange}}) => (
           <Input
+            ref={_inputRef}
             variant="rounded"
             hitSlop={{top: 12, bottom: 12, left: 0, right: 15}}
             className={` ${rTheme.colorScheme === 'light' ? rTheme.theme?.gluestack.tokens.colors.light100 : rTheme.theme?.gluestack.tokens.colors.light900} z-0 mx-3 flex-1 items-center px-3`}>
@@ -95,7 +97,6 @@ const SearchInputSearchArea = (props: Props) => {
               />
             </InputSlot>
             <InputField
-              ref={_inputRef}
               autoFocus
               placeholderTextColor={
                 rTheme.colorScheme === 'light'
@@ -120,6 +121,7 @@ const SearchInputSearchArea = (props: Props) => {
             />
             {watch('searchtext')?.length ? (
               <Pressable
+                accessibilityRole="button"
                 onPress={() => clearSearchInput()}
                 className="h-[100%] justify-center px-2">
                 <AntDesign

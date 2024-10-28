@@ -1,18 +1,18 @@
-import {HStack} from '#/src/components/ui/hstack'
-import {Button, ButtonText} from '#/src/components/ui/button'
+import {BlurView} from 'expo-blur'
+import {Stack} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
-import ChevronBackArrow from '#/src/components/atoms/ChevronBackArrow'
+import {FormProvider, useForm} from 'react-hook-form'
+
+import LogoTransparent from '#/assets/images/company/LogoTransparent'
 import {
   Emojimood,
   useRefreshDeviceManagerQuery,
   useUpdateStoryEmojimoodMutation,
 } from '#/graphql/generated'
 import {ThemeReactiveVar} from '#/reactive'
-import {BlurView} from 'expo-blur'
-import {Stack} from 'expo-router'
-import {useState} from 'react'
-import {FormProvider, useForm} from 'react-hook-form'
-import LogoTransparent from '#/assets/images/company/LogoTransparent'
+import ChevronBackArrow from '#/src/components/atoms/ChevronBackArrow'
+import {Button, ButtonText} from '#/src/components/ui/button'
+import {HStack} from '#/src/components/ui/hstack'
 
 export type FormType = {
   emojimood: Emojimood
@@ -105,7 +105,7 @@ export default () => {
           }}
         />
         <Stack.Screen
-          name={'MediaLibrary'}
+          name={'medialibrary'}
           options={{
             headerTitle: () => <LogoTransparent height={30} width={192} />,
             headerLeft: () => <ChevronBackArrow />,
@@ -114,7 +114,7 @@ export default () => {
         />
 
         <Stack.Screen
-          name={'Emojimood'}
+          name={'emojimood'}
           options={{
             headerShown: true,
             title: '',

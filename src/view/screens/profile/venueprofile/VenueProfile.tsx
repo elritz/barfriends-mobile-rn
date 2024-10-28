@@ -1,15 +1,11 @@
-import { Text } from "#/src/components/ui/text";
-import { View } from "react-native";
+import {View} from 'react-native'
 
-enum ProfileType {
-  USER = "USER",
-  VENUE = "VENUE",
-}
+import {Text} from '#/src/components/ui/text'
 
 const VenueProfile = () => (
   <View>
-    <Text>HELLO</Text>{" "}
+    <Text>HELLO</Text>{' '}
   </View>
-);
+)
 
-export default VenueProfile;
+export default VenueProfile

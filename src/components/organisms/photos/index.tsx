@@ -1,28 +1,6 @@
-import { Text } from "#/src/components/ui/text";
-import { Pressable } from "#/src/components/ui/pressable";
-import { Heading } from "#/src/components/ui/heading";
-import { Center } from "#/src/components/ui/center";
-import { Button, ButtonText, ButtonIcon } from "#/src/components/ui/button";
-import { Box } from "#/src/components/ui/box";
-import { AddIcon, RemoveIcon } from "#/src/components/ui/icon";
-import { useReactiveVar } from "@apollo/client";
-import { MaterialIcons } from "@expo/vector-icons";
-import {
-  PhotoCreateManyProfileInput,
-  useAddStoryPhotosMutation,
-} from "#/graphql/generated";
-import { AuthorizationReactiveVar, ThemeReactiveVar } from "#/reactive";
-import useCloudinaryImageUploading from "#/src/util/uploading/useCloudinaryImageUploading";
-import { BlurView } from "expo-blur";
-import * as ImagePicker from "expo-image-picker";
-import { useCallback, useState } from "react";
-import { Image } from "react-native";
-import {
-  ScrollView,
-  StyleSheet,
-  View,
-  useWindowDimensions,
-} from "react-native";
+import {useCallback, useState} from 'react'
+import {Image} from 'react-native'
+import {ScrollView, StyleSheet, useWindowDimensions, View} from 'react-native'
 import Animated, {
   interpolate,
   interpolateColor,
@@ -31,35 +9,53 @@ import Animated, {
   useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
-} from "react-native-reanimated";
+} from 'react-native-reanimated'
+import {BlurView} from 'expo-blur'
+import * as ImagePicker from 'expo-image-picker'
+import {useReactiveVar} from '@apollo/client'
+import {MaterialIcons} from '@expo/vector-icons'
 
-const size = 70;
+import {
+  PhotoCreateManyProfileInput,
+  useAddStoryPhotosMutation,
+} from '#/graphql/generated'
+import {AuthorizationReactiveVar, ThemeReactiveVar} from '#/reactive'
+import {Box} from '#/src/components/ui/box'
+import {Button, ButtonIcon, ButtonText} from '#/src/components/ui/button'
+import {Center} from '#/src/components/ui/center'
+import {Heading} from '#/src/components/ui/heading'
+import {AddIcon, RemoveIcon} from '#/src/components/ui/icon'
+import {Pressable} from '#/src/components/ui/pressable'
+import {Text} from '#/src/components/ui/text'
+import useCloudinaryImageUploading from '#/src/util/uploading/useCloudinaryImageUploading'
+
+const size = 70
 
 export default function Photos() {
-  const [isLoading, setLoading] = useState(false);
-  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar);
-  const rTheme = useReactiveVar(ThemeReactiveVar);
-  const { width } = useWindowDimensions();
-  const scrollRef = useAnimatedRef<ScrollView>();
-  const translateX = useSharedValue(0);
-  const containerHeight = 400;
-  const margin = 12;
-  const DOT_SIZE = 8;
-  const ITEM_WIDTH = width - margin * 2;
+  const [isLoading, setLoading] = useState(false)
+  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
+  const rTheme = useReactiveVar(ThemeReactiveVar)
+  const {width} = useWindowDimensions()
+  const scrollRef = useAnimatedRef<ScrollView>()
+  const translateX = useSharedValue(0)
+  const containerHeight = 400
+  const margin = 12
+  const DOT_SIZE = 8
+  const ITEM_WIDTH = width - margin * 2
 
   //! don't move this from here
   const activeIndex = useDerivedValue(() => {
-    return Math.round(translateX.value / ITEM_WIDTH);
-  });
+    return Math.round(translateX.value / ITEM_WIDTH)
+  })
 
-  const [addPhotosMutation, { data, loading, error }] =
-    useAddStoryPhotosMutation();
+  const [addPhotosMutation, {data, loading, error}] =
+    useAddStoryPhotosMutation()
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     setTimeout(() => {
-      setLoading(true);
-    }, 1500);
+      setLoading(true)
+    }, 1500)
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       presentationStyle: ImagePicker.UIImagePickerPresentationStyle.FULL_SCREEN,
@@ -67,23 +63,26 @@ export default function Photos() {
       aspect: [4, 3],
       allowsMultipleSelection: true,
       quality: 1,
-    });
+    })
 
     if (result.assets) {
       const resultSettled = await Promise.allSettled(
-        result.assets.map(async (item) => {
-          const data = await useCloudinaryImageUploading(item.uri);
-          return data.secure_url;
+        result.assets.map(async item => {
+          const data = await useCloudinaryImageUploading(item.uri)
+          return data.secure_url
         }),
-      );
+      )
 
-      const images: PhotoCreateManyProfileInput[] = resultSettled.map(
-        (item, index) => {
-          if (item.status === "fulfilled" && item.value) {
-            return { url: item.value };
+      const images: PhotoCreateManyProfileInput[] = resultSettled
+        .map((item, index) => {
+          if (item.status === 'fulfilled' && item.value) {
+            return {url: item.value}
           }
-        },
-      );
+          return undefined
+        })
+        .filter(
+          (item): item is PhotoCreateManyProfileInput => item !== undefined,
+        )
 
       addPhotosMutation({
         variables: {
@@ -91,47 +90,47 @@ export default function Photos() {
             data: [...images],
           },
         },
-      });
-      setLoading(false);
+      })
+      setLoading(false)
     } else {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   const scrollHandler = useAnimatedScrollHandler({
-    onScroll: (event) => {
-      translateX.value = event.contentOffset.x;
+    onScroll: event => {
+      translateX.value = event.contentOffset.x
     },
-  });
+  })
 
-  const onPressScroll = useCallback((side) => {
-    if (side === "left") {
-      if (activeIndex.value === 0) return;
+  const onPressScroll = useCallback((side: string) => {
+    if (side === 'left') {
+      if (activeIndex.value === 0) return
       scrollRef.current?.scrollTo({
         x: ITEM_WIDTH * (activeIndex.value - 1),
         animated: false,
-      });
+      })
     }
-    if (side == "right") {
+    if (side === 'right') {
       if (rAuthorizationVar?.Profile?.tonightStory?.photos) {
         if (
           activeIndex.value ===
           rAuthorizationVar?.Profile?.tonightStory?.photos?.length - 1
         ) {
-          scrollRef.current?.scrollTo({ x: ITEM_WIDTH * 0, animated: false });
-          return;
+          scrollRef.current?.scrollTo({x: ITEM_WIDTH * 0, animated: false})
+          return
         }
         scrollRef.current?.scrollTo({
           x: ITEM_WIDTH * (activeIndex.value + 1),
           animated: false,
-        });
+        })
       }
     }
-  }, []);
+  }, [])
 
   const styles = StyleSheet.create({
     dotLg: {
-      position: "absolute",
+      position: 'absolute',
       left: -39,
       top: -10,
       height: size + 10,
@@ -142,7 +141,7 @@ export default function Photos() {
     dotMd: {
       top: 10,
       left: -55,
-      position: "absolute",
+      position: 'absolute',
       height: size - 15,
       width: size - 15,
       borderRadius: size / 2,
@@ -151,14 +150,14 @@ export default function Photos() {
     dotSm: {
       top: 20,
       left: 20,
-      position: "absolute",
+      position: 'absolute',
       height: size - 25,
       width: size - 25,
       borderRadius: size / 2,
       backgroundColor: rTheme.theme?.gluestack.tokens.colors.secondary700,
       zIndex: 3,
     },
-  });
+  })
 
   return (
     <Box className="bg-transparent">
@@ -173,19 +172,17 @@ export default function Photos() {
             onScroll={scrollHandler}
             scrollEventThrottle={16}
             showsHorizontalScrollIndicator={false}
-            decelerationRate={"fast"}
+            decelerationRate={'fast'}
             bounces={false}
-            style={{ overflow: "hidden" }}
-          >
+            style={{overflow: 'hidden'}}>
             {[
               ...rAuthorizationVar?.Profile?.tonightStory?.photos,
-              { __typename: "upload" },
+              {__typename: 'upload'},
             ]?.map((item, index) => {
-              if (item?.__typename === "upload") {
+              if (item?.__typename === 'upload') {
                 return (
                   <Box
-                    className={` h-${containerHeight} w-${ITEM_WIDTH} rounded-md bg-transparent`}
-                  >
+                    className={` h-${containerHeight} w-${ITEM_WIDTH} rounded-md bg-transparent`}>
                     <Center className="mx-5 flex-1">
                       <Box className="mb-25 w-[100%] items-center bg-transparent">
                         <MaterialIcons
@@ -193,21 +190,21 @@ export default function Photos() {
                             zIndex: 10,
                             marginTop: 10,
                             color:
-                              rTheme.colorScheme === "light"
+                              rTheme.colorScheme === 'light'
                                 ? rTheme.theme?.gluestack.tokens.colors.light100
                                 : rTheme.theme?.gluestack.tokens.colors
                                     .light100,
                           }}
                           size={40}
-                          name={"photo-size-select-actual"}
+                          name={'photo-size-select-actual'}
                         />
                         <Box className="z-5 absolute bg-transparent">
                           <View
                             style={[
                               styles.dotSm,
                               {
-                                alignContent: "center",
-                                justifyContent: "center",
+                                alignContent: 'center',
+                                justifyContent: 'center',
                               },
                             ]}
                           />
@@ -215,8 +212,8 @@ export default function Photos() {
                             style={[
                               styles.dotMd,
                               {
-                                alignContent: "center",
-                                justifyContent: "center",
+                                alignContent: 'center',
+                                justifyContent: 'center',
                               },
                             ]}
                           />
@@ -224,8 +221,8 @@ export default function Photos() {
                             style={[
                               styles.dotLg,
                               {
-                                alignContent: "center",
-                                justifyContent: "center",
+                                alignContent: 'center',
+                                justifyContent: 'center',
                               },
                             ]}
                           />
@@ -236,96 +233,90 @@ export default function Photos() {
                       </Heading>
                       <Button
                         onPress={pickImage}
-                        className="z-20 rounded-md bg-tertiary-400"
-                      >
+                        className="z-20 rounded-md bg-tertiary-400">
                         <ButtonIcon>
                           <AddIcon />
                         </ButtonIcon>
                       </Button>
                     </Center>
                   </Box>
-                );
+                )
               }
 
               return (
                 <View key={index}>
                   <Box
-                    className={` w-${ITEM_WIDTH} h-[100%] overflow-hidden rounded-md bg-transparent`}
-                  >
+                    className={` w-${ITEM_WIDTH} h-[100%] overflow-hidden rounded-md bg-transparent`}>
                     <Pressable
+                      accessibilityRole="button"
                       onPress={() => {
-                        onPressScroll("left");
+                        onPressScroll('left')
                       }}
                       className={` w-${ITEM_WIDTH / 2} absolute bottom-0 left-0 top-0 z-10 h-[100%] opacity-20`}
                     />
                     <Pressable
+                      accessibilityRole="button"
                       onPress={() => {
-                        onPressScroll("right");
+                        onPressScroll('right')
                       }}
                       className={` w-${ITEM_WIDTH / 2} absolute bottom-0 right-[0px] top-0 z-10 h-[100%]`}
                     />
                     <Button
                       size="xs"
                       onPress={() => {
-                        onPressScroll("right");
+                        onPressScroll('right')
                       }}
-                      className="bg-danger-600 absolute right-[10px] top-10 z-20 rounded-full"
-                    >
+                      className="bg-danger-600 absolute right-[10px] top-10 z-20 rounded-full">
                       <RemoveIcon />
                     </Button>
                     <Image
                       source={{
-                        uri: item.url,
+                        uri: 'url' in item ? item.url : '',
                       }}
                       resizeMode="cover"
                       style={{
-                        height: "100%",
-                        width: "100%",
+                        height: '100%',
+                        width: '100%',
                         borderRadius: 0,
-                        overflow: "hidden",
+                        overflow: 'hidden',
                       }}
                     />
                   </Box>
                 </View>
-              );
+              )
             })}
           </Animated.ScrollView>
 
           <View
             style={{
-              position: "absolute",
+              position: 'absolute',
               bottom: 10,
-              alignSelf: "center",
-              flexDirection: "row",
-            }}
-          >
+              alignSelf: 'center',
+              flexDirection: 'row',
+            }}>
             {[
               rAuthorizationVar?.Profile?.tonightStory?.photos,
-              { __typename: "upload" },
+              {__typename: 'upload'},
             ].map((item, i) => {
               const rDotStyle = useAnimatedStyle(() => {
-                const inputRange = [
-                  (i - 1) * width,
-                  i * width,
-                  (i + 1) * width,
-                ];
+                const inputRange = [(i - 1) * width, i * width, (i + 1) * width]
                 const dotWidth = interpolate(
                   translateX.value,
                   inputRange,
                   [11, 20, 11],
-                  "clamp",
-                );
+                  'clamp',
+                )
                 const dotColor = interpolateColor(
                   translateX.value,
                   inputRange,
-                  ["#1d1d1d", "#ff7000", "#1d1d1d"],
-                );
+                  ['#1d1d1d', '#ff7000', '#1d1d1d'],
+                )
 
                 return {
                   width: dotWidth,
                   backgroundColor: dotColor,
-                };
-              });
+                }
+              })
 
               return (
                 <Animated.View
@@ -339,19 +330,17 @@ export default function Photos() {
                     },
                   ]}
                 />
-              );
+              )
             })}
           </View>
         </Box>
       ) : (
         <BlurView
-          tint={rTheme.colorScheme === "light" ? "light" : "dark"}
+          tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
           intensity={40}
-          style={{ borderRadius: 15, overflow: "hidden", marginHorizontal: 7 }}
-        >
+          style={{borderRadius: 15, overflow: 'hidden', marginHorizontal: 7}}>
           <Box
-            className={` h-${containerHeight} w-[100%] rounded-md bg-transparent`}
-          >
+            className={` h-${containerHeight} w-[100%] rounded-md bg-transparent`}>
             <Center className="mx-5 flex-1">
               <Box className="mb-25 w-[100%] items-center bg-transparent">
                 <MaterialIcons
@@ -359,20 +348,20 @@ export default function Photos() {
                     zIndex: 10,
                     marginTop: 10,
                     color:
-                      rTheme.colorScheme === "light"
+                      rTheme.colorScheme === 'light'
                         ? rTheme.theme?.gluestack.tokens.colors.light100
                         : rTheme.theme?.gluestack.tokens.colors.light100,
                   }}
                   size={40}
-                  name={"photo-size-select-actual"}
+                  name={'photo-size-select-actual'}
                 />
                 <Box className="z-5 absolute bg-transparent">
                   <View
                     style={[
                       styles.dotSm,
                       {
-                        alignContent: "center",
-                        justifyContent: "center",
+                        alignContent: 'center',
+                        justifyContent: 'center',
                       },
                     ]}
                   />
@@ -380,8 +369,8 @@ export default function Photos() {
                     style={[
                       styles.dotMd,
                       {
-                        alignContent: "center",
-                        justifyContent: "center",
+                        alignContent: 'center',
+                        justifyContent: 'center',
                       },
                     ]}
                   />
@@ -389,8 +378,8 @@ export default function Photos() {
                     style={[
                       styles.dotLg,
                       {
-                        alignContent: "center",
-                        justifyContent: "center",
+                        alignContent: 'center',
+                        justifyContent: 'center',
                       },
                     ]}
                   />
@@ -404,14 +393,13 @@ export default function Photos() {
               </Text>
               <Button
                 onPress={pickImage}
-                className="mt-4 rounded-md bg-tertiary-400"
-              >
-                <ButtonText>Upload{loading ? "ing" : ""} images</ButtonText>
+                className="mt-4 rounded-md bg-tertiary-400">
+                <ButtonText>Upload{loading ? 'ing' : ''} images</ButtonText>
               </Button>
             </Center>
           </Box>
         </BlurView>
       )}
     </Box>
-  );
+  )
 }

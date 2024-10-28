@@ -1,6 +1,6 @@
-import {MotiPressable} from 'moti/interactions'
 import {useMemo} from 'react'
 import {Pressable, View} from 'react-native'
+import {MotiPressable} from 'moti/interactions'
 
 interface OuterViewStyleProps {
   height?: number
@@ -21,13 +21,7 @@ export interface TabProps {
   focused: boolean
 }
 
-const TabBarIcon = ({
-  icon,
-  badge,
-  containerStyle,
-  onPress,
-  onLongPress,
-}: TabBarIconProps) => (
+const TabBarIcon = ({icon, containerStyle}: TabBarIconProps) => (
   <View
     style={{
       height: 45,
@@ -36,24 +30,7 @@ const TabBarIcon = ({
       justifyContent: 'center',
     }}>
     {/* {badge} */}
-    {/* <MotiPressable
-			animate={useMemo(
-				() =>
-					({ hovered, pressed }) => {
-						'worklet'
-
-						return {
-							scale: hovered || pressed ? 0.75 : 1,
-						}
-					},
-				[],
-			)}
-			style={{ zIndex: 100 }}
-			onPress={onPress}
-			onLongPress={onLongPress}
-		> */}
     {icon}
-    {/* </MotiPressable> */}
   </View>
 )
 

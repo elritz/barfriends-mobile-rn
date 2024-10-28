@@ -1,28 +1,22 @@
-import {Heading} from '#/src/components/ui/heading'
-import {HStack} from '#/src/components/ui/hstack'
-import {Button, ButtonText} from '#/src/components/ui/button'
+import {useEffect, useState} from 'react'
+import {useGlobalSearchParams} from 'expo-router'
+import {Reference} from '@apollo/client'
+
 import {
   useGetLiveVenueTotalsV2Query,
   useRefreshDeviceManagerQuery,
   useRemovePersonalJoinsVenue2Mutation,
 } from '#/graphql/generated'
-import {useGlobalSearchParams} from 'expo-router'
-import {useEffect, useState} from 'react'
+import {Button, ButtonText} from '#/src/components/ui/button'
+import {Heading} from '#/src/components/ui/heading'
+import {HStack} from '#/src/components/ui/hstack'
 
 export default function LeaveSection() {
   const params = useGlobalSearchParams()
   const [isJoined, setIsJoined] = useState(false)
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-  } = useRefreshDeviceManagerQuery()
+  const {data: rdmData} = useRefreshDeviceManagerQuery()
 
-  const {
-    data: glvtData,
-    loading: glvtLoading,
-    error: glvtError,
-  } = useGetLiveVenueTotalsV2Query({
+  const {data: glvtData} = useGetLiveVenueTotalsV2Query({
     skip: !String(params.venueProfileId),
     fetchPolicy: 'cache-first',
     variables: {
@@ -48,35 +42,72 @@ export default function LeaveSection() {
     },
   })
 
-  const [
-    removePersonalJoinsVenueMutation,
-    {data: JVData, loading: JVLoading, error: JVError},
-  ] = useRemovePersonalJoinsVenue2Mutation({
-    variables: {
-      profileIdVenue: String(params.venueProfileId),
-    },
-    update: (cache, {data}) => {
-      if (
-        glvtData?.getLiveVenueTotalsV2?.__typename === 'LiveVenueTotals2' &&
-        rdmData?.refreshDeviceManager?.__typename ===
-          'AuthorizationDeviceProfile' &&
-        data?.removePersonalJoinsVenue2?.__typename === 'LiveVenueTotals2'
-      ) {
-        if (data?.removePersonalJoinsVenue2?.updateOut?.id) {
-          if (
-            rdmData?.refreshDeviceManager?.Profile?.Personal?.LiveOutPersonal
-          ) {
+  const [removePersonalJoinsVenueMutation, {loading: JVLoading}] =
+    useRemovePersonalJoinsVenue2Mutation({
+      variables: {
+        profileIdVenue: String(params.venueProfileId),
+      },
+      update: (cache, {data}) => {
+        if (
+          glvtData?.getLiveVenueTotalsV2?.__typename === 'LiveVenueTotals2' &&
+          rdmData?.refreshDeviceManager?.__typename ===
+            'AuthorizationDeviceProfile' &&
+          data?.removePersonalJoinsVenue2?.__typename === 'LiveVenueTotals2'
+        ) {
+          if (data?.removePersonalJoinsVenue2?.updateOut?.id) {
+            if (
+              rdmData?.refreshDeviceManager?.Profile?.Personal?.LiveOutPersonal
+            ) {
+              const tobeRemoved = cache.identify(
+                data.removePersonalJoinsVenue2.updateOut,
+              )
+              if (tobeRemoved) {
+                cache.modify({
+                  id: cache.identify(
+                    rdmData.refreshDeviceManager.Profile?.Personal
+                      ?.LiveOutPersonal,
+                  ),
+                  fields: {
+                    out(existingItemsRefs: Reference[], {toReference}) {
+                      return existingItemsRefs.filter(
+                        (itemRef: Reference | undefined) =>
+                          itemRef === toReference(tobeRemoved),
+                      )
+                    },
+                  },
+                })
+              }
+            }
+          }
+        }
+
+        if (
+          data?.removePersonalJoinsVenue2?.__typename === 'LiveVenueTotals2' &&
+          rdmData?.refreshDeviceManager?.__typename ===
+            'AuthorizationDeviceProfile'
+        ) {
+          setIsJoined(false)
+          if (data.removePersonalJoinsVenue2.updateOut?.id) {
             const tobeRemoved = cache.identify(
               data.removePersonalJoinsVenue2.updateOut,
             )
             if (tobeRemoved) {
               cache.modify({
-                id: cache.identify(
-                  rdmData.refreshDeviceManager.Profile?.Personal
-                    ?.LiveOutPersonal,
-                ),
+                id: cache.identify(data.removePersonalJoinsVenue2),
                 fields: {
-                  Out(existingItemsRefs, {toReference}) {
+                  joined: () =>
+                    data.removePersonalJoinsVenue2?.__typename ===
+                      'LiveVenueTotals2' &&
+                    data.removePersonalJoinsVenue2.joined
+                      ? data.removePersonalJoinsVenue2.joined
+                      : 0,
+                  totaled: () =>
+                    data.removePersonalJoinsVenue2?.__typename ===
+                      'LiveVenueTotals2' &&
+                    data.removePersonalJoinsVenue2.totaled
+                      ? data.removePersonalJoinsVenue2.totaled
+                      : 0,
+                  out(existingItemsRefs: Reference[], {toReference}) {
                     return existingItemsRefs.filter(
                       itemRef => itemRef === toReference(tobeRemoved),
                     )
@@ -86,56 +117,21 @@ export default function LeaveSection() {
             }
           }
         }
-      }
-
-      if (
-        data?.removePersonalJoinsVenue2?.__typename === 'LiveVenueTotals2' &&
-        rdmData?.refreshDeviceManager?.__typename ===
-          'AuthorizationDeviceProfile'
-      ) {
-        setIsJoined(false)
-        if (data.removePersonalJoinsVenue2.updateOut?.id) {
-          const tobeRemoved = cache.identify(
-            data.removePersonalJoinsVenue2.updateOut,
-          )
-          if (tobeRemoved) {
-            cache.modify({
-              id: cache.identify(data.removePersonalJoinsVenue2),
-              fields: {
-                joined: () =>
-                  data.removePersonalJoinsVenue2?.__typename ===
-                    'LiveVenueTotals2' && data.removePersonalJoinsVenue2.joined
-                    ? data.removePersonalJoinsVenue2.joined
-                    : 0,
-                totaled: () =>
-                  data.removePersonalJoinsVenue2?.__typename ===
-                    'LiveVenueTotals2' && data.removePersonalJoinsVenue2.totaled
-                    ? data.removePersonalJoinsVenue2.totaled
-                    : 0,
-                out(existingItemsRefs, {toReference}) {
-                  return existingItemsRefs.filter(
-                    itemRef => itemRef === toReference(tobeRemoved),
-                  )
-                },
-              },
-            })
-          }
-        }
-      }
-    },
-  })
+      },
+    })
 
   useEffect(() => {
     if (
       glvtData &&
-      glvtData.getLiveVenueTotalsV2.__typename === 'LiveVenueTotals2'
+      glvtData.getLiveVenueTotalsV2?.__typename === 'LiveVenueTotals2'
     ) {
       if (glvtData.getLiveVenueTotalsV2.out?.length) {
         glvtData.getLiveVenueTotalsV2.out?.some(item => {
           if (item.type === 'JOIN') {
             if (
-              glvtData.getLiveVenueTotalsV2.__typename === 'LiveVenueTotals2' &&
-              rdmData?.refreshDeviceManager.__typename ===
+              glvtData.getLiveVenueTotalsV2?.__typename ===
+                'LiveVenueTotals2' &&
+              rdmData?.refreshDeviceManager?.__typename ===
                 'AuthorizationDeviceProfile'
             ) {
               if (
@@ -155,12 +151,12 @@ export default function LeaveSection() {
     }
   }, [glvtData])
 
-  if (rdmData?.refreshDeviceManager.__typename === 'Error') {
+  if (rdmData?.refreshDeviceManager?.__typename === 'Error') {
     return null
   }
 
   if (
-    rdmData?.refreshDeviceManager.__typename === 'AuthorizationDeviceProfile'
+    rdmData?.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile'
   ) {
     if (!isJoined) return null
     return (

@@ -1,24 +1,25 @@
-import {Text} from '#/src/components/ui/text'
-import {Pressable} from '#/src/components/ui/pressable'
-import {Heading} from '#/src/components/ui/heading'
-import {Box} from '#/src/components/ui/box'
+import {SafeAreaView, ScrollView, View} from 'react-native'
+import {useLocalSearchParams, useRouter} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
-import DeviceManagerProfileItemLarge from '#/src/components/molecules/authorization/devicemanagerprofileitem/DeviceManagerProfileItemLarge'
+
 import {
   AuthorizationDeviceProfile,
+  Maybe,
   useAuthorizedProfilesQuery,
   useSwitchDeviceProfileMutation,
 } from '#/graphql/generated'
 import {AuthorizationReactiveVar} from '#/reactive'
-import {useRouter, useLocalSearchParams} from 'expo-router'
-import {SafeAreaView, View, ScrollView} from 'react-native'
+import {Box} from '#/src/components/ui/box'
+import {Heading} from '#/src/components/ui/heading'
+import {Pressable} from '#/src/components/ui/pressable'
+import {Text} from '#/src/components/ui/text'
 
 export default () => {
   const router = useRouter()
   const params = useLocalSearchParams()
   const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 
-  const {data, loading, error} = useAuthorizedProfilesQuery({
+  const {data, loading} = useAuthorizedProfilesQuery({
     skip: !params.authenticator && !params.authenticator,
     fetchPolicy: 'network-only',
     variables: {
@@ -33,12 +34,14 @@ export default () => {
     },
   })
 
-  const [
-    switchDeviceProfileMutation,
-    {data: SWDPData, loading: SWDPLoading, error: SWDPError},
-  ] = useSwitchDeviceProfileMutation({})
+  const [switchDeviceProfileMutation, {loading: SWDPLoading}] =
+    useSwitchDeviceProfileMutation({})
 
-  const _press = item => {
+  const _press = (item: {
+    id: Maybe<string> | undefined
+    IdentifiableInformation: {username: any}
+    profilePhoto: {url: any}
+  }) => {
     if (rAuthorizationVar?.Profile?.id !== item.id) {
       switchDeviceProfileMutation({
         variables: {
@@ -59,7 +62,7 @@ export default () => {
                 }),
               1000,
             )
-          } else if (data.switchDeviceProfile.__typename === 'Error') {
+          } else if (data.switchDeviceProfile?.__typename === 'Error') {
             router.push({
               pathname: '/(credential)/logincredentialstack/loginpassword',
               params: {
@@ -75,7 +78,7 @@ export default () => {
   }
 
   if (loading) {
-    return <></>
+    return null
   }
 
   if (data?.authorizedProfiles?.__typename === 'Error') {
@@ -119,6 +122,7 @@ export default () => {
           {finalProfileArray.map(item => {
             return (
               <Pressable
+                accessibilityRole="button"
                 disabled={loading || SWDPLoading}
                 key={item.id}
                 onPress={() => _press(item)}>

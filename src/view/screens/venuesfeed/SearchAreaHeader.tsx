@@ -1,13 +1,14 @@
-import {Text} from '#/src/components/ui/text'
-import {HStack} from '#/src/components/ui/hstack'
-import {VStack} from '#/src/components/ui/vstack'
-import {Heading} from '#/src/components/ui/heading'
+import {Pressable} from 'react-native'
+import {useRouter} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
 import {FontAwesome5} from '@expo/vector-icons'
+
 import {SearchAreaReactiveVar, ThemeReactiveVar} from '#/reactive'
-import {useRouter} from 'expo-router'
+import {Heading} from '#/src/components/ui/heading'
+import {HStack} from '#/src/components/ui/hstack'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
 import VenueFeedSearchAreaEmptyState from '#/src/view/screens/venuesfeed/VenueFeedSearchAreaEmptyState'
-import {Pressable} from 'react-native'
 
 export default function SearchAreaHeader() {
   const router = useRouter()
@@ -24,7 +25,10 @@ export default function SearchAreaHeader() {
   }
 
   return (
-    <Pressable onPress={() => _press()} style={{flex: 1}}>
+    <Pressable
+      accessibilityRole="button"
+      onPress={() => _press()}
+      style={{flex: 1}}>
       <HStack space={'md'} className="items-center justify-between px-3">
         <VStack className="flex-1">
           <HStack space={'md'} className="items-center justify-between">

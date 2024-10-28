@@ -1,5 +1,6 @@
-import { Text } from "#/src/components/ui/text";
-import { View } from "react-native";
+import {View} from 'react-native'
+
+import {Text} from '#/src/components/ui/text'
 
 export default () => {
   return (
@@ -12,5 +13,5 @@ export default () => {
       <Text>Other Notification Types</Text>
       <Text>Email and SMS</Text>
     </View>
-  );
-};
+  )
+}

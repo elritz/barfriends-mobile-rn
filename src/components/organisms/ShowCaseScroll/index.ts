@@ -1,8 +1,8 @@
-import { cards } from './components/Cards'
-import { products } from './Model'
+import {cards} from './components/Cards'
+import {products} from './Model'
 
-export { default } from './PhilzCoffee'
+export {default} from './PhilzCoffee'
 
 export const assets = products
-	.map(product => product.picture)
-	.concat(cards.map(card => card.picture))
+  .map(product => product.picture)
+  .concat(cards.map(card => card.picture))

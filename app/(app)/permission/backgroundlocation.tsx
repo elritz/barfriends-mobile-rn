@@ -1,38 +1,33 @@
-import {VStack} from '#/src/components/ui/vstack'
-import {Text} from '#/src/components/ui/text'
-import {Heading} from '#/src/components/ui/heading'
-import {Divider} from '#/src/components/ui/divider'
-import {Button, ButtonText} from '#/src/components/ui/button'
-import {Box} from '#/src/components/ui/box'
-// TODO: UX(handleAppStateChange) check if location permission is enabled and go somewhere with it
-import {useReactiveVar} from '@apollo/client'
-import IllustrationDynamicLocation from '#/assets/images/location/IllustrationDynamicLocation'
-import PermissionDetailItem from '#/src/view/screens/permissions/PermissionDetailItem'
-import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
-import {useIsFocused} from '@react-navigation/native'
-import {
-  PermissionBackgroundLocationReactiveVar,
-  ThemeReactiveVar,
-} from '#/reactive'
-import {capitalizeFirstLetter} from '#/src/util/helpers/capitalizeFirstLetter'
-import useTimer2 from '#/src/util/hooks/useTimer2'
+import React, {useEffect, useRef} from 'react'
+import {Alert, AppState, Platform, ScrollView, View} from 'react-native'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import * as IntentLauncher from 'expo-intent-launcher'
 import * as Linking from 'expo-linking'
 import * as Location from 'expo-location'
 import {useRouter} from 'expo-router'
-import React, {useEffect, useRef} from 'react'
-import {Alert, AppState, Platform, ScrollView, View} from 'react-native'
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
+// TODO: UX(handleAppStateChange) check if location permission is enabled and go somewhere with it
+import {useReactiveVar} from '@apollo/client'
+import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
+import {useIsFocused} from '@react-navigation/native'
+
+import IllustrationDynamicLocation from '#/assets/images/location/IllustrationDynamicLocation'
+import {PermissionsReactiveVar, ThemeReactiveVar} from '#/reactive'
+import {Box} from '#/src/components/ui/box'
+import {Button, ButtonText} from '#/src/components/ui/button'
+import {Divider} from '#/src/components/ui/divider'
+import {Heading} from '#/src/components/ui/heading'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
+import {capitalizeFirstLetter} from '#/src/util/helpers/capitalizeFirstLetter'
+import useTimer2 from '#/src/util/hooks/useTimer2'
+import PermissionDetailItem from '#/src/view/screens/permissions/PermissionDetailItem'
 
 export default () => {
   const appStateRef = useRef(AppState.currentState)
   const router = useRouter()
   const insets = useSafeAreaInsets()
   const isFocused = useIsFocused()
-  const rBackgroundLocationPermissionVar = useReactiveVar(
-    PermissionBackgroundLocationReactiveVar,
-  )
+  const rPerm = useReactiveVar(PermissionsReactiveVar)
   const {start, seconds, started} = useTimer2('0:2')
   const rTheme = useReactiveVar(ThemeReactiveVar)
 
@@ -98,7 +93,7 @@ export default () => {
     Alert.alert(
       'Barfriends Backgrounds Location Permission',
       `Location access is currently active ${capitalizeFirstLetter(
-        rBackgroundLocationPermissionVar?.status,
+        rPerm?.locationBackground.status,
       )}. If you wish to adjust go to your device settings.
 			`,
       [
@@ -131,7 +126,12 @@ export default () => {
     async function loadPermissionsAsync() {
       const status = await Location.getBackgroundPermissionsAsync()
       try {
-        PermissionBackgroundLocationReactiveVar(status)
+        if (status) {
+          PermissionsReactiveVar({
+            ...rPerm,
+            locationBackground: status,
+          })
+        }
       } catch (e) {
         console.warn(e)
       }
@@ -156,7 +156,10 @@ export default () => {
     ) {
       const backgroundlocationpermission =
         await Location.getBackgroundPermissionsAsync()
-      PermissionBackgroundLocationReactiveVar(backgroundlocationpermission)
+      PermissionsReactiveVar({
+        ...rPerm,
+        locationBackground: backgroundlocationpermission,
+      })
       if (
         backgroundlocationpermission.granted &&
         backgroundlocationpermission.status === 'granted'
@@ -204,18 +207,18 @@ export default () => {
         <Button
           size={'lg'}
           onPress={() =>
-            !rBackgroundLocationPermissionVar?.granted
-              ? rBackgroundLocationPermissionVar?.canAskAgain &&
-                !rBackgroundLocationPermissionVar.granted
+            !rPerm?.locationBackground.granted
+              ? rPerm?.locationBackground.canAskAgain &&
+                !rPerm.locationBackground.granted
                 ? handleRequestBackgroundLocationPermission()
                 : handleOpenPhoneSettings()
               : createTwoButtonAlert()
           }
           className="w-[95%] rounded-lg">
           <ButtonText>
-            {!rBackgroundLocationPermissionVar?.granted
-              ? rBackgroundLocationPermissionVar?.canAskAgain &&
-                !rBackgroundLocationPermissionVar.granted
+            {!rPerm?.locationBackground.granted
+              ? rPerm?.locationBackground.canAskAgain &&
+                !rPerm.locationBackground.granted
                 ? 'Continue'
                 : 'Go to Phone Settings'
               : 'Granted'}

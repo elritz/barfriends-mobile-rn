@@ -1,79 +1,80 @@
-import { Text } from "#/src/components/ui/text";
-import { Center } from "#/src/components/ui/center";
-import { Button, ButtonText } from "#/src/components/ui/button";
-import { Form } from "./_layout";
-import { useReactiveVar } from "@apollo/client";
+import {memo, useEffect, useState} from 'react'
+import {View} from 'react-native'
+import {useLocalSearchParams, useRouter} from 'expo-router'
+import {useReactiveVar} from '@apollo/client'
+import {FlashList} from '@shopify/flash-list'
+import {filter} from 'lodash'
+import {Skeleton} from 'moti/skeleton'
+import {useFormContext} from 'react-hook-form'
+
 import {
   StateResponseObject,
   useGetAllStatesByCountryQuery,
-} from "#/graphql/generated";
-import { ThemeReactiveVar } from "#/reactive";
-import { FlashList } from "@shopify/flash-list";
-import useContentInsets from "#/src/util/hooks/useContentInsets";
-import { useRouter, useLocalSearchParams } from "expo-router";
-import { filter } from "lodash";
-import { Skeleton } from "moti/skeleton";
-import { memo, useEffect, useState } from "react";
-import { useFormContext } from "react-hook-form";
-import { View } from "react-native";
+} from '#/graphql/generated'
+import {ThemeReactiveVar} from '#/reactive'
+import {Button, ButtonText} from '#/src/components/ui/button'
+import {Center} from '#/src/components/ui/center'
+import {Text} from '#/src/components/ui/text'
+import useContentInsets from '#/src/util/hooks/useContentInsets'
+import {Form} from './_layout'
 
 export default function SearchCountryStates() {
-  const router = useRouter();
-  const params = useLocalSearchParams();
-  const rTheme = useReactiveVar(ThemeReactiveVar);
-  const contentInsets = useContentInsets();
+  const router = useRouter()
+  const params = useLocalSearchParams()
+  const rTheme = useReactiveVar(ThemeReactiveVar)
+  const contentInsets = useContentInsets()
 
-  const [countryStates, setCountryStates] = useState<StateResponseObject[]>([]);
-  const [pagination, setPagination] = useState<number>();
-  const formContext = useFormContext<Form>();
+  const [countryStates, setCountryStates] = useState<StateResponseObject[]>([])
+  const [pagination, setPagination] = useState<number>()
+  const formContext = useFormContext<Form>()
 
-  const { watch, getValues, setValue } = formContext;
+  const {watch, getValues, setValue} = formContext
 
-  const { data, loading, error } = useGetAllStatesByCountryQuery({
+  const {data, loading, error} = useGetAllStatesByCountryQuery({
     skip: !String(params.countryIsoCode),
     variables: {
       countryIsoCode: String(params.countryIsoCode),
     },
-    onCompleted: (data) => {
-      setCountryStates(data.getAllStatesByCountry);
+    onCompleted: data => {
+      setCountryStates(data.getAllStatesByCountry)
       if (data.getAllStatesByCountry.length > 100) {
-        setPagination(data.getAllStatesByCountry.length / 4);
+        setPagination(data.getAllStatesByCountry.length / 4)
       } else {
-        setPagination(data.getAllStatesByCountry.length);
+        setPagination(data.getAllStatesByCountry.length)
       }
     },
-  });
+  })
 
-  const filterList = (text) => {
+  const filterList = text => {
     if (!params?.searchtext?.length && data?.getAllStatesByCountry.length) {
-      setCountryStates(data.getAllStatesByCountry);
+      setCountryStates(data.getAllStatesByCountry)
     }
 
-    const filteredData = filter(data?.getAllStatesByCountry, (state) => {
-      return contains(state, text.toLowerCase());
-    });
-    setCountryStates(filteredData);
-  };
+    const filteredData = filter(data?.getAllStatesByCountry, state => {
+      return contains(state, text.toLowerCase())
+    })
+    setCountryStates(filteredData)
+  }
 
   const contains = (state, query) => {
     if (state.name.toLowerCase().includes(query)) {
-      return true;
+      return true
     }
-    return false;
-  };
+    return false
+  }
 
   useEffect(() => {
     if (params.searchtext) {
-      filterList(params.searchtext);
+      filterList(params.searchtext)
     }
-  }, [params.searchtext]);
+  }, [params.searchtext])
 
   if (!params.countryIsoCode) {
     return (
       <Center className="p-10">
         <Text className="text-lg"> No country provided</Text>
       </Center>
-    );
+    )
   }
 
   if (loading) {
@@ -86,9 +87,9 @@ export default function SearchCountryStates() {
         contentContainerStyle={{
           paddingHorizontal: 10,
         }}
-        keyExtractor={(item, index) => "key" + index}
+        keyExtractor={(item, index) => 'key' + index}
         estimatedItemSize={50}
-        keyboardDismissMode={"on-drag"}
+        keyboardDismissMode={'on-drag'}
         ItemSeparatorComponent={() => {
           return (
             <View
@@ -96,18 +97,18 @@ export default function SearchCountryStates() {
                 marginVertical: 4,
               }}
             />
-          );
+          )
         }}
-        renderItem={({ index, item }) => {
+        renderItem={({index, item}) => {
           return (
             <Skeleton
               key={index}
               height={50}
-              width={"100%"}
+              width={'100%'}
               radius={10}
-              colorMode={rTheme.colorScheme === "light" ? "light" : "dark"}
+              colorMode={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
               colors={
-                rTheme.colorScheme === "light"
+                rTheme.colorScheme === 'light'
                   ? [
                       String(rTheme.theme?.gluestack.tokens.colors.light100),
                       String(rTheme.theme?.gluestack.tokens.colors.light300),
@@ -118,66 +119,63 @@ export default function SearchCountryStates() {
                     ]
               }
             />
-          );
+          )
         }}
       />
-    );
+    )
   }
 
-  function CityItem({ index, item }) {
-    const _pressItem = async (item) => {
-      setValue("state", {
+  function CityItem({index, item}) {
+    const _pressItem = async item => {
+      setValue('state', {
         name: item.name,
         isoCode: item.isoCode,
         coords: {
           latitude: Number(item.latitude),
           longitude: Number(item.longitude),
         },
-      });
+      })
       router.replace({
-        pathname: "/(app)/searcharea/searchstatecities",
+        pathname: '/(app)/searcharea/searchstatecities',
         params: {
           countryIsoCode: item.countryCode,
           stateIsoCode: item.isoCode,
         },
-      });
-    };
+      })
+    }
 
     return (
       <Button
         onPress={() => _pressItem(item)}
         key={index}
         isFocused
-        className={`${watch("state.name") === item.name || watch("state.isoCode") === item.isoCode ? "bg-primary-500" : "bg-light-50"} ${watch("state.name") === item.name || watch("state.isoCode") === item.isoCode ? "dark:bg-primary-500" : "dark:bg-light-800"} h-[50px] w-full justify-between rounded-md px-2 py-0`}
-      >
+        className={`${watch('state.name') === item.name || watch('state.isoCode') === item.isoCode ? 'bg-primary-500' : 'bg-light-50'} ${watch('state.name') === item.name || watch('state.isoCode') === item.isoCode ? 'dark:bg-primary-500' : 'dark:bg-light-800'} h-[50px] w-full justify-between rounded-md px-2 py-0`}>
         <Text
           numberOfLines={1}
-          ellipsizeMode={"tail"}
-          className="ml-3 mt-0.5 flex-1 text-xl font-medium"
-        >
+          ellipsizeMode={'tail'}
+          className="ml-3 mt-0.5 flex-1 text-xl font-medium">
           {item.name}
         </Text>
-        {watch("state.name") === item.name ||
-        watch("state.isoCode") === item.isoCode ? (
+        {watch('state.name') === item.name ||
+        watch('state.isoCode') === item.isoCode ? (
           <Button
             onPress={() => _pressItem(item)}
             size="xs"
-            className="mr-3 rounded-full bg-blue-500"
-          >
+            className="mr-3 rounded-full bg-blue-500">
             <ButtonText className="text-xs">Continue</ButtonText>
           </Button>
         ) : null}
       </Button>
-    );
+    )
   }
 
-  const MemoizedItem = memo(CityItem);
+  const MemoizedItem = memo(CityItem)
 
   return (
     <FlashList
       data={countryStates}
-      keyboardDismissMode={"on-drag"}
-      keyExtractor={(item, index) => "key" + index}
+      keyboardDismissMode={'on-drag'}
+      keyExtractor={(item, index) => 'key' + index}
       contentInset={{
         ...contentInsets,
       }}
@@ -191,12 +189,12 @@ export default function SearchCountryStates() {
               marginVertical: 4,
             }}
           />
-        );
+        )
       }}
       estimatedItemSize={50}
-      renderItem={({ item, index }) => {
-        return <MemoizedItem index={index} item={item} />;
+      renderItem={({item, index}) => {
+        return <MemoizedItem index={index} item={item} />
       }}
     />
-  );
+  )
 }

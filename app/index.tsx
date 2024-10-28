@@ -1,11 +1,10 @@
 import {Redirect} from 'expo-router'
-import {Text, View} from 'react-native'
 
 export default function index() {
-  const personal_username_misia = 'misia'
+  // const personal_username_misia = 'misia'
   // const device_manager_profile_id = 'e90675d1-009f-4ca8-9d76-f163a885189f'
-  const personal_username_ritz = 'ritz'
-  const device_manager_profile_id = 'e90675d1-009f-4ca8-9d76-f163a885189f'
+  // const personal_username_ritz = 'ritz'
+  // const device_manager_profile_id = 'e90675d1-009f-4ca8-9d76-f163a885189f'
 
   //? Hometabs
   // return <Redirect href={"/brokenstate"} />;

@@ -1,16 +1,13 @@
-import {ArrowRightIcon} from '#/src/components/ui/icon'
-import {Button, ButtonText, ButtonIcon} from '#/src/components/ui/button'
-import {Heading} from '#/src/components/ui/heading'
-import {HStack} from '#/src/components/ui/hstack'
-import {Pressable} from '#/src/components/ui/pressable'
-import {Text} from '#/src/components/ui/text'
-import {VStack} from '#/src/components/ui/vstack'
-import {Box} from '#/src/components/ui/box'
+import {memo, useCallback, useEffect, useState} from 'react'
+import {ScrollView, View} from 'react-native'
+import CountryFlag from 'react-native-country-flag'
+import {useRouter} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
-import CardPleaseSignup from '#/src/components/molecules/asks/signuplogin'
-import SearchAreaHeader from '#/src/view/screens/venuesfeed/SearchAreaHeader'
-import MemoizedVerticalVenueFeedVenueItem from '#/src/view/screens/venuesfeed/VerticalVenueFeedVenueItem'
 import {Ionicons} from '@expo/vector-icons'
+import {FlashList, MasonryFlashList} from '@shopify/flash-list'
+import {uniqueId} from 'lodash'
+import {Skeleton} from 'moti/skeleton'
+
 import {
   ProfileType,
   ProfileVenue,
@@ -21,19 +18,23 @@ import {
 } from '#/graphql/generated'
 import {
   CurrentLocationReactiveVar,
-  PermissionForegroundLocationReactiveVar,
+  PermissionsReactiveVar,
   SearchAreaReactiveVar,
   ThemeReactiveVar,
 } from '#/reactive'
-import {FlashList, MasonryFlashList} from '@shopify/flash-list'
+import SignupLoginCard from '#/src/components/molecules/asks/signuplogin'
+import {Box} from '#/src/components/ui/box'
+import {Button, ButtonIcon, ButtonText} from '#/src/components/ui/button'
+import {Heading} from '#/src/components/ui/heading'
+import {HStack} from '#/src/components/ui/hstack'
+import {ArrowRightIcon} from '#/src/components/ui/icon'
+import {Pressable} from '#/src/components/ui/pressable'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
 import useSetSearchAreaWithLocation from '#/src/util/hooks/searcharea/useSetSearchAreaWithLocation'
 import useContentInsets from '#/src/util/hooks/useContentInsets'
-import {useRouter} from 'expo-router'
-import {Skeleton} from 'moti/skeleton'
-import {memo, useCallback, useEffect, useState} from 'react'
-import {ScrollView, View} from 'react-native'
-import CountryFlag from 'react-native-country-flag'
-import {uniqueId} from 'lodash'
+import SearchAreaHeader from '#/src/view/screens/venuesfeed/SearchAreaHeader'
+import MemoizedVerticalVenueFeedVenueItem from '#/src/view/screens/venuesfeed/VerticalVenueFeedVenueItem'
 
 export default () => {
   const router = useRouter()
@@ -43,7 +44,7 @@ export default () => {
   const rCurrentLocationVar = useReactiveVar(CurrentLocationReactiveVar)
 
   const rForegroundLocationPermissionVar = useReactiveVar(
-    PermissionForegroundLocationReactiveVar,
+    PermissionsReactiveVar,
   )
 
   const [
@@ -60,7 +61,9 @@ export default () => {
     data: rdmData,
     loading: rdmLoading,
     error: rdmError,
-  } = useRefreshDeviceManagerQuery()
+  } = useRefreshDeviceManagerQuery({
+    fetchPolicy: 'cache-and-network',
+  })
 
   const [venuesNearbyQuery, {data, loading, error}] = useVenuesNearbyLazyQuery({
     variables: {
@@ -81,18 +84,12 @@ export default () => {
   })
 
   const getNearbyVenues = useCallback(async () => {
-    if (rForegroundLocationPermissionVar?.granted) {
+    if (rForegroundLocationPermissionVar?.locationForeground.granted) {
       if (rSearchAreaVar.useCurrentLocation) {
         await useSetSearchAreaWithLocation()
       }
     }
-
-    if (
-      rSearchAreaVar?.searchArea.coords.latitude !== 0 &&
-      rSearchAreaVar?.searchArea.coords.longitude !== 0
-    ) {
-      venuesNearbyQuery()
-    }
+    venuesNearbyQuery()
   }, [])
 
   useEffect(() => {
@@ -102,11 +99,16 @@ export default () => {
   }, [])
 
   const ListheaderComponent = () => {
+    if (loading) return null
     const SignUpWidget = () => {
       if (rdmLoading || !rdmData) {
         return null
       }
 
+      console.log(
+        '🚀 ~ SignUpWidget ~ rdmData?.refreshDeviceManager?.__typename:',
+        rdmData?.refreshDeviceManager?.__typename,
+      )
       switch (rdmData?.refreshDeviceManager?.__typename) {
         case 'AuthorizationDeviceProfile':
           if (
@@ -115,13 +117,14 @@ export default () => {
           ) {
             return (
               <Box className="mx-2 my-2 p-5 pt-10">
-                <CardPleaseSignup signupTextId={1} />
+                <SignupLoginCard signupTextId={1} />
               </Box>
             )
           }
           return null
       }
     }
+
     return (
       <Box className="py-2">
         <VStack space={'md'}>
@@ -183,9 +186,7 @@ export default () => {
   }
 
   const ListFooterComponent = () => {
-    const rPermissionLocationVar = useReactiveVar(
-      PermissionForegroundLocationReactiveVar,
-    )
+    const rPerm = useReactiveVar(PermissionsReactiveVar)
 
     const RecommendedAreaList = () => {
       switch (data.venuesNearby?.__typename) {
@@ -218,6 +219,7 @@ export default () => {
                 }, [item.distanceInM])
                 return (
                   <Pressable
+                    accessibilityRole="button"
                     key={item.id + index}
                     onPress={() => {
                       router.push({
@@ -263,6 +265,7 @@ export default () => {
               {data.venuesNearby.recommendedAreas?.map((item, index) => {
                 return (
                   <Pressable
+                    accessibilityRole="button"
                     key={item.id + index}
                     onPress={() => {
                       router.push({
@@ -301,7 +304,7 @@ export default () => {
     }
 
     const _press = async () => {
-      rPermissionLocationVar?.granted
+      rPerm.locationForeground.granted
         ? await useSetSearchAreaWithLocation()
         : router.push({
             pathname: '/(app)/permission/foregroundlocation',
@@ -411,6 +414,7 @@ export default () => {
                   </HStack>
                   <HStack space={'md'} className="h-[50px] justify-end">
                     <Pressable
+                      accessibilityRole="button"
                       onPress={() => {
                         updateH6VenueRecommendationVoteMutation({
                           variables: {
@@ -424,6 +428,7 @@ export default () => {
                       </Text>
                     </Pressable>
                     <Pressable
+                      accessibilityRole="button"
                       onPress={() => {
                         updateToBeNotifiedMutation({
                           variables: {

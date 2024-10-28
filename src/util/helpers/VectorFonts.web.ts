@@ -17,4 +17,4 @@ export default [
   {
     MaterialCommunityIcons: require('@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf'),
   },
-];
+]

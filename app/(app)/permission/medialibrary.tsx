@@ -1,34 +1,35 @@
-import {VStack} from '#/src/components/ui/vstack'
-import {Text} from '#/src/components/ui/text'
-import {Heading} from '#/src/components/ui/heading'
-import {Divider} from '#/src/components/ui/divider'
-import {Button, ButtonText} from '#/src/components/ui/button'
-import {Box} from '#/src/components/ui/box'
+import {useEffect, useRef} from 'react'
+import {AppState, Platform, ScrollView, View} from 'react-native'
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import * as IntentLauncher from 'expo-intent-launcher'
+import * as Linking from 'expo-linking'
+import * as MediaLibrary from 'expo-media-library'
+import {useRouter} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
-import IllustrationDynamicMedia from '#/assets/images/media/IllustrationDynamicMedia'
-import PermissionDetailItem from '#/src/view/screens/permissions/PermissionDetailItem'
 import {
   Ionicons,
   MaterialCommunityIcons,
   MaterialIcons,
 } from '@expo/vector-icons'
-import {PermissionMediaReactiveVar, ThemeReactiveVar} from '#/reactive'
+
+import IllustrationDynamicMedia from '#/assets/images/media/IllustrationDynamicMedia'
+import {PermissionsReactiveVar, ThemeReactiveVar} from '#/reactive'
+import {Box} from '#/src/components/ui/box'
+import {Button, ButtonText} from '#/src/components/ui/button'
+import {Divider} from '#/src/components/ui/divider'
+import {Heading} from '#/src/components/ui/heading'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
 import useTimer2 from '#/src/util/hooks/useTimer2'
-import * as IntentLauncher from 'expo-intent-launcher'
-import * as Linking from 'expo-linking'
-import * as MediaLibrary from 'expo-media-library'
-import {useRouter} from 'expo-router'
-import {useEffect, useRef} from 'react'
-import {AppState, Platform, ScrollView, View} from 'react-native'
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import PermissionDetailItem from '#/src/view/screens/permissions/PermissionDetailItem'
 
 export default () => {
   const appStateRef = useRef(AppState.currentState)
   const [status, requestPermission] = MediaLibrary.usePermissions()
   const router = useRouter()
   const insets = useSafeAreaInsets()
-  const rPermissionMedia = useReactiveVar(PermissionMediaReactiveVar)
+  const rPerm = useReactiveVar(PermissionsReactiveVar)
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const {finished, start, seconds, started} = useTimer2('0:2')
 
@@ -92,13 +93,19 @@ export default () => {
 
   useEffect(() => {
     if (status) {
-      PermissionMediaReactiveVar(status)
+      PermissionsReactiveVar({
+        ...PermissionsReactiveVar(),
+        medialibrary: status,
+      })
     }
   }, [status])
 
   const askMediaLibraryPermissionAsync = async () => {
     const mediaLibraryPermission = await MediaLibrary.requestPermissionsAsync()
-    PermissionMediaReactiveVar(mediaLibraryPermission)
+    PermissionsReactiveVar({
+      ...PermissionsReactiveVar(),
+      medialibrary: mediaLibraryPermission,
+    })
     if (
       mediaLibraryPermission.granted &&
       mediaLibraryPermission.status === 'granted'
@@ -134,7 +141,10 @@ export default () => {
     ) {
       const mediaLibraryPermission =
         await MediaLibrary.requestPermissionsAsync()
-      PermissionMediaReactiveVar(mediaLibraryPermission)
+      PermissionsReactiveVar({
+        ...PermissionsReactiveVar(),
+        medialibrary: mediaLibraryPermission,
+      })
       if (
         mediaLibraryPermission.granted &&
         mediaLibraryPermission.status === 'granted'
@@ -183,14 +193,14 @@ export default () => {
         <Button
           size={'lg'}
           onPress={() =>
-            rPermissionMedia?.canAskAgain
+            rPerm?.medialibrary.canAskAgain
               ? askMediaLibraryPermissionAsync()
               : openPhoneSettings()
           }
           className="w-[95%]">
           <ButtonText>
-            {!rPermissionMedia?.granted
-              ? rPermissionMedia?.canAskAgain && !rPermissionMedia.granted
+            {!rPerm?.medialibrary.granted
+              ? rPerm?.medialibrary.canAskAgain && !rPerm.medialibrary.granted
                 ? 'Continue'
                 : 'Go to Phone Settings'
               : 'Granted'}

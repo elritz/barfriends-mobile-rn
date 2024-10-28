@@ -1,7 +1,10 @@
-import {VStack} from '#/src/components/ui/vstack'
+import {FlashList} from '@shopify/flash-list'
+
+import {PermissionsPreferencesReactiveVar} from '#/reactive'
+import {Button, ButtonText} from '#/src/components/ui/button'
 import {Heading} from '#/src/components/ui/heading'
 import {HStack} from '#/src/components/ui/hstack'
-import {Button, ButtonText} from '#/src/components/ui/button'
+import {VStack} from '#/src/components/ui/vstack'
 import {
   NowPreferencePermissionInitialState,
   TomorrowPreferencePermissionInitialState,
@@ -11,17 +14,9 @@ import {
   LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION,
   LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS,
 } from '#/src/constants/StorageConstants'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import {
-  PreferenceBackgroundLocationPermissionReactiveVar,
-  PreferenceForegroundLocationPermissionReactiveVar,
-} from '#/reactive'
-import {useRouter} from 'expo-router'
-import {FlashList} from '@shopify/flash-list'
+import {storage} from '#/src/storage/mmkv'
 
 export default function Notifications() {
-  const router = useRouter()
-
   const nextAskAction = [
     {
       title: 'Foreground Location',
@@ -29,33 +24,28 @@ export default function Notifications() {
         {
           title: 'Reset',
           onPress: async () => {
-            await AsyncStorage.setItem(
+            storage.set(
               LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION,
               JSON.stringify(NowPreferencePermissionInitialState),
             )
           },
         },
         {
-          title: 'Show',
-          onPress: async () => {
-            router.push({
-              pathname: '/(app)/modal/asks/foregroundlocationnextask',
-            })
-          },
-        },
-        {
           title: 'Dont show again',
           onPress: async () => {
-            await AsyncStorage.setItem(
+            storage.set(
               LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION,
               JSON.stringify({
                 ...TomorrowPreferencePermissionInitialState,
                 canShowAgain: false,
               }),
             )
-            PreferenceForegroundLocationPermissionReactiveVar({
-              ...TomorrowPreferencePermissionInitialState,
-              canShowAgain: false,
+            PermissionsPreferencesReactiveVar({
+              ...PermissionsPreferencesReactiveVar(),
+              locationForeground: {
+                ...TomorrowPreferencePermissionInitialState,
+                canShowAgain: false,
+              },
             })
           },
         },
@@ -67,33 +57,28 @@ export default function Notifications() {
         {
           title: 'Reset',
           onPress: async () => {
-            await AsyncStorage.setItem(
+            storage.set(
               LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
               JSON.stringify(NowPreferencePermissionInitialState),
             )
           },
         },
         {
-          title: 'Show',
-          onPress: async () => {
-            router.push({
-              pathname: '/(app)/modal/asks/backgroundlocationnextask',
-            })
-          },
-        },
-        {
           title: 'Dont show again',
           onPress: async () => {
-            await AsyncStorage.setItem(
+            storage.set(
               LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
               JSON.stringify({
                 ...TomorrowPreferencePermissionInitialState,
                 canShowAgain: false,
               }),
             )
-            PreferenceBackgroundLocationPermissionReactiveVar({
-              ...TomorrowPreferencePermissionInitialState,
-              canShowAgain: false,
+            PermissionsPreferencesReactiveVar({
+              ...PermissionsPreferencesReactiveVar(),
+              locationBackground: {
+                ...TomorrowPreferencePermissionInitialState,
+                canShowAgain: false,
+              },
             })
           },
         },
@@ -105,33 +90,28 @@ export default function Notifications() {
         {
           title: 'Reset',
           onPress: async () => {
-            await AsyncStorage.setItem(
+            storage.set(
               LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS,
               JSON.stringify(NowPreferencePermissionInitialState),
             )
           },
         },
         {
-          title: 'Show',
-          onPress: async () => {
-            router.push({
-              pathname: '/(app)/modal/asks/notificationnextask',
-            })
-          },
-        },
-        {
           title: 'Dont show again',
           onPress: async () => {
-            await AsyncStorage.setItem(
+            storage.set(
               LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS,
               JSON.stringify({
                 ...TomorrowPreferencePermissionInitialState,
                 canShowAgain: false,
               }),
             )
-            PreferenceBackgroundLocationPermissionReactiveVar({
-              ...TomorrowPreferencePermissionInitialState,
-              canShowAgain: false,
+            PermissionsPreferencesReactiveVar({
+              ...PermissionsPreferencesReactiveVar(),
+              notifications: {
+                ...TomorrowPreferencePermissionInitialState,
+                canShowAgain: false,
+              },
             })
           },
         },

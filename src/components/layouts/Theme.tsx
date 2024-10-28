@@ -1,14 +1,15 @@
-import {GluestackUIProvider} from '#/src/components/ui/gluestack-ui-provider'
-import {useReactiveVar} from '@apollo/client'
-import {LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME} from '#/src/constants/StorageConstants'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import {ThemeProvider as ReactNavigationThemeProvider} from '@react-navigation/native'
-import {ThemeReactiveVar} from '#/reactive'
-import {useToggleTheme} from '#/src/util/hooks/theme/useToggleTheme'
 import {useCallback, useEffect, useRef} from 'react'
-import {AppState, Appearance, StatusBar} from 'react-native'
-import {LocalStoragePreferenceThemeType} from '#/types/preferences'
+import {Appearance, AppState, StatusBar} from 'react-native'
+import {useReactiveVar} from '@apollo/client'
+import {ThemeProvider as ReactNavigationThemeProvider} from '@react-navigation/native'
+
+import {ThemeReactiveVar} from '#/reactive'
+import {GluestackUIProvider} from '#/src/components/ui/gluestack-ui-provider'
+import {LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME} from '#/src/constants/StorageConstants'
+import {storage} from '#/src/storage/mmkv'
+import {useToggleTheme} from '#/src/util/hooks/theme/useToggleTheme'
 import AnimatedSplashScreen from '#/src/view/screens/splash/AnimatedSplashScreen'
+import {LocalStoragePreferenceThemeType} from '#/types/preferences'
 
 export default function Theme({children}) {
   const appState = useRef(AppState.currentState)
@@ -17,7 +18,7 @@ export default function Theme({children}) {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const setTheme = async () => {
-    const localStorageColorScheme = await AsyncStorage.getItem(
+    const localStorageColorScheme = storage.getString(
       LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME,
     )
 

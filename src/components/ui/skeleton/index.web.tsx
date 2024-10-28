@@ -1,13 +1,13 @@
-import React from 'react';
-import { skeletonStyle, skeletonTextStyle } from './styles';
+import React from 'react'
+import type {VariantProps} from '@gluestack-ui/nativewind-utils'
 
-import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+import {skeletonStyle, skeletonTextStyle} from './styles'
 
 type ISkeletonProps = React.ComponentPropsWithoutRef<'div'> &
   VariantProps<typeof skeletonStyle> & {
-    startColor?: string;
-    isLoaded?: boolean;
-  };
+    startColor?: string
+    isLoaded?: boolean
+  }
 
 const Skeleton = React.forwardRef<HTMLDivElement, ISkeletonProps>(
   (
@@ -20,7 +20,7 @@ const Skeleton = React.forwardRef<HTMLDivElement, ISkeletonProps>(
       isLoaded = false,
       ...props
     },
-    ref
+    ref,
   ) => {
     if (!isLoaded) {
       return (
@@ -33,19 +33,19 @@ const Skeleton = React.forwardRef<HTMLDivElement, ISkeletonProps>(
           })}`}
           {...props}
         />
-      );
+      )
     } else {
-      return children;
+      return children
     }
-  }
-);
+  },
+)
 
 type ISkeletonTextProps = React.ComponentPropsWithoutRef<'div'> &
   VariantProps<typeof skeletonTextStyle> & {
-    _lines?: number;
-    isLoaded?: boolean;
-    startColor?: string;
-  };
+    _lines?: number
+    isLoaded?: boolean
+    startColor?: string
+  }
 
 const SkeletonText = React.forwardRef<HTMLDivElement, ISkeletonTextProps>(
   (
@@ -58,7 +58,7 @@ const SkeletonText = React.forwardRef<HTMLDivElement, ISkeletonTextProps>(
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     if (!isLoaded) {
       if (_lines) {
@@ -67,9 +67,8 @@ const SkeletonText = React.forwardRef<HTMLDivElement, ISkeletonTextProps>(
             ref={ref}
             className={`flex flex-col ${skeletonTextStyle({
               gap,
-            })}`}
-          >
-            {Array.from({ length: _lines }).map((_, index) => (
+            })}`}>
+            {Array.from({length: _lines}).map((_, index) => (
               <div
                 key={index}
                 className={`animate-pulse ${startColor} ${skeletonTextStyle({
@@ -79,7 +78,7 @@ const SkeletonText = React.forwardRef<HTMLDivElement, ISkeletonTextProps>(
               />
             ))}
           </div>
-        );
+        )
       } else {
         return (
           <div
@@ -89,15 +88,15 @@ const SkeletonText = React.forwardRef<HTMLDivElement, ISkeletonTextProps>(
             })}`}
             {...props}
           />
-        );
+        )
       }
     } else {
-      return children;
+      return children
     }
-  }
-);
+  },
+)
 
-Skeleton.displayName = 'Skeleton';
-SkeletonText.displayName = 'SkeletonText';
+Skeleton.displayName = 'Skeleton'
+SkeletonText.displayName = 'SkeletonText'
 
-export { Skeleton, SkeletonText };
+export {Skeleton, SkeletonText}

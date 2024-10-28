@@ -1,5 +1,6 @@
-import ChevronBackArrow from '#/src/components/atoms/ChevronBackArrow'
 import {Stack} from 'expo-router'
+
+import ChevronBackArrow from '#/src/components/atoms/ChevronBackArrow'
 
 export default () => {
   return (

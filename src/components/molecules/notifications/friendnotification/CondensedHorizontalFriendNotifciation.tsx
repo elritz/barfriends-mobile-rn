@@ -1,9 +1,8 @@
-import {View} from '#/src/components/ui/view'
-import {Text} from '#/src/components/ui/text'
-import {Button} from '#/src/components/ui/button'
-import {VStack} from '#/src/components/ui/vstack'
-import {HStack} from '#/src/components/ui/hstack'
+import {Pressable} from 'react-native'
+import {Image} from 'expo-image'
 import {useReactiveVar} from '@apollo/client'
+import {FontAwesome5} from '@expo/vector-icons'
+
 import {
   Request,
   useAcceptFriendRequestMutation,
@@ -11,11 +10,13 @@ import {
   useDeleteFriendRequestMutation,
 } from '#/graphql/generated'
 import {AuthorizationReactiveVar, ThemeReactiveVar} from '#/reactive'
-import {CloseIcon, Icon} from '#/src/components/ui/icon'
-import {Pressable} from 'react-native'
-import {Image} from 'expo-image'
 import {Box} from '#/src/components/ui/box'
-import {FontAwesome5} from '@expo/vector-icons'
+import {Button} from '#/src/components/ui/button'
+import {HStack} from '#/src/components/ui/hstack'
+import {CloseIcon, Icon} from '#/src/components/ui/icon'
+import {Text} from '#/src/components/ui/text'
+import {View} from '#/src/components/ui/view'
+import {VStack} from '#/src/components/ui/vstack'
 
 interface CondensedHorizontalFriendNotifciationProps<T> {
   item: Request
@@ -176,6 +177,7 @@ export const CondensedHorizontalFriendNotifciation = <T,>({
           </HStack>
           <HStack space="sm" className="items-center">
             <Pressable
+              accessibilityRole="button"
               onPress={() => {
                 declineFriendRequestMutation({
                   variables: {

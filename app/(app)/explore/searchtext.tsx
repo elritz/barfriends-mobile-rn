@@ -1,24 +1,25 @@
-import {VStack} from '#/src/components/ui/vstack'
-import {Text} from '#/src/components/ui/text'
-import {Pressable} from '#/src/components/ui/pressable'
-import {Heading} from '#/src/components/ui/heading'
-import {HStack} from '#/src/components/ui/hstack'
-import {Center} from '#/src/components/ui/center'
-import {Box} from '#/src/components/ui/box'
+import {useEffect, useState} from 'react'
+import {View} from 'react-native'
+import {useLocalSearchParams, useRouter} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
-import SearchCard from '#/src/view/screens/search/components/SearchCard'
 import {Ionicons} from '@expo/vector-icons'
+import {FlashList} from '@shopify/flash-list'
+import {Skeleton} from 'moti/skeleton'
+
 import {
   useExploreSearchLazyQuery,
   useRefreshDeviceManagerQuery,
 } from '#/graphql/generated'
 import {ThemeReactiveVar} from '#/reactive'
-import {FlashList} from '@shopify/flash-list'
+import {Box} from '#/src/components/ui/box'
+import {Center} from '#/src/components/ui/center'
+import {Heading} from '#/src/components/ui/heading'
+import {HStack} from '#/src/components/ui/hstack'
+import {Pressable} from '#/src/components/ui/pressable'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
 import useContentInsets from '#/src/util/hooks/useContentInsets'
-import {useRouter, useLocalSearchParams} from 'expo-router'
-import {Skeleton} from 'moti/skeleton'
-import {useEffect, useState} from 'react'
-import {View} from 'react-native'
+import SearchCard from '#/src/view/screens/search/components/SearchCard'
 
 type Item = {
   search: string
@@ -92,6 +93,7 @@ export default () => {
   const PastSearchItem = (item: Item) => {
     return (
       <Pressable
+        accessibilityRole="button"
         onPress={() => {
           exploreSearchQuery({
             variables: {

@@ -1,15 +1,15 @@
-import { HStack } from "#/src/components/ui/hstack";
-import { VStack } from "#/src/components/ui/vstack";
-import { Button, ButtonText } from "#/src/components/ui/button";
-import { Box } from "#/src/components/ui/box";
-import { Text } from "#/src/components/ui/text";
-import { Heading } from "#/src/components/ui/heading";
-import { Feather } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
-import { View } from "react-native";
+import {View} from 'react-native'
+import {useRouter} from 'expo-router'
+import {Feather} from '@expo/vector-icons'
+
+import {Button, ButtonText} from '#/src/components/ui/button'
+import {Heading} from '#/src/components/ui/heading'
+import {HStack} from '#/src/components/ui/hstack'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
 
 export default function SignupCard() {
-  const router = useRouter();
+  const router = useRouter()
   return (
     <VStack className="flex-column flex-1 justify-between">
       <View>
@@ -20,18 +20,17 @@ export default function SignupCard() {
       </View>
       <HStack className="justify-center">
         <Button
-          size={"lg"}
+          size={'lg'}
           onPress={() => {
             router.push({
-              pathname: "/(credential)/personalcredentialstack/getstarted",
-            });
+              pathname: '/(credential)/personalcredentialstack/getstarted',
+            })
           }}
-          className="w-full items-center justify-center rounded-full p-3.5"
-        >
+          className="w-full items-center justify-center rounded-full p-3.5">
           <ButtonText>Continue</ButtonText>
-          <Feather name="arrow-right" size={20} color={"white"} />
+          <Feather name="arrow-right" size={20} color={'white'} />
         </Button>
       </HStack>
     </VStack>
-  );
+  )
 }

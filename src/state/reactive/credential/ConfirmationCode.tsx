@@ -1,4 +1,7 @@
-import { makeVar } from '@apollo/client'
-import { Code_FragmentFragment } from '#/graphql/generated'
+import {makeVar} from '@apollo/client'
 
-export const ConfirmationCodeReactiveVar = makeVar<Code_FragmentFragment | undefined>(undefined)
+import {Code_FragmentFragment} from '#/graphql/generated'
+
+export const ConfirmationCodeReactiveVar = makeVar<
+  Code_FragmentFragment | undefined
+>(undefined)

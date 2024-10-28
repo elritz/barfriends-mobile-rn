@@ -1,6 +1,6 @@
-import { CustomReactNavigationThemeColors } from "..";
-import { darkCompanyColors, lightCompanyColors } from "../companycolors";
-import { DarkStyledTheme, LightStyledTheme } from "../styled";
+import {CustomReactNavigationThemeColors} from '..'
+import {darkCompanyColors, lightCompanyColors} from '../companycolors'
+import {DarkStyledTheme, LightStyledTheme} from '../styled'
 // import { Theme } from '@react-navigation/native'
 
 export const LightReactNavigationTheme: CustomReactNavigationThemeColors = {
@@ -11,7 +11,7 @@ export const LightReactNavigationTheme: CustomReactNavigationThemeColors = {
   border: LightStyledTheme.palette.primary.color,
   notification: lightCompanyColors.tertiary,
   dark: true,
-} as const;
+} as const
 
 export const DarkReactNavigationTheme: CustomReactNavigationThemeColors = {
   background: DarkStyledTheme.palette.primary.background,
@@ -21,4 +21,4 @@ export const DarkReactNavigationTheme: CustomReactNavigationThemeColors = {
   border: DarkStyledTheme.palette.primary.color,
   notification: darkCompanyColors.tertiary,
   dark: false,
-} as const;
+} as const

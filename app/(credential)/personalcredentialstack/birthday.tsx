@@ -1,29 +1,28 @@
-import {VStack} from '#/src/components/ui/vstack'
-import {Text} from '#/src/components/ui/text'
-import {Pressable} from '#/src/components/ui/pressable'
-import {Heading} from '#/src/components/ui/heading'
-import {Box} from '#/src/components/ui/box'
+import {useEffect, useState} from 'react'
+import React from 'react'
+import {View} from 'react-native'
+import {useRouter} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
 import {Feather} from '@expo/vector-icons'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import {useIsFocused} from '@react-navigation/native'
+import {Controller, useForm} from 'react-hook-form'
+
 import {
   CredentialPersonalProfileReactiveVar,
   ThemeReactiveVar,
 } from '#/reactive'
+import {Box} from '#/src/components/ui/box'
+import {Heading} from '#/src/components/ui/heading'
+import {Pressable} from '#/src/components/ui/pressable'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
 import {calcDateDiffFromNow} from '#/src/util/helpers/luxon'
 import {secureStorageItemCreate} from '#/src/util/hooks/local/useSecureStorage'
-import useContentInsets from '#/src/util/hooks/useContentInsets'
-import {useRouter} from 'expo-router'
-import {useEffect, useState} from 'react'
-import {Controller, useForm} from 'react-hook-form'
-import {View} from 'react-native'
-import React from 'react'
 
 export default () => {
   const router = useRouter()
   const isFocused = useIsFocused()
-  const contentInsets = useContentInsets()
   const credentialPersonalProfileVar = useReactiveVar(
     CredentialPersonalProfileReactiveVar,
   )
@@ -164,6 +163,7 @@ export default () => {
         <Box className="h-[90px] flex-row content-around justify-between bg-transparent px-[2.5%]">
           <VStack className="justify-around">
             <Pressable
+              accessibilityRole="button"
               disabled={!!errors.date}
               onPress={handleSubmit(onSubmit)}>
               <Box className="h-[60px] w-[60px] items-center justify-center rounded-full bg-primary-500">

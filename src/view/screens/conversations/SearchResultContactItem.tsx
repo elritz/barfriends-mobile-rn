@@ -1,12 +1,12 @@
-import { Text } from "#/src/components/ui/text";
-import { Box } from "#/src/components/ui/box";
-import { Image } from "expo-image";
-import { memo } from "react";
+import {memo} from 'react'
+
+import {Box} from '#/src/components/ui/box'
+import {Text} from '#/src/components/ui/text'
 
 type Props = {
-  item: any;
-  index: number;
-};
+  item: any
+  index: number
+}
 
 function SearchResultContactItem(props: Props): React.ReactNode {
   return (
@@ -14,7 +14,7 @@ function SearchResultContactItem(props: Props): React.ReactNode {
       {/* <Image source={}> */}
       <Text>{props.item.value}</Text>
     </Box>
-  );
+  )
 }
 
-export default memo(SearchResultContactItem);
+export default memo(SearchResultContactItem)

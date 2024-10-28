@@ -1,11 +1,12 @@
-import {Pressable} from '#/src/components/ui/pressable'
-import {Input, InputField} from '#/src/components/ui/input'
-import {HStack} from '#/src/components/ui/hstack'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import {useGlobalSearchParams, useRouter} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
 import {Ionicons} from '@expo/vector-icons'
+
 import {ThemeReactiveVar} from '#/reactive'
-import {useGlobalSearchParams, useRouter} from 'expo-router'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import {HStack} from '#/src/components/ui/hstack'
+import {Input, InputField} from '#/src/components/ui/input'
+import {Pressable} from '#/src/components/ui/pressable'
 
 type Props = {
   placeholder?: string
@@ -19,7 +20,10 @@ const SearchInputResults = (props: Props) => {
 
   return (
     <HStack className="relative mt-[10] flex-1 pb-2">
-      <Pressable onPress={() => router.back()} className="justify-center">
+      <Pressable
+        accessibilityRole="button"
+        onPress={() => router.back()}
+        className="justify-center">
         <Ionicons
           color={
             rTheme.colorScheme === 'light'
@@ -48,7 +52,11 @@ const SearchInputResults = (props: Props) => {
           autoCapitalize={'none'}
           autoCorrect={false}
           autoComplete="off"
-          value={params.searchtext}
+          value={
+            Array.isArray(params.searchtext)
+              ? params.searchtext.join(', ')
+              : params.searchtext
+          }
           onPressIn={() => {
             router.push({
               pathname: '/(app)/explore/searchtext',

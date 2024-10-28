@@ -1,9 +1,9 @@
-import { darkCompanyColors, lightCompanyColors } from "../companycolors";
-import * as colors from "#/assets/theme/colors";
-import { revelCompanyColors } from "#/assets/theme/default/revel";
+import * as colors from '#/assets/theme/colors'
+import {revelCompanyColors} from '#/assets/theme/default/revel'
+import {darkCompanyColors, lightCompanyColors} from '../companycolors'
 
 export const LightStyledTheme = {
-  theme: "light",
+  theme: 'light',
   palette: {
     barfriends: {
       ...revelCompanyColors,
@@ -27,10 +27,10 @@ export const LightStyledTheme = {
       color: colors.grey[600],
     },
   },
-} as const;
+} as const
 
 export const DarkStyledTheme = {
-  theme: "dark",
+  theme: 'dark',
   palette: {
     barfriends: {
       ...revelCompanyColors,
@@ -54,4 +54,4 @@ export const DarkStyledTheme = {
       color: colors.grey[800],
     },
   },
-} as const;
+} as const

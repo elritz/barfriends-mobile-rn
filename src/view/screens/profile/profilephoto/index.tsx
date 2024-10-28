@@ -1,18 +1,19 @@
-import {Pressable} from '#/src/components/ui/pressable'
-import {Box} from '#/src/components/ui/box'
+import {useState} from 'react'
+import {ActivityIndicator, Image} from 'react-native'
+import * as ImagePicker from 'expo-image-picker'
 import {useReactiveVar} from '@apollo/client'
-import ProfilePhotoEmptyState from './ProfilePhotoEmptyState'
+
 import {
   Maybe,
   Photo,
   PhotoCreateManyProfileInput,
   useUploadProfilePhotoMutation,
 } from '#/graphql/generated'
-import {ActivityIndicator, Image} from 'react-native'
-import {AuthorizationReactiveVar, ThemeReactiveVar} from '#/reactive'
-import {useState} from 'react'
-import * as ImagePicker from 'expo-image-picker'
+import {AuthorizationReactiveVar} from '#/reactive'
+import {Box} from '#/src/components/ui/box'
+import {Pressable} from '#/src/components/ui/pressable'
 import useCloudinaryImageUploading from '#/src/util/uploading/useCloudinaryImageUploading'
+import ProfilePhotoEmptyState from './ProfilePhotoEmptyState'
 
 type Props = {
   photo: Maybe<Photo> | undefined
@@ -22,20 +23,19 @@ export default function ProfilePhoto({photo}: Props) {
   const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
   const [isLoading, setLoading] = useState(false)
 
-  const [addProfilePhotosMutation, {data, loading, error}] =
-    useUploadProfilePhotoMutation({
-      onCompleted: data => {
-        AuthorizationReactiveVar({
-          ...rAuthorizationVar,
-          Profile: {
-            ...rAuthorizationVar?.Profile,
-            profilePhoto: {
-              ...data.uploadProfilePhoto,
-            },
+  const [addProfilePhotosMutation] = useUploadProfilePhotoMutation({
+    onCompleted: data => {
+      AuthorizationReactiveVar({
+        ...rAuthorizationVar,
+        Profile: {
+          ...rAuthorizationVar?.Profile,
+          profilePhoto: {
+            ...data.uploadProfilePhoto,
           },
-        })
-      },
-    })
+        },
+      })
+    },
+  })
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     setTimeout(() => {
@@ -61,7 +61,9 @@ export default function ProfilePhoto({photo}: Props) {
 
       const images: PhotoCreateManyProfileInput[] = resultSettled
         .filter(item => item.status === 'fulfilled' && item.value)
-        .map(item => ({url: String(item.value)}))
+        .map(item => ({
+          url: String((item as PromiseFulfilledResult<any>).value),
+        }))
 
       addProfilePhotosMutation({
         variables: {
@@ -78,7 +80,9 @@ export default function ProfilePhoto({photo}: Props) {
 
   if (isLoading) {
     return (
-      <Pressable className="bg-dar h-[110px] w-[100px] items-center justify-center rounded-lg p-2">
+      <Pressable
+        accessibilityRole="button"
+        className="bg-dar h-[110px] w-[100px] items-center justify-center rounded-lg p-2">
         <ActivityIndicator size={'small'} />
       </Pressable>
     )
@@ -87,6 +91,7 @@ export default function ProfilePhoto({photo}: Props) {
   if (!photo?.id) {
     return (
       <Pressable
+        accessibilityRole="button"
         onPress={pickImage}
         className="h-[100px] w-[100px] rounded-lg bg-light-300 p-2 dark:bg-light-800">
         <ProfilePhotoEmptyState />
@@ -95,7 +100,10 @@ export default function ProfilePhoto({photo}: Props) {
   }
 
   return (
-    <Pressable onPress={pickImage} className="items-center justify-center pr-2">
+    <Pressable
+      accessibilityRole="button"
+      onPress={pickImage}
+      className="items-center justify-center pr-2">
       <Box className="h-[100px] w-[100px] overflow-hidden rounded-lg">
         <Image
           source={{

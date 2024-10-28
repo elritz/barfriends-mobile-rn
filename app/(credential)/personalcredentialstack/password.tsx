@@ -1,171 +1,166 @@
-import { Text } from "#/src/components/ui/text";
-import { Pressable } from "#/src/components/ui/pressable";
-import { Input, InputField } from "#/src/components/ui/input";
-import { Heading } from "#/src/components/ui/heading";
-import { EyeIcon, EyeOffIcon, Icon } from "#/src/components/ui/icon";
-import { Box } from "#/src/components/ui/box";
-import { useReactiveVar } from "@apollo/client";
-import { Feather } from "@expo/vector-icons";
-import { useIsFocused } from "@react-navigation/native";
-import {
-  CredentialPersonalProfileReactiveVar,
-  ThemeReactiveVar,
-} from "#/reactive";
-import useContentInsets from "#/src/util/hooks/useContentInsets";
-import { useRouter } from "expo-router";
-import { useEffect, useRef, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
-import { InputAccessoryView, Platform, TextInput, View } from "react-native";
-import { useReanimatedKeyboardAnimation } from "react-native-keyboard-controller";
+import {useEffect, useRef, useState} from 'react'
+import {InputAccessoryView, Platform, TextInput, View} from 'react-native'
+import {useReanimatedKeyboardAnimation} from 'react-native-keyboard-controller'
 import Reanimated, {
   useAnimatedStyle,
   useDerivedValue,
-} from "react-native-reanimated";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+} from 'react-native-reanimated'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import {useRouter} from 'expo-router'
+import {useReactiveVar} from '@apollo/client'
+import {Feather} from '@expo/vector-icons'
+import {useIsFocused} from '@react-navigation/native'
+import {Controller, useForm} from 'react-hook-form'
 
+import {
+  CredentialPersonalProfileReactiveVar,
+  ThemeReactiveVar,
+} from '#/reactive'
+import {Box} from '#/src/components/ui/box'
+import {Heading} from '#/src/components/ui/heading'
+import {EyeIcon, EyeOffIcon, Icon} from '#/src/components/ui/icon'
+import {Input, InputField} from '#/src/components/ui/input'
+import {Pressable} from '#/src/components/ui/pressable'
+import {Text} from '#/src/components/ui/text'
 export default function () {
-  const INPUT_CONTAINER_HEIGHT = 90;
-  const INPUT_ACCESSORY_VIEW_ID = "pc-1298187263";
-  const _passwordRef = useRef<TextInput>(null);
-  const router = useRouter();
-  const isFocused = useIsFocused();
-  const contentInsets = useContentInsets();
-  const { bottom } = useSafeAreaInsets();
-  const rTheme = useReactiveVar(ThemeReactiveVar);
+  const INPUT_CONTAINER_HEIGHT = 90
+  const INPUT_ACCESSORY_VIEW_ID = 'pc-1298187263'
+  const _passwordRef = useRef<TextInput>(null)
+  const router = useRouter()
+  const isFocused = useIsFocused()
+  const {bottom} = useSafeAreaInsets()
+  const rTheme = useReactiveVar(ThemeReactiveVar)
   const credentialPersonalProfileVar = useReactiveVar(
     CredentialPersonalProfileReactiveVar,
-  );
-  const [showPassword, setShowPassword] = useState(false);
+  )
+  const [showPassword, setShowPassword] = useState(false)
   const handleShowPassword = () => {
-    setShowPassword((showState) => {
-      return !showState;
-    });
-  };
-  const { height: platform } = useReanimatedKeyboardAnimation();
-  const height = useDerivedValue(() => platform.value, [isFocused]);
+    setShowPassword(showState => {
+      return !showState
+    })
+  }
+  const {height: platform} = useReanimatedKeyboardAnimation()
+  const height = useDerivedValue(() => platform.value, [isFocused])
 
   const InnerContent = () => {
     return (
       <Box className="h-[90px] flex-row items-center justify-end bg-white px-2 dark:bg-black">
         <View
           style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-around",
-          }}
-        >
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-around',
+          }}>
           <Pressable
+            accessibilityRole="button"
             disabled={!!errors.password}
-            onPress={handleSubmit(onSubmit)}
-          >
+            onPress={handleSubmit(onSubmit)}>
             <Box className="h-[50px] w-[50px] items-center justify-center rounded-full bg-primary-500">
               <Feather
                 name="arrow-right"
                 size={32}
-                color={errors?.password ? "#292524" : "white"}
+                color={errors?.password ? '#292524' : 'white'}
               />
             </Box>
           </Pressable>
         </View>
       </Box>
-    );
-  };
+    )
+  }
 
   const textInputContainerStyle = useAnimatedStyle(
     () => ({
-      width: "100%",
-      position: "absolute",
+      width: '100%',
+      position: 'absolute',
       bottom: 0,
       paddingBottom: bottom,
       height: INPUT_CONTAINER_HEIGHT,
-      transform: [{ translateY: height.value }],
+      transform: [{translateY: height.value}],
     }),
     [],
-  );
+  )
 
   const {
     control,
     handleSubmit,
     setError,
     getValues,
-    watch,
-    formState: { errors },
+    formState: {errors},
   } = useForm({
-    mode: "onChange",
-    reValidateMode: "onChange",
+    mode: 'onChange',
+    reValidateMode: 'onChange',
     defaultValues: {
-      password: "",
+      password: '',
     },
     resolver: undefined,
     context: undefined,
-    criteriaMode: "firstError",
+    criteriaMode: 'firstError',
     shouldFocusError: true,
     shouldUnregister: true,
-  });
+  })
 
-  const values = getValues();
+  const values = getValues()
 
   useEffect(() => {
     if (!values.password) {
-      setError("password", { type: "validate", message: "" });
+      setError('password', {type: 'validate', message: ''})
     }
     if (_passwordRef && _passwordRef.current) {
-      _passwordRef.current?.focus();
+      _passwordRef.current?.focus()
     }
-  }, []);
+  }, [])
 
   const navigateToNextScreen = async (): Promise<void | null> => {
     router.push({
-      pathname: "/(credential)/personalcredentialstack/create",
-    });
-  };
+      pathname: '/(credential)/personalcredentialstack/create',
+    })
+  }
 
   const onSubmit = async (data: any) => {
     CredentialPersonalProfileReactiveVar({
       ...credentialPersonalProfileVar,
       password: data.password,
-    });
+    })
 
-    navigateToNextScreen();
-  };
+    navigateToNextScreen()
+  }
 
   return (
     <Box className="flex-1 bg-transparent">
-      <Reanimated.View style={{ flex: 1, marginHorizontal: 15 }}>
+      <Reanimated.View style={{flex: 1, marginHorizontal: 15}}>
         <Heading className="mt-4 text-2xl font-black">Enter a password</Heading>
-        <View style={{ marginVertical: "10%", width: "100%" }}>
+        <View style={{marginVertical: '10%', width: '100%'}}>
           <Controller
             name="password"
             control={control}
             defaultValue=""
-            render={({ field: { onChange, onBlur, value } }) => {
+            render={({field: {onChange, onBlur, value}}) => {
               return (
                 <>
                   <Input
-                    key={"password"}
-                    variant={"underlined"}
-                    size={"lg"}
-                    className="py-1"
-                  >
+                    key={'password'}
+                    variant={'underlined'}
+                    size={'lg'}
+                    className="py-1">
                     <InputField
                       ref={_passwordRef}
                       value={value}
                       placeholderTextColor={
-                        rTheme.colorScheme === "light"
+                        rTheme.colorScheme === 'light'
                           ? rTheme.theme?.gluestack.tokens.colors.light700
                           : rTheme.theme?.gluestack.tokens.colors.light100
                       }
                       keyboardAppearance={
-                        rTheme.colorScheme === "light" ? "light" : "dark"
+                        rTheme.colorScheme === 'light' ? 'light' : 'dark'
                       }
                       onChangeText={onChange}
                       onSubmitEditing={handleSubmit(onSubmit)}
                       onBlur={onBlur}
                       textContentType="newPassword"
                       blurOnSubmit={false}
-                      type={showPassword ? "text" : "password"}
+                      type={showPassword ? 'text' : 'password'}
                       passwordRules={
-                        "minlength: 20; required: lower; required: upper; required: digit; required: [-];"
+                        'minlength: 20; required: lower; required: upper; required: digit; required: [-];'
                       }
                       autoComplete="new-password"
                       autoFocus
@@ -177,10 +172,13 @@ export default function () {
                       autoCapitalize="none"
                       numberOfLines={1}
                     />
-                    <Pressable onPress={handleShowPassword} className="pr-3">
+                    <Pressable
+                      accessibilityRole="button"
+                      onPress={handleShowPassword}
+                      className="pr-3">
                       <Icon
                         as={showPassword ? EyeIcon : EyeOffIcon}
-                        size={"lg"}
+                        size={'lg'}
                         className="text-primary-500"
                       />
                     </Pressable>
@@ -196,31 +194,31 @@ export default function () {
                     </Box>
                   )}
                 </>
-              );
+              )
             }}
             rules={{
               required: {
                 value: true,
-                message: "",
+                message: '',
               },
               validate: {
-                greaterThanZero: (value) =>
-                  value.length > 0 || "Must have password",
-                checkUppercase: (value) =>
-                  /[A-Z]/.test(value) || "Must have a uppercase character.",
-                checkDiget: (value) => /\d/.test(value) || "Must have a diget.",
-                checkSpecial: (value) =>
+                greaterThanZero: value =>
+                  value.length > 0 || 'Must have password',
+                checkUppercase: value =>
+                  /[A-Z]/.test(value) || 'Must have a uppercase character.',
+                checkDiget: value => /\d/.test(value) || 'Must have a diget.',
+                checkSpecial: value =>
                   /[#?!@$%^&)(*-]/.test(value) ||
-                  "Must have a special character",
-                noSpaces: (value) => /^[\S]+$/.test(value) || "Remove spaces!!",
-                greaterQualThanFour: (value) =>
-                  value.length >= 4 || "Must be at least 4 characters",
+                  'Must have a special character',
+                noSpaces: value => /^[\S]+$/.test(value) || 'Remove spaces!!',
+                greaterQualThanFour: value =>
+                  value.length >= 4 || 'Must be at least 4 characters',
               },
             }}
           />
         </View>
       </Reanimated.View>
-      {Platform.OS === "ios" ? (
+      {Platform.OS === 'ios' ? (
         <InputAccessoryView nativeID={INPUT_ACCESSORY_VIEW_ID}>
           <InnerContent />
         </InputAccessoryView>
@@ -231,11 +229,10 @@ export default function () {
               height: INPUT_CONTAINER_HEIGHT,
             },
             textInputContainerStyle,
-          ]}
-        >
+          ]}>
           <InnerContent />
         </Reanimated.View>
       )}
     </Box>
-  );
+  )
 }

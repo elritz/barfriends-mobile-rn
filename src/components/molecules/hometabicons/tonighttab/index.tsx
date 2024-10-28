@@ -1,9 +1,10 @@
-import {Box} from '#/src/components/ui/box'
 import {useReactiveVar} from '@apollo/client'
+import {Ionicons} from '@expo/vector-icons'
+
+import {ThemeReactiveVar} from '#/reactive'
 import TabBarIcon from '#/src/components/atoms/TabBarIcon'
 import {TabProps} from '#/src/components/atoms/TabBarIcon'
-import {Ionicons} from '@expo/vector-icons'
-import {ThemeReactiveVar} from '#/reactive'
+import {Box} from '#/src/components/ui/box'
 
 const TonightTab = (props: TabProps) => {
   const rTheme = useReactiveVar(ThemeReactiveVar)

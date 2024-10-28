@@ -1,8 +1,9 @@
+import {BlurView} from 'expo-blur'
+import {useReactiveVar} from '@apollo/client'
+
 import {useRefreshDeviceManagerQuery} from '#/graphql/generated'
 import useEmojimoodTextColor from '#/hooks/useEmojiMoodTextContrast'
 import {AuthorizationReactiveVar, ThemeReactiveVar} from '#/src/state/reactive'
-import {useReactiveVar} from '@apollo/client'
-import {BlurView} from 'expo-blur'
 
 const RoundedBox = ({children}) => {
   const rTheme = useReactiveVar(ThemeReactiveVar)

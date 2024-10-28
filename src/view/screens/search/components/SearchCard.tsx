@@ -1,38 +1,59 @@
-import { VStack } from "#/src/components/ui/vstack";
-import { Text } from "#/src/components/ui/text";
-import { Pressable } from "#/src/components/ui/pressable";
-import { HStack } from "#/src/components/ui/hstack";
-import { Box } from "#/src/components/ui/box";
-import { useReactiveVar } from "@apollo/client";
-import { Ionicons } from "@expo/vector-icons";
-import { ThemeReactiveVar } from "#/reactive";
-import { useRouter } from "expo-router";
-import { Image } from "react-native";
+import {Image} from 'react-native'
+import {useRouter} from 'expo-router'
+import {useReactiveVar} from '@apollo/client'
+import {Ionicons} from '@expo/vector-icons'
 
-export default function SearchCard({ item }) {
-  const router = useRouter();
-  const rTheme = useReactiveVar(ThemeReactiveVar);
+import {ThemeReactiveVar} from '#/reactive'
+import {Box} from '#/src/components/ui/box'
+import {HStack} from '#/src/components/ui/hstack'
+import {Pressable} from '#/src/components/ui/pressable'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
+
+interface Profile {
+  IdentifiableInformation: {
+    fullname: string
+    username: string
+  }
+  photos: {url: string; blurhash?: string}[]
+}
+
+interface Item {
+  id: string
+  __typename: 'Personal' | 'Venue'
+  Profile: Profile
+}
+
+export default function SearchCard({item}: {item: Item}) {
+  const router = useRouter()
+  const rTheme = useReactiveVar(ThemeReactiveVar)
 
   if (!item?.Profile) {
-    return null;
+    return null
   }
 
   return (
     <Pressable
+      accessibilityRole="button"
       key={item.id}
       onPress={() => {
         switch (item.__typename) {
-          case "Personal":
+          case 'Personal':
             return router.push({
-              pathname: `/(app)/public/personal/${item.Profile.IdentifiableInformation?.username}`,
-            });
-          case "Venue":
+              pathname: `/(app)/public/personal/[username]`,
+              params: {
+                username: item.Profile?.IdentifiableInformation?.username,
+              },
+            })
+          case 'Venue':
             return router.push({
-              pathname: `/(app)/public/venue/${item.Profile.IdentifiableInformation?.username}`,
-            });
+              pathname: `/(app)/public/venue/[username]`,
+              params: {
+                username: item.Profile?.IdentifiableInformation?.username,
+              },
+            })
         }
-      }}
-    >
+      }}>
       <Box className="my-1 h-[65px] bg-transparent px-3">
         <HStack className="h-[100%] items-center">
           {item.Profile?.photos[0]?.url ? (
@@ -42,20 +63,20 @@ export default function SearchCard({ item }) {
                 width: 45,
                 borderRadius: 8,
               }}
-              alt={"Profile Image"}
+              alt={'Profile Image'}
               // placeholder={item.Profile?.photos[0]?.blurhash}
-              source={{ uri: item.Profile?.photos[0]?.url }}
+              source={{uri: item.Profile?.photos[0]?.url}}
             />
           ) : (
             <Box className="h-[45px] w-[45px] items-center justify-center rounded-md">
               <Ionicons
                 size={25}
                 color={
-                  rTheme.colorScheme === "light"
+                  rTheme.colorScheme === 'light'
                     ? rTheme.theme?.gluestack.tokens.colors.light900
                     : rTheme.theme?.gluestack.tokens.colors.light100
                 }
-                name={"person"}
+                name={'person'}
               />
             </Box>
           )}
@@ -70,5 +91,5 @@ export default function SearchCard({ item }) {
         </HStack>
       </Box>
     </Pressable>
-  );
+  )
 }

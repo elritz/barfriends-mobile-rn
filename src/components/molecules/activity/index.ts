@@ -1,3 +1,3 @@
-type ActivityCardProps = {
-  isEmojimoodDynamic?: boolean;
+export type ActivityCardProps = {
+  isEmojimoodDynamic?: boolean
 }

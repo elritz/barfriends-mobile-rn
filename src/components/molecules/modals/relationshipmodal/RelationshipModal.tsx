@@ -1,42 +1,43 @@
-import { VStack } from "#/src/components/ui/vstack";
-import { Text } from "#/src/components/ui/text";
-import {
-  Modal,
-  ModalContent,
-  ModalCloseButton,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-} from "#/src/components/ui/modal";
-import { HStack } from "#/src/components/ui/hstack";
-import { Button } from "#/src/components/ui/button";
-import { Box } from "#/src/components/ui/box";
 // import { GET_RELATIONSHIP_FRIENDREQUESTSTATUS_QUERY } from '#/graphql/DM/profiling/friending/index.query'
+import {ReactElement, useEffect} from 'react'
+import {useLocalSearchParams} from 'expo-router'
+import {DateTime} from 'luxon'
+
 import {
   useGetRelationshipFriendRequestStatusLazyQuery,
   useRemoveFriendMutation,
-} from "#/graphql/generated";
-import { useLocalSearchParams } from "expo-router";
-import { DateTime } from "luxon";
-import { ReactElement, useEffect } from "react";
+} from '#/graphql/generated'
+import {Box} from '#/src/components/ui/box'
+import {Button} from '#/src/components/ui/button'
+import {HStack} from '#/src/components/ui/hstack'
+import {
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+} from '#/src/components/ui/modal'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
 
 type Props = {
-  isOpen: boolean;
-  onClose: () => void;
-};
+  isOpen: boolean
+  onClose: () => void
+}
 
-export default function RelationshipModal({ isOpen, onClose }: Props) {
-  const params = useLocalSearchParams();
+export default function RelationshipModal({isOpen, onClose}: Props) {
+  const params = useLocalSearchParams()
 
   const [
     getRelationshipFriendStatusQuery,
-    { data: GRFRSData, loading: GRFRSLoading, error: GRFRSError },
-  ] = useGetRelationshipFriendRequestStatusLazyQuery({});
+    {data: GRFRSData, loading: GRFRSLoading, error: GRFRSError},
+  ] = useGetRelationshipFriendRequestStatusLazyQuery({})
 
-  const [removeFriendMutation, { data, loading, error }] =
+  const [removeFriendMutation, {data, loading, error}] =
     useRemoveFriendMutation({
-      onCompleted: (data) => {},
-    });
+      onCompleted: data => {},
+    })
 
   useEffect(() => {
     // getRelationshipFriendStatusQuery({
@@ -45,7 +46,7 @@ export default function RelationshipModal({ isOpen, onClose }: Props) {
     // 		profileId: String(params.profileid),
     // 	},
     // })
-  }, []);
+  }, [])
 
   // if (GRFRSLoading || !GRFRSData) return null
 
@@ -99,16 +100,15 @@ export default function RelationshipModal({ isOpen, onClose }: Props) {
             <Text>Cancel</Text>
           </Button>
           <Button
-            size={"sm"}
+            size={'sm'}
             style={{
               width: 100,
             }}
-            className="mx-2 rounded-sm"
-          >
+            className="mx-2 rounded-sm">
             <Text>Unfriend</Text>
           </Button>
         </ModalFooter>
       </ModalContent>
     </Modal>
-  );
+  )
 }

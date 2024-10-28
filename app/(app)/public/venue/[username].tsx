@@ -1,29 +1,30 @@
-import {VStack} from '#/src/components/ui/vstack'
-import {Text} from '#/src/components/ui/text'
-import {HStack} from '#/src/components/ui/hstack'
-import {Heading} from '#/src/components/ui/heading'
-import {Box} from '#/src/components/ui/box'
+import {useWindowDimensions} from 'react-native'
+import {useLocalSearchParams} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
-import InformationJoinVenue from '#/src/components/molecules/information/informationjoinvenue'
-import Details from '#/src/view/screens/public/venue/details/Details'
-import PersonalAtVenue from '#/src/view/screens/public/venue/peopleatvenue/PersonalAtVenue'
-import VenueActions from '#/src/view/screens/public/venue/venueactions/VenueActions'
-import LeaveSection from '#/src/components/molecules/activity/leavesection/LeaveSection'
-import VenueHeader from '#/src/view/screens/public/venue/venueheader/VenueHeader'
-import VenueTotals from '#/src/view/screens/public/venue/venuetotals/VenueTotals'
-import {PUBLIC_VENUE_HEADER_IMAGE_HEIGHT} from '#/src/constants/Layout'
+import {FlashList} from '@shopify/flash-list'
+import {uniqueId} from 'lodash'
+import {Skeleton} from 'moti/skeleton'
+
 import {usePublicVenueQuery} from '#/graphql/generated'
 import {
   CurrentLocationReactiveVar,
   SearchAreaReactiveVar,
   ThemeReactiveVar,
 } from '#/reactive'
-import {FlashList} from '@shopify/flash-list'
+import LeaveSection from '#/src/components/molecules/activity/leavesection/LeaveSection'
+import InformationJoinVenue from '#/src/components/molecules/information/informationjoinvenue'
+import {Box} from '#/src/components/ui/box'
+import {Heading} from '#/src/components/ui/heading'
+import {HStack} from '#/src/components/ui/hstack'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
+import {PUBLIC_VENUE_HEADER_IMAGE_HEIGHT} from '#/src/constants/Layout'
 import useContentInsets from '#/src/util/hooks/useContentInsets'
-import {useLocalSearchParams} from 'expo-router'
-import {uniqueId} from 'lodash'
-import {Skeleton} from 'moti/skeleton'
-import {useWindowDimensions} from 'react-native'
+import Details from '#/src/view/screens/public/venue/details/Details'
+import PersonalAtVenue from '#/src/view/screens/public/venue/peopleatvenue/PersonalAtVenue'
+import VenueActions from '#/src/view/screens/public/venue/venueactions/VenueActions'
+import VenueHeader from '#/src/view/screens/public/venue/venueheader/VenueHeader'
+import VenueTotals from '#/src/view/screens/public/venue/venuetotals/VenueTotals'
 
 const numColumns = 2
 

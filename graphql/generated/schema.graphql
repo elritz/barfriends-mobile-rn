@@ -101,8 +101,22 @@ input AdWhereUniqueInput {
 }
 
 type Address {
-  AddressComponents(cursor: AddressComponentWhereUniqueInput, distinct: [AddressComponentScalarFieldEnum!], orderBy: [AddressComponentOrderByWithRelationInput!], skip: Int, take: Int, where: AddressComponentWhereInput): [AddressComponent!]!
-  Location(cursor: LocationWhereUniqueInput, distinct: [LocationScalarFieldEnum!], orderBy: [LocationOrderByWithRelationInput!], skip: Int, take: Int, where: LocationWhereInput): [Location!]!
+  AddressComponents(
+    cursor: AddressComponentWhereUniqueInput
+    distinct: [AddressComponentScalarFieldEnum!]
+    orderBy: [AddressComponentOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: AddressComponentWhereInput
+  ): [AddressComponent!]!
+  Location(
+    cursor: LocationWhereUniqueInput
+    distinct: [LocationScalarFieldEnum!]
+    orderBy: [LocationOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: LocationWhereInput
+  ): [Location!]!
   createdAt: DateTime!
   formattedAddress: String!
   id: ID!
@@ -1223,9 +1237,23 @@ type AuthenticationProvider {
   Credentials: Credentials
   Password: Password
   codepassword: Code
-  emails(cursor: EmailWhereUniqueInput, distinct: [EmailScalarFieldEnum!], orderBy: [EmailOrderByWithRelationInput!], skip: Int, take: Int, where: EmailWhereInput): [Email!]!
+  emails(
+    cursor: EmailWhereUniqueInput
+    distinct: [EmailScalarFieldEnum!]
+    orderBy: [EmailOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: EmailWhereInput
+  ): [Email!]!
   id: ID!
-  phones(cursor: PhoneWhereUniqueInput, distinct: [PhoneScalarFieldEnum!], orderBy: [PhoneOrderByWithRelationInput!], skip: Int, take: Int, where: PhoneWhereInput): [Phone!]!
+  phones(
+    cursor: PhoneWhereUniqueInput
+    distinct: [PhoneScalarFieldEnum!]
+    orderBy: [PhoneOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: PhoneWhereInput
+  ): [Phone!]!
 }
 
 input AuthenticationProviderCountOrderByAggregateInput {
@@ -1632,9 +1660,13 @@ input AuthorizedProfilesWhereInput {
   profiles: CustomProfileWhereInput!
 }
 
-"""Batch payloads from prisma."""
+"""
+Batch payloads from prisma.
+"""
 type BatchPayload {
-  """Prisma Batch Payload"""
+  """
+  Prisma Batch Payload
+  """
   count: Int!
 }
 
@@ -1669,7 +1701,14 @@ input BoolWithAggregatesFilter {
 }
 
 type Category {
-  Tags(cursor: TagWhereUniqueInput, distinct: [TagScalarFieldEnum!], orderBy: [TagOrderByWithRelationInput!], skip: Int, take: Int, where: TagWhereInput): [Tag!]!
+  Tags(
+    cursor: TagWhereUniqueInput
+    distinct: [TagScalarFieldEnum!]
+    orderBy: [TagOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: TagWhereInput
+  ): [Tag!]!
   id: ID!
   name: String!
 }
@@ -1804,7 +1843,14 @@ input CategoryWhereUniqueInput {
 }
 
 type City {
-  Area(cursor: AreaWhereUniqueInput, distinct: [AreaScalarFieldEnum!], orderBy: [AreaOrderByWithRelationInput!], skip: Int, take: Int, where: AreaWhereInput): [Area!]!
+  Area(
+    cursor: AreaWhereUniqueInput
+    distinct: [AreaScalarFieldEnum!]
+    orderBy: [AreaOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: AreaWhereInput
+  ): [Area!]!
   Geometry: Geometry!
   geometryId: Int!
   id: ID!
@@ -2075,7 +2121,9 @@ input CodeCreateWithoutAuthenticationProviderInput {
 }
 
 input CodeDataInput {
-  """Length is the total numbers that you want the code to be."""
+  """
+  Length is the total numbers that you want the code to be.
+  """
   length: Int = 4
 }
 
@@ -2221,7 +2269,14 @@ input CodeWhereUniqueInput {
 
 type ComingArea {
   Area: Area
-  Vote(cursor: VoteWhereUniqueInput, distinct: [VoteScalarFieldEnum!], orderBy: [VoteOrderByWithRelationInput!], skip: Int, take: Int, where: VoteWhereInput): [Vote!]!
+  Vote(
+    cursor: VoteWhereUniqueInput
+    distinct: [VoteScalarFieldEnum!]
+    orderBy: [VoteOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: VoteWhereInput
+  ): [Vote!]!
   areaId: String
   createdAt: DateTime!
   h3Index5: String!
@@ -2561,9 +2616,30 @@ input ContactInput {
 }
 
 type Conversation {
-  Members(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): [Profile!]!
-  MembersConversationNotificationSetting(cursor: MemberConversationNotificationSettingWhereUniqueInput, distinct: [MemberConversationNotificationSettingScalarFieldEnum!], orderBy: [MemberConversationNotificationSettingOrderByWithRelationInput!], skip: Int, take: Int, where: MemberConversationNotificationSettingWhereInput): [MemberConversationNotificationSetting!]!
-  Messages(cursor: MessageWhereUniqueInput, distinct: [MessageScalarFieldEnum!], orderBy: [MessageOrderByWithRelationInput!], skip: Int, take: Int, where: MessageWhereInput): [Message!]!
+  Members(
+    cursor: ProfileWhereUniqueInput
+    distinct: [ProfileScalarFieldEnum!]
+    orderBy: [ProfileOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: ProfileWhereInput
+  ): [Profile!]!
+  MembersConversationNotificationSetting(
+    cursor: MemberConversationNotificationSettingWhereUniqueInput
+    distinct: [MemberConversationNotificationSettingScalarFieldEnum!]
+    orderBy: [MemberConversationNotificationSettingOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: MemberConversationNotificationSettingWhereInput
+  ): [MemberConversationNotificationSetting!]!
+  Messages(
+    cursor: MessageWhereUniqueInput
+    distinct: [MessageScalarFieldEnum!]
+    orderBy: [MessageOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: MessageWhereInput
+  ): [Message!]!
   id: ID!
   name: String
 }
@@ -2840,7 +2916,14 @@ input CoordsInput {
 }
 
 type Country {
-  Area(cursor: AreaWhereUniqueInput, distinct: [AreaScalarFieldEnum!], orderBy: [AreaOrderByWithRelationInput!], skip: Int, take: Int, where: AreaWhereInput): [Area!]!
+  Area(
+    cursor: AreaWhereUniqueInput
+    distinct: [AreaScalarFieldEnum!]
+    orderBy: [AreaOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: AreaWhereInput
+  ): [Area!]!
   flag: String!
   id: ID!
   isoCode: String!
@@ -3048,7 +3131,14 @@ input CreateVenueDataInput {
 
 type Credentials {
   AuthenticationProvider: AuthenticationProvider
-  LegalAgreement(cursor: LegalAgreementWhereUniqueInput, distinct: [LegalAgreementScalarFieldEnum!], orderBy: [LegalAgreementOrderByWithRelationInput!], skip: Int, take: Int, where: LegalAgreementWhereInput): [LegalAgreement!]!
+  LegalAgreement(
+    cursor: LegalAgreementWhereUniqueInput
+    distinct: [LegalAgreementScalarFieldEnum!]
+    orderBy: [LegalAgreementOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: LegalAgreementWhereInput
+  ): [LegalAgreement!]!
   Profile: Profile!
   authenticationProviderId: String
   createdtAt: DateTime!
@@ -3399,7 +3489,14 @@ input DateTimeWithAggregatesFilter {
 
 type DetailInformation {
   Profile: Profile!
-  Tags(cursor: TagWhereUniqueInput, distinct: [TagScalarFieldEnum!], orderBy: [TagOrderByWithRelationInput!], skip: Int, take: Int, where: TagWhereInput): [Tag!]!
+  Tags(
+    cursor: TagWhereUniqueInput
+    distinct: [TagScalarFieldEnum!]
+    orderBy: [TagOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: TagWhereInput
+  ): [Tag!]!
   capacity: Int
   description: String
   established: DateTime
@@ -3748,7 +3845,14 @@ input DeviceCreateWithoutPushTokenInput {
 
 type DeviceManager {
   Device: Device
-  DeviceProfiles(cursor: DeviceProfileWhereUniqueInput, distinct: [DeviceProfileScalarFieldEnum!], orderBy: [DeviceProfileOrderByWithRelationInput!], skip: Int, take: Int, where: DeviceProfileWhereInput): [AuthorizationDeviceProfile!]!
+  DeviceProfiles(
+    cursor: DeviceProfileWhereUniqueInput
+    distinct: [DeviceProfileScalarFieldEnum!]
+    orderBy: [DeviceProfileOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: DeviceProfileWhereInput
+  ): [AuthorizationDeviceProfile!]!
   createdAt: DateTime!
   id: ID!
   updatedAt: DateTime!
@@ -3814,7 +3918,9 @@ type DeviceManagerDeviceProfiles {
   DeviceProfiles: [AuthorizationDeviceProfile!]
 }
 
-union DeviceManagerDeviceProfilesResponseUnion = DeviceManagerDeviceProfiles | Error
+union DeviceManagerDeviceProfilesResponseUnion =
+  | DeviceManagerDeviceProfiles
+  | Error
 
 input DeviceManagerMaxOrderByAggregateInput {
   createdAt: SortOrder
@@ -4633,7 +4739,14 @@ input DocumentWhereUniqueInput {
 }
 
 type Email {
-  AuthenticationProvider(cursor: AuthenticationProviderWhereUniqueInput, distinct: [AuthenticationProviderScalarFieldEnum!], orderBy: [AuthenticationProviderOrderByWithRelationInput!], skip: Int, take: Int, where: AuthenticationProviderWhereInput): [AuthenticationProvider!]!
+  AuthenticationProvider(
+    cursor: AuthenticationProviderWhereUniqueInput
+    distinct: [AuthenticationProviderScalarFieldEnum!]
+    orderBy: [AuthenticationProviderOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: AuthenticationProviderWhereInput
+  ): [AuthenticationProvider!]!
   canUseAsRecovery: Boolean
   createdAt: DateTime!
   email: String!
@@ -5194,7 +5307,9 @@ input EnumTypeOfDocumentWithAggregatesFilter {
   notIn: [TypeOfDocument!]
 }
 
-"""Long necks, cool patterns, taller than you."""
+"""
+Long necks, cool patterns, taller than you.
+"""
 type Error {
   errorCode: String
   message: String
@@ -5531,8 +5646,22 @@ input GeometryWhereUniqueInput {
 }
 
 type Group {
-  Photos(cursor: PhotoWhereUniqueInput, distinct: [PhotoScalarFieldEnum!], orderBy: [PhotoOrderByWithRelationInput!], skip: Int, take: Int, where: PhotoWhereInput): [Photo!]!
-  Profile(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): [Profile!]!
+  Photos(
+    cursor: PhotoWhereUniqueInput
+    distinct: [PhotoScalarFieldEnum!]
+    orderBy: [PhotoOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: PhotoWhereInput
+  ): [Photo!]!
+  Profile(
+    cursor: ProfileWhereUniqueInput
+    distinct: [ProfileScalarFieldEnum!]
+    orderBy: [ProfileOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: ProfileWhereInput
+  ): [Profile!]!
   createdAt: DateTime!
   id: ID!
   name: String!
@@ -5783,8 +5912,22 @@ input GroupWhereUniqueInput {
 
 type H3Index5VenueRecommendation {
   Area: Area
-  SearchAreaMetrics(cursor: SearchAreaMetricsWhereUniqueInput, distinct: [SearchAreaMetricsScalarFieldEnum!], orderBy: [SearchAreaMetricsOrderByWithRelationInput!], skip: Int, take: Int, where: SearchAreaMetricsWhereInput): [SearchAreaMetrics!]!
-  Vote(cursor: VoteWhereUniqueInput, distinct: [VoteScalarFieldEnum!], orderBy: [VoteOrderByWithRelationInput!], skip: Int, take: Int, where: VoteWhereInput): [Vote!]!
+  SearchAreaMetrics(
+    cursor: SearchAreaMetricsWhereUniqueInput
+    distinct: [SearchAreaMetricsScalarFieldEnum!]
+    orderBy: [SearchAreaMetricsOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: SearchAreaMetricsWhereInput
+  ): [SearchAreaMetrics!]!
+  Vote(
+    cursor: VoteWhereUniqueInput
+    distinct: [VoteScalarFieldEnum!]
+    orderBy: [VoteOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: VoteWhereInput
+  ): [Vote!]!
   areaId: String
   createdAt: DateTime!
   h3Index5: String!
@@ -6161,8 +6304,22 @@ input H3Index5VenueRecommendationWhereUniqueInput {
 
 type H3Index6VenueRecommendation {
   Area: Area
-  SearchAreaMetrics(cursor: SearchAreaMetricsWhereUniqueInput, distinct: [SearchAreaMetricsScalarFieldEnum!], orderBy: [SearchAreaMetricsOrderByWithRelationInput!], skip: Int, take: Int, where: SearchAreaMetricsWhereInput): [SearchAreaMetrics!]!
-  Vote(cursor: VoteWhereUniqueInput, distinct: [VoteScalarFieldEnum!], orderBy: [VoteOrderByWithRelationInput!], skip: Int, take: Int, where: VoteWhereInput): [Vote!]!
+  SearchAreaMetrics(
+    cursor: SearchAreaMetricsWhereUniqueInput
+    distinct: [SearchAreaMetricsScalarFieldEnum!]
+    orderBy: [SearchAreaMetricsOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: SearchAreaMetricsWhereInput
+  ): [SearchAreaMetrics!]!
+  Vote(
+    cursor: VoteWhereUniqueInput
+    distinct: [VoteScalarFieldEnum!]
+    orderBy: [VoteOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: VoteWhereInput
+  ): [Vote!]!
   areaId: String
   createdAt: DateTime!
   distanceInM: Int
@@ -6540,12 +6697,16 @@ input H3Index6VenueRecommendationWhereUniqueInput {
 }
 
 interface IBaseMessageEvent {
-  """Event type"""
+  """
+  Event type
+  """
   eventType: MessageEventType
 }
 
 interface IBasePostEvent {
-  """Event type"""
+  """
+  Event type
+  """
   eventType: PostEventType
 }
 
@@ -7347,7 +7508,14 @@ input LegalAgreementWhereUniqueInput {
 }
 
 type LiveOutPersonal {
-  Out(cursor: OutWhereUniqueInput, distinct: [OutScalarFieldEnum!], orderBy: [OutOrderByWithRelationInput!], skip: Int, take: Int, where: OutWhereInput): [Out!]!
+  Out(
+    cursor: OutWhereUniqueInput
+    distinct: [OutScalarFieldEnum!]
+    orderBy: [OutOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: OutWhereInput
+  ): [Out!]!
   Personal: Personal!
   createdAt: DateTime!
   id: ID!
@@ -7563,7 +7731,14 @@ input LiveOutPersonalWhereUniqueInput {
 }
 
 type LiveOutVenue {
-  Out(cursor: OutWhereUniqueInput, distinct: [OutScalarFieldEnum!], orderBy: [OutOrderByWithRelationInput!], skip: Int, take: Int, where: OutWhereInput): [Out!]!
+  Out(
+    cursor: OutWhereUniqueInput
+    distinct: [OutScalarFieldEnum!]
+    orderBy: [OutOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: OutWhereInput
+  ): [Out!]!
   Venue: Venue!
   createdAt: DateTime!
   id: ID!
@@ -8605,7 +8780,14 @@ input MemberConversationNotificationSettingWhereUniqueInput {
 
 type Message {
   Conversation: Conversation
-  Replies(cursor: MessageWhereUniqueInput, distinct: [MessageScalarFieldEnum!], orderBy: [MessageOrderByWithRelationInput!], skip: Int, take: Int, where: MessageWhereInput): [Message!]!
+  Replies(
+    cursor: MessageWhereUniqueInput
+    distinct: [MessageScalarFieldEnum!]
+    orderBy: [MessageOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: MessageWhereInput
+  ): [Message!]!
   Reply: Message
   Request: Request
   content: Json!
@@ -9043,7 +9225,11 @@ input MessageWhereUniqueInput {
 }
 
 type Mutation {
-  acceptFriendRequest(friendRequestId: String!, notificationStatusId: String!, venueIdMetAt: String): Relationship
+  acceptFriendRequest(
+    friendRequestId: String!
+    notificationStatusId: String!
+    venueIdMetAt: String
+  ): Relationship
   addPersonalJoinsVenue2(profileIdVenue: String): VenueTotalsResponseUnion
   addPersonalTotalsVenue2(profileIdVenue: String): VenueTotalsResponseUnion
   addStoryPhotos(photos: PhotoCreateManyProfileInputEnvelope): Story
@@ -9053,46 +9239,76 @@ type Mutation {
     content: Json!
     conversationId: String
 
-    """This is a list of ProfileIds."""
+    """
+    This is a list of ProfileIds.
+    """
     members: [String!]
   ): Message
-  createPersonalProfile(data: CreatePersonalDataInput): AuthenticationResponseUnion
+  createPersonalProfile(
+    data: CreatePersonalDataInput
+  ): AuthenticationResponseUnion
   createVenueProfile(data: CreateVenueDataInput): ProfileResponseUnion
-  declineFriendRequest(friendRequestId: String!, notificationStatusId: String!): Boolean
+  declineFriendRequest(
+    friendRequestId: String!
+    notificationStatusId: String!
+  ): Boolean
   deleteFriendRequest(friendRequestId: String!): Boolean
   qrAddFriend(dataHash: String!, qrCodeProfileId: String!): Relationship
   removeAllFromVenueDeveloper(profileIdVenue: String): Boolean
-  removeAllJoinedTotalFromVenue(profileIdVenue: String): VenueTotalsResponseUnion
+  removeAllJoinedTotalFromVenue(
+    profileIdVenue: String
+  ): VenueTotalsResponseUnion
   removeDeviceProfileFromDeviceManager(profileId: String!): Boolean
   removeFriend(relationshipId: String!): Boolean
   removePersonalJoinsVenue2(profileIdVenue: String): VenueTotalsResponseUnion
   removePersonalTotalsVenue2(profileIdVenue: String): VenueTotalsResponseUnion
   removeStoryPhotos(photoId: String!): Story
-  sendAuthenticatorDeviceOwnerCode(data: CodeDataInput, where: CustomCodeWhereInput): CodeResponse
-  sendAuthenticatorForgotPasswordCode(data: CodeDataInput, where: CustomCodeWhereInput): CodeResponse
+  sendAuthenticatorDeviceOwnerCode(
+    data: CodeDataInput
+    where: CustomCodeWhereInput
+  ): CodeResponse
+  sendAuthenticatorForgotPasswordCode(
+    data: CodeDataInput
+    where: CustomCodeWhereInput
+  ): CodeResponse
   switchDeviceProfile(profileId: String!): AuthenticationResponseUnion
   testNotification: Boolean
   updateCityRequested(cityName: String!): Boolean
 
-  """Update H6 coming area to be notified"""
+  """
+  Update H6 coming area to be notified
+  """
   updateH6ComingAreaToBeNotified(comingAreaId: String!): ComingArea
 
-  """Update H6 coming area vote"""
+  """
+  Update H6 coming area vote
+  """
   updateH6ComingAreaVote(comingAreaId: String!): ComingArea
 
   """
   This function updates the upvote for a venue recommendation for a H3Index6. If the user has already upvoted, it will be set to false. If the user has not upvoted, it will be set to true.
   """
-  updateH6VenueRemmendation(venueRecommendationId: String!): H3Index6VenueRecommendation
+  updateH6VenueRemmendation(
+    venueRecommendationId: String!
+  ): H3Index6VenueRecommendation
   updateManyMessageNotifications(conversationId: String): Boolean
-  updateOneProfile(data: ProfileUpdateInput!, where: ProfileWhereUniqueInput!): Profile
+  updateOneProfile(
+    data: ProfileUpdateInput!
+    where: ProfileWhereUniqueInput!
+  ): Profile
   updatePassword(newpassword: String!, oldpassword: String!): Boolean
-  updateProfileIdentifiableInformation(data: IdentifiableInformationUpdateInput!): ProfileResponseUnion
+  updateProfileIdentifiableInformation(
+    data: IdentifiableInformationUpdateInput!
+  ): ProfileResponseUnion
   updateProfilePrivacyTermsDocumentUpdate: Boolean
   updateStoryEmojimood(emojimoodId: Int, storyId: String): Story
   updateThemeManagerSwitchTheme(id: String!, themeId: String!): ProfileTheme
   uploadProfilePhoto(photos: PhotoCreateManyProfileInputEnvelope): Photo
-  upsertDevicePushToken(expoToken: String, token: String, type: TokenType): Boolean
+  upsertDevicePushToken(
+    expoToken: String
+    token: String
+    type: TokenType
+  ): Boolean
 }
 
 input NestedBoolFilter {
@@ -9477,26 +9693,40 @@ input NestedStringWithAggregatesFilter {
   startsWith: String
 }
 
-"""When a new post is created"""
+"""
+When a new post is created
+"""
 type NewMessageEvent implements IBaseMessageEvent {
   content: Json
 
-  """Event type"""
+  """
+  Event type
+  """
   eventType: MessageEventType
 
-  """Post id"""
+  """
+  Post id
+  """
   id: ID
 }
 
-"""When a new post is created"""
+"""
+When a new post is created
+"""
 type NewPostEvent implements IBasePostEvent {
-  """Event type"""
+  """
+  Event type
+  """
   eventType: PostEventType
 
-  """Post id"""
+  """
+  Post id
+  """
   id: ID
 
-  """Post title"""
+  """
+  Post title
+  """
   title: String
 }
 
@@ -9920,8 +10150,22 @@ input NotificationTypeSettingWhereUniqueInput {
 }
 
 type Notifications {
-  FriendRequests(cursor: RequestWhereUniqueInput, distinct: [RequestScalarFieldEnum!], orderBy: [RequestOrderByWithRelationInput!], skip: Int, take: Int, where: RequestWhereInput): [Request!]!
-  MessageRequests(cursor: RequestWhereUniqueInput, distinct: [RequestScalarFieldEnum!], orderBy: [RequestOrderByWithRelationInput!], skip: Int, take: Int, where: RequestWhereInput): [Request!]!
+  FriendRequests(
+    cursor: RequestWhereUniqueInput
+    distinct: [RequestScalarFieldEnum!]
+    orderBy: [RequestOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: RequestWhereInput
+  ): [Request!]!
+  MessageRequests(
+    cursor: RequestWhereUniqueInput
+    distinct: [RequestScalarFieldEnum!]
+    orderBy: [RequestOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: RequestWhereInput
+  ): [Request!]!
   Profile: Profile!
   id: ID!
   profileId: String!
@@ -11385,7 +11629,14 @@ input PersonalScalarWhereWithAggregatesInput {
 }
 
 type PersonalStats {
-  Out(cursor: OutWhereUniqueInput, distinct: [OutScalarFieldEnum!], orderBy: [OutOrderByWithRelationInput!], skip: Int, take: Int, where: OutWhereInput): [Out!]!
+  Out(
+    cursor: OutWhereUniqueInput
+    distinct: [OutScalarFieldEnum!]
+    orderBy: [OutOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: OutWhereInput
+  ): [Out!]!
   Personal: Personal
   createdAt: DateTime!
   id: ID!
@@ -11718,7 +11969,14 @@ input PersonalWhereUniqueInput {
 }
 
 type Phone {
-  AuthenticationProvider(cursor: AuthenticationProviderWhereUniqueInput, distinct: [AuthenticationProviderScalarFieldEnum!], orderBy: [AuthenticationProviderOrderByWithRelationInput!], skip: Int, take: Int, where: AuthenticationProviderWhereInput): [AuthenticationProvider!]!
+  AuthenticationProvider(
+    cursor: AuthenticationProviderWhereUniqueInput
+    distinct: [AuthenticationProviderScalarFieldEnum!]
+    orderBy: [AuthenticationProviderOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: AuthenticationProviderWhereInput
+  ): [AuthenticationProvider!]!
   canUseAsRecovery: Boolean
   completeNumber: String
   countryCallingCode: String
@@ -11792,7 +12050,9 @@ input PhoneInput {
   countryCallingCode: String
   countryCode: String
 
-  """Accepted phone formats: 5193334444 or +15193334444"""
+  """
+  Accepted phone formats: 5193334444 or +15193334444
+  """
   number: String
 }
 
@@ -12847,7 +13107,9 @@ enum PostEventType {
   NewPost
 }
 
-union PrivacyTermsUpdateResponseUnion = Error | LatestPrivacyAndTermsDocumentResponse
+union PrivacyTermsUpdateResponseUnion =
+  | Error
+  | LatestPrivacyAndTermsDocumentResponse
 
 type Profile {
   Credentials: Credentials
@@ -15003,7 +15265,9 @@ input PushTokenWhereUniqueInput {
 type Query {
   H3IndexGrid(cell: String!, ringSize: Int! = 1): [String!]
   H3IndexLatLng(cell: String!): [Float!]
-  authorizedProfiles(where: AuthorizedProfilesWhereInput!): AuthorizedProfilesResponseUnion
+  authorizedProfiles(
+    where: AuthorizedProfilesWhereInput!
+  ): AuthorizedProfilesResponseUnion
   checkPrivacyTermsDocumentUpdate: PrivacyTermsUpdateResponseUnion
   checkUsername(username: String!): Boolean
   emojimood(where: EmojimoodWhereUniqueInput!): Emojimood
@@ -15012,13 +15276,18 @@ type Query {
   findConversationByIdOrMembers(
     conversationId: String
 
-    """This is a list of ProfileIds."""
+    """
+    This is a list of ProfileIds.
+    """
     members: [String!]
   ): Conversation
   friendSearch(search: String!): [Personal!]
   friendsFromContacts(contact: [ContactInput!]!): String
   getADeviceManager: DeviceManagerDeviceProfilesResponseUnion
-  getAllCitiesByState(countryIsoCode: String!, stateIsoCode: String!): OrganizedCityResponseObject
+  getAllCitiesByState(
+    countryIsoCode: String!
+    stateIsoCode: String!
+  ): OrganizedCityResponseObject
   getAllCountries: [CountryResponseObject!]
   getAllFriends: [Profile!]
   getAllStatesByCountry(countryIsoCode: String!): [StateResponseObject!]
@@ -15026,7 +15295,10 @@ type Query {
   getConversations: [Conversation!]
   getCurrentPushNotificationToken: PushToken
   getFriends: [PublicProfilePersonal!]
-  getH3Index6VenueRecommendationById(id: String!, venuesProfileIds: [String!]): H3Index6VenueRecommendation
+  getH3Index6VenueRecommendationById(
+    id: String!
+    venuesProfileIds: [String!]
+  ): H3Index6VenueRecommendation
   getInterests: [Category!]
   getLiveVenueTotals(profileIdVenue: String): LiveVenueTotals
   getLiveVenueTotalsV2(profileIdVenue: String): VenueTotalsResponseUnion
@@ -15035,15 +15307,64 @@ type Query {
   getSecureFriendQRCodeData: String
   loginPassword(password: String!, username: String!): Boolean
   privacyTermsDocuments: LatestPrivacyAndTermsDocumentResponse
-  profile(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): Profile
-  profiles(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): [Profile!]
-  publicProfile(cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): PublicProfilePersonal
-  publicVenue(currentLocationCoords: CoordsInput, cursor: ProfileWhereUniqueInput, distinct: [ProfileScalarFieldEnum!], orderBy: [ProfileOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileWhereInput): ProfileVenue
+  profile(
+    cursor: ProfileWhereUniqueInput
+    distinct: [ProfileScalarFieldEnum!]
+    orderBy: [ProfileOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: ProfileWhereInput
+  ): Profile
+  profiles(
+    cursor: ProfileWhereUniqueInput
+    distinct: [ProfileScalarFieldEnum!]
+    orderBy: [ProfileOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: ProfileWhereInput
+  ): [Profile!]
+  publicProfile(
+    cursor: ProfileWhereUniqueInput
+    distinct: [ProfileScalarFieldEnum!]
+    orderBy: [ProfileOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: ProfileWhereInput
+  ): PublicProfilePersonal
+  publicVenue(
+    currentLocationCoords: CoordsInput
+    cursor: ProfileWhereUniqueInput
+    distinct: [ProfileScalarFieldEnum!]
+    orderBy: [ProfileOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: ProfileWhereInput
+  ): ProfileVenue
   refreshDeviceManager: AuthenticationResponseUnion
   sendAuthenticatorDeviceOwnerCode: Boolean
-  venue(cursor: VenueWhereUniqueInput, distinct: [VenueScalarFieldEnum!], orderBy: [VenueOrderByWithRelationInput!], skip: Int, take: Int, where: VenueWhereInput): Venue
-  venues(cursor: VenueWhereUniqueInput, distinct: [VenueScalarFieldEnum!], orderBy: [VenueOrderByWithRelationInput!], skip: Int, take: Int, where: VenueWhereInput): [Venue!]!
-  venuesNearby(cityName: String, countryIsoCode: String!, kRing: Int = 1, searchAreaCoords: CoordsInput!, stateIsoCode: String!): RecommendationResponseUnion
+  venue(
+    cursor: VenueWhereUniqueInput
+    distinct: [VenueScalarFieldEnum!]
+    orderBy: [VenueOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: VenueWhereInput
+  ): Venue
+  venues(
+    cursor: VenueWhereUniqueInput
+    distinct: [VenueScalarFieldEnum!]
+    orderBy: [VenueOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: VenueWhereInput
+  ): [Venue!]!
+  venuesNearby(
+    cityName: String
+    countryIsoCode: String!
+    kRing: Int = 1
+    searchAreaCoords: CoordsInput!
+    stateIsoCode: String!
+  ): RecommendationResponseUnion
 }
 
 enum QueryMode {
@@ -15051,7 +15372,10 @@ enum QueryMode {
   insensitive
 }
 
-union RecommendationResponseUnion = ComingAreaResponse | Error | VenuesNearbyResponse
+union RecommendationResponseUnion =
+  | ComingAreaResponse
+  | Error
+  | VenuesNearbyResponse
 
 type RefreshToken {
   DeviceProfile: AuthorizationDeviceProfile
@@ -16650,7 +16974,14 @@ input SearchAreaMetricsWhereUniqueInput {
 
 type SearchesService {
   Profile: Profile!
-  SearchAreaMetrics(cursor: SearchAreaMetricsWhereUniqueInput, distinct: [SearchAreaMetricsScalarFieldEnum!], orderBy: [SearchAreaMetricsOrderByWithRelationInput!], skip: Int, take: Int, where: SearchAreaMetricsWhereInput): [SearchAreaMetrics!]!
+  SearchAreaMetrics(
+    cursor: SearchAreaMetricsWhereUniqueInput
+    distinct: [SearchAreaMetricsScalarFieldEnum!]
+    orderBy: [SearchAreaMetricsOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: SearchAreaMetricsWhereInput
+  ): [SearchAreaMetrics!]!
   createdAt: DateTime!
   id: ID!
   profileId: String!
@@ -17335,7 +17666,14 @@ enum SortOrder {
 }
 
 type State {
-  Area(cursor: AreaWhereUniqueInput, distinct: [AreaScalarFieldEnum!], orderBy: [AreaOrderByWithRelationInput!], skip: Int, take: Int, where: AreaWhereInput): [Area!]!
+  Area(
+    cursor: AreaWhereUniqueInput
+    distinct: [AreaScalarFieldEnum!]
+    orderBy: [AreaOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: AreaWhereInput
+  ): [Area!]!
   Geometry: Geometry!
   geometryId: Int!
   id: ID!
@@ -18032,16 +18370,27 @@ input StringWithAggregatesFilter {
 }
 
 type Subscription {
-  """Events related to messages"""
+  """
+  Events related to messages
+  """
   messageEvents: IBaseMessageEvent
 
-  """Events related to posts"""
+  """
+  Events related to posts
+  """
   postEvents: IBasePostEvent
 }
 
 type Tag {
   Category: Category
-  DetailInformation(cursor: DetailInformationWhereUniqueInput, distinct: [DetailInformationScalarFieldEnum!], orderBy: [DetailInformationOrderByWithRelationInput!], skip: Int, take: Int, where: DetailInformationWhereInput): [DetailInformation!]!
+  DetailInformation(
+    cursor: DetailInformationWhereUniqueInput
+    distinct: [DetailInformationScalarFieldEnum!]
+    orderBy: [DetailInformationOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: DetailInformationWhereInput
+  ): [DetailInformation!]!
   categoryId: String
   emoji: String
   id: ID!
@@ -18385,7 +18734,14 @@ input ThemeCreatewebVersionsInput {
 
 type ThemeManager {
   Profile: Profile!
-  ProfileTheme(cursor: ProfileThemeWhereUniqueInput, distinct: [ProfileThemeScalarFieldEnum!], orderBy: [ProfileThemeOrderByWithRelationInput!], skip: Int, take: Int, where: ProfileThemeWhereInput): [ProfileTheme!]!
+  ProfileTheme(
+    cursor: ProfileThemeWhereUniqueInput
+    distinct: [ProfileThemeScalarFieldEnum!]
+    orderBy: [ProfileThemeOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: ProfileThemeWhereInput
+  ): [ProfileTheme!]!
   createdAt: DateTime!
   id: ID!
   profileId: String!
@@ -18952,18 +19308,24 @@ enum TypeOfDocument {
 }
 
 input UpdateManyNotificationStatusInput {
-  """List of the NotificationStatus IDs to update"""
+  """
+  List of the NotificationStatus IDs to update
+  """
   notificationStatusIds: [UpdateNotificationStatusInput!]!
 }
 
-union UpdateManyNotificationStatusUnionResponse = Error | UpdateNotificationResponse
+union UpdateManyNotificationStatusUnionResponse =
+  | Error
+  | UpdateNotificationResponse
 
 type UpdateNotificationResponse {
   count: Int
 }
 
 input UpdateNotificationStatusInput {
-  """A NotificationStatus ID"""
+  """
+  A NotificationStatus ID
+  """
   id: String!
 }
 
@@ -19173,7 +19535,14 @@ input VenueScalarWhereWithAggregatesInput {
 }
 
 type VenueStats {
-  Out(cursor: OutWhereUniqueInput, distinct: [OutScalarFieldEnum!], orderBy: [OutOrderByWithRelationInput!], skip: Int, take: Int, where: OutWhereInput): [Out!]!
+  Out(
+    cursor: OutWhereUniqueInput
+    distinct: [OutScalarFieldEnum!]
+    orderBy: [OutOrderByWithRelationInput!]
+    skip: Int
+    take: Int
+    where: OutWhereInput
+  ): [Out!]!
   Venue: Venue
   createdAt: DateTime!
   id: ID!

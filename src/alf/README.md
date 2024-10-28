@@ -30,9 +30,9 @@ An (mostly-complete) set of style definitions that match Tailwind CSS selectors.
 These are static and reused throughout the app.
 
 ```tsx
-import { atoms } from '#/alf'
+import {atoms} from '#/alf'
 
-<View style={[atoms.flex_row]} />
+;<View style={[atoms.flex_row]} />
 ```
 
 ### Theme

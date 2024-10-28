@@ -1,44 +1,44 @@
-import React from "react";
+import React from 'react'
 
-import * as persisted from "#/src/state/persisted";
-import { EmbedPlayerSource } from "#/src/lib/strings/embed-player";
+import {EmbedPlayerSource} from '#/src/lib/strings/embed-player'
+import * as persisted from '#/src/state/persisted'
 
-type StateContext = persisted.Schema["externalEmbeds"];
+type StateContext = persisted.Schema['externalEmbeds']
 type SetContext = (
   source: EmbedPlayerSource,
-  value: "show" | "hide" | undefined,
-) => void;
+  value: 'show' | 'hide' | undefined,
+) => void
 
 const stateContext = React.createContext<StateContext>(
   persisted.defaults.externalEmbeds,
-);
-const setContext = React.createContext<SetContext>({} as SetContext);
+)
+const setContext = React.createContext<SetContext>({} as SetContext)
 
-export function Provider({ children }: React.PropsWithChildren<{}>) {
-  const [state, setState] = React.useState(persisted.get("externalEmbeds"));
+export function Provider({children}: React.PropsWithChildren<{}>) {
+  const [state, setState] = React.useState(persisted.get('externalEmbeds'))
 
   const setStateWrapped = React.useCallback(
-    (source: EmbedPlayerSource, value: "show" | "hide" | undefined) => {
-      setState((prev) => {
-        persisted.write("externalEmbeds", {
+    (source: EmbedPlayerSource, value: 'show' | 'hide' | undefined) => {
+      setState(prev => {
+        persisted.write('externalEmbeds', {
           ...prev,
           [source]: value,
-        });
+        })
 
         return {
           ...prev,
           [source]: value,
-        };
-      });
+        }
+      })
     },
     [setState],
-  );
+  )
 
   React.useEffect(() => {
-    return persisted.onUpdate("externalEmbeds", (nextExternalEmbeds) => {
-      setState(nextExternalEmbeds);
-    });
-  }, [setStateWrapped]);
+    return persisted.onUpdate('externalEmbeds', nextExternalEmbeds => {
+      setState(nextExternalEmbeds)
+    })
+  }, [setStateWrapped])
 
   return (
     <stateContext.Provider value={state}>
@@ -46,13 +46,13 @@ export function Provider({ children }: React.PropsWithChildren<{}>) {
         {children}
       </setContext.Provider>
     </stateContext.Provider>
-  );
+  )
 }
 
 export function useExternalEmbedsPrefs() {
-  return React.useContext(stateContext);
+  return React.useContext(stateContext)
 }
 
 export function useSetExternalEmbedPref() {
-  return React.useContext(setContext);
+  return React.useContext(setContext)
 }

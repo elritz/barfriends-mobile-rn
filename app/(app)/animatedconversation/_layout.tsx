@@ -1,10 +1,11 @@
-import {Box} from '#/src/components/ui/box'
-import {Heading} from '#/src/components/ui/heading'
-import {Button, ButtonText} from '#/src/components/ui/button'
-import ChevronBackArrow from '#/src/components/atoms/ChevronBackArrow'
-import {Stack, useLocalSearchParams} from 'expo-router'
-import {HStack} from '#/src/components/ui/hstack'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import {Stack, useLocalSearchParams} from 'expo-router'
+
+import ChevronBackArrow from '#/src/components/atoms/ChevronBackArrow'
+import {Box} from '#/src/components/ui/box'
+import {Button, ButtonText} from '#/src/components/ui/button'
+import {Heading} from '#/src/components/ui/heading'
+import {HStack} from '#/src/components/ui/hstack'
 
 const AnimatedConversationLayout = () => {
   const insets = useSafeAreaInsets()

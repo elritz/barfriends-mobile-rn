@@ -1,26 +1,23 @@
-import { Text } from "#/src/components/ui/text";
-import { Input, InputField } from "#/src/components/ui/input";
-import { Heading } from "#/src/components/ui/heading";
-import { Button } from "#/src/components/ui/button";
-import { Box } from "#/src/components/ui/box";
-import { useReactiveVar } from "@apollo/client";
+import {ActivityIndicator, KeyboardAvoidingView, Pressable} from 'react-native'
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
+import {useReactiveVar} from '@apollo/client'
+import {Controller, useForm} from 'react-hook-form'
+
 import {
   AuthorizationDeviceProfile,
   Profile,
   useUpdateOneProfileMutation,
-} from "#/graphql/generated";
-import { AuthorizationReactiveVar, ThemeReactiveVar } from "#/reactive";
-import { useForm, Controller } from "react-hook-form";
-import {
-  ActivityIndicator,
-  KeyboardAvoidingView,
-  Pressable,
-} from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+} from '#/graphql/generated'
+import {AuthorizationReactiveVar, ThemeReactiveVar} from '#/reactive'
+import {Box} from '#/src/components/ui/box'
+import {Button} from '#/src/components/ui/button'
+import {Heading} from '#/src/components/ui/heading'
+import {Input, InputField} from '#/src/components/ui/input'
+import {Text} from '#/src/components/ui/text'
 
 export default () => {
-  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar);
-  const rTheme = useReactiveVar(ThemeReactiveVar);
+  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
+  const rTheme = useReactiveVar(ThemeReactiveVar)
 
   const {
     control,
@@ -28,37 +25,37 @@ export default () => {
     handleSubmit,
     reset,
     getValues,
-    formState: { dirtyFields, errors },
+    formState: {dirtyFields, errors},
   } = useForm({
     defaultValues: {
       fullname:
-        rAuthorizationVar?.Profile?.IdentifiableInformation?.fullname || "",
+        rAuthorizationVar?.Profile?.IdentifiableInformation?.fullname || '',
       nickname:
-        rAuthorizationVar?.Profile?.IdentifiableInformation?.nickname || "",
+        rAuthorizationVar?.Profile?.IdentifiableInformation?.nickname || '',
     },
-    mode: "onChange",
-    reValidateMode: "onChange",
+    mode: 'onChange',
+    reValidateMode: 'onChange',
     resolver: undefined,
     context: undefined,
-    criteriaMode: "firstError",
+    criteriaMode: 'firstError',
     shouldFocusError: true,
     shouldUnregister: true,
-  });
+  })
 
-  const [updateOneProfilMutation, { data, loading: UOPLoading, error }] =
+  const [updateOneProfilMutation, {data, loading: UOPLoading, error}] =
     useUpdateOneProfileMutation({
-      onError: (error) => {
-        setError("fullname", error);
+      onError: error => {
+        setError('fullname', error)
       },
-      onCompleted: (data) => {
+      onCompleted: data => {
         if (data.updateOneProfile) {
-          const profile = data.updateOneProfile as Profile;
-          const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile;
+          const profile = data.updateOneProfile as Profile
+          const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
 
           AuthorizationReactiveVar({
             ...deviceprofile,
             Profile: profile,
-          });
+          })
 
           reset({
             fullname: String(
@@ -67,41 +64,41 @@ export default () => {
             nickname: String(
               data?.updateOneProfile?.IdentifiableInformation?.nickname,
             ),
-          });
+          })
         }
       },
-    });
+    })
 
   const resetInput = (value: string) => {
     switch (value) {
-      case "fullname":
+      case 'fullname':
         reset({
           fullname: String(
             rAuthorizationVar?.Profile?.IdentifiableInformation?.fullname,
           ),
-        });
-      case "nickname":
+        })
+      case 'nickname':
         reset({
           nickname: String(
             rAuthorizationVar?.Profile?.IdentifiableInformation?.nickname,
           ),
-        });
+        })
       default:
         reset({
           fullname: String(
             rAuthorizationVar?.Profile?.IdentifiableInformation?.fullname,
           ),
-        });
+        })
         reset({
           nickname: String(
             rAuthorizationVar?.Profile?.IdentifiableInformation?.nickname,
           ),
-        });
+        })
     }
-  };
+  }
 
   const onSubmit = () => {
-    const data = getValues();
+    const data = getValues()
     if (dirtyFields.fullname && dirtyFields.nickname) {
       updateOneProfilMutation({
         variables: {
@@ -121,7 +118,7 @@ export default () => {
             },
           },
         },
-      });
+      })
     }
     if (dirtyFields.fullname && !dirtyFields.nickname) {
       updateOneProfilMutation({
@@ -139,7 +136,7 @@ export default () => {
             },
           },
         },
-      });
+      })
     }
     if (dirtyFields.nickname && !dirtyFields.fullname) {
       updateOneProfilMutation({
@@ -157,48 +154,45 @@ export default () => {
             },
           },
         },
-      });
+      })
     }
-  };
+  }
 
   return (
     <KeyboardAwareScrollView
       keyboardDismissMode="none"
-      keyboardShouldPersistTaps={"always"}
-      extraScrollHeight={100}
-    >
+      keyboardShouldPersistTaps={'always'}
+      extraScrollHeight={100}>
       <KeyboardAvoidingView
         style={{
-          flexDirection: "column",
-          justifyContent: "flex-start",
+          flexDirection: 'column',
+          justifyContent: 'flex-start',
           marginVertical: 2,
           marginHorizontal: 2,
-        }}
-      >
+        }}>
         <Controller
           name="fullname"
           control={control}
           rules={{
             required: true,
           }}
-          render={({ field: { onChange, onBlur, value } }) => (
+          render={({field: {onChange, onBlur, value}}) => (
             <Box className="flex-column my-3 w-[100%] items-start bg-transparent">
-              <Heading style={{ marginBottom: 10 }} className="text-lg">
+              <Heading style={{marginBottom: 10}} className="text-lg">
                 Full name
               </Heading>
               <Input
-                variant={"rounded"}
+                variant={'rounded'}
                 style={{
-                  alignSelf: "center",
+                  alignSelf: 'center',
                   height: 55,
                   padding: 10,
                 }}
-                className="rounded-md"
-              >
+                className="rounded-md">
                 <InputField
                   onBlur={onBlur}
                   keyboardAppearance={
-                    rTheme.colorScheme === "light" ? "light" : "dark"
+                    rTheme.colorScheme === 'light' ? 'light' : 'dark'
                   }
                   onChangeText={onChange}
                   value={value}
@@ -218,14 +212,16 @@ export default () => {
                     <ActivityIndicator
                       size="small"
                       color={
-                        rTheme.colorScheme === "light"
+                        rTheme.colorScheme === 'light'
                           ? rTheme.theme?.gluestack.tokens.colors.light900
                           : rTheme.theme?.gluestack.tokens.colors.light100
                       }
                     />
                   ) : (
                     dirtyFields.fullname && (
-                      <Pressable onPress={() => resetInput("fullname")}>
+                      <Pressable
+                        accessibilityRole="button"
+                        onPress={() => resetInput('fullname')}>
                         <Text className="font-bold">Reset</Text>
                       </Pressable>
                     )
@@ -242,24 +238,23 @@ export default () => {
           rules={{
             required: true,
           }}
-          render={({ field: { onChange, onBlur, value } }) => (
+          render={({field: {onChange, onBlur, value}}) => (
             <Box className="flex-column my-3 w-[100%] items-start">
-              <Heading style={{ marginBottom: 10 }} className="text-lg">
+              <Heading style={{marginBottom: 10}} className="text-lg">
                 Nick name
               </Heading>
               <Input
-                variant={"rounded"}
+                variant={'rounded'}
                 className="rounded-md"
-                fontSize={"$md"}
-                p={"$4"}
-              >
+                fontSize={'$md'}
+                p={'$4'}>
                 <InputField
                   onBlur={onBlur}
                   onChange={onChange}
                   value={value}
                   blurOnSubmit={false}
                   keyboardAppearance={
-                    rTheme.colorScheme === "light" ? "light" : "dark"
+                    rTheme.colorScheme === 'light' ? 'light' : 'dark'
                   }
                   onSubmitEditing={handleSubmit(onSubmit)}
                   textContentType="nickname"
@@ -275,14 +270,16 @@ export default () => {
                     <ActivityIndicator
                       size="small"
                       color={
-                        rTheme.colorScheme === "light"
+                        rTheme.colorScheme === 'light'
                           ? rTheme.theme?.gluestack.tokens.colors.light900
                           : rTheme.theme?.gluestack.tokens.colors.light100
                       }
                     />
                   ) : (
                     dirtyFields.nickname && (
-                      <Pressable onPress={() => resetInput("nickname")}>
+                      <Pressable
+                        accessibilityRole="button"
+                        onPress={() => resetInput('nickname')}>
                         <Text className="font-[bold]">Reset</Text>
                       </Pressable>
                     )
@@ -298,16 +295,15 @@ export default () => {
             disabled={UOPLoading}
             onPress={() => onSubmit()}
             style={{
-              alignSelf: "center",
-              width: "50%",
+              alignSelf: 'center',
+              width: '50%',
             }}
-            size={"lg"}
-            className="my-5 rounded-md bg-primary-500"
-          >
+            size={'lg'}
+            className="my-5 rounded-md bg-primary-500">
             Update
           </Button>
         )}
       </KeyboardAvoidingView>
     </KeyboardAwareScrollView>
-  );
-};
+  )
+}

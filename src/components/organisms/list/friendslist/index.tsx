@@ -1,11 +1,12 @@
-import {VStack} from '#/src/components/ui/vstack'
-import {HStack} from '#/src/components/ui/hstack'
-import {Divider} from '#/src/components/ui/divider'
-import {FriendsListEmptyState} from './FriendsListEmptyState'
-import {useReactiveVar} from '@apollo/client'
-import {CardFullImageNameEmoji} from '#/src/components/molecules/personal/CardFullImageNameEmoji'
-import {AuthorizationReactiveVar} from '#/reactive'
 import {useWindowDimensions} from 'react-native'
+import {useReactiveVar} from '@apollo/client'
+
+import {AuthorizationReactiveVar} from '#/reactive'
+import {CardFullImageNameEmoji} from '#/src/components/molecules/personal/CardFullImageNameEmoji'
+import {Divider} from '#/src/components/ui/divider'
+import {HStack} from '#/src/components/ui/hstack'
+import {VStack} from '#/src/components/ui/vstack'
+import {FriendsListEmptyState} from './FriendsListEmptyState'
 
 const numColumns = 3
 

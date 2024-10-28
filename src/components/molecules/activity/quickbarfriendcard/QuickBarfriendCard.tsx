@@ -1,27 +1,21 @@
-import {VStack} from '#/src/components/ui/vstack'
-import {Pressable} from '#/src/components/ui/pressable'
-import {Icon, SlashIcon} from '#/src/components/ui/icon'
-import {Heading} from '#/src/components/ui/heading'
-import {Button, ButtonText} from '#/src/components/ui/button'
-import {Box} from '#/src/components/ui/box'
+import {useEffect, useState} from 'react'
+import {View} from 'react-native'
+import {useRouter} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
 import {FontAwesome5} from '@expo/vector-icons'
+
 import {
   useGetSecureFriendQrCodeDataLazyQuery,
   useRefreshDeviceManagerQuery,
 } from '#/graphql/generated'
-import {
-  AuthorizationReactiveVar,
-  PermissionCameraReactiveVar,
-  ThemeReactiveVar,
-} from '#/reactive'
-import {useDisclose} from '#/src/util/hooks/useDisclose'
-import {useRouter} from 'expo-router'
-import {useEffect, useState} from 'react'
-import {View} from 'react-native'
-import {Color} from '#/src/util/helpers/color'
 import useEmojimoodTextColor from '#/hooks/useEmojiMoodTextContrast'
-import RoundedBox from '../RoundedBox'
+import {PermissionsReactiveVar, ThemeReactiveVar} from '#/reactive'
+import {Box} from '#/src/components/ui/box'
+import {Button, ButtonText} from '#/src/components/ui/button'
+import {Heading} from '#/src/components/ui/heading'
+import {Icon, SlashIcon} from '#/src/components/ui/icon'
+import {Pressable} from '#/src/components/ui/pressable'
+import {useDisclose} from '#/src/util/hooks/useDisclose'
 
 // const LOGO_COASTER = require("../../../../../../assets/images/company/company_coaster.png");
 
@@ -33,37 +27,33 @@ type Props = ActivityCardProps & {
 }
 
 export default function QuickBarfriendCard({
-  qrcodesize,
-  logosize,
-  showIcon,
-  color,
   isEmojimoodDynamic = false,
 }: Props) {
   const router = useRouter()
   const rTheme = useReactiveVar(ThemeReactiveVar)
-  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
-  const rPermissionCamera = useReactiveVar(PermissionCameraReactiveVar)
-  const {isOpen, onOpen, onClose} = useDisclose()
+  const rPerm = useReactiveVar(PermissionsReactiveVar)
+  const {onOpen} = useDisclose()
   const [dataQR, setDataQR] = useState('')
   const [retryCount, setRetryCount] = useState(0)
   const textColor = useEmojimoodTextColor({
     isEmojimoodDynamic: isEmojimoodDynamic,
   })
 
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-  } = useRefreshDeviceManagerQuery()
+  const {data: rdmData, loading: rdmLoading} = useRefreshDeviceManagerQuery()
 
   const [getSecureFriendCodeQrData, {data, loading, error}] =
     useGetSecureFriendQrCodeDataLazyQuery({
       onCompleted: data => {
-        const dataQRString = JSON.stringify({
-          dataHash: data.getSecureFriendQRCodeData,
-          qrCodeProfileId: rAuthorizationVar?.Profile?.id,
-        })
-        setDataQR(dataQRString)
+        if (
+          rdmData?.refreshDeviceManager?.__typename ===
+          'AuthorizationDeviceProfile'
+        ) {
+          const dataQRString = JSON.stringify({
+            dataHash: data.getSecureFriendQRCodeData,
+            qrCodeProfileId: rdmData?.refreshDeviceManager.Profile?.id,
+          })
+          setDataQR(dataQRString)
+        }
       },
       onError: err => {
         setRetryCount(prevCount => prevCount + 1)
@@ -99,9 +89,10 @@ export default function QuickBarfriendCard({
   ) {
     return (
       <Pressable
+        accessibilityRole="button"
         style={{alignItems: 'center', justifyContent: 'center'}}
         onPress={() =>
-          rPermissionCamera?.granted
+          rPerm?.camera.granted
             ? onOpen()
             : router.push({
                 pathname: '/(app)/permission/camera',

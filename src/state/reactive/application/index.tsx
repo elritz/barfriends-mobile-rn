@@ -1,5 +1,5 @@
-import {makeVar} from '@apollo/client'
 import * as Application from 'expo-application'
+import {makeVar} from '@apollo/client'
 
 export interface ApplicationInterface {
   androidId?: typeof Application.applicationId

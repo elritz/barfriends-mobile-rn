@@ -1,39 +1,33 @@
-import { useReactiveVar } from "@apollo/client";
-import { ThemeReactiveVar } from "#/reactive";
-import VectorFonts from "#/src/util/helpers/VectorFonts";
-import { cacheFonts, cacheImages } from "#/src/util/hooks/local/useCacheImages";
-import { useAssets } from "expo-asset";
-import { Image } from "expo-image";
-import { SplashScreen } from "expo-router";
-import { useCallback, useEffect, useState } from "react";
-import { View, StyleSheet } from "react-native";
+import {useEffect, useState} from 'react'
+import {ReactNode} from 'react'
+import {View} from 'react-native'
+import {SplashScreen} from 'expo-router'
 
-function AnimatedSplashScreen({ children }) {
-  const rThemeVar = useReactiveVar(ThemeReactiveVar);
-  const [isSplashAnimationComplete, setAnimationComplete] = useState(false);
+function AnimatedSplashScreen({children}: {children: ReactNode}) {
+  const [_, setAnimationComplete] = useState(false)
   // const [assets, Aerror] = useAssets([
   // 	require(`../../../assets/images/splash/splash.${process.env.EXPO_PUBLIC_NODE_ENV}.light.png`),
   // 	require(`../../../assets/images/splash/splash.${process.env.EXPO_PUBLIC_NODE_ENV}.dark.png`),
   // ])
 
   useEffect(() => {
-    setTimeout(() => setAnimationComplete(true), 1);
-    SplashScreen.hideAsync();
-  }, []);
+    setTimeout(() => setAnimationComplete(true), 1)
+    SplashScreen.hideAsync()
+  }, [])
 
-  const onImageLoaded = useCallback(async () => {
-    try {
-      const imageAssets = cacheImages([]);
-      const fontAssets = cacheFonts([...VectorFonts]);
+  // const onImageLoaded = useCallback(async () => {
+  //   try {
+  //     const imageAssets = cacheImages([])
+  //     const fontAssets = cacheFonts([...VectorFonts])
 
-      await Promise.all([...imageAssets, ...fontAssets]);
-    } catch (e) {
-      console.warn(e);
-      // handle errors
-    } finally {
-      setAnimationComplete(true);
-    }
-  }, []);
+  //     await Promise.all([...imageAssets, ...fontAssets])
+  //   } catch (e) {
+  //     console.warn(e)
+  //     // handle errors
+  //   } finally {
+  //     setAnimationComplete(true)
+  //   }
+  // }, [])
 
   // if (!assets) {
   // 	return null
@@ -69,11 +63,10 @@ function AnimatedSplashScreen({ children }) {
     <View
       style={{
         flex: 1,
-      }}
-    >
+      }}>
       {children}
     </View>
-  );
+  )
 }
 
-export default AnimatedSplashScreen;
+export default AnimatedSplashScreen

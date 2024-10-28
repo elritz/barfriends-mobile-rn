@@ -1,116 +1,241 @@
-import {Center} from '#/src/components/ui/center'
-import {Pressable} from '#/src/components/ui/pressable'
-import {HStack} from '#/src/components/ui/hstack'
-import {Button} from '#/src/components/ui/button'
-import {Text} from '#/src/components/ui/text'
+import {useRef} from 'react'
+import {useRouter} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
 import {Entypo} from '@expo/vector-icons'
+import {Skeleton} from 'moti/skeleton'
+
+import {REFRESH_DEVICE_MANAGER_QUERY} from '#/graphql/DM/managing/devicemanager/index.query'
 import {
-  AuthorizationDeviceProfile,
+  AppType,
   ProfileType,
   useGetADeviceManagerQuery,
+  useRefreshDeviceManagerQuery,
   useRemoveDeviceProfileFromDeviceManagerMutation,
   useSwitchDeviceProfileMutation,
 } from '#/graphql/generated'
-import {AuthorizationReactiveVar, ThemeReactiveVar} from '#/reactive'
-import {useRouter} from 'expo-router'
-import {useRef, useState} from 'react'
+import {ThemeReactiveVar} from '#/reactive'
+import {Button} from '#/src/components/ui/button'
+import {Center} from '#/src/components/ui/center'
+import {Heading} from '#/src/components/ui/heading'
+import {HStack} from '#/src/components/ui/hstack'
+import {Pressable} from '#/src/components/ui/pressable'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
 
 const DeviceManagerProfiles = () => {
   const ref = useRef(null)
   const router = useRouter()
-  const [profiles, setProfiles] =
-    useState<Partial<AuthorizationDeviceProfile>[]>()
   const rTheme = useReactiveVar(ThemeReactiveVar)
 
-  const {data, loading, error} = useGetADeviceManagerQuery({
+  const {data, loading} = useGetADeviceManagerQuery({
     fetchPolicy: 'network-only',
-    onCompleted: data => {
+  })
+  const {data: rdmData} = useRefreshDeviceManagerQuery({
+    fetchPolicy: 'cache-and-network',
+  })
+
+  const [switchDeviceProfileMutation] = useSwitchDeviceProfileMutation({
+    update: (cache, {data}) => {
       if (
-        data.getADeviceManager?.__typename === 'DeviceManagerDeviceProfiles'
+        data?.switchDeviceProfile?.__typename === 'AuthorizationDeviceProfile'
       ) {
-        setProfiles(
-          (data?.getADeviceManager
-            ?.DeviceProfiles as Partial<AuthorizationDeviceProfile>[]) ?? [],
+        if (
+          rdmData?.refreshDeviceManager?.__typename ===
+          'AuthorizationDeviceProfile'
+        ) {
+          cache.writeQuery({
+            query: REFRESH_DEVICE_MANAGER_QUERY,
+            data: {
+              refreshDeviceManager: {
+                ...data.switchDeviceProfile,
+              },
+            },
+          })
+        }
+      }
+    },
+  })
+
+  const switchProfile = (item: {
+    __typename?: 'AuthorizationDeviceProfile' | undefined
+    id: any
+    AppType?: AppType
+    ProfileType?: ProfileType
+    isActive: any
+    deviceManagerId?: string
+    profileId?: string
+    createdAt?: any
+    updatedAt?: any
+    DeviceManager?: {__typename?: 'DeviceManager'; id: string}
+    Profile: any
+  }) => {
+    if (item.isActive) {
+      if (
+        data?.getADeviceManager?.__typename === 'DeviceManagerDeviceProfiles'
+      ) {
+        const guestProfile = data.getADeviceManager.DeviceProfiles?.find(
+          item => item.ProfileType === ProfileType.Guest,
         )
+        switchDeviceProfileMutation({
+          variables: {
+            profileId: String(guestProfile?.profileId),
+          },
+          onCompleted: data => {
+            if (
+              data?.switchDeviceProfile?.__typename ===
+              'AuthorizationDeviceProfile'
+            ) {
+              setTimeout(() => {
+                if (router.canDismiss()) {
+                  router.dismiss()
+                }
+                router.push({
+                  pathname: '/(app)/hometab/venuefeed',
+                })
+              }, 500)
+            } else if (data.switchDeviceProfile?.__typename === 'Error') {
+              if (router.canDismiss()) {
+                router.dismiss()
+              }
+              router.push({
+                pathname: '/(credential)/logincredentialstack/loginpassword',
+                params: {
+                  username: item.Profile?.IdentifiableInformation?.username,
+                  photo: item.Profile?.profilePhoto?.url,
+                  profileid: item.Profile?.id,
+                },
+              })
+            }
+          },
+        })
       }
-    },
-  })
-
-  const [
-    removeDeviceProfileFromDeviceManagerMutation,
-    {data: RDPFDMData, loading: RDPFDMLoading, error: RDPFDMError},
-  ] = useRemoveDeviceProfileFromDeviceManagerMutation()
-
-  const [
-    switchDeviceProfileMutation,
-    {data: SWDPData, loading: SWDPLoading, error: SWDPError},
-  ] = useSwitchDeviceProfileMutation({
-    onCompleted: async data => {
-      if (
-        data.switchDeviceProfile?.__typename == 'AuthorizationDeviceProfile'
-      ) {
-        const deviceProfile =
-          data.switchDeviceProfile as AuthorizationDeviceProfile
-        AuthorizationReactiveVar(deviceProfile)
-      }
-    },
-  })
-  const switchProfile = item => {
-    console.log('🚀 ~ switchPrrofile ~ item.Profile.id:', item.Profile.id)
-    switchDeviceProfileMutation({
-      variables: {
-        profileId: item.Profile.id,
-      },
-    })
+    } else {
+      switchDeviceProfileMutation({
+        variables: {
+          profileId: String(item.Profile?.id),
+        },
+        onCompleted: data => {
+          if (
+            data?.switchDeviceProfile?.__typename ===
+            'AuthorizationDeviceProfile'
+          ) {
+            setTimeout(() => {
+              if (router.canDismiss()) {
+                router.dismiss()
+              }
+              router.push({
+                pathname: '/(app)/hometab/venuefeed',
+              })
+            }, 500)
+          } else if (data.switchDeviceProfile?.__typename === 'Error') {
+            if (router.canDismiss()) {
+              router.dismiss()
+            }
+            router.push({
+              pathname: '/(credential)/logincredentialstack/loginpassword',
+              params: {
+                username: item.Profile?.IdentifiableInformation?.username,
+                photo: item.Profile?.profilePhoto?.url,
+                profileid: item.id,
+              },
+            })
+          }
+        },
+      })
+    }
   }
-  if (loading) return null
 
-  return (
-    <Center>
-      {profiles?.length ? (
-        <>
-          {profiles?.map((item, index) => {
-            if (item.Profile?.ProfileType === ProfileType.Guest) return null
-            return (
-              <HStack key={index} className="h-[80px] items-center">
-                <Pressable key={item.id} onPress={() => switchProfile(item)}>
-                  <Text>{item.Profile?.name}</Text>
-                  {/* <DeviceManagerProfileItemLarge
-                    item={item.Profile}
-                    loading={SWDPLoading}
-                  {/* <DeviceManagerProfileItemLarge
-                    item={item.Profile}
-                    loading={SWDPLoading}
-                  /> */}
-                </Pressable>
-                <Center className="h-[300px]">
-                  <Button
-                    variant="link"
-                    onPress={() =>
-                      router.push(`/modal/devicemanager/${item.Profile?.id}`)
-                    }
-                    ref={ref}
-                    size="xs"
-                    hitSlop={10}>
-                    <Entypo
-                      name={'dots-three-vertical'}
-                      size={23}
-                      color={
-                        rTheme.colorScheme === 'light'
-                          ? rTheme.theme?.gluestack.tokens.colors.light900
-                          : rTheme.theme?.gluestack.tokens.colors.light100
+  if (loading) {
+    return (
+      <VStack space={'md'} className="my-5 rounded-md px-2">
+        {[...Array(3)].map((item, index) => {
+          return (
+            <Skeleton
+              key={index}
+              height={80}
+              width={'100%'}
+              radius={15}
+              colorMode={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+              colors={
+                rTheme.colorScheme === 'light'
+                  ? [
+                      String(rTheme.theme?.gluestack.tokens.colors.light100),
+                      String(rTheme.theme?.gluestack.tokens.colors.light300),
+                    ]
+                  : [
+                      String(rTheme.theme?.gluestack.tokens.colors.light900),
+                      String(rTheme.theme?.gluestack.tokens.colors.light700),
+                    ]
+              }
+            />
+          )
+        })}
+      </VStack>
+    )
+  }
+
+  if (data?.getADeviceManager?.__typename === 'Error') {
+    return null
+  }
+
+  if (data?.getADeviceManager?.__typename === 'DeviceManagerDeviceProfiles') {
+    // const onPressRouteToLogin = () => {
+    //   router.dismiss()
+    //   setTimeout(() => {
+    //     router.replace({
+    //       pathname: '/(credential)/logincredentialstack/authenticator',
+    //     })
+    //   }, 0)
+    // }
+
+    return (
+      <Center>
+        {data.getADeviceManager.DeviceProfiles?.length ? (
+          <>
+            {data.getADeviceManager.DeviceProfiles?.map((item, index) => {
+              if (item.Profile?.ProfileType === ProfileType.Guest) return null
+              return (
+                <HStack key={index} className="h-[80px] items-center">
+                  <Pressable
+                    accessibilityRole="button"
+                    className="flex-1"
+                    key={item.id}
+                    onPress={() => switchProfile(item)}>
+                    <Text>
+                      {item.Profile?.IdentifiableInformation?.firstname}
+                    </Text>
+                    <Heading>
+                      {item.Profile?.IdentifiableInformation?.username}
+                    </Heading>
+                  </Pressable>
+                  <Center className="h-[300px]">
+                    <Button
+                      variant="link"
+                      onPress={() =>
+                        router.push(`/modal/devicemanager/${item.Profile?.id}`)
                       }
-                    />
-                  </Button>
-                </Center>
-              </HStack>
-            )
-          })}
-        </>
-      ) : null}
-    </Center>
-  )
+                      ref={ref}
+                      size="xs"
+                      hitSlop={10}>
+                      <Entypo
+                        name={'dots-three-vertical'}
+                        size={23}
+                        color={
+                          rTheme.colorScheme === 'light'
+                            ? rTheme.theme?.gluestack.tokens.colors.light900
+                            : rTheme.theme?.gluestack.tokens.colors.light100
+                        }
+                      />
+                    </Button>
+                  </Center>
+                </HStack>
+              )
+            })}
+          </>
+        ) : null}
+      </Center>
+    )
+  }
 }
 
 export default DeviceManagerProfiles

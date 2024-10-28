@@ -1,29 +1,6 @@
-import { Pressable } from "#/src/components/ui/pressable";
-import { Heading } from "#/src/components/ui/heading";
-import { Center } from "#/src/components/ui/center";
-import { Button } from "#/src/components/ui/button";
-import { Box } from "#/src/components/ui/box";
-import { AddIcon, RemoveIcon } from "#/src/components/ui/icon";
-import { useReactiveVar } from "@apollo/client";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import {
-  Emojimood,
-  Photo,
-  PhotoCreateManyProfileInput,
-  useAddStoryPhotosMutation,
-} from "#/graphql/generated";
-import { AuthorizationReactiveVar, ThemeReactiveVar } from "#/reactive";
-import useCloudinaryImageUploading from "#/src/util/uploading/useCloudinaryImageUploading";
-import { BlurView } from "expo-blur";
-import * as ImagePicker from "expo-image-picker";
-import { useCallback, useState } from "react";
-import { Image } from "react-native";
-import {
-  ScrollView,
-  StyleSheet,
-  View,
-  useWindowDimensions,
-} from "react-native";
+import {useCallback} from 'react'
+import {Image} from 'react-native'
+import {ScrollView, useWindowDimensions, View} from 'react-native'
 import Animated, {
   interpolate,
   interpolateColor,
@@ -32,162 +9,154 @@ import Animated, {
   useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
-} from "react-native-reanimated";
+} from 'react-native-reanimated'
+import {BlurView} from 'expo-blur'
+import {useReactiveVar} from '@apollo/client'
+import {Ionicons} from '@expo/vector-icons'
 
-const size = 70;
+import {Photo, useRefreshDeviceManagerQuery} from '#/graphql/generated'
+import {ThemeReactiveVar} from '#/reactive'
+import {Box} from '#/src/components/ui/box'
+import {Center} from '#/src/components/ui/center'
+import {Pressable} from '#/src/components/ui/pressable'
 
 type Props = {
-  photos: Photo[] | undefined;
-  profilePhoto: Photo | null | undefined;
-  emojimoodsColors: string[] | null | undefined;
-};
+  photos: Photo[] | undefined
+  profilePhoto: Photo | null | undefined
+  emojimoodsColors: string[] | null | undefined
+}
 
 export default function Photos(props: Props) {
-  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar);
-  const rTheme = useReactiveVar(ThemeReactiveVar);
-  const [isLoading, setLoading] = useState(false);
-  const { width } = useWindowDimensions();
-  const scrollRef = useAnimatedRef<ScrollView>();
-  const translateX = useSharedValue(0);
-  const containerHeight = 350;
-  const margin = 12;
-  const DOT_SIZE = 8;
-  const ITEM_WIDTH = width - margin * 2;
+  const rTheme = useReactiveVar(ThemeReactiveVar)
+  const {width} = useWindowDimensions()
+  const scrollRef = useAnimatedRef<ScrollView>()
+  const translateX = useSharedValue(0)
+  const containerHeight = 350
+  const margin = 12
+  const DOT_SIZE = 8
+  const ITEM_WIDTH = width - margin * 2
 
   //! don't move this from here
   const activeIndex = useDerivedValue(() => {
-    return Math.round(translateX.value / ITEM_WIDTH);
-  });
+    return Math.round(translateX.value / ITEM_WIDTH)
+  })
 
   const scrollHandler = useAnimatedScrollHandler({
-    onScroll: (event) => {
-      translateX.value = event.contentOffset.x;
+    onScroll: event => {
+      translateX.value = event.contentOffset.x
     },
-  });
+  })
 
-  const onPressScroll = useCallback((side) => {
-    if (side === "left") {
-      if (activeIndex.value === 0) return;
+  const {data: rdmData} = useRefreshDeviceManagerQuery()
+
+  const onPressScroll = useCallback((side: string) => {
+    if (side === 'left') {
+      if (activeIndex.value === 0) return
       scrollRef.current?.scrollTo({
         x: ITEM_WIDTH * (activeIndex.value - 1),
         animated: false,
-      });
+      })
     }
-    if (side == "right") {
-      if (rAuthorizationVar?.Profile?.tonightStory?.photos) {
+    if (
+      rdmData?.refreshDeviceManager?.__typename ===
+        'AuthorizationDeviceProfile' &&
+      rdmData?.refreshDeviceManager?.Profile?.tonightStory?.photos
+    ) {
+      if (side === 'right') {
         if (
           activeIndex.value ===
-          rAuthorizationVar?.Profile?.tonightStory?.photos?.length - 1
+          rdmData?.refreshDeviceManager?.Profile.tonightStory.photos.length - 1
         ) {
-          scrollRef.current?.scrollTo({ x: ITEM_WIDTH * 0, animated: false });
-          return;
+          scrollRef.current?.scrollTo({x: ITEM_WIDTH * 0, animated: false})
+          return
         }
         scrollRef.current?.scrollTo({
           x: ITEM_WIDTH * (activeIndex.value + 1),
           animated: false,
-        });
+        })
       }
     }
-  }, []);
+  }, [])
 
-  const styles = StyleSheet.create({
-    dotLg: {
-      position: "absolute",
-      left: -39,
-      top: -10,
-      height: size + 10,
-      width: size + 10,
-      borderRadius: size + 10 / 2,
-      backgroundColor: rTheme.theme?.gluestack.tokens.colors.primary400,
-    },
-    dotMd: {
-      top: 10,
-      left: -55,
-      position: "absolute",
-      height: size - 15,
-      width: size - 15,
-      borderRadius: size / 2,
-      backgroundColor: rTheme.theme?.gluestack?.tokens.colors.tertiary400,
-    },
-    dotSm: {
-      top: 20,
-      left: 20,
-      position: "absolute",
-      height: size - 25,
-      width: size - 25,
-      borderRadius: size / 2,
-      backgroundColor: rTheme.theme?.gluestack?.tokens.colors.secondary700,
-      zIndex: 3,
-    },
-  });
+  // const styles = StyleSheet.create({
+  //   dotLg: {
+  //     position: 'absolute',
+  //     left: -39,
+  //     top: -10,
+  //     height: size + 10,
+  //     width: size + 10,
+  //     borderRadius: size + 10 / 2,
+  //     backgroundColor: rTheme.theme?.gluestack.tokens.colors.primary400,
+  //   },
+  //   dotMd: {
+  //     top: 10,
+  //     left: -55,
+  //     position: 'absolute',
+  //     height: size - 15,
+  //     width: size - 15,
+  //     borderRadius: size / 2,
+  //     backgroundColor: rTheme.theme?.gluestack?.tokens.colors.tertiary400,
+  //   },
+  //   dotSm: {
+  //     top: 20,
+  //     left: 20,
+  //     position: 'absolute',
+  //     height: size - 25,
+  //     width: size - 25,
+  //     borderRadius: size / 2,
+  //     backgroundColor: rTheme.theme?.gluestack?.tokens.colors.secondary700,
+  //     zIndex: 3,
+  //   },
+  // })
 
   if (!props.photos?.length && !props.profilePhoto) {
     return (
       <BlurView
         style={{
           borderRadius: 13,
-          overflow: "hidden",
+          overflow: 'hidden',
           height: containerHeight,
           backgroundColor: props.emojimoodsColors?.length
-            ? "transparent"
-            : rTheme.colorScheme === "light"
+            ? 'transparent'
+            : rTheme.colorScheme === 'light'
               ? rTheme.theme.gluestack.tokens.colors.light100
               : rTheme.theme.gluestack.tokens.colors.light800,
         }}
         intensity={80}
-        tint={rTheme.colorScheme === "light" ? "light" : "dark"}
-      >
-        {/* <Box
-						bg='$red900'
-						sx={{
-							w: '100%',
-							_dark: {
-								bg: '$light900',
-							},
-							_light: {
-								bg: '$light100',
-							},
-						}}
-						rounded={'$md'}
-					> */}
+        tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}>
         <Center className="mx-5 flex-1">
           <Box className="mb-25 w-[100%] items-center bg-transparent">
             <Ionicons
               size={32}
               color={
-                rTheme.colorScheme === "light"
+                rTheme.colorScheme === 'light'
                   ? rTheme.theme?.gluestack.tokens.colors.light900
                   : rTheme.theme?.gluestack.tokens.colors.light100
               }
-              name={"person"}
+              name={'person'}
             />
           </Box>
         </Center>
         {/* </Box> */}
       </BlurView>
-    );
+    )
   }
 
   if (!props.photos?.length && props.profilePhoto) {
-    console.log(
-      "props.pro -----------------filePhoto :>> ",
-      props.emojimoodsColors,
-    );
     return (
       <BlurView
         style={{
           borderRadius: 13,
-          overflow: "hidden",
+          overflow: 'hidden',
           height: containerHeight,
           backgroundColor: props.emojimoodsColors?.length
-            ? "transparent"
-            : rTheme.colorScheme === "light"
+            ? 'transparent'
+            : rTheme.colorScheme === 'light'
               ? rTheme.theme.gluestack.tokens.colors.light100
               : rTheme.theme.gluestack.tokens.colors.light800,
         }}
         intensity={80}
-        tint={rTheme.colorScheme === "light" ? "light" : "dark"}
-      >
+        tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}>
         {/* <Box
 						bg='$red900'
 						sx={{
@@ -206,17 +175,17 @@ export default function Photos(props: Props) {
             <Ionicons
               size={32}
               color={
-                rTheme.colorScheme === "light"
+                rTheme.colorScheme === 'light'
                   ? rTheme.theme?.gluestack.tokens.colors.light900
                   : rTheme.theme?.gluestack.tokens.colors.light100
               }
-              name={"person"}
+              name={'person'}
             />
           </Box>
         </Center>
         {/* </Box> */}
       </BlurView>
-    );
+    )
   }
 
   return (
@@ -231,74 +200,74 @@ export default function Photos(props: Props) {
           onScroll={scrollHandler}
           scrollEventThrottle={16}
           showsHorizontalScrollIndicator={false}
-          decelerationRate={"fast"}
+          decelerationRate={'fast'}
           bounces={false}
-          style={{ overflow: "hidden" }}
-        >
+          style={{overflow: 'hidden'}}>
           {props.photos?.map((item, index) => {
             return (
               <View key={index}>
                 <Box
-                  className={` w-${ITEM_WIDTH} h-[100%] overflow-hidden rounded-md bg-green-200`}
-                >
+                  className={` w-${ITEM_WIDTH} h-[100%] overflow-hidden rounded-md bg-green-200`}>
                   <Pressable
+                    accessibilityRole="button"
                     onPress={() => {
-                      onPressScroll("left");
+                      onPressScroll('left')
                     }}
                     className={` w-${ITEM_WIDTH / 2} absolute bottom-0 left-0 top-0 z-10 h-[100%] opacity-20`}
                   />
                   <Pressable
+                    accessibilityRole="button"
                     onPress={() => {
-                      onPressScroll("right");
+                      onPressScroll('right')
                     }}
                     className={` w-${ITEM_WIDTH / 2} absolute bottom-0 right-[0px] top-0 z-10 h-[100%]`}
                   />
                   <Image
+                    accessibilityIgnoresInvertColors
                     source={{
                       uri: item.url,
                     }}
                     resizeMode="cover"
                     style={{
-                      height: "100%",
-                      width: "100%",
+                      height: '100%',
+                      width: '100%',
                       borderRadius: 0,
-                      overflow: "hidden",
+                      overflow: 'hidden',
                     }}
                   />
                 </Box>
               </View>
-            );
+            )
           })}
         </Animated.ScrollView>
 
         <View
           style={{
-            position: "absolute",
+            position: 'absolute',
             bottom: 10,
-            alignSelf: "center",
-            flexDirection: "row",
-          }}
-        >
+            alignSelf: 'center',
+            flexDirection: 'row',
+          }}>
           {props.photos?.map((item, i) => {
             const rDotStyle = useAnimatedStyle(() => {
-              const inputRange = [(i - 1) * width, i * width, (i + 1) * width];
+              const inputRange = [(i - 1) * width, i * width, (i + 1) * width]
               const dotWidth = interpolate(
                 translateX.value,
                 inputRange,
                 [11, 20, 11],
-                "clamp",
-              );
+                'clamp',
+              )
               const dotColor = interpolateColor(translateX.value, inputRange, [
-                "#1d1d1d",
-                "#ff7000",
-                "#1d1d1d",
-              ]);
+                '#1d1d1d',
+                '#ff7000',
+                '#1d1d1d',
+              ])
 
               return {
                 width: dotWidth,
                 backgroundColor: dotColor,
-              };
-            });
+              }
+            })
 
             return (
               <Animated.View
@@ -312,10 +281,10 @@ export default function Photos(props: Props) {
                   },
                 ]}
               />
-            );
+            )
           })}
         </View>
       </Box>
     </Box>
-  );
+  )
 }

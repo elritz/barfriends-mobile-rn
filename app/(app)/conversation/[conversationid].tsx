@@ -1,13 +1,14 @@
-import {Image} from '#/src/components/ui/image'
-import {Box} from '#/src/components/ui/box'
-import {Dimensions, StyleSheet} from 'react-native'
 import React, {useCallback, useRef, useState} from 'react'
-import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context'
-import {Platform, KeyboardAvoidingView} from 'react-native'
+import {Dimensions, StyleSheet} from 'react-native'
+import {KeyboardAvoidingView, Platform} from 'react-native'
 import {GiftedChat, IMessage} from 'react-native-gifted-chat'
-import {ResizeMode, Video} from 'expo-av'
 import {useKeyboardHandler} from 'react-native-keyboard-controller'
 import Reanimated, {useSharedValue} from 'react-native-reanimated'
+import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context'
+import {ResizeMode, Video} from 'expo-av'
+
+import {Box} from '#/src/components/ui/box'
+import {Image} from '#/src/components/ui/image'
 
 const {width} = Dimensions.get('window')
 

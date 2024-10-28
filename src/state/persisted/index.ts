@@ -1,5 +1,3 @@
-import AsyncStorage from '@react-native-async-storage/async-storage'
-
 import {logger} from '#/src/logger'
 import {
   defaults,
@@ -7,13 +5,14 @@ import {
   tryParse,
   tryStringify,
 } from '#/src/state/persisted/schema'
+import {storage} from '#/src/storage/mmkv'
 import {PersistedApi} from './types'
 import {normalizeData} from './util'
 
 export type {PersistedAccount, Schema} from '#/src/state/persisted/schema'
 export {defaults} from '#/src/state/persisted/schema'
 
-const BSKY_STORAGE = 'BSKY_STORAGE'
+const BFS_STORAGE = 'BFS_STORAGE'
 
 let _state: Schema = defaults
 
@@ -52,7 +51,7 @@ onUpdate satisfies PersistedApi['onUpdate']
 
 export async function clearStorage() {
   try {
-    await AsyncStorage.removeItem(BSKY_STORAGE)
+    storage.clearAll()
   } catch (e: any) {
     logger.error(`persisted store: failed to clear`, {message: e.toString()})
   }
@@ -63,7 +62,7 @@ async function writeToStorage(value: Schema) {
   const rawData = tryStringify(value)
   if (rawData) {
     try {
-      await AsyncStorage.setItem(BSKY_STORAGE, rawData)
+      storage.set(BFS_STORAGE, rawData)
     } catch (e) {
       logger.error(`persisted state: failed writing root state to storage`, {
         message: e,
@@ -73,9 +72,9 @@ async function writeToStorage(value: Schema) {
 }
 
 async function readFromStorage(): Promise<Schema | undefined> {
-  let rawData: string | null = null
+  let rawData: string | undefined
   try {
-    rawData = await AsyncStorage.getItem(BSKY_STORAGE)
+    rawData = storage.getString(BFS_STORAGE)
   } catch (e) {
     logger.error(`persisted state: failed reading root state from storage`, {
       message: e,

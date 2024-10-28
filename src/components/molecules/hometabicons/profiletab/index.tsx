@@ -1,16 +1,16 @@
-import {Box} from '#/src/components/ui/box'
+import {useState} from 'react'
+import React from 'react'
+import {Image} from 'react-native'
+import * as Haptics from 'expo-haptics'
+import {useRouter} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
+
 import CompanyCoasterLogoDynamic from '#/assets/images/company/CompanyCoasterLogoDynamic'
 import CompanyCoasterLogoDynamicInverse from '#/assets/images/company/CompanyCoasterLogoDynamicInverse'
 import CompanyCoasterLogoDynamicOutline from '#/assets/images/company/CompanyCoasterLogoDynamicOutline'
-import TabBarIcon, {TabProps} from '#/src/components/atoms/TabBarIcon'
-// import { useGetNotificationsQuery } from '#/graphql/generated'
 import {AuthorizationReactiveVar, ThemeReactiveVar} from '#/reactive'
-import * as Haptics from 'expo-haptics'
-import {Link, useRouter} from 'expo-router'
-import {useState} from 'react'
-import {Image} from 'react-native'
-import React from 'react'
+import TabBarIcon, {TabProps} from '#/src/components/atoms/TabBarIcon'
+import {Box} from '#/src/components/ui/box'
 
 const HEIGHT = 22
 
@@ -18,7 +18,6 @@ const ProfileTab = (props: TabProps) => {
   const router = useRouter()
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
-  const [numNotification, setNumNotifications] = useState(0)
 
   // const {
   // 	data: GNData,

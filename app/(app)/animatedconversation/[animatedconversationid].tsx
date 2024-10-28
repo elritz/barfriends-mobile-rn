@@ -1,7 +1,6 @@
-import {SafeAreaView} from '#/src/components/ui/safe-area-view'
-import {Input, InputField, InputSlot} from '#/src/components/ui/input'
 import React, {useCallback, useRef} from 'react'
 import {SafeAreaView as RNSafeAreaView, View} from 'react-native'
+import {StyleSheet} from 'react-native'
 import {useKeyboardHandler} from 'react-native-keyboard-controller'
 import Reanimated, {
   useAnimatedProps,
@@ -9,15 +8,17 @@ import Reanimated, {
   useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated'
-import {StyleSheet} from 'react-native'
+import {BlurView} from 'expo-blur'
+import {useReactiveVar} from '@apollo/client'
+import {FontAwesome6} from '@expo/vector-icons'
+import {Controller, SubmitHandler, useForm} from 'react-hook-form'
+
+import {useCreateMessageMutation} from '#/graphql/generated'
+import {ThemeReactiveVar} from '#/reactive'
+import {Input, InputField, InputSlot} from '#/src/components/ui/input'
+import {SafeAreaView} from '#/src/components/ui/safe-area-view'
 import Message from '#/src/view/screens/conversations/Message'
 import {history} from '#/src/view/screens/conversations/Message/data'
-import {FontAwesome6} from '@expo/vector-icons'
-import {useReactiveVar} from '@apollo/client'
-import {ThemeReactiveVar} from '#/reactive'
-import {useCreateMessageMutation} from '#/graphql/generated'
-import {Controller, SubmitHandler, useForm} from 'react-hook-form'
-import {BlurView} from 'expo-blur'
 
 const styles = StyleSheet.create({
   container: {

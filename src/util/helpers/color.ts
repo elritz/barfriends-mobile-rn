@@ -1,4 +1,4 @@
-import C from "color";
+import C from 'color'
 
 export const Color = {
   lighten: (color: string, ratio: number) => C(color).lighten(ratio).toString(),
@@ -8,4 +8,4 @@ export const Color = {
     C(first).mix(C(second), amount).toString(),
   isDark: (color: string) => C(color).isDark(),
   isLight: (color: string) => C(color).isLight(),
-};
+}

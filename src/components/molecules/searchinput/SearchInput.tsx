@@ -1,17 +1,18 @@
-import {Pressable} from '#/src/components/ui/pressable'
-import {Input, InputField, InputIcon} from '#/src/components/ui/input'
-import {HStack} from '#/src/components/ui/hstack'
+import {useCallback, useEffect, useMemo, useRef, useState} from 'react'
+import {TextInput} from 'react-native'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import {useGlobalSearchParams, useRouter, useSegments} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
 import {Ionicons} from '@expo/vector-icons'
 import {AntDesign} from '@expo/vector-icons'
+import {Controller, useForm} from 'react-hook-form'
+
 import {useExploreSearchLazyQuery} from '#/graphql/generated'
 import {ThemeReactiveVar} from '#/reactive'
+import {HStack} from '#/src/components/ui/hstack'
+import {Input, InputField, InputIcon} from '#/src/components/ui/input'
+import {Pressable} from '#/src/components/ui/pressable'
 import useDebounce from '#/src/util/hooks/useDebounce'
-import {useGlobalSearchParams, useRouter, useSegments} from 'expo-router'
-import {useCallback, useEffect, useMemo, useRef, useState} from 'react'
-import {Controller, useForm} from 'react-hook-form'
-import {TextInput} from 'react-native'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
 
 type Props = {
   placeholder?: string
@@ -211,7 +212,9 @@ const SearchInput = (props: Props) => {
                 }
               />
               {watch('searchtext')?.length ? (
-                <Pressable onPress={() => clearSearchInput()}>
+                <Pressable
+                  accessibilityRole="button"
+                  onPress={() => clearSearchInput()}>
                   <InputIcon className="mr-3">
                     <AntDesign
                       name="closecircle"

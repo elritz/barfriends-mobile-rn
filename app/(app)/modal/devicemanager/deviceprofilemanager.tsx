@@ -1,26 +1,28 @@
-import {Center} from '#/src/components/ui/center'
-import {VStack} from '#/src/components/ui/vstack'
-import {Pressable} from '#/src/components/ui/pressable'
-import {HStack} from '#/src/components/ui/hstack'
-import {Button, ButtonText, ButtonIcon} from '#/src/components/ui/button'
-import {Box} from '#/src/components/ui/box'
-// TODO: FN(What functionality was suppose to be here)
-import {useReactiveVar} from '@apollo/client'
-import {Entypo, Ionicons, MaterialIcons} from '@expo/vector-icons'
-import {
-  AuthorizationDeviceProfile,
-  ProfileType,
-  useGetADeviceManagerQuery,
-  useSwitchDeviceProfileMutation,
-} from '#/graphql/generated'
-import {AuthorizationReactiveVar, ThemeReactiveVar} from '#/reactive'
-import {useRouter} from 'expo-router'
-import {Skeleton} from 'moti/skeleton'
 import {useRef} from 'react'
 import {View} from 'react-native'
 import {Image} from 'expo-image'
-import {Text} from '#/src/components/ui/text'
+import {useRouter} from 'expo-router'
+// TODO: FN(What functionality was suppose to be here)
+import {useReactiveVar} from '@apollo/client'
+import {Entypo, Ionicons, MaterialIcons} from '@expo/vector-icons'
 import {FlashList} from '@shopify/flash-list'
+import {Skeleton} from 'moti/skeleton'
+
+import {REFRESH_DEVICE_MANAGER_QUERY} from '#/graphql/DM/managing/devicemanager/index.query'
+import {
+  ProfileType,
+  useGetADeviceManagerQuery,
+  useRefreshDeviceManagerQuery,
+  useSwitchDeviceProfileMutation,
+} from '#/graphql/generated'
+import {ThemeReactiveVar} from '#/reactive'
+import {Box} from '#/src/components/ui/box'
+import {Button, ButtonText} from '#/src/components/ui/button'
+import {Center} from '#/src/components/ui/center'
+import {HStack} from '#/src/components/ui/hstack'
+import {Pressable} from '#/src/components/ui/pressable'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
 
 export default function DeviceManager() {
   const ref = useRef(null)
@@ -28,13 +30,42 @@ export default function DeviceManager() {
   const rTheme = useReactiveVar(ThemeReactiveVar)
 
   const {data, loading} = useGetADeviceManagerQuery({
-    fetchPolicy: 'no-cache',
+    fetchPolicy: 'network-only',
+  })
+
+  const {
+    data: rdmData,
+    loading: rdmLoading,
+    error: rdmError,
+    client,
+  } = useRefreshDeviceManagerQuery({
+    fetchPolicy: 'cache-and-network',
   })
 
   const [
     switchDeviceProfileMutation,
     {data: SWDPData, loading: SWDPLoading, error: SWDPError},
-  ] = useSwitchDeviceProfileMutation()
+  ] = useSwitchDeviceProfileMutation({
+    update: (cache, {data}) => {
+      if (
+        data?.switchDeviceProfile?.__typename === 'AuthorizationDeviceProfile'
+      ) {
+        if (
+          rdmData?.refreshDeviceManager?.__typename ===
+          'AuthorizationDeviceProfile'
+        ) {
+          cache.writeQuery({
+            query: REFRESH_DEVICE_MANAGER_QUERY,
+            data: {
+              refreshDeviceManager: {
+                ...data.switchDeviceProfile,
+              },
+            },
+          })
+        }
+      }
+    },
+  })
 
   if (loading) {
     return (
@@ -80,7 +111,7 @@ export default function DeviceManager() {
     }
 
     return (
-      <View style={{flex: 1, marginTop: 20}}>
+      <View style={{flex: 1, marginTop: 20, backgroundColor: 'red'}}>
         <FlashList
           data={data.getADeviceManager.DeviceProfiles}
           estimatedItemSize={80}
@@ -109,9 +140,6 @@ export default function DeviceManager() {
                             data?.switchDeviceProfile?.__typename ===
                             'AuthorizationDeviceProfile'
                           ) {
-                            const deviceManager =
-                              data.switchDeviceProfile as AuthorizationDeviceProfile
-                            AuthorizationReactiveVar(deviceManager)
                             setTimeout(() => {
                               router.dismiss()
                               router.push({
@@ -146,9 +174,6 @@ export default function DeviceManager() {
                           data?.switchDeviceProfile?.__typename ===
                           'AuthorizationDeviceProfile'
                         ) {
-                          const deviceManager =
-                            data.switchDeviceProfile as AuthorizationDeviceProfile
-                          AuthorizationReactiveVar(deviceManager)
                           setTimeout(() => {
                             router.dismiss()
                             router.push({
@@ -175,7 +200,10 @@ export default function DeviceManager() {
                 }
                 return (
                   <HStack className="flex-1 mx-3 light:bg-light-200 h-[80px] items-center rounded-md dark:bg-light-800">
-                    <Pressable onPress={onPress} className="flex-1">
+                    <Pressable
+                      accessibilityRole="button"
+                      onPress={onPress}
+                      className="flex-1">
                       <HStack className="my-2 justify-start flex-1 items-center px-3 py-3">
                         <View style={{marginRight: 8}}>
                           <View style={{width: 30}}>

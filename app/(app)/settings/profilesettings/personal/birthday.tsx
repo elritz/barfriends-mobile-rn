@@ -1,44 +1,45 @@
-import { Text } from "#/src/components/ui/text";
-import { Button } from "#/src/components/ui/button";
-import { Box } from "#/src/components/ui/box";
-import { useReactiveVar } from "@apollo/client";
-import DatePicker from "#/src/components/atoms/DatePicker";
+import {useState} from 'react'
+import {View} from 'react-native'
+import {SafeAreaView} from 'react-native-safe-area-context'
+import {useRouter} from 'expo-router'
+import {useReactiveVar} from '@apollo/client'
+import {Controller, useForm} from 'react-hook-form'
+
 import {
   AuthorizationDeviceProfile,
   Profile,
   useUpdateOneProfileMutation,
-} from "#/graphql/generated";
-import { AuthorizationReactiveVar } from "#/reactive";
-import { calcDateDiffFromNow } from "#/src/util/helpers/luxon";
-import { secureStorageItemCreate } from "#/src/util/hooks/local/useSecureStorage";
-import { useRouter } from "expo-router";
-import { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
-import { View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+} from '#/graphql/generated'
+import {AuthorizationReactiveVar} from '#/reactive'
+import DatePicker from '#/src/components/atoms/DatePicker'
+import {Box} from '#/src/components/ui/box'
+import {Button} from '#/src/components/ui/button'
+import {Text} from '#/src/components/ui/text'
+import {calcDateDiffFromNow} from '#/src/util/helpers/luxon'
+import {secureStorageItemCreate} from '#/src/util/hooks/local/useSecureStorage'
 
 export default () => {
-  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar);
-  const [legalAge] = useState<number>(19);
-  const router = useRouter();
+  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
+  const [legalAge] = useState<number>(19)
+  const router = useRouter()
 
-  const [updateOneProfilMutation, { data, loading: UOPLoading, error }] =
+  const [updateOneProfilMutation, {data, loading: UOPLoading, error}] =
     useUpdateOneProfileMutation({
-      onError: (error) => {
-        setError("date", error);
+      onError: error => {
+        setError('date', error)
       },
-      onCompleted: (data) => {
-        const profile = data.updateOneProfile as Profile;
-        const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile;
+      onCompleted: data => {
+        const profile = data.updateOneProfile as Profile
+        const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
 
         AuthorizationReactiveVar({
           ...deviceprofile,
           Profile: profile,
-        });
-        router.back();
+        })
+        router.back()
         // reset({ date: data.updateOneProfile.IdentifiableInformation.birthday })
       },
-    });
+    })
 
   const {
     control,
@@ -49,43 +50,43 @@ export default () => {
     reset,
     handleSubmit,
     watch,
-    formState: { isDirty, dirtyFields, errors },
+    formState: {isDirty, dirtyFields, errors},
   } = useForm({
     defaultValues: {
       date:
         new Date(
           rAuthorizationVar?.Profile?.IdentifiableInformation?.birthday,
-        ) || "",
+        ) || '',
     },
-    mode: "onChange",
-    reValidateMode: "onChange",
+    mode: 'onChange',
+    reValidateMode: 'onChange',
     resolver: undefined,
     context: undefined,
-    criteriaMode: "firstError",
+    criteriaMode: 'firstError',
     shouldFocusError: true,
     shouldUnregister: true,
-  });
+  })
 
   const validateDate1 = async (
     selectedDate: Date | undefined,
   ): Promise<boolean> => {
     if (!selectedDate) {
-      return false;
+      return false
     }
-    const { days, months, years } = calcDateDiffFromNow(selectedDate);
+    const {days, months, years} = calcDateDiffFromNow(selectedDate)
     if (years === 0) {
-      return false;
+      return false
     }
-    return true;
-  };
+    return true
+  }
 
   const validateDate2 = async (
     selectedDate: Date | undefined,
   ): Promise<boolean> => {
     if (!selectedDate) {
-      return false;
+      return false
     }
-    const { days, months, years } = calcDateDiffFromNow(selectedDate);
+    const {days, months, years} = calcDateDiffFromNow(selectedDate)
     if (
       years &&
       months &&
@@ -95,15 +96,15 @@ export default () => {
       days >= 27
     ) {
       await secureStorageItemCreate({
-        key: "BIRTHDAY",
+        key: 'BIRTHDAY',
         value: String(selectedDate),
-      });
-      return true;
+      })
+      return true
     } else if (years && years < legalAge) {
-      return false;
+      return false
     }
-    return true;
-  };
+    return true
+  }
 
   const onSubmit = (data: any) => {
     updateOneProfilMutation({
@@ -123,25 +124,24 @@ export default () => {
           },
         },
       },
-    });
-  };
+    })
+  }
 
   return (
     <SafeAreaView
       style={{
         flex: 1,
-        alignItems: "center",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        marginHorizontal: "5%",
-      }}
-    >
+        alignItems: 'center',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        marginHorizontal: '5%',
+      }}>
       <>
         <Controller
           control={control}
           name="date"
-          render={({ field: { value, onChange } }) => (
-            <View style={{ width: "100%", height: "70%" }}>
+          render={({field: {value, onChange}}) => (
+            <View style={{width: '100%', height: '70%'}}>
               <DatePicker
                 display="spinner"
                 mode="date"
@@ -149,8 +149,8 @@ export default () => {
                 maxDate={new Date()}
                 onChange={(e, selectedDate) => onChange(selectedDate)}
                 style={{
-                  width: "100%",
-                  height: "100%",
+                  width: '100%',
+                  height: '100%',
                 }}
               />
             </View>
@@ -158,12 +158,12 @@ export default () => {
           rules={{
             required: {
               value: true,
-              message: "Your birthday is required to continue.",
+              message: 'Your birthday is required to continue.',
             },
             validate: {
-              validateYear1: async (value) =>
-                (await validateDate1(value)) || "You must exsist to sign up.",
-              validateYear2: async (value) =>
+              validateYear1: async value =>
+                (await validateDate1(value)) || 'You must exsist to sign up.',
+              validateYear2: async value =>
                 (await validateDate2(value)) ||
                 `Must be closer to ${legalAge} to join.`,
             },
@@ -176,13 +176,12 @@ export default () => {
           <Button
             disabled={UOPLoading}
             onPress={handleSubmit(onSubmit)}
-            size={"lg"}
-            className="dark:bg-light-9000 my-5 rounded-md bg-light-500"
-          >
+            size={'lg'}
+            className="dark:bg-light-9000 my-5 rounded-md bg-light-500">
             <Text>Update</Text>
           </Button>
         )}
       </Box>
     </SafeAreaView>
-  );
-};
+  )
+}

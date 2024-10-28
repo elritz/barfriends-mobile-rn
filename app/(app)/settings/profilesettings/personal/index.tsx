@@ -1,33 +1,34 @@
-import { VStack } from "#/src/components/ui/vstack";
-import { Text } from "#/src/components/ui/text";
-import { Heading } from "#/src/components/ui/heading";
-import { HStack } from "#/src/components/ui/hstack";
-import { Box } from "#/src/components/ui/box";
-import { Badge } from "#/src/components/ui/badge";
-import { useReactiveVar } from "@apollo/client";
-import { Ionicons } from "@expo/vector-icons";
-import { useProfileQuery } from "#/graphql/generated";
-import { AuthorizationReactiveVar, ThemeReactiveVar } from "#/reactive";
-import { useRouter } from "expo-router";
-import { ScrollView, Pressable } from "react-native";
+import {Pressable, ScrollView} from 'react-native'
+import {useRouter} from 'expo-router'
+import {useReactiveVar} from '@apollo/client'
+import {Ionicons} from '@expo/vector-icons'
+
+import {useProfileQuery} from '#/graphql/generated'
+import {AuthorizationReactiveVar, ThemeReactiveVar} from '#/reactive'
+import {Badge} from '#/src/components/ui/badge'
+import {Box} from '#/src/components/ui/box'
+import {Heading} from '#/src/components/ui/heading'
+import {HStack} from '#/src/components/ui/hstack'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
 
 interface EditableOptionsScreenProps {}
 
 export default ({}: EditableOptionsScreenProps) => {
-  const router = useRouter();
-  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar);
-  const rTheme = useReactiveVar(ThemeReactiveVar);
+  const router = useRouter()
+  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
+  const rTheme = useReactiveVar(ThemeReactiveVar)
   const rIdentifiableInformation =
-    rAuthorizationVar?.Profile?.IdentifiableInformation;
+    rAuthorizationVar?.Profile?.IdentifiableInformation
   const date = new Date(
     rAuthorizationVar?.Profile?.IdentifiableInformation?.birthday,
-  ).toLocaleDateString("en-EN", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  ).toLocaleDateString('en-EN', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
 
-  const { data, loading, error } = useProfileQuery({
+  const {data, loading, error} = useProfileQuery({
     variables: {
       where: {
         id: {
@@ -35,12 +36,12 @@ export default ({}: EditableOptionsScreenProps) => {
         },
       },
     },
-  });
+  })
 
-  if (loading) return null;
+  if (loading) return null
 
-  const RoundedListItem = ({ children, ...props }) => (
-    <Pressable onPress={props.onPress}>
+  const RoundedListItem = ({children, ...props}) => (
+    <Pressable accessibilityRole="button" onPress={props.onPress}>
       <Box className="flex-column my-2 items-start rounded-md px-2 py-3">
         {props.title && (
           <Heading className="text-md pb-3">{props.title}</Heading>
@@ -48,7 +49,7 @@ export default ({}: EditableOptionsScreenProps) => {
         {children}
       </Box>
     </Pressable>
-  );
+  )
 
   return (
     <ScrollView
@@ -58,16 +59,14 @@ export default ({}: EditableOptionsScreenProps) => {
       }}
       scrollToOverflowEnabled
       showsVerticalScrollIndicator={false}
-      contentInsetAdjustmentBehavior="scrollableAxes"
-    >
+      contentInsetAdjustmentBehavior="scrollableAxes">
       <RoundedListItem
         onPress={() => {
           router.push({
-            pathname: "/(app)/settings/profilesettings/personal/fullname",
-          });
+            pathname: '/(app)/settings/profilesettings/personal/fullname',
+          })
         }}
-        title="Full name"
-      >
+        title="Full name">
         <Text className="text-xl">{rIdentifiableInformation?.fullname}</Text>
         {rIdentifiableInformation?.nickname && (
           <>
@@ -79,20 +78,19 @@ export default ({}: EditableOptionsScreenProps) => {
       <RoundedListItem
         onPress={() =>
           router.push({
-            pathname: "/(app)/settings/profilesettings/personal/username",
+            pathname: '/(app)/settings/profilesettings/personal/username',
           })
         }
-        title="Username"
-      >
+        title="Username">
         <Text className="text-xl">{rIdentifiableInformation?.username}</Text>
       </RoundedListItem>
       <RoundedListItem title="Birthday 🥳">
         <HStack className="w-[100%] items-center justify-between">
           <Text className="text-xl text-light-600">{date}</Text>
           <Ionicons
-            name={"lock-closed"}
+            name={'lock-closed'}
             color={
-              rTheme.colorScheme === "light"
+              rTheme.colorScheme === 'light'
                 ? rTheme.theme?.gluestack.tokens.colors.light400
                 : rTheme.theme?.gluestack.tokens.colors.light600
             }
@@ -103,25 +101,23 @@ export default ({}: EditableOptionsScreenProps) => {
       <RoundedListItem
         onPress={() =>
           router.push({
-            pathname: "/(app)/settings/profilesettings/personal/description",
+            pathname: '/(app)/settings/profilesettings/personal/description',
           })
         }
-        title="About me"
-      >
+        title="About me">
         <Text numberOfLines={4} ellipsizeMode="tail" className="text-xl">
           {!rAuthorizationVar?.Profile?.DetailInformation?.description
-            ? "Add description"
+            ? 'Add description'
             : rAuthorizationVar.Profile.DetailInformation.description}
         </Text>
       </RoundedListItem>
       <RoundedListItem
         onPress={() =>
           router.push({
-            pathname: "/(app)/settings/profilesettings/personal/interests",
+            pathname: '/(app)/settings/profilesettings/personal/interests',
           })
         }
-        title={"My interests"}
-      >
+        title={'My interests'}>
         <Box>
           <VStack className="flex-row flex-wrap">
             {rAuthorizationVar?.Profile?.DetailInformation?.Tags.length ? (
@@ -130,11 +126,9 @@ export default ({}: EditableOptionsScreenProps) => {
                   (item, index) => (
                     <Badge
                       key={item.id}
-                      className="m-2 rounded-md bg-primary-500 px-2 py-1"
-                    >
+                      className="m-2 rounded-md bg-primary-500 px-2 py-1">
                       <Text
-                        className={` ${rTheme.colorScheme === "light" ? rTheme.theme?.gluestack.tokens.colors.light100 : rTheme.theme?.gluestack.tokens.colors.light900} text-md font-bold`}
-                      >
+                        className={` ${rTheme.colorScheme === 'light' ? rTheme.theme?.gluestack.tokens.colors.light100 : rTheme.theme?.gluestack.tokens.colors.light900} text-md font-bold`}>
                         {item.emoji}
                         {item.name}
                       </Text>
@@ -156,59 +150,54 @@ export default ({}: EditableOptionsScreenProps) => {
       <RoundedListItem
         onPress={() =>
           router.push({
-            pathname: "/(app)/settings/profilesettings/personal/gender",
+            pathname: '/(app)/settings/profilesettings/personal/gender',
           })
         }
-        title={`I am a ...`}
-      >
+        title={`I am a ...`}>
         <Text className="text-xl">
           {rAuthorizationVar?.Profile?.IdentifiableInformation?.gender ||
-            "Set your gender"}
+            'Set your gender'}
         </Text>
       </RoundedListItem>
       <RoundedListItem
         onPress={() =>
           router.push({
-            pathname: "/(app)/settings/profilesettings/personal/lookingfor",
+            pathname: '/(app)/settings/profilesettings/personal/lookingfor',
           })
         }
-        title={`I'm looking for a ...`}
-      >
+        title={`I'm looking for a ...`}>
         <Text numberOfLines={1} className="text-xl">
           {rAuthorizationVar?.Profile?.IdentifiableInformation?.lookfor ||
-            "Set the vibes your looking for"}
+            'Set the vibes your looking for'}
         </Text>
       </RoundedListItem>
       <RoundedListItem
         onPress={() =>
           router.push({
-            pathname: "/(app)/settings/profilesettings/personal/relationship",
+            pathname: '/(app)/settings/profilesettings/personal/relationship',
           })
         }
-        title={`Relationship`}
-      >
+        title={`Relationship`}>
         <Text className="text-xl">Are you in a relationship</Text>
       </RoundedListItem>
       <RoundedListItem
         onPress={() =>
           router.push({
-            pathname: "/(app)/settings/profilesettings/personal/hometown",
+            pathname: '/(app)/settings/profilesettings/personal/hometown',
           })
         }
-        title={`Add your hometown`}
-      >
+        title={`Add your hometown`}>
         <Text className="text-xl">add your hometown</Text>
       </RoundedListItem>
       <RoundedListItem
         onPress={() =>
           router.push({
-            pathname: "/(app)/settings/profilesettings/personal/currenttown",
+            pathname: '/(app)/settings/profilesettings/personal/currenttown',
           })
         }
-        title={"Add your city"}
-      >
+        title={'Add your city'}>
         <Text className="text-xl">Rep your city</Text>
       </RoundedListItem>
     </ScrollView>
-  );
-};
+  )
+}

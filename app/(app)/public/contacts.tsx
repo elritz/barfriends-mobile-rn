@@ -1,89 +1,86 @@
-import { VStack } from "#/src/components/ui/vstack";
-import { Text } from "#/src/components/ui/text";
-import { Heading } from "#/src/components/ui/heading";
-import { HStack } from "#/src/components/ui/hstack";
-import { Divider } from "#/src/components/ui/divider";
-import { Button, ButtonText } from "#/src/components/ui/button";
-import { Box } from "#/src/components/ui/box";
-import { useReactiveVar } from "@apollo/client";
-import { APP_STORE_URL_LINK } from "#/src/constants/App";
+import {useEffect, useState} from 'react'
+import {Alert, Platform, Share} from 'react-native'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import * as Contacts from 'expo-contacts'
+import {useLocalSearchParams, useRouter} from 'expo-router'
+import {useReactiveVar} from '@apollo/client'
+import {FlashList} from '@shopify/flash-list'
+import {filter} from 'lodash'
+import {Skeleton} from 'moti/skeleton'
+
+import {PermissionsReactiveVar, ThemeReactiveVar} from '#/reactive'
+import {Box} from '#/src/components/ui/box'
+import {Button, ButtonText} from '#/src/components/ui/button'
+import {Divider} from '#/src/components/ui/divider'
+import {Heading} from '#/src/components/ui/heading'
+import {HStack} from '#/src/components/ui/hstack'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
+import {APP_STORE_URL_LINK} from '#/src/constants/App'
 import {
   HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
   HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
   SEARCH_BAR_HEIGHT,
-} from "#/src/constants/ReactNavigationConstants";
-import {
-  ContactsReactiveVar,
-  PermissionContactsReactiveVar,
-  ThemeReactiveVar,
-} from "#/reactive";
-import { FlashList } from "@shopify/flash-list";
-import * as Contacts from "expo-contacts";
-import { useRouter, useLocalSearchParams } from "expo-router";
-import { filter } from "lodash";
-import { Skeleton } from "moti/skeleton";
-import { useEffect, useState } from "react";
-import { Alert, Platform, Share } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+} from '#/src/constants/ReactNavigationConstants'
 
 export default () => {
-  const params = useLocalSearchParams();
-  const insets = useSafeAreaInsets();
-  const rContactsVar = useReactiveVar(ContactsReactiveVar);
-  const rTheme = useReactiveVar(ThemeReactiveVar);
-  const rPermissionContactsVar = useReactiveVar(PermissionContactsReactiveVar);
-  const router = useRouter();
-  const [isLoading, setIsLoading] = useState(true);
-  const [contact, setContact] = useState<Contacts.Contact | null>(null);
-  const [contacts, setContacts] = useState<Contacts.Contact[] | null>(null);
+  const params = useLocalSearchParams()
+  const insets = useSafeAreaInsets()
+  // const rContactsVar = useReactiveVar(ContactsReactiveVar);
+  const rTheme = useReactiveVar(ThemeReactiveVar)
+  const rPermissionContactsVar = useReactiveVar(PermissionsReactiveVar)
+  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(true)
+  const [contact, setContact] = useState<Contacts.Contact | null>(null)
+  const [contacts, setContacts] = useState<Contacts.Contact[] | null>(null)
 
   useEffect(() => {
     async function getContacts() {
       if (rPermissionContactsVar?.granted) {
-        const { data } = await Contacts.getContactsAsync();
+        const {data} = await Contacts.getContactsAsync()
         if (data.length) {
-          ContactsReactiveVar(data);
-          setContacts(data);
+          ContactsReactiveVar(data)
+          setContacts(data)
         }
-        setIsLoading(false);
+        setIsLoading(false)
       }
     }
-    getContacts();
-  }, []);
+    getContacts()
+  }, [])
 
   useEffect(() => {
     if (params.searchtext) {
-      filterList(params.searchtext);
+      filterList(params.searchtext)
     } else {
-      setContacts(rContactsVar);
+      setContacts(rContactsVar)
     }
-  }, [params.searchtext]);
+  }, [params.searchtext])
 
-  const filterList = (text) => {
+  const filterList = text => {
     if (!params?.searchtext?.length) {
       if (rContactsVar && rContactsVar.length) {
-        setContacts(rContactsVar);
+        setContacts(rContactsVar)
       }
     } else {
-      const filteredContactsData = filter(rContactsVar, (item) => {
-        return contains(item, text.toLowerCase());
-      });
+      const filteredContactsData = filter(rContactsVar, item => {
+        return contains(item, text.toLowerCase())
+      })
 
-      setContacts(filteredContactsData);
+      setContacts(filteredContactsData)
     }
-  };
+  }
 
   const contains = (item, query) => {
     if (item.name.toLowerCase().includes(query)) {
-      return true;
+      return true
     }
-    return false;
-  };
+    return false
+  }
 
   if (!rPermissionContactsVar?.granted) {
     return (
       <Box className="mx-2 flex-1">
-        <VStack space={"md"} className="mb-6 items-center">
+        <VStack space={'md'} className="mb-6 items-center">
           <Heading>All Contacts</Heading>
           <Text className="text-lg">
             Please allow Barfriends to access your contacts.
@@ -92,14 +89,13 @@ export default () => {
         <Button
           onPress={() =>
             router.push({
-              pathname: "/(app)/permission/contacts",
+              pathname: '/(app)/permission/contacts',
             })
-          }
-        >
+          }>
           <ButtonText>Continue</ButtonText>
         </Button>
       </Box>
-    );
+    )
   }
 
   if (isLoading) {
@@ -112,19 +108,18 @@ export default () => {
           estimatedItemSize={60}
           keyboardDismissMode="on-drag"
           automaticallyAdjustKeyboardInsets
-          renderItem={(item) => {
+          renderItem={item => {
             return (
               <HStack
-                space={"md"}
-                className="h-[65px] flex-1 items-center justify-between"
-              >
+                space={'md'}
+                className="h-[65px] flex-1 items-center justify-between">
                 <Skeleton
                   height={40}
-                  width={"100%"}
+                  width={'100%'}
                   radius={15}
-                  colorMode={rTheme.colorScheme === "light" ? "light" : "dark"}
+                  colorMode={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
                   colors={
-                    rTheme.colorScheme === "light"
+                    rTheme.colorScheme === 'light'
                       ? [
                           String(
                             rTheme.theme?.gluestack.tokens.colors.light100,
@@ -143,13 +138,13 @@ export default () => {
                         ]
                   }
                 />
-                <Skeleton height="40px" width={"70px"} radius={15} />
+                <Skeleton height="40px" width={'70px'} radius={15} />
               </HStack>
-            );
+            )
           }}
         />
       </Box>
-    );
+    )
   }
 
   if (contacts && !contacts.length) {
@@ -157,21 +152,21 @@ export default () => {
       <Box className="bg-[red.400]">
         <Heading>!Contacts</Heading>
       </Box>
-    );
+    )
   }
 
   const onShare = async () => {
     try {
       const result = await Share.share(
         {
-          message: "Barfriends | The nightlife app",
-          url: Platform.OS === "ios" ? APP_STORE_URL_LINK : "",
+          message: 'Barfriends | The nightlife app',
+          url: Platform.OS === 'ios' ? APP_STORE_URL_LINK : '',
         },
         {
-          dialogTitle: "Join me on Barfriends",
-          subject: "Invite to Barfriends",
+          dialogTitle: 'Join me on Barfriends',
+          subject: 'Invite to Barfriends',
         },
-      );
+      )
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
           // shared with activity type of result.activityType
@@ -182,9 +177,9 @@ export default () => {
         // dismissed
       }
     } catch (error: any) {
-      Alert.alert(error.message);
+      Alert.alert(error.message)
     }
-  };
+  }
 
   return (
     <Box className="mx-2 flex-1">
@@ -225,9 +220,9 @@ export default () => {
               ? HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS
               : HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
         }}
-        renderItem={({ item }) => {
+        renderItem={({item}) => {
           if (!item.firstName || !item.lastName) {
-            return null;
+            return null
           }
           return (
             <>
@@ -238,9 +233,8 @@ export default () => {
                   </Text>
                 </HStack>
                 <HStack
-                  space={"md"}
-                  className="flex-1 items-center justify-end"
-                >
+                  space={'md'}
+                  className="flex-1 items-center justify-end">
                   {/* <IconButton
                                     bg={'transparent'}
                                     icon={
@@ -267,9 +261,9 @@ export default () => {
               </HStack>
               <Divider />
             </>
-          );
+          )
         }}
       />
     </Box>
-  );
-};
+  )
+}

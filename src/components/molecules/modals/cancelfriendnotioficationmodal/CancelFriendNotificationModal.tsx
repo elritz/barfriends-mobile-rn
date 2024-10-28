@@ -1,30 +1,29 @@
-import { Text } from "#/src/components/ui/text";
-import { Center } from "#/src/components/ui/center";
-import { Button, ButtonText } from "#/src/components/ui/button";
-import { CloseIcon, Icon } from "#/src/components/ui/icon";
+// import { GET_RELATIONSHIP_FRIENDREQUESTSTATUS_QUERY } from '#/graphql/DM/profiling/friending/index.query'
+// import { NOTIFICATIONS_QUERY } from '#/graphql/DM/profiling/notifications/index.query'
+import React, {useState} from 'react'
 
+import {useDeleteFriendRequestMutation} from '#/graphql/generated'
+import {Button, ButtonText} from '#/src/components/ui/button'
+import {Center} from '#/src/components/ui/center'
+import {Heading} from '#/src/components/ui/heading'
+import {CloseIcon, Icon} from '#/src/components/ui/icon'
 import {
+  Modal,
   ModalBackdrop,
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
-  Modal,
-} from "#/src/components/ui/modal";
-
-import { Heading } from "#/src/components/ui/heading";
-// import { GET_RELATIONSHIP_FRIENDREQUESTSTATUS_QUERY } from '#/graphql/DM/profiling/friending/index.query'
-// import { NOTIFICATIONS_QUERY } from '#/graphql/DM/profiling/notifications/index.query'
-import { useDeleteFriendRequestMutation } from "#/graphql/generated";
-import React, { useState } from "react";
+} from '#/src/components/ui/modal'
+import {Text} from '#/src/components/ui/text'
 
 type Props = {
-  isOpen: boolean;
-  profileId: string;
-  onClose: () => void;
-  friendRequestId: string;
-};
+  isOpen: boolean
+  profileId: string
+  onClose: () => void
+  friendRequestId: string
+}
 
 export default function CancelFriendNotificationModal({
   isOpen,
@@ -32,15 +31,15 @@ export default function CancelFriendNotificationModal({
   friendRequestId,
   profileId,
 }: Props) {
-  const [showModal, setShowModal] = useState(false);
-  console.log(showModal);
-  const ref = React.useRef(null);
-  const [deleteFriendRequestMutation, { data, loading, error }] =
+  const [showModal, setShowModal] = useState(false)
+  console.log(showModal)
+  const ref = React.useRef(null)
+  const [deleteFriendRequestMutation, {data, loading, error}] =
     useDeleteFriendRequestMutation({
       variables: {
         friendRequestId,
       },
-      update(cache, { data }) {
+      update(cache, {data}) {
         if (data?.deleteFriendRequest) {
           // const { getNotifications }: any = cache.readQuery({
           // 	query: NOTIFICATIONS_QUERY,
@@ -73,14 +72,14 @@ export default function CancelFriendNotificationModal({
           // 		},
           // 	},
           // })
-          setShowModal(false);
+          setShowModal(false)
         }
       },
-      onCompleted: (data) => {
-        onClose();
+      onCompleted: data => {
+        onClose()
       },
-      onError: (error) => {},
-    });
+      onError: error => {},
+    })
 
   return (
     <Center className="h-[300px]">
@@ -90,10 +89,9 @@ export default function CancelFriendNotificationModal({
       <Modal
         isOpen={showModal}
         onClose={() => {
-          setShowModal(false);
+          setShowModal(false)
         }}
-        finalFocusRef={ref}
-      >
+        finalFocusRef={ref}>
         <ModalBackdrop />
         <ModalContent>
           <ModalHeader>
@@ -114,27 +112,25 @@ export default function CancelFriendNotificationModal({
               size="sm"
               action="secondary"
               onPress={() => {
-                setShowModal(false);
+                setShowModal(false)
               }}
-              className="mr-3"
-            >
+              className="mr-3">
               <ButtonText>Cancel</ButtonText>
             </Button>
             <Button
               size="sm"
               action="positive"
               onPress={() => {
-                deleteFriendRequestMutation();
+                deleteFriendRequestMutation()
               }}
-              className="border-0"
-            >
+              className="border-0">
               <ButtonText>Explore</ButtonText>
             </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
     </Center>
-  );
+  )
 }
 
 // return (

@@ -1,32 +1,32 @@
-import {Button} from '#/src/components/ui/button'
-import {Heading} from '#/src/components/ui/heading'
-import {Text} from '#/src/components/ui/text'
-import {Box} from '#/src/components/ui/box'
-// TODO: FN(When a useris joined to a venue action must be different) ln:32
-
-import SignupCard from '../../signupcard/SignupCard'
+import {useEffect, useState} from 'react'
+import {AppState, StyleSheet} from 'react-native'
+import {Easing} from 'react-native-reanimated'
+import {useLocalSearchParams} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
 import {MaterialIcons} from '@expo/vector-icons'
+import {useIsFocused} from '@react-navigation/native'
+import {uniqueId} from 'lodash'
+import {MotiView} from 'moti'
+
 import {
   useGetLiveVenueTotalsV2Query,
   usePublicVenueQuery,
 } from '#/graphql/generated'
-import {useIsFocused} from '@react-navigation/native'
 import {
   AuthorizationReactiveVar,
   CurrentLocationReactiveVar,
   SearchAreaReactiveVar,
   ThemeReactiveVar,
 } from '#/reactive'
+import {Box} from '#/src/components/ui/box'
+import {Button} from '#/src/components/ui/button'
+import {Heading} from '#/src/components/ui/heading'
+import {Text} from '#/src/components/ui/text'
 import {useDisclose} from '#/src/util/hooks/useDisclose'
 import useGetDistance from '#/src/util/hooks/useDistance'
-import {useLocalSearchParams} from 'expo-router'
-import {uniqueId} from 'lodash'
-import {MotiView} from 'moti'
-import {useEffect, useState} from 'react'
-import {AppState, StyleSheet} from 'react-native'
-import {Easing} from 'react-native-reanimated'
 import JoinCard from '#/src/view/screens/public/venue/venueactions/devactions/joincard/JoinCard'
+// TODO: FN(When a useris joined to a venue action must be different) ln:32
+import SignupCard from '../../signupcard/SignupCard'
 
 const size = 50
 

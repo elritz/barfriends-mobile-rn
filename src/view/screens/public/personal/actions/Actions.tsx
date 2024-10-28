@@ -1,34 +1,35 @@
-import { VStack } from "#/src/components/ui/vstack";
-import { Text } from "#/src/components/ui/text";
-import { HStack } from "#/src/components/ui/hstack";
-import { Button } from "#/src/components/ui/button";
-import { Box } from "#/src/components/ui/box";
-import Details from "../details/Details";
-import { useReactiveVar } from "@apollo/client";
-import SignupModal from "#/src/components/molecules/modals/signupaskmodal";
-import { Ionicons } from "@expo/vector-icons";
-import { Profile } from "#/graphql/generated";
-import { AuthorizationReactiveVar, ThemeReactiveVar } from "#/reactive";
-import { useDisclose } from "#/src/util/hooks/useDisclose";
-import { useRouter } from "expo-router";
-import { useState } from "react";
+import {useState} from 'react'
+import {useRouter} from 'expo-router'
+import {useReactiveVar} from '@apollo/client'
+import {Ionicons} from '@expo/vector-icons'
+
+import {Profile} from '#/graphql/generated'
+import {AuthorizationReactiveVar, ThemeReactiveVar} from '#/reactive'
+import SignupModal from '#/src/components/molecules/modals/signupaskmodal'
+import {Box} from '#/src/components/ui/box'
+import {Button} from '#/src/components/ui/button'
+import {HStack} from '#/src/components/ui/hstack'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
+import {useDisclose} from '#/src/util/hooks/useDisclose'
+import Details from '../details/Details'
 
 type Props = {
-  profile: Partial<Profile> | undefined | null;
-};
+  profile: Partial<Profile> | undefined | null
+}
 
-export default function Actions({ profile }: Props) {
-  const router = useRouter();
-  const rTheme = useReactiveVar(ThemeReactiveVar);
-  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar);
-  const [showMore, setShowMore] = useState(false);
+export default function Actions({profile}: Props) {
+  const router = useRouter()
+  const rTheme = useReactiveVar(ThemeReactiveVar)
+  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
+  const [showMore, setShowMore] = useState(false)
   const {
     isOpen: isOpenSignupModal,
     onOpen: onOpenSignupModal,
     onClose: onCloseSignupModal,
-  } = useDisclose();
+  } = useDisclose()
 
-  const isGuest = rAuthorizationVar?.Profile?.ProfileType === "GUEST";
+  const isGuest = rAuthorizationVar?.Profile?.ProfileType === 'GUEST'
 
   // const {
   // 	data: GRFRSData,
@@ -45,7 +46,7 @@ export default function Actions({ profile }: Props) {
   // if (GRFRSLoading || !GRFRSData) return null
 
   return (
-    <VStack space={"md"} className="flex-1 rounded-xl px-2 py-3">
+    <VStack space={'md'} className="flex-1 rounded-xl px-2 py-3">
       <HStack className="items-start">
         {/* <RelationshipModal isOpen={isOpenRelationshipModal} onClose={onCloseRelaationshipModal} /> */}
         <SignupModal isOpen={isOpenSignupModal} onClose={onCloseSignupModal} />
@@ -56,26 +57,25 @@ export default function Actions({ profile }: Props) {
             isGuest
               ? onOpenSignupModal()
               : router.push({
-                  pathname: "/(app)/conversation",
+                  pathname: '/(app)/conversation',
                   params: {
-                    roomid: "",
+                    roomid: '',
                   },
-                });
+                })
           }}
-          className="rounded-md"
-        >
+          className="rounded-md">
           <Ionicons
             name="chatbubble-ellipses"
             size={28}
             color={
-              rTheme.colorScheme === "light"
+              rTheme.colorScheme === 'light'
                 ? rTheme.theme?.gluestack.tokens.colors.light900
                 : rTheme.theme?.gluestack.tokens.colors.light100
             }
             style={{
               zIndex: 100,
-              justifyContent: "center",
-              alignSelf: "center",
+              justifyContent: 'center',
+              alignSelf: 'center',
             }}
           />
         </Button>
@@ -94,10 +94,9 @@ export default function Actions({ profile }: Props) {
             )}
             <Button
               onPress={() => setShowMore(!showMore)}
-              variant={"link"}
-              className="my-2"
-            >
-              <Text>{showMore ? "Show Less" : "Show More"}</Text>
+              variant={'link'}
+              className="my-2">
+              <Text>{showMore ? 'Show Less' : 'Show More'}</Text>
             </Button>
           </Box>
         ) : (
@@ -107,5 +106,5 @@ export default function Actions({ profile }: Props) {
         )}
       </Box>
     </VStack>
-  );
+  )
 }

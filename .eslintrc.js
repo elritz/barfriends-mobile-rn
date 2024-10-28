@@ -11,31 +11,18 @@ module.exports = {
     '@typescript-eslint',
     'react',
     'lingui',
+    'unused-imports',
     'simple-import-sort',
-    // 'bsky-internal',
     'eslint-plugin-react-compiler',
   ],
   rules: {
+    'react/react-in-jsx-scope': 'off',
     // Temporary until https://github.com/facebook/react-native/pull/43756 gets into a release.
-    'prettier/prettier': 0,
+    'prettier/prettier': 1,
     'react/no-unescaped-entities': 0,
     'react-native/no-inline-styles': 0,
-    // 'bsky-internal/avoid-unwrapped-text': [
-    //   'error',
-    //   {
-    //     impliedTextComponents: ['H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'P'],
-    //     impliedTextProps: [],
-    //     suggestedTextWrappers: {
-    //       Button: 'ButtonText',
-    //       'ToggleButton.Button': 'ToggleButton.ButtonText',
-    //     },
-    //   },
-    // ],
-    // 'bsky-internal/use-exact-imports': 'error',
-    // 'bsky-internal/use-typed-gates': 'error',
-    // 'bsky-internal/use-prefixed-imports': 'warn',
     'simple-import-sort/imports': [
-      'warn',
+      'error',
       {
         groups: [
           // Side effect imports.
@@ -56,11 +43,11 @@ module.exports = {
           // due to unprefixed relative imports being used, we whitelist the relative paths we use
           // (?:$|\\/) matches end of string or /
           [
-            '^(?:#\\/)?(?:lib|state|logger|platform|locale)(?:$|\\/)',
-            '^(?:#\\/)?view(?:$|\\/)',
-            '^(?:#\\/)?screens(?:$|\\/)',
-            '^(?:#\\/)?alf(?:$|\\/)',
-            '^(?:#\\/)?components(?:$|\\/)',
+            '^(?:#\\/src)?(?:lib|state|logger|platform|locale)(?:$|\\/)',
+            '^(?:#\\//src)?view(?:$|\\/)',
+            '^(?:#\\//src)?screens(?:$|\\/)',
+            '^(?:#\\//src)?alf(?:$|\\/)',
+            '^(?:#\\//src)?components(?:$|\\/)',
             '^#\\/',
             '^\\.',
           ],
@@ -69,9 +56,10 @@ module.exports = {
         ],
       },
     ],
-    'simple-import-sort/exports': 'warn',
+
     // TODO: Reenable when we figure out why it gets stuck on CI.
     // 'react-compiler/react-compiler': 'error',
+    'simple-import-sort/exports': 'error',
     'no-restricted-imports': [
       'error',
       {
@@ -96,15 +84,35 @@ module.exports = {
     '*.lock',
     '.husky',
     'patches',
-    'bskyweb',
     '*.html',
-    'bskyweb',
     'src/locale/locales/_build/',
     'src/locale/locales/**/*.js',
+    'src/components/ui/**/*.tsx',
+    'assets/theme/colors/*.{tsx,jsx,ts,js}',
+    'scripts/**/*.{tsx,jsx,ts,js}',
+    'graphql/generated/**/*.ts',
   ],
   settings: {
     componentWrapperFunctions: ['observer'],
   },
+  overrides: [
+    {
+      // Target specific folders (e.g., "src/components" and "src/utils")
+      files: ['./src/components/ui/**/*.tsx'],
+      rules: {
+        'react/display-name': 'off',
+        'react/prop-types': 'off',
+      },
+    },
+    {
+      // Target specific folders (e.g., "src/components" and "src/utils")
+      files: ['./app/**/*.tsx'],
+      rules: {
+        'simple-import-sort/exports': 'off',
+        'react/display-name': 'off',
+      },
+    },
+  ],
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 'latest',

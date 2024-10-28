@@ -1,31 +1,33 @@
-import { LOCAL_STORAGE_SEARCH_AREA } from "#/src/constants/StorageConstants";
-import { LocalStoragePreferenceSearchAreaType } from "#/types/preferences";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import {Alert, Linking, Platform} from 'react-native'
+import * as IntentLauncher from 'expo-intent-launcher'
+import * as Location from 'expo-location'
+import {useReactiveVar} from '@apollo/client'
+
 import {
   CurrentLocationReactiveVar,
-  PermissionForegroundLocationReactiveVar,
+  PermissionsReactiveVar,
   SearchAreaReactiveVar,
-} from "#/reactive";
-import * as IntentLauncher from "expo-intent-launcher";
-import * as Location from "expo-location";
-import { Alert, Linking, Platform } from "react-native";
+} from '#/reactive'
+import {LOCAL_STORAGE_SEARCH_AREA} from '#/src/constants/StorageConstants'
+import {storage} from '#/src/storage/mmkv'
+import {LocalStoragePreferenceSearchAreaType} from '#/types/preferences'
 
 const useSetSearchAreaWithLocation = async () => {
-  const status = await Location.getForegroundPermissionsAsync();
-  const rSearchAreaVar = SearchAreaReactiveVar();
-  const rPermissionLocationVar = PermissionForegroundLocationReactiveVar();
+  const status = await Location.getForegroundPermissionsAsync()
+  const rSearchAreaVar = SearchAreaReactiveVar()
+  const rPerm = useReactiveVar(PermissionsReactiveVar)
 
   const useLocationToSetSearchArea = async (): Promise<boolean> => {
     const getLastKnowPosition = await Location.getLastKnownPositionAsync({
       requiredAccuracy: 50,
       maxAge: 1200000,
-    });
+    })
 
     if (getLastKnowPosition) {
       const reverseGeocode = await Location.reverseGeocodeAsync({
         latitude: getLastKnowPosition.coords.latitude,
         longitude: getLastKnowPosition.coords.longitude,
-      });
+      })
 
       const valueSearchArea: LocalStoragePreferenceSearchAreaType = {
         ...rSearchAreaVar,
@@ -49,7 +51,7 @@ const useSetSearchAreaWithLocation = async () => {
           },
           city: {
             name: String(reverseGeocode[0].city),
-            isoCode: "",
+            isoCode: '',
             coords: {
               latitude: getLastKnowPosition.coords.latitude,
               longitude: getLastKnowPosition.coords.longitude,
@@ -60,36 +62,32 @@ const useSetSearchAreaWithLocation = async () => {
             longitude: getLastKnowPosition.coords.longitude,
           },
         },
-        // kRing: {
-        // 	distance: 30,
-        // 	value: 3,
-        // },
-      };
+      }
 
-      const newSearchArea = JSON.stringify(valueSearchArea);
+      const newSearchArea = JSON.stringify(valueSearchArea)
 
       CurrentLocationReactiveVar({
         current: {
           ...getLastKnowPosition,
         },
         reverseGeocoded: reverseGeocode[0],
-      });
+      })
       SearchAreaReactiveVar({
         ...valueSearchArea,
-      });
+      })
 
-      await AsyncStorage.setItem(LOCAL_STORAGE_SEARCH_AREA, newSearchArea);
+      storage.set(LOCAL_STORAGE_SEARCH_AREA, newSearchArea)
 
-      return true;
+      return true
     } else {
       const currentLocation = await Location.getCurrentPositionAsync({
         accuracy: Location.LocationAccuracy.High,
-      });
+      })
 
       const reverseGeocode = await Location.reverseGeocodeAsync({
         latitude: currentLocation.coords.latitude,
         longitude: currentLocation.coords.longitude,
-      });
+      })
 
       const valueSearchArea: LocalStoragePreferenceSearchAreaType = {
         ...rSearchAreaVar,
@@ -113,7 +111,7 @@ const useSetSearchAreaWithLocation = async () => {
           },
           city: {
             name: String(reverseGeocode[0].city),
-            isoCode: "",
+            isoCode: '',
             coords: {
               latitude: currentLocation.coords.latitude,
               longitude: currentLocation.coords.longitude,
@@ -124,61 +122,64 @@ const useSetSearchAreaWithLocation = async () => {
             longitude: currentLocation.coords.longitude,
           },
         },
-      };
+      }
 
-      const newSearchArea = JSON.stringify(valueSearchArea);
+      const newSearchArea = JSON.stringify(valueSearchArea)
 
       CurrentLocationReactiveVar({
         current: {
           ...currentLocation,
         },
         reverseGeocoded: reverseGeocode[0],
-      });
+      })
       SearchAreaReactiveVar({
         ...valueSearchArea,
-      });
+      })
 
-      await AsyncStorage.setItem(LOCAL_STORAGE_SEARCH_AREA, newSearchArea);
+      storage.set(LOCAL_STORAGE_SEARCH_AREA, newSearchArea)
 
-      return true;
+      return true
     }
-  };
+  }
 
   const createTwoButtonAlert = () =>
     Alert.alert(
-      "Location Permission Status",
-      `Currently the location permission is ${rPermissionLocationVar?.status}. Go to settings to change this for Barfriends.`,
+      'Location Permission Status',
+      `Currently the location permission is ${rPerm?.locationForeground.status}. Go to settings to change this for Barfriends.`,
       [
         {
-          text: "Cancel",
+          text: 'Cancel',
           onPress: () => null,
-          style: "cancel",
+          style: 'cancel',
         },
-        { text: "Settings", onPress: () => handleOpenPhoneSettings() },
+        {text: 'Settings', onPress: () => handleOpenPhoneSettings()},
       ],
-    );
+    )
 
   const handleOpenPhoneSettings = async () => {
-    if (Platform.OS === "ios") {
-      Linking.openURL("app-settings://");
+    if (Platform.OS === 'ios') {
+      Linking.openURL('app-settings://')
     } else {
       IntentLauncher.startActivityAsync(
         IntentLauncher.ActivityAction.LOCATION_SOURCE_SETTINGS,
-      );
-    }
-  };
-
-  if (status.granted) {
-    return useLocationToSetSearchArea();
-  } else if (status.canAskAgain) {
-    const status = await Location.requestForegroundPermissionsAsync();
-    PermissionForegroundLocationReactiveVar(status);
-    if (status.granted) {
-      return useLocationToSetSearchArea();
-    } else {
-      createTwoButtonAlert();
+      )
     }
   }
-};
 
-export default useSetSearchAreaWithLocation;
+  if (status.granted) {
+    return useLocationToSetSearchArea()
+  } else if (status.canAskAgain) {
+    const status = await Location.requestForegroundPermissionsAsync()
+    PermissionsReactiveVar({
+      ...rPerm,
+      locationForeground: status,
+    })
+    if (status.granted) {
+      return useLocationToSetSearchArea()
+    } else {
+      createTwoButtonAlert()
+    }
+  }
+}
+
+export default useSetSearchAreaWithLocation

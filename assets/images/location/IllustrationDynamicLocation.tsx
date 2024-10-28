@@ -1,15 +1,14 @@
-import { useReactiveVar } from "@apollo/client";
-import { DynamicIllustrationProps } from "#/types/app";
-import { ThemeReactiveVar } from "#/reactive";
-import Svg, { G, Path } from "react-native-svg";
+import Svg, {G, Path} from 'react-native-svg'
+
+import {ThemeReactiveVar} from '#/reactive'
+import {DynamicIllustrationProps} from '#/types/app'
 
 const IllustrationDynamicLocation: React.FC<DynamicIllustrationProps> = ({
   width = 200,
   height = 200,
   primary = ThemeReactiveVar().theme?.gluestack.tokens.colors.primary500,
   secondary = ThemeReactiveVar().theme?.gluestack.tokens.colors.secondary900 ||
-    "black",
-  tertiary = ThemeReactiveVar().theme?.gluestack.tokens.colors.tertiary500,
+    'black',
 }: DynamicIllustrationProps) => {
   return (
     <Svg
@@ -17,8 +16,7 @@ const IllustrationDynamicLocation: React.FC<DynamicIllustrationProps> = ({
       height={height}
       viewBox="0 0 508 508"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+      xmlns="http://www.w3.org/2000/svg">
       <Path
         d="M0 90C0 40.294 40.294 0 90 0h318.937c49.706 0 90 40.294 90 90v319.121c0 49.706-40.294 90-90 90H90c-49.706 0-90-40.294-90-90V90z"
         fill={primary}
@@ -32,7 +30,7 @@ const IllustrationDynamicLocation: React.FC<DynamicIllustrationProps> = ({
         />
       </G>
     </Svg>
-  );
-};
+  )
+}
 
-export default IllustrationDynamicLocation;
+export default IllustrationDynamicLocation

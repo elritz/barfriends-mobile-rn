@@ -1,33 +1,33 @@
-import React from "react";
+import React from 'react'
 
-import * as persisted from "#/src/state/persisted";
+import * as persisted from '#/src/state/persisted'
 
-type StateContext = boolean;
-type SetContext = (v: boolean) => void;
+type StateContext = boolean
+type SetContext = (v: boolean) => void
 
 const stateContext = React.createContext<StateContext>(
   Boolean(persisted.defaults.disableHaptics),
-);
-const setContext = React.createContext<SetContext>((_: boolean) => {});
+)
+const setContext = React.createContext<SetContext>((_: boolean) => {})
 
-export function Provider({ children }: { children: React.ReactNode }) {
+export function Provider({children}: {children: React.ReactNode}) {
   const [state, setState] = React.useState(
-    Boolean(persisted.get("disableHaptics")),
-  );
+    Boolean(persisted.get('disableHaptics')),
+  )
 
   const setStateWrapped = React.useCallback(
-    (hapticsEnabled: persisted.Schema["disableHaptics"]) => {
-      setState(Boolean(hapticsEnabled));
-      persisted.write("disableHaptics", hapticsEnabled);
+    (hapticsEnabled: persisted.Schema['disableHaptics']) => {
+      setState(Boolean(hapticsEnabled))
+      persisted.write('disableHaptics', hapticsEnabled)
     },
     [setState],
-  );
+  )
 
   React.useEffect(() => {
-    return persisted.onUpdate("disableHaptics", (nextDisableHaptics) => {
-      setState(Boolean(nextDisableHaptics));
-    });
-  }, [setStateWrapped]);
+    return persisted.onUpdate('disableHaptics', nextDisableHaptics => {
+      setState(Boolean(nextDisableHaptics))
+    })
+  }, [setStateWrapped])
 
   return (
     <stateContext.Provider value={state}>
@@ -35,8 +35,8 @@ export function Provider({ children }: { children: React.ReactNode }) {
         {children}
       </setContext.Provider>
     </stateContext.Provider>
-  );
+  )
 }
 
-export const useHapticsDisabled = () => React.useContext(stateContext);
-export const useSetHapticsDisabled = () => React.useContext(setContext);
+export const useHapticsDisabled = () => React.useContext(stateContext)
+export const useSetHapticsDisabled = () => React.useContext(setContext)

@@ -1,20 +1,17 @@
 import React, {useEffect} from 'react'
-import {View, Text, Pressable, SectionList} from 'react-native'
+import {Pressable, SectionList, Text, View} from 'react-native'
 import * as Clipboard from 'expo-clipboard'
 import {Feather} from '@expo/vector-icons'
+import {uniqueId} from 'lodash'
+
+import {useRefreshDeviceManagerLazyQuery} from '#/graphql/generated'
+import {Box} from '#/src/components/ui/box'
 import {Divider} from '#/src/components/ui/divider'
-import {VStack} from '#/src/components/ui/vstack'
 import {Heading} from '#/src/components/ui/heading'
 import {HStack} from '#/src/components/ui/hstack'
-import {ThemeReactiveVar} from '#/src/state/reactive'
-import {useReactiveVar} from '@apollo/client'
-import {Box} from '#/src/components/ui/box'
-import {
-  useRefreshDeviceManagerLazyQuery,
-  useRefreshDeviceManagerQuery,
-} from '#/graphql/generated'
+import {VStack} from '#/src/components/ui/vstack'
 import {Color} from '#/src/util/helpers/color'
-import {uniqueId} from 'lodash'
+
 type MappedData = {
   key: string
   value: any
@@ -29,8 +26,6 @@ type Section = {
   }
 }
 const Account: React.FC = () => {
-  const rTheme = useReactiveVar(ThemeReactiveVar)
-
   const [sections, setSections] = React.useState<Section[]>([])
 
   const generateRandomColor = () => {
@@ -46,23 +41,18 @@ const Account: React.FC = () => {
     }
   }
 
-  const MapData = (data): Section => {
-    const typename = data.__typename
+  const mapData = (data): Section => {
+    const {__typename: title, ...rest} = data
+    const color = generateRandomColor()
 
-    const randomColor = generateRandomColor()
-    const mappedData = Object.entries(data)
-      .filter(
-        ([key, value]) => key !== '__typename' && typeof value !== 'object',
-      )
-      .map(([key, value]) => ({
-        key,
-        value,
-      }))
+    const mappedData = Object.entries(rest)
+      .filter(([, value]) => typeof value !== 'object')
+      .map(([key, value]) => ({key, value}))
 
     return {
-      title: typename,
+      title,
       data: mappedData,
-      color: randomColor,
+      color,
     }
   }
 
@@ -77,23 +67,23 @@ const Account: React.FC = () => {
           const sections: Section[] = []
 
           if (data.refreshDeviceManager?.Profile) {
-            const profileDatail = MapData(data.refreshDeviceManager.Profile)
+            const profileDatail = mapData(data.refreshDeviceManager.Profile)
             sections.push(profileDatail)
           }
           if (data.refreshDeviceManager.Profile?.DetailInformation) {
-            const detailDatail = MapData(
+            const detailDatail = mapData(
               data.refreshDeviceManager.Profile?.DetailInformation,
             )
             sections.push(detailDatail)
           }
           if (data.refreshDeviceManager.Profile?.IdentifiableInformation) {
-            const identifiableData = MapData(
+            const identifiableData = mapData(
               data.refreshDeviceManager.Profile?.IdentifiableInformation,
             )
             sections.push(identifiableData)
           }
           if (data.refreshDeviceManager.Profile?.Personal) {
-            const personalData = MapData(
+            const personalData = mapData(
               data.refreshDeviceManager.Profile?.Personal,
             )
             sections.push(personalData)
@@ -146,6 +136,7 @@ const Account: React.FC = () => {
           }
           return (
             <Pressable
+              accessibilityRole="button"
               style={{backgroundColor: section.color.color}}
               onPress={async () => {
                 await Clipboard.setStringAsync(String(item.value))

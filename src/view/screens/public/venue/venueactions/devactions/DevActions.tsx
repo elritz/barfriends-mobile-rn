@@ -1,15 +1,16 @@
-import {VStack} from '#/src/components/ui/vstack'
-import {Text} from '#/src/components/ui/text'
-import {Pressable} from '#/src/components/ui/pressable'
+import {useState} from 'react'
+
+import {Box} from '#/src/components/ui/box'
 import {Heading} from '#/src/components/ui/heading'
 import {HStack} from '#/src/components/ui/hstack'
-import {Box} from '#/src/components/ui/box'
+import {Pressable} from '#/src/components/ui/pressable'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
 import JoinCard from './joincard/JoinCard'
 import LeaveAllCard from './leaveallcard/LeaveAllCard'
 import LeaveJoinCard from './leavejoinedcard/LeaveJoinedCard'
 import LeaveTotalCard from './leavetotalcard/LeaveTotalCard'
 import TotalCard from './totalcard/TotalCard'
-import {useState} from 'react'
 
 export default function DevActions() {
   const [showDevMode, setShowDevMode] = useState(false)
@@ -17,7 +18,9 @@ export default function DevActions() {
   return (
     <VStack space={'md'} className="justify-between">
       <Box className="w-[90%]">
-        <Pressable onPress={() => setShowDevMode(!showDevMode)}>
+        <Pressable
+          accessibilityRole="button"
+          onPress={() => setShowDevMode(!showDevMode)}>
           <>
             <Heading className="font-800 text-center text-lg uppercase">
               You are in {'\n'}

@@ -1,33 +1,33 @@
-import React from "react";
+import React from 'react'
 
-import * as persisted from "#/src/state/persisted";
+import * as persisted from '#/src/state/persisted'
 
-type StateContext = boolean;
-type SetContext = (v: boolean) => void;
+type StateContext = boolean
+type SetContext = (v: boolean) => void
 
 const stateContext = React.createContext<StateContext>(
   Boolean(persisted.defaults.disableAutoplay),
-);
-const setContext = React.createContext<SetContext>((_: boolean) => {});
+)
+const setContext = React.createContext<SetContext>((_: boolean) => {})
 
-export function Provider({ children }: { children: React.ReactNode }) {
+export function Provider({children}: {children: React.ReactNode}) {
   const [state, setState] = React.useState(
-    Boolean(persisted.get("disableAutoplay")),
-  );
+    Boolean(persisted.get('disableAutoplay')),
+  )
 
   const setStateWrapped = React.useCallback(
-    (autoplayDisabled: persisted.Schema["disableAutoplay"]) => {
-      setState(Boolean(autoplayDisabled));
-      persisted.write("disableAutoplay", autoplayDisabled);
+    (autoplayDisabled: persisted.Schema['disableAutoplay']) => {
+      setState(Boolean(autoplayDisabled))
+      persisted.write('disableAutoplay', autoplayDisabled)
     },
     [setState],
-  );
+  )
 
   React.useEffect(() => {
-    return persisted.onUpdate("disableAutoplay", (nextDisableAutoplay) => {
-      setState(Boolean(nextDisableAutoplay));
-    });
-  }, [setStateWrapped]);
+    return persisted.onUpdate('disableAutoplay', nextDisableAutoplay => {
+      setState(Boolean(nextDisableAutoplay))
+    })
+  }, [setStateWrapped])
 
   return (
     <stateContext.Provider value={state}>
@@ -35,8 +35,8 @@ export function Provider({ children }: { children: React.ReactNode }) {
         {children}
       </setContext.Provider>
     </stateContext.Provider>
-  );
+  )
 }
 
-export const useAutoplayDisabled = () => React.useContext(stateContext);
-export const useSetAutoplayDisabled = () => React.useContext(setContext);
+export const useAutoplayDisabled = () => React.useContext(stateContext)
+export const useSetAutoplayDisabled = () => React.useContext(setContext)

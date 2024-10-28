@@ -2,26 +2,26 @@ import {
   LocationGeocodedAddress,
   LocationObject,
   LocationOptions,
-} from "expo-location";
-import { DateTime } from "luxon";
+} from 'expo-location'
+import {DateTime} from 'luxon'
 
-export type ThemeColorSchemeOptionsType = "light" | "dark" | "system";
+export type ThemeColorSchemeOptionsType = 'light' | 'dark' | 'system'
 
 export type LocalStoragePreferenceThemeType = {
-  colorScheme: ThemeColorSchemeOptionsType;
-};
+  colorScheme: ThemeColorSchemeOptionsType
+}
 
 export enum SystemsOfUnits {
-  Imperial = "Imperial",
-  Metric = "Metric",
+  Imperial = 'Imperial',
+  Metric = 'Metric',
 }
 
 export type DefaultPreferenceToPermissionType = {
-  dateLastShown: DateTime;
-  dateToShowAgain: DateTime;
-  numberOfTimesDismissed: number;
-  canShowAgain: boolean;
-};
+  dateLastShown: DateTime
+  dateToShowAgain: DateTime
+  numberOfTimesDismissed: number
+  canShowAgain: boolean
+}
 
 export interface LocalStoragePreferenceAskNotificationPermissionType
   extends DefaultPreferenceToPermissionType {}
@@ -40,40 +40,40 @@ export interface LocalStoragePreferenceAskSystemOfUnitsPermissionType
 
 export interface LocalStoragePreferenceSystemsOfUnitsType
   extends DefaultPreferenceToPermissionType {
-  system: SystemsOfUnits;
+  system: SystemsOfUnits
 }
 
 export type ServerNetworkType = {
-  isConnected: boolean;
-};
+  isConnected: boolean
+}
 
 export type Coords = {
-  latitude: number | null;
-  longitude: number | null;
-};
+  latitude: number | null
+  longitude: number | null
+}
 
 export type PlaceType = {
-  name: string;
-  isoCode: string | null;
-  coords: Coords;
-};
+  name: string
+  isoCode: string | null
+  coords: Coords
+}
 
 export type LocalStoragePreferenceSearchAreaType = {
-  useCurrentLocation: boolean;
+  useCurrentLocation: boolean
   searchArea: {
-    country: PlaceType;
-    state: PlaceType;
-    city: PlaceType;
-    coords: Coords;
-  };
+    country: PlaceType
+    state: PlaceType
+    city: PlaceType
+    coords: Coords
+  }
   kRing: {
-    value: number;
-    distance: number;
-  };
-};
+    value: number
+    distance: number
+  }
+}
 
 export type LocationType = {
-  watchPosition?: LocationOptions;
-  current?: LocationObject;
-  reverseGeocoded?: LocationGeocodedAddress;
-};
+  watchPosition?: LocationOptions
+  current?: LocationObject
+  reverseGeocoded?: LocationGeocodedAddress
+}

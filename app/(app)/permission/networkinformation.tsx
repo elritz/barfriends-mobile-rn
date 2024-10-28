@@ -1,16 +1,7 @@
-import {VStack} from '#/src/components/ui/vstack'
-import {Heading} from '#/src/components/ui/heading'
-import {Divider} from '#/src/components/ui/divider'
-import {Button, ButtonText} from '#/src/components/ui/button'
-import {Box} from '#/src/components/ui/box'
-import {useReactiveVar} from '@apollo/client'
-import PermissionDetailItem from '#/src/view/screens/permissions/PermissionDetailItem'
-import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
-import {TokenType, useUpsertDevicePushTokenMutation} from '#/graphql/generated'
-import {useIsFocused} from '@react-navigation/native'
-import {PermissionNotificationReactiveVar, ThemeReactiveVar} from '#/reactive'
-import {capitalizeFirstLetter} from '#/src/util/helpers/capitalizeFirstLetter'
-import useTimer2 from '#/src/util/hooks/useTimer2'
+import {useEffect, useRef} from 'react'
+import {Alert, AppState, Platform, ScrollView, View} from 'react-native'
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import * as Application from 'expo-application'
 import Constants from 'expo-constants'
 import * as Device from 'expo-device'
@@ -18,10 +9,20 @@ import * as IntentLauncher from 'expo-intent-launcher'
 import * as Linking from 'expo-linking'
 import * as Notifications from 'expo-notifications'
 import {useRouter} from 'expo-router'
-import {useEffect, useRef} from 'react'
-import {Alert, AppState, Platform, ScrollView, View} from 'react-native'
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import {useReactiveVar} from '@apollo/client'
+import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
+import {useIsFocused} from '@react-navigation/native'
+
+import {TokenType, useUpsertDevicePushTokenMutation} from '#/graphql/generated'
+import {PermissionsReactiveVar, ThemeReactiveVar} from '#/reactive'
+import {Box} from '#/src/components/ui/box'
+import {Button, ButtonText} from '#/src/components/ui/button'
+import {Divider} from '#/src/components/ui/divider'
+import {Heading} from '#/src/components/ui/heading'
+import {VStack} from '#/src/components/ui/vstack'
+import {capitalizeFirstLetter} from '#/src/util/helpers/capitalizeFirstLetter'
+import useTimer2 from '#/src/util/hooks/useTimer2'
+import PermissionDetailItem from '#/src/view/screens/permissions/PermissionDetailItem'
 
 // TODO: UX(handleAppStateChange) check if location permission is enabled and go somewhere with it
 
@@ -30,9 +31,7 @@ export default () => {
   const router = useRouter()
   const isFocused = useIsFocused()
   const insets = useSafeAreaInsets()
-  const rNotificationsPermission = useReactiveVar(
-    PermissionNotificationReactiveVar,
-  )
+  const rPerm = useReactiveVar(PermissionsReactiveVar)
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const {finished, start, seconds, started} = useTimer2('0:2')
 
@@ -101,7 +100,7 @@ export default () => {
     Alert.alert(
       'Barfriends Notification Permission',
       `Notifications are currently ${capitalizeFirstLetter(
-        capitalizeFirstLetter(rNotificationsPermission?.status),
+        capitalizeFirstLetter(rPerm?.notifications.status),
       )}. If you wish to adjust go to your device settings.`,
       [
         {
@@ -146,7 +145,10 @@ export default () => {
         },
       })
 
-      PermissionNotificationReactiveVar(status)
+      PermissionsReactiveVar({
+        ...rPerm,
+        notifications: status,
+      })
 
       if (status.granted) {
         const devicetoken = await Notifications.getDevicePushTokenAsync()
@@ -193,7 +195,10 @@ export default () => {
     async function loadPermissionsAsync() {
       const status = await Notifications.getPermissionsAsync()
       try {
-        PermissionNotificationReactiveVar(status)
+        PermissionsReactiveVar({
+          ...rPerm,
+          notifications: status,
+        })
       } catch (e) {
         console.warn(e)
       }
@@ -217,7 +222,10 @@ export default () => {
       nextAppState === 'active'
     ) {
       const status = await Notifications.getPermissionsAsync()
-      PermissionNotificationReactiveVar(status)
+      PermissionsReactiveVar({
+        ...rPerm,
+        notifications: status,
+      })
       if (status.granted && status.status === 'granted') {
         setTimeout(() => {
           router.back()
@@ -274,18 +282,16 @@ export default () => {
         <Button
           size={'lg'}
           onPress={() =>
-            !rNotificationsPermission?.granted
-              ? rNotificationsPermission?.canAskAgain &&
-                !rNotificationsPermission.granted
+            !rPerm?.notifications.granted
+              ? rPerm?.notifications.canAskAgain && !rPerm.notifications.granted
                 ? handleRequestPermission()
                 : handleOpenPhoneSettings()
               : createTwoButtonAlert()
           }
           className="w-[95%]">
           <ButtonText>
-            {!rNotificationsPermission?.granted
-              ? rNotificationsPermission?.canAskAgain &&
-                !rNotificationsPermission.granted
+            {!rPerm?.notifications.granted
+              ? rPerm?.notifications.canAskAgain && !rPerm.notifications.granted
                 ? 'Continue'
                 : 'Go to Phone Settings'
               : 'Granted'}

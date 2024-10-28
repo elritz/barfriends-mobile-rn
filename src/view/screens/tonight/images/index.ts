@@ -1,1 +1,1 @@
-export { default } from './TonightImages'
+export {default} from './TonightImages'

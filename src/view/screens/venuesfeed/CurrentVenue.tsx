@@ -1,45 +1,45 @@
-import { Text } from "#/src/components/ui/text";
-import { Pressable } from "#/src/components/ui/pressable";
-import { Icon } from "#/src/components/ui/icon";
-import { Heading } from "#/src/components/ui/heading";
-import { HStack } from "#/src/components/ui/hstack";
-import { Divider } from "#/src/components/ui/divider";
-import { Button, ButtonGroup } from "#/src/components/ui/button";
-import { Box } from "#/src/components/ui/box";
-import { useReactiveVar } from "@apollo/client";
-import { Ionicons } from "@expo/vector-icons";
-import { usePublicVenueQuery } from "#/graphql/generated";
-import { AuthorizationReactiveVar, ThemeReactiveVar } from "#/reactive";
-import { useDisclose } from "#/src/util/hooks/useDisclose";
-import { useRouter } from "expo-router";
-import { useState } from "react";
-import { Image } from "react-native";
-import { StyleSheet } from "react-native";
-import { Blurhash } from "react-native-blurhash";
+import {useState} from 'react'
+import {Image} from 'react-native'
+import {StyleSheet} from 'react-native'
+import {Blurhash} from 'react-native-blurhash'
+import {useRouter} from 'expo-router'
+import {useReactiveVar} from '@apollo/client'
+import {Ionicons} from '@expo/vector-icons'
+
+import {usePublicVenueQuery} from '#/graphql/generated'
+import {AuthorizationReactiveVar, ThemeReactiveVar} from '#/reactive'
+import {Box} from '#/src/components/ui/box'
+import {Button, ButtonGroup} from '#/src/components/ui/button'
+import {Divider} from '#/src/components/ui/divider'
+import {Heading} from '#/src/components/ui/heading'
+import {HStack} from '#/src/components/ui/hstack'
+import {Pressable} from '#/src/components/ui/pressable'
+import {Text} from '#/src/components/ui/text'
+import {useDisclose} from '#/src/util/hooks/useDisclose'
 
 export default function CurrentVenue() {
-  const router = useRouter();
-  const [hideBlur, setHideBlur] = useState(false);
-  const { isOpen, onClose, onOpen, onToggle } = useDisclose();
-  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar);
-  const rThemeVar = useReactiveVar(ThemeReactiveVar);
+  const router = useRouter()
+  const [hideBlur, setHideBlur] = useState(false)
+  const {isOpen, onToggle} = useDisclose()
+  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
+  const rThemeVar = useReactiveVar(ThemeReactiveVar)
 
-  const getTitleCase = (str) => {
+  const getTitleCase = (str: string) => {
     const titleCase = str
       .toLowerCase()
-      .split(" ")
-      .map((word) => {
-        return word.charAt(0).toUpperCase() + word.slice(1);
+      .split(' ')
+      .map(word => {
+        return word.charAt(0).toUpperCase() + word.slice(1)
       })
-      .join(" ");
+      .join(' ')
 
-    return titleCase;
-  };
+    return titleCase
+  }
 
-  const { data, loading, error } = usePublicVenueQuery({
+  const {data, loading} = usePublicVenueQuery({
     skip: !rAuthorizationVar?.Profile?.Personal?.LiveOutPersonal?.Out[0]
       ?.venueProfileId,
-    fetchPolicy: "cache-only",
+    fetchPolicy: 'cache-only',
     variables: {
       where: {
         id: {
@@ -49,21 +49,24 @@ export default function CurrentVenue() {
         },
       },
     },
-  });
+  })
 
-  if (loading || !data) return null;
+  if (loading || !data) return null
 
   function leaveVenue() {
-    onToggle();
+    onToggle()
   }
 
   return (
     <Box className="mx-2 my-3 h-[220px] rounded-md bg-white">
       <Pressable
+        accessibilityRole="button"
         onPress={() => {
           router.push({
-            pathname: `/(app)/public/venue/${data.publicVenue?.Venue?.id}`,
+            pathname: `/(app)/public/venue/[username]`,
             params: {
+              username:
+                data.publicVenue?.Venue?.IdentifiableInformation?.username,
               latitude: Number(
                 data.publicVenue?.Venue?.Location?.Geometry?.latitude,
               ),
@@ -71,20 +74,19 @@ export default function CurrentVenue() {
                 data.publicVenue?.Venue?.Location?.Geometry?.longitude,
               ),
             },
-          });
-        }}
-      >
+          })
+        }}>
         <Box
           style={{
             // backgroundColor: themeContext.palette.secondary.background.default,
-            justifyContent: "flex-end",
-            overflow: "hidden",
+            justifyContent: 'flex-end',
+            overflow: 'hidden',
           }}
-          className="h-[220px] rounded-md"
-        >
+          className="h-[220px] rounded-md">
           {!loading ? (
             <Image
-              source={{ uri: data.publicVenue?.photos[0]?.url }}
+              accessibilityIgnoresInvertColors
+              source={{uri: data.publicVenue?.photos[0]?.url}}
               resizeMode="cover"
               onLoadEnd={() => setHideBlur(true)}
               style={{
@@ -108,8 +110,7 @@ export default function CurrentVenue() {
               <Heading
                 numberOfLines={2}
                 ellipsizeMode="tail"
-                className="self-start text-left text-sm font-medium"
-              >
+                className="self-start text-left text-sm font-medium">
                 {getTitleCase(data.publicVenue?.Venue?.name)}
               </Heading>
             </Box>
@@ -117,12 +118,11 @@ export default function CurrentVenue() {
               <ButtonGroup className="rounded-md">
                 <Button
                   onPress={!isOpen ? () => onToggle() : () => leaveVenue()}
-                  className="rounded-lg bg-light-100 dark:bg-light-800"
-                >
-                  <Ionicons name={"exit"} size={30} />
+                  className="rounded-lg bg-light-100 dark:bg-light-800">
+                  <Ionicons name={'exit'} size={30} />
 
                   <Text className="text-error-500">
-                    {isOpen ? `Leave` : ""}
+                    {isOpen ? `Leave` : ''}
                   </Text>
                 </Button>
                 {isOpen && <Divider orientation="vertical" />}
@@ -130,9 +130,9 @@ export default function CurrentVenue() {
                   <>
                     <Ionicons
                       size={25}
-                      name={"close"}
+                      name={'close'}
                       color={
-                        rThemeVar.colorScheme === "light"
+                        rThemeVar.colorScheme === 'light'
                           ? rThemeVar.theme?.gluestack.tokens.colors.light900
                           : rThemeVar.theme?.gluestack.tokens.colors.light100
                       }
@@ -149,5 +149,5 @@ export default function CurrentVenue() {
         </Box>
       </Pressable>
     </Box>
-  );
+  )
 }

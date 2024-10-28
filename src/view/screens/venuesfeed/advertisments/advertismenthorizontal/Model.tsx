@@ -1,44 +1,44 @@
-import { ImageSourcePropType } from "react-native";
+import {ImageSourcePropType} from 'react-native'
 
 export type Product = {
-  type: "_ad1" | "_ad2" | "_ad3" | "_ad4" | "_ad5";
-  color1: string;
-  color2: string;
-  primaryTextColor: string;
-  secondaryTextColor: string;
-  buttonColor: string;
-  buttonTextColor: string;
-  buttoncta: string;
-  route: string;
+  type: '_ad1' | '_ad2' | '_ad3' | '_ad4' | '_ad5'
+  color1: string
+  color2: string
+  primaryTextColor: string
+  secondaryTextColor: string
+  buttonColor: string
+  buttonTextColor: string
+  buttoncta: string
+  route: string
 } & (
   | {
-      type: "_ad1";
-      title: string;
-      subtitle: string;
+      type: '_ad1'
+      title: string
+      subtitle: string
     }
   | {
-      type: "_ad2";
-      picture: ImageSourcePropType;
-      aspectRatio: number;
-      title: string;
-      subtitle: string;
+      type: '_ad2'
+      picture: ImageSourcePropType
+      aspectRatio: number
+      title: string
+      subtitle: string
     }
   | {
-      type: "_ad3";
-      title: string;
-      subtitle: string;
+      type: '_ad3'
+      title: string
+      subtitle: string
     }
   | {
-      type: "_ad4";
-      cover: ImageSourcePropType;
+      type: '_ad4'
+      cover: ImageSourcePropType
     }
   | {
-      type: "_ad5";
-      title: string;
-      subtitle: string;
-      logo: ImageSourcePropType;
+      type: '_ad5'
+      title: string
+      subtitle: string
+      logo: ImageSourcePropType
     }
-);
+)
 
 // {
 // 	title?: string
@@ -50,76 +50,76 @@ export type Product = {
 
 export const products: Product[] = [
   {
-    type: "_ad1",
+    type: '_ad1',
     title: `This buds \non us.`,
-    subtitle: "#KingOfTheNorth",
-    color1: "#E60022",
-    color2: "#A8021B",
-    buttonColor: "#ffffff",
-    buttonTextColor: "#000000",
-    primaryTextColor: "#ffffff",
-    secondaryTextColor: "#ffffff",
-    buttoncta: "Claim",
-    route: "/(app)/ad",
+    subtitle: '#KingOfTheNorth',
+    color1: '#E60022',
+    color2: '#A8021B',
+    buttonColor: '#ffffff',
+    buttonTextColor: '#000000',
+    primaryTextColor: '#ffffff',
+    secondaryTextColor: '#ffffff',
+    buttoncta: 'Claim',
+    route: '/(app)/ad',
   },
   {
-    type: "_ad2",
-    title: "Get a beer on us",
-    picture: require("#/assets/images/ad/bud_light.png"),
-    subtitle: "Medium, Creamy Cream, Ice cold and perfect",
-    color1: "#00A1E1",
-    color2: "#061148",
-    buttonColor: "#061148",
-    buttonTextColor: "#ffffff",
-    primaryTextColor: "#ffffff",
-    secondaryTextColor: "#ffffff",
-    buttoncta: "Continue",
+    type: '_ad2',
+    title: 'Get a beer on us',
+    picture: require('#/assets/images/ad/bud_light.png'),
+    subtitle: 'Medium, Creamy Cream, Ice cold and perfect',
+    color1: '#00A1E1',
+    color2: '#061148',
+    buttonColor: '#061148',
+    buttonTextColor: '#ffffff',
+    primaryTextColor: '#ffffff',
+    secondaryTextColor: '#ffffff',
+    buttoncta: 'Continue',
     aspectRatio: 1,
-    route: "/(app)/ad",
+    route: '/(app)/ad',
   },
 
   {
-    type: "_ad3",
-    title: "Get a beer on us",
-    subtitle: "Medium, Creamy Cream, Ice cold and perfect",
-    color1: "#00A1E1",
-    color2: "#061148",
-    buttonColor: "#061148",
-    buttonTextColor: "#ffffff",
-    primaryTextColor: "#ffffff",
-    secondaryTextColor: "#ffffff",
-    buttoncta: "Continue",
-    route: "/(app)/ad",
+    type: '_ad3',
+    title: 'Get a beer on us',
+    subtitle: 'Medium, Creamy Cream, Ice cold and perfect',
+    color1: '#00A1E1',
+    color2: '#061148',
+    buttonColor: '#061148',
+    buttonTextColor: '#ffffff',
+    primaryTextColor: '#ffffff',
+    secondaryTextColor: '#ffffff',
+    buttoncta: 'Continue',
+    route: '/(app)/ad',
   },
   {
-    type: "_ad4",
-    cover: require("#/assets/images/ad/coors_banquet2.png"),
-    color1: "#FEB829",
-    color2: "#FDD446",
-    buttonColor: "#ffffff",
-    buttonTextColor: "#000000",
-    primaryTextColor: "#ffffff",
-    secondaryTextColor: "#ffffff",
-    buttoncta: "View",
-    route: "/(app)/public/venue/1",
+    type: '_ad4',
+    cover: require('#/assets/images/ad/coors_banquet2.png'),
+    color1: '#FEB829',
+    color2: '#FDD446',
+    buttonColor: '#ffffff',
+    buttonTextColor: '#000000',
+    primaryTextColor: '#ffffff',
+    secondaryTextColor: '#ffffff',
+    buttoncta: 'View',
+    route: '/(app)/public/venue/1',
   },
 
   // Venue advertisments
   {
-    type: "_ad5",
-    title: "The Shed",
-    subtitle: "Pumping the vibes and tunes ",
-    logo: require("#/assets/images/ad/coors_banquet2.png"),
-    color1: "#4D0049",
-    color2: "#92008C",
-    buttonColor: "#ffffff",
-    buttonTextColor: "#000000",
-    primaryTextColor: "#ffffff",
-    secondaryTextColor: "#ffffff",
-    buttoncta: "View",
-    route: "/(app)/public/venue/1",
+    type: '_ad5',
+    title: 'The Shed',
+    subtitle: 'Pumping the vibes and tunes ',
+    logo: require('#/assets/images/ad/coors_banquet2.png'),
+    color1: '#4D0049',
+    color2: '#92008C',
+    buttonColor: '#ffffff',
+    buttonTextColor: '#000000',
+    primaryTextColor: '#ffffff',
+    secondaryTextColor: '#ffffff',
+    buttoncta: 'View',
+    route: '/(app)/public/venue/1',
   },
-];
+]
 // {
 // {
 // 	title: 'Craving a new Cold Brew?',

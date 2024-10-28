@@ -1,26 +1,21 @@
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import {storage} from '../storage/mmkv'
 
-export async function loadString(key: string): Promise<string | null> {
-  try {
-    return await AsyncStorage.getItem(key)
-  } catch {
-    // not sure why this would fail... even reading the RN docs I'm unclear
-    return null
-  }
+export function loadString(key: string): string | null {
+  return storage.getString(key) ?? null
 }
 
-export async function saveString(key: string, value: string): Promise<boolean> {
+export function saveString(key: string, value: string): boolean {
   try {
-    await AsyncStorage.setItem(key, value)
+    storage.set(key, value)
     return true
   } catch {
     return false
   }
 }
 
-export async function load(key: string): Promise<any | null> {
+export function load(key: string): any | null {
   try {
-    const str = await AsyncStorage.getItem(key)
+    const str = storage.getString(key)
     if (typeof str !== 'string') {
       return null
     }
@@ -30,23 +25,24 @@ export async function load(key: string): Promise<any | null> {
   }
 }
 
-export async function save(key: string, value: any): Promise<boolean> {
+export function save(key: string, value: any): boolean {
   try {
-    await AsyncStorage.setItem(key, JSON.stringify(value))
+    storage.set(key, JSON.stringify(value))
+
     return true
   } catch {
     return false
   }
 }
 
-export async function remove(key: string): Promise<void> {
+export function remove(key: string): void {
   try {
-    await AsyncStorage.removeItem(key)
+    storage.delete(key)
   } catch {}
 }
 
-export async function clear(): Promise<void> {
+export function clear(): void {
   try {
-    await AsyncStorage.clear()
+    storage.clearAll()
   } catch {}
 }

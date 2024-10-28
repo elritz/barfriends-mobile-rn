@@ -1,30 +1,27 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
+import * as React from 'react'
+import {ViewStyle} from 'react-native'
 import DateTimePicker, {
   DateTimePickerEvent,
-} from "@react-native-community/datetimepicker";
-import * as React from "react";
-import { ViewStyle } from "react-native";
+} from '@react-native-community/datetimepicker'
 
 export type DisplayType =
-  | "spinner"
-  | "calendar"
-  | "clock"
-  | "compact"
-  | "default"
-  | "inline";
+  | 'spinner'
+  | 'calendar'
+  | 'clock'
+  | 'compact'
+  | 'default'
+  | 'inline'
 
-export type ModeType = "date";
+export type ModeType = 'date'
 
 export interface DatePickerProps {
-  maxDate?: Date;
-  value: Date;
-  display?: DisplayType | undefined;
-  mode?: ModeType;
-  style?: ViewStyle;
-  onChange: (
-    event: DateTimePickerEvent,
-    selectedDate: Date | undefined,
-  ) => void;
+  maxDate?: Date
+  value: Date
+  display?: DisplayType | undefined
+  mode?: ModeType
+  style?: ViewStyle
+  onChange: (event: DateTimePickerEvent, selectedDate: Date | undefined) => void
 }
 
 // const MODE_VALUES = Platform.select({
@@ -62,6 +59,6 @@ const DatePicker: React.FC<DatePickerProps> = ({
       ): void => onChange(event, selectedDate)}
       style={style}
     />
-  );
-};
-export default DatePicker;
+  )
+}
+export default DatePicker

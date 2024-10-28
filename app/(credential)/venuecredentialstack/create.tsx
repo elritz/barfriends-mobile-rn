@@ -1,12 +1,9 @@
-import {VStack} from '#/src/components/ui/vstack'
-import {Text} from '#/src/components/ui/text'
-import {Spinner} from '#/src/components/ui/spinner'
-import {Pressable} from '#/src/components/ui/pressable'
-import {Heading} from '#/src/components/ui/heading'
-import {Box} from '#/src/components/ui/box'
+import {SafeAreaView} from 'react-native-safe-area-context'
+import {useRouter} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
-import CompanyCoasterLogoDynamic from '#/assets/images/company/CompanyCoasterLogoDynamic'
 import {Feather} from '@expo/vector-icons'
+
+import CompanyCoasterLogoDynamic from '#/assets/images/company/CompanyCoasterLogoDynamic'
 import {
   AuthorizationDeviceProfile,
   useCreatePersonalProfileMutation,
@@ -16,8 +13,12 @@ import {
   AuthorizationReactiveVar,
   CredentialPersonalProfileReactiveVar,
 } from '#/reactive'
-import {useRouter} from 'expo-router'
-import {SafeAreaView} from 'react-native-safe-area-context'
+import {Box} from '#/src/components/ui/box'
+import {Heading} from '#/src/components/ui/heading'
+import {Pressable} from '#/src/components/ui/pressable'
+import {Spinner} from '#/src/components/ui/spinner'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
 
 export default () => {
   const router = useRouter()
@@ -60,25 +61,6 @@ export default () => {
       },
     })
 
-  const [
-    switchDeviceProfileMutation,
-    {data: SDPData, loading: SDPLoading, error: SDPError},
-  ] = useSwitchDeviceProfileMutation({
-    onError: error => {},
-    onCompleted: data => {
-      if (
-        data.switchDeviceProfile?.__typename === 'AuthorizationDeviceProfile'
-      ) {
-        const deviceManager =
-          data.switchDeviceProfile as AuthorizationDeviceProfile
-        AuthorizationReactiveVar(deviceManager)
-        router.push({
-          pathname: '/(app)/hometab/venuefeed',
-        })
-      }
-    },
-  })
-
   const onSubmit = async () => {
     createProfilePersonalMutation()
   }
@@ -104,10 +86,11 @@ export default () => {
         </VStack>
 
         <Pressable
-          disabled={CPPLoading || SDPLoading}
+          accessibilityRole="button"
+          disabled={CPPLoading}
           onPress={() => onSubmit()}>
           <Box className="h-[60px] w-[60px] items-center justify-center rounded-full bg-primary-500">
-            {CPPLoading || SDPLoading ? (
+            {CPPLoading ? (
               <Spinner size="small" className="text-black" />
             ) : (
               <Feather name="arrow-right" size={32} color={'white'} />

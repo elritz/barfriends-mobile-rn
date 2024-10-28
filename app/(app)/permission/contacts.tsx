@@ -1,12 +1,13 @@
-import {VStack} from '#/src/components/ui/vstack'
-import {Text} from '#/src/components/ui/text'
-import {Heading} from '#/src/components/ui/heading'
-import {Divider} from '#/src/components/ui/divider'
-import {Button, ButtonText} from '#/src/components/ui/button'
-import {Box} from '#/src/components/ui/box'
+import {useEffect, useRef} from 'react'
+import {Alert, AppState, Platform, ScrollView, View} from 'react-native'
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import * as Contacts from 'expo-contacts'
+import * as Device from 'expo-device'
+import * as Linking from 'expo-linking'
+import {useRouter} from 'expo-router'
 // TODO: UX(handleAppStateChange) check if location permission is enabled and go somewhere with it
 import {useReactiveVar} from '@apollo/client'
-import PermissionDetailItem from '#/src/view/screens/permissions/PermissionDetailItem'
 import {
   FontAwesome,
   Ionicons,
@@ -14,28 +15,23 @@ import {
   MaterialIcons,
 } from '@expo/vector-icons'
 import {useIsFocused} from '@react-navigation/native'
-import {
-  ContactsReactiveVar,
-  PermissionContactsReactiveVar,
-  ThemeReactiveVar,
-} from '#/reactive'
+
+import {PermissionsReactiveVar, ThemeReactiveVar} from '#/reactive'
+import {Box} from '#/src/components/ui/box'
+import {Button, ButtonText} from '#/src/components/ui/button'
+import {Divider} from '#/src/components/ui/divider'
+import {Heading} from '#/src/components/ui/heading'
+import {VStack} from '#/src/components/ui/vstack'
 import {capitalizeFirstLetter} from '#/src/util/helpers/capitalizeFirstLetter'
 import useTimer2 from '#/src/util/hooks/useTimer2'
-import * as Contacts from 'expo-contacts'
-import * as Device from 'expo-device'
-import * as Linking from 'expo-linking'
-import {useRouter} from 'expo-router'
-import {useEffect, useRef} from 'react'
-import {Alert, AppState, Platform, ScrollView, View} from 'react-native'
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import PermissionDetailItem from '#/src/view/screens/permissions/PermissionDetailItem'
 
 export default () => {
   const appStateRef = useRef(AppState.currentState)
   const router = useRouter()
   const isFocused = useIsFocused()
   const insets = useSafeAreaInsets()
-  const rContactPermission = useReactiveVar(PermissionContactsReactiveVar)
+  const rPerm = useReactiveVar(PermissionsReactiveVar)
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const {finished, start, seconds, started} = useTimer2('0:2')
 
@@ -101,7 +97,7 @@ export default () => {
     Alert.alert(
       'Barfriends Contacts Permission',
       `Contacts are currently ${capitalizeFirstLetter(
-        capitalizeFirstLetter(rContactPermission?.status),
+        capitalizeFirstLetter(rPerm?.contacts.status),
       )}. If you wish to adjust go to your device settings.`,
       [
         {
@@ -124,11 +120,15 @@ export default () => {
   const handleRequestPermission = async () => {
     const status = await Contacts.requestPermissionsAsync()
     if (Device.isDevice) {
-      PermissionContactsReactiveVar(status)
+      PermissionsReactiveVar({
+        ...rPerm,
+        contacts: status,
+      })
       if (status.granted && status.status === 'granted') {
         const {data} = await Contacts.getContactsAsync()
         if (data.length) {
-          ContactsReactiveVar(data)
+          // ContactsReactiveVar(data)
+          console.log('Contacts: TODO', data)
         }
         start()
       }
@@ -141,12 +141,15 @@ export default () => {
     async function loadPermissionsAsync() {
       const status = await Contacts.getPermissionsAsync()
       try {
-        PermissionContactsReactiveVar(status)
+        PermissionsReactiveVar({
+          ...rPerm,
+          contacts: status,
+        })
 
         if (status.granted && status.status === 'granted') {
           const {data} = await Contacts.getContactsAsync()
           if (data.length) {
-            ContactsReactiveVar(data)
+            console.log('Contacts: TODO', data)
           }
         }
       } catch (e) {
@@ -172,11 +175,15 @@ export default () => {
       nextAppState === 'active'
     ) {
       const status = await Contacts.getPermissionsAsync()
-      PermissionContactsReactiveVar(status)
+      PermissionsReactiveVar({
+        ...rPerm,
+        contacts: status,
+      })
       if (status.granted && status.status === 'granted') {
         const {data} = await Contacts.getContactsAsync()
         if (data.length) {
-          ContactsReactiveVar(data)
+          // ContactsReactiveVar(data)
+          console.log('Contacts: TODO', data)
         }
         start()
       }
@@ -230,16 +237,16 @@ export default () => {
         <Button
           size={'lg'}
           onPress={() =>
-            !rContactPermission?.granted
-              ? rContactPermission?.canAskAgain && !rContactPermission.granted
+            !rPerm?.contacts?.granted
+              ? rPerm?.contacts?.canAskAgain && !rPerm?.contacts.granted
                 ? handleRequestPermission()
                 : handleOpenPhoneSettings()
               : createTwoButtonAlert()
           }
           className="w-[95%]">
           <ButtonText>
-            {!rContactPermission?.granted
-              ? rContactPermission?.canAskAgain && !rContactPermission.granted
+            {!rPerm?.contacts?.granted
+              ? rPerm?.contacts?.canAskAgain && !rPerm.contacts.granted
                 ? 'Continue'
                 : 'Go to Phone Settings'
               : 'Granted'}

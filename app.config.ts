@@ -1,45 +1,45 @@
-import { ConfigContext, ExpoConfig } from "@expo/config";
-import { Splash, IOS, Android, Web } from "@expo/config-types";
+import {ConfigContext, ExpoConfig} from '@expo/config'
+import {Android, IOS, Splash, Web} from '@expo/config-types'
 
 module.exports = (context: ConfigContext): ExpoConfig | null => {
   function toCamelCase(str: string) {
     return str
-      .split(" ") // Split the string into an array of words
+      .split(' ') // Split the string into an array of words
       .map((word, index) => {
-        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
       })
-      .join(""); // Join the words back into a string
+      .join('') // Join the words back into a string
   }
 
   function configExpoPlugins(): (string | [] | [string] | [string, any])[] {
-    if(!context.config.name) {
-      throw new Error("Please provide a name for your app in the .env file");
+    if (!context.config.name) {
+      throw new Error('Please provide a name for your app in the .env file')
     }
     return [
-      "expo-router",
-      "expo-font",
-      "expo-privacy-manifest-polyfill-plugin",
+      'expo-router',
+      'expo-font',
+      'expo-privacy-manifest-polyfill-plugin',
       [
-        "@stripe/stripe-react-native",
+        '@stripe/stripe-react-native',
         {
-          merchantIdentifier: "merchant.com.barfriends",
+          merchantIdentifier: 'merchant.com.barfriends',
           enableGooglePay: true,
         },
       ],
-      "expo-asset",
+      'expo-asset',
       [
-        "expo-barcode-scanner",
+        'expo-barcode-scanner',
         {
           cameraPermission: `Allow ${toCamelCase(context.config.name)} to access camera.`,
         },
       ],
       [
-        "expo-build-properties",
+        'expo-build-properties',
         {
           android: {
             compileSdkVersion: 34,
             targetSdkVersion: 34,
-            buildToolsVersion: "34.0.0",
+            buildToolsVersion: '34.0.0',
             // newArchEnabled: true
           },
           ios: {
@@ -48,7 +48,7 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
         },
       ],
       [
-        "expo-camera",
+        'expo-camera',
         {
           cameraPermission: `Allow ${toCamelCase(context.config.name)} to access your camera`,
           microphonePermission: `Allow ${toCamelCase(context.config.name)} to access your microphone`,
@@ -56,85 +56,85 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
         },
       ],
       [
-        "expo-contacts",
+        'expo-contacts',
         {
           contactsPermission: `Allow ${toCamelCase(context.config.name)} to access your contacts.`,
         },
       ],
       [
-        "expo-dev-launcher",
+        'expo-dev-launcher',
         {
-          launchMode: "most-recent",
+          launchMode: 'most-recent',
         },
       ],
       [
-        "expo-image-picker",
+        'expo-image-picker',
         {
           photosPermission: `Allow ${toCamelCase(context.config.name)} to access your photos to let you share them with your friends.`,
         },
       ],
       [
-        "expo-local-authentication",
+        'expo-local-authentication',
         {
           faceIDPermission: `"Allow ${toCamelCase(context.config.name)} to use Face ID.`,
         },
       ],
-      "expo-localization",
+      'expo-localization',
       [
-        "expo-location",
+        'expo-location',
         {
           locationAlwaysAndWhenInUsePermission: `Allow ${toCamelCase(context.config.name)} to use your location.`,
         },
       ],
       [
-        "expo-screen-orientation",
+        'expo-screen-orientation',
         {
-          initialOrientation: "DEFAULT",
+          initialOrientation: 'DEFAULT',
         },
       ],
       [
-        "expo-secure-store",
+        'expo-secure-store',
         {
           faceIDPermission: `Allow ${toCamelCase(context.config.name)} to access your Face ID biometric data.`,
         },
       ],
       [
-        "expo-media-library",
+        'expo-media-library',
         {
           photosPermission: `Allow ${toCamelCase(context.config.name)} to access your photos.`,
           savePhotosPermission: `Allow ${toCamelCase(context.config.name)} to save photos.`,
           isAccessMediaLocationEnabled: true,
         },
       ],
-    ];
+    ]
   }
 
   function configSplash(): Splash {
     return {
       image: `./assets/images/splash/splash.${process.env.NODE_ENV}.dark.png`,
-      resizeMode: "cover",
-      backgroundColor: "#000000",
+      resizeMode: 'cover',
+      backgroundColor: '#000000',
       dark: {
         image: `./assets/images/splash/splash.${process.env.NODE_ENV}.dark.png`,
-        resizeMode: "cover",
+        resizeMode: 'cover',
       },
-    };
+    }
   }
 
   function configInfoPlist(): Record<string, any> {
-    if(!context.config.name) {
-      throw new Error("Please provide a name for your app in the .env file");
+    if (!context.config.name) {
+      throw new Error('Please provide a name for your app in the .env file')
     }
     return {
-      LSApplicationQueriesSchemes: ["uber"],
+      LSApplicationQueriesSchemes: ['uber'],
       NSLocationAlwaysUsageDescription: `${toCamelCase(context.config.name)} app uses location to provide list of available activities at bars clubs and pubs and events near a users in addition to checking them in.`,
       NSLocationAlwaysAndWhenInUseUsageDescription: `${toCamelCase(context.config.name)} app uses location to provide list of available activities at bars clubs and pubs and events near a users in addition to checking them in.`,
       NSLocationWhenInUseUsageDescription: `${toCamelCase(context.config.name)} app uses location to provide list of available activities at bars clubs and pubs and events near a users in addition to checking them in.`,
       NSCameraUsageDescription: `${toCamelCase(context.config.name)} app uses the camera to provide a photo for their profile.`,
       NSPhotoLibraryUsageDescription: `${toCamelCase(context.config.name)} app uses photo library to upload photos and videos.`,
-      UIBackgroundModes: ["location", "fetch", "remote-notification"],
+      UIBackgroundModes: ['location', 'fetch', 'remote-notification'],
       NSPhotoLibraryAddUsageDescription: `${toCamelCase(context.config.name)} would access your meida library, so you can add photos for your profile and other social purposes.`,
-    };
+    }
   }
 
   function configIOS(): IOS {
@@ -173,15 +173,15 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
           },
         ],
       },
-    };
+    }
   }
 
   function configAndroid(): Android {
     return {
       package: `com.${context.config.name}.${process.env.NODE_ENV}`,
-      backgroundColor: "#0D0D0D",
+      backgroundColor: '#0D0D0D',
       adaptiveIcon: {
-        foregroundImage: "./assets/images/adaptive-icon.png",
+        foregroundImage: './assets/images/adaptive-icon.png',
       },
       // googleServicesFile: "./google-services.json",
       config: {
@@ -190,83 +190,83 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
         },
       },
       permissions: [
-        "android.permission.CAMERA",
-        "android.permission.RECORD_AUDIO",
-        "android.permission.READ_CONTACTS",
-        "android.permission.WRITE_CONTACTS",
-        "android.permission.USE_BIOMETRIC",
-        "android.permission.USE_FINGERPRINT",
-        "android.permission.ACCESS_COARSE_LOCATION",
-        "android.permission.ACCESS_FINE_LOCATION",
-        "android.permission.READ_EXTERNAL_STORAGE",
-        "android.permission.WRITE_EXTERNAL_STORAGE",
-        "android.permission.ACCESS_MEDIA_LOCATION",
-        "ACCESS_FINE_LOCATION",
-        "ACCESS_BACKGROUND_LOCATION",
-        "NOTIFICATIONS",
-        "MANAGE_DOCUMENTS",
-        "READ_CALENDAR",
-        "WRITE_CALENDAR",
-        "READ_PHONE_STATE",
-        "VIBRATE",
-        "WAKE_LOCK",
-        "com.anddoes.launcher.permission.UPDATE_COUNT",
-        "com.android.launcher.permission.INSTALL_SHORTCUT",
-        "com.google.android.c2dm.permission.RECEIVE",
-        "com.google.android.gms.permission.ACTIVITY_RECOGNITION",
-        "com.google.android.providers.gsf.permission.READ_GSERVICES",
-        "com.htc.launcher.permission.READ_SETTINGS",
-        "com.htc.launcher.permission.UPDATE_SHORTCUT",
-        "com.majeur.launcher.permission.UPDATE_BADGE",
-        "com.sec.android.provider.badge.permission.READ",
-        "com.sec.android.provider.badge.permission.WRITE",
-        "com.sonyericsson.home.permission.BROADCAST_BADGE",
+        'android.permission.CAMERA',
+        'android.permission.RECORD_AUDIO',
+        'android.permission.READ_CONTACTS',
+        'android.permission.WRITE_CONTACTS',
+        'android.permission.USE_BIOMETRIC',
+        'android.permission.USE_FINGERPRINT',
+        'android.permission.ACCESS_COARSE_LOCATION',
+        'android.permission.ACCESS_FINE_LOCATION',
+        'android.permission.READ_EXTERNAL_STORAGE',
+        'android.permission.WRITE_EXTERNAL_STORAGE',
+        'android.permission.ACCESS_MEDIA_LOCATION',
+        'ACCESS_FINE_LOCATION',
+        'ACCESS_BACKGROUND_LOCATION',
+        'NOTIFICATIONS',
+        'MANAGE_DOCUMENTS',
+        'READ_CALENDAR',
+        'WRITE_CALENDAR',
+        'READ_PHONE_STATE',
+        'VIBRATE',
+        'WAKE_LOCK',
+        'com.anddoes.launcher.permission.UPDATE_COUNT',
+        'com.android.launcher.permission.INSTALL_SHORTCUT',
+        'com.google.android.c2dm.permission.RECEIVE',
+        'com.google.android.gms.permission.ACTIVITY_RECOGNITION',
+        'com.google.android.providers.gsf.permission.READ_GSERVICES',
+        'com.htc.launcher.permission.READ_SETTINGS',
+        'com.htc.launcher.permission.UPDATE_SHORTCUT',
+        'com.majeur.launcher.permission.UPDATE_BADGE',
+        'com.sec.android.provider.badge.permission.READ',
+        'com.sec.android.provider.badge.permission.WRITE',
+        'com.sonyericsson.home.permission.BROADCAST_BADGE',
       ],
-    };
+    }
   }
 
   function configWeb(): Web {
     return {
-      bundler: "metro",
-      output: "static",
-      favicon: "./assets/images/favicon.png",
-    };
+      bundler: 'metro',
+      output: 'static',
+      favicon: './assets/images/favicon.png',
+    }
   }
 
-  function expoExtra(): ExpoConfig["extra"] {
+  function expoExtra(): ExpoConfig['extra'] {
     return {
       router: {
         origin: false,
       },
       eas: {
-        projectId: "7ba3f00e-9b58-45fa-8a6e-5ba14d4855e4",
+        projectId: '7ba3f00e-9b58-45fa-8a6e-5ba14d4855e4',
       },
-    };
+    }
   }
 
-  function expoUpdates(): ExpoConfig["updates"] {
+  function expoUpdates(): ExpoConfig['updates'] {
     return {
-      url: "https://u.expo.dev/7ba3f00e-9b58-45fa-8a6e-5ba14d4855e4",
+      url: 'https://u.expo.dev/7ba3f00e-9b58-45fa-8a6e-5ba14d4855e4',
       fallbackToCacheTimeout: 2000,
-    };
+    }
   }
 
-  if(!context.config.name) {
-    throw new Error("Please provide a name for your app in the .env file");
+  if (!context.config.name) {
+    throw new Error('Please provide a name for your app in the .env file')
   }
 
   switch (process.env.NODE_ENV) {
-    case "development":
+    case 'development':
       return {
         name: `${toCamelCase(context.config.name)} (${process.env.NODE_ENV})`,
-        slug: "barfriends",
-        owner: "barfriends",
-        version: "1.0.0",
-        orientation: "portrait",
-        icon: "./assets/images/icon.png",
-        scheme: "barfriends",
-        userInterfaceStyle: "automatic",
-        primaryColor: "#FF7000",
+        slug: 'barfriends',
+        owner: 'barfriends',
+        version: '1.0.0',
+        orientation: 'portrait',
+        icon: './assets/images/icon.png',
+        scheme: 'barfriends',
+        userInterfaceStyle: 'automatic',
+        primaryColor: '#FF7000',
         splash: configSplash(),
         ios: configIOS(),
         android: configAndroid(),
@@ -277,19 +277,19 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
         },
         extra: expoExtra(),
         updates: expoUpdates(),
-      };
+      }
 
     default:
       return {
         name: `${toCamelCase(String(context.config.name))}`,
-        slug: "barfriends",
-        owner: "barfriends",
-        version: "1.0.0",
-        orientation: "portrait",
-        icon: "./assets/images/icon.png",
-        scheme: "barfriends",
-        userInterfaceStyle: "automatic",
-        primaryColor: "#FF7000",
+        slug: 'barfriends',
+        owner: 'barfriends',
+        version: '1.0.0',
+        orientation: 'portrait',
+        icon: './assets/images/icon.png',
+        scheme: 'barfriends',
+        userInterfaceStyle: 'automatic',
+        primaryColor: '#FF7000',
         splash: configSplash(),
         ios: configIOS(),
         android: configAndroid(),
@@ -300,6 +300,6 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
         },
         extra: expoExtra(),
         updates: expoUpdates(),
-      };
+      }
   }
-};
+}

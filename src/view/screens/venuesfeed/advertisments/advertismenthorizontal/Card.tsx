@@ -1,13 +1,14 @@
-import {VStack} from '#/src/components/ui/vstack'
-import {Text} from '#/src/components/ui/text'
-import {Heading} from '#/src/components/ui/heading'
-import {HStack} from '#/src/components/ui/hstack'
-import {Button, ButtonText} from '#/src/components/ui/button'
-import {Box} from '#/src/components/ui/box'
-// TODO: UX(Complete this card for venues etc....)
-import {Product} from './Model'
 import {Image} from 'react-native'
 import {Dimensions, View} from 'react-native'
+
+import {Box} from '#/src/components/ui/box'
+import {Button, ButtonText} from '#/src/components/ui/button'
+import {Heading} from '#/src/components/ui/heading'
+import {HStack} from '#/src/components/ui/hstack'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
+// TODO: UX(Complete this card for venues etc....)
+import {Product} from './Model'
 
 const {width} = Dimensions.get('window')
 export const CARD_HEIGHT = (width * 1564) / 1600
@@ -20,7 +21,9 @@ const Card = ({product}: CardProps) => {
   switch (product.type) {
     case '_ad1':
       return (
-        <Box className={` w-${width} h-${CARD_HEIGHT} bg-transparent`}>
+        <Box
+          accessibilityIgnoresInvertColors
+          className={` w-${width} h-${CARD_HEIGHT} bg-transparent`}>
           <VStack
             style={{
               borderRadius: 16,
@@ -51,7 +54,9 @@ const Card = ({product}: CardProps) => {
       )
     case '_ad2':
       return (
-        <Box className={` w-${width} h-${CARD_HEIGHT} bg-transparent`}>
+        <Box
+          accessibilityIgnoresInvertColors
+          className={` w-${width} h-${CARD_HEIGHT} bg-transparent`}>
           <View
             style={{
               borderRadius: 16,
@@ -75,7 +80,9 @@ const Card = ({product}: CardProps) => {
       )
     case '_ad3':
       return (
-        <Box className={` w-${width} h-${CARD_HEIGHT} bg-transparent`}>
+        <Box
+          accessibilityIgnoresInvertColors
+          className={` w-${width} h-${CARD_HEIGHT} bg-transparent`}>
           <VStack
             style={{
               borderRadius: 16,
@@ -106,7 +113,9 @@ const Card = ({product}: CardProps) => {
       )
     case '_ad4':
       return (
-        <Box className={` w-${width} h-${CARD_HEIGHT} relative bg-transparent`}>
+        <Box
+          accessibilityIgnoresInvertColors
+          className={` w-${width} h-${CARD_HEIGHT} relative bg-transparent`}>
           <VStack
             style={{
               position: 'relative',
@@ -134,7 +143,9 @@ const Card = ({product}: CardProps) => {
       )
     case '_ad5':
       return (
-        <Box className={` w-${width} h-${CARD_HEIGHT} relative bg-transparent`}>
+        <Box
+          accessibilityIgnoresInvertColors
+          className={` w-${width} h-${CARD_HEIGHT} relative bg-transparent`}>
           <VStack
             style={{
               position: 'relative',

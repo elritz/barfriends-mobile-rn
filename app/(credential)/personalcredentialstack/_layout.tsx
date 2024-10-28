@@ -1,6 +1,7 @@
-import LogoTransparent from "#/assets/images/company/LogoTransparent";
-import ChevronBackArrow from "#/src/components/atoms/ChevronBackArrow";
-import { Stack } from "expo-router";
+import {Stack} from 'expo-router'
+
+import LogoTransparent from '#/assets/images/company/LogoTransparent'
+import ChevronBackArrow from '#/src/components/atoms/ChevronBackArrow'
 
 export default function _layout() {
   return (
@@ -9,74 +10,73 @@ export default function _layout() {
       screenOptions={{
         headerShown: true,
         headerBackground: () => <></>,
-      }}
-    >
+      }}>
       <Stack.Screen
-        name={"getstarted"}
+        name={'getstarted'}
         options={{
-          title: "",
+          title: '',
           headerTransparent: true,
           headerLeft: () => <ChevronBackArrow />,
         }}
       />
       <Stack.Screen
-        name={"phone"}
+        name={'phone'}
         options={{
           headerTitle: () => <LogoTransparent height={30} width={192} />,
           headerLeft: () => <ChevronBackArrow />,
         }}
       />
       <Stack.Screen
-        name={"email"}
+        name={'email'}
         options={{
           headerTitle: () => <LogoTransparent height={30} width={192} />,
           headerLeft: () => <ChevronBackArrow />,
         }}
       />
       <Stack.Screen
-        name={"confirmationcode"}
+        name={'confirmationcode'}
         options={{
           headerTitle: () => <LogoTransparent height={30} width={192} />,
           headerLeft: () => <ChevronBackArrow />,
         }}
       />
       <Stack.Screen
-        name={"birthday"}
+        name={'birthday'}
         options={{
           headerTitle: () => <LogoTransparent height={30} width={192} />,
           headerLeft: () => <ChevronBackArrow />,
         }}
       />
       <Stack.Screen
-        name={"name"}
+        name={'name'}
         options={{
           headerTitle: () => <LogoTransparent height={30} width={192} />,
           headerLeft: () => <ChevronBackArrow />,
         }}
       />
       <Stack.Screen
-        name={"password"}
+        name={'password'}
         options={{
           headerTitle: () => <LogoTransparent height={30} width={192} />,
           headerLeft: () => <ChevronBackArrow />,
         }}
       />
       <Stack.Screen
-        name={"username"}
+        name={'username'}
         options={{
           headerTitle: () => <LogoTransparent height={30} width={192} />,
           headerLeft: () => <ChevronBackArrow />,
         }}
       />
       <Stack.Screen
-        name={"create"}
+        name={'create'}
         options={{
-          animation: "fade",
+          animation: 'fade',
           // headerTitle: () => <LogoTransparent height={30} width={192} />,
-          headerTitle: "",
+          headerTitle: '',
           headerLeft: () => <ChevronBackArrow />,
         }}
       />
     </Stack>
-  );
+  )
 }

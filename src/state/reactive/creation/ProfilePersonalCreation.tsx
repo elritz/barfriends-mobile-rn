@@ -1,23 +1,24 @@
-import { makeVar } from "@apollo/client";
-import { CredentialPersoanlType } from "#/types/app";
+import {makeVar} from '@apollo/client'
+
+import {CredentialPersoanlType} from '#/types/app'
 
 export const CredentialPersonalProfileReactiveVar =
   makeVar<CredentialPersoanlType>({
-    PrivacyId: "",
-    ServiceId: "",
-    birthday: "",
-    email: "",
-    firstname: "",
-    lastname: "",
-    password: "",
-    username: "",
+    PrivacyId: '',
+    ServiceId: '',
+    birthday: '',
+    email: '',
+    firstname: '',
+    lastname: '',
+    password: '',
+    username: '',
     photo: {
-      uri: "",
+      uri: '',
     },
     phone: {
-      number: "",
-      completeNumber: "",
-      countryCallingCode: "",
-      countryCode: "",
+      number: '',
+      completeNumber: '',
+      countryCallingCode: '',
+      countryCode: '',
     },
-  });
+  })

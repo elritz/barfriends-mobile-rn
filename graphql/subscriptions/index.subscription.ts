@@ -1,7 +1,7 @@
-import { gql } from '@apollo/client'
+import {gql} from '@apollo/client'
 
 export const GRETTINGS_SUBSCRIPTION = gql`
-	subscription numberIncremented {
-		numberIncremented
-	}
+  subscription numberIncremented {
+    numberIncremented
+  }
 `

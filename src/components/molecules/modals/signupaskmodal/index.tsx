@@ -1,25 +1,26 @@
-import { Text } from "#/src/components/ui/text";
+import {useRouter} from 'expo-router'
+
+import {Button} from '#/src/components/ui/button'
 import {
   Modal,
-  ModalContent,
-  ModalCloseButton,
-  ModalHeader,
   ModalBody,
+  ModalCloseButton,
+  ModalContent,
   ModalFooter,
-} from "#/src/components/ui/modal";
-import { Button } from "#/src/components/ui/button";
-import { useRouter } from "expo-router";
+  ModalHeader,
+} from '#/src/components/ui/modal'
+import {Text} from '#/src/components/ui/text'
 
 type Props = {
-  isOpen: boolean;
-  onClose: () => void;
-};
+  isOpen: boolean
+  onClose: () => void
+}
 
-export default function SignupAskModal({ isOpen, onClose }: Props) {
-  const router = useRouter();
+export default function SignupAskModal({isOpen, onClose}: Props) {
+  const router = useRouter()
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <ModalContent className={"w-[95%]"}>
+      <ModalContent className={'w-[95%]'}>
         <ModalCloseButton />
         <ModalHeader>Account Sign up</ModalHeader>
         <ModalBody>
@@ -32,17 +33,16 @@ export default function SignupAskModal({ isOpen, onClose }: Props) {
           </Button>
           <Button
             onPress={() => {
-              onClose();
+              onClose()
               router.push({
-                pathname: "/(credential)/personalcredentialstack/getstarted",
-              });
+                pathname: '/(credential)/personalcredentialstack/getstarted',
+              })
             }}
-            className="bg-primary-500"
-          >
+            className="bg-primary-500">
             <Text>Continue</Text>
           </Button>
         </ModalFooter>
       </ModalContent>
     </Modal>
-  );
+  )
 }

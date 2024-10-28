@@ -1,147 +1,143 @@
-import { Input, InputField } from "#/src/components/ui/input";
-import { Box } from "#/src/components/ui/box";
-import { VStack } from "#/src/components/ui/vstack";
-import { Pressable } from "#/src/components/ui/pressable";
-import { Text } from "#/src/components/ui/text";
-import { Heading } from "#/src/components/ui/heading";
-import { useReactiveVar } from "@apollo/client";
-import { Feather } from "@expo/vector-icons";
-import { useSendAuthenticatorDeviceOwnerCodeMutation } from "#/graphql/generated";
-import { useIsFocused } from "@react-navigation/native";
-import {
-  CredentialPersonalProfileReactiveVar,
-  ThemeReactiveVar,
-} from "#/reactive";
-import useContentInsets from "#/src/util/hooks/useContentInsets";
-import { useRouter } from "expo-router";
-import { useEffect, useRef } from "react";
-import { Controller, useForm } from "react-hook-form";
+import {useEffect, useRef} from 'react'
 import {
   InputAccessoryView,
-  Platform,
-  View,
-  TextInput,
   InteractionManager,
   KeyboardAvoidingView,
-} from "react-native";
-import { useReanimatedKeyboardAnimation } from "react-native-keyboard-controller";
+  Platform,
+  TextInput,
+  View,
+} from 'react-native'
+import {useReanimatedKeyboardAnimation} from 'react-native-keyboard-controller'
 import Reanimated, {
   useAnimatedStyle,
   useDerivedValue,
-} from "react-native-reanimated";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+} from 'react-native-reanimated'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import {useRouter} from 'expo-router'
+import {useReactiveVar} from '@apollo/client'
+import {Feather} from '@expo/vector-icons'
+import {useIsFocused} from '@react-navigation/native'
+import {Controller, useForm} from 'react-hook-form'
+
+import {useSendAuthenticatorDeviceOwnerCodeMutation} from '#/graphql/generated'
+import {
+  CredentialPersonalProfileReactiveVar,
+  ThemeReactiveVar,
+} from '#/reactive'
+import {Box} from '#/src/components/ui/box'
+import {Heading} from '#/src/components/ui/heading'
+import {Input, InputField} from '#/src/components/ui/input'
+import {Pressable} from '#/src/components/ui/pressable'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
 
 export default () => {
-  const INPUT_ACCESSORY_VIEW_ID = "e-129818723433";
-  const router = useRouter();
-  const { bottom } = useSafeAreaInsets();
-  const contentInsets = useContentInsets();
-  const _emailRef = useRef<TextInput>();
-  const isFocused = useIsFocused();
-  const rTheme = useReactiveVar(ThemeReactiveVar);
+  const INPUT_ACCESSORY_VIEW_ID = 'e-129818723433'
+  const router = useRouter()
+  const {bottom} = useSafeAreaInsets()
+  const _emailRef = useRef<TextInput>()
+  const isFocused = useIsFocused()
+  const rTheme = useReactiveVar(ThemeReactiveVar)
   const credentialPersonalProfileVar = useReactiveVar(
     CredentialPersonalProfileReactiveVar,
-  );
-  const { height: platform } = useReanimatedKeyboardAnimation();
-  const INPUT_CONTAINER_HEIGHT = 90;
+  )
+  const {height: platform} = useReanimatedKeyboardAnimation()
+  const INPUT_CONTAINER_HEIGHT = 90
 
-  const height = useDerivedValue(() => platform.value, [isFocused]);
+  const height = useDerivedValue(() => platform.value, [isFocused])
 
   const textInputContainerStyle = useAnimatedStyle(
     () => ({
-      width: "100%",
-      position: "absolute",
+      width: '100%',
+      position: 'absolute',
       bottom: 0,
       paddingBottom: bottom,
       height: INPUT_CONTAINER_HEIGHT,
-      transform: [{ translateY: height.value }],
+      transform: [{translateY: height.value}],
     }),
     [],
-  );
+  )
 
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: {errors},
     setError,
   } = useForm({
-    mode: "onChange",
-    reValidateMode: "onChange",
+    mode: 'onChange',
+    reValidateMode: 'onChange',
     defaultValues: {
-      email: "",
+      email: '',
     },
     resolver: undefined,
     context: undefined,
-    criteriaMode: "firstError",
+    criteriaMode: 'firstError',
     shouldFocusError: true,
     shouldUnregister: true,
-  });
+  })
 
-  const [sendCode, { data, loading, error }] =
-    useSendAuthenticatorDeviceOwnerCodeMutation({
-      onCompleted: (data) => {
-        switch (data.sendAuthenticatorDeviceOwnerCode?.__typename) {
-          case "Error":
-            setError("email", {
-              type: "validate",
-              message: "Unable to send phone number",
-            });
-            break;
-          case "Code":
-            router.push({
-              pathname:
-                "/(credential)/personalcredentialstack/confirmationcode",
-              params: {
-                code: data.sendAuthenticatorDeviceOwnerCode.code,
-              },
-            });
-            break;
-        }
-      },
-    });
+  const [sendCode, {loading}] = useSendAuthenticatorDeviceOwnerCodeMutation({
+    onCompleted: data => {
+      switch (data.sendAuthenticatorDeviceOwnerCode?.__typename) {
+        case 'Error':
+          setError('email', {
+            type: 'validate',
+            message: 'Unable to send phone number',
+          })
+          break
+        case 'Code':
+          router.push({
+            pathname: '/(credential)/personalcredentialstack/confirmationcode',
+            params: {
+              code: data.sendAuthenticatorDeviceOwnerCode.code,
+            },
+          })
+          break
+      }
+    },
+  })
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (formData: any) => {
     CredentialPersonalProfileReactiveVar({
       ...credentialPersonalProfileVar,
       phone: {
-        completeNumber: "",
-        countryCallingCode: "",
-        countryCode: "",
-        number: "",
+        completeNumber: '',
+        countryCallingCode: '',
+        countryCode: '',
+        number: '',
       },
-      email: data.email,
-    });
+      email: formData.email,
+    })
     sendCode({
       variables: {
         where: {
           Authenticators: {
             EmailInput: {
-              email: data.email,
+              email: formData.email,
             },
           },
         },
       },
-    });
-  };
+    })
+  }
 
   useEffect(() => {
     if (isFocused && _emailRef.current) {
       InteractionManager.runAfterInteractions(() => {
-        _emailRef.current?.focus();
-      });
+        _emailRef.current?.focus()
+      })
     }
     if (!isFocused) {
       InteractionManager.runAfterInteractions(() => {
-        _emailRef.current?.blur();
-      });
+        _emailRef.current?.blur()
+      })
     }
-  }, [isFocused]);
+  }, [isFocused])
 
   const InnerContent = () => {
     return (
       <VStack
-        className={` ${isFocused ? "flex" : "hidden"} h-[90px] flex-row content-around items-center justify-end bg-white px-2 dark:bg-black`}
-      >
+        className={` ${isFocused ? 'flex' : 'hidden'} h-[90px] flex-row content-around items-center justify-end bg-white px-2 dark:bg-black`}>
         <VStack className="flex-column flex flex-1 justify-around px-2">
           <Text>
             By continuing you may receive an Email for verification. Confirm in
@@ -149,59 +145,58 @@ export default () => {
           </Text>
         </VStack>
         <Pressable
+          accessibilityRole="button"
           disabled={!!errors.email || loading}
-          onPress={handleSubmit(onSubmit)}
-        >
+          onPress={handleSubmit(onSubmit)}>
           <Box className="h-[50px] w-[50px] items-center justify-center rounded-full bg-primary-500">
             <Feather
               name="arrow-right"
               size={32}
-              color={errors.email ? "#292524" : "white"}
+              color={errors.email ? '#292524' : 'white'}
             />
           </Box>
         </Pressable>
       </VStack>
-    );
-  };
+    )
+  }
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={{
         flex: 1,
-        height: "auto",
-        flexDirection: "column",
-        marginHorizontal: "5%",
-      }}
-    >
-      <Reanimated.View style={{ flex: 1 }}>
+        height: 'auto',
+        flexDirection: 'column',
+        marginHorizontal: '5%',
+      }}>
+      <Reanimated.View style={{flex: 1}}>
         <VStack className="h-[110px]">
           <Heading className="mt-4 text-3xl font-black">
             Enter your email
           </Heading>
           <Pressable
+            accessibilityRole="button"
             onPress={() => {
-              router.back();
+              router.back()
             }}
-            className="h-auto w-[100px] pb-3"
-          >
+            className="h-auto w-[100px] pb-3">
             <Text className="text-md font-bold text-primary-500">
               Use phone
             </Text>
           </Pressable>
         </VStack>
-        <View style={{ width: "100%" }}>
+        <View style={{width: '100%'}}>
           <Controller
             name="email"
             control={control}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Input variant={"underlined"} size="lg">
+            render={({field: {onChange, onBlur, value}}) => (
+              <Input variant={'underlined'} size="lg">
                 <InputField
                   keyboardAppearance={
-                    rTheme.colorScheme === "light" ? "light" : "dark"
+                    rTheme.colorScheme === 'light' ? 'light' : 'dark'
                   }
                   placeholderTextColor={
-                    rTheme.colorScheme === "light"
+                    rTheme.colorScheme === 'light'
                       ? rTheme.theme?.gluestack.tokens.colors.light700
                       : rTheme.theme?.gluestack.tokens.colors.light100
                   }
@@ -209,10 +204,10 @@ export default () => {
                   type="text"
                   textContentType="emailAddress"
                   autoFocus
-                  key={"email"}
+                  key={'email'}
                   inputAccessoryViewID={INPUT_ACCESSORY_VIEW_ID}
                   placeholder="Email"
-                  returnKeyType={Platform.OS === "ios" ? "done" : "none"}
+                  returnKeyType={Platform.OS === 'ios' ? 'done' : 'none'}
                   numberOfLines={1}
                   blurOnSubmit={false}
                   enablesReturnKeyAutomatically={false}
@@ -233,7 +228,7 @@ export default () => {
             rules={{
               required: {
                 value: true,
-                message: "Your email is required to continue.",
+                message: 'Your email is required to continue.',
               },
               pattern:
                 /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
@@ -241,7 +236,7 @@ export default () => {
           />
         </View>
       </Reanimated.View>
-      {Platform.OS === "ios" ? (
+      {Platform.OS === 'ios' ? (
         <InputAccessoryView nativeID={INPUT_ACCESSORY_VIEW_ID}>
           <InnerContent />
         </InputAccessoryView>
@@ -252,11 +247,10 @@ export default () => {
               height: INPUT_CONTAINER_HEIGHT,
             },
             textInputContainerStyle,
-          ]}
-        >
+          ]}>
           <InnerContent />
         </Reanimated.View>
       )}
     </KeyboardAvoidingView>
-  );
-};
+  )
+}

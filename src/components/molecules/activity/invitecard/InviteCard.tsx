@@ -1,31 +1,28 @@
-import {Text} from '#/src/components/ui/text'
-import {Box} from '#/src/components/ui/box'
-import {VStack} from '#/src/components/ui/vstack'
-import {Heading} from '#/src/components/ui/heading'
-import {Button, ButtonText} from '#/src/components/ui/button'
+import {useRouter} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
 import {Ionicons} from '@expo/vector-icons'
-import {PermissionContactsReactiveVar, ThemeReactiveVar} from '#/reactive'
-import {useRouter} from 'expo-router'
+
 import {useRefreshDeviceManagerQuery} from '#/graphql/generated'
-import {Color} from '#/src/util/helpers/color'
 import useEmojimoodTextColor from '#/hooks/useEmojiMoodTextContrast'
+import {PermissionsReactiveVar, ThemeReactiveVar} from '#/reactive'
+import {Box} from '#/src/components/ui/box'
+import {Button, ButtonText} from '#/src/components/ui/button'
+import {Heading} from '#/src/components/ui/heading'
+import {Text} from '#/src/components/ui/text'
+import {VStack} from '#/src/components/ui/vstack'
+import {ActivityCardProps} from '..'
 
 const InviteCard: React.FC<ActivityCardProps> = ({
   isEmojimoodDynamic = false,
 }) => {
   const router = useRouter()
-  const rPermissionContactsVar = useReactiveVar(PermissionContactsReactiveVar)
+  const rPerm = useReactiveVar(PermissionsReactiveVar)
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const textColor = useEmojimoodTextColor({
     isEmojimoodDynamic: isEmojimoodDynamic,
   })
 
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-  } = useRefreshDeviceManagerQuery()
+  const {data: rdmData} = useRefreshDeviceManagerQuery()
 
   if (
     rdmData?.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile'
@@ -61,7 +58,7 @@ const InviteCard: React.FC<ActivityCardProps> = ({
         <Button
           size={'lg'}
           onPress={() => {
-            rPermissionContactsVar?.granted
+            rPerm?.contacts.granted
               ? router.push({
                   pathname: '/public/contacts',
                 })

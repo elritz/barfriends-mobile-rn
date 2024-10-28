@@ -1,10 +1,10 @@
 import {format} from 'date-fns/format'
 import {nanoid} from 'nanoid/non-secure'
 
-import {Sentry} from '#/src/logger/sentry'
 import * as env from '#/src/env'
 import {DebugContext} from '#/src/logger/debugContext'
 import {add} from '#/src/logger/logDump'
+import {Sentry} from '#/src/logger/sentry'
 
 export enum LogLevel {
   Debug = 'debug',
@@ -238,7 +238,7 @@ export class Logger {
     debug?: string
   } = {}) {
     this.enabled = enabled !== false
-    this.level = debug ? LogLevel.Debug : level ?? LogLevel.Info // default to info
+    this.level = debug ? LogLevel.Debug : (level ?? LogLevel.Info) // default to info
     this.debugContextRegexes = (debug || '').split(',').map(context => {
       return new RegExp(context.replace(/[^\w:*]/, '').replace(/\*/g, '.*'))
     })

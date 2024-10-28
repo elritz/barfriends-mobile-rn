@@ -1,24 +1,6 @@
-import {Text} from '#/src/components/ui/text'
-import {Pressable} from '#/src/components/ui/pressable'
-import {Heading} from '#/src/components/ui/heading'
-import {Center} from '#/src/components/ui/center'
-import {Button, ButtonText} from '#/src/components/ui/button'
-import {Box} from '#/src/components/ui/box'
-// TODO: Add a way to remove photos from tonights story
-import {useReactiveVar} from '@apollo/client'
-import {MaterialIcons} from '@expo/vector-icons'
-import {
-  PhotoCreateManyProfileInput,
-  useAddStoryPhotosMutation,
-  useRefreshDeviceManagerQuery,
-} from '#/graphql/generated'
-import {AuthorizationReactiveVar, ThemeReactiveVar} from '#/reactive'
-import useCloudinaryImageUploading from '#/src/util/uploading/useCloudinaryImageUploading'
-import {BlurView} from 'expo-blur'
-import * as ImagePicker from 'expo-image-picker'
 import {useCallback, useState} from 'react'
 import {Image} from 'react-native'
-import {ScrollView, StyleSheet, View, useWindowDimensions} from 'react-native'
+import {ScrollView, StyleSheet, useWindowDimensions, View} from 'react-native'
 import Animated, {
   interpolate,
   interpolateColor,
@@ -28,14 +10,34 @@ import Animated, {
   useDerivedValue,
   useSharedValue,
 } from 'react-native-reanimated'
+import {BlurView} from 'expo-blur'
+import * as ImagePicker from 'expo-image-picker'
+// TODO: Add a way to remove photos from tonights story
+import {useReactiveVar} from '@apollo/client'
+import {MaterialIcons} from '@expo/vector-icons'
+
+import {
+  PhotoCreateManyProfileInput,
+  useAddStoryPhotosMutation,
+  useRefreshDeviceManagerQuery,
+} from '#/graphql/generated'
 import useEmojimoodTextColor from '#/hooks/useEmojiMoodTextContrast'
-import {useFormContext} from 'react-hook-form'
-import {FormType} from '#/app/(app)/modal/_layout'
+import {AuthorizationReactiveVar, ThemeReactiveVar} from '#/reactive'
+import {ActivityCardProps} from '#/src/components/molecules/activity'
+import {Box} from '#/src/components/ui/box'
+import {Button, ButtonText} from '#/src/components/ui/button'
+import {Center} from '#/src/components/ui/center'
+import {Heading} from '#/src/components/ui/heading'
+import {Pressable} from '#/src/components/ui/pressable'
+import {Text} from '#/src/components/ui/text'
+import useCloudinaryImageUploading from '#/src/util/uploading/useCloudinaryImageUploading'
 
 const size = 70
 
-const Photos: React.FC<ActivityCardProps> = ({isEmojimoodDynamic = false}) => {
-  const [isLoading, setLoading] = useState(false)
+const Photos: React.FC<
+  ActivityCardProps & {onRemovePhoto?: (index: number) => void}
+> = ({isEmojimoodDynamic = false, onRemovePhoto}) => {
+  const [_, setLoading] = useState(false)
   const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const {width} = useWindowDimensions()
@@ -54,14 +56,9 @@ const Photos: React.FC<ActivityCardProps> = ({isEmojimoodDynamic = false}) => {
     return Math.round(translateX.value / ITEM_WIDTH)
   })
 
-  const [addPhotosMutation, {data, loading, error}] =
-    useAddStoryPhotosMutation()
+  const [addPhotosMutation, {loading}] = useAddStoryPhotosMutation()
 
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-  } = useRefreshDeviceManagerQuery()
+  const {data: rdmData} = useRefreshDeviceManagerQuery()
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -85,13 +82,9 @@ const Photos: React.FC<ActivityCardProps> = ({isEmojimoodDynamic = false}) => {
         }),
       )
 
-      const images: PhotoCreateManyProfileInput[] = resultSettled.map(
-        (item, index) => {
-          if (item.status === 'fulfilled' && item.value) {
-            return {url: item.value}
-          }
-        },
-      )
+      const images: PhotoCreateManyProfileInput[] = resultSettled
+        .filter(item => item.status === 'fulfilled' && item.value)
+        .map(item => ({url: (item as PromiseFulfilledResult<string>).value}))
 
       addPhotosMutation({
         variables: {
@@ -112,30 +105,33 @@ const Photos: React.FC<ActivityCardProps> = ({isEmojimoodDynamic = false}) => {
     },
   })
 
-  const onPressScroll = useCallback(side => {
-    if (side === 'left') {
-      if (activeIndex.value === 0) return
-      scrollRef.current?.scrollTo({
-        x: ITEM_WIDTH * (activeIndex.value - 1),
-        animated: false,
-      })
-    }
-    if (side == 'right') {
-      if (rAuthorizationVar?.Profile?.tonightStory?.photos) {
-        if (
-          activeIndex.value ===
-          rAuthorizationVar?.Profile?.tonightStory?.photos?.length - 1
-        ) {
-          scrollRef.current?.scrollTo({x: ITEM_WIDTH * 0, animated: false})
-          return
-        }
+  const onPressScroll = useCallback(
+    (side: string) => {
+      if (side === 'left') {
+        if (activeIndex.value === 0) return
         scrollRef.current?.scrollTo({
-          x: ITEM_WIDTH * (activeIndex.value + 1),
+          x: ITEM_WIDTH * (activeIndex.value - 1),
           animated: false,
         })
       }
-    }
-  }, [])
+      if (side === 'right') {
+        if (rAuthorizationVar?.Profile?.tonightStory?.photos) {
+          if (
+            activeIndex.value ===
+            rAuthorizationVar?.Profile?.tonightStory?.photos?.length - 1
+          ) {
+            scrollRef.current?.scrollTo({x: ITEM_WIDTH * 0, animated: false})
+            return
+          }
+          scrollRef.current?.scrollTo({
+            x: ITEM_WIDTH * (activeIndex.value + 1),
+            animated: false,
+          })
+        }
+      }
+    },
+    [ITEM_WIDTH, activeIndex.value],
+  )
 
   const styles = StyleSheet.create({
     dotLg: {
@@ -191,6 +187,7 @@ const Photos: React.FC<ActivityCardProps> = ({isEmojimoodDynamic = false}) => {
               if (item?.__typename === 'upload') {
                 return (
                   <Box
+                    key={index}
                     className={` h-${containerHeight} w-${ITEM_WIDTH} rounded-md bg-transparent`}>
                     <Center className="mx-5 flex-1">
                       <Box className="mb-25 w-[100%] items-center bg-transparent">
@@ -255,12 +252,14 @@ const Photos: React.FC<ActivityCardProps> = ({isEmojimoodDynamic = false}) => {
                   <Box
                     className={` w-${ITEM_WIDTH} h-[100%] overflow-hidden rounded-md bg-transparent`}>
                     <Pressable
+                      accessibilityRole="button"
                       onPress={() => {
                         onPressScroll('left')
                       }}
                       className={` w-${ITEM_WIDTH / 2} absolute bottom-0 left-0 top-0 z-10 h-[100%] opacity-20`}
                     />
                     <Pressable
+                      accessibilityRole="button"
                       onPress={() => {
                         onPressScroll('right')
                       }}
@@ -270,12 +269,14 @@ const Photos: React.FC<ActivityCardProps> = ({isEmojimoodDynamic = false}) => {
                       hitSlop={10}
                       size="xs"
                       onPress={() => {
-                        console.log('Remove Image', index)
+                        if (onRemovePhoto) {
+                          onRemovePhoto(index)
+                        }
                       }}
-                      className="absolute right-[10px] top-10 z-20 bg-red-400">
-                      <ButtonText>Remove</ButtonText>
-                    </Button>
+                      className="absolute right-[10px] top-10 z-20 bg-red-400"
+                    />
                     <Image
+                      accessibilityIgnoresInvertColors
                       source={{
                         uri: String(item.url),
                       }}
@@ -303,7 +304,7 @@ const Photos: React.FC<ActivityCardProps> = ({isEmojimoodDynamic = false}) => {
             {[
               rAuthorizationVar?.Profile?.tonightStory?.photos,
               {__typename: 'upload'},
-            ].map((item, i) => {
+            ].map((__, i) => {
               const rDotStyle = useAnimatedStyle(() => {
                 const inputRange = [(i - 1) * width, i * width, (i + 1) * width]
                 const dotWidth = interpolate(

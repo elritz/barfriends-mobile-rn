@@ -1,27 +1,29 @@
-import {VStack} from '#/src/components/ui/vstack'
-import {Pressable} from '#/src/components/ui/pressable'
-import {Heading} from '#/src/components/ui/heading'
-import {HStack} from '#/src/components/ui/hstack'
-import {Button, ButtonText} from '#/src/components/ui/button'
+import {useEffect} from 'react'
+import {StyleSheet} from 'react-native'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import {BlurView} from 'expo-blur'
+import * as Haptics from 'expo-haptics'
+import {Tabs, useRouter, useSegments} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
-import SearchInputVenueFeedDisabled from '#/src/components/molecules/searchinput/SearchInputVenueFeedDisabled'
+import {MaterialIcons} from '@expo/vector-icons'
+
+import {TermsServiceReactiveVar, ThemeReactiveVar} from '#/reactive'
 import DevelopmentTab from '#/src/components/molecules/hometabicons/developmenttab'
 import MessageTab from '#/src/components/molecules/hometabicons/messagestab'
 import ProfileTab from '#/src/components/molecules/hometabicons/profiletab'
 import TonightTab from '#/src/components/molecules/hometabicons/tonighttab'
 import VenueFeedTab from '#/src/components/molecules/hometabicons/venuefeedtab'
+import SearchInputVenueFeedDisabled from '#/src/components/molecules/searchinput/SearchInputVenueFeedDisabled'
+import {Button, ButtonText} from '#/src/components/ui/button'
+import {Heading} from '#/src/components/ui/heading'
+import {HStack} from '#/src/components/ui/hstack'
+import {Pressable} from '#/src/components/ui/pressable'
+import {VStack} from '#/src/components/ui/vstack'
 import {
   HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
   HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
 } from '#/src/constants/ReactNavigationConstants'
 import {ITabColor} from '#/types/app'
-import {MaterialIcons} from '@expo/vector-icons'
-import {TermsServiceReactiveVar, ThemeReactiveVar} from '#/reactive'
-import {BlurView} from 'expo-blur'
-import {Tabs, useRouter, useSegments} from 'expo-router'
-import {useEffect} from 'react'
-import {StyleSheet} from 'react-native'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
 
 export default function HomeTab() {
   const showDev = true
@@ -30,7 +32,12 @@ export default function HomeTab() {
   const router = useRouter()
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const rTermsServiceVar = useReactiveVar(TermsServiceReactiveVar)
-
+  const onLongPressProfileIcon = async () => {
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium)
+    router.push({
+      pathname: '/(app)/modal/devicemanager/deviceprofilemanager',
+    })
+  }
   useEffect(() => {
     if (rTermsServiceVar.update) {
       router.push({
@@ -72,11 +79,12 @@ export default function HomeTab() {
             <BlurView
               style={{
                 paddingTop: insets.top,
-                backgroundColor: segments.includes('tonight')
-                  ? 'transparent'
-                  : rTheme.colorScheme === 'light'
-                    ? rTheme.theme?.gluestack.tokens.colors.light100
-                    : rTheme.theme?.gluestack.tokens.colors.light900,
+                backgroundColor:
+                  segments.includes('tonight') || segments.includes('emojimood')
+                    ? 'transparent'
+                    : rTheme.colorScheme === 'light'
+                      ? rTheme.theme?.gluestack.tokens.colors.light100
+                      : rTheme.theme?.gluestack.tokens.colors.light900,
               }}
               intensity={70}
               tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}>
@@ -138,6 +146,7 @@ export default function HomeTab() {
                   </Button>
                   <Heading>Messages</Heading>
                   <Pressable
+                    accessibilityRole="button"
                     hitSlop={25}
                     onPress={() => {
                       router.push({
@@ -167,7 +176,16 @@ export default function HomeTab() {
           tabBarLabel: 'profile',
           tabBarShowLabel: false,
           tabBarIcon: ({color, focused}: ITabColor) => (
-            <ProfileTab color={color} focused={focused} />
+            <Pressable
+              accessibilityRole="button"
+              onPress={() =>
+                router.push({
+                  pathname: '/(app)/hometab/profilestack',
+                })
+              }
+              onLongPress={onLongPressProfileIcon}>
+              <ProfileTab color={color} focused={focused} />
+            </Pressable>
           ),
         }}
       />

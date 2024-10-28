@@ -207,3 +207,5 @@ yarn-error.*
 .expo/types/router.d.ts
 .expo/devices.json
 .expo/types/router.d.ts
+.expo/types/router.d.ts
+.expo/types/router.d.ts

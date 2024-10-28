@@ -1,14 +1,13 @@
-import React from "react";
-import { StyleSheet, Text, TextInput as TextInputRN } from "react-native";
-
-import type { TextInputProps } from "react-native";
+import React from 'react'
+import type {TextInputProps} from 'react-native'
+import {StyleSheet, Text, TextInput as TextInputRN} from 'react-native'
 
 type CustomTextInputProps = {
-  title?: string;
-} & TextInputProps;
+  title?: string
+} & TextInputProps
 
 const TextInput = (props: CustomTextInputProps) => {
-  const { title, ...rest } = props;
+  const {title, ...rest} = props
 
   return (
     <>
@@ -21,35 +20,35 @@ const TextInput = (props: CustomTextInputProps) => {
         testID={rest.placeholder}
         {...rest}
         placeholder={`${rest.placeholder} (${
-          rest.keyboardType === "default" ? "text" : "numeric"
+          rest.keyboardType === 'default' ? 'text' : 'numeric'
         })`}
       />
     </>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   title: {
     marginBottom: 6,
     marginLeft: 3,
-    color: "black",
+    color: 'black',
     fontSize: 16,
   },
   container: {
-    width: "100%",
+    width: '100%',
     minHeight: 50,
     maxHeight: 200,
     marginBottom: 50,
-    borderColor: "black",
+    borderColor: 'black',
     borderWidth: 2,
     marginRight: 160,
     borderRadius: 10,
-    color: "black",
+    color: 'black',
     paddingHorizontal: 12,
   },
   disabled: {
     opacity: 0.5,
   },
-});
+})
 
-export default TextInput;
+export default TextInput

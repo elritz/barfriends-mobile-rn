@@ -2,14 +2,14 @@ import React from 'react'
 import {Linking} from 'react-native'
 import * as WebBrowser from 'expo-web-browser'
 
-import {isNative} from '#/platform/detection'
-import * as persisted from '#/state/persisted'
 import {usePalette} from 'lib/hooks/usePalette'
 import {
   createBskyAppAbsoluteUrl,
   isBskyRSSUrl,
   isRelativeUrl,
 } from 'lib/strings/url-helpers'
+import {isNative} from '#/platform/detection'
+import * as persisted from '#/state/persisted'
 import {useModalControls} from '../modals'
 
 type StateContext = persisted.Schema['useInAppBrowser']

@@ -1,29 +1,30 @@
-import {VStack} from '#/src/components/ui/vstack'
-import {Heading} from '#/src/components/ui/heading'
-import {Divider} from '#/src/components/ui/divider'
-import {Button, ButtonText} from '#/src/components/ui/button'
-import {Box} from '#/src/components/ui/box'
-// TODO: FN(Open camera app) ln:66
-import {useReactiveVar} from '@apollo/client'
-import PermissionDetailItem from '#/src/view/screens/permissions/PermissionDetailItem'
-import {AntDesign, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
-import {PermissionCameraReactiveVar, ThemeReactiveVar} from '#/reactive'
-import {capitalizeFirstLetter} from '#/src/util/helpers/capitalizeFirstLetter'
-import useTimer2 from '#/src/util/hooks/useTimer2'
+import {useEffect, useRef} from 'react'
+import {Alert, AppState, Platform, ScrollView, View} from 'react-native'
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {Camera, requestCameraPermissionsAsync} from 'expo-camera/legacy'
 import * as Device from 'expo-device'
 import * as IntentLauncher from 'expo-intent-launcher'
 import * as Linking from 'expo-linking'
 import {useRouter} from 'expo-router'
-import {useEffect, useRef} from 'react'
-import {Alert, AppState, Platform, ScrollView, View} from 'react-native'
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
+// TODO: FN(Open camera app) ln:66
+import {useReactiveVar} from '@apollo/client'
+import {AntDesign, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
+
+import {PermissionsReactiveVar, ThemeReactiveVar} from '#/reactive'
+import {Box} from '#/src/components/ui/box'
+import {Button, ButtonText} from '#/src/components/ui/button'
+import {Divider} from '#/src/components/ui/divider'
+import {Heading} from '#/src/components/ui/heading'
+import {VStack} from '#/src/components/ui/vstack'
+import {capitalizeFirstLetter} from '#/src/util/helpers/capitalizeFirstLetter'
+import useTimer2 from '#/src/util/hooks/useTimer2'
+import PermissionDetailItem from '#/src/view/screens/permissions/PermissionDetailItem'
 
 export default () => {
   const router = useRouter()
   const appStateRef = useRef(AppState.currentState)
-  const rPermissionCamera = useReactiveVar(PermissionCameraReactiveVar)
+  const rPerm = useReactiveVar(PermissionsReactiveVar)
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const insets = useSafeAreaInsets()
   const {finished, start, seconds, started} = useTimer2('0:2')
@@ -101,7 +102,7 @@ export default () => {
     Alert.alert(
       'Barfriends Camera Permissions',
       `Camera permissions are currently ${capitalizeFirstLetter(
-        capitalizeFirstLetter(rPermissionCamera?.status),
+        capitalizeFirstLetter(rPerm?.camera.status),
       )}. If you wish to adjust go to your device settings.`,
       [
         {
@@ -117,7 +118,10 @@ export default () => {
     if (Device.isDevice) {
       const status = await requestCameraPermissionsAsync()
 
-      PermissionCameraReactiveVar(status)
+      PermissionsReactiveVar({
+        ...rPerm,
+        camera: status,
+      })
 
       createTwoButtonAlert()
     }
@@ -138,7 +142,10 @@ export default () => {
       nextAppState === 'active'
     ) {
       const status = await Camera.getCameraPermissionsAsync()
-      PermissionCameraReactiveVar(status)
+      PermissionsReactiveVar({
+        ...rPerm,
+        camera: status,
+      })
       if (status.granted && status.status === 'granted') {
         setTimeout(() => {
           router.back()
@@ -195,16 +202,16 @@ export default () => {
         <Button
           size={'lg'}
           onPress={() =>
-            !rPermissionCamera?.granted
-              ? rPermissionCamera?.canAskAgain && !rPermissionCamera.granted
+            !rPerm?.camera.granted
+              ? rPerm?.camera.canAskAgain && !rPerm?.camera.granted
                 ? handleRequestPermission()
                 : handleOpenPhoneSettings()
               : createTwoButtonAlert()
           }
           className="w-[95%]">
           <ButtonText>
-            {!rPermissionCamera?.granted
-              ? rPermissionCamera?.canAskAgain && !rPermissionCamera.granted
+            {!rPerm?.camera.granted
+              ? rPerm?.camera.canAskAgain && !rPerm.camera.granted
                 ? 'Continue'
                 : 'Go to Phone Settings'
               : 'Granted'}
