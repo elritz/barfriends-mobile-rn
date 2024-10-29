@@ -59,32 +59,37 @@ const Account: React.FC = () => {
   const [refreshDeviceManagerQuery, {data, loading}] =
     useRefreshDeviceManagerLazyQuery({
       fetchPolicy: 'network-only',
-      onCompleted: data => {
+      onCompleted: responseData => {
         if (
-          data?.refreshDeviceManager?.__typename ===
+          responseData?.refreshDeviceManager?.__typename ===
           'AuthorizationDeviceProfile'
         ) {
           const sections: Section[] = []
 
-          if (data.refreshDeviceManager?.Profile) {
-            const profileDatail = mapData(data.refreshDeviceManager.Profile)
+          if (responseData.refreshDeviceManager?.Profile) {
+            const profileDatail = mapData(
+              responseData.refreshDeviceManager.Profile,
+            )
             sections.push(profileDatail)
           }
-          if (data.refreshDeviceManager.Profile?.DetailInformation) {
+          if (responseData.refreshDeviceManager.Profile?.DetailInformation) {
             const detailDatail = mapData(
-              data.refreshDeviceManager.Profile?.DetailInformation,
+              responseData.refreshDeviceManager.Profile?.DetailInformation,
             )
             sections.push(detailDatail)
           }
-          if (data.refreshDeviceManager.Profile?.IdentifiableInformation) {
+          if (
+            responseData.refreshDeviceManager.Profile?.IdentifiableInformation
+          ) {
             const identifiableData = mapData(
-              data.refreshDeviceManager.Profile?.IdentifiableInformation,
+              responseData.refreshDeviceManager.Profile
+                ?.IdentifiableInformation,
             )
             sections.push(identifiableData)
           }
-          if (data.refreshDeviceManager.Profile?.Personal) {
+          if (responseData.refreshDeviceManager.Profile?.Personal) {
             const personalData = mapData(
-              data.refreshDeviceManager.Profile?.Personal,
+              responseData.refreshDeviceManager.Profile?.Personal,
             )
             sections.push(personalData)
           }
@@ -130,7 +135,7 @@ const Account: React.FC = () => {
             </Box>
           )
         }}
-        renderItem={({item, index, section}) => {
+        renderItem={({item, section}) => {
           if (!item.value) {
             return null
           }

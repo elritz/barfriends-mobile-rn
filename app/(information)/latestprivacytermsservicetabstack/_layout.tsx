@@ -23,7 +23,7 @@ export default function _layout() {
           <BlurView
             tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
             intensity={70}
-            style={[StyleSheet.absoluteFill]}
+            style={StyleSheet.absoluteFill}
           />
         ),
         tabBarStyle: {

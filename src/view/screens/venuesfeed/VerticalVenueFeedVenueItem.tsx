@@ -37,7 +37,7 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = ({
     setLoadingDistance(true)
     if (distanceInM) {
       if (distanceInM > 1000) {
-        const val = parseInt((distanceInM / 1000).toFixed(1))
+        const val = parseInt((distanceInM / 1000).toFixed(1), 10)
         setDistance(val)
         setMetric('km')
         setCanJoin(false)
@@ -115,8 +115,7 @@ const VerticalVenueFeedVenueItem: React.FC<Props> = ({
         <Box
           style={{
             minHeight: 260,
-          }}
-          className="bg-transparent">
+          }}>
           <Image
             accessibilityIgnoresInvertColors
             source={{uri: venueProfile?.photos?.[0]?.url}}

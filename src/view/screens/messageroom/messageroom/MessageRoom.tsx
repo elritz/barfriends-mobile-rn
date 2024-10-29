@@ -96,7 +96,7 @@ export default function MessageRoom() {
     // 		// positionBottom.value = withTiming(_keyboard.keyboardHeight)
     // 		positionBottom.value = withTiming(_keyboard.keyboardHeight)
     // 	})
-    const showSubscription = Keyboard.addListener('keyboardDidShow', e => {
+    const showSubscription = Keyboard.addListener('keyboardDidShow', () => {
       positionBottom.value = withTiming(-_keyboard.keyboardHeight)
     })
     // const willHideSubscription = Keyboard.addListener('keyboardWillHide', e => {
@@ -113,7 +113,7 @@ export default function MessageRoom() {
       // willHideSubscription.remove()
       // hideSubscription.remove()
     }
-  }, [flatListRef])
+  }, [flatListRef, _keyboard.keyboardHeight, positionBottom])
 
   return (
     <Box className="flex-1 bg-[orange.500]">
@@ -130,7 +130,7 @@ export default function MessageRoom() {
         keyboardShouldPersistTaps={'always'}
         scrollEventThrottle={16}
         onScroll={scrollHandler}
-        renderItem={({item, index}) => {
+        renderItem={({index}) => {
           return (
             <Text className="bg-red-500 text-4xl">MessagesRoom{index}</Text>
           )

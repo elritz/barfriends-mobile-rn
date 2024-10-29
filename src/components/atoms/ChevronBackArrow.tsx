@@ -5,7 +5,6 @@ import {Ionicons} from '@expo/vector-icons'
 
 import {ThemeReactiveVar} from '#/reactive'
 import {Pressable} from '#/src/components/ui/pressable'
-import GoBack from '../GoBack'
 
 const ChevronBackArrow = () => {
   const rTheme = useReactiveVar(ThemeReactiveVar)

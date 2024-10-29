@@ -1,4 +1,3 @@
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {useGlobalSearchParams, useRouter} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
 import {Ionicons} from '@expo/vector-icons'
@@ -13,7 +12,6 @@ type Props = {
 }
 
 const SearchInputResults = (props: Props) => {
-  const insets = useSafeAreaInsets()
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const router = useRouter()
   const params = useGlobalSearchParams()

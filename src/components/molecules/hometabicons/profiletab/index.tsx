@@ -1,4 +1,3 @@
-import {useState} from 'react'
 import React from 'react'
 import {Image} from 'react-native'
 import * as Haptics from 'expo-haptics'
@@ -98,6 +97,7 @@ const ProfileTab = (props: TabProps) => {
           <>
             {rAuthorizationVar?.Profile?.photos?.length ? (
               <Image
+                accessibilityIgnoresInvertColors
                 source={{uri: rAuthorizationVar.Profile.photos[0].url}}
                 style={{
                   width: HEIGHT,

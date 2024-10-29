@@ -19,7 +19,7 @@ import {
   usePublicProfileQuery,
   useRefreshDeviceManagerQuery,
 } from '#/graphql/generated'
-import {AuthorizationReactiveVar, ThemeReactiveVar} from '#/reactive'
+import {ThemeReactiveVar} from '#/reactive'
 import {Badge, BadgeText} from '#/src/components/ui/badge'
 import {Box} from '#/src/components/ui/box'
 import {Button, ButtonText} from '#/src/components/ui/button'
@@ -95,7 +95,6 @@ export default () => {
   const {
     data,
     loading,
-    error,
     updateQuery: pPUpdateQuery,
   } = usePublicProfileQuery({
     skip: !params.username,
@@ -112,60 +111,56 @@ export default () => {
 
   const {updateQuery: GNUpdateQuery} = useGetNotificationsQuery()
 
-  const [
-    createFriendRequestMutation,
-    {data: cFRData, loading: cFRLoading, error: cFRError},
-  ] = useCreateFriendRequestMutation({
-    variables: {
-      receiversProfileId: String(data?.publicProfile?.id),
-    },
-    onCompleted: data => {
-      if (data.createFriendRequest) {
-        pPUpdateQuery(prevData => {
-          return {
-            ...prevData,
-            publicProfile: {
-              ...prevData?.publicProfile,
-              relationship: data.createFriendRequest,
-            },
-          }
-        })
-        GNUpdateQuery(prevData => {
-          return {
-            ...prevData,
-            getNotifications: {
-              ...prevData?.getNotifications,
-              friendRequestNotifications: [
-                ...prevData?.getNotifications?.friendRequestNotifications,
-                data.createFriendRequest,
-              ],
-            },
-          }
-        })
-      }
-    },
-  })
+  const [createFriendRequestMutation, {loading: cFRLoading}] =
+    useCreateFriendRequestMutation({
+      variables: {
+        receiversProfileId: String(data?.publicProfile?.id),
+      },
+      onCompleted: data => {
+        if (data.createFriendRequest) {
+          pPUpdateQuery(prevData => {
+            return {
+              ...prevData,
+              publicProfile: {
+                ...prevData?.publicProfile,
+                relationship: data.createFriendRequest,
+              },
+            }
+          })
+          GNUpdateQuery(prevData => {
+            return {
+              ...prevData,
+              getNotifications: {
+                ...prevData?.getNotifications,
+                friendRequestNotifications: [
+                  ...prevData?.getNotifications?.friendRequestNotifications,
+                  data.createFriendRequest,
+                ],
+              },
+            }
+          })
+        }
+      },
+    })
 
-  const [
-    deleteFriendRequestMutation,
-    {data: dFRData, loading: dFRLoading, error: dFRError},
-  ] = useDeleteFriendRequestMutation({
-    onCompleted: data => {
-      if (data.deleteFriendRequest) {
-        console.log('Friend request sent ==>')
-        pPUpdateQuery(prevData => {
-          return {
-            ...prevData,
-            publicProfile: {
-              ...prevData?.publicProfile,
-              relationship: null,
-            },
-          }
-        })
-      } else {
-      }
-    },
-  })
+  const [deleteFriendRequestMutation, {loading: dFRLoading}] =
+    useDeleteFriendRequestMutation({
+      onCompleted: data => {
+        if (data.deleteFriendRequest) {
+          console.log('Friend request sent ==>')
+          pPUpdateQuery(prevData => {
+            return {
+              ...prevData,
+              publicProfile: {
+                ...prevData?.publicProfile,
+                relationship: null,
+              },
+            }
+          })
+        } else {
+        }
+      },
+    })
 
   const [acceptFriendRequestMutation] = useAcceptFriendRequestMutation({
     onCompleted: data => {
@@ -183,7 +178,7 @@ export default () => {
   })
 
   const [declineFriendRequestMutation] = useDeclineFriendRequestMutation({
-    onCompleted: data => {
+    onCompleted: () => {
       pPUpdateQuery(prevData => {
         return {
           ...prevData,

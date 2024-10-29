@@ -41,7 +41,7 @@ export default () => {
     shouldUnregister: true,
   })
 
-  const [updateOneProfileMutation, {data, loading: UOPLoading}] =
+  const [updateOneProfileMutation, {loading: UOPLoading}] =
     useUpdateOneProfileMutation({
       onCompleted: data => {
         if (data.updateOneProfile) {
@@ -63,24 +63,7 @@ export default () => {
       },
     })
 
-  const resetInput = (value: string) => {
-    switch (value) {
-      case 'description':
-        reset({
-          description: String(
-            rAuthorizationVar?.Profile?.DetailInformation?.description,
-          ),
-        })
-      default:
-        reset({
-          description: String(
-            rAuthorizationVar?.Profile?.DetailInformation?.description,
-          ),
-        })
-    }
-  }
-
-  const onSubmit = data => {
+  const onSubmit = (data: {description: any}) => {
     if (dirtyFields.description) {
       updateOneProfileMutation({
         variables: {

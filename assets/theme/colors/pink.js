@@ -1,7 +1,7 @@
 Object.defineProperty(exports, '__esModule', {
   value: true,
 })
-exports.default = void 0
+
 const pink = {
   50: '#fce4ec',
   100: '#f8bbd0',

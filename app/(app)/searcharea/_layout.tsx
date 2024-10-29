@@ -1,5 +1,4 @@
-import {memo, useEffect, useMemo} from 'react'
-import {Platform, StyleSheet} from 'react-native'
+import {useEffect} from 'react'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {BlurView} from 'expo-blur'
 import {Stack} from 'expo-router'
@@ -8,11 +7,8 @@ import {FormProvider, useForm} from 'react-hook-form'
 
 import {SearchAreaReactiveVar, ThemeReactiveVar} from '#/reactive'
 import ChevronBackArrow from '#/src/components/atoms/ChevronBackArrow'
-import SearchInput from '#/src/components/molecules/searchinput/SearchInput'
 import SearchInputSearchArea from '#/src/components/molecules/searchinput/SearchInputSearchArea'
-import {Box} from '#/src/components/ui/box'
 import {VStack} from '#/src/components/ui/vstack'
-import {SEARCH_BAR_HEIGHT} from '#/src/constants/ReactNavigationConstants'
 import {PlaceType} from '#/types/preferences'
 
 export type HorizontalCityItemProps = {
@@ -60,8 +56,6 @@ export default function _layout() {
   const rSearchAreaVar = useReactiveVar(SearchAreaReactiveVar)
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const insets = useSafeAreaInsets()
-  const HEADER_HEIGHT = SEARCH_BAR_HEIGHT + 15
-  const h = insets.top + HEADER_HEIGHT
 
   const methods = useForm<Form>({
     defaultValues: {
@@ -79,7 +73,7 @@ export default function _layout() {
       methods.reset(rSearchAreaVar.searchArea)
       methods.setValue('done', false)
     }
-  }, [rSearchAreaVar])
+  }, [methods, rSearchAreaVar])
 
   return (
     <FormProvider {...methods}>

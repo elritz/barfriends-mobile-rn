@@ -31,7 +31,7 @@ export function useCommonSVGProps(props: Props) {
   let gradientDef = null
 
   if (gradient && tokens.gradients[gradient]) {
-    const id = gradient + '_' + nanoid()
+    const id = String(gradient) + '_' + nanoid()
     const config = tokens.gradients[gradient]
     _fill = `url(#${id})`
     gradientDef = (
@@ -43,7 +43,7 @@ export function useCommonSVGProps(props: Props) {
           x2="100%"
           y2="0"
           gradientTransform="rotate(45)">
-          {config.values.map(([stop, fill]) => (
+          {config.values.map(([stop, fill]: [string, string]) => (
             <Stop key={stop} offset={stop} stopColor={fill} />
           ))}
         </LinearGradient>

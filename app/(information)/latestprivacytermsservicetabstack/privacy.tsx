@@ -1,5 +1,4 @@
-import {SafeAreaView, ScrollView} from 'react-native'
-import {useWindowDimensions} from 'react-native'
+import {SafeAreaView, ScrollView, useWindowDimensions} from 'react-native'
 import RenderHtml from 'react-native-render-html'
 import {useReactiveVar} from '@apollo/client'
 
@@ -12,7 +11,7 @@ export default () => {
   const {width} = useWindowDimensions()
   const rTheme = useReactiveVar(ThemeReactiveVar)
 
-  const {data, loading, error} = usePrivacyTermsDocumentsQuery()
+  const {data, loading} = usePrivacyTermsDocumentsQuery()
 
   if (loading && data) {
     return <TermsLoadingState />

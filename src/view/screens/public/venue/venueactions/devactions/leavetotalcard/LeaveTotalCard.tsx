@@ -4,7 +4,6 @@ import {useLocalSearchParams} from 'expo-router'
 import {
   useGetLiveVenueTotalsV2Query,
   useRefreshDeviceManagerQuery,
-  useRemovePersonalJoinsVenue2Mutation,
   useRemovePersonalTotalsVenue2Mutation,
 } from '#/graphql/generated'
 import {Button, ButtonText} from '#/src/components/ui/button'

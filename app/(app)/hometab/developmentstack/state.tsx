@@ -9,7 +9,7 @@ export default function State() {
     <FlashList
       data={[]}
       estimatedItemSize={100}
-      renderItem={({item}) => {
+      renderItem={() => {
         return <Box />
       }}
       ListHeaderComponent={() => {

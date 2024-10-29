@@ -148,7 +148,7 @@ export default () => {
       countryCode: 'CA',
       countryCallingCode: '+1',
     })
-  }, [])
+  }, [setValue])
 
   useEffect(() => {
     if (isFocused && _phonenumberRef.current) {

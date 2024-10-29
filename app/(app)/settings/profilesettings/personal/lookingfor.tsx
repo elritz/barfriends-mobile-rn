@@ -33,35 +33,33 @@ export default () => {
   const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
   const rTheme = useReactiveVar(ThemeReactiveVar)
 
-  const [
-    updateProfileIdentifiableInfmationMutation,
-    {data: UPIIData, loading: UPIILoading, error: UPIIError},
-  ] = useUpdateProfileIdentifiableInformationMutation({
-    onCompleted: data => {
-      if (
-        data.updateProfileIdentifiableInformation.__typename ===
-        'AuthorizationDeviceProfile'
-      ) {
-        const profile = data.updateProfileIdentifiableInformation as Profile
-        const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
+  const [updateProfileIdentifiableInfmationMutation] =
+    useUpdateProfileIdentifiableInformationMutation({
+      onCompleted: data => {
+        if (
+          data.updateProfileIdentifiableInformation?.__typename ===
+          'AuthorizationDeviceProfile'
+        ) {
+          const profile = data.updateProfileIdentifiableInformation as Profile
+          const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
 
-        AuthorizationReactiveVar({
-          ...deviceprofile,
-          Profile: profile,
-        })
-        reset({
-          lookfor:
-            data.updateProfileIdentifiableInformation?.Profile
-              ?.IdentifiableInformation?.lookfor,
-        })
-      }
-      if (data.updateProfileIdentifiableInformation.__typename === 'Error') {
-        setError('lookfor', {
-          message: data.updateProfileIdentifiableInformation.message,
-        })
-      }
-    },
-  })
+          AuthorizationReactiveVar({
+            ...deviceprofile,
+            Profile: profile,
+          })
+          reset({
+            lookfor:
+              data.updateProfileIdentifiableInformation?.Profile
+                ?.IdentifiableInformation?.lookfor,
+          })
+        }
+        if (data.updateProfileIdentifiableInformation?.__typename === 'Error') {
+          setError('lookfor', {
+            message: data.updateProfileIdentifiableInformation.message,
+          })
+        }
+      },
+    })
 
   const {
     control,
@@ -82,7 +80,7 @@ export default () => {
     shouldUnregister: true,
   })
 
-  const onSubmit = data => {
+  const onSubmit = (data: {lookfor: any}) => {
     if (dirtyFields.lookfor) {
       updateProfileIdentifiableInfmationMutation({
         variables: {
@@ -107,7 +105,7 @@ export default () => {
               required: true,
               validate: {},
             }}
-            render={({field: {onChange, onBlur, value}}) => (
+            render={({field: {onChange, value}}) => (
               <>
                 {relationshipstatuslist.map((item, i) => {
                   return (

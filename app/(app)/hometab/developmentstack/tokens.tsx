@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Pressable, View} from 'react-native'
+import {Pressable} from 'react-native'
 import * as Application from 'expo-application'
 import * as Clipboard from 'expo-clipboard'
 import Constants from 'expo-constants'
@@ -55,12 +55,7 @@ const Tokens: React.FC = () => {
     getPushNotificationToken()
   }, [])
 
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-    client,
-  } = useRefreshDeviceManagerQuery({
+  const {} = useRefreshDeviceManagerQuery({
     fetchPolicy: 'network-only',
   })
 

@@ -1,6 +1,5 @@
 import {useCallback, useEffect, useMemo, useRef} from 'react'
 import {TextInput} from 'react-native'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {useGlobalSearchParams, useRouter, useSegments} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
 import {Ionicons} from '@expo/vector-icons'
@@ -20,7 +19,6 @@ type Props = {
 }
 
 const SearchInputText = (props: Props) => {
-  const insets = useSafeAreaInsets()
   const _inputRef = useRef<TextInput | null>(null)
 
   const rTheme = useReactiveVar(ThemeReactiveVar)
@@ -54,14 +52,13 @@ const SearchInputText = (props: Props) => {
     }
   }, [params.searchtext])
 
-  const [exploreSearchQuery, {data, loading, error}] =
-    useExploreSearchLazyQuery({
-      onCompleted: data => {
-        router.setParams({
-          searchtext: String(watch().searchtext),
-        })
-      },
-    })
+  const [exploreSearchQuery] = useExploreSearchLazyQuery({
+    onCompleted: () => {
+      router.setParams({
+        searchtext: String(watch().searchtext),
+      })
+    },
+  })
 
   const clearSearchInput = useCallback(() => {
     // _inputRef.current?.clear()
@@ -70,7 +67,7 @@ const SearchInputText = (props: Props) => {
     })
   }, [])
 
-  const handleSearchSubmitEditting = data => {
+  const handleSearchSubmitEditting = (data: {searchtext: any}) => {
     if (segments.includes('searchresults')) {
       router.push({
         pathname: '/(app)/explore/searchresults',

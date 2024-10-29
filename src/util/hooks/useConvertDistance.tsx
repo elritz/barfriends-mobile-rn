@@ -31,7 +31,7 @@ const useConvertDistance = (): DistanceHookType => {
     async ({distanceInM}: ConvertDistanceInputType): Promise<DistMetric> => {
       setDistanceInM(distanceInM)
       if (distanceInM > 1000) {
-        const val = parseInt((distanceInM / 1000).toFixed(1))
+        const val = parseInt((distanceInM / 1000).toFixed(1), 10)
         setDistance(val)
         setMetric('km')
         setCanJoin(false)

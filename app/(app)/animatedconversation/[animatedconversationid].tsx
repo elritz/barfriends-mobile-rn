@@ -1,6 +1,5 @@
 import React, {useCallback, useRef} from 'react'
-import {SafeAreaView as RNSafeAreaView, View} from 'react-native'
-import {StyleSheet} from 'react-native'
+import {SafeAreaView as RNSafeAreaView, StyleSheet, View} from 'react-native'
 import {useKeyboardHandler} from 'react-native-keyboard-controller'
 import Reanimated, {
   useAnimatedProps,
@@ -120,18 +119,13 @@ function AnimatedChatroom() {
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const {height, onScroll, inset, offset} = useKeyboardAnimation()
 
-  const {
-    control,
-    handleSubmit,
-    formState: {errors, isSubmitting, isSubmitted},
-  } = useForm<FormValues>({
+  const {control, handleSubmit} = useForm<FormValues>({
     defaultValues: {
       text: '',
     },
   })
 
-  const [createMessageMutation, {data, loading, error}] =
-    useCreateMessageMutation()
+  const [] = useCreateMessageMutation()
 
   const scrollToBottom = useCallback(() => {
     ref.current?.scrollToEnd({animated: false})
@@ -158,7 +152,7 @@ function AnimatedChatroom() {
     },
   }))
 
-  const handleSendMessage = useCallback<SubmitHandler<FormValues>>(({text}) => {
+  const handleSendMessage = useCallback<SubmitHandler<FormValues>>(() => {
     // createMessageMutation({
     //   variables: {
     //     content: {

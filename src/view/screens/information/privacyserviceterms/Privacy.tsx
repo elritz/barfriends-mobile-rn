@@ -1,5 +1,4 @@
-import {ScrollView} from 'react-native'
-import {useWindowDimensions} from 'react-native'
+import {ScrollView, useWindowDimensions} from 'react-native'
 import RenderHTML from 'react-native-render-html'
 import {useReactiveVar} from '@apollo/client'
 
@@ -12,13 +11,7 @@ export default function Privacy() {
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const {width} = useWindowDimensions()
 
-  const {data, loading} = usePrivacyTermsDocumentsQuery({
-    onCompleted(data) {
-      const source = {
-        html: data?.privacyTermsDocuments?.privacy?.content,
-      }
-    },
-  })
+  const {data, loading} = usePrivacyTermsDocumentsQuery({})
 
   if ((loading && !data) || !data?.privacyTermsDocuments) {
     return <TermsLoadingState />

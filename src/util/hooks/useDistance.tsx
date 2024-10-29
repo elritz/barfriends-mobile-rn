@@ -86,7 +86,7 @@ const useGetDistance = (): DistanceHookType => {
         )
         setDistanceInM(dist)
         if (dist > 1000) {
-          const val = parseInt((dist / 1000).toFixed(1))
+          const val = parseInt((dist / 1000).toFixed(1), 10)
           setDistance(val)
           setMetric('km')
           setCanJoin(false)

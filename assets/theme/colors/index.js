@@ -1,5 +1,3 @@
-import common from './common'
-
 export {default as amber} from './amber'
 export {default as blue} from './blue'
 export {default as blueGrey} from './blueGrey'

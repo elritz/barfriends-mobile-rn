@@ -14,9 +14,7 @@ import {
 import LeaveSection from '#/src/components/molecules/activity/leavesection/LeaveSection'
 import InformationJoinVenue from '#/src/components/molecules/information/informationjoinvenue'
 import {Box} from '#/src/components/ui/box'
-import {Heading} from '#/src/components/ui/heading'
 import {HStack} from '#/src/components/ui/hstack'
-import {Text} from '#/src/components/ui/text'
 import {VStack} from '#/src/components/ui/vstack'
 import {PUBLIC_VENUE_HEADER_IMAGE_HEIGHT} from '#/src/constants/Layout'
 import useContentInsets from '#/src/util/hooks/useContentInsets'
@@ -37,9 +35,7 @@ export default () => {
   const rCurrentLocationVar = useReactiveVar(CurrentLocationReactiveVar)
   const rTheme = useReactiveVar(ThemeReactiveVar)
 
-  const link = `https://barfriends.com/app/public/venue?username=${params.username}`
-
-  const {data, loading, error} = usePublicVenueQuery({
+  const {data, loading} = usePublicVenueQuery({
     skip: !params.username,
     fetchPolicy: 'network-only',
     variables: {
@@ -121,7 +117,7 @@ export default () => {
           />
         </VStack>
         <HStack space={'md'} className="items-center justify-center rounded-md">
-          {[...Array(2)].map((item, index) => {
+          {[...Array(2)].map(() => {
             return (
               <Skeleton
                 key={uniqueId()}
@@ -145,7 +141,7 @@ export default () => {
           })}
         </HStack>
         <HStack space={'md'} className="items-center justify-center rounded-md">
-          {[...Array(2)].map((item, index) => {
+          {[...Array(2)].map(() => {
             return (
               <Skeleton
                 key={uniqueId()}
@@ -189,17 +185,6 @@ export default () => {
       </VStack>
     )
   }
-
-  const HandleEmptyUsers = () => {
-    return (
-      <VStack className="items-center">
-        <Heading>Be the first to join</Heading>
-        <Text className="text-center text-2xl">No users present!</Text>
-      </VStack>
-    )
-  }
-
-  const venueData = data.publicVenue
 
   return (
     <FlashList

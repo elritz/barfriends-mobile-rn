@@ -23,7 +23,7 @@ export default () => {
   const [legalAge] = useState<number>(19)
   const router = useRouter()
 
-  const [updateOneProfilMutation, {data, loading: UOPLoading, error}] =
+  const [updateOneProfilMutation, {loading: UOPLoading}] =
     useUpdateOneProfileMutation({
       onError: error => {
         setError('date', error)
@@ -44,13 +44,8 @@ export default () => {
   const {
     control,
     setError,
-    clearErrors,
-    setValue,
-    getValues,
-    reset,
     handleSubmit,
-    watch,
-    formState: {isDirty, dirtyFields, errors},
+    formState: {dirtyFields, errors},
   } = useForm({
     defaultValues: {
       date:
@@ -73,7 +68,7 @@ export default () => {
     if (!selectedDate) {
       return false
     }
-    const {days, months, years} = calcDateDiffFromNow(selectedDate)
+    const {years} = calcDateDiffFromNow(selectedDate)
     if (years === 0) {
       return false
     }

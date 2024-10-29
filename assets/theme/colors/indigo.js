@@ -1,7 +1,7 @@
 Object.defineProperty(exports, '__esModule', {
   value: true,
 })
-exports.default = void 0
+
 const indigo = {
   50: '#e8eaf6',
   100: '#c5cae9',

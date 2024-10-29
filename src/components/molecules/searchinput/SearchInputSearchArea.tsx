@@ -1,6 +1,5 @@
 import {useCallback, useMemo, useRef} from 'react'
 import {TextInput} from 'react-native'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {useRouter} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
 import {Ionicons} from '@expo/vector-icons'
@@ -10,12 +9,7 @@ import {Controller, useForm} from 'react-hook-form'
 import {ThemeReactiveVar} from '#/reactive'
 import ChevronBackArrow from '#/src/components/atoms/ChevronBackArrow'
 import {HStack} from '#/src/components/ui/hstack'
-import {
-  Input,
-  InputField,
-  InputIcon,
-  InputSlot,
-} from '#/src/components/ui/input'
+import {Input, InputField, InputSlot} from '#/src/components/ui/input'
 import {Pressable} from '#/src/components/ui/pressable'
 import useDebounce from '#/src/util/hooks/useDebounce'
 
@@ -24,21 +18,11 @@ type Props = {
 }
 
 const SearchInputSearchArea = (props: Props) => {
-  const insets = useSafeAreaInsets()
   const _inputRef = useRef<TextInput | null>(null)
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const router = useRouter()
 
-  const {
-    control,
-    setError,
-    clearErrors,
-    setValue,
-    getValues,
-    handleSubmit,
-    formState: {errors},
-    watch,
-  } = useForm({
+  const {control, setValue, handleSubmit, watch} = useForm({
     defaultValues: {
       searchtext: '',
     },

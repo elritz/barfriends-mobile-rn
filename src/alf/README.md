@@ -31,7 +31,6 @@ These are static and reused throughout the app.
 
 ```tsx
 import {atoms} from '#/alf'
-
 ;<View style={[atoms.flex_row]} />
 ```
 

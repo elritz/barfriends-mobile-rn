@@ -25,10 +25,10 @@ export default function SearchCountryStates() {
   const contentInsets = useContentInsets()
 
   const [countryStates, setCountryStates] = useState<StateResponseObject[]>([])
-  const [pagination, setPagination] = useState<number>()
+  const [_, setPagination] = useState<number>()
   const formContext = useFormContext<Form>()
 
-  const {watch, getValues, setValue} = formContext
+  const {watch, setValue} = formContext
 
   const {data, loading, error} = useGetAllStatesByCountryQuery({
     skip: !String(params.countryIsoCode),
@@ -56,7 +56,17 @@ export default function SearchCountryStates() {
     setCountryStates(filteredData)
   }
 
-  const contains = (state, query) => {
+  const contains = (
+    state: {
+      __typename?: 'StateResponseObject' | undefined
+      name: any
+      isoCode?: string | null | undefined
+      countryCode?: string | null | undefined
+      latitude?: string | null | undefined
+      longitude?: string | null | undefined
+    },
+    query: any,
+  ) => {
     if (state.name.toLowerCase().includes(query)) {
       return true
     }
@@ -99,7 +109,7 @@ export default function SearchCountryStates() {
             />
           )
         }}
-        renderItem={({index, item}) => {
+        renderItem={({index}) => {
           return (
             <Skeleton
               key={index}
@@ -125,21 +135,25 @@ export default function SearchCountryStates() {
     )
   }
 
-  function CityItem({index, item}) {
-    const _pressItem = async item => {
+  function CityItem({index, item}: {index: number; item: StateResponseObject}) {
+    const _pressItem = async ({
+      item: pressedItem,
+    }: {
+      item: StateResponseObject
+    }) => {
       setValue('state', {
-        name: item.name,
-        isoCode: item.isoCode,
+        name: pressedItem.name,
+        isoCode: pressedItem.isoCode,
         coords: {
-          latitude: Number(item.latitude),
-          longitude: Number(item.longitude),
+          latitude: Number(pressedItem.latitude),
+          longitude: Number(pressedItem.longitude),
         },
       })
       router.replace({
         pathname: '/(app)/searcharea/searchstatecities',
         params: {
-          countryIsoCode: item.countryCode,
-          stateIsoCode: item.isoCode,
+          countryIsoCode: pressedItem.countryCode,
+          stateIsoCode: pressedItem.isoCode,
         },
       })
     }

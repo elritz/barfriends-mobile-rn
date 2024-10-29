@@ -207,9 +207,7 @@ export default () => {
                       />
                     )}
                   </InputSlot>
-                  {LPLoading && (
-                    <Spinner size="small" accessibilityLabel={'Loading...'} />
-                  )}
+                  {LPLoading && <Spinner size="small" />}
                 </Input>
               )
             }}

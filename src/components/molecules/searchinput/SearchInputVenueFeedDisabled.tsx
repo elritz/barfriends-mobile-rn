@@ -1,4 +1,4 @@
-import {router as _Router, useRouter, useSegments} from 'expo-router'
+import {useRouter, useSegments} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
 import {Ionicons} from '@expo/vector-icons'
 
@@ -8,11 +8,7 @@ import {Input} from '#/src/components/ui/input'
 import {Pressable} from '#/src/components/ui/pressable'
 import {Text} from '#/src/components/ui/text'
 
-type Props = {
-  placeholder?: string
-}
-
-const SearchInputVenueFeedDisabled = (props: Props) => {
+const SearchInputVenueFeedDisabled = () => {
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const router = useRouter()
   const segments: string[] = useSegments()

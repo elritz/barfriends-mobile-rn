@@ -97,13 +97,9 @@ export default () => {
     },
   ]
 
-  const {
-    data: GCPNTData,
-    loading: GCPNTLoading,
-    error: GCPNTError,
-  } = useGetCurrentPushNotificationTokenQuery()
+  const {loading: GCPNTLoading} = useGetCurrentPushNotificationTokenQuery()
 
-  const [upsertDevicePushTokenMutation, {data, loading, error}] =
+  const [upsertDevicePushTokenMutation, {data}] =
     useUpsertDevicePushTokenMutation()
 
   const createTwoButtonAlert = () =>
@@ -256,7 +252,7 @@ export default () => {
       }
     }
     loadPermissionsAsync()
-  }, [isFocused])
+  }, [rPerm, isFocused])
 
   finished(() => {
     router.back()

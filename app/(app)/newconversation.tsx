@@ -62,7 +62,7 @@ export default function NewConversation() {
 
   const fuse = new Fuse(contacts, options)
 
-  const {control, setValue, handleSubmit, watch} = useForm({
+  const {control, setValue, watch} = useForm({
     defaultValues: {
       selected: selected,
       searchtext: '',
@@ -183,7 +183,7 @@ export default function NewConversation() {
     if (watch().searchtext) {
     }
     searchFilterFunction(watch().searchtext)
-  }, [debouncedSearchResults])
+  }, [watch, debouncedSearchResults])
 
   return (
     <>
@@ -194,10 +194,11 @@ export default function NewConversation() {
           <Controller
             control={control}
             name="selected"
-            render={({field: {value, onChange}}) => (
+            render={() => (
               <HStack space="sm" className="mx-2 mt-1 flex-wrap">
                 {selected.map(item => (
                   <Button
+                    key={item.key}
                     onPress={() => {
                       _pressItemFromList({
                         listType: 'selected',

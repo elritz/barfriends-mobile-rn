@@ -37,16 +37,14 @@ const CurrentLocationFromVenueDistance = () => {
   const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
   const rCurrentLocationVar = useReactiveVar(CurrentLocationReactiveVar)
   const rSearchAreaVar = useReactiveVar(SearchAreaReactiveVar)
-  const [appState, setAppState] = useState(AppState.currentState)
-  const {refreshLocation, canJoin, distance, distanceInM, isLoading, metric} =
+  const [appState] = useState(AppState.currentState)
+  const {refreshLocation, canJoin, distance, isLoading, metric} =
     useGetDistance()
 
-  const [friends, setFriends] = useState({value: 0})
+  const [__, setFriends] = useState({value: 0})
 
   const {
     isOpen: isForegroundLocationOn,
-    onOpen: onOpenForegroundLocationOn,
-    onClose: onCloseForegroundLocationOn,
     onToggle: onToggleForegroundLocationOn,
   } = useDisclose()
 
@@ -78,17 +76,13 @@ const CurrentLocationFromVenueDistance = () => {
     },
   })
 
-  const {
-    data: d,
-    loading: l,
-    error: e,
-  } = useGetLiveVenueTotalsV2Query({
+  const {} = useGetLiveVenueTotalsV2Query({
     skip: !String(params.venueProfileId),
     variables: {
       profileIdVenue: String(params.venueProfileId),
     },
     onCompleted: async data => {
-      if (data.getLiveVenueTotalsV2.__typename === 'LiveVenueTotals2') {
+      if (data.getLiveVenueTotalsV2?.__typename === 'LiveVenueTotals2') {
         setFriends({
           value: 1,
         })
@@ -112,7 +106,7 @@ const CurrentLocationFromVenueDistance = () => {
         // unregisterForegroundFetchAsync()
       }
     }
-  }, [appState, isFocused])
+  }, [appState, isFocused, distance, metric])
 
   const styles = StyleSheet.create({
     dot: {
@@ -136,7 +130,7 @@ const CurrentLocationFromVenueDistance = () => {
           },
         ]}
         className="bg-transparent">
-        {[...Array(3).keys()].map((item, index) => {
+        {[...Array(3).keys()].map((___, index) => {
           return (
             <MotiView
               key={uniqueId()}

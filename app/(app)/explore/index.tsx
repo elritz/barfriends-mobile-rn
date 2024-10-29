@@ -1,5 +1,4 @@
-import {Image} from 'react-native'
-import {useWindowDimensions, View} from 'react-native'
+import {Image, useWindowDimensions, View} from 'react-native'
 import {useRouter} from 'expo-router'
 import {FlashList} from '@shopify/flash-list'
 
@@ -16,7 +15,7 @@ export default () => {
   const height = width * (1.25 / numColumns)
   const contentInsets = useContentInsets()
 
-  const {data, loading, error} = useProfilesQuery({
+  const {data, loading} = useProfilesQuery({
     variables: {
       where: {
         ProfileType: {
@@ -48,7 +47,10 @@ export default () => {
                   accessibilityRole="button"
                   onPress={() => {
                     router.push({
-                      pathname: `/(app)/public/personal/${item.IdentifiableInformation?.username}`,
+                      pathname: `/(app)/public/personal/[username]`,
+                      params: {
+                        username: item.IdentifiableInformation?.username,
+                      },
                     })
                   }}
                   className="mx-1 my-2 flex-1 grow-[1px] self-center rounded-md">

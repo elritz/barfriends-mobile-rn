@@ -1,6 +1,5 @@
 import {useEffect, useRef} from 'react'
 import {Alert, AppState, Platform, ScrollView, View} from 'react-native'
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {Camera, requestMicrophonePermissionsAsync} from 'expo-camera/legacy'
 import * as Device from 'expo-device'

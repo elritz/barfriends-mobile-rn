@@ -1,6 +1,6 @@
 import {useState} from 'react'
-import {Pressable, useWindowDimensions, View} from 'react-native'
-import {SceneMap, TabBar, TabView} from 'react-native-tab-view'
+import {Pressable, View} from 'react-native'
+import {SceneMap, TabView} from 'react-native-tab-view'
 import {useReactiveVar} from '@apollo/client'
 
 import {ThemeReactiveVar} from '#/reactive'

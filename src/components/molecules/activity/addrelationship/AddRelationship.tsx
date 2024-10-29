@@ -6,6 +6,7 @@ import useEmojimoodTextColor from '#/hooks/useEmojiMoodTextContrast'
 import {ThemeReactiveVar} from '#/reactive'
 import {Box} from '#/src/components/ui/box'
 import {Heading} from '#/src/components/ui/heading'
+import {ActivityCardProps} from '../index'
 import RoundedBox from '../RoundedBox'
 
 const AddRelationship: React.FC<ActivityCardProps> = ({
@@ -15,11 +16,7 @@ const AddRelationship: React.FC<ActivityCardProps> = ({
   const textColor = useEmojimoodTextColor({
     isEmojimoodDynamic: isEmojimoodDynamic,
   })
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-  } = useRefreshDeviceManagerQuery()
+  const {data: rdmData} = useRefreshDeviceManagerQuery()
 
   if (
     rdmData?.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile'

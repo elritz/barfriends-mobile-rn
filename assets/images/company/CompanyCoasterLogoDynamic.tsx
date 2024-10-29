@@ -1,3 +1,4 @@
+import React from 'react'
 import {Defs, Ellipse, G, Path, Rect, Svg} from 'react-native-svg'
 
 import {defaulttheme} from '#/assets/theme/default'

@@ -18,11 +18,7 @@ import Photos from '#/src/view/screens/tonight/photos'
 const Tonight = () => {
   const contentInsets = useContentInsets()
   const rTheme = useReactiveVar(ThemeReactiveVar)
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-  } = useRefreshDeviceManagerQuery({
+  const {data: rdmData, loading: rdmLoading} = useRefreshDeviceManagerQuery({
     onCompleted(data) {
       if (
         data.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile'
@@ -104,7 +100,7 @@ const Tonight = () => {
             ]}
             numColumns={2}
             estimatedItemSize={200}
-            renderItem={({index, item}) => {
+            renderItem={({item}) => {
               return <RoundedBox>{item.item}</RoundedBox>
             }}
           />

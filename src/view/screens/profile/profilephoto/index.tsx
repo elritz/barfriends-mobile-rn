@@ -106,6 +106,7 @@ export default function ProfilePhoto({photo}: Props) {
       className="items-center justify-center pr-2">
       <Box className="h-[100px] w-[100px] overflow-hidden rounded-lg">
         <Image
+          accessibilityIgnoresInvertColors
           source={{
             uri: photo?.url,
           }}

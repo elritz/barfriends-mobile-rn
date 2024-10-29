@@ -29,7 +29,6 @@ import {Heading} from '#/src/components/ui/heading'
 import {Pressable} from '#/src/components/ui/pressable'
 import {Text} from '#/src/components/ui/text'
 import {VStack} from '#/src/components/ui/vstack'
-import useContentInsets from '#/src/util/hooks/useContentInsets'
 import useTimer from '#/src/util/hooks/useTimer2'
 
 export default () => {
@@ -38,7 +37,6 @@ export default () => {
   const router = useRouter()
   const params = useLocalSearchParams()
   const {height: platform} = useReanimatedKeyboardAnimation()
-  const contentInsets = useContentInsets()
   const {bottom} = useSafeAreaInsets()
   const isScreenFocused = useIsFocused()
   const rTheme = useReactiveVar(ThemeReactiveVar)
@@ -127,7 +125,7 @@ export default () => {
         code: watch('code'),
       })
     }
-  }, [watch('code'), CELL_COUNT])
+  }, [watch, CELL_COUNT, onSubmit])
 
   const InnerContent = () => {
     return (

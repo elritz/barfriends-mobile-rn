@@ -1,4 +1,14 @@
-import {memo, useCallback, useEffect, useState} from 'react'
+import {
+  JSXElementConstructor,
+  Key,
+  memo,
+  ReactElement,
+  ReactNode,
+  ReactPortal,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react'
 import {ScrollView, View} from 'react-native'
 import CountryFlag from 'react-native-country-flag'
 import {useRouter} from 'expo-router'
@@ -47,25 +57,16 @@ export default () => {
     PermissionsReactiveVar,
   )
 
-  const [
-    updateH6VenueRecommendationVoteMutation,
-    {data: UVRData, loading: UVRLoading, error: UVRError},
-  ] = useUpdateH6ComingAreaVoteMutation()
+  const [updateH6VenueRecommendationVoteMutation] =
+    useUpdateH6ComingAreaVoteMutation()
 
-  const [
-    updateToBeNotifiedMutation,
-    {data: UTBNData, loading: UTBNLoading, error: UTBNError},
-  ] = useUpdateComingAreaToBeNotifiedMutation()
+  const [updateToBeNotifiedMutation] = useUpdateComingAreaToBeNotifiedMutation()
 
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-  } = useRefreshDeviceManagerQuery({
+  const {data: rdmData, loading: rdmLoading} = useRefreshDeviceManagerQuery({
     fetchPolicy: 'cache-and-network',
   })
 
-  const [venuesNearbyQuery, {data, loading, error}] = useVenuesNearbyLazyQuery({
+  const [venuesNearbyQuery, {data, loading}] = useVenuesNearbyLazyQuery({
     variables: {
       cityName: rSearchAreaVar.useCurrentLocation
         ? String(rCurrentLocationVar.reverseGeocoded?.city)
@@ -96,7 +97,7 @@ export default () => {
     if (!data?.venuesNearby) {
       getNearbyVenues()
     }
-  }, [])
+  }, [data?.venuesNearby, getNearbyVenues])
 
   const ListheaderComponent = () => {
     if (loading) return null
@@ -105,10 +106,6 @@ export default () => {
         return null
       }
 
-      console.log(
-        '🚀 ~ SignUpWidget ~ rdmData?.refreshDeviceManager?.__typename:',
-        rdmData?.refreshDeviceManager?.__typename,
-      )
       switch (rdmData?.refreshDeviceManager?.__typename) {
         case 'AuthorizationDeviceProfile':
           if (
@@ -157,7 +154,7 @@ export default () => {
         data={[...Array(6)]}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={<MemoizedListHeaderComponent />}
-        renderItem={({item}) => {
+        renderItem={() => {
           return (
             <View style={{alignSelf: 'center', padding: 5}}>
               <Skeleton
@@ -193,70 +190,114 @@ export default () => {
         case 'VenuesNearbyResponse':
           return (
             <VStack>
-              {data.venuesNearby.recommendedAreas?.map((item, index) => {
-                const [distance, setDistance] = useState(0)
-                const [metric, setMetric] = useState('m')
-                const setDist = useCallback(
-                  ({distanceInM}) => {
-                    if (distanceInM) {
-                      if (distanceInM > 1000) {
-                        const val = parseInt((distanceInM / 1000).toFixed(1))
-                        setDistance(val)
-                        setMetric('km')
-                      } else {
-                        setDistance(distanceInM)
-                        setMetric('m')
+              {data.venuesNearby.recommendedAreas?.map(
+                (
+                  item: {
+                    distanceInM: unknown
+                    id: Key | null | undefined
+                    venuesProfileIds: string | any[]
+                    Area: {
+                      Country: {
+                        flag:
+                          | string
+                          | number
+                          | boolean
+                          | ReactElement<
+                              any,
+                              string | JSXElementConstructor<any>
+                            >
+                          | Iterable<ReactNode>
+                          | ReactPortal
+                          | null
+                          | undefined
+                      }
+                      City: {
+                        name:
+                          | string
+                          | number
+                          | boolean
+                          | ReactElement<
+                              any,
+                              string | JSXElementConstructor<any>
+                            >
+                          | Iterable<ReactNode>
+                          | ReactPortal
+                          | null
+                          | undefined
                       }
                     }
                   },
-                  [item.distanceInM],
-                )
+                  index: any,
+                ) => {
+                  const [distance, setDistance] = useState(0)
+                  const [metric, setMetric] = useState('m')
+                  const setDist = useCallback(
+                    ({distanceInM}: {distanceInM: number}) => {
+                      if (distanceInM) {
+                        if (distanceInM > 1000) {
+                          const val = parseInt(
+                            (distanceInM / 1000).toFixed(1),
+                            10,
+                          )
+                          setDistance(val)
+                          setMetric('km')
+                        } else {
+                          setDistance(distanceInM)
+                          setMetric('m')
+                        }
+                      }
+                    },
+                    [item.distanceInM],
+                  )
 
-                useEffect(() => {
-                  if (item.distanceInM) {
-                    setDist({distanceInM: item.distanceInM})
-                  }
-                }, [item.distanceInM])
-                return (
-                  <Pressable
-                    accessibilityRole="button"
-                    key={item.id + index}
-                    onPress={() => {
-                      router.push({
-                        params: {
-                          venueprofileids: JSON.stringify(
-                            item.venuesProfileIds,
-                          ),
-                          id: item.id,
-                        },
-                        pathname: '/(app)/searcharea/searchh3recommendation',
-                      })
-                    }}>
-                    <Box
-                      key={item.id}
-                      className="m-2 flex-row items-center justify-between p-3">
-                      <VStack>
-                        <HStack className="items-center">
-                          <Heading
-                            numberOfLines={1}
-                            ellipsizeMode={'tail'}
-                            className="text-xl font-medium">
-                            {item.Area?.Country.flag}
-                            {item.Area?.City.name}
-                          </Heading>
-                          <Text className="text-md">
-                            &nbsp; · &nbsp;
-                            {distance}&nbsp;
-                            {metric}
+                  useEffect(() => {
+                    if (item.distanceInM) {
+                      setDist({distanceInM: item.distanceInM})
+                    }
+                  }, [item.distanceInM])
+                  return (
+                    <Pressable
+                      accessibilityRole="button"
+                      key={item.id + index}
+                      onPress={() => {
+                        router.push({
+                          params: {
+                            venueprofileids: JSON.stringify(
+                              item.venuesProfileIds,
+                            ),
+                            id: item.id,
+                          },
+                          pathname: '/(app)/searcharea/searchh3recommendation',
+                        })
+                      }}>
+                      <Box
+                        key={item.id}
+                        className="m-2 flex-row items-center justify-between p-3">
+                        <VStack>
+                          <HStack className="items-center">
+                            <Heading
+                              numberOfLines={1}
+                              ellipsizeMode={'tail'}
+                              className="text-xl font-medium">
+                              {item.Area?.Country.flag}
+                              {item.Area?.City.name}
+                            </Heading>
+                            <Text className="text-md">
+                              &nbsp; · &nbsp;
+                              {distance}&nbsp;
+                              {metric}
+                            </Text>
+                          </HStack>
+                          <Text>
+                            {item.venuesProfileIds.length}&nbsp;venues
                           </Text>
-                        </HStack>
-                        <Text>{item.venuesProfileIds.length}&nbsp;venues</Text>
-                      </VStack>
-                      <ArrowRightIcon />
-                    </Box>
-                  </Pressable>
-                )
-              })}
+                        </VStack>
+                        <ArrowRightIcon />
+                      </Box>
+                    </Pressable>
+                  )
+                },
+              )}
             </VStack>
           )
         case 'ComingAreaResponse':

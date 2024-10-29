@@ -24,7 +24,7 @@ export const cloudinaryUpload = async ({
   })
 
   // handle successful upload
-  xhr.onreadystatechange = e => {
+  xhr.onreadystatechange = () => {
     if (xhr.readyState === 4 && xhr.status === 200) {
       const response = JSON.parse(xhr.responseText)
       setProgress(100)

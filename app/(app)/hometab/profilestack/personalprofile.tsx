@@ -26,11 +26,7 @@ import useContentInsets from '#/src/util/hooks/useContentInsets'
 import ProfilePhoto from '#/src/view/screens/profile/profilephoto'
 
 const PersonalProfilePhoto = () => {
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-  } = useRefreshDeviceManagerQuery({})
+  const {data: rdmData, loading: rdmLoading} = useRefreshDeviceManagerQuery({})
 
   if (rdmLoading) return null
   if (
@@ -53,11 +49,7 @@ const PersonalProfilePhoto = () => {
 }
 
 const DetailInformation = () => {
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-  } = useRefreshDeviceManagerQuery({})
+  const {data: rdmData, loading: rdmLoading} = useRefreshDeviceManagerQuery({})
 
   if (rdmLoading) return null
 
@@ -122,21 +114,16 @@ export default () => {
   const insets = useContentInsets()
   const rTheme = useReactiveVar(ThemeReactiveVar)
 
-  const [getNotificationQuery, {data: GNData, loading: GNLoading, error}] =
+  const [getNotificationQuery, {data: GNData, loading: GNLoading}] =
     useGetNotificationsLazyQuery({
       fetchPolicy: 'network-only',
-      onCompleted: data => {},
     })
 
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-  } = useRefreshDeviceManagerQuery({})
+  const {data: rdmData, loading: rdmLoading} = useRefreshDeviceManagerQuery({})
 
   useEffect(() => {
     getNotificationQuery()
-  }, [])
+  }, [getNotificationQuery])
 
   if (rdmLoading || GNLoading) return null
 

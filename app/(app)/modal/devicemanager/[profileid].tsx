@@ -17,10 +17,7 @@ export default () => {
   const router = useRouter()
   const params = useGlobalSearchParams()
 
-  const [
-    switchDeviceProfileMutation,
-    {data: SWDPData, loading: SWDPLoading, error: SWDPError},
-  ] = useSwitchDeviceProfileMutation({
+  const [switchDeviceProfileMutation] = useSwitchDeviceProfileMutation({
     onCompleted: data => {
       if (
         data?.switchDeviceProfile?.__typename === 'AuthorizationDeviceProfile'
@@ -39,24 +36,19 @@ export default () => {
     },
   })
 
-  const [
-    removeDeviceProfileMutation,
-    {data: RDPMData, loading: RDPMLoading, error: RDPMError},
-  ] = useRemoveDeviceProfileFromDeviceManagerMutation({
-    variables: {
-      profileId: String(params.profileid),
-    },
-    onCompleted: data => {
-      switchDeviceProfileMutation({
-        variables: {
-          profileId: String(params.profileid),
-        },
-      })
-    },
-    onError: error => {
-      console.log('error', error)
-    },
-  })
+  const [removeDeviceProfileMutation] =
+    useRemoveDeviceProfileFromDeviceManagerMutation({
+      variables: {
+        profileId: String(params.profileid),
+      },
+      onCompleted: data => {
+        switchDeviceProfileMutation({
+          variables: {
+            profileId: String(params.profileid),
+          },
+        })
+      },
+    })
 
   const actions = [
     {
@@ -79,7 +71,10 @@ export default () => {
     },
   ]
 
-  const RoundedListItem = ({children, ...props}) => (
+  const RoundedListItem: React.FC<{
+    children: React.ReactNode
+    onPress: () => void
+  }> = ({children, ...props}) => (
     <Pressable accessibilityRole="button" onPress={props.onPress}>
       <Box className="flex-column h-[50px] items-start px-2 py-3">
         {children}

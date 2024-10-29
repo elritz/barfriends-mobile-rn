@@ -33,19 +33,11 @@ export default function DeviceManager() {
     fetchPolicy: 'network-only',
   })
 
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-    client,
-  } = useRefreshDeviceManagerQuery({
+  const {data: rdmData} = useRefreshDeviceManagerQuery({
     fetchPolicy: 'cache-and-network',
   })
 
-  const [
-    switchDeviceProfileMutation,
-    {data: SWDPData, loading: SWDPLoading, error: SWDPError},
-  ] = useSwitchDeviceProfileMutation({
+  const [switchDeviceProfileMutation] = useSwitchDeviceProfileMutation({
     update: (cache, {data}) => {
       if (
         data?.switchDeviceProfile?.__typename === 'AuthorizationDeviceProfile'
@@ -70,7 +62,7 @@ export default function DeviceManager() {
   if (loading) {
     return (
       <VStack space={'md'} className="my-5 rounded-md px-2">
-        {[...Array(3)].map((item, index) => {
+        {[...Array(3)].map((_, index) => {
           return (
             <Skeleton
               key={index}
@@ -111,7 +103,7 @@ export default function DeviceManager() {
     }
 
     return (
-      <View style={{flex: 1, marginTop: 20, backgroundColor: 'red'}}>
+      <View style={{flex: 1, marginTop: 20}}>
         <FlashList
           data={data.getADeviceManager.DeviceProfiles}
           estimatedItemSize={80}

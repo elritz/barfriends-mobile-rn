@@ -1,6 +1,7 @@
 import {useRouter} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
 import {MaterialIcons} from '@expo/vector-icons'
+import PropTypes from 'prop-types'
 
 import {useRefreshDeviceManagerQuery} from '#/graphql/generated'
 import {ThemeReactiveVar} from '#/reactive'
@@ -11,16 +12,38 @@ import {Pressable} from '#/src/components/ui/pressable'
 import {Text} from '#/src/components/ui/text'
 import {VStack} from '#/src/components/ui/vstack'
 
-const HorizontalMessageNotification = ({item}) => {
+interface MessageData {
+  id: string
+  name?: string
+  Members: {
+    id: string
+    IdentifiableInformation: {
+      fullname?: string
+    }
+  }[]
+  Messages: {
+    content: {
+      message: string
+    }
+  }[]
+}
+
+const HorizontalMessageNotification = ({
+  item: messageData,
+}: {
+  item: MessageData
+}) => {
   const router = useRouter()
   const rThemeVar = useReactiveVar(ThemeReactiveVar)
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-  } = useRefreshDeviceManagerQuery({})
+  const {data: rdmData} = useRefreshDeviceManagerQuery({})
 
-  const ChatContainer = ({isGroup, item}) => {
+  const ChatContainer = ({
+    isGroup,
+    item,
+  }: {
+    isGroup: boolean
+    item: MessageData
+  }) => {
     const member = item.Members.filter(
       item => item.id !== rdmData?.refreshDeviceManager?.Profile?.id,
     )
@@ -30,9 +53,9 @@ const HorizontalMessageNotification = ({item}) => {
         accessibilityRole="button"
         onPress={() => {
           router.push({
-            // pathname: `/(app)/conversation/${item.id}`,
-            pathname: `/(app)/animatedconversation/${item.id}`,
+            pathname: `/(app)/animatedconversation/[animatedconversationid]`,
             params: {
+              animatedconversationid: item.id,
               name: isGroup
                 ? item.name
                 : member[0].IdentifiableInformation.fullname,
@@ -94,10 +117,33 @@ const HorizontalMessageNotification = ({item}) => {
     )
   }
 
+  ChatContainer.propTypes = {
+    isGroup: PropTypes.bool.isRequired,
+    item: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string,
+      Members: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          IdentifiableInformation: PropTypes.shape({
+            fullname: PropTypes.string,
+          }),
+        }),
+      ).isRequired,
+      Messages: PropTypes.arrayOf(
+        PropTypes.shape({
+          content: PropTypes.shape({
+            message: PropTypes.string,
+          }),
+        }),
+      ).isRequired,
+    }).isRequired,
+  }
+
   return (
     <ChatContainer
-      item={item}
-      isGroup={item.Members.length === 2 ? false : true}
+      item={messageData}
+      isGroup={messageData.Members.length === 2 ? false : true}
     />
   )
 }

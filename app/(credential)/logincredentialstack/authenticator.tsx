@@ -8,7 +8,7 @@ import Reanimated, {
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {useRouter} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
-import {Entypo, Feather, Ionicons} from '@expo/vector-icons'
+import {Feather, Ionicons} from '@expo/vector-icons'
 import {useIsFocused} from '@react-navigation/native'
 import {Controller, useForm} from 'react-hook-form'
 
@@ -98,8 +98,6 @@ export default () => {
     control,
     handleSubmit,
     setValue,
-    getValues,
-    reset,
     setError,
     formState: {errors},
   } = useForm<FormType>({
@@ -115,17 +113,14 @@ export default () => {
     shouldUnregister: true,
   })
 
-  const [
-    sendCode,
-    {data: sendCodeData, loading: sendCodeLoading, error: sendCodeError},
-  ] = useSendAuthenticatorDeviceOwnerCodeMutation({})
+  const [sendCode, {loading: sendCodeLoading}] =
+    useSendAuthenticatorDeviceOwnerCodeMutation({})
 
-  const [authorizedProfilesV2Query, {data, loading, error}] =
-    useAuthorizedProfilesLazyQuery({
-      fetchPolicy: 'network-only',
-    })
+  const [authorizedProfilesV2Query] = useAuthorizedProfilesLazyQuery({
+    fetchPolicy: 'network-only',
+  })
 
-  const onSubmit = data => {
+  const onSubmit = (data: {authenticator: string}) => {
     const authenticatorClean = data.authenticator.replace(/[^a-zA-Z0-9]/g, '')
     const authenticatorNumberOnly = data.authenticator.replace(/\D/g, '')
 
@@ -142,10 +137,9 @@ export default () => {
         },
       },
       onCompleted(data) {
-        console.log('🚀 ~ onCompleted ~ data:', data)
         switch (data.authorizedProfiles?.__typename) {
           case 'ProfilesResponse':
-            if (data.authorizedProfiles?.username.length) {
+            if (data.authorizedProfiles?.username?.length) {
               router.push({
                 pathname: '/(credential)/logincredentialstack/loginpassword',
                 params: {
@@ -157,7 +151,7 @@ export default () => {
                 },
               })
             }
-            if (data.authorizedProfiles?.phone.length) {
+            if (data.authorizedProfiles?.phone?.length) {
               sendCode({
                 variables: {
                   where: {
@@ -189,7 +183,7 @@ export default () => {
                   }
                 },
               })
-              if (data.authorizedProfiles.email.length) {
+              if (data.authorizedProfiles.email?.length) {
                 sendCode({
                   variables: {
                     where: {
@@ -200,8 +194,10 @@ export default () => {
                       },
                     },
                   },
-                  onCompleted: data => {
-                    switch (data.sendAuthenticatorDeviceOwnerCode?.__typename) {
+                  onCompleted: codeData => {
+                    switch (
+                      codeData.sendAuthenticatorDeviceOwnerCode?.__typename
+                    ) {
                       case 'Error':
                         setError('authenticator', {
                           type: 'validate',
@@ -214,7 +210,8 @@ export default () => {
                             '/(credential)/logincredentialstack/confirmationcode',
                           params: {
                             authenticator: authenticatorClean,
-                            code: data.sendAuthenticatorDeviceOwnerCode.code,
+                            code: codeData.sendAuthenticatorDeviceOwnerCode
+                              .code,
                           },
                         })
                         break

@@ -23,7 +23,6 @@ import {
   HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
 } from '#/src/constants/ReactNavigationConstants'
 import {useToggleTheme} from '#/src/util/hooks/theme/useToggleTheme'
-import useContentInsets from '#/src/util/hooks/useContentInsets'
 
 type Gluestack = {
   primary0: string
@@ -92,22 +91,18 @@ type Item = {
 
 export default function Preferences() {
   const insets = useSafeAreaInsets()
-  const contentInsets = useContentInsets()
   const rTheme = useReactiveVar(ThemeReactiveVar)
-  const [toggleColorScheme, switchTheme] = useToggleTheme()
+  const [toggleColorScheme] = useToggleTheme()
 
-  const {data: GATData, loading: GATLoading, error} = useGetAllThemesQuery()
+  const {data: GATData, loading: GATLoading} = useGetAllThemesQuery()
 
   const [updateSwitchTheme] = useUpdateThemeManagerSwitchThemeMutation({
-    onCompleted: data => {
+    onCompleted: () => {
       refreshMutation()
-    },
-    onError: error => {
-      console.log('errorwwww :>> ', error)
     },
   })
 
-  const [refreshMutation, {data, loading}] = useRefreshDeviceManagerLazyQuery({
+  const [refreshMutation] = useRefreshDeviceManagerLazyQuery({
     onCompleted: data => {
       if (
         data.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile'
@@ -121,13 +116,7 @@ export default function Preferences() {
         }, 500)
       }
       if (data.refreshDeviceManager?.__typename === 'Error') {
-        // setTimeout(() => {
-        // 	router.push('/(app)/hometab/venuefeed')
-        // }, 1)
       }
-    },
-    onError: error => {
-      console.log('error :>> ', error)
     },
   })
 

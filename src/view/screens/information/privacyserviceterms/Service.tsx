@@ -11,7 +11,7 @@ export default function Service() {
   const {width} = useWindowDimensions()
   const rTheme = useReactiveVar(ThemeReactiveVar)
 
-  const {data, loading, error} = usePrivacyTermsDocumentsQuery()
+  const {data, loading} = usePrivacyTermsDocumentsQuery()
 
   if ((loading && !data) || !data?.privacyTermsDocuments) {
     return <TermsLoadingState />
@@ -21,7 +21,7 @@ export default function Service() {
       <ScrollView>
         <RenderHTML
           contentWidth={width}
-          source={{html: data.privacyTermsDocuments.termsofservice.content}}
+          source={{html: data.privacyTermsDocuments.termsofservice?.content}}
           enableCSSInlineProcessing={true}
           allowedStyles={['color', 'backgroundColor']}
           classesStyles={{

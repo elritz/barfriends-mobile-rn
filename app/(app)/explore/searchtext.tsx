@@ -47,22 +47,11 @@ export default () => {
     [],
   )
 
-  const [exploreSearchQuery, {data, loading, error}] =
-    useExploreSearchLazyQuery({
-      fetchPolicy: 'cache-first',
-      onError: error => {},
-      onCompleted: data => {
-        // if (data.exploreSearch.people.length && data.exploreSearch.venues.length) {
-        // 	setShotPastItems(true)
-        // }
-      },
-    })
+  const [exploreSearchQuery, {data, loading}] = useExploreSearchLazyQuery({
+    fetchPolicy: 'cache-first',
+  })
 
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-  } = useRefreshDeviceManagerQuery({
+  const {} = useRefreshDeviceManagerQuery({
     fetchPolicy: 'cache-first',
     onCompleted: data => {
       if (
@@ -99,7 +88,7 @@ export default () => {
             variables: {
               search: item.search,
             },
-            onCompleted: data => {
+            onCompleted: () => {
               router.setParams({
                 searchtext: item.search,
               })
@@ -131,7 +120,7 @@ export default () => {
 
   if (!params?.searchtext?.length && !loading) {
     return (
-      <Box className="flex-1 bg-transparent px-2">
+      <Box className="flex-1 px-2">
         <FlashList
           data={filteredRecentSearches as Item[]}
           ListHeaderComponent={() => {

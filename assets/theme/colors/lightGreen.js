@@ -1,7 +1,7 @@
 Object.defineProperty(exports, '__esModule', {
   value: true,
 })
-exports.default = void 0
+
 const lightGreen = {
   50: '#f1f8e9',
   100: '#dcedc8',

@@ -58,6 +58,7 @@ export default function SearchCard({item}: {item: Item}) {
         <HStack className="h-[100%] items-center">
           {item.Profile?.photos[0]?.url ? (
             <Image
+              accessibilityIgnoresInvertColors
               style={{
                 height: 45,
                 width: 45,

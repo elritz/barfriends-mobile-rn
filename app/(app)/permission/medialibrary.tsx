@@ -1,6 +1,5 @@
 import {useEffect, useRef} from 'react'
 import {AppState, Platform, ScrollView, View} from 'react-native'
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import * as IntentLauncher from 'expo-intent-launcher'
 import * as Linking from 'expo-linking'
@@ -26,7 +25,7 @@ import PermissionDetailItem from '#/src/view/screens/permissions/PermissionDetai
 
 export default () => {
   const appStateRef = useRef(AppState.currentState)
-  const [status, requestPermission] = MediaLibrary.usePermissions()
+  const [status] = MediaLibrary.usePermissions()
   const router = useRouter()
   const insets = useSafeAreaInsets()
   const rPerm = useReactiveVar(PermissionsReactiveVar)

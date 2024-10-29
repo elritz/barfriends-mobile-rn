@@ -10,7 +10,6 @@ import {
   ProfileType,
   useGetADeviceManagerQuery,
   useRefreshDeviceManagerQuery,
-  useRemoveDeviceProfileFromDeviceManagerMutation,
   useSwitchDeviceProfileMutation,
 } from '#/graphql/generated'
 import {ThemeReactiveVar} from '#/reactive'
@@ -148,7 +147,7 @@ const DeviceManagerProfiles = () => {
   if (loading) {
     return (
       <VStack space={'md'} className="my-5 rounded-md px-2">
-        {[...Array(3)].map((item, index) => {
+        {[...Array(3)].map((_, index) => {
           return (
             <Skeleton
               key={index}
@@ -174,20 +173,11 @@ const DeviceManagerProfiles = () => {
     )
   }
 
-  if (data?.getADeviceManager?.__typename === 'Error') {
+  if (gadmData?.getADeviceManager?.__typename === 'Error') {
     return null
   }
 
   if (data?.getADeviceManager?.__typename === 'DeviceManagerDeviceProfiles') {
-    // const onPressRouteToLogin = () => {
-    //   router.dismiss()
-    //   setTimeout(() => {
-    //     router.replace({
-    //       pathname: '/(credential)/logincredentialstack/authenticator',
-    //     })
-    //   }, 0)
-    // }
-
     return (
       <Center>
         {data.getADeviceManager.DeviceProfiles?.length ? (

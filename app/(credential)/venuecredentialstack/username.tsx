@@ -102,9 +102,7 @@ const username = () => {
     })
   }
 
-  const validateCheckUsername = async (
-    value: string,
-  ): Promise<ValidateResult> => {
+  const validateCheckUsername = async (): Promise<ValidateResult> => {
     setTimeout(() => {
       checkUsername()
     }, 500)

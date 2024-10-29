@@ -1,9 +1,13 @@
 import {useEffect, useRef, useState} from 'react'
-import {Image} from 'react-native'
-import {AppState, SafeAreaView, useWindowDimensions, View} from 'react-native'
+import {
+  AppState,
+  Image,
+  SafeAreaView,
+  useWindowDimensions,
+  View,
+} from 'react-native'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import Svg, {Defs, LinearGradient, Rect, Stop} from 'react-native-svg'
-import * as ImagePicker from 'expo-image-picker'
 import * as MediaLibrary from 'expo-media-library'
 import {useRouter} from 'expo-router'
 // TODO: FN()
@@ -44,19 +48,9 @@ export default () => {
   const [numberOfPhotos] = useState(100)
   const [photoLibrary, setPhotoLibrary] = useState<MediaLibrary.Asset[]>()
   const [lastPhotoID, setLastPhotoID] = useState<string>('')
-  const [hasNextPage, setHasNextPage] = useState<boolean>(true)
+  const [_, setHasNextPage] = useState<boolean>(true)
 
-  const loadingSkelWidth = window.width / 2.15
-  const loadingSkelHeight = window.width - 20
-
-  const {
-    control,
-    handleSubmit,
-    setValue,
-    watch,
-    getValues,
-    formState: {errors},
-  } = useForm({
+  const {handleSubmit, setValue, watch} = useForm({
     mode: 'onChange',
     reValidateMode: 'onChange',
     defaultValues: {
@@ -88,23 +82,23 @@ export default () => {
     setMediaLoading(false)
   }
 
-  const _pickMediaPicker = async () => {
-    if (!rPerm?.medialibrary.granted) {
-      router.push({
-        pathname: '/(app)/permission/medialibrary',
-      })
-    } else {
-      const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsEditing: false,
-        aspect: [4, 3],
-        quality: 1,
-      })
-      if (!result?.canceled) {
-        setValue('photo', {id: '', uri: result.assets[0].uri, url: ''})
-      }
-    }
-  }
+  // const _pickMediaPicker = async () => {
+  //   if (!rPerm?.medialibrary.granted) {
+  //     router.push({
+  //       pathname: '/(app)/permission/medialibrary',
+  //     })
+  //   } else {
+  //     const result = await ImagePicker.launchImageLibraryAsync({
+  //       mediaTypes: ImagePicker.MediaTypeOptions.Images,
+  //       allowsEditing: false,
+  //       aspect: [4, 3],
+  //       quality: 1,
+  //     })
+  //     if (!result?.canceled) {
+  //       setValue('photo', {id: '', uri: result.assets[0].uri, url: ''})
+  //     }
+  //   }
+  // }
 
   const onSubmit = async (data: {photo: {uri?: string} | undefined}) => {
     setImageUploading(true)
@@ -231,9 +225,10 @@ export default () => {
           {[...Array(6)].map((_, index) => {
             return (
               <HStack key={index} space={'sm'} className="overflow-hidden">
-                {[...Array(3)].map((item, index) => {
+                {[...Array(3)].map(index => {
                   return (
                     <Skeleton
+                      key={index}
                       height={window.width / 3}
                       width={window.width / 3}
                       radius={15}
@@ -288,6 +283,7 @@ export default () => {
           <Rect height="100%" width={window.width} fill="url(#grad)" />
         </Svg>
         <Image
+          accessibilityIgnoresInvertColors
           style={{
             height: window.width / 1.55,
             width: window.width / 1.75,
@@ -320,6 +316,7 @@ export default () => {
                 !imageUploading && setValue('photo.uri', item.uri)
               }}>
               <Image
+                accessibilityIgnoresInvertColors
                 style={{
                   height: window.width / 3,
                   width: window.width / 3,

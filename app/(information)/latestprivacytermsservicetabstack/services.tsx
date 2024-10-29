@@ -11,7 +11,7 @@ export default () => {
   const {width} = useWindowDimensions()
   const rTheme = useReactiveVar(ThemeReactiveVar)
 
-  const {data, loading, error} = usePrivacyTermsDocumentsQuery()
+  const {data, loading} = usePrivacyTermsDocumentsQuery()
 
   if (loading && data) {
     return <TermsLoadingState />

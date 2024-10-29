@@ -1,9 +1,15 @@
-import {useCallback, useState} from 'react'
-import {Image} from 'react-native'
-import {ScrollView, StyleSheet, useWindowDimensions, View} from 'react-native'
+import {useCallback} from 'react'
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  useWindowDimensions,
+  View,
+} from 'react-native'
 import Animated, {
   interpolate,
   interpolateColor,
+  SharedValue,
   useAnimatedRef,
   useAnimatedScrollHandler,
   useAnimatedStyle,
@@ -11,33 +17,70 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated'
 import {BlurView} from 'expo-blur'
-import * as ImagePicker from 'expo-image-picker'
 // TODO: Add a way to remove photos from tonights story
 import {useReactiveVar} from '@apollo/client'
 import {MaterialIcons} from '@expo/vector-icons'
+import PropTypes from 'prop-types'
 
-import {
-  PhotoCreateManyProfileInput,
-  useAddStoryPhotosMutation,
-  useRefreshDeviceManagerQuery,
-} from '#/graphql/generated'
+import {useRefreshDeviceManagerQuery} from '#/graphql/generated'
 import useEmojimoodTextColor from '#/hooks/useEmojiMoodTextContrast'
 import {AuthorizationReactiveVar, ThemeReactiveVar} from '#/reactive'
 import {ActivityCardProps} from '#/src/components/molecules/activity'
 import {Box} from '#/src/components/ui/box'
-import {Button, ButtonText} from '#/src/components/ui/button'
+import {Button} from '#/src/components/ui/button'
 import {Center} from '#/src/components/ui/center'
 import {Heading} from '#/src/components/ui/heading'
 import {Pressable} from '#/src/components/ui/pressable'
 import {Text} from '#/src/components/ui/text'
-import useCloudinaryImageUploading from '#/src/util/uploading/useCloudinaryImageUploading'
 
 const size = 70
+
+const RenderItem: React.FC<{
+  index: number
+  width: number
+  translateX: SharedValue<number>
+}> = ({index, width, translateX}) => {
+  const DOT_SIZE = 8
+  const rDotStyle = useAnimatedStyle(() => {
+    const inputRange = [(index - 1) * width, index * width, (index + 1) * width]
+    const dotWidth = interpolate(
+      translateX.value,
+      inputRange,
+      [11, 20, 11],
+      'clamp',
+    )
+    const dotColor = interpolateColor(translateX.value, inputRange, [
+      '#1d1d1d',
+      '#ff7000',
+      '#1d1d1d',
+    ])
+
+    return {
+      width: dotWidth,
+      backgroundColor: dotColor,
+    }
+  })
+
+  return (
+    <Animated.View
+      key={index.toString()}
+      style={[
+        rDotStyle,
+        {
+          marginHorizontal: 3,
+          height: DOT_SIZE,
+          borderWidth: 0.5,
+          borderRadius: DOT_SIZE / 2,
+        },
+      ]}
+    />
+  )
+}
 
 const Photos: React.FC<
   ActivityCardProps & {onRemovePhoto?: (index: number) => void}
 > = ({isEmojimoodDynamic = false, onRemovePhoto}) => {
-  const [_, setLoading] = useState(false)
+  // const [_, setLoading] = useState(false)
   const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const {width} = useWindowDimensions()
@@ -45,7 +88,7 @@ const Photos: React.FC<
   const translateX = useSharedValue(0)
   const containerHeight = 400
   const margin = 12
-  const DOT_SIZE = 8
+
   const ITEM_WIDTH = width - margin * 2
   const textColor = useEmojimoodTextColor({
     isEmojimoodDynamic: isEmojimoodDynamic,
@@ -56,48 +99,48 @@ const Photos: React.FC<
     return Math.round(translateX.value / ITEM_WIDTH)
   })
 
-  const [addPhotosMutation, {loading}] = useAddStoryPhotosMutation()
+  // const [addPhotosMutation, {loading}] = useAddStoryPhotosMutation()
 
   const {data: rdmData} = useRefreshDeviceManagerQuery()
 
-  const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
-    setTimeout(() => {
-      setLoading(true)
-    }, 1500)
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      presentationStyle: ImagePicker.UIImagePickerPresentationStyle.FULL_SCREEN,
-      selectionLimit: 4,
-      aspect: [4, 3],
-      allowsMultipleSelection: true,
-      quality: 1,
-    })
+  // const pickImage = async () => {
+  //   // No permissions request is necessary for launching the image library
+  //   setTimeout(() => {
+  //     setLoading(true)
+  //   }, 1500)
+  //   let result = await ImagePicker.launchImageLibraryAsync({
+  //     mediaTypes: ImagePicker.MediaTypeOptions.Images,
+  //     presentationStyle: ImagePicker.UIImagePickerPresentationStyle.FULL_SCREEN,
+  //     selectionLimit: 4,
+  //     aspect: [4, 3],
+  //     allowsMultipleSelection: true,
+  //     quality: 1,
+  //   })
 
-    if (result.assets) {
-      const resultSettled = await Promise.allSettled(
-        result.assets.map(async item => {
-          const data = await useCloudinaryImageUploading(item.uri)
-          return data.secure_url
-        }),
-      )
+  //   if (result.assets) {
+  //     const resultSettled = await Promise.allSettled(
+  //       result.assets.map(async item => {
+  //         const data = await useCloudinaryImageUploading(item.uri)
+  //         return data.secure_url
+  //       }),
+  //     )
 
-      const images: PhotoCreateManyProfileInput[] = resultSettled
-        .filter(item => item.status === 'fulfilled' && item.value)
-        .map(item => ({url: (item as PromiseFulfilledResult<string>).value}))
+  //     const images: PhotoCreateManyProfileInput[] = resultSettled
+  //       .filter(item => item.status === 'fulfilled' && item.value)
+  //       .map(item => ({url: (item as PromiseFulfilledResult<string>).value}))
 
-      addPhotosMutation({
-        variables: {
-          photos: {
-            data: [...images],
-          },
-        },
-      })
-      setLoading(false)
-    } else {
-      setLoading(false)
-    }
-  }
+  //     addPhotosMutation({
+  //       variables: {
+  //         photos: {
+  //           data: [...images],
+  //         },
+  //       },
+  //     })
+  //     setLoading(false)
+  //   } else {
+  //     setLoading(false)
+  //   }
+  // }
 
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: event => {
@@ -237,11 +280,11 @@ const Photos: React.FC<
                       <Heading className="pb-1 font-black">
                         Upload another image
                       </Heading>
-                      <Button
+                      {/* <Button
                         onPress={pickImage}
                         className="z-20 rounded-lg bg-tertiary-400">
                         <ButtonText>Add</ButtonText>
-                      </Button>
+                      </Button> */}
                     </Center>
                   </Box>
                 )
@@ -305,38 +348,12 @@ const Photos: React.FC<
               rAuthorizationVar?.Profile?.tonightStory?.photos,
               {__typename: 'upload'},
             ].map((__, i) => {
-              const rDotStyle = useAnimatedStyle(() => {
-                const inputRange = [(i - 1) * width, i * width, (i + 1) * width]
-                const dotWidth = interpolate(
-                  translateX.value,
-                  inputRange,
-                  [11, 20, 11],
-                  'clamp',
-                )
-                const dotColor = interpolateColor(
-                  translateX.value,
-                  inputRange,
-                  ['#1d1d1d', '#ff7000', '#1d1d1d'],
-                )
-
-                return {
-                  width: dotWidth,
-                  backgroundColor: dotColor,
-                }
-              })
-
               return (
-                <Animated.View
-                  key={i.toString()}
-                  style={[
-                    rDotStyle,
-                    {
-                      marginHorizontal: 3,
-                      height: DOT_SIZE,
-                      borderWidth: 0.5,
-                      borderRadius: DOT_SIZE / 2,
-                    },
-                  ]}
+                <RenderItem
+                  key={i}
+                  index={i}
+                  width={width}
+                  translateX={translateX}
                 />
               )
             })}
@@ -417,20 +434,25 @@ const Photos: React.FC<
                 className="w-3/4 text-center text-lg font-medium">
                 Add photos of your fit and pick your emojimood
               </Text>
-              <Button
+              {/* <Button
                 onPress={pickImage}
                 // action="tertiary"
                 className="mt-10 rounded-lg bg-tertiary-500">
                 <ButtonText className="dark:text-white">
                   Select{loading ? 'ing' : ''} images
                 </ButtonText>
-              </Button>
+              </Button> */}
             </Center>
           </Box>
         </BlurView>
       )}
     </Box>
   )
+}
+
+Photos.propTypes = {
+  isEmojimoodDynamic: PropTypes.bool,
+  onRemovePhoto: PropTypes.func,
 }
 
 export default Photos

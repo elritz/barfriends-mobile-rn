@@ -35,7 +35,7 @@ export default () => {
   })
 
   const [switchDeviceProfileMutation, {loading: SWDPLoading}] =
-    useSwitchDeviceProfileMutation({})
+    useSwitchDeviceProfileMutation()
 
   const _press = (item: {
     id: Maybe<string> | undefined
@@ -47,13 +47,13 @@ export default () => {
         variables: {
           profileId: item.id,
         },
-        onCompleted: data => {
+        onCompleted: responseData => {
           if (
-            data?.switchDeviceProfile?.__typename ===
+            responseData?.switchDeviceProfile?.__typename ===
             'AuthorizationDeviceProfile'
           ) {
             const deviceManager =
-              data.switchDeviceProfile as AuthorizationDeviceProfile
+              responseData.switchDeviceProfile as AuthorizationDeviceProfile
             AuthorizationReactiveVar(deviceManager)
             setTimeout(
               () =>
@@ -62,7 +62,7 @@ export default () => {
                 }),
               1000,
             )
-          } else if (data.switchDeviceProfile?.__typename === 'Error') {
+          } else if (responseData.switchDeviceProfile?.__typename === 'Error') {
             router.push({
               pathname: '/(credential)/logincredentialstack/loginpassword',
               params: {

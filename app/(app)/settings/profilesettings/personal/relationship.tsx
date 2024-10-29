@@ -28,7 +28,7 @@ export default ({}: StatusScreenProps) => {
         extraScrollHeight={100}
         style={{height: '100%'}}>
         {list.map(item => {
-          return <Text>{item.name}</Text>
+          return <Text key={item.id}>{item.name}</Text>
         })}
       </KeyboardAwareScrollView>
     </Box>

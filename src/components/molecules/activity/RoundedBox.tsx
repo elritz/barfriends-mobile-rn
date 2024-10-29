@@ -1,21 +1,18 @@
+import {ReactNode} from 'react'
 import {BlurView} from 'expo-blur'
 import {useReactiveVar} from '@apollo/client'
 
 import {useRefreshDeviceManagerQuery} from '#/graphql/generated'
-import useEmojimoodTextColor from '#/hooks/useEmojiMoodTextContrast'
-import {AuthorizationReactiveVar, ThemeReactiveVar} from '#/src/state/reactive'
+import {ThemeReactiveVar} from '#/src/state/reactive'
 
-const RoundedBox = ({children}) => {
+interface RoundedBoxProps {
+  children: ReactNode
+}
+
+const RoundedBox = ({children}: RoundedBoxProps) => {
   const rTheme = useReactiveVar(ThemeReactiveVar)
-  const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
-  const textColor = useEmojimoodTextColor({
-    isEmojimoodDynamic: true,
-  })
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-  } = useRefreshDeviceManagerQuery()
+
+  const {data: rdmData} = useRefreshDeviceManagerQuery()
 
   return (
     <BlurView

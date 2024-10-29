@@ -1,4 +1,3 @@
-import * as ImageManipulator from 'expo-image-manipulator'
 import {Cloudinary} from '@cloudinary/react/url'
 import {Resize} from '@cloudinary/url-gen/actions/resize'
 
@@ -12,7 +11,7 @@ const cld = new Cloudinary({
   },
 })
 
-const useCloudinaryURLGenerator = async (photo: string): Promise<any> => {
+const useCloudinaryURLGenerator = async (): Promise<any> => {
   const myImage = cld.image('story_photo')
   myImage.resize(Resize.scale().width(100).height(100))
   const myURL = myImage.toURL()

@@ -20,11 +20,7 @@ const AddEmoji: React.FC<ActivityCardProps> = ({
   const textColor = useEmojimoodTextColor({
     isEmojimoodDynamic: isEmojimoodDynamic,
   })
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-  } = useRefreshDeviceManagerQuery()
+  const {data: rdmData} = useRefreshDeviceManagerQuery()
 
   if (
     rdmData?.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile'

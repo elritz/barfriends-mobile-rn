@@ -13,13 +13,7 @@ export default ({}: HomeTownScreenProps) => {
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const [search, setSearch] = useState<string>('')
 
-  const {
-    control,
-    setError,
-    handleSubmit,
-    reset,
-    formState: {dirtyFields, errors},
-  } = useForm({
+  const {} = useForm({
     defaultValues: {
       lookfor: rAuthorizationVar?.Profile?.IdentifiableInformation?.lookfor,
     },
@@ -41,18 +35,17 @@ export default ({}: HomeTownScreenProps) => {
           alignSelf: 'center',
           paddingHorizontal: 10,
         }}
-        borderBottomColor={'$transparent'}
-        rounded={'$md'}
-        color={
-          rTheme.colorScheme === 'light'
-            ? rTheme.theme?.gluestack.tokens.colors.light900
-            : rTheme.theme?.gluestack.tokens.colors.light100
-        }
-        backgroundColor={
-          rTheme.colorScheme === 'light'
-            ? rTheme.theme?.gluestack.tokens.colors.light100
-            : rTheme.theme?.gluestack.tokens.colors.light900
-        }>
+        // color={
+        //   rTheme.colorScheme === 'light'
+        //     ? rTheme.theme?.gluestack.tokens.colors.light900
+        //     : rTheme.theme?.gluestack.tokens.colors.light100
+        // }
+        // backgroundColor={
+        //   rTheme.colorScheme === 'light'
+        //     ? rTheme.theme?.gluestack.tokens.colors.light100
+        //     : rTheme.theme?.gluestack.tokens.colors.light900
+        // }
+      >
         <InputField
           value={search}
           placeholder="Search..."

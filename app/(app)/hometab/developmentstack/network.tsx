@@ -1,5 +1,4 @@
 import * as Clipboard from 'expo-clipboard'
-import {useRouter} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
 import {Feather} from '@expo/vector-icons'
 import {FlashList} from '@shopify/flash-list'

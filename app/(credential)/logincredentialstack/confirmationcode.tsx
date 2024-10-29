@@ -12,12 +12,7 @@ import Reanimated, {
   useDerivedValue,
 } from 'react-native-reanimated'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
-import {
-  useGlobalSearchParams,
-  useLocalSearchParams,
-  useRouter,
-} from 'expo-router'
-// TODO: FN(onPress(Resend Code)) - ln:162 -- when the user presses resend code need to resend and keep track of how many times
+import {useLocalSearchParams, useRouter} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
 import {Feather} from '@expo/vector-icons'
 import {useIsFocused} from '@react-navigation/native'
@@ -47,7 +42,7 @@ export default () => {
   const credentialPersonalProfileVar = useReactiveVar(
     CredentialPersonalProfileReactiveVar,
   )
-  const {start, finished, seconds, isFinished} = useTimer2('5')
+  const {start, seconds, isFinished} = useTimer2('5')
   const [codeValue, setCodeValue] = useState('')
   const {height: platform} = useReanimatedKeyboardAnimation()
 
@@ -129,7 +124,7 @@ export default () => {
         code: watch('code'),
       })
     }
-  }, [watch('code')])
+  }, [watch('code'), CELL_COUNT])
 
   const InnerContent = () => {
     return (

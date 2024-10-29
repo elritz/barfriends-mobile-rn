@@ -8,56 +8,45 @@ import {
 import {AuthorizationReactiveVar} from '#/reactive'
 import {AUTHORIZATION} from '#/src/constants/StorageConstants'
 import {AuthorizationDecoded} from '#/src/util/hooks/auth/useCheckLocalStorageForAuthorizationToken'
-import {
-  secureStorageItemDelete,
-  secureStorageItemRead,
-} from '#/src/util/hooks/local/useSecureStorage'
+import {secureStorageItemRead} from '#/src/util/hooks/local/useSecureStorage'
 
 export default function Auth({children}) {
-  const [
-    refreshDeviceManagerQuery,
-    {data: RDMData, loading: RDMLoading, error: RDMError},
-  ] = useRefreshDeviceManagerLazyQuery({
-    fetchPolicy: 'network-only',
-    onCompleted: data => {
-      if (
-        data.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile'
-      ) {
-        const deviceProfile =
-          data.refreshDeviceManager as AuthorizationDeviceProfile
+  const [refreshDeviceManagerQuery, {loading: RDMLoading}] =
+    useRefreshDeviceManagerLazyQuery({
+      fetchPolicy: 'network-only',
+      onCompleted: data => {
+        if (
+          data.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile'
+        ) {
+          const deviceProfile =
+            data.refreshDeviceManager as AuthorizationDeviceProfile
 
-        AuthorizationReactiveVar(deviceProfile)
-      }
-      if (data.refreshDeviceManager?.__typename === 'Error') {
-      }
-    },
-    onError: e => {
-      AuthorizationReactiveVar(null)
-      createGuestProfileMutation()
-      // console.log("🚀 ~ Auth REFRESH DEVICE MANAGER~ e:", e);
-    },
-  })
-
-  const [
-    createGuestProfileMutation,
-    {data, loading: CGLoading, error: CGPMError},
-  ] = useCreateGuestProfileMutation({
-    onCompleted: async data => {
-      console.log('🚀 ~ onCompleted: ~ data:', data)
-      if (
-        data?.createGuestProfile?.__typename === 'AuthorizationDeviceProfile'
-      ) {
-        const deviceProfile =
-          data.createGuestProfile as AuthorizationDeviceProfile
-        if (deviceProfile) {
           AuthorizationReactiveVar(deviceProfile)
         }
-      }
-    },
-    onError: e => {
-      console.log('🚀 ~ Auth ~ e CREATE GUEST:', e.name)
-    },
-  })
+        if (data.refreshDeviceManager?.__typename === 'Error') {
+        }
+      },
+      onError: e => {
+        AuthorizationReactiveVar(null)
+        createGuestProfileMutation()
+        // console.log("🚀 ~ Auth REFRESH DEVICE MANAGER~ e:", e);
+      },
+    })
+
+  const [createGuestProfileMutation, {loading: CGLoading}] =
+    useCreateGuestProfileMutation({
+      onCompleted: async data => {
+        if (
+          data?.createGuestProfile?.__typename === 'AuthorizationDeviceProfile'
+        ) {
+          const deviceProfile =
+            data.createGuestProfile as AuthorizationDeviceProfile
+          if (deviceProfile) {
+            AuthorizationReactiveVar(deviceProfile)
+          }
+        }
+      },
+    })
 
   const applicationAuthorization = useCallback(async () => {
     // await secureStorageItemDelete({

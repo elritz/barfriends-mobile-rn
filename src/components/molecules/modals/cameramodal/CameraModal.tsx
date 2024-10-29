@@ -1,29 +1,17 @@
 import {useEffect, useState} from 'react'
-import {StyleSheet} from 'react-native'
-import QRCode from 'react-native-qrcode-svg'
 import {BarCodeScanner} from 'expo-barcode-scanner'
-import * as Haptics from 'expo-haptics'
 import {useReactiveVar} from '@apollo/client'
 
-import {
-  useGetSecureFriendQrCodeDataQuery,
-  useQrAddFriendMutation,
-} from '#/graphql/generated'
-import {AuthorizationReactiveVar, PermissionCameraReactiveVar} from '#/reactive'
-import {Box} from '#/src/components/ui/box'
-import {Button} from '#/src/components/ui/button'
+import {useGetSecureFriendQrCodeDataQuery} from '#/graphql/generated'
+import {AuthorizationReactiveVar} from '#/reactive'
 import {Center} from '#/src/components/ui/center'
-import {Modal} from '#/src/components/ui/modal'
-import {Text} from '#/src/components/ui/text'
 
 // const LOGO_COASTER = require("../../../../../../assets/images/company/company_coaster.png");
 
-const CameraModal = ({isOpen, onOpen, onClose}) => {
+const CameraModal = () => {
   const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
-  const rPermissionCamera = useReactiveVar(PermissionCameraReactiveVar)
-  const [hasPermission, setHasPermission] = useState<boolean | null>(null)
-  const [scanned, setScanned] = useState(false)
-  const [dataQR, setDataQR] = useState('')
+  const [_, setHasPermission] = useState<boolean | null>(null)
+  const [___, setDataQR] = useState('')
 
   useEffect(() => {
     const getBarCodeScannerPerm = async () => {
@@ -41,46 +29,43 @@ const CameraModal = ({isOpen, onOpen, onClose}) => {
     getBarCodeScannerPerm()
   }, [])
 
-  const {
-    data: dataGSFQRCD,
-    loading: loadingGSFQRCD,
-    error: errorGSFQRCD,
-  } = useGetSecureFriendQrCodeDataQuery({
-    onCompleted: data => {
-      const dataQRString = JSON.stringify({
-        dataHash: data.getSecureFriendQRCodeData,
-        qrCodeProfileId: rAuthorizationVar?.Profile?.id,
-      })
-      setDataQR(dataQRString)
-    },
-  })
-
-  const [QRAddFriendMutation, {data, loading, error}] = useQrAddFriendMutation({
-    onCompleted: async data => {
-      onClose()
-    },
-  })
-
-  const handleBarCodeScanned = async ({type, data}) => {
-    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
-    const dataParsed = JSON.parse(data)
-
-    QRAddFriendMutation({
-      variables: {
-        qrCodeProfileId: dataParsed.qrCodeProfileId,
-        dataHash: dataParsed.dataHash,
+  const {data: dataGSFQRCD, loading: loadingGSFQRCD} =
+    useGetSecureFriendQrCodeDataQuery({
+      onCompleted: data => {
+        const dataQRString = JSON.stringify({
+          dataHash: data.getSecureFriendQRCodeData,
+          qrCodeProfileId: rAuthorizationVar?.Profile?.id,
+        })
+        setDataQR(dataQRString)
       },
     })
 
-    setScanned(true)
-    setTimeout(async () => {
-      setScanned(false),
-        onClose(),
-        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-    }, 1000)
+  // const [QRAddFriendMutation, {data, loading, error}] = useQrAddFriendMutation({
+  //   onCompleted: async data => {
+  //     onClose()
+  //   },
+  // })
 
-    // alert(`Bar code with type ${type} and data ${data} has been scanned!`)
-  }
+  // const handleBarCodeScanned = async ({type, data}) => {
+  //   await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
+  //   const dataParsed = JSON.parse(data)
+
+  //   QRAddFriendMutation({
+  //     variables: {
+  //       qrCodeProfileId: dataParsed.qrCodeProfileId,
+  //       dataHash: dataParsed.dataHash,
+  //     },
+  //   })
+
+  //   setScanned(true)
+  //   setTimeout(async () => {
+  //     setScanned(false),
+  //       onClose(),
+  //       await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+  //   }, 1000)
+
+  //   // alert(`Bar code with type ${type} and data ${data} has been scanned!`)
+  // }
 
   if (loadingGSFQRCD || !dataGSFQRCD) return null
 

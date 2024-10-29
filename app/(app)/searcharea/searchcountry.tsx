@@ -9,6 +9,7 @@ import {useFormContext} from 'react-hook-form'
 
 import {
   CountryResponseObject,
+  Maybe,
   useGetAllCountriesQuery,
 } from '#/graphql/generated'
 import {ThemeReactiveVar} from '#/reactive'
@@ -25,11 +26,11 @@ export default function SearchCountry() {
 
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const [countries, setCountries] = useState<CountryResponseObject[]>([])
-  const [pagination, setPagination] = useState<number>()
+  const [_, setPagination] = useState<number>()
 
   const {watch, setValue} = useFormContext<Form>()
 
-  const {data, loading, error} = useGetAllCountriesQuery({
+  const {data, loading} = useGetAllCountriesQuery({
     onCompleted: data => {
       if (data.getAllCountries) {
         setCountries(data?.getAllCountries)
@@ -38,20 +39,35 @@ export default function SearchCountry() {
     },
   })
 
-  const filterList = text => {
-    if (!params?.searchtext?.length && data?.getAllCountries.length) {
+  const filterList = (text: string | string[]) => {
+    if (!params?.searchtext?.length && data?.getAllCountries?.length) {
       if (data.getAllCountries) {
         setCountries(data.getAllCountries)
       }
     }
 
     const filteredCountriesData = filter(data?.getAllCountries, item => {
-      return contains(item, text.toLowerCase())
+      return contains(
+        item,
+        Array.isArray(text) ? text.join(' ').toLowerCase() : text.toLowerCase(),
+      )
     })
     setCountries(filteredCountriesData)
   }
 
-  const contains = (item, query) => {
+  const contains = (
+    item: {
+      __typename?: 'CountryResponseObject' | undefined
+      name: any
+      phonecode?: string | null | undefined
+      isoCode?: string | null | undefined
+      flag?: string | null | undefined
+      currency?: string | null | undefined
+      latitude?: string | null | undefined
+      longitude?: string | null | undefined
+    },
+    query: string,
+  ) => {
     if (item.name.toLowerCase().includes(query)) {
       return true
     }
@@ -116,8 +132,23 @@ export default function SearchCountry() {
     )
   }
 
-  function CountryItem({index, item}) {
-    const _pressItem = async item => {
+  function CountryItem({
+    index,
+    item,
+  }: {
+    index: number
+    item: CountryResponseObject
+  }) {
+    const _pressItem = async (item: {
+      __typename?: 'CountryResponseObject' | undefined
+      currency?: Maybe<string> | undefined
+      flag?: Maybe<string> | undefined
+      isoCode: any
+      latitude: any
+      longitude: any
+      name: any
+      phonecode?: Maybe<string> | undefined
+    }) => {
       setValue('country', {
         name: item.name,
         isoCode: item.isoCode,
@@ -173,7 +204,7 @@ export default function SearchCountry() {
       contentContainerStyle={{
         paddingHorizontal: 10,
       }}
-      keyExtractor={(item, index) => 'key' + index}
+      keyExtractor={index => 'key' + index}
       estimatedItemSize={50}
       keyboardDismissMode={'on-drag'}
       ItemSeparatorComponent={() => {

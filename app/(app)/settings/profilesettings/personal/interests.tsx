@@ -20,7 +20,7 @@ export default () => {
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const [selectedTags, setSelectedTags] = useState<string[]>([])
 
-  const {data, loading, error} = useGetInterestsQuery()
+  const {data, loading} = useGetInterestsQuery()
 
   useEffect(() => {
     const tagids = rAuthorizationVar?.Profile?.DetailInformation?.Tags.map(
@@ -29,7 +29,7 @@ export default () => {
     if (tagids && tagids.length) {
       setSelectedTags([...tagids])
     }
-  }, [])
+  }, [rAuthorizationVar?.Profile?.DetailInformation?.Tags])
 
   if (loading) {
     return (
@@ -37,7 +37,7 @@ export default () => {
         <FlashList
           numColumns={1}
           scrollEnabled={false}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={index => index.toString()}
           estimatedItemSize={35}
           data={[...Array(6)]}
           showsVerticalScrollIndicator={false}
@@ -72,12 +72,12 @@ export default () => {
                   }
                 />
                 <VStack className="flex-row flex-wrap">
-                  {[...Array(randInterests)].map(item => {
-                    const randWidth = useRandomNumber(40, 100)
+                  {[...Array(randInterests)].map(() => {
+                    const skelRandWidth = useRandomNumber(40, 100)
                     return (
                       <Skeleton
                         height={35}
-                        width={Number(randWidth)}
+                        width={Number(skelRandWidth)}
                         radius={15}
                         colorMode={
                           rTheme.colorScheme === 'light' ? 'light' : 'dark'
@@ -127,21 +127,19 @@ export default () => {
         keyExtractor={item => item.id.toString()}
         ItemSeparatorComponent={() => <View style={{height: 10}} />}
         extraData={selectedTags}
-        renderItem={({item, index}) => {
+        renderItem={({item}) => {
           return (
             <VStack key={item.id}>
               <Heading>{item.name}</Heading>
               <HStack space={'sm'} className="flex-1 flex-row flex-wrap">
-                {item.Tags.map((tag, index) => {
+                {item.Tags.map(tag => {
                   return (
                     <Pressable
                       accessibilityRole="button"
                       onPress={() => {
                         if (selectedTags.some(e => e === tag.id)) {
                           setSelectedTags(prev => {
-                            return [
-                              ...prev.filter((tagid, i) => tagid !== tag.id),
-                            ]
+                            return [...prev.filter(tagid => tagid !== tag.id)]
                           })
                         } else {
                           setSelectedTags(oldArray => [...oldArray, tag.id])

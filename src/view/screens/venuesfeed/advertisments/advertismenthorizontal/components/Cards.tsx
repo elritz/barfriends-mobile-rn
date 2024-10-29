@@ -1,5 +1,6 @@
-import {Image} from 'react-native'
-import {Dimensions, StyleSheet, Text, View} from 'react-native'
+import {Dimensions, Image, StyleSheet, Text, View} from 'react-native'
+
+import {white} from '#/assets/theme/colors/colors'
 
 const {width} = Dimensions.get('window')
 export const cards = [
@@ -38,11 +39,12 @@ const styles = StyleSheet.create({
   caption: {
     marginHorizontal: 24,
     padding: 24,
-    backgroundColor: 'white',
+    backgroundColor: white,
     borderBottomLeftRadius: 16,
     borderBottomRightRadius: 16,
     marginBottom: 16,
   },
+
   text: {
     fontSize: 16,
     textAlign: 'center',

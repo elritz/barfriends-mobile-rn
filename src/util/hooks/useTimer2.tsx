@@ -7,13 +7,13 @@ function useTimer2(stringTime: string): IUseTimerResponse {
     return '' + (+number < 10 ? `0${number}` : number)
   }, [])
 
-  const [minutes, seconds] = stringTime.split(':')
+  const [newMinutes, newSeconds] = stringTime.split(':')
   const getInitialTime = useCallback(() => {
     return {
-      minutes: twoChars(+minutes || 0),
-      seconds: twoChars(+seconds || 0),
+      minutes: twoChars(+newMinutes || 0),
+      seconds: twoChars(+newSeconds || 0),
     }
-  }, [minutes, seconds, twoChars])
+  }, [newMinutes, newSeconds, twoChars])
 
   const [time, setTime] = useState(getInitialTime())
   const [started, setStarted] = useState(false)
@@ -24,11 +24,11 @@ function useTimer2(stringTime: string): IUseTimerResponse {
     clearInterval(timer.current)
     setStarted(true)
     timer.current = setInterval(() => {
-      setTime(time => ({
+      setTime(itemTime => ({
         minutes: twoChars(
-          +time.seconds === 0 ? +time.minutes - 1 : +time.minutes,
+          +itemTime.seconds === 0 ? +itemTime.minutes - 1 : +itemTime.minutes,
         ),
-        seconds: twoChars(+time.seconds === 0 ? 59 : +time.seconds - 1),
+        seconds: twoChars(+itemTime.seconds === 0 ? 59 : +itemTime.seconds - 1),
       }))
     }, 1000)
   }, [twoChars])
@@ -51,8 +51,8 @@ function useTimer2(stringTime: string): IUseTimerResponse {
   }, [getInitialTime])
 
   const setTimer = useCallback(
-    (stringTime: string) => {
-      const [minutes, seconds] = stringTime.split(':')
+    (strTime: string) => {
+      const [minutes, seconds] = strTime.split(':')
 
       setTime({
         minutes: twoChars(+minutes || 0),

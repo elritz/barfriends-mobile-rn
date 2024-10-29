@@ -9,7 +9,7 @@ import {Text} from '#/src/components/ui/text'
 
 export default function TermsServices() {
   const router = useRouter()
-  const [updateProfilePrivacyTermsDocuments, {data, loading, error}] =
+  const [updateProfilePrivacyTermsDocuments, {loading}] =
     useUpdateProfilePrivacyTermsDocumentUpdateMutation({
       onCompleted: data => {
         if (data.updateProfilePrivacyTermsDocumentUpdate) {

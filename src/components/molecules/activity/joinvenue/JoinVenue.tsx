@@ -2,13 +2,14 @@ import {Pressable} from 'react-native'
 import {useRouter} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
 import {FontAwesome5} from '@expo/vector-icons'
+import PropTypes from 'prop-types'
 
 import {useRefreshDeviceManagerQuery} from '#/graphql/generated'
 import useEmojimoodTextColor from '#/hooks/useEmojiMoodTextContrast'
 import {ThemeReactiveVar} from '#/reactive'
 import {Box} from '#/src/components/ui/box'
 import {Heading} from '#/src/components/ui/heading'
-import {Color} from '#/src/util/helpers/color'
+import {ActivityCardProps} from '../index'
 
 const JoinVenue: React.FC<ActivityCardProps> = ({
   isEmojimoodDynamic = false,
@@ -18,11 +19,7 @@ const JoinVenue: React.FC<ActivityCardProps> = ({
   const textColor = useEmojimoodTextColor({
     isEmojimoodDynamic: isEmojimoodDynamic,
   })
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-  } = useRefreshDeviceManagerQuery()
+  const {data: rdmData} = useRefreshDeviceManagerQuery()
 
   if (
     rdmData?.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile'
@@ -63,6 +60,10 @@ const JoinVenue: React.FC<ActivityCardProps> = ({
       </Pressable>
     )
   }
+}
+
+JoinVenue.propTypes = {
+  isEmojimoodDynamic: PropTypes.bool,
 }
 
 export default JoinVenue

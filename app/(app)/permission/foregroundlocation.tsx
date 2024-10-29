@@ -1,6 +1,5 @@
 import {useEffect, useRef} from 'react'
-import {ScrollView} from 'react-native'
-import {Alert, AppState, Platform, View} from 'react-native'
+import {Alert, AppState, Platform, ScrollView, View} from 'react-native'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import * as IntentLauncher from 'expo-intent-launcher'
 import * as Linking from 'expo-linking'
@@ -129,6 +128,27 @@ export default () => {
       }
     }
   }
+  const handleAppStateChange = async (nextAppState: any) => {
+    if (
+      /inactive|background/.exec(appStateRef.current) &&
+      nextAppState === 'active'
+    ) {
+      const locationpermission = await Location.getForegroundPermissionsAsync()
+      PermissionsReactiveVar({
+        ...rPerm,
+        locationForeground: locationpermission,
+      })
+      if (
+        locationpermission.granted &&
+        locationpermission.status === 'granted'
+      ) {
+        if (!started) {
+          start()
+        }
+      }
+    }
+    appStateRef.current = nextAppState
+  }
 
   useEffect(() => {
     async function loadPermissionsAsync() {
@@ -153,29 +173,7 @@ export default () => {
     return () => {
       subscription.remove()
     }
-  }, [])
-
-  const handleAppStateChange = async (nextAppState: any) => {
-    if (
-      /inactive|background/.exec(appStateRef.current) &&
-      nextAppState === 'active'
-    ) {
-      const locationpermission = await Location.getForegroundPermissionsAsync()
-      PermissionsReactiveVar({
-        ...rPerm,
-        locationForeground: locationpermission,
-      })
-      if (
-        locationpermission.granted &&
-        locationpermission.status === 'granted'
-      ) {
-        if (!started) {
-          start()
-        }
-      }
-    }
-    appStateRef.current = nextAppState
-  }
+  }, [handleAppStateChange])
 
   finished(() => {
     router.back()

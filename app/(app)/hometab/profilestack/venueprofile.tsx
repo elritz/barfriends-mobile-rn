@@ -19,17 +19,12 @@ import ProfilePhoto from '#/src/view/screens/profile/profilephoto'
 export default () => {
   const insets = useContentInsets()
 
-  const [getNotificationQuery, {data: GNData, loading: GNLoading, error}] =
+  const [getNotificationQuery, {loading: GNLoading}] =
     useGetNotificationsLazyQuery({
       fetchPolicy: 'network-only',
-      onCompleted: data => {},
     })
 
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-  } = useRefreshDeviceManagerQuery()
+  const {data: rdmData, loading: rdmLoading} = useRefreshDeviceManagerQuery()
 
   useEffect(() => {
     getNotificationQuery()

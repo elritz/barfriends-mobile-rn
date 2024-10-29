@@ -19,7 +19,7 @@ export default () => {
   const router = useRouter()
 
   const {data: PTSData, loading: PTSLoading} = usePrivacyTermsDocumentsQuery({
-    onError: e => {
+    onError: () => {
       setTimeout(() => {
         router.replace({
           pathname: '/(app)/hometab/venuefeed',
@@ -36,12 +36,6 @@ export default () => {
     })
     router.push({
       pathname: '/(credential)/personalcredentialstack/phone',
-    })
-  }
-
-  const _pressTermsServices = () => {
-    router.push({
-      pathname: '/(information)/latestprivacyservicetoptab',
     })
   }
 

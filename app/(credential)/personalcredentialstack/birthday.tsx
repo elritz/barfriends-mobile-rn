@@ -1,5 +1,4 @@
-import {useEffect, useState} from 'react'
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {View} from 'react-native'
 import {useRouter} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
@@ -116,7 +115,7 @@ export default () => {
     } else {
       setValue('date', new Date(credentialPersonalProfileVar.birthday))
     }
-  }, [isFocused])
+  }, [isFocused, credentialPersonalProfileVar.birthday, setError, setValue])
 
   return (
     <Box className="flex-column mx-[5%] h-auto flex-1 justify-start bg-transparent">

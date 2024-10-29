@@ -24,6 +24,62 @@ export default function SearchAccounts() {
     },
   })
 
+  const SkeletonLoader = () => {
+    return (
+      <HStack space="md" className="h-[60px] flex-1 items-center px-5">
+        <Skeleton
+          height={50}
+          width={50}
+          radius={10}
+          colorMode={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+          colors={
+            rTheme.colorScheme === 'light'
+              ? [
+                  String(rTheme.theme?.gluestack.tokens.colors.light100),
+                  String(rTheme.theme?.gluestack.tokens.colors.light300),
+                ]
+              : [
+                  String(rTheme.theme?.gluestack.tokens.colors.light900),
+                  String(rTheme.theme?.gluestack.tokens.colors.light700),
+                ]
+          }
+        />
+        <VStack space="md">
+          <Skeleton
+            colors={
+              rTheme.colorScheme === 'light'
+                ? [
+                    String(rTheme.theme?.gluestack.tokens.colors.light100),
+                    String(rTheme.theme?.gluestack.tokens.colors.light300),
+                  ]
+                : [
+                    String(rTheme.theme?.gluestack.tokens.colors.light900),
+                    String(rTheme.theme?.gluestack.tokens.colors.light700),
+                  ]
+            }
+            width={250}
+            height={20}
+          />
+          <Skeleton
+            colors={
+              rTheme.colorScheme === 'light'
+                ? [
+                    String(rTheme.theme?.gluestack.tokens.colors.light100),
+                    String(rTheme.theme?.gluestack.tokens.colors.light300),
+                  ]
+                : [
+                    String(rTheme.theme?.gluestack.tokens.colors.light900),
+                    String(rTheme.theme?.gluestack.tokens.colors.light700),
+                  ]
+            }
+            width={100}
+            height={20}
+          />
+        </VStack>
+      </HStack>
+    )
+  }
+
   if (ESLoading) {
     return (
       <FlashList
@@ -34,77 +90,7 @@ export default function SearchAccounts() {
         keyboardDismissMode="on-drag"
         showsVerticalScrollIndicator={false}
         keyExtractor={(_, index) => index.toString()}
-        renderItem={() => {
-          return (
-            <HStack space="md" className="h-[60px] flex-1 items-center px-5">
-              <Skeleton
-                height={50}
-                width={50}
-                radius={10}
-                colorMode={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-                colors={
-                  rTheme.colorScheme === 'light'
-                    ? [
-                        String(rTheme.theme?.gluestack.tokens.colors.light100),
-                        String(rTheme.theme?.gluestack.tokens.colors.light300),
-                      ]
-                    : [
-                        String(rTheme.theme?.gluestack.tokens.colors.light900),
-                        String(rTheme.theme?.gluestack.tokens.colors.light700),
-                      ]
-                }
-              />
-              <VStack space="md">
-                <Skeleton
-                  colors={
-                    rTheme.colorScheme === 'light'
-                      ? [
-                          String(
-                            rTheme.theme?.gluestack.tokens.colors.light100,
-                          ),
-                          String(
-                            rTheme.theme?.gluestack.tokens.colors.light300,
-                          ),
-                        ]
-                      : [
-                          String(
-                            rTheme.theme?.gluestack.tokens.colors.light900,
-                          ),
-                          String(
-                            rTheme.theme?.gluestack.tokens.colors.light700,
-                          ),
-                        ]
-                  }
-                  width={250}
-                  height={20}
-                />
-                <Skeleton
-                  colors={
-                    rTheme.colorScheme === 'light'
-                      ? [
-                          String(
-                            rTheme.theme?.gluestack.tokens.colors.light100,
-                          ),
-                          String(
-                            rTheme.theme?.gluestack.tokens.colors.light300,
-                          ),
-                        ]
-                      : [
-                          String(
-                            rTheme.theme?.gluestack.tokens.colors.light900,
-                          ),
-                          String(
-                            rTheme.theme?.gluestack.tokens.colors.light700,
-                          ),
-                        ]
-                  }
-                  width={100}
-                  height={20}
-                />
-              </VStack>
-            </HStack>
-          )
-        }}
+        renderItem={SkeletonLoader}
         ItemSeparatorComponent={() => <View style={{height: 5}} />}
       />
     )

@@ -119,7 +119,7 @@ export default () => {
     },
   })
 
-  const onSubmit = data => {
+  const onSubmit = (data: {mobileNumber: {number: any}}) => {
     CredentialPersonalProfileReactiveVar({
       ...credentialPersonalProfileVar,
       email: '',

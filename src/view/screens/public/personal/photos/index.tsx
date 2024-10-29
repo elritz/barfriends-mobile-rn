@@ -1,6 +1,5 @@
 import {useCallback} from 'react'
-import {Image} from 'react-native'
-import {ScrollView, useWindowDimensions, View} from 'react-native'
+import {Image, ScrollView, useWindowDimensions, View} from 'react-native'
 import Animated, {
   interpolate,
   interpolateColor,

@@ -54,7 +54,7 @@ export default function HomeTab() {
           <BlurView
             tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
             intensity={70}
-            style={[StyleSheet.absoluteFill]}
+            style={StyleSheet.absoluteFill}
           />
         ),
         tabBarActiveTintColor:

@@ -260,7 +260,7 @@ function RootLayout() {
         })
       }
       // BACKGROUNDLOCATION_PREFERENCE ~ START ~ END
-    } catch (e) {}
+    } catch () {}
   }
 
   const setAsyncPermissions = async () => {

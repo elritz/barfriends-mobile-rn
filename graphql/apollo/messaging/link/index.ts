@@ -1,4 +1,4 @@
-import {ApolloLink, HttpLink, split} from '@apollo/client'
+import {ApolloLink, split} from '@apollo/client'
 import {getMainDefinition} from '@apollo/client/utilities'
 
 import afterwareLink from './AfterwareLink'

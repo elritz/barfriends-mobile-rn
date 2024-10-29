@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {Pressable, ScrollView} from 'react-native'
+import {Pressable, PressableProps, ScrollView} from 'react-native'
 import {useRouter} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
 import {Ionicons} from '@expo/vector-icons'
@@ -29,7 +29,6 @@ export default () => {
 
   useGetADeviceManagerQuery({
     fetchPolicy: 'network-only',
-    onError: error => {},
     onCompleted: data => {
       if (
         data.getADeviceManager?.__typename === 'DeviceManagerDeviceProfiles'
@@ -41,10 +40,7 @@ export default () => {
     },
   })
 
-  const [
-    switchDeviceProfileMutation,
-    {data: SWDPData, loading: SWDPLoading, error: SWDPError},
-  ] = useSwitchDeviceProfileMutation({
+  const [switchDeviceProfileMutation] = useSwitchDeviceProfileMutation({
     onCompleted: data => {
       if (
         data?.switchDeviceProfile?.__typename === 'AuthorizationDeviceProfile'
@@ -68,7 +64,9 @@ export default () => {
     })
   }
 
-  const RoundedListItem = ({children, ...props}) => (
+  const RoundedListItem: React.FC<
+    PressableProps & {children: React.ReactNode}
+  > = ({children, ...props}) => (
     <Pressable accessibilityRole="button" onPress={props.onPress}>
       <Box className="flex-column h-[60px] items-start bg-transparent px-2 py-3">
         {children}

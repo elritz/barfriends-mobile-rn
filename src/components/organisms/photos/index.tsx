@@ -1,6 +1,11 @@
 import {useCallback, useState} from 'react'
-import {Image} from 'react-native'
-import {ScrollView, StyleSheet, useWindowDimensions, View} from 'react-native'
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  useWindowDimensions,
+  View,
+} from 'react-native'
 import Animated, {
   interpolate,
   interpolateColor,
@@ -32,7 +37,7 @@ import useCloudinaryImageUploading from '#/src/util/uploading/useCloudinaryImage
 const size = 70
 
 export default function Photos() {
-  const [isLoading, setLoading] = useState(false)
+  const [_, setLoading] = useState(false)
   const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const {width} = useWindowDimensions()
@@ -48,8 +53,7 @@ export default function Photos() {
     return Math.round(translateX.value / ITEM_WIDTH)
   })
 
-  const [addPhotosMutation, {data, loading, error}] =
-    useAddStoryPhotosMutation()
+  const [addPhotosMutation, {loading}] = useAddStoryPhotosMutation()
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -74,7 +78,7 @@ export default function Photos() {
       )
 
       const images: PhotoCreateManyProfileInput[] = resultSettled
-        .map((item, index) => {
+        .map(item => {
           if (item.status === 'fulfilled' && item.value) {
             return {url: item.value}
           }
@@ -103,30 +107,33 @@ export default function Photos() {
     },
   })
 
-  const onPressScroll = useCallback((side: string) => {
-    if (side === 'left') {
-      if (activeIndex.value === 0) return
-      scrollRef.current?.scrollTo({
-        x: ITEM_WIDTH * (activeIndex.value - 1),
-        animated: false,
-      })
-    }
-    if (side === 'right') {
-      if (rAuthorizationVar?.Profile?.tonightStory?.photos) {
-        if (
-          activeIndex.value ===
-          rAuthorizationVar?.Profile?.tonightStory?.photos?.length - 1
-        ) {
-          scrollRef.current?.scrollTo({x: ITEM_WIDTH * 0, animated: false})
-          return
-        }
+  const onPressScroll = useCallback(
+    (side: string) => {
+      if (side === 'left') {
+        if (activeIndex.value === 0) return
         scrollRef.current?.scrollTo({
-          x: ITEM_WIDTH * (activeIndex.value + 1),
+          x: ITEM_WIDTH * (activeIndex.value - 1),
           animated: false,
         })
       }
-    }
-  }, [])
+      if (side === 'right') {
+        if (rAuthorizationVar?.Profile?.tonightStory?.photos) {
+          if (
+            activeIndex.value ===
+            rAuthorizationVar?.Profile?.tonightStory?.photos?.length - 1
+          ) {
+            scrollRef.current?.scrollTo({x: ITEM_WIDTH * 0, animated: false})
+            return
+          }
+          scrollRef.current?.scrollTo({
+            x: ITEM_WIDTH * (activeIndex.value + 1),
+            animated: false,
+          })
+        }
+      }
+    },
+    [ITEM_WIDTH, rAuthorizationVar],
+  )
 
   const styles = StyleSheet.create({
     dotLg: {
@@ -270,6 +277,7 @@ export default function Photos() {
                       <RemoveIcon />
                     </Button>
                     <Image
+                      accessibilityIgnoresInvertColors
                       source={{
                         uri: 'url' in item ? item.url : '',
                       }}
@@ -297,7 +305,7 @@ export default function Photos() {
             {[
               rAuthorizationVar?.Profile?.tonightStory?.photos,
               {__typename: 'upload'},
-            ].map((item, i) => {
+            ].map((_, i) => {
               const rDotStyle = useAnimatedStyle(() => {
                 const inputRange = [(i - 1) * width, i * width, (i + 1) * width]
                 const dotWidth = interpolate(

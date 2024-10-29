@@ -1,6 +1,5 @@
 import {useCallback, useEffect, useLayoutEffect, useRef, useState} from 'react'
 import {TextInput} from 'react-native'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {
   router as _Router,
   useGlobalSearchParams,
@@ -8,8 +7,7 @@ import {
   useSegments,
 } from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
-import {Ionicons} from '@expo/vector-icons'
-import {AntDesign} from '@expo/vector-icons'
+import {AntDesign, Ionicons} from '@expo/vector-icons'
 import {Controller, useForm} from 'react-hook-form'
 
 import {ThemeReactiveVar} from '#/reactive'
@@ -21,25 +19,14 @@ type Props = {
 }
 
 const SearchInputVenueFeed = (props: Props) => {
-  const insets = useSafeAreaInsets()
   const _inputRef = useRef<TextInput | undefined>()
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const router = useRouter()
   const segments: string[] = useSegments()
   const params = useGlobalSearchParams()
-  const [showBack, setShowBack] = useState(false)
+  const [showBack] = useState(false)
 
-  const {
-    control,
-    setError,
-    clearErrors,
-    setValue,
-    getValues,
-    handleSubmit,
-    formState: {errors},
-    watch,
-    setFocus,
-  } = useForm({
+  const {control, setValue, handleSubmit, watch} = useForm({
     defaultValues: {
       searchtext:
         params.searchtext === undefined ? '' : String(params.searchtext),

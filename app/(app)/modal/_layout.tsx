@@ -32,11 +32,7 @@ export default () => {
     },
   })
 
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-  } = useRefreshDeviceManagerQuery({
+  const {data: rdmData} = useRefreshDeviceManagerQuery({
     onCompleted(data) {
       if (
         data.refreshDeviceManager?.__typename ===
@@ -57,7 +53,7 @@ export default () => {
     },
   })
 
-  const [updateStoryEmojimoodMutation, {data, loading, error}] =
+  const [updateStoryEmojimoodMutation, {loading}] =
     useUpdateStoryEmojimoodMutation({
       update: (cache, {data}) => {
         if (
@@ -140,6 +136,7 @@ export default () => {
                               variables: {
                                 emojimoodId: parseInt(
                                   methods.getValues('emojimood.id'),
+                                  10,
                                 ),
                               },
                             })

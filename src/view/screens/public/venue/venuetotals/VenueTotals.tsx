@@ -58,18 +58,6 @@ export default function VenueTotals() {
     variables: {
       profileIdVenue: String(params.venueProfileId),
     },
-    onCompleted: async data => {
-      // if (data.getLiveVenueTotalsV2.__typename === 'LiveVenueTotals2') {
-      // 	setTotal({
-      // 		...total,
-      // 		value: data.getLiveVenueTotalsV2.totaled ? data.getLiveVenueTotalsV2.totaled : 0,
-      // 	})
-      // 	setJoined({
-      // 		...joined,
-      // 		value: data.getLiveVenueTotalsV2.joined ? data.getLiveVenueTotalsV2.joined : 0,
-      // 	})
-      // }
-    },
   })
 
   useEffect(() => {
@@ -87,7 +75,7 @@ export default function VenueTotals() {
           : 0,
       })
     }
-  }, [d])
+  }, [d, joined, total])
 
   return (
     <HStack

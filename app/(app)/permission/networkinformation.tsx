@@ -1,6 +1,5 @@
 import {useEffect, useRef} from 'react'
 import {Alert, AppState, Platform, ScrollView, View} from 'react-native'
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import * as Application from 'expo-application'
 import Constants from 'expo-constants'
@@ -93,8 +92,7 @@ export default () => {
     },
   ]
 
-  const [upsertDevicePushTokenMutation, {data, loading, error}] =
-    useUpsertDevicePushTokenMutation()
+  const [upsertDevicePushTokenMutation] = useUpsertDevicePushTokenMutation()
 
   const createTwoButtonAlert = () =>
     Alert.alert(
@@ -191,31 +189,6 @@ export default () => {
     }
   }
 
-  useEffect(() => {
-    async function loadPermissionsAsync() {
-      const status = await Notifications.getPermissionsAsync()
-      try {
-        PermissionsReactiveVar({
-          ...rPerm,
-          notifications: status,
-        })
-      } catch (e) {
-        console.warn(e)
-      }
-    }
-    loadPermissionsAsync()
-  }, [isFocused])
-
-  useEffect(() => {
-    const subscription = AppState.addEventListener(
-      'change',
-      handleAppStateChange,
-    )
-    return () => {
-      subscription.remove()
-    }
-  }, [])
-
   const handleAppStateChange = async (nextAppState: any) => {
     if (
       /inactive|background/.exec(appStateRef.current) &&
@@ -235,6 +208,30 @@ export default () => {
     }
     appStateRef.current = nextAppState
   }
+  useEffect(() => {
+    async function loadPermissionsAsync() {
+      const status = await Notifications.getPermissionsAsync()
+      try {
+        PermissionsReactiveVar({
+          ...rPerm,
+          notifications: status,
+        })
+      } catch (e) {
+        console.warn(e)
+      }
+    }
+    loadPermissionsAsync()
+  }, [isFocused, rPerm])
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener(
+      'change',
+      handleAppStateChange,
+    )
+    return () => {
+      subscription.remove()
+    }
+  }, [handleAppStateChange])
 
   finished(() => {
     router.back()

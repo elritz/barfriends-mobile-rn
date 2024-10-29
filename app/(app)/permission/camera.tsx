@@ -114,6 +114,25 @@ export default () => {
       ],
     )
 
+  const handleAppStateChange = async (nextAppState: any) => {
+    if (
+      /inactive|background/.exec(appStateRef.current) &&
+      nextAppState === 'active'
+    ) {
+      const status = await Camera.getCameraPermissionsAsync()
+      PermissionsReactiveVar({
+        ...rPerm,
+        camera: status,
+      })
+      if (status.granted && status.status === 'granted') {
+        setTimeout(() => {
+          router.back()
+        }, 2000)
+        start()
+      }
+    }
+    appStateRef.current = nextAppState
+  }
   const handleRequestPermission = async () => {
     if (Device.isDevice) {
       const status = await requestCameraPermissionsAsync()
@@ -134,27 +153,7 @@ export default () => {
     return () => {
       subscription.remove()
     }
-  }, [])
-
-  const handleAppStateChange = async (nextAppState: any) => {
-    if (
-      /inactive|background/.exec(appStateRef.current) &&
-      nextAppState === 'active'
-    ) {
-      const status = await Camera.getCameraPermissionsAsync()
-      PermissionsReactiveVar({
-        ...rPerm,
-        camera: status,
-      })
-      if (status.granted && status.status === 'granted') {
-        setTimeout(() => {
-          router.back()
-        }, 2000)
-        start()
-      }
-    }
-    appStateRef.current = nextAppState
-  }
+  }, [handleAppStateChange])
 
   finished(() => {
     router.back()

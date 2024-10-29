@@ -1,7 +1,7 @@
 Object.defineProperty(exports, '__esModule', {
   value: true,
 })
-exports.default = void 0
+
 const lime = {
   50: '#f9fbe7',
   100: '#f0f4c3',

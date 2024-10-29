@@ -42,7 +42,7 @@ export default () => {
     shouldUnregister: true,
   })
 
-  const [updateOneProfilMutation, {data, loading: UOPLoading, error}] =
+  const [updateOneProfilMutation, {loading: UOPLoading}] =
     useUpdateOneProfileMutation({
       onError: error => {
         setError('fullname', error)
@@ -246,8 +246,9 @@ export default () => {
               <Input
                 variant={'rounded'}
                 className="rounded-md"
-                fontSize={'$md'}
-                p={'$4'}>
+                // fontSize={'$md'}
+                // p={'$4'}
+              >
                 <InputField
                   onBlur={onBlur}
                   onChange={onChange}

@@ -13,11 +13,7 @@ export default () => {
   const HEADER_HEIGHT = SEARCH_BAR_HEIGHT + 15
   const h = insets.top + HEADER_HEIGHT
 
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-  } = useRefreshDeviceManagerQuery()
+  const {data: rdmData, loading: rdmLoading} = useRefreshDeviceManagerQuery()
 
   if (rdmLoading) return null
 

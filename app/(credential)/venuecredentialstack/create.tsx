@@ -7,7 +7,6 @@ import CompanyCoasterLogoDynamic from '#/assets/images/company/CompanyCoasterLog
 import {
   AuthorizationDeviceProfile,
   useCreatePersonalProfileMutation,
-  useSwitchDeviceProfileMutation,
 } from '#/graphql/generated'
 import {
   AuthorizationReactiveVar,
@@ -45,7 +44,6 @@ export default () => {
           },
         },
       },
-      onError: error => {},
       onCompleted: async data => {
         if (
           data.createPersonalProfile?.__typename ===

@@ -5,7 +5,7 @@ import {PermissionsReactiveVar} from '#/reactive'
 import {useSetLocation} from './useSetLocation'
 
 const useSetLocationToCurrentWithPermission = (): void => {
-  const getSetLocationPermissions = async (): Promise<void> => {
+  const useGetSetLocationPermissions = async (): Promise<void> => {
     try {
       const currentLocationPermission =
         await Location.getForegroundPermissionsAsync()
@@ -22,7 +22,7 @@ const useSetLocationToCurrentWithPermission = (): void => {
   }
 
   useEffect(() => {
-    getSetLocationPermissions()
+    useGetSetLocationPermissions()
   }, [])
 }
 

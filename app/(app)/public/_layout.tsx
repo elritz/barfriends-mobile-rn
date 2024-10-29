@@ -6,11 +6,9 @@ import {useReactiveVar} from '@apollo/client'
 import {Entypo, Ionicons} from '@expo/vector-icons'
 
 import {ThemeReactiveVar} from '#/reactive'
-import SearchInput from '#/src/components/molecules/searchinput/SearchInput'
 import {Button} from '#/src/components/ui/button'
 import {HStack} from '#/src/components/ui/hstack'
 import {Text} from '#/src/components/ui/text'
-import {VStack} from '#/src/components/ui/vstack'
 import {SEARCH_BAR_HEIGHT} from '#/src/constants/ReactNavigationConstants'
 
 export default () => {
@@ -103,41 +101,6 @@ export default () => {
                   </HStack>
                 </HStack>
               </BlurView>
-            )
-          },
-        }}
-      />
-      <Stack.Screen
-        name={'contacts'}
-        options={{
-          headerStyle: {
-            backgroundColor: 'transparent',
-          },
-          headerLeft: () => (
-            <HStack
-              space={'md'}
-              className="ml-2 max-w-[90%] items-center justify-start">
-              <Button
-                onPress={() => router.back()}
-                size="xs"
-                className={`${rTheme.colorScheme === 'light' ? 'bg-light-50' : 'bg-light-900'} my-2 mr-2 rounded-full`}>
-                <Ionicons name="chevron-back-outline" size={30} />
-              </Button>
-            </HStack>
-          ),
-          contentStyle: {
-            backgroundColor:
-              rTheme.colorScheme === 'light'
-                ? rTheme.theme?.gluestack.tokens.colors.light100
-                : rTheme.theme?.gluestack.tokens.colors.light900,
-          },
-          headerTransparent: true,
-          header: () => {
-            return (
-              <VStack
-                className={`h-${h} justify-end bg-light-100 pb-2 pt-[2] dark:bg-light-900`}>
-                <SearchInput />
-              </VStack>
             )
           },
         }}

@@ -5,7 +5,6 @@ import {FontAwesome5} from '@expo/vector-icons'
 
 import {
   Request,
-  useAcceptFriendRequestMutation,
   useDeclineFriendRequestMutation,
   useDeleteFriendRequestMutation,
 } from '#/graphql/generated'
@@ -15,64 +14,28 @@ import {Button} from '#/src/components/ui/button'
 import {HStack} from '#/src/components/ui/hstack'
 import {CloseIcon, Icon} from '#/src/components/ui/icon'
 import {Text} from '#/src/components/ui/text'
-import {View} from '#/src/components/ui/view'
 import {VStack} from '#/src/components/ui/vstack'
 
-interface CondensedHorizontalFriendNotifciationProps<T> {
+interface CondensedHorizontalFriendNotifciationProps {
   item: Request
 }
 
-export const CondensedHorizontalFriendNotifciation = <T,>({
+export const CondensedHorizontalFriendNotifciation = ({
   item,
-}: CondensedHorizontalFriendNotifciationProps<T>) => {
+}: CondensedHorizontalFriendNotifciationProps) => {
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
 
-  const [
-    deleteFriendRequestMutation,
-    {data: dFRData, loading: dFRLoading, error: dFRError},
-  ] = useDeleteFriendRequestMutation({
-    update(cache, {data}) {
-      if (item) {
-        const r = cache.evict({id: cache.identify(item)})
-      }
-    },
-  })
+  const [deleteFriendRequestMutation, {loading: dFRLoading}] =
+    useDeleteFriendRequestMutation({
+      update(cache) {
+        if (item) {
+          cache.evict({id: cache.identify(item)})
+        }
+      },
+    })
 
-  const [
-    acceptFriendRequestMutation,
-    {data: aFRMData, loading: aFRMLoading, error: aFRMError},
-  ] = useAcceptFriendRequestMutation({
-    onCompleted: data => {
-      // data.acceptFriendRequest.__typename === 'Relationship' &&
-      // updateQuery(prevData => {
-      // 	return {
-      // 		...prevData,
-      // 		publicProfile: {
-      // 			...prevData?.publicProfile,
-      // 			relationship: data.acceptFriendRequest,
-      // 		},
-      // 	}
-      // })
-    },
-  })
-
-  const [
-    declineFriendRequestMutation,
-    {data: dFRMData, loading: dFRMLoading, error: dFRMError},
-  ] = useDeclineFriendRequestMutation({
-    onCompleted: data => {
-      // updateQuery(prevData => {
-      // 	return {
-      // 		...prevData,
-      // 		publicProfile: {
-      // 			...prevData?.publicProfile,
-      // 			relationship: null,
-      // 		},
-      // 	}
-      // })
-    },
-  })
+  const [declineFriendRequestMutation] = useDeclineFriendRequestMutation({})
 
   const currentUserIsSender =
     item?.senderProfile?.id === rAuthorizationVar?.Profile?.id
@@ -183,7 +146,7 @@ export const CondensedHorizontalFriendNotifciation = <T,>({
                   variables: {
                     friendRequestId: String(item?.id),
                     notificationStatusId: String(
-                      receiver?.NotificationStatus.id,
+                      receiver?.NotificationStatus?.id,
                     ),
                   },
                 })

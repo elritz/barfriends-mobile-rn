@@ -12,7 +12,8 @@
       "#/graphql/*": ["./graphql/*"],
       "#/reactive": ["./src/state/reactive/index.tsx"],
       "#/gluestack": ["./gluestack-ui.config"]
-    }
+    },
+    "importsNotUsedAsValues": "remove"
   },
   "include": [
     "**/*.ts",

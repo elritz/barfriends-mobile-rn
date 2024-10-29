@@ -1,8 +1,6 @@
 import {NormalizedCacheObject} from '@apollo/client'
 import {ArgType} from 'reactotron-core-client' // Add this import
-import type {ReactotronReactNative} from 'reactotron-react-native'
 import Reactotron from 'reactotron-react-native'
-import mmkvPlugin from 'reactotron-react-native-mmkv'
 
 import profilingclient from '#/graphql/apollo/profiling/profiling-apollo-server'
 // import { storage } from "./src/state/" // <--- update this location

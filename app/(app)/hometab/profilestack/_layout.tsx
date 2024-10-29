@@ -1,4 +1,3 @@
-import {memo} from 'react'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import * as Haptics from 'expo-haptics'
 import {Stack, useRouter} from 'expo-router'
@@ -6,14 +5,13 @@ import {useReactiveVar} from '@apollo/client'
 import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
 
 import {ProfileType, useRefreshDeviceManagerQuery} from '#/graphql/generated'
-import {AuthorizationReactiveVar, ThemeReactiveVar} from '#/reactive'
+import {ThemeReactiveVar} from '#/reactive'
 import {Box} from '#/src/components/ui/box'
-import {Button, ButtonText} from '#/src/components/ui/button'
+import {Button} from '#/src/components/ui/button'
 import {Heading} from '#/src/components/ui/heading'
 import {HStack} from '#/src/components/ui/hstack'
 import {Text} from '#/src/components/ui/text'
 import {VStack} from '#/src/components/ui/vstack'
-import ProfileHeader from '#/src/view/screens/profile/personalprofile/ProfileHeader'
 
 export default function _layout() {
   const router = useRouter()

@@ -5,35 +5,28 @@ import {FlashList} from '@shopify/flash-list'
 
 import {Heading} from '#/src/components/ui/heading'
 
-interface MediaLibraryProps {}
-
 export default ({}) => {
-  const [disabled, setDisabled] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
   const [selectedPhoto, setSelectedPhoto] = useState([])
-  const [numberOfPhotos, setNumberOfPhotos] = useState(100)
+  const [numberOfPhotos, _] = useState(100)
   const [lastPhotoID, setLastPhotoID] = useState('')
   const [photos, setPhotos] = useState<MediaLibrary.Asset[]>([])
-  const [showPhotos, setShowPhotos] = useState(false)
-  const [status, requestPermission] = MediaLibrary.usePermissions()
+  const [status, __] = MediaLibrary.usePermissions()
 
   if (!status) return null
 
-  const _getPhotosAsync = async () => {
-    const photos = await MediaLibrary.getAssetsAsync({
-      first: numberOfPhotos,
-      sortBy: ['creationTime'],
-    })
-    const {id} = photos.assets[photos.assets.length - 1]
-    setLastPhotoID(id)
-    const [mPhotos, setPhotos] = useState<MediaLibrary.Asset[] | undefined>(
-      undefined,
-    )
-    // ...
-    setPhotos(photos => photos)
-  }
-
-  const _pressedImageCameraRollItem = item => {
+  const _pressedImageCameraRollItem = (item: {
+    id?: string
+    filename?: string
+    uri: any
+    mediaType?: MediaLibrary.MediaTypeValue
+    mediaSubtypes?: MediaLibrary.MediaSubtype[] | undefined
+    width?: number
+    height?: number
+    creationTime?: number
+    modificationTime?: number
+    duration?: number
+    albumId?: string | undefined
+  }) => {
     if (item.uri === selectedPhoto) {
       setSelectedPhoto([])
     } else {
@@ -71,6 +64,7 @@ export default ({}) => {
             accessibilityRole="button"
             onPress={() => _pressedImageCameraRollItem(item)}>
             <Image
+              accessibilityIgnoresInvertColors
               style={{
                 width: 50,
                 height: 50,

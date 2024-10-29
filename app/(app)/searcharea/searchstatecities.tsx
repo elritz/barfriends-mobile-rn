@@ -9,6 +9,7 @@ import {useFormContext} from 'react-hook-form'
 
 import {
   CityResponseObject,
+  Maybe,
   useGetAllCitiesByStateQuery,
 } from '#/graphql/generated'
 import {SearchAreaReactiveVar, ThemeReactiveVar} from '#/reactive'
@@ -45,15 +46,14 @@ export default function SearchStateCities() {
   const [searchCities, setSearchCities] = useState<CityState>()
 
   const formContext = useFormContext<Form>()
-  const {watch, getValues, setValue, handleSubmit, formState} = formContext
+  const {watch, getValues, setValue, handleSubmit} = formContext
 
-  const {data, loading, error} = useGetAllCitiesByStateQuery({
+  const {data: GACBSData, loading} = useGetAllCitiesByStateQuery({
     skip: !params.countryIsoCode || !params.stateIsoCode,
     variables: {
       countryIsoCode: String(params.countryIsoCode),
       stateIsoCode: String(params.stateIsoCode),
     },
-    onError: error => {},
     onCompleted: data => {
       if (data.getAllCitiesByState) {
         setPopularCities(data.getAllCitiesByState.popularCities)
@@ -62,12 +62,12 @@ export default function SearchStateCities() {
     },
   })
 
-  const filterList = text => {
+  const filterList = (text: string | string[]) => {
     if (
       !params?.searchtext?.length &&
-      data?.getAllCitiesByState?.allCities?.length
+      GACBSData?.getAllCitiesByState?.allCities?.length
     ) {
-      if (data.getAllCitiesByState) {
+      if (GACBSData.getAllCitiesByState) {
         setSearchCities({
           title: ``,
           cities: [],
@@ -76,18 +76,32 @@ export default function SearchStateCities() {
     }
 
     const filteredAllCitiesData = filter(
-      data?.getAllCitiesByState.allCities,
+      GACBSData?.getAllCitiesByState?.allCities,
       item => {
-        return contains(item, text.toLowerCase())
+        return contains(
+          item,
+          typeof text === 'string' ? text.toLowerCase() : '',
+        )
       },
     )
     setSearchCities({
-      title: `"${text.toLowerCase()}"`,
+      title: `"${typeof text === 'string' ? text.toLowerCase() : ''}"`,
       cities: [...filteredAllCitiesData],
     })
   }
 
-  const contains = (item, query) => {
+  const contains = (
+    item: {
+      __typename?: 'CityResponseObject' | undefined
+      name: any
+      stateCode?: string | null | undefined
+      venuesInArea?: number | null | undefined
+      countryCode?: string | null | undefined
+      latitude?: string | null | undefined
+      longitude?: string | null | undefined
+    },
+    query: string,
+  ) => {
     if (item.name.toLowerCase().includes(query)) {
       return true
     }
@@ -98,14 +112,14 @@ export default function SearchStateCities() {
     if (params.searchtext && params.searchtext.length) {
       filterList(params.searchtext)
     } else {
-      if (data?.getAllCitiesByState) {
+      if (GACBSData?.getAllCitiesByState) {
         setSearchCities({
           title: ``,
           cities: [],
         })
       }
     }
-  }, [params.searchtext])
+  }, [params.searchtext, filterList])
 
   if (loading || !allCities) {
     return (
@@ -118,7 +132,7 @@ export default function SearchStateCities() {
           contentContainerStyle={{
             paddingHorizontal: 10,
           }}
-          keyExtractor={(item, index) => 'key' + index}
+          keyExtractor={index => 'key' + index}
           estimatedItemSize={50}
           keyboardDismissMode={'on-drag'}
           ItemSeparatorComponent={() => {
@@ -130,7 +144,7 @@ export default function SearchStateCities() {
               />
             )
           }}
-          renderItem={({index, item}) => {
+          renderItem={({index}) => {
             return (
               <Skeleton
                 key={index}
@@ -157,8 +171,16 @@ export default function SearchStateCities() {
     )
   }
 
-  function CityItem({index, item}) {
-    const _pressItem = async item => {
+  function CityItem({index, item}: {index: number; item: CityResponseObject}) {
+    const _pressItem = async (item: {
+      __typename?: 'CityResponseObject' | undefined
+      countryCode?: Maybe<string> | undefined
+      latitude: any
+      longitude: any
+      name: any
+      stateCode?: Maybe<string> | undefined
+      venuesInArea?: Maybe<number> | undefined
+    }) => {
       setValue('city', {
         name: item.name,
         isoCode: '',
@@ -193,10 +215,6 @@ export default function SearchStateCities() {
         searchtext: '',
       })
 
-      console.log(
-        '🚀 ~ const_pressItem= ~ formState:',
-        JSON.stringify(formState, null, 4),
-      )
       setTimeout(() => {
         handleSubmit(() => {})
         router.back()
@@ -251,7 +269,7 @@ export default function SearchStateCities() {
           scrollEnabled={true}
           keyboardDismissMode="on-drag"
           estimatedItemSize={50}
-          keyExtractor={(item, index) => {
+          keyExtractor={() => {
             return uniqueId().toString()
           }}
           ListHeaderComponent={() => {
@@ -293,7 +311,7 @@ export default function SearchStateCities() {
         automaticallyAdjustsScrollIndicatorInsets
         keyboardDismissMode="on-drag"
         estimatedItemSize={50}
-        keyExtractor={(item, index) => 'key' + index}
+        keyExtractor={index => 'key' + index}
         ListHeaderComponent={() => {
           return (
             <Box className="mb-4 bg-transparent">

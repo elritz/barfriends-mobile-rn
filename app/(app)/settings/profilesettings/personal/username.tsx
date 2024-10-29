@@ -43,7 +43,7 @@ export default () => {
 
   const values = watch()
 
-  const [checkUsername, {data: CUData, loading: CULoading, error: CUError}] =
+  const [checkUsername, {data: CUData, loading: CULoading}] =
     useCheckUsernameLazyQuery({
       fetchPolicy: 'no-cache',
       variables: {
@@ -61,26 +61,24 @@ export default () => {
       },
     })
 
-  const [
-    updateOneProfilMutation,
-    {data: UOPData, loading: UOPLoading, error: UOPError},
-  ] = useUpdateOneProfileMutation({
-    onError: error => {
-      setError('username', error)
-    },
-    onCompleted: data => {
-      const profile = data.updateOneProfile as Profile
-      const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
+  const [updateOneProfilMutation, {loading: UOPLoading}] =
+    useUpdateOneProfileMutation({
+      onError: error => {
+        setError('username', error)
+      },
+      onCompleted: data => {
+        const profile = data.updateOneProfile as Profile
+        const deviceprofile = rAuthorizationVar as AuthorizationDeviceProfile
 
-      AuthorizationReactiveVar({
-        ...deviceprofile,
-        Profile: profile,
-      })
-      reset()
-    },
-  })
+        AuthorizationReactiveVar({
+          ...deviceprofile,
+          Profile: profile,
+        })
+        reset()
+      },
+    })
 
-  const onSubmit = data => {
+  const onSubmit = (data: {username: any}) => {
     if (dirtyFields.username) {
       updateOneProfilMutation({
         variables: {
@@ -101,15 +99,7 @@ export default () => {
     }
   }
 
-  const resetInput = (value: string) => {
-    reset({
-      username: rAuthorizationVar?.Profile?.IdentifiableInformation?.username,
-    })
-  }
-
-  const validateCheckUsername = async (
-    value: string,
-  ): Promise<ValidateResult> => {
+  const validateCheckUsername = async (): Promise<ValidateResult> => {
     setTimeout(() => {
       checkUsername()
     }, 500)
@@ -184,7 +174,7 @@ export default () => {
                 keyboardAppearance={
                   rTheme.colorScheme === 'light' ? 'light' : 'dark'
                 }
-                onChangeText={value => onChange(value)}
+                onChangeText={text => onChange(text)}
                 onSubmitEditing={handleSubmit(onSubmit)}
                 onBlur={onBlur}
                 autoCapitalize="none"

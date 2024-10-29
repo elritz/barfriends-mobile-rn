@@ -1,7 +1,9 @@
+import React from 'react'
 import {Pressable, ScrollView} from 'react-native'
 import {useRouter} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
 import {Ionicons} from '@expo/vector-icons'
+import PropTypes from 'prop-types'
 
 import {useProfileQuery} from '#/graphql/generated'
 import {AuthorizationReactiveVar, ThemeReactiveVar} from '#/reactive'
@@ -28,7 +30,7 @@ export default ({}: EditableOptionsScreenProps) => {
     day: 'numeric',
   })
 
-  const {data, loading, error} = useProfileQuery({
+  const {loading} = useProfileQuery({
     variables: {
       where: {
         id: {
@@ -39,17 +41,6 @@ export default ({}: EditableOptionsScreenProps) => {
   })
 
   if (loading) return null
-
-  const RoundedListItem = ({children, ...props}) => (
-    <Pressable accessibilityRole="button" onPress={props.onPress}>
-      <Box className="flex-column my-2 items-start rounded-md px-2 py-3">
-        {props.title && (
-          <Heading className="text-md pb-3">{props.title}</Heading>
-        )}
-        {children}
-      </Box>
-    </Pressable>
-  )
 
   return (
     <ScrollView
@@ -123,7 +114,7 @@ export default ({}: EditableOptionsScreenProps) => {
             {rAuthorizationVar?.Profile?.DetailInformation?.Tags.length ? (
               <>
                 {rAuthorizationVar?.Profile?.DetailInformation?.Tags.map(
-                  (item, index) => (
+                  item => (
                     <Badge
                       key={item.id}
                       className="m-2 rounded-md bg-primary-500 px-2 py-1">
@@ -147,18 +138,6 @@ export default ({}: EditableOptionsScreenProps) => {
         </Box>
       </RoundedListItem>
       <Heading className="py-2 text-lg">MY BASIC INFO</Heading>
-      <RoundedListItem
-        onPress={() =>
-          router.push({
-            pathname: '/(app)/settings/profilesettings/personal/gender',
-          })
-        }
-        title={`I am a ...`}>
-        <Text className="text-xl">
-          {rAuthorizationVar?.Profile?.IdentifiableInformation?.gender ||
-            'Set your gender'}
-        </Text>
-      </RoundedListItem>
       <RoundedListItem
         onPress={() =>
           router.push({
@@ -200,4 +179,22 @@ export default ({}: EditableOptionsScreenProps) => {
       </RoundedListItem>
     </ScrollView>
   )
+}
+
+const RoundedListItem: React.FC<{
+  title?: string
+  onPress?: () => void
+  children?: React.ReactNode
+}> = ({children, ...props}) => (
+  <Pressable accessibilityRole="button" onPress={props.onPress}>
+    <Box className="flex-column my-2 items-start rounded-md px-2 py-3">
+      {props.title && <Heading className="text-md pb-3">{props.title}</Heading>}
+      {children}
+    </Box>
+  </Pressable>
+)
+RoundedListItem.propTypes = {
+  title: PropTypes.string,
+  onPress: PropTypes.func,
+  children: PropTypes.element,
 }

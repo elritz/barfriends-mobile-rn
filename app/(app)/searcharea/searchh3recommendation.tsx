@@ -4,7 +4,6 @@ import {MasonryFlashList} from '@shopify/flash-list'
 import {useGetH3Index6VenueRecommendationByIdQuery} from '#/graphql/generated'
 import {Box} from '#/src/components/ui/box'
 import {Heading} from '#/src/components/ui/heading'
-import {Text} from '#/src/components/ui/text'
 import useContentInsets from '#/src/util/hooks/useContentInsets'
 import MemoizedVerticalVenueFeedVenueItem from '#/src/view/screens/venuesfeed/VerticalVenueFeedVenueItem'
 
@@ -12,7 +11,7 @@ export default function SearchH3Recommendation() {
   const params = useLocalSearchParams()
   const contentInsets = useContentInsets()
 
-  const {data, loading, error} = useGetH3Index6VenueRecommendationByIdQuery({
+  const {data, loading} = useGetH3Index6VenueRecommendationByIdQuery({
     skip: !params.id || !params.venueprofileids,
     variables: {
       id: String(params.id),
@@ -23,9 +22,6 @@ export default function SearchH3Recommendation() {
   if (loading) return null
 
   const ListheaderComponent = () => {
-    {
-      data?.getH3Index6VenueRecommendationById?.Area?.State
-    }
     return (
       <Box className="bg-transparent">
         <Heading className="leading-3xl text-3xl">
@@ -59,7 +55,7 @@ export default function SearchH3Recommendation() {
           />
         )}
         ItemSeparatorComponent={() => <Box className="h-5 bg-transparent" />}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.id ?? ''}
         ListHeaderComponent={<ListheaderComponent />}
         // ListFooterComponent={ListFooterComponent}
         automaticallyAdjustContentInsets

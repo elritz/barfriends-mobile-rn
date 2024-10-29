@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useRef} from 'react'
+import {ReactNode, useCallback, useEffect, useRef} from 'react'
 import {Appearance, AppState, StatusBar} from 'react-native'
 import {useReactiveVar} from '@apollo/client'
 import {ThemeProvider as ReactNavigationThemeProvider} from '@react-navigation/native'
@@ -11,7 +11,7 @@ import {useToggleTheme} from '#/src/util/hooks/theme/useToggleTheme'
 import AnimatedSplashScreen from '#/src/view/screens/splash/AnimatedSplashScreen'
 import {LocalStoragePreferenceThemeType} from '#/types/preferences'
 
-export default function Theme({children}) {
+export default function Theme({children}: {children: ReactNode}) {
   const appState = useRef(AppState.currentState)
   const rThemeVar = useReactiveVar(ThemeReactiveVar)
   const [toggleColorScheme] = useToggleTheme()

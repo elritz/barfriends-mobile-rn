@@ -16,8 +16,7 @@ import {Heading} from '#/src/components/ui/heading'
 import {Icon, SlashIcon} from '#/src/components/ui/icon'
 import {Pressable} from '#/src/components/ui/pressable'
 import {useDisclose} from '#/src/util/hooks/useDisclose'
-
-// const LOGO_COASTER = require("../../../../../../assets/images/company/company_coaster.png");
+import {ActivityCardProps} from '../index'
 
 type Props = ActivityCardProps & {
   qrcodesize: number
@@ -43,26 +42,26 @@ export default function QuickBarfriendCard({
 
   const [getSecureFriendCodeQrData, {data, loading, error}] =
     useGetSecureFriendQrCodeDataLazyQuery({
-      onCompleted: data => {
+      onCompleted: responseData => {
         if (
           rdmData?.refreshDeviceManager?.__typename ===
           'AuthorizationDeviceProfile'
         ) {
           const dataQRString = JSON.stringify({
-            dataHash: data.getSecureFriendQRCodeData,
+            dataHash: responseData.getSecureFriendQRCodeData,
             qrCodeProfileId: rdmData?.refreshDeviceManager.Profile?.id,
           })
           setDataQR(dataQRString)
         }
       },
-      onError: err => {
+      onError: () => {
         setRetryCount(prevCount => prevCount + 1)
       },
     })
 
   useEffect(() => {
     getSecureFriendCodeQrData()
-  }, [])
+  }, [getSecureFriendCodeQrData])
 
   if (loading || rdmLoading) return null
 

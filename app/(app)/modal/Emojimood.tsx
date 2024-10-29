@@ -13,7 +13,6 @@ import {
 } from '#/graphql/generated'
 import {ThemeReactiveVar} from '#/reactive'
 import {Box} from '#/src/components/ui/box'
-import {Heading} from '#/src/components/ui/heading'
 import {Pressable} from '#/src/components/ui/pressable'
 import {Text} from '#/src/components/ui/text'
 import Photos from '#/src/view/screens/tonight/photos'
@@ -25,13 +24,9 @@ export default () => {
   const insets = useSafeAreaInsets()
   const {watch, setValue, control, reset} = useFormContext<FormType>()
 
-  const {
-    data: rdmData,
-    loading: rdmLoading,
-    error: rdmError,
-  } = useRefreshDeviceManagerQuery()
+  const {data: rdmData, loading: rdmLoading} = useRefreshDeviceManagerQuery()
 
-  const {data, loading, error} = useEmojimoodsQuery({})
+  const {data, loading} = useEmojimoodsQuery({})
 
   if (loading || rdmLoading) {
     return null
@@ -156,7 +151,7 @@ export default () => {
             <Controller
               name="emojimood"
               control={control}
-              render={({field: {value, onChange, onBlur}}) => (
+              render={() => (
                 <FlashList
                   data={[
                     {
@@ -185,12 +180,7 @@ export default () => {
                         accessibilityRole="button"
                         onPress={() => {
                           if (item.typeName === 'EmojimoodRemove') {
-                            useUpdateStoryEmojimoodMutation({
-                              variables: {},
-                              onError(error, clientOptions) {
-                                console.log('error', error)
-                              },
-                            })
+                            useUpdateStoryEmojimoodMutation({})
                             reset()
                           } else {
                             if (

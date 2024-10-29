@@ -16,7 +16,7 @@ export const IconTemplate_Stroke2_Corner0_Rounded = React.forwardRef(
         viewBox="0 0 24 24"
         width={size}
         height={size}
-        style={[style]}>
+        style={style}>
         <Path
           fill={fill}
           fillRule="evenodd"
@@ -40,7 +40,7 @@ export function createSinglePathSVG({path}: {path: string}) {
         viewBox="0 0 24 24"
         width={size}
         height={size}
-        style={[style]}>
+        style={style}>
         {gradient}
         <Path fill={fill} fillRule="evenodd" clipRule="evenodd" d={path} />
       </Svg>
@@ -60,7 +60,7 @@ export function createMultiPathSVG({paths}: {paths: string[]}) {
         viewBox="0 0 24 24"
         width={size}
         height={size}
-        style={[style]}>
+        style={style}>
         {gradient}
         {paths.map((path, i) => (
           <Path

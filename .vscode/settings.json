@@ -34,6 +34,9 @@
   },
   "typescript.tsdk": "node_modules/typescript/lib",
   "dotenv.enableAutocloaking": false,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always"
+  },
   "git.ignoreLimitWarning": true,
   "tailwindCSS.experimental.classRegex": [
     ["tva\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]

@@ -1,7 +1,7 @@
 Object.defineProperty(exports, '__esModule', {
   value: true,
 })
-exports.default = void 0
+
 const blueGrey = {
   50: '#eceff1',
   100: '#cfd8dc',
