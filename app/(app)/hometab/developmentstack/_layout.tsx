@@ -1,65 +1,24 @@
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {Stack} from 'expo-router'
 
-import {useRefreshDeviceManagerQuery} from '#/graphql/generated'
 import ChevronBackArrow from '#/src/components/atoms/ChevronBackArrow'
-import {Box} from '#/src/components/ui/box'
-import {Text} from '#/src/components/ui/text'
-import {VStack} from '#/src/components/ui/vstack'
-import {SEARCH_BAR_HEIGHT} from '#/src/constants/ReactNavigationConstants'
+import {Heading} from '#/src/components/ui/heading'
 
 export default () => {
-  const insets = useSafeAreaInsets()
-  const HEADER_HEIGHT = SEARCH_BAR_HEIGHT + 15
-  const h = insets.top + HEADER_HEIGHT
-
-  const {data: rdmData, loading: rdmLoading} = useRefreshDeviceManagerQuery()
-
-  if (rdmLoading) return null
-
-  const HeaderComponent = () => {
-    if (
-      rdmData?.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile'
-    ) {
-      return (
-        <Text
-          adjustsFontSizeToFit
-          className="leading-2xl text-center text-xl font-black capitalize">
-          {rdmData?.refreshDeviceManager.Profile?.ProfileType !== 'GUEST' &&
-            rdmData?.refreshDeviceManager.Profile?.IdentifiableInformation
-              ?.username}
-        </Text>
-      )
-    }
-  }
-
   return (
     <Stack
       screenOptions={{
         headerShown: false,
+        animation: 'slide_from_right',
       }}>
       <Stack.Screen
         name={'index'}
         options={{
-          header: () => {
+          headerTitle: () => {
             return (
-              <VStack
-                style={{
-                  paddingTop: insets.top,
-                  height: h,
-                }}
-                className="h-${h} justify-end bg-light-100 pb-2 pt-[10] dark:bg-light-900">
-                <HeaderComponent />
-                <Box className="bg-transparent">
-                  <Text
-                    adjustsFontSizeToFit
-                    className="leading-2xl text-center text-3xl font-black capitalize">
-                    {String.fromCharCode(60)}
-                    {process.env.EXPO_PUBLIC_NODE_ENV}{' '}
-                    {String.fromCharCode(47, 62)}
-                  </Text>
-                </Box>
-              </VStack>
+              <Heading>
+                {String.fromCharCode(60)}
+                {process.env.EXPO_PUBLIC_NODE_ENV} {String.fromCharCode(47, 62)}
+              </Heading>
             )
           },
           headerShown: true,
@@ -92,7 +51,6 @@ export default () => {
       <Stack.Screen
         name={'permissions'}
         options={{
-          headerBackground: () => <></>,
           headerShown: true,
           title: 'Permissions',
           headerLeft: () => <ChevronBackArrow />,
@@ -101,7 +59,6 @@ export default () => {
       <Stack.Screen
         name={'notifications'}
         options={{
-          headerBackground: () => <></>,
           headerShown: true,
           title: 'Notifications',
           headerLeft: () => <ChevronBackArrow />,
@@ -110,7 +67,6 @@ export default () => {
       <Stack.Screen
         name={'state'}
         options={{
-          headerBackground: () => <></>,
           headerShown: true,
           title: 'State',
           headerLeft: () => <ChevronBackArrow />,
@@ -119,7 +75,6 @@ export default () => {
       <Stack.Screen
         name={'network'}
         options={{
-          headerBackground: () => <></>,
           headerShown: true,
           title: 'Network',
           headerLeft: () => <ChevronBackArrow />,
@@ -128,7 +83,6 @@ export default () => {
       <Stack.Screen
         name={'theme'}
         options={{
-          headerBackground: () => <></>,
           headerShown: true,
           title: 'Themes',
           headerLeft: () => <ChevronBackArrow />,

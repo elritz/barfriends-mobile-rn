@@ -1,14 +1,12 @@
 //TODO: Add notfication listener
-import 'react-native-gesture-handler'
 import 'expo-dev-client'
+import 'react-native-gesture-handler'
 import 'react-native-reanimated'
 
-import {useEffect} from 'react'
-import {Appearance} from 'react-native'
-import {apolloDevToolsInit} from 'react-native-apollo-devtools-client'
-import {GestureHandlerRootView} from 'react-native-gesture-handler'
-import {KeyboardProvider} from 'react-native-keyboard-controller'
-import {SafeAreaProvider} from 'react-native-safe-area-context'
+import {ApolloProvider} from '@apollo/client'
+import {loadDevMessages, loadErrorMessages} from '@apollo/client/dev'
+import {BottomSheetModalProvider} from '@gorhom/bottom-sheet'
+import * as Sentry from '@sentry/react-native'
 import {isRunningInExpoGo} from 'expo'
 import {Camera} from 'expo-camera/legacy'
 import * as Contacts from 'expo-contacts'
@@ -21,10 +19,12 @@ import {getPermissionsAsync as getNotificiationPermissionAsync} from 'expo-notif
 import {Stack, useNavigationContainerRef} from 'expo-router'
 import * as ScreenOrientation from 'expo-screen-orientation'
 import * as SplashScreen from 'expo-splash-screen'
-import {ApolloProvider} from '@apollo/client'
-import {loadDevMessages, loadErrorMessages} from '@apollo/client/dev'
-import {BottomSheetModalProvider} from '@gorhom/bottom-sheet'
-import * as Sentry from '@sentry/react-native'
+import {useEffect} from 'react'
+import {Appearance} from 'react-native'
+import {apolloDevToolsInit} from 'react-native-apollo-devtools-client'
+import {GestureHandlerRootView} from 'react-native-gesture-handler'
+import {KeyboardProvider} from 'react-native-keyboard-controller'
+import {SafeAreaProvider} from 'react-native-safe-area-context'
 
 import profilingclient from '#/graphql/apollo/profiling/profiling-apollo-server'
 import {
@@ -110,157 +110,156 @@ function RootLayout() {
   }
 
   const setAsyncPreferencesLocalStorageData = async () => {
-    try {
-      // SEARCHAREA_PREFERENCE ~ START
-      const getLocalStorageSearchArea = storage.getString(
-        LOCAL_STORAGE_SEARCH_AREA,
+    // SEARCHAREA_PREFERENCE ~ START
+    const getLocalStorageSearchArea = storage.getString(
+      LOCAL_STORAGE_SEARCH_AREA,
+    )
+
+    const foregroundLocationPermission = await getForegroundPermissionsAsync()
+
+    if (getLocalStorageSearchArea && foregroundLocationPermission.granted) {
+      const values: LocalStoragePreferenceSearchAreaType = JSON.parse(
+        getLocalStorageSearchArea,
       )
-
-      const foregroundLocationPermission = await getForegroundPermissionsAsync()
-
-      if (getLocalStorageSearchArea && foregroundLocationPermission.granted) {
-        const values: LocalStoragePreferenceSearchAreaType = JSON.parse(
-          getLocalStorageSearchArea,
-        )
-        if (values && values.useCurrentLocation) {
-          // await useSetSearchAreaWithLocation();
-        } else {
-          SearchAreaReactiveVar({
-            ...values,
-          })
-        }
+      if (values && values.useCurrentLocation) {
+        // await useSetSearchAreaWithLocation();
       } else {
-        const newSearchAreaValue = JSON.stringify({
-          ...InitialStateSearchArea,
-        } as LocalStoragePreferenceSearchAreaType)
-
-        storage.set(LOCAL_STORAGE_SEARCH_AREA, newSearchAreaValue)
+        SearchAreaReactiveVar({
+          ...values,
+        })
       }
-      // SEARCHAREA_PREFERENCE ~ END
+    } else {
+      const newSearchAreaValue = JSON.stringify({
+        ...InitialStateSearchArea,
+      } as LocalStoragePreferenceSearchAreaType)
 
-      // THEME_PREFERENCE ~ START
-      const getLocalStorageTheme = storage.getString(
+      storage.set(LOCAL_STORAGE_SEARCH_AREA, newSearchAreaValue)
+    }
+    // SEARCHAREA_PREFERENCE ~ END
+
+    // THEME_PREFERENCE ~ START
+    const getLocalStorageTheme = storage.getString(
+      LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME,
+    )
+
+    if (!getLocalStorageTheme) {
+      const initialThemeColorSchemeState = JSON.stringify({
+        colorScheme: 'system',
+      } as LocalStoragePreferenceThemeType)
+
+      storage.set(
         LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME,
+        initialThemeColorSchemeState,
       )
 
-      if (!getLocalStorageTheme) {
-        const initialThemeColorSchemeState = JSON.stringify({
-          colorScheme: 'system',
-        } as LocalStoragePreferenceThemeType)
+      ThemeReactiveVar({
+        theme: ThemeReactiveVar().theme,
+        localStorageColorScheme: 'system',
+        deviceColorScheme: Appearance.getColorScheme(),
+        colorScheme: Appearance.getColorScheme(),
+      })
+    } else {
+      const localStorageTheme: LocalStoragePreferenceThemeType =
+        JSON.parse(getLocalStorageTheme)
 
-        storage.set(
-          LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME,
-          initialThemeColorSchemeState,
-        )
+      ThemeReactiveVar({
+        theme: ThemeReactiveVar().theme,
+        localStorageColorScheme: localStorageTheme.colorScheme,
+        deviceColorScheme:
+          localStorageTheme.colorScheme === 'system'
+            ? Appearance.getColorScheme()
+            : localStorageTheme.colorScheme,
+        colorScheme:
+          localStorageTheme.colorScheme === 'system'
+            ? Appearance.getColorScheme()
+            : localStorageTheme.colorScheme,
+      })
+    }
+    // THEME_PREFERENCE ~ END
 
-        ThemeReactiveVar({
-          theme: ThemeReactiveVar().theme,
-          localStorageColorScheme: 'system',
-          deviceColorScheme: Appearance.getColorScheme(),
-          colorScheme: Appearance.getColorScheme(),
-        })
-      } else {
-        const localStorageTheme: LocalStoragePreferenceThemeType =
-          JSON.parse(getLocalStorageTheme)
+    // NOTIFICATION_PREFERENCE ~ START
+    const getLocalStorageNotificationPermissionsPreference = storage.getString(
+      LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS,
+    )
 
-        ThemeReactiveVar({
-          theme: ThemeReactiveVar().theme,
-          localStorageColorScheme: localStorageTheme.colorScheme,
-          deviceColorScheme:
-            localStorageTheme.colorScheme === 'system'
-              ? Appearance.getColorScheme()
-              : localStorageTheme.colorScheme,
-          colorScheme:
-            localStorageTheme.colorScheme === 'system'
-              ? Appearance.getColorScheme()
-              : localStorageTheme.colorScheme,
-        })
-      }
-      // THEME_PREFERENCE ~ END
-
-      // NOTIFICATION_PREFERENCE ~ START
-      const getLocalStorageNotificationPermissionsPreference =
-        storage.getString(LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS)
-
-      if (!getLocalStorageNotificationPermissionsPreference) {
-        storage.set(
-          LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS,
-          JSON.stringify(NowPreferencePermissionInitialState),
-        )
-      } else {
-        const values: LocalStoragePreferenceAskNotificationPermissionType =
-          JSON.parse(getLocalStorageNotificationPermissionsPreference)
-        PermissionsPreferencesReactiveVar({
-          ...PermissionsPreferencesReactiveVar(),
-          notifications: {
-            ...values,
-          },
-        })
-      }
-      // NOTIFICATION_PREFERENCE ~ END
-
-      // BACKGROUNDLOCATION_PREFERENCE ~ START
-      const getLocalStoragePreferenceBackgroundLocationPreference =
-        storage.getString(LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION)
-
-      if (!getLocalStoragePreferenceBackgroundLocationPreference) {
-        storage.set(
-          LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
-          JSON.stringify(NowPreferencePermissionInitialState),
-        )
-      } else {
-        // using local_storage values set the correct information
-        const values: LocalStoragePreferenceAskBackgroundLocationPermissionType =
-          JSON.parse(getLocalStoragePreferenceBackgroundLocationPreference)
-
-        InformationJoinVenueReactiveVar({
+    if (!getLocalStorageNotificationPermissionsPreference) {
+      storage.set(
+        LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS,
+        JSON.stringify(NowPreferencePermissionInitialState),
+      )
+    } else {
+      const values: LocalStoragePreferenceAskNotificationPermissionType =
+        JSON.parse(getLocalStorageNotificationPermissionsPreference)
+      PermissionsPreferencesReactiveVar({
+        ...PermissionsPreferencesReactiveVar(),
+        notifications: {
           ...values,
-        })
-      }
-      // BACKGROUNDLOCATION_PREFERENCE ~ END
+        },
+      })
+    }
+    // NOTIFICATION_PREFERENCE ~ END
 
-      // FOREGROUNDLOCATION_PREFERENCE ~ START
-      const getLocalStoragePreferenceForegroundLocationPreference =
-        storage.getString(LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION)
+    // BACKGROUNDLOCATION_PREFERENCE ~ START
+    const getLocalStoragePreferenceBackgroundLocationPreference =
+      storage.getString(LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION)
 
-      if (!getLocalStoragePreferenceForegroundLocationPreference) {
-        storage.set(
-          LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION,
-          JSON.stringify(NowPreferencePermissionInitialState),
-        )
-      } else {
-        const values: LocalStoragePreferenceAskBackgroundLocationPermissionType =
-          JSON.parse(getLocalStoragePreferenceForegroundLocationPreference)
-        PermissionsPreferencesReactiveVar({
-          ...PermissionsPreferencesReactiveVar(),
-          locationForeground: {
-            ...values,
-          },
-        })
-      }
-      // FOREGROUNDLOCATION_PREFERENCE ~ END
+    if (!getLocalStoragePreferenceBackgroundLocationPreference) {
+      storage.set(
+        LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
+        JSON.stringify(NowPreferencePermissionInitialState),
+      )
+    } else {
+      // using local_storage values set the correct information
+      const values: LocalStoragePreferenceAskBackgroundLocationPermissionType =
+        JSON.parse(getLocalStoragePreferenceBackgroundLocationPreference)
 
-      // SYSTEM_OF_UNITS_PREFERENCE ~ START
-      const getLocalStorageSystemOfUnitsPreference = storage.getString(
+      InformationJoinVenueReactiveVar({
+        ...values,
+      })
+    }
+    // BACKGROUNDLOCATION_PREFERENCE ~ END
+
+    // FOREGROUNDLOCATION_PREFERENCE ~ START
+    const getLocalStoragePreferenceForegroundLocationPreference =
+      storage.getString(LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION)
+
+    if (!getLocalStoragePreferenceForegroundLocationPreference) {
+      storage.set(
+        LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION,
+        JSON.stringify(NowPreferencePermissionInitialState),
+      )
+    } else {
+      const values: LocalStoragePreferenceAskBackgroundLocationPermissionType =
+        JSON.parse(getLocalStoragePreferenceForegroundLocationPreference)
+      PermissionsPreferencesReactiveVar({
+        ...PermissionsPreferencesReactiveVar(),
+        locationForeground: {
+          ...values,
+        },
+      })
+    }
+    // FOREGROUNDLOCATION_PREFERENCE ~ END
+
+    // SYSTEM_OF_UNITS_PREFERENCE ~ START
+    const getLocalStorageSystemOfUnitsPreference = storage.getString(
+      LOCAL_STORAGE_PREFERENCE_SYSTEM_OF_UNITS,
+    )
+
+    if (!getLocalStorageSystemOfUnitsPreference) {
+      storage.set(
         LOCAL_STORAGE_PREFERENCE_SYSTEM_OF_UNITS,
+        JSON.stringify(InitialStatePreferenceSystemsOfUnits),
+      )
+    } else {
+      const values: LocalStoragePreferenceSystemsOfUnitsType = JSON.parse(
+        getLocalStorageSystemOfUnitsPreference,
       )
 
-      if (!getLocalStorageSystemOfUnitsPreference) {
-        storage.set(
-          LOCAL_STORAGE_PREFERENCE_SYSTEM_OF_UNITS,
-          JSON.stringify(InitialStatePreferenceSystemsOfUnits),
-        )
-      } else {
-        const values: LocalStoragePreferenceSystemsOfUnitsType = JSON.parse(
-          getLocalStorageSystemOfUnitsPreference,
-        )
-
-        PreferenceSystemsOfUnitsReactiveVar({
-          ...values,
-        })
-      }
-      // BACKGROUNDLOCATION_PREFERENCE ~ START ~ END
-    } catch () {}
+      PreferenceSystemsOfUnitsReactiveVar({
+        ...values,
+      })
+    }
+    // BACKGROUNDLOCATION_PREFERENCE ~ START ~ END
   }
 
   const setAsyncPermissions = async () => {
