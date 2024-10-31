@@ -1,7 +1,3 @@
-import {useEffect, useRef} from 'react'
-import {Alert, AppState, Platform, ScrollView, View} from 'react-native'
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import * as Application from 'expo-application'
 import Constants from 'expo-constants'
 import * as Device from 'expo-device'
@@ -9,6 +5,9 @@ import * as IntentLauncher from 'expo-intent-launcher'
 import * as Linking from 'expo-linking'
 import * as Notifications from 'expo-notifications'
 import {useRouter} from 'expo-router'
+import {useEffect, useRef} from 'react'
+import {Alert, AppState, Platform, ScrollView, View} from 'react-native'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
 // TODO: UX(handleAppStateChange) check if location permission is enabled and go somewhere with it
 import {useReactiveVar} from '@apollo/client'
 import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
@@ -277,7 +276,7 @@ export default () => {
         <Divider style={{width: 50, marginVertical: 10}} className="w-2" />
         <Heading
           style={{
-            width: wp(95),
+            width: '95%',
             maxWidth: 300,
             textAlign: 'center',
           }}

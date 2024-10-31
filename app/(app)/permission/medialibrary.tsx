@@ -1,18 +1,18 @@
-import {useEffect, useRef} from 'react'
-import {AppState, Platform, ScrollView, View} from 'react-native'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
-import * as IntentLauncher from 'expo-intent-launcher'
-import * as Linking from 'expo-linking'
-import * as MediaLibrary from 'expo-media-library'
-import {useRouter} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
 import {
   Ionicons,
   MaterialCommunityIcons,
   MaterialIcons,
 } from '@expo/vector-icons'
+import * as IntentLauncher from 'expo-intent-launcher'
+import * as Linking from 'expo-linking'
+import * as MediaLibrary from 'expo-media-library'
+import {useRouter} from 'expo-router'
+import {useEffect, useRef} from 'react'
+import {AppState, Platform, ScrollView, View} from 'react-native'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
 
-import IllustrationDynamicMedia from '#/assets/images/media/IllustrationDynamicMedia'
+import IllustrationDynamicMedia from '#/assets/images/dynamic/IllustrationDynamicMedia'
 import {PermissionsReactiveVar, ThemeReactiveVar} from '#/reactive'
 import {Box} from '#/src/components/ui/box'
 import {Button, ButtonText} from '#/src/components/ui/button'

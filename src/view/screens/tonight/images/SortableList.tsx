@@ -10,7 +10,7 @@ interface ListProps {
   onDragEnd: (diff: Positions) => void
 }
 
-const List = ({children, editing, onDragEnd}: ListProps) => {
+const SortableList = ({children, editing, onDragEnd}: ListProps) => {
   const scrollY = useSharedValue(0)
   const scrollView = useAnimatedRef<Animated.View>()
   const positions = useSharedValue<Positions>(
@@ -19,26 +19,13 @@ const List = ({children, editing, onDragEnd}: ListProps) => {
       ...children.map((child, index) => ({[child.props.id]: index})),
     ),
   )
-  // const onScroll = useAnimatedScrollHandler({
-  //   onScroll: ({contentOffset: {y}}) => {
-  //     scrollY.value = y
-  //   },
-  // })
 
   return (
     <Animated.View
-      // onScroll={onScroll}
       ref={scrollView}
       style={{
         height: Math.ceil(children.length / COL) * SIZE,
-      }}
-      // contentContainerStyle={{
-      //   height: Math.ceil(children.length / COL) * SIZE,
-      // }}
-      // showsVerticalScrollIndicator={false}
-      // bounces={false}
-      // scrollEventThrottle={16}
-    >
+      }}>
       {children.map(child => (
         <Item
           key={child.props.id}
@@ -46,7 +33,6 @@ const List = ({children, editing, onDragEnd}: ListProps) => {
           id={child.props.id}
           editing={editing}
           onDragEnd={onDragEnd}
-          // scrollView={scrollView}
           scrollY={scrollY}>
           {child}
         </Item>
@@ -55,4 +41,4 @@ const List = ({children, editing, onDragEnd}: ListProps) => {
   )
 }
 
-export default List
+export default SortableList

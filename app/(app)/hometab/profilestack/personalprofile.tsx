@@ -1,11 +1,10 @@
-import {useEffect} from 'react'
-import {View} from 'react-native'
-import {Image} from 'expo-image'
-import {useRouter} from 'expo-router'
-import {useReactiveVar} from '@apollo/client'
 import {FontAwesome5} from '@expo/vector-icons'
 import {FlashList} from '@shopify/flash-list'
+import {Image} from 'expo-image'
+import {useRouter} from 'expo-router'
 import {DateTime} from 'luxon'
+import {useEffect} from 'react'
+import {View} from 'react-native'
 
 import {
   ProfileType,
@@ -21,7 +20,6 @@ import {HStack} from '#/src/components/ui/hstack'
 import {Pressable} from '#/src/components/ui/pressable'
 import {Text} from '#/src/components/ui/text'
 import {VStack} from '#/src/components/ui/vstack'
-import {ThemeReactiveVar} from '#/src/state/reactive'
 import useContentInsets from '#/src/util/hooks/useContentInsets'
 import ProfilePhoto from '#/src/view/screens/profile/profilephoto'
 
@@ -112,7 +110,6 @@ const DetailInformation = () => {
 export default () => {
   const router = useRouter()
   const insets = useContentInsets()
-  const rTheme = useReactiveVar(ThemeReactiveVar)
 
   const [getNotificationQuery, {data: GNData, loading: GNLoading}] =
     useGetNotificationsLazyQuery({
@@ -141,7 +138,7 @@ export default () => {
           ) {
             return (
               <Box className="mx-2 my-2 p-5 pt-10">
-                <SignupLoginCard signupTextId={1} />
+                <SignupLoginCard />
                 <DeviceManagerProfiles />
               </Box>
             )
@@ -238,11 +235,11 @@ export default () => {
                         <FontAwesome5
                           name="user-alt"
                           size={18}
-                          color={
-                            rTheme.colorScheme === 'light'
-                              ? rTheme.theme?.gluestack.tokens.colors.light600
-                              : rTheme.theme?.gluestack.tokens.colors.light300
-                          }
+                          // color={
+                          //   rTheme.colorScheme === 'light'
+                          //     ? rTheme.theme?.gluestack.tokens.colors.light600
+                          //     : rTheme.theme?.gluestack.tokens.colors.light300
+                          // }
                         />
                       </Box>
                     )}
@@ -262,88 +259,6 @@ export default () => {
               </Pressable>
             )
           }}
-          // renderItem={({item}) => {
-          //   return (
-          //     <Pressable
-          //       className="flex-1 h-[170] m-1 overflow-hidden rounded-md"
-          //       onPress={() => {
-          //         if (item?.friendProfile?.IdentifiableInformation?.username) {
-          //           router.push({
-          //             params: {
-          //               username:
-          //                 item?.friendProfile?.IdentifiableInformation
-          //                   ?.username,
-          //             },
-          //             pathname: `/(app)/public/personal/[username]`,
-          //           })
-          //         }
-          //       }}>
-          //       <Box className="bg-light-100 dark:bg-light-800 flex-1">
-          //         <Pressable
-          //           onPress={() => {
-          //             if (
-          //               item.friendProfile?.IdentifiableInformation?.username
-          //             ) {
-          //               router.push({
-          //                 params: {
-          //                   username:
-          //                     item.friendProfile?.IdentifiableInformation
-          //                       ?.username,
-          //                 },
-          //                 pathname: `/(app)/public/personal/[username]`,
-          //               })
-          //             }
-          //           }}>
-          //           <Box
-          //             style={{
-          //               height: 170,
-          //             }}>
-          //             {item.friendProfile?.profilePhoto?.url ? (
-          //               <Image
-          //                 alt={'Profile image'}
-          //                 source={{uri: item.friendProfile?.profilePhoto?.url}}
-          //                 contentFit="cover"
-          //                 style={{
-          //                   height: 170,
-          //                   flexDirection: 'column-reverse',
-          //                   borderRadius: 10,
-          //                 }}
-          //               />
-          //             ) : (
-          //               <Box className="flex-1 justify-center items-center">
-          //                 <FontAwesome5
-          //                   name="user-alt"
-          //                   size={24}
-          //                   color={
-          //                     rTheme.colorScheme === 'light'
-          //                       ? rTheme.theme?.gluestack.tokens.colors.light600
-          //                       : rTheme.theme?.gluestack.tokens.colors.light300
-          //                   }
-          //                 />
-          //               </Box>
-          //             )}
-          //             <Box className="absolute bottom-0 left-0 right-0 z-10 w-[100%] overflow-hidden">
-          //               <LinearGradient
-          //                 style={{paddingVertical: 4}}
-          //                 colors={['transparent', '#000000d1']}>
-          //                 <Text className="text-center font-medium text-lg text-white">
-          //                   @
-          //                   {
-          //                     item.friendProfile?.IdentifiableInformation
-          //                       ?.username
-          //                   }
-          //                 </Text>
-          //               </LinearGradient>
-          //             </Box>
-          //           </Box>
-          //         </Pressable>
-          //         <Text>
-          //           {item.friendProfile?.IdentifiableInformation?.firstname}
-          //         </Text>
-          //       </Box>
-          //     </Pressable>
-          //   )
-          // }}
         />
       </View>
     )

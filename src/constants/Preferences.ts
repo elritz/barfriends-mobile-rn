@@ -1,24 +1,24 @@
-import {Contact} from 'expo-contacts'
+import { Contact } from 'expo-contacts'
 import {
   Accuracy,
   LocationPermissionResponse,
   PermissionResponse,
   PermissionStatus,
 } from 'expo-location'
-import {NetworkState, NetworkStateType} from 'expo-network'
-import {NotificationPermissionsStatus} from 'expo-notifications'
-import {DateTime} from 'luxon'
+import { NetworkState, NetworkStateType } from 'expo-network'
+import { NotificationPermissionsStatus } from 'expo-notifications'
+import { DateTime } from 'luxon'
 
-import {TermsServiceType} from '#/types/app'
+import { TermsServiceType } from '#/types/app'
 import {
   DefaultPreferenceToPermissionType,
   LocalStorageInformationJoinVenueType,
   LocalStoragePreferenceSearchAreaType,
   LocalStoragePreferenceSystemsOfUnitsType,
-  LocalStoragePreferenceThemeType,
   LocationType,
   ServerNetworkType,
   SystemsOfUnits,
+  ThemeType
 } from '#/types/preferences'
 
 export const NowPreferencePermissionInitialState: DefaultPreferenceToPermissionType =
@@ -106,9 +106,11 @@ export const InitialStateSearchArea: LocalStoragePreferenceSearchAreaType = {
   },
 }
 
-export const InitialStatePreferenceThemeColorScheme: LocalStoragePreferenceThemeType =
+export const InitialStateThemeColorScheme: ThemeType =
   {
-    colorScheme: 'system',
+    preference: 'system',
+    mode: 'dark',
+
   }
 
 export const InitialStatePreferenceSystemsOfUnits: LocalStoragePreferenceSystemsOfUnitsType =
@@ -247,7 +249,7 @@ export const InitalStateStorage = {
     searcharea: {name: 'Preference Search Area', ...InitialStateSearchArea},
     theme: {
       name: 'Preference Theme Scheme',
-      ...InitialStatePreferenceThemeColorScheme,
+      ...InitialStateThemeColorScheme,
     },
     notification: {
       name: 'Preference Notifications',

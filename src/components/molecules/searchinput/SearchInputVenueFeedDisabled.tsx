@@ -1,15 +1,13 @@
-import {useRouter, useSegments} from 'expo-router'
-import {useReactiveVar} from '@apollo/client'
 import {Ionicons} from '@expo/vector-icons'
+import {useRouter, useSegments} from 'expo-router'
 
-import {ThemeReactiveVar} from '#/reactive'
 import {HStack} from '#/src/components/ui/hstack'
 import {Input} from '#/src/components/ui/input'
 import {Pressable} from '#/src/components/ui/pressable'
 import {Text} from '#/src/components/ui/text'
 
 const SearchInputVenueFeedDisabled = () => {
-  const rTheme = useReactiveVar(ThemeReactiveVar)
+  // const rTheme = useReactiveVar(ThemeReactiveVar)
   const router = useRouter()
   const segments: string[] = useSegments()
   return (
@@ -30,7 +28,7 @@ const SearchInputVenueFeedDisabled = () => {
         <Input
           variant="rounded"
           isReadOnly={true}
-          className={` ${rTheme.colorScheme === 'light' ? rTheme.theme?.gluestack.tokens.colors.light100 : rTheme.theme?.gluestack.tokens.colors.light900} 'ml-2' mr-2 flex-1 items-center justify-center`}>
+          className={`${rTheme.colorScheme === 'light' ? rTheme.theme?.gluestack.tokens.colors.light100 : rTheme.theme?.gluestack.tokens.colors.light900} ml-2 mr-2 flex-1 items-center justify-center`}>
           <Ionicons
             color={
               rTheme.colorScheme === 'light'

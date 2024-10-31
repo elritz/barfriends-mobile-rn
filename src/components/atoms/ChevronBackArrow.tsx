@@ -1,7 +1,6 @@
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen'
-import {useRouter} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
 import {Ionicons} from '@expo/vector-icons'
+import {useRouter} from 'expo-router'
 
 import {ThemeReactiveVar} from '#/reactive'
 import {Pressable} from '#/src/components/ui/pressable'
@@ -18,9 +17,6 @@ const ChevronBackArrow = () => {
         pathname: '/(app)/hometab/venuefeed',
       })
     }
-    // router.setParams({
-    // 	searchtext: '',
-    // })
   }
 
   return (
@@ -28,8 +24,8 @@ const ChevronBackArrow = () => {
       accessibilityRole="button"
       style={{
         flex: 1,
-        maxWidth: parseInt(wp(6).toFixed(0)),
-        height: parseInt(wp(10).toFixed(0)),
+        maxWidth: '6%',
+        height: '10%',
         alignItems: 'center',
         justifyContent: 'center',
       }}

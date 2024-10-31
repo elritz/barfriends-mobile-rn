@@ -1,8 +1,8 @@
-import {useCallback} from 'react'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
-import {router} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
 import {FlashList, ListRenderItem} from '@shopify/flash-list'
+import {router} from 'expo-router'
+import {useCallback} from 'react'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
 
 import {
   AuthorizationDeviceProfile,
@@ -22,7 +22,7 @@ import {
   HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
   HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
 } from '#/src/constants/ReactNavigationConstants'
-import {useToggleTheme} from '#/src/util/hooks/theme/useToggleTheme'
+// import {useToggleTheme} from '#/src/util/hooks/theme/useToggleTheme'
 
 type Gluestack = {
   primary0: string
@@ -92,7 +92,7 @@ type Item = {
 export default function Preferences() {
   const insets = useSafeAreaInsets()
   const rTheme = useReactiveVar(ThemeReactiveVar)
-  const [toggleColorScheme] = useToggleTheme()
+  // const [toggleColorScheme] = useToggleTheme()
 
   const {data: GATData, loading: GATLoading} = useGetAllThemesQuery()
 
@@ -125,81 +125,82 @@ export default function Preferences() {
   }: {
     colorScheme: 'light' | 'dark' | 'system'
   }) => {
-    toggleColorScheme({colorScheme})
+    console.log(
+      '🚀 ~ file: theme.tsx:131 ~ Preferences ~ colorScheme:',
+      colorScheme,
+    )
+    // toggleColorScheme({colorScheme})
   }
 
-  const renderItem: ListRenderItem<Item> = useCallback(
-    ({item, index}) => {
-      if (!item?.item) return null
-      const gluestack = item.item.theme.gluestack
-      return (
-        <Pressable
-          accessibilityRole="button"
-          onPress={() => {
-            updateSwitchTheme({
-              variables: {
-                id: item.item.id,
-                themeId: item.item.id,
-              },
-            })
-          }}>
-          <Box
-            key={item.item.id}
-            style={{
-              flex: 1,
-              borderColor:
-                AuthorizationReactiveVar()?.Profile?.ThemeManager
-                  ?.ProfileTheme[0]?.Theme?.id === item.item.id
-                  ? rTheme.theme?.gluestack.tokens.colors.primary500
-                  : rTheme.theme?.gluestack.tokens.colors.light900,
-            }}
-            className="m-3 rounded-md border-2 px-2 py-4">
-            <VStack space={'md'} className="flex-row flex-wrap justify-around">
-              {rTheme.colorScheme === 'light' ? (
-                <>
-                  {Object.entries(gluestack).map((item, index) => {
-                    return (
-                      <Box
-                        key={index}
-                        style={{
-                          backgroundColor: item[1],
-                          width: 25,
-                          height: 25,
-                        }}
-                        className="m-2 self-center"
-                      />
-                    )
-                  })}
-                </>
-              ) : (
-                <>
-                  {Object.entries(gluestack).map((item, index) => {
-                    return (
-                      <Box
-                        key={index}
-                        style={{
-                          backgroundColor: item[1],
-                          width: 40,
-                          height: 40,
-                        }}
-                        className="m-2 self-center"
-                      />
-                    )
-                  })}
-                </>
-              )}
-            </VStack>
+  const renderItem: ListRenderItem<Item> = useCallback(({item, index}) => {
+    if (!item?.item) return null
+    const gluestack = item.item.theme.gluestack
+    return (
+      <Pressable
+        accessibilityRole="button"
+        onPress={() => {
+          updateSwitchTheme({
+            variables: {
+              id: item.item.id,
+              themeId: item.item.id,
+            },
+          })
+        }}>
+        <Box
+          key={item.item.id}
+          style={{
+            flex: 1,
+            borderColor:
+              AuthorizationReactiveVar()?.Profile?.ThemeManager?.ProfileTheme[0]
+                ?.Theme?.id === item.item.id
+                ? '#ff7000'
+                : 'black',
+          }}
+          className="m-3 rounded-md border-2 px-2 py-4">
+          <VStack space={'md'} className="flex-row flex-wrap justify-around">
+            {'light' === 'light' ? (
+              <>
+                {Object.entries(gluestack).map((item, index) => {
+                  return (
+                    <Box
+                      key={index}
+                      style={{
+                        backgroundColor: item[1],
+                        width: 25,
+                        height: 25,
+                      }}
+                      className="m-2 self-center"
+                    />
+                  )
+                })}
+              </>
+            ) : (
+              <>
+                {Object.entries(gluestack).map((item, index) => {
+                  return (
+                    <Box
+                      key={index}
+                      style={{
+                        backgroundColor: item[1],
+                        width: 40,
+                        height: 40,
+                      }}
+                      className="m-2 self-center"
+                    />
+                  )
+                })}
+              </>
+            )}
+          </VStack>
 
-            <Divider className="my-3" />
-            <Heading className="mt-4 text-center text-xl font-bold capitalize">
-              {item.item.name}
-            </Heading>
-          </Box>
-        </Pressable>
-      )
-    },
-    [rTheme.colorScheme],
-  )
+          <Divider className="my-3" />
+          <Heading className="mt-4 text-center text-xl font-bold capitalize">
+            {item.item.name}
+          </Heading>
+        </Box>
+      </Pressable>
+    )
+  }, [])
 
   if (GATLoading || !GATData?.getAllThemes) return null
 
@@ -229,12 +230,12 @@ export default function Preferences() {
               onPress={async () => {
                 await setTheme({colorScheme: 'light'})
               }}
-              style={{
-                borderColor:
-                  rTheme.localStorageColorScheme === 'light'
-                    ? rTheme.theme?.gluestack.tokens.colors.primary500
-                    : 'transparent',
-              }}
+              // style={{
+              //   borderColor:
+              //     localStorageColorScheme === 'light'
+              //       ? theme?.gluestack.tokens.colors.primary500
+              //       : 'transparent',
+              // }}
               className="flex-1 border-2 bg-light-50">
               <ButtonText className="text-black">Light</ButtonText>
             </Button>
@@ -242,12 +243,12 @@ export default function Preferences() {
               onPress={async () => {
                 await setTheme({colorScheme: 'dark'})
               }}
-              style={{
-                borderColor:
-                  rTheme.localStorageColorScheme === 'dark'
-                    ? rTheme.theme?.gluestack.tokens.colors.primary500
-                    : 'transparent',
-              }}
+              // style={{
+              //   borderColor:
+              //     rTheme.localStorageColorScheme === 'dark'
+              //       ? rTheme.theme?.gluestack.tokens.colors.primary500
+              //       : 'transparent',
+              // }}
               className="flex-1 border-2 bg-light-800">
               <ButtonText className="text-white">Dark</ButtonText>
             </Button>
@@ -255,21 +256,22 @@ export default function Preferences() {
               onPress={async () => {
                 await setTheme({colorScheme: 'system'})
               }}
-              style={{
-                borderColor:
-                  rTheme.localStorageColorScheme === 'system'
-                    ? rTheme.theme?.gluestack.tokens.colors.primary500
-                    : 'transparent',
-                backgroundColor:
-                  rTheme.colorScheme === 'light'
-                    ? rTheme.theme.gluestack.tokens.colors.light100
-                    : rTheme.theme.gluestack.tokens.colors.light800,
-              }}
+              // style={{
+              //   borderColor:
+              //     rTheme.localStorageColorScheme === 'system'
+              //       ? rTheme.theme?.gluestack.tokens.colors.primary500
+              //       : 'transparent',
+              //   backgroundColor:
+              //     rTheme.colorScheme === 'light'
+              //       ? rTheme.theme.gluestack.tokens.colors.light100
+              //       : rTheme.theme.gluestack.tokens.colors.light800,
+              // }}
               className="flex-1 border-2 bg-light-50">
               <ButtonText
-                style={{
-                  color: rTheme.colorScheme === 'light' ? 'black' : 'white',
-                }}>
+              // style={{
+              //   color: rTheme.colorScheme === 'light' ? 'black' : 'white',
+              // }}
+              >
                 System
               </ButtonText>
             </Button>

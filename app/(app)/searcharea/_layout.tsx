@@ -1,9 +1,9 @@
-import {useEffect} from 'react'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import {useReactiveVar} from '@apollo/client'
 import {BlurView} from 'expo-blur'
 import {Stack} from 'expo-router'
-import {useReactiveVar} from '@apollo/client'
+import {useEffect} from 'react'
 import {FormProvider, useForm} from 'react-hook-form'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
 
 import {SearchAreaReactiveVar, ThemeReactiveVar} from '#/reactive'
 import ChevronBackArrow from '#/src/components/atoms/ChevronBackArrow'
@@ -52,7 +52,7 @@ export type Form = {
   done: boolean
 }
 
-export default function _layout() {
+export default () => {
   const rSearchAreaVar = useReactiveVar(SearchAreaReactiveVar)
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const insets = useSafeAreaInsets()

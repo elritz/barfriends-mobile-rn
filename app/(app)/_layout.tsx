@@ -3,7 +3,7 @@ import {router, Stack} from 'expo-router'
 import {Button} from '#/src/components/ui/button'
 import {Text} from '#/src/components/ui/text'
 
-const Layout = () => {
+export default () => {
   return (
     <Stack
       initialRouteName="hometab"
@@ -78,7 +78,3 @@ const Layout = () => {
     </Stack>
   )
 }
-
-Layout.displayName = 'Layout'
-
-export default Layout

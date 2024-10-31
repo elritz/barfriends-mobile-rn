@@ -1,5 +1,4 @@
 import {View} from 'react-native'
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
 //TODO FN(Update to change to detail information) mutation is broken here
 import {useReactiveVar} from '@apollo/client'
 import {Controller, useForm} from 'react-hook-form'
@@ -87,11 +86,7 @@ export default () => {
   return (
     // <KeyboardAvoidingView flexDir={'column'} justifyContent={'space-between'} alignItems={'center'}>
     // </KeyboardAvoidingView>
-    <KeyboardAwareScrollView
-      keyboardDismissMode="none"
-      keyboardShouldPersistTaps={'always'}
-      extraScrollHeight={0}
-      style={{width: '95%', alignSelf: 'center'}}>
+    <View style={{width: '95%', alignSelf: 'center'}}>
       <Controller
         name="description"
         control={control}
@@ -158,6 +153,6 @@ export default () => {
           )
         }}
       />
-    </KeyboardAwareScrollView>
+    </View>
   )
 }

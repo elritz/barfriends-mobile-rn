@@ -1,12 +1,11 @@
-import React, {useEffect, useState} from 'react'
-import {Pressable} from 'react-native'
+import {Feather} from '@expo/vector-icons'
+import {FlashList} from '@shopify/flash-list'
 import * as Application from 'expo-application'
 import * as Clipboard from 'expo-clipboard'
 import Constants from 'expo-constants'
 import * as Notifications from 'expo-notifications'
-import {useReactiveVar} from '@apollo/client'
-import {Feather} from '@expo/vector-icons'
-import {FlashList} from '@shopify/flash-list'
+import React, {useEffect, useState} from 'react'
+import {Pressable} from 'react-native'
 
 import {useRefreshDeviceManagerQuery} from '#/graphql/generated'
 import {Box} from '#/src/components/ui/box'
@@ -16,7 +15,7 @@ import {HStack} from '#/src/components/ui/hstack'
 import {Text} from '#/src/components/ui/text'
 import {VStack} from '#/src/components/ui/vstack'
 import {AUTHORIZATION} from '#/src/constants/StorageConstants'
-import {ThemeReactiveVar} from '#/src/state/reactive'
+
 import {
   secureStorageItemDelete,
   secureStorageItemRead,
@@ -27,7 +26,6 @@ const Tokens: React.FC = () => {
   const [expoPushNotificationToken, setExpoPushNotificationToken] = useState('')
   const [devicePushNotificationToken, setDevicePushNotificationTToken] =
     useState('')
-  const rTheme = useReactiveVar(ThemeReactiveVar)
 
   async function getApplicationAuthorization() {
     const auth = await secureStorageItemRead({
@@ -111,20 +109,12 @@ const Tokens: React.FC = () => {
                   <Pressable
                     accessibilityRole="button"
                     onPress={item.onPressDelete}>
-                    <Feather
-                      color={rTheme.theme?.gluestack.tokens.colors.red500}
-                      size={25}
-                      name="trash"
-                    />
+                    <Feather color={'red'} size={25} name="trash" />
                   </Pressable>
                   <Pressable
                     accessibilityRole="button"
                     onPress={item.onPressCopy}>
-                    <Feather
-                      color={rTheme.theme?.gluestack.tokens.colors.primary500}
-                      size={25}
-                      name="copy"
-                    />
+                    <Feather color={'red'} size={25} name="copy" />
                   </Pressable>
                 </HStack>
               </HStack>

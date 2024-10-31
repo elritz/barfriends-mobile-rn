@@ -1,8 +1,6 @@
-import {parse} from 'bcp-47'
+import { parse } from 'bcp-47'
 
-import {dedupArray} from '#/src/lib/functions'
-import {logger} from '#/src/logger'
-import {Schema} from '#/src/state/persisted/schema'
+import { Schema } from '#/src/state/persisted/schema'
 
 export function normalizeData(data: Schema) {
   const next = {...data}
@@ -11,36 +9,36 @@ export function normalizeData(data: Schema) {
    * Normalize language prefs to ensure that these values only contain 2-letter
    * country codes without region.
    */
-  try {
-    const langPrefs = {...next.languagePrefs}
-    langPrefs.primaryLanguage = normalizeLanguageTagToTwoLetterCode(
-      langPrefs.primaryLanguage,
-    )
-    langPrefs.contentLanguages = dedupArray(
-      langPrefs.contentLanguages.map(lang =>
-        normalizeLanguageTagToTwoLetterCode(lang),
-      ),
-    )
-    langPrefs.postLanguage = langPrefs.postLanguage
-      .split(',')
-      .map(lang => normalizeLanguageTagToTwoLetterCode(lang))
-      .filter(Boolean)
-      .join(',')
-    langPrefs.postLanguageHistory = dedupArray(
-      langPrefs.postLanguageHistory.map(postLanguage => {
-        return postLanguage
-          .split(',')
-          .map(lang => normalizeLanguageTagToTwoLetterCode(lang))
-          .filter(Boolean)
-          .join(',')
-      }),
-    )
-    next.languagePrefs = langPrefs
-  } catch (e: any) {
-    logger.error(`persisted state: failed to normalize language prefs`, {
-      safeMessage: e.message,
-    })
-  }
+  // try {
+  //   const langPrefs = {...next.languagePrefs}
+  //   langPrefs.primaryLanguage = normalizeLanguageTagToTwoLetterCode(
+  //     langPrefs.primaryLanguage,
+  //   )
+  //   langPrefs.contentLanguages = dedupArray(
+  //     langPrefs.contentLanguages.map(lang =>
+  //       normalizeLanguageTagToTwoLetterCode(lang),
+  //     ),
+  //   )
+  //   langPrefs.postLanguage = langPrefs.postLanguage
+  //     .split(',')
+  //     .map(lang => normalizeLanguageTagToTwoLetterCode(lang))
+  //     .filter(Boolean)
+  //     .join(',')
+  //   langPrefs.postLanguageHistory = dedupArray(
+  //     langPrefs.postLanguageHistory.map(postLanguage => {
+  //       return postLanguage
+  //         .split(',')
+  //         .map(lang => normalizeLanguageTagToTwoLetterCode(lang))
+  //         .filter(Boolean)
+  //         .join(',')
+  //     }),
+  //   )
+  //   next.languagePrefs = langPrefs
+  // } catch (e: any) {
+  //   logger.error(`persisted state: failed to normalize language prefs`, {
+  //     safeMessage: e.message,
+  //   })
+  // }
 
   return next
 }

@@ -1,6 +1,6 @@
 import {Stack} from 'expo-router'
 
-export default function _layout() {
+export default () => {
   return (
     <Stack screenOptions={{presentation: 'modal'}}>
       <Stack.Screen

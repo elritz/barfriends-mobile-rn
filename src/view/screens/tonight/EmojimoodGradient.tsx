@@ -1,5 +1,5 @@
-import React, {ReactNode} from 'react'
 import {LinearGradient} from 'expo-linear-gradient'
+import React, {ReactNode} from 'react'
 
 import {useRefreshDeviceManagerQuery} from '#/graphql/generated'
 
@@ -9,7 +9,6 @@ const EmojimoodGradient = ({children}: {children: ReactNode}) => {
   if (
     rdmData?.refreshDeviceManager?.__typename === 'AuthorizationDeviceProfile'
   ) {
-    console.log(rdmData?.refreshDeviceManager.Profile?.tonightStory?.emojimood)
     return (
       <LinearGradient
         style={{flex: 1}}

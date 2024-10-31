@@ -1,8 +1,7 @@
-import {ActivityIndicator, KeyboardAvoidingView} from 'react-native'
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
 import {useReactiveVar} from '@apollo/client'
 import {Ionicons} from '@expo/vector-icons'
 import {Controller, useForm, ValidateResult} from 'react-hook-form'
+import {ActivityIndicator, KeyboardAvoidingView, View} from 'react-native'
 
 import {
   AuthorizationDeviceProfile,
@@ -140,10 +139,7 @@ export default () => {
   }
 
   return (
-    <KeyboardAwareScrollView
-      keyboardDismissMode="none"
-      keyboardShouldPersistTaps={'always'}
-      extraScrollHeight={100}>
+    <View>
       <KeyboardAvoidingView
         style={{
           flexDirection: 'column',
@@ -205,6 +201,6 @@ export default () => {
           <Text>Update</Text>
         </Button>
       )}
-    </KeyboardAwareScrollView>
+    </View>
   )
 }

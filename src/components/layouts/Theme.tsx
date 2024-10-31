@@ -1,38 +1,32 @@
-import {ReactNode, useCallback, useEffect, useRef} from 'react'
-import {Appearance, AppState, StatusBar} from 'react-native'
-import {useReactiveVar} from '@apollo/client'
-import {ThemeProvider as ReactNavigationThemeProvider} from '@react-navigation/native'
+import {
+  DefaultTheme,
+  ThemeProvider as ReactNavigationThemeProvider,
+} from '@react-navigation/native'
+import {ReactNode, useEffect, useRef} from 'react'
+import {AppState, StatusBar, useColorScheme} from 'react-native'
 
-import {ThemeReactiveVar} from '#/reactive'
 import {GluestackUIProvider} from '#/src/components/ui/gluestack-ui-provider'
-import {LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME} from '#/src/constants/StorageConstants'
-import {storage} from '#/src/storage/mmkv'
-import {useToggleTheme} from '#/src/util/hooks/theme/useToggleTheme'
-import AnimatedSplashScreen from '#/src/view/screens/splash/AnimatedSplashScreen'
-import {LocalStoragePreferenceThemeType} from '#/types/preferences'
+import {THEME_COLOR_SCHEME} from '#/src/constants/StorageConstants'
+import {SplashScreen} from 'expo-router'
+import {useMMKVString} from 'react-native-mmkv'
 
 export default function Theme({children}: {children: ReactNode}) {
+  const colorScheme = useColorScheme()
   const appState = useRef(AppState.currentState)
-  const rThemeVar = useReactiveVar(ThemeReactiveVar)
-  const [toggleColorScheme] = useToggleTheme()
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const setTheme = async () => {
-    const localStorageColorScheme = storage.getString(
-      LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME,
-    )
-
-    const valueLocalStorageColorScheme: LocalStoragePreferenceThemeType =
-      JSON.parse(String(localStorageColorScheme))
-
-    await toggleColorScheme({
-      colorScheme: valueLocalStorageColorScheme.colorScheme,
-    })
+  const theme = {
+    preference: 'system',
+    mode: 'dark',
   }
 
-  const handleTheme = useCallback(() => {
-    setTheme()
-  }, [setTheme])
+  // const [theme, setTheme] = useMMKVObject<ThemeType>(THEME_COLOR_SCHEME)
+
+  const [t, setTheme] = useMMKVString(THEME_COLOR_SCHEME)
+  console.log('🚀 ~ file: Theme.tsx:29 ~ Theme ~ t:', t)
+
+  // const theme = t ? JSON.parse(t) : undefined
+
+  // console.log('🚀 ~ file: Theme.tsx:22 ~ Theme ~ theme:', theme)
 
   useEffect(() => {
     const subscription = AppState.addEventListener('change', nextAppState => {
@@ -40,20 +34,26 @@ export default function Theme({children}: {children: ReactNode}) {
         appState.current.match(/inactive|background/) &&
         nextAppState === 'active'
       ) {
-        const currentDeviceAppearance = Appearance.getColorScheme()
-        if (rThemeVar.localStorageColorScheme === 'system') {
-          if (currentDeviceAppearance !== rThemeVar.colorScheme) {
-            handleTheme()
-          }
-        } else {
-          if (currentDeviceAppearance !== rThemeVar.deviceColorScheme) {
-            handleTheme()
+        if (theme?.preference === 'system') {
+          if (theme.mode !== colorScheme) {
+            if (colorScheme) {
+              setTheme(
+                JSON.stringify({
+                  preference: 'system',
+                  mode: colorScheme,
+                }),
+              )
+            } else {
+              setTheme(
+                JSON.stringify({
+                  preference: 'dark',
+                  mode: 'dark',
+                }),
+              )
+            }
           }
         }
       }
-
-      /// beef yaki noodles
-      /// 40 guiza
 
       appState.current = nextAppState
     })
@@ -61,27 +61,41 @@ export default function Theme({children}: {children: ReactNode}) {
     return () => {
       subscription.remove()
     }
-  }, [])
-  useEffect(() => {
-    handleTheme()
-  }, [])
+  }, [appState, colorScheme])
 
-  if (!rThemeVar.theme) return null
+  useEffect(() => {
+    if (!theme) {
+      if (colorScheme) {
+        setTheme(
+          JSON.stringify({
+            preference: 'system',
+            mode: colorScheme,
+          }),
+        )
+      } else {
+        setTheme(
+          JSON.stringify({
+            preference: 'dark',
+            mode: 'dark',
+          }),
+        )
+      }
+    }
+  }, [theme, setTheme, colorScheme])
+
+  useEffect(() => {
+    SplashScreen.hideAsync()
+  }, [])
 
   return (
-    <AnimatedSplashScreen>
-      <GluestackUIProvider
-        mode={rThemeVar.colorScheme === 'light' ? 'light' : 'dark'}>
-        <StatusBar
-          animated
-          barStyle={
-            rThemeVar.colorScheme === 'light' ? 'dark-content' : 'light-content'
-          }
-        />
-        <ReactNavigationThemeProvider value={rThemeVar.theme.reactnavigation}>
-          {children}
-        </ReactNavigationThemeProvider>
-      </GluestackUIProvider>
-    </AnimatedSplashScreen>
+    <GluestackUIProvider mode={theme?.preference}>
+      <StatusBar
+        animated
+        barStyle={theme?.mode === 'light' ? 'dark-content' : 'light-content'}
+      />
+      <ReactNavigationThemeProvider value={DefaultTheme}>
+        {children}
+      </ReactNavigationThemeProvider>
+    </GluestackUIProvider>
   )
 }

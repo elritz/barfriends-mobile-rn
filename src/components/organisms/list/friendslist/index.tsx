@@ -1,12 +1,11 @@
-import {useWindowDimensions} from 'react-native'
 import {useReactiveVar} from '@apollo/client'
+import {useWindowDimensions} from 'react-native'
 
 import {AuthorizationReactiveVar} from '#/reactive'
 import {CardFullImageNameEmoji} from '#/src/components/molecules/personal/CardFullImageNameEmoji'
 import {Divider} from '#/src/components/ui/divider'
 import {HStack} from '#/src/components/ui/hstack'
 import {VStack} from '#/src/components/ui/vstack'
-import {FriendsListEmptyState} from './FriendsListEmptyState'
 
 const numColumns = 3
 
@@ -36,9 +35,7 @@ export const FriendsList = ({}) => {
           </HStack>
           <Divider style={{marginVertical: 10}} />
         </>
-      ) : (
-        <FriendsListEmptyState />
-      )}
+      ) : null}
     </VStack>
   )
 }

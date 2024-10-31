@@ -10,7 +10,16 @@ import {AUTHORIZATION} from '#/src/constants/StorageConstants'
 import {AuthorizationDecoded} from '#/src/util/hooks/auth/useCheckLocalStorageForAuthorizationToken'
 import {secureStorageItemRead} from '#/src/util/hooks/local/useSecureStorage'
 
-export default function Auth({children}) {
+import {ReactNode} from 'react'
+import {StyleSheet, View} from 'react-native'
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+})
+
+export default function Auth({children}: {children: ReactNode}) {
   const [refreshDeviceManagerQuery, {loading: RDMLoading}] =
     useRefreshDeviceManagerLazyQuery({
       fetchPolicy: 'network-only',
@@ -77,5 +86,5 @@ export default function Auth({children}) {
     return null
   }
 
-  return <>{children}</>
+  return <View style={styles.container}>{children}</View>
 }

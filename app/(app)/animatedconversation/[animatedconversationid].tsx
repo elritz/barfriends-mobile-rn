@@ -1,4 +1,8 @@
+import {useReactiveVar} from '@apollo/client'
+import {FontAwesome6} from '@expo/vector-icons'
+import {BlurView} from 'expo-blur'
 import React, {useCallback, useRef} from 'react'
+import {Controller, SubmitHandler, useForm} from 'react-hook-form'
 import {SafeAreaView as RNSafeAreaView, StyleSheet, View} from 'react-native'
 import {useKeyboardHandler} from 'react-native-keyboard-controller'
 import Reanimated, {
@@ -7,10 +11,6 @@ import Reanimated, {
   useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated'
-import {BlurView} from 'expo-blur'
-import {useReactiveVar} from '@apollo/client'
-import {FontAwesome6} from '@expo/vector-icons'
-import {Controller, SubmitHandler, useForm} from 'react-hook-form'
 
 import {useCreateMessageMutation} from '#/graphql/generated'
 import {ThemeReactiveVar} from '#/reactive'
@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
   },
+  blurView: {flex: 1, height: '100%'},
 })
 
 interface FormValues {
@@ -179,13 +180,7 @@ function AnimatedChatroom() {
           <Message key={index} {...message} />
         ))}
       </Reanimated.ScrollView>
-      <AnimatedView
-        style={[
-          BoxInputStyle,
-          {
-            // backgroundColor: "red",
-          },
-        ]}>
+      <AnimatedView style={[BoxInputStyle]}>
         <BlurView
           tint={
             rTheme.colorScheme === 'light'
@@ -199,12 +194,12 @@ function AnimatedChatroom() {
             rules={{
               required: true,
             }}
-            render={({field: {onChange, onBlur, value}}) => {
+            render={({field: {onChange, value}}) => {
               return (
                 <SafeAreaView ref={refSafeArea}>
                   <Input className="mx-4 mb-2 mt-5 h-auto max-h-[155px] items-center rounded-3xl border-light-300">
                     <BlurView
-                      style={{flex: 1, height: '100%'}}
+                      style={styles.blurView}
                       className="h-auto min-h-[40px] flex-row items-center rounded-3xl"
                       intensity={98}>
                       <InputField

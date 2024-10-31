@@ -1,8 +1,8 @@
 // import {deviceLanguageCodes, deviceLocales} from '#/src/locale/deviceLocales'
 // import {findSupportedAppLanguage} from '#/src/locale/helpers'
-import {z} from 'zod'
+import { z } from 'zod'
 
-import {logger} from '#/src/logger'
+import { logger } from '#/src/logger'
 
 const externalEmbedOptions = ['show', 'hide'] as const
 
@@ -45,8 +45,9 @@ const currentAccountSchema = accountSchema.extend({
 export type PersistedCurrentAccount = z.infer<typeof currentAccountSchema>
 
 const schema = z.object({
-  colorMode: z.enum(['system', 'light', 'dark']),
-  darkTheme: z.enum(['dim', 'dark']).optional(),
+  theme: z.object({
+    mode: z.enum(['system', 'light', 'dark']).optional(),
+  })
   // session: z.object({
   //   accounts: z.array(accountSchema),
   //   currentAccount: currentAccountSchema.optional(),
@@ -77,7 +78,7 @@ const schema = z.object({
   //   step: z.string(),
   // }),
   // hiddenPosts: z.array(z.string()).optional(), // should move to server
-  useInAppBrowser: z.boolean().optional(),
+  // useInAppBrowser: z.boolean().optional(),
   // lastSelectedHomeFeed: z.string().optional(),
   // pdsAddressHistory: z.array(z.string()).optional(),
   // disableHaptics: z.boolean().optional(),
@@ -88,11 +89,13 @@ const schema = z.object({
   /** @deprecated */
   // mutedThreads: z.array(z.string()),
 })
+
 export type Schema = z.infer<typeof schema>
 
 export const defaults: Schema = {
-  colorMode: 'system',
-  darkTheme: 'dim',
+  theme: {
+    mode: 'system',
+  }
   // session: {
   //   accounts: [],
   //   currentAccount: undefined,

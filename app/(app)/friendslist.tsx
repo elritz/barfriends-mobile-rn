@@ -1,5 +1,5 @@
-import {ScrollView} from 'react-native'
 import {useReactiveVar} from '@apollo/client'
+import {ScrollView} from 'react-native'
 
 import {ThemeReactiveVar} from '#/reactive'
 import {Button, ButtonIcon} from '#/src/components/ui/button'
@@ -16,13 +16,11 @@ export default function NewConversation() {
         className="items-center border border-gray-300 px-4">
         <Text className="mr-2 text-sm text-gray-400">To:</Text>
         <Input
-          autoFocus
           borderWidth={'$0'}
           returnKeyType="default"
           underlineColorAndroid="transparent"
           keyboardAppearance={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
         />
-        {/* EditIcon is imported from 'lucide-react-native' */}
         <Button
           size="sm"
           hitSlop={{

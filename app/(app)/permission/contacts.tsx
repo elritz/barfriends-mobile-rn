@@ -1,11 +1,10 @@
-import {useEffect, useRef} from 'react'
-import {Alert, AppState, Platform, ScrollView, View} from 'react-native'
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import * as Contacts from 'expo-contacts'
 import * as Device from 'expo-device'
 import * as Linking from 'expo-linking'
 import {useRouter} from 'expo-router'
+import {useEffect, useRef} from 'react'
+import {Alert, AppState, Platform, ScrollView, View} from 'react-native'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
 // TODO: UX(handleAppStateChange) check if location permission is enabled and go somewhere with it
 import {useReactiveVar} from '@apollo/client'
 import {
@@ -221,7 +220,7 @@ export default () => {
       </Box>
       <ScrollView>
         <Box
-          style={{width: wp(95), flex: 1, alignSelf: 'center'}}
+          style={{width: '95%', flex: 1, alignSelf: 'center'}}
           className="bg-transparent">
           {details.map((item, index) => {
             return (

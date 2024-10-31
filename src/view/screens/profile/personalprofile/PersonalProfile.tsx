@@ -28,7 +28,7 @@ const PersonalScreen = () => {
     ) {
       return (
         <Box className="mx-3 flex-1">
-          <CardPleaseSignup signupTextId={4} />
+          <CardPleaseSignup />
         </Box>
       )
     }

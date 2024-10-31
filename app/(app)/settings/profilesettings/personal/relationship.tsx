@@ -1,5 +1,3 @@
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
-
 import {Box} from '#/src/components/ui/box'
 import {Text} from '#/src/components/ui/text'
 
@@ -21,16 +19,10 @@ export default ({}: StatusScreenProps) => {
   ]
 
   return (
-    <Box className="flex-column">
-      <KeyboardAwareScrollView
-        keyboardDismissMode="interactive"
-        keyboardShouldPersistTaps={'always'}
-        extraScrollHeight={100}
-        style={{height: '100%'}}>
-        {list.map(item => {
-          return <Text key={item.id}>{item.name}</Text>
-        })}
-      </KeyboardAwareScrollView>
+    <Box className="flex-column" style={{height: '100%'}}>
+      {list.map(item => {
+        return <Text key={item.id}>{item.name}</Text>
+      })}
     </Box>
   )
 }

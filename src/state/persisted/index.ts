@@ -1,16 +1,16 @@
-import {logger} from '#/src/logger'
+import { logger } from '#/src/logger'
 import {
   defaults,
   Schema,
   tryParse,
   tryStringify,
 } from '#/src/state/persisted/schema'
-import {storage} from '#/src/storage/mmkv'
-import {PersistedApi} from './types'
-import {normalizeData} from './util'
+import { storage } from '#/src/storage/mmkv'
+import { PersistedApi } from './types'
+import { normalizeData } from './util'
 
-export type {PersistedAccount, Schema} from '#/src/state/persisted/schema'
-export {defaults} from '#/src/state/persisted/schema'
+export { defaults } from '#/src/state/persisted/schema'
+export type { PersistedAccount, Schema } from '#/src/state/persisted/schema'
 
 const BFS_STORAGE = 'BFS_STORAGE'
 
@@ -72,7 +72,7 @@ async function writeToStorage(value: Schema) {
 }
 
 async function readFromStorage(): Promise<Schema | undefined> {
-  let rawData: string | undefined
+  let rawData: string | undefined = undefined
   try {
     rawData = storage.getString(BFS_STORAGE)
   } catch (e) {

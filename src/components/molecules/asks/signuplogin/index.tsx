@@ -4,14 +4,8 @@ import {Button, ButtonText} from '#/src/components/ui/button'
 import {Heading} from '#/src/components/ui/heading'
 import {Text} from '#/src/components/ui/text'
 import {VStack} from '#/src/components/ui/vstack'
-import GetSignInUpText from '#/src/util/helpers/data/SignupinText'
 
-const text = GetSignInUpText()
-
-type Props = {
-  signupTextId?: number
-}
-const SignupLogin = (props: Props) => {
+const SignupLogin = () => {
   const _pressToLogin = () => {
     router.push({
       pathname: '/(credential)/logincredentialstack/authenticator',
@@ -32,7 +26,7 @@ const SignupLogin = (props: Props) => {
           adjustsFontSizeToFit
           minimumFontScale={0.5}
           className="w-[265px] self-center pb-2 text-center text-xl font-black uppercase">
-          {text[props.signupTextId || 1].title}
+          Ready steady party.
         </Heading>
         <Text
           allowFontScaling

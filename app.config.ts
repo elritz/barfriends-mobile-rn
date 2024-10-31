@@ -1,5 +1,5 @@
-import {ConfigContext, ExpoConfig} from '@expo/config'
-import {Android, IOS, Splash, Web} from '@expo/config-types'
+import { ConfigContext, ExpoConfig } from '@expo/config'
+import { Android, IOS, Splash, Web } from '@expo/config-types'
 
 module.exports = (context: ConfigContext): ExpoConfig | null => {
   function toCamelCase(str: string) {
@@ -27,12 +27,6 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
         },
       ],
       'expo-asset',
-      [
-        'expo-barcode-scanner',
-        {
-          cameraPermission: `Allow ${toCamelCase(context.config.name)} to access camera.`,
-        },
-      ],
       [
         'expo-build-properties',
         {
@@ -149,6 +143,7 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
       bundleIdentifier: `com.${context.config.name}.${process.env.NODE_ENV}`,
       supportsTablet: false,
       infoPlist: configInfoPlist(),
+      userInterfaceStyle: "automatic",
       icon: `./assets/images/icon/icon.png`,
       privacyManifests: {
         NSPrivacyAccessedAPITypes: [
@@ -183,6 +178,7 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
       adaptiveIcon: {
         foregroundImage: './assets/images/adaptive-icon.png',
       },
+      userInterfaceStyle: "automatic",
       // googleServicesFile: "./google-services.json",
       config: {
         googleMaps: {
@@ -265,6 +261,7 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
         orientation: 'portrait',
         icon: './assets/images/icon.png',
         scheme: 'barfriends',
+        newArchEnabled: true,
         userInterfaceStyle: 'automatic',
         primaryColor: '#FF7000',
         splash: configSplash(),
@@ -275,6 +272,7 @@ module.exports = (context: ConfigContext): ExpoConfig | null => {
         experiments: {
           typedRoutes: true,
         },
+    
         extra: expoExtra(),
         updates: expoUpdates(),
       }

@@ -1,9 +1,9 @@
-import {StyleSheet} from 'react-native'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
-import {BlurView} from 'expo-blur'
-import {Tabs} from 'expo-router'
 import {useReactiveVar} from '@apollo/client'
 import {MaterialIcons} from '@expo/vector-icons'
+import {BlurView} from 'expo-blur'
+import {Tabs} from 'expo-router'
+import {StyleSheet} from 'react-native'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
 
 import {ThemeReactiveVar} from '#/reactive'
 import {
@@ -12,7 +12,7 @@ import {
 } from '#/src/constants/ReactNavigationConstants'
 import {ITabColor} from '#/types/app'
 
-export default function _layout() {
+export default () => {
   const insets = useSafeAreaInsets()
   const rTheme = useReactiveVar(ThemeReactiveVar)
 

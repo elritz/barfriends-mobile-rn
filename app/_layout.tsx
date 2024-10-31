@@ -20,47 +20,21 @@ import {Stack, useNavigationContainerRef} from 'expo-router'
 import * as ScreenOrientation from 'expo-screen-orientation'
 import * as SplashScreen from 'expo-splash-screen'
 import {useEffect} from 'react'
-import {Appearance} from 'react-native'
 import {apolloDevToolsInit} from 'react-native-apollo-devtools-client'
 import {GestureHandlerRootView} from 'react-native-gesture-handler'
 import {KeyboardProvider} from 'react-native-keyboard-controller'
 import {SafeAreaProvider} from 'react-native-safe-area-context'
 
 import profilingclient from '#/graphql/apollo/profiling/profiling-apollo-server'
-import {
-  InformationJoinVenueReactiveVar,
-  PermissionsPreferencesReactiveVar,
-  PermissionsReactiveVar,
-  PreferenceSystemsOfUnitsReactiveVar,
-  SearchAreaReactiveVar,
-  ThemeReactiveVar,
-} from '#/reactive'
+import {PermissionsReactiveVar} from '#/reactive'
 import Auth from '#/src/components/layouts/Auth'
 import Theme from '#/src/components/layouts/Theme'
-import {
-  InitialStatePreferenceSystemsOfUnits,
-  InitialStateSearchArea,
-  NowPreferencePermissionInitialState,
-} from '#/src/constants/Preferences'
-import {
-  LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
-  LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION,
-  LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS,
-  LOCAL_STORAGE_PREFERENCE_SYSTEM_OF_UNITS,
-  LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME,
-  LOCAL_STORAGE_SEARCH_AREA,
-} from '#/src/constants/StorageConstants'
-import {storage} from '#/src/storage/mmkv'
-import {
-  LocalStoragePreferenceAskBackgroundLocationPermissionType,
-  LocalStoragePreferenceAskNotificationPermissionType,
-  LocalStoragePreferenceSearchAreaType,
-  LocalStoragePreferenceSystemsOfUnitsType,
-  LocalStoragePreferenceThemeType,
-} from '#/types/preferences'
+import {THEME_COLOR_SCHEME} from '#/src/constants/StorageConstants'
 export {ErrorBoundary} from 'expo-router'
 
 import '#/global.css'
+import {init as InitPersistedState} from '#/src/state/persisted'
+import {useMMKVString} from 'react-native-mmkv'
 
 // export const unstable_settings = {
 // 	// Ensure that reloading on `/modal` keeps a back button present.
@@ -98,168 +72,14 @@ Sentry.init({
   ],
 })
 
-// const db = SQLite.openDatabase('../SQLite/database.db')
-
 function RootLayout() {
-  // verifyInstallation();
+  const [theme, setTheme] = useMMKVString(THEME_COLOR_SCHEME)
   const ref = useNavigationContainerRef()
+
   async function setScreenOrientation() {
     await ScreenOrientation.lockAsync(
       ScreenOrientation.OrientationLock.PORTRAIT_UP,
     )
-  }
-
-  const setAsyncPreferencesLocalStorageData = async () => {
-    // SEARCHAREA_PREFERENCE ~ START
-    const getLocalStorageSearchArea = storage.getString(
-      LOCAL_STORAGE_SEARCH_AREA,
-    )
-
-    const foregroundLocationPermission = await getForegroundPermissionsAsync()
-
-    if (getLocalStorageSearchArea && foregroundLocationPermission.granted) {
-      const values: LocalStoragePreferenceSearchAreaType = JSON.parse(
-        getLocalStorageSearchArea,
-      )
-      if (values && values.useCurrentLocation) {
-        // await useSetSearchAreaWithLocation();
-      } else {
-        SearchAreaReactiveVar({
-          ...values,
-        })
-      }
-    } else {
-      const newSearchAreaValue = JSON.stringify({
-        ...InitialStateSearchArea,
-      } as LocalStoragePreferenceSearchAreaType)
-
-      storage.set(LOCAL_STORAGE_SEARCH_AREA, newSearchAreaValue)
-    }
-    // SEARCHAREA_PREFERENCE ~ END
-
-    // THEME_PREFERENCE ~ START
-    const getLocalStorageTheme = storage.getString(
-      LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME,
-    )
-
-    if (!getLocalStorageTheme) {
-      const initialThemeColorSchemeState = JSON.stringify({
-        colorScheme: 'system',
-      } as LocalStoragePreferenceThemeType)
-
-      storage.set(
-        LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME,
-        initialThemeColorSchemeState,
-      )
-
-      ThemeReactiveVar({
-        theme: ThemeReactiveVar().theme,
-        localStorageColorScheme: 'system',
-        deviceColorScheme: Appearance.getColorScheme(),
-        colorScheme: Appearance.getColorScheme(),
-      })
-    } else {
-      const localStorageTheme: LocalStoragePreferenceThemeType =
-        JSON.parse(getLocalStorageTheme)
-
-      ThemeReactiveVar({
-        theme: ThemeReactiveVar().theme,
-        localStorageColorScheme: localStorageTheme.colorScheme,
-        deviceColorScheme:
-          localStorageTheme.colorScheme === 'system'
-            ? Appearance.getColorScheme()
-            : localStorageTheme.colorScheme,
-        colorScheme:
-          localStorageTheme.colorScheme === 'system'
-            ? Appearance.getColorScheme()
-            : localStorageTheme.colorScheme,
-      })
-    }
-    // THEME_PREFERENCE ~ END
-
-    // NOTIFICATION_PREFERENCE ~ START
-    const getLocalStorageNotificationPermissionsPreference = storage.getString(
-      LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS,
-    )
-
-    if (!getLocalStorageNotificationPermissionsPreference) {
-      storage.set(
-        LOCAL_STORAGE_PREFERENCE_NOTIFICATIONS,
-        JSON.stringify(NowPreferencePermissionInitialState),
-      )
-    } else {
-      const values: LocalStoragePreferenceAskNotificationPermissionType =
-        JSON.parse(getLocalStorageNotificationPermissionsPreference)
-      PermissionsPreferencesReactiveVar({
-        ...PermissionsPreferencesReactiveVar(),
-        notifications: {
-          ...values,
-        },
-      })
-    }
-    // NOTIFICATION_PREFERENCE ~ END
-
-    // BACKGROUNDLOCATION_PREFERENCE ~ START
-    const getLocalStoragePreferenceBackgroundLocationPreference =
-      storage.getString(LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION)
-
-    if (!getLocalStoragePreferenceBackgroundLocationPreference) {
-      storage.set(
-        LOCAL_STORAGE_PREFERENCE_BACKGROUND_LOCATION,
-        JSON.stringify(NowPreferencePermissionInitialState),
-      )
-    } else {
-      // using local_storage values set the correct information
-      const values: LocalStoragePreferenceAskBackgroundLocationPermissionType =
-        JSON.parse(getLocalStoragePreferenceBackgroundLocationPreference)
-
-      InformationJoinVenueReactiveVar({
-        ...values,
-      })
-    }
-    // BACKGROUNDLOCATION_PREFERENCE ~ END
-
-    // FOREGROUNDLOCATION_PREFERENCE ~ START
-    const getLocalStoragePreferenceForegroundLocationPreference =
-      storage.getString(LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION)
-
-    if (!getLocalStoragePreferenceForegroundLocationPreference) {
-      storage.set(
-        LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION,
-        JSON.stringify(NowPreferencePermissionInitialState),
-      )
-    } else {
-      const values: LocalStoragePreferenceAskBackgroundLocationPermissionType =
-        JSON.parse(getLocalStoragePreferenceForegroundLocationPreference)
-      PermissionsPreferencesReactiveVar({
-        ...PermissionsPreferencesReactiveVar(),
-        locationForeground: {
-          ...values,
-        },
-      })
-    }
-    // FOREGROUNDLOCATION_PREFERENCE ~ END
-
-    // SYSTEM_OF_UNITS_PREFERENCE ~ START
-    const getLocalStorageSystemOfUnitsPreference = storage.getString(
-      LOCAL_STORAGE_PREFERENCE_SYSTEM_OF_UNITS,
-    )
-
-    if (!getLocalStorageSystemOfUnitsPreference) {
-      storage.set(
-        LOCAL_STORAGE_PREFERENCE_SYSTEM_OF_UNITS,
-        JSON.stringify(InitialStatePreferenceSystemsOfUnits),
-      )
-    } else {
-      const values: LocalStoragePreferenceSystemsOfUnitsType = JSON.parse(
-        getLocalStorageSystemOfUnitsPreference,
-      )
-
-      PreferenceSystemsOfUnitsReactiveVar({
-        ...values,
-      })
-    }
-    // BACKGROUNDLOCATION_PREFERENCE ~ START ~ END
   }
 
   const setAsyncPermissions = async () => {
@@ -288,20 +108,22 @@ function RootLayout() {
   }, [ref])
 
   useEffect(() => {
-    // initializeDatabase()
+    InitPersistedState()
+  }, [theme])
+
+  useEffect(() => {
     setScreenOrientation()
     setAsyncPermissions()
-    setAsyncPreferencesLocalStorageData()
   }, [])
 
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <SafeAreaProvider>
-        <ApolloProvider client={profilingclient}>
-          <Auth>
-            <Theme>
-              <KeyboardProvider statusBarTranslucent>
-                <BottomSheetModalProvider>
+        <KeyboardProvider statusBarTranslucent>
+          <BottomSheetModalProvider>
+            <ApolloProvider client={profilingclient}>
+              <Auth>
+                <Theme>
                   <Stack
                     initialRouteName="index"
                     screenOptions={{
@@ -329,11 +151,11 @@ function RootLayout() {
                       }}
                     />
                   </Stack>
-                </BottomSheetModalProvider>
-              </KeyboardProvider>
-            </Theme>
-          </Auth>
-        </ApolloProvider>
+                </Theme>
+              </Auth>
+            </ApolloProvider>
+          </BottomSheetModalProvider>
+        </KeyboardProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
   )

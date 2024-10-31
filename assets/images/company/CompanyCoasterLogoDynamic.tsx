@@ -1,7 +1,6 @@
 import React from 'react'
 import {Defs, Ellipse, G, Path, Rect, Svg} from 'react-native-svg'
 
-import {defaulttheme} from '#/assets/theme/default'
 import {ThemeReactiveVar} from '#/reactive'
 
 interface Props {
@@ -17,7 +16,7 @@ const CompanyCoasterLogoDynamic: React.FC<Props> = ({
   backgroundColor = ThemeReactiveVar().colorScheme === 'light'
     ? 'white'
     : 'black',
-  iconColor = defaulttheme.barfriends.dark.primary,
+  iconColor = '#FF7000',
 }: Props) => {
   return (
     <Svg

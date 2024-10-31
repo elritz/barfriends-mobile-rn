@@ -1,3 +1,9 @@
+import {useReactiveVar} from '@apollo/client'
+import {Ionicons} from '@expo/vector-icons'
+import {FlashList, MasonryFlashList} from '@shopify/flash-list'
+import {useRouter} from 'expo-router'
+import {uniqueId} from 'lodash'
+import {Skeleton} from 'moti/skeleton'
 import {
   JSXElementConstructor,
   Key,
@@ -11,12 +17,6 @@ import {
 } from 'react'
 import {ScrollView, View} from 'react-native'
 import CountryFlag from 'react-native-country-flag'
-import {useRouter} from 'expo-router'
-import {useReactiveVar} from '@apollo/client'
-import {Ionicons} from '@expo/vector-icons'
-import {FlashList, MasonryFlashList} from '@shopify/flash-list'
-import {uniqueId} from 'lodash'
-import {Skeleton} from 'moti/skeleton'
 
 import {
   ProfileType,
@@ -30,7 +30,6 @@ import {
   CurrentLocationReactiveVar,
   PermissionsReactiveVar,
   SearchAreaReactiveVar,
-  ThemeReactiveVar,
 } from '#/reactive'
 import SignupLoginCard from '#/src/components/molecules/asks/signuplogin'
 import {Box} from '#/src/components/ui/box'
@@ -49,7 +48,6 @@ import MemoizedVerticalVenueFeedVenueItem from '#/src/view/screens/venuesfeed/Ve
 export default () => {
   const router = useRouter()
   const contentInsets = useContentInsets()
-  const rTheme = useReactiveVar(ThemeReactiveVar)
   const rSearchAreaVar = useReactiveVar(SearchAreaReactiveVar)
   const rCurrentLocationVar = useReactiveVar(CurrentLocationReactiveVar)
 
@@ -114,7 +112,7 @@ export default () => {
           ) {
             return (
               <Box className="mx-2 my-2 p-5 pt-10">
-                <SignupLoginCard signupTextId={1} />
+                <SignupLoginCard />
               </Box>
             )
           }
@@ -157,23 +155,7 @@ export default () => {
         renderItem={() => {
           return (
             <View style={{alignSelf: 'center', padding: 5}}>
-              <Skeleton
-                height={260}
-                width={'100%'}
-                radius={15}
-                colorMode={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-                colors={
-                  rTheme.colorScheme === 'light'
-                    ? [
-                        String(rTheme.theme?.gluestack.tokens.colors.light100),
-                        String(rTheme.theme?.gluestack.tokens.colors.light300),
-                      ]
-                    : [
-                        String(rTheme.theme?.gluestack.tokens.colors.light800),
-                        String(rTheme.theme?.gluestack.tokens.colors.light600),
-                      ]
-                }
-              />
+              <Skeleton height={260} width={'100%'} radius={15} />
             </View>
           )
         }}
@@ -419,25 +401,25 @@ export default () => {
                   <Ionicons
                     name="caret-up"
                     size={25}
-                    color={
-                      rTheme.colorScheme === 'light'
-                        ? item.Vote.some(
-                            item =>
-                              item.upvote &&
-                              item.profileId ===
-                                rdmData.refreshDeviceManager?.Profile?.id,
-                          )
-                          ? rTheme.theme?.gluestack.tokens.colors.blue500
-                          : rTheme.theme?.gluestack.tokens.colors.light700
-                        : item.Vote.some(
-                              item =>
-                                item.upvote &&
-                                item.profileId ===
-                                  rdmData.refreshDeviceManager?.Profile?.id,
-                            )
-                          ? rTheme.theme?.gluestack.tokens.colors.blue500
-                          : rTheme.theme?.gluestack.tokens.colors.light300
-                    }
+                    // color={
+                    //   colorScheme === 'light'
+                    //     ? item.Vote.some(
+                    //         item =>
+                    //           item.upvote &&
+                    //           item.profileId ===
+                    //             rdmData.refreshDeviceManager?.Profile?.id,
+                    //       )
+                    //       ? theme?.gluestack.tokens.colors.blue500
+                    //       : theme?.gluestack.tokens.colors.light700
+                    //     : item.Vote.some(
+                    //           item =>
+                    //             item.upvote &&
+                    //             item.profileId ===
+                    //               rdmData.refreshDeviceManager?.Profile?.id,
+                    //         )
+                    //       ? theme?.gluestack.tokens.colors.blue500
+                    //       : theme?.gluestack.tokens.colors.light300
+                    // }
                   />
                 )
               }

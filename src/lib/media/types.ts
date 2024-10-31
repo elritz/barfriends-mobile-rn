@@ -1,5 +1,3 @@
-import {openCropper} from 'react-native-image-crop-picker'
-
 export interface Dimensions {
   width: number
   height: number
@@ -17,5 +15,3 @@ export interface CameraOpts {
   freeStyleCropEnabled?: boolean
   cropperCircleOverlay?: boolean
 }
-
-export type CropperOptions = Parameters<typeof openCropper>[0]

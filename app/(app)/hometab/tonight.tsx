@@ -1,9 +1,7 @@
-import {ScrollView} from 'react-native'
-import {useReactiveVar} from '@apollo/client'
 import {FlashList} from '@shopify/flash-list'
+import {ScrollView} from 'react-native'
 
 import {useRefreshDeviceManagerQuery} from '#/graphql/generated'
-import {ThemeReactiveVar} from '#/reactive'
 import AddEmoji from '#/src/components/molecules/activity/addemoji/AddEmoji'
 import InviteCard from '#/src/components/molecules/activity/invitecard/InviteCard'
 import JoinVenue from '#/src/components/molecules/activity/joinvenue/JoinVenue'
@@ -17,7 +15,6 @@ import Photos from '#/src/view/screens/tonight/photos'
 
 const Tonight = () => {
   const contentInsets = useContentInsets()
-  const rTheme = useReactiveVar(ThemeReactiveVar)
   const {data: rdmData, loading: rdmLoading} = useRefreshDeviceManagerQuery({
     onCompleted(data) {
       if (
@@ -85,7 +82,7 @@ const Tonight = () => {
                 _typename: 'quickbarfriend',
                 item: (
                   <QuickBarfriendCard
-                    color={rTheme.colorScheme === 'light' ? 'black' : 'white'}
+                    // color={rTheme.colorScheme === 'light' ? 'black' : 'white'}
                     showIcon={false}
                     logosize={40}
                     qrcodesize={140}

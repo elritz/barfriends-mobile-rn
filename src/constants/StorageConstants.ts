@@ -16,6 +16,8 @@ export const LOCAL_STORAGE_PREFERENCE_FOREGROUND_LOCATION =
 export const LOCAL_STORAGE_INFORMATION_JOIN_VENUE = '@information_join_venue'
 
 // @data
-export const LOCAL_STORAGE_SEARCH_AREA = '@local_search_area'
-export const LOCAL_STORAGE_PREFERENCE_THEME_COLOR_SCHEME = '@color_scheme'
-export const LOCAL_STORAGE_PREFERENCE_THEME = '@theme'
+export const LOCAL_STORAGE_SEARCH_AREA = '@search_area'
+export const THEME_COLOR_SCHEME = '@theme'
+
+export type ThemeColorScheme = 'light' | 'dark' | 'system' | undefined;
+// export const LOCAL_STORAGE_PREFERENCE_THEME = '@theme'

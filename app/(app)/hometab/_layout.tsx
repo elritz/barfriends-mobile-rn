@@ -1,13 +1,13 @@
-import {useEffect} from 'react'
-import {StyleSheet} from 'react-native'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import {useReactiveVar} from '@apollo/client'
+import {MaterialIcons} from '@expo/vector-icons'
 import {BlurView} from 'expo-blur'
 import * as Haptics from 'expo-haptics'
 import {Tabs, useRouter, useSegments} from 'expo-router'
-import {useReactiveVar} from '@apollo/client'
-import {MaterialIcons} from '@expo/vector-icons'
+import {useEffect} from 'react'
+import {StyleSheet} from 'react-native'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
 
-import {TermsServiceReactiveVar, ThemeReactiveVar} from '#/reactive'
+import {TermsServiceReactiveVar} from '#/reactive'
 import DevelopmentTab from '#/src/components/molecules/hometabicons/developmenttab'
 import MessageTab from '#/src/components/molecules/hometabicons/messagestab'
 import ProfileTab from '#/src/components/molecules/hometabicons/profiletab'
@@ -25,12 +25,12 @@ import {
 } from '#/src/constants/ReactNavigationConstants'
 import {ITabColor} from '#/types/app'
 
-export default function HomeTab() {
+export default () => {
   const showDev = true
   const segments: string[] = useSegments()
   const insets = useSafeAreaInsets()
   const router = useRouter()
-  const rTheme = useReactiveVar(ThemeReactiveVar)
+  // const rTheme = useReactiveVar(ThemeReactiveVar)
   const rTermsServiceVar = useReactiveVar(TermsServiceReactiveVar)
   const onLongPressProfileIcon = async () => {
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium)
@@ -52,15 +52,15 @@ export default function HomeTab() {
       screenOptions={{
         tabBarBackground: () => (
           <BlurView
-            tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+            // tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
             intensity={70}
             style={StyleSheet.absoluteFill}
           />
         ),
-        tabBarActiveTintColor:
-          rTheme.colorScheme === 'light'
-            ? 'black'
-            : rTheme.theme.reactnavigation.colors.primary,
+        // tabBarActiveTintColor:
+        //   rTheme.colorScheme === 'light'
+        //     ? 'black'
+        //     : rTheme.theme.reactnavigation.colors.primary,
         tabBarStyle: {
           height:
             insets.bottom !== 0
@@ -79,17 +79,18 @@ export default function HomeTab() {
             <BlurView
               style={{
                 paddingTop: insets.top,
-                backgroundColor:
-                  segments.includes('tonight') || segments.includes('emojimood')
-                    ? 'transparent'
-                    : rTheme.colorScheme === 'light'
-                      ? rTheme.theme?.gluestack.tokens.colors.light100
-                      : rTheme.theme?.gluestack.tokens.colors.light900,
+                //   backgroundColor:
+                //     segments.includes('tonight') || segments.includes('emojimood')
+                //       ? 'transparent'
+                //       : rTheme.colorScheme === 'light'
+                //         ? rTheme.theme?.gluestack.tokens.colors.light100
+                //         : rTheme.theme?.gluestack.tokens.colors.light900,
               }}
               intensity={70}
-              tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}>
+              // tint={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+            >
               <VStack className="justify-start">
-                <SearchInputVenueFeedDisabled placeholder="Explore" />
+                <SearchInputVenueFeedDisabled />
               </VStack>
             </BlurView>
           )

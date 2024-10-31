@@ -1,12 +1,9 @@
-import {useEffect, useState} from 'react'
-import {BarCodeScanner} from 'expo-barcode-scanner'
 import {useReactiveVar} from '@apollo/client'
+import {useEffect, useState} from 'react'
 
 import {useGetSecureFriendQrCodeDataQuery} from '#/graphql/generated'
 import {AuthorizationReactiveVar} from '#/reactive'
 import {Center} from '#/src/components/ui/center'
-
-// const LOGO_COASTER = require("../../../../../../assets/images/company/company_coaster.png");
 
 const CameraModal = () => {
   const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
@@ -15,7 +12,7 @@ const CameraModal = () => {
 
   useEffect(() => {
     const getBarCodeScannerPerm = async () => {
-      const {status} = await BarCodeScanner.requestPermissionsAsync()
+      // const {status} = await BarCodeScanner.requestPermissionsAsync()
 
       setHasPermission(status === 'granted')
     }

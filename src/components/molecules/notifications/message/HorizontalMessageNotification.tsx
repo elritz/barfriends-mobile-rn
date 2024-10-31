@@ -1,10 +1,8 @@
-import {useRouter} from 'expo-router'
-import {useReactiveVar} from '@apollo/client'
 import {MaterialIcons} from '@expo/vector-icons'
+import {useRouter} from 'expo-router'
 import PropTypes from 'prop-types'
 
 import {useRefreshDeviceManagerQuery} from '#/graphql/generated'
-import {ThemeReactiveVar} from '#/reactive'
 import {Box} from '#/src/components/ui/box'
 import {Heading} from '#/src/components/ui/heading'
 import {HStack} from '#/src/components/ui/hstack'
@@ -34,7 +32,6 @@ const HorizontalMessageNotification = ({
   item: MessageData
 }) => {
   const router = useRouter()
-  const rThemeVar = useReactiveVar(ThemeReactiveVar)
   const {data: rdmData} = useRefreshDeviceManagerQuery({})
 
   const ChatContainer = ({
@@ -70,14 +67,11 @@ const HorizontalMessageNotification = ({
                 <MaterialIcons
                   name="group"
                   size={27}
-                  color={rThemeVar.colorScheme === 'light' ? 'black' : 'white'}
+                  // color={rThemeVar.colorScheme === 'light' ? 'black' : 'white'}
+                  color={'grey'}
                 />
               ) : (
-                <MaterialIcons
-                  name="person"
-                  size={24}
-                  color={rThemeVar.colorScheme === 'light' ? 'black' : 'white'}
-                />
+                <MaterialIcons name="person" size={24} color={'grey'} />
               )}
             </Box>
           </VStack>

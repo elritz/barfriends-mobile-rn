@@ -1,6 +1,6 @@
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {BlurView} from 'expo-blur'
 import {router, Stack} from 'expo-router'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
 // TODO: FX() Settings still needs to be done
 import {useReactiveVar} from '@apollo/client'
 import {Entypo, Ionicons} from '@expo/vector-icons'
@@ -9,14 +9,11 @@ import {ThemeReactiveVar} from '#/reactive'
 import {Button} from '#/src/components/ui/button'
 import {HStack} from '#/src/components/ui/hstack'
 import {Text} from '#/src/components/ui/text'
-import {SEARCH_BAR_HEIGHT} from '#/src/constants/ReactNavigationConstants'
 
 export default () => {
   const NAVIGATION_BUTTON_HEIGHT = 38
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const insets = useSafeAreaInsets()
-  const HEADER_HEIGHT = SEARCH_BAR_HEIGHT + 15
-  const h = insets.top + HEADER_HEIGHT
 
   return (
     <Stack>

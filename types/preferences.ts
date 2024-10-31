@@ -3,12 +3,13 @@ import {
   LocationObject,
   LocationOptions,
 } from 'expo-location'
-import {DateTime} from 'luxon'
+import { DateTime } from 'luxon'
 
 export type ThemeColorSchemeOptionsType = 'light' | 'dark' | 'system'
 
-export type LocalStoragePreferenceThemeType = {
-  colorScheme: ThemeColorSchemeOptionsType
+export type ThemeType = {
+  preference: ThemeColorSchemeOptionsType,
+  mode: 'light' | 'dark'
 }
 
 export enum SystemsOfUnits {

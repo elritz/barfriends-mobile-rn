@@ -1,12 +1,11 @@
-import {useEffect, useRef} from 'react'
-import {Alert, AppState, Platform, ScrollView, View} from 'react-native'
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {Camera, requestCameraPermissionsAsync} from 'expo-camera/legacy'
 import * as Device from 'expo-device'
 import * as IntentLauncher from 'expo-intent-launcher'
 import * as Linking from 'expo-linking'
 import {useRouter} from 'expo-router'
+import {useEffect, useRef} from 'react'
+import {Alert, AppState, Platform, ScrollView, View} from 'react-native'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
 // TODO: FN(Open camera app) ln:66
 import {useReactiveVar} from '@apollo/client'
 import {AntDesign, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
@@ -185,7 +184,7 @@ export default () => {
       </Box>
       <ScrollView>
         <Box
-          style={{width: wp(95), flex: 1, alignSelf: 'center'}}
+          style={{width: '95%', flex: 1, alignSelf: 'center'}}
           className="bg-transparent">
           {details.map((item, index) => {
             return (

@@ -1,3 +1,4 @@
+import {BlurView} from 'expo-blur'
 import {useCallback} from 'react'
 import {
   Image,
@@ -16,7 +17,6 @@ import Animated, {
   useDerivedValue,
   useSharedValue,
 } from 'react-native-reanimated'
-import {BlurView} from 'expo-blur'
 // TODO: Add a way to remove photos from tonights story
 import {useReactiveVar} from '@apollo/client'
 import {MaterialIcons} from '@expo/vector-icons'
@@ -80,7 +80,6 @@ const RenderItem: React.FC<{
 const Photos: React.FC<
   ActivityCardProps & {onRemovePhoto?: (index: number) => void}
 > = ({isEmojimoodDynamic = false, onRemovePhoto}) => {
-  // const [_, setLoading] = useState(false)
   const rAuthorizationVar = useReactiveVar(AuthorizationReactiveVar)
   const rTheme = useReactiveVar(ThemeReactiveVar)
   const {width} = useWindowDimensions()

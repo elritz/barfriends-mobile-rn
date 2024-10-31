@@ -1,8 +1,7 @@
-import {useRef} from 'react'
-import {useRouter} from 'expo-router'
-import {useReactiveVar} from '@apollo/client'
 import {Entypo} from '@expo/vector-icons'
+import {useRouter} from 'expo-router'
 import {Skeleton} from 'moti/skeleton'
+import {Key, useRef} from 'react'
 
 import {REFRESH_DEVICE_MANAGER_QUERY} from '#/graphql/DM/managing/devicemanager/index.query'
 import {
@@ -12,7 +11,6 @@ import {
   useRefreshDeviceManagerQuery,
   useSwitchDeviceProfileMutation,
 } from '#/graphql/generated'
-import {ThemeReactiveVar} from '#/reactive'
 import {Button} from '#/src/components/ui/button'
 import {Center} from '#/src/components/ui/center'
 import {Heading} from '#/src/components/ui/heading'
@@ -24,7 +22,6 @@ import {VStack} from '#/src/components/ui/vstack'
 const DeviceManagerProfiles = () => {
   const ref = useRef(null)
   const router = useRouter()
-  const rTheme = useReactiveVar(ThemeReactiveVar)
 
   const {data, loading} = useGetADeviceManagerQuery({
     fetchPolicy: 'network-only',
@@ -154,18 +151,18 @@ const DeviceManagerProfiles = () => {
               height={80}
               width={'100%'}
               radius={15}
-              colorMode={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
-              colors={
-                rTheme.colorScheme === 'light'
-                  ? [
-                      String(rTheme.theme?.gluestack.tokens.colors.light100),
-                      String(rTheme.theme?.gluestack.tokens.colors.light300),
-                    ]
-                  : [
-                      String(rTheme.theme?.gluestack.tokens.colors.light900),
-                      String(rTheme.theme?.gluestack.tokens.colors.light700),
-                    ]
-              }
+              // colorMode={rTheme.colorScheme === 'light' ? 'light' : 'dark'}
+              // colors={
+              //   rTheme.colorScheme === 'light'
+              //     ? [
+              //         String(rTheme.theme?.gluestack.tokens.colors.light100),
+              //         String(rTheme.theme?.gluestack.tokens.colors.light300),
+              //       ]
+              //     : [
+              //         String(rTheme.theme?.gluestack.tokens.colors.light900),
+              //         String(rTheme.theme?.gluestack.tokens.colors.light700),
+              //       ]
+              // }
             />
           )
         })}
@@ -182,45 +179,67 @@ const DeviceManagerProfiles = () => {
       <Center>
         {data.getADeviceManager.DeviceProfiles?.length ? (
           <>
-            {data.getADeviceManager.DeviceProfiles?.map((item, index) => {
-              if (item.Profile?.ProfileType === ProfileType.Guest) return null
-              return (
-                <HStack key={index} className="h-[80px] items-center">
-                  <Pressable
-                    accessibilityRole="button"
-                    className="flex-1"
-                    key={item.id}
-                    onPress={() => switchProfile(item)}>
-                    <Text>
-                      {item.Profile?.IdentifiableInformation?.firstname}
-                    </Text>
-                    <Heading>
-                      {item.Profile?.IdentifiableInformation?.username}
-                    </Heading>
-                  </Pressable>
-                  <Center className="h-[300px]">
-                    <Button
-                      variant="link"
-                      onPress={() =>
-                        router.push(`/modal/devicemanager/${item.Profile?.id}`)
-                      }
-                      ref={ref}
-                      size="xs"
-                      hitSlop={10}>
-                      <Entypo
-                        name={'dots-three-vertical'}
-                        size={23}
-                        color={
-                          rTheme.colorScheme === 'light'
-                            ? rTheme.theme?.gluestack.tokens.colors.light900
-                            : rTheme.theme?.gluestack.tokens.colors.light100
+            {data.getADeviceManager.DeviceProfiles?.map(
+              (
+                item: {
+                  Profile: any
+                  id: any
+                  __typename?: 'AuthorizationDeviceProfile' | undefined
+                  AppType?: AppType | undefined
+                  ProfileType?: ProfileType | undefined
+                  isActive?: any
+                  deviceManagerId?: string | undefined
+                  profileId?: string | undefined
+                  createdAt?: any
+                  updatedAt?: any
+                  DeviceManager?:
+                    | {__typename?: 'DeviceManager'; id: string}
+                    | undefined
+                },
+                index: Key | null | undefined,
+              ) => {
+                if (item.Profile?.ProfileType === ProfileType.Guest) return null
+                return (
+                  <HStack key={index} className="h-[80px] items-center">
+                    <Pressable
+                      accessibilityRole="button"
+                      className="flex-1"
+                      key={item.id}
+                      onPress={() => switchProfile(item)}>
+                      <Text>
+                        {item.Profile?.IdentifiableInformation?.firstname}
+                      </Text>
+                      <Heading>
+                        {item.Profile?.IdentifiableInformation?.username}
+                      </Heading>
+                    </Pressable>
+                    <Center className="h-[300px]">
+                      <Button
+                        variant="link"
+                        onPress={() =>
+                          router.push(
+                            `/modal/devicemanager/${item.Profile?.id}`,
+                          )
                         }
-                      />
-                    </Button>
-                  </Center>
-                </HStack>
-              )
-            })}
+                        ref={ref}
+                        size="xs"
+                        hitSlop={10}>
+                        <Entypo
+                          name={'dots-three-vertical'}
+                          size={23}
+                          color={'#000'}
+                          // color={
+                          //   rTheme.colorScheme === 'light'
+                          //     ? rTheme.theme?.gluestack.tokens.colors.light900
+                          //     : rTheme.theme?.gluestack.tokens.colors.light100
+                          // }
+                        />
+                      </Button>
+                    </Center>
+                  </HStack>
+                )
+              },
+            )}
           </>
         ) : null}
       </Center>

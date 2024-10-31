@@ -1,11 +1,9 @@
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
+import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
 import * as Haptics from 'expo-haptics'
 import {Stack, useRouter} from 'expo-router'
-import {useReactiveVar} from '@apollo/client'
-import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
+import {useSafeAreaInsets} from 'react-native-safe-area-context'
 
 import {ProfileType, useRefreshDeviceManagerQuery} from '#/graphql/generated'
-import {ThemeReactiveVar} from '#/reactive'
 import {Box} from '#/src/components/ui/box'
 import {Button} from '#/src/components/ui/button'
 import {Heading} from '#/src/components/ui/heading'
@@ -15,7 +13,6 @@ import {VStack} from '#/src/components/ui/vstack'
 
 export default function _layout() {
   const router = useRouter()
-  const rTheme = useReactiveVar(ThemeReactiveVar)
   const insets = useSafeAreaInsets()
   const onPress = async () => {
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
@@ -34,12 +31,12 @@ export default function _layout() {
       screenOptions={{
         headerTransparent: false,
         headerShown: true,
-        headerStyle: {
-          backgroundColor:
-            rTheme.colorScheme === 'light'
-              ? rTheme.theme?.gluestack.tokens.colors.light100
-              : rTheme.theme?.gluestack.tokens.colors.light900,
-        },
+        // headerStyle: {
+        //   backgroundColor:
+        //     rTheme.colorScheme === 'light'
+        //       ? rTheme.theme?.gluestack.tokens.colors.light100
+        //       : rTheme.theme?.gluestack.tokens.colors.light900,
+        // },
       }}>
       <Stack.Screen
         name={'personalprofile'}
@@ -70,11 +67,11 @@ export default function _layout() {
                           <Ionicons
                             name={'chevron-down'}
                             size={26}
-                            color={
-                              rTheme.colorScheme === 'light'
-                                ? rTheme.theme?.gluestack.tokens.colors.light900
-                                : rTheme.theme?.gluestack.tokens.colors.light100
-                            }
+                            // color={
+                            //   rTheme.colorScheme === 'light'
+                            //     ? rTheme.theme?.gluestack.tokens.colors.light900
+                            //     : rTheme.theme?.gluestack.tokens.colors.light100
+                            // }
                             style={
                               {
                                 // marginLeft: -10,
@@ -93,11 +90,11 @@ export default function _layout() {
                         <MaterialCommunityIcons
                           name={'dots-horizontal'}
                           size={30}
-                          color={
-                            rTheme.colorScheme === 'light'
-                              ? rTheme.theme?.gluestack.tokens.colors.light900
-                              : rTheme.theme?.gluestack.tokens.colors.light100
-                          }
+                          // color={
+                          //   rTheme.colorScheme === 'light'
+                          //     ? rTheme.theme?.gluestack.tokens.colors.light900
+                          //     : rTheme.theme?.gluestack.tokens.colors.light100
+                          // }
                         />
                       </Button>
                     </HStack>

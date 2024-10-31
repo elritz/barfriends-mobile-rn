@@ -3,7 +3,7 @@ import {Stack} from 'expo-router'
 import LogoTransparent from '#/assets/images/company/LogoTransparent'
 import ChevronBackArrow from '#/src/components/atoms/ChevronBackArrow'
 
-export default function _layout() {
+export default () => {
   return (
     <Stack
       initialRouteName="getstarted"

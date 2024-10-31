@@ -1,8 +1,8 @@
-import React from 'react'
-import {ColorSchemeName, useColorScheme, View, ViewProps} from 'react-native'
 import {OverlayProvider} from '@gluestack-ui/overlay'
 import {ToastProvider} from '@gluestack-ui/toast'
 import {colorScheme as colorSchemeNW} from 'nativewind'
+import React from 'react'
+import {ColorSchemeName, useColorScheme, View, ViewProps} from 'react-native'
 
 import {config} from './config'
 
@@ -13,8 +13,9 @@ const getColorSchemeName = (
   mode: ModeType,
 ): 'light' | 'dark' => {
   if (mode === 'system') {
-    return colorScheme ?? 'light'
+    return colorScheme ?? 'dark'
   }
+
   return mode
 }
 
