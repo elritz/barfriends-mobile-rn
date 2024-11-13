@@ -3,12 +3,11 @@
  * avoid future conflicts and/or circular deps
  */
 
-import {Platform} from 'react-native'
-import {nativeApplicationVersion, nativeBuildVersion} from 'expo-application'
-import {init} from '@sentry/react-native'
-
-import {BUILD_ENV, IS_DEV, IS_TESTFLIGHT} from '#/src/lib/app-info'
-
+import { BUILD_ENV, IS_DEV, IS_TESTFLIGHT } from '#/src/lib/app-info'
+import * as Sentry from '@sentry/react-native'
+import { isRunningInExpoGo } from 'expo'
+import { nativeApplicationVersion, nativeBuildVersion } from 'expo-application'
+import { Platform } from 'react-native'
 /**
  * Examples:
  * - `dev`
@@ -29,12 +28,23 @@ const dist = `${Platform.OS}.${nativeBuildVersion}.${
   IS_TESTFLIGHT ? 'tf' : ''
 }${IS_DEV ? 'dev' : ''}`
 
-init({
+// const routingInstrumentation = new Sentry.ReactNavigationInstrumentation()
+
+Sentry.init({
   enabled: !__DEV__,
   autoSessionTracking: false,
-  dsn: 'https://05bc3789bf994b81bd7ce20c86ccd3ae@o4505071687041024.ingest.sentry.io/4505071690514432',
-  debug: false, // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
+  dsn: 'https://1c7981806da9fa394d3a549719cd777d@o4506712454660096.ingest.sentry.io/4506712456757248',
   environment: BUILD_ENV ?? 'development',
+  debug: false, // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
+  // enableNative: true,
+  integrations: [
+    new Sentry.ReactNativeTracing({
+      // Pass instrumentation to be used as `routingInstrumentation`
+      // routingInstrumentation,
+      enableNativeFramesTracking: !isRunningInExpoGo(),
+      // ...
+    }),
+  ],
   dist,
   release,
 })

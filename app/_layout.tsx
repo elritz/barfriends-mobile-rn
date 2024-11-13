@@ -1,120 +1,87 @@
 //TODO: Add notfication listener
-import 'expo-dev-client'
-import 'react-native-gesture-handler'
-import 'react-native-reanimated'
-
+import '#/src/lib/apollo'
+import '#/src/lib/reactotron'
+import '#/src/lib/sentry'
 import {ApolloProvider} from '@apollo/client'
-import {loadDevMessages, loadErrorMessages} from '@apollo/client/dev'
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet'
-import * as Sentry from '@sentry/react-native'
-import {isRunningInExpoGo} from 'expo'
 import {Camera} from 'expo-camera/legacy'
 import * as Contacts from 'expo-contacts'
+import 'expo-dev-client'
 import {
   getBackgroundPermissionsAsync,
   getForegroundPermissionsAsync,
 } from 'expo-location'
 import {getPermissionsAsync as getMediaPermissionAsync} from 'expo-media-library'
 import {getPermissionsAsync as getNotificiationPermissionAsync} from 'expo-notifications'
-import {Stack, useNavigationContainerRef} from 'expo-router'
+import {Stack} from 'expo-router'
 import * as ScreenOrientation from 'expo-screen-orientation'
 import * as SplashScreen from 'expo-splash-screen'
-import {useEffect} from 'react'
-import {apolloDevToolsInit} from 'react-native-apollo-devtools-client'
+import React, {useState} from 'react'
+import 'react-native-gesture-handler'
 import {GestureHandlerRootView} from 'react-native-gesture-handler'
 import {KeyboardProvider} from 'react-native-keyboard-controller'
+import 'react-native-reanimated'
 import {SafeAreaProvider} from 'react-native-safe-area-context'
 
+import '#/global.css'
 import profilingclient from '#/graphql/apollo/profiling/profiling-apollo-server'
 import {PermissionsReactiveVar} from '#/reactive'
 import Auth from '#/src/components/layouts/Auth'
-import Theme from '#/src/components/layouts/Theme'
-import {THEME_COLOR_SCHEME} from '#/src/constants/StorageConstants'
+import {init as initPersistedState} from '#/src/state/persisted'
+import {Provider as ShellStateProvider} from '#/src/state/shell'
+import * as Sentry from '@sentry/react-native'
 export {ErrorBoundary} from 'expo-router'
-
-import '#/global.css'
-import {init as InitPersistedState} from '#/src/state/persisted'
-import {useMMKVString} from 'react-native-mmkv'
-
 // export const unstable_settings = {
 // 	// Ensure that reloading on `/modal` keeps a back button present.
 // 	initialRouteName: '(app)',
 // }
-if (__DEV__) {
-  require('../ReactotronConfig')
-}
-if (__DEV__) {
-  apolloDevToolsInit(profilingclient)
-}
 
-if (__DEV__) {
-  // Adds messages only in a dev environment
-  loadDevMessages()
-  loadErrorMessages()
-}
 SplashScreen.preventAutoHideAsync()
-// Construct a new instrumentation instance. This is needed to communicate between the integration and React
-const routingInstrumentation = new Sentry.ReactNavigationInstrumentation()
 
-Sentry.init({
-  dsn: 'https://1c7981806da9fa394d3a549719cd777d@o4506712454660096.ingest.sentry.io/4506712456757248',
-  // debug: NODE_ENV === 'development' ? true : false,
-  debug: false,
-  // debug: true,
-  // enableNative: true,
-  integrations: [
-    new Sentry.ReactNativeTracing({
-      // Pass instrumentation to be used as `routingInstrumentation`
-      routingInstrumentation,
-      enableNativeFramesTracking: !isRunningInExpoGo(),
-      // ...
-    }),
-  ],
-})
+const setScreenOrientation = async () => {
+  await ScreenOrientation.lockAsync(
+    ScreenOrientation.OrientationLock.PORTRAIT_UP,
+  )
+}
+
+const setAsyncPermissions = async () => {
+  const contactsPermission = await Contacts.getPermissionsAsync()
+  const cameraPermission = await Camera.getCameraPermissionsAsync()
+  const foregroundLocationPermission = await getForegroundPermissionsAsync()
+
+  const backgroundLocationPermission = await getBackgroundPermissionsAsync()
+  const mediaLibraryPermission = await getMediaPermissionAsync()
+  const notificationPermission = await getNotificiationPermissionAsync()
+
+  PermissionsReactiveVar({
+    contacts: contactsPermission,
+    camera: cameraPermission,
+    locationForeground: foregroundLocationPermission,
+    locationBackground: backgroundLocationPermission,
+    medialibrary: mediaLibraryPermission,
+    notifications: notificationPermission,
+  })
+}
 
 function RootLayout() {
-  const [theme, setTheme] = useMMKVString(THEME_COLOR_SCHEME)
-  const ref = useNavigationContainerRef()
+  const [isReady, setReady] = useState(false)
 
-  async function setScreenOrientation() {
-    await ScreenOrientation.lockAsync(
-      ScreenOrientation.OrientationLock.PORTRAIT_UP,
-    )
-  }
-
-  const setAsyncPermissions = async () => {
-    const contactsPermission = await Contacts.getPermissionsAsync()
-    const cameraPermission = await Camera.getCameraPermissionsAsync()
-    const foregroundLocationPermission = await getForegroundPermissionsAsync()
-
-    const backgroundLocationPermission = await getBackgroundPermissionsAsync()
-    const mediaLibraryPermission = await getMediaPermissionAsync()
-    const notificationPermission = await getNotificiationPermissionAsync()
-
-    PermissionsReactiveVar({
-      contacts: contactsPermission,
-      camera: cameraPermission,
-      locationForeground: foregroundLocationPermission,
-      locationBackground: backgroundLocationPermission,
-      medialibrary: mediaLibraryPermission,
-      notifications: notificationPermission,
-    })
-  }
-
-  useEffect(() => {
-    if (ref) {
-      routingInstrumentation.registerNavigationContainer(ref)
-    }
-  }, [ref])
-
-  useEffect(() => {
-    InitPersistedState()
-  }, [theme])
-
-  useEffect(() => {
-    setScreenOrientation()
-    setAsyncPermissions()
+  React.useEffect(() => {
+    Promise.all([
+      initPersistedState(),
+      setScreenOrientation(),
+      setAsyncPermissions(),
+    ]).then(() => setReady(true))
   }, [])
+
+  if (!isReady) {
+    return null
+  }
+
+  /*
+   * NOTE: only nothing here can depend on other data or session state, since
+   * that is set up in the InnerApp component above.
+   */
 
   return (
     <GestureHandlerRootView style={{flex: 1}}>
@@ -122,8 +89,8 @@ function RootLayout() {
         <KeyboardProvider statusBarTranslucent>
           <BottomSheetModalProvider>
             <ApolloProvider client={profilingclient}>
-              <Auth>
-                <Theme>
+              <ShellStateProvider>
+                <Auth>
                   <Stack
                     initialRouteName="index"
                     screenOptions={{
@@ -151,8 +118,8 @@ function RootLayout() {
                       }}
                     />
                   </Stack>
-                </Theme>
-              </Auth>
+                </Auth>
+              </ShellStateProvider>
             </ApolloProvider>
           </BottomSheetModalProvider>
         </KeyboardProvider>

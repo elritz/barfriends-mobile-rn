@@ -2,9 +2,9 @@
 // import {findSupportedAppLanguage} from '#/src/locale/helpers'
 import { z } from 'zod'
 
+import * as colors from '#/assets/theme/colors'
 import { logger } from '#/src/logger'
 
-const externalEmbedOptions = ['show', 'hide'] as const
 
 /**
  * A account persisted to storage. Stored in the `accounts[]` array. Contains
@@ -47,47 +47,55 @@ export type PersistedCurrentAccount = z.infer<typeof currentAccountSchema>
 const schema = z.object({
   theme: z.object({
     mode: z.enum(['system', 'light', 'dark']).optional(),
+    theme: z.object({
+      gluestack: z.object({
+        primary0: z.string(),
+        primary50: z.string(),
+        primary100: z.string(),
+        primary200: z.string(),
+        primary300: z.string(),
+        primary400: z.string(),
+        primary500: z.string(),
+        primary600: z.string(),
+        primary700: z.string(),
+        primary800: z.string(),
+        primary900: z.string(),
+        primary950: z.string(),
+        secondary0: z.string(),
+        secondary50: z.string(),
+        secondary100: z.string(),
+        secondary200: z.string(),
+        secondary300: z.string(),
+        secondary400: z.string(),
+        secondary500: z.string(),
+        secondary600: z.string(),
+        secondary700: z.string(),
+        secondary800: z.string(),
+        secondary900: z.string(),
+        secondary950: z.string(),
+        tertiary0: z.string(),
+        tertiary50: z.string(),
+        tertiary100: z.string(),
+        tertiary200: z.string(),
+        tertiary300: z.string(),
+        tertiary400: z.string(),
+        tertiary500: z.string(),
+        tertiary600: z.string(),
+        tertiary700: z.string(),
+        tertiary800: z.string(),
+        tertiary900: z.string(),
+        tertiary950: z.string(),
+      }),
+      reactnavigation: z.object({
+        primary: z.string(),
+        background: z.string(),
+        border: z.string(),
+        card: z.string(),
+        text: z.string(),
+        notification: z.string(),
+      }),
+    }),
   })
-  // session: z.object({
-  //   accounts: z.array(accountSchema),
-  //   currentAccount: currentAccountSchema.optional(),
-  // }),
-  // reminders: z.object({
-  //   lastEmailConfirm: z.string().optional(),
-  // }),
-  // requireAltTextEnabled: z.boolean(), // should move to server
-  // largeAltBadgeEnabled: z.boolean().optional(),
-  // externalEmbeds: z
-  //   .object({
-  //     giphy: z.enum(externalEmbedOptions).optional(),
-  //     tenor: z.enum(externalEmbedOptions).optional(),
-  //     youtube: z.enum(externalEmbedOptions).optional(),
-  //     youtubeShorts: z.enum(externalEmbedOptions).optional(),
-  //     twitch: z.enum(externalEmbedOptions).optional(),
-  //     vimeo: z.enum(externalEmbedOptions).optional(),
-  //     spotify: z.enum(externalEmbedOptions).optional(),
-  //     appleMusic: z.enum(externalEmbedOptions).optional(),
-  //     soundcloud: z.enum(externalEmbedOptions).optional(),
-  //     flickr: z.enum(externalEmbedOptions).optional(),
-  //   })
-  //   .optional(),
-  // invites: z.object({
-  //   copiedInvites: z.array(z.string()),
-  // }),
-  // onboarding: z.object({
-  //   step: z.string(),
-  // }),
-  // hiddenPosts: z.array(z.string()).optional(), // should move to server
-  // useInAppBrowser: z.boolean().optional(),
-  // lastSelectedHomeFeed: z.string().optional(),
-  // pdsAddressHistory: z.array(z.string()).optional(),
-  // disableHaptics: z.boolean().optional(),
-  // disableAutoplay: z.boolean().optional(),
-  // kawaii: z.boolean().optional(),
-  // hasCheckedForStarterPack: z.boolean().optional(),
-  // subtitlesEnabled: z.boolean().optional(),
-  /** @deprecated */
-  // mutedThreads: z.array(z.string()),
 })
 
 export type Schema = z.infer<typeof schema>
@@ -95,45 +103,55 @@ export type Schema = z.infer<typeof schema>
 export const defaults: Schema = {
   theme: {
     mode: 'system',
+    theme: {
+      reactnavigation: {
+        background: colors.grey900,
+        primary: '#FF7000',
+        card: colors.grey800,
+        text: colors.grey300,
+        border: colors.grey300,
+        notification: '#257CFF',
+      },
+      gluestack: {
+        primary0: '#ffefdb',
+        primary50: '#ffefdb',
+        primary100: '#ffd3ae',
+        primary200: '#ffb77e',
+        primary300: '#ff9b4c',
+        primary400: '#ff7e1a',
+        primary500: '#ff7000',
+        primary600: '#de6100',
+        primary700: '#813700',
+        primary800: '#4f2100',
+        primary900: '#200800',
+        primary950: '#200800',
+        secondary0: '#FCFCFC',
+        secondary50: '#F5F5F5',
+        secondary100: '#E5E5E5',
+        secondary200: '#DBDBDB',
+        secondary300: '#D4D4D4',
+        secondary400: '#8C8C8C',
+        secondary500: '#8C8C8C',
+        secondary600: '#737373',
+        secondary700: '#525252',
+        secondary800: '#404040',
+        secondary900: '#262626',
+        secondary950: '#171717',
+        tertiary0: '#def0ff',
+        tertiary50: '#def0ff',
+        tertiary100: '#afcfff',
+        tertiary200: '#7dafff',
+        tertiary300: '#4b8fff',
+        tertiary400: '#1a6fff',
+        tertiary500: '#0056e6',
+        tertiary600: '#0043b4',
+        tertiary700: '#003082',
+        tertiary800: '#001d51',
+        tertiary900: '#000a21',
+        tertiary950: '#000a21',
+      }
+    },
   }
-  // session: {
-  //   accounts: [],
-  //   currentAccount: undefined,
-  // },
-  // reminders: {
-  //   lastEmailConfirm: undefined,
-  // },
-  // languagePrefs: {
-  //   primaryLanguage: deviceLanguageCodes[0] || 'en',
-  //   contentLanguages: deviceLanguageCodes || [],
-  //   postLanguage: deviceLanguageCodes[0] || 'en',
-  //   postLanguageHistory: (deviceLanguageCodes || [])
-  //     .concat(['en', 'ja', 'pt', 'de'])
-  //     .slice(0, 6),
-  //   // try full language tag first, then fallback to language code
-  //   appLanguage: findSupportedAppLanguage([
-  //     deviceLocales.at(0)?.languageTag,
-  //     deviceLanguageCodes[0],
-  //   ]),
-  // },
-  // requireAltTextEnabled: false,
-  // largeAltBadgeEnabled: false,
-  // externalEmbeds: {},
-  // mutedThreads: [],
-  // invites: {
-  //   copiedInvites: [],
-  // },
-  // onboarding: {
-  //   step: 'Home',
-  // },
-  // hiddenPosts: [],
-  // useInAppBrowser: undefined,
-  // lastSelectedHomeFeed: undefined,
-  // pdsAddressHistory: [],
-  // disableHaptics: false,
-  // kawaii: false,
-  // hasCheckedForStarterPack: false,
-  // subtitlesEnabled: true,
 }
 
 export function tryParse(rawData: string): Schema | undefined {

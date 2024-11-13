@@ -5,7 +5,7 @@ import {
 } from 'expo-location'
 import { DateTime } from 'luxon'
 
-export type ThemeColorSchemeOptionsType = 'light' | 'dark' | 'system'
+export type ThemeColorSchemeOptionsType = 'light' | 'dark' | 'system' |undefined
 
 export type ThemeType = {
   preference: ThemeColorSchemeOptionsType,

@@ -18,6 +18,7 @@ let _state: Schema = defaults
 
 export async function init() {
   const stored = await readFromStorage()
+
   if (stored) {
     _state = stored
   }

@@ -1,6 +1,6 @@
 import {Dimensions, Image, StyleSheet, Text, View} from 'react-native'
 
-import {white} from '#/assets/theme/colors/colors'
+import {white} from '#/assets/theme/colors'
 
 const {width} = Dimensions.get('window')
 export const cards = [

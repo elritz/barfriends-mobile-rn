@@ -22,7 +22,7 @@ import {
   HOME_TAB_BOTTOM_NAVIGATION_HEIGHT,
   HOME_TAB_BOTTOM_NAVIGATION_HEIGHT_WITH_INSETS,
 } from '#/src/constants/ReactNavigationConstants'
-// import {useToggleTheme} from '#/src/util/hooks/theme/useToggleTheme'
+// import {useTheme} from '#/src/util/hooks/theme/useTheme'
 
 type Gluestack = {
   primary0: string
@@ -92,7 +92,7 @@ type Item = {
 export default function Preferences() {
   const insets = useSafeAreaInsets()
   const rTheme = useReactiveVar(ThemeReactiveVar)
-  // const [toggleColorScheme] = useToggleTheme()
+  // const [toggleColorScheme] = useTheme()
 
   const {data: GATData, loading: GATLoading} = useGetAllThemesQuery()
 
@@ -110,7 +110,6 @@ export default function Preferences() {
         const deviceProfile =
           data.refreshDeviceManager as AuthorizationDeviceProfile
         AuthorizationReactiveVar(deviceProfile)
-        setTheme({colorScheme: rTheme.localStorageColorScheme})
         setTimeout(() => {
           router.back()
         }, 500)
@@ -230,12 +229,6 @@ export default function Preferences() {
               onPress={async () => {
                 await setTheme({colorScheme: 'light'})
               }}
-              // style={{
-              //   borderColor:
-              //     localStorageColorScheme === 'light'
-              //       ? theme?.gluestack.tokens.colors.primary500
-              //       : 'transparent',
-              // }}
               className="flex-1 border-2 bg-light-50">
               <ButtonText className="text-black">Light</ButtonText>
             </Button>
@@ -243,12 +236,6 @@ export default function Preferences() {
               onPress={async () => {
                 await setTheme({colorScheme: 'dark'})
               }}
-              // style={{
-              //   borderColor:
-              //     rTheme.localStorageColorScheme === 'dark'
-              //       ? rTheme.theme?.gluestack.tokens.colors.primary500
-              //       : 'transparent',
-              // }}
               className="flex-1 border-2 bg-light-800">
               <ButtonText className="text-white">Dark</ButtonText>
             </Button>
@@ -258,9 +245,6 @@ export default function Preferences() {
               }}
               // style={{
               //   borderColor:
-              //     rTheme.localStorageColorScheme === 'system'
-              //       ? rTheme.theme?.gluestack.tokens.colors.primary500
-              //       : 'transparent',
               //   backgroundColor:
               //     rTheme.colorScheme === 'light'
               //       ? rTheme.theme.gluestack.tokens.colors.light100
